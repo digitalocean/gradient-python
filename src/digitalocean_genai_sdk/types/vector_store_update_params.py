@@ -1,0 +1,28 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Dict, Optional
+from typing_extensions import TypedDict
+
+from .vector_store_expiration_after_param import VectorStoreExpirationAfterParam
+
+__all__ = ["VectorStoreUpdateParams"]
+
+
+class VectorStoreUpdateParams(TypedDict, total=False):
+    expires_after: Optional[VectorStoreExpirationAfterParam]
+    """The expiration policy for a vector store."""
+
+    metadata: Optional[Dict[str, str]]
+    """Set of 16 key-value pairs that can be attached to an object.
+
+    This can be useful for storing additional information about the object in a
+    structured format, and querying for objects via API or the dashboard.
+
+    Keys are strings with a maximum length of 64 characters. Values are strings with
+    a maximum length of 512 characters.
+    """
+
+    name: Optional[str]
+    """The name of the vector store."""
