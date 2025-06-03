@@ -88,19 +88,7 @@ client = DigitaloceanGenaiSDK()
 
 assistant_object = client.assistants.create(
     model="gpt-4o",
-    tool_resources={
-        "code_interpreter": {"file_ids": ["string"]},
-        "file_search": {
-            "vector_store_ids": ["string"],
-            "vector_stores": [
-                {
-                    "chunking_strategy": {"type": "auto"},
-                    "file_ids": ["string"],
-                    "metadata": {"foo": "string"},
-                }
-            ],
-        },
-    },
+    tool_resources={},
 )
 print(assistant_object.tool_resources)
 ```
