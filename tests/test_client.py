@@ -23,20 +23,17 @@ from pydantic import ValidationError
 
 from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK, APIResponseValidationError
 from digitalocean_genai_sdk._types import Omit
+from digitalocean_genai_sdk._utils import maybe_transform
 from digitalocean_genai_sdk._models import BaseModel, FinalRequestOptions
 from digitalocean_genai_sdk._constants import RAW_RESPONSE_HEADER
-from digitalocean_genai_sdk._exceptions import (
-    APIStatusError,
-    APITimeoutError,
-    DigitaloceanGenaiSDKError,
-    APIResponseValidationError,
-)
+from digitalocean_genai_sdk._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from digitalocean_genai_sdk._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
     make_request_options,
 )
+from digitalocean_genai_sdk.types.chat.completion_create_params import CompletionCreateParams
 
 from .utils import update_env
 
@@ -338,16 +335,6 @@ class TestDigitaloceanGenaiSDK:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
-
-    def test_validate_headers(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
-
-        with pytest.raises(DigitaloceanGenaiSDKError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
-                client2 = DigitaloceanGenaiSDK(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
 
     def test_default_query_option(self) -> None:
         client = DigitaloceanGenaiSDK(
@@ -727,20 +714,58 @@ class TestDigitaloceanGenaiSDK:
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.get("/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}})
+            self.client.post(
+                "/chat/completions",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            messages=[
+                                {
+                                    "content": "string",
+                                    "role": "system",
+                                }
+                            ],
+                            model="llama3-8b-instruct",
+                        ),
+                        CompletionCreateParams,
+                    ),
+                ),
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
+            )
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(return_value=httpx.Response(500))
+        respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.get("/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}})
+            self.client.post(
+                "/chat/completions",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            messages=[
+                                {
+                                    "content": "string",
+                                    "role": "system",
+                                }
+                            ],
+                            model="llama3-8b-instruct",
+                        ),
+                        CompletionCreateParams,
+                    ),
+                ),
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
+            )
 
         assert _get_open_connections(self.client) == 0
 
@@ -768,9 +793,17 @@ class TestDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = client.assistants.with_raw_response.list()
+        response = client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+        )
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -792,9 +825,18 @@ class TestDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            extra_headers={"x-stainless-retry-count": Omit()},
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -815,9 +857,18 @@ class TestDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            extra_headers={"x-stainless-retry-count": "42"},
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1127,16 +1178,6 @@ class TestAsyncDigitaloceanGenaiSDK:
         request = client2._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
-
-    def test_validate_headers(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
-
-        with pytest.raises(DigitaloceanGenaiSDKError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
-                client2 = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
 
     def test_default_query_option(self) -> None:
         client = AsyncDigitaloceanGenaiSDK(
@@ -1520,11 +1561,28 @@ class TestAsyncDigitaloceanGenaiSDK:
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.get(
-                "/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
+            await self.client.post(
+                "/chat/completions",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            messages=[
+                                {
+                                    "content": "string",
+                                    "role": "system",
+                                }
+                            ],
+                            model="llama3-8b-instruct",
+                        ),
+                        CompletionCreateParams,
+                    ),
+                ),
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1532,11 +1590,28 @@ class TestAsyncDigitaloceanGenaiSDK:
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(return_value=httpx.Response(500))
+        respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.get(
-                "/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
+            await self.client.post(
+                "/chat/completions",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            messages=[
+                                {
+                                    "content": "string",
+                                    "role": "system",
+                                }
+                            ],
+                            model="llama3-8b-instruct",
+                        ),
+                        CompletionCreateParams,
+                    ),
+                ),
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1566,9 +1641,17 @@ class TestAsyncDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = await client.assistants.with_raw_response.list()
+        response = await client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+        )
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1591,9 +1674,18 @@ class TestAsyncDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = await client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            extra_headers={"x-stainless-retry-count": Omit()},
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1615,9 +1707,18 @@ class TestAsyncDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = await client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            extra_headers={"x-stainless-retry-count": "42"},
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

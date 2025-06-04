@@ -33,8 +33,16 @@ client = DigitaloceanGenaiSDK(
     ),  # This is the default and can be omitted
 )
 
-assistants = client.assistants.list()
-print(assistants.first_id)
+create_response = client.chat.completions.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+)
+print(create_response.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -59,8 +67,16 @@ client = AsyncDigitaloceanGenaiSDK(
 
 
 async def main() -> None:
-    assistants = await client.assistants.list()
-    print(assistants.first_id)
+    create_response = await client.chat.completions.create(
+        messages=[
+            {
+                "content": "string",
+                "role": "system",
+            }
+        ],
+        model="llama3-8b-instruct",
+    )
+    print(create_response.id)
 
 
 asyncio.run(main())
@@ -86,30 +102,18 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
 
-assistant_object = client.assistants.create(
-    model="gpt-4o",
-    tool_resources={},
+create_response = client.chat.completions.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+    stream_options={},
 )
-print(assistant_object.tool_resources)
+print(create_response.stream_options)
 ```
-
-## File uploads
-
-Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
-
-```python
-from pathlib import Path
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
-
-client = DigitaloceanGenaiSDK()
-
-client.audio.transcribe_audio(
-    file=Path("/path/to/file"),
-    model="gpt-4o-transcribe",
-)
-```
-
-The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
 
 ## Handling errors
 
@@ -127,7 +131,15 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 client = DigitaloceanGenaiSDK()
 
 try:
-    client.assistants.list()
+    client.chat.completions.create(
+        messages=[
+            {
+                "content": "string",
+                "role": "system",
+            }
+        ],
+        model="llama3-8b-instruct",
+    )
 except digitalocean_genai_sdk.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -170,7 +182,15 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).assistants.list()
+client.with_options(max_retries=5).chat.completions.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+)
 ```
 
 ### Timeouts
@@ -193,7 +213,15 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).assistants.list()
+client.with_options(timeout=5.0).chat.completions.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -234,11 +262,17 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
-response = client.assistants.with_raw_response.list()
+response = client.chat.completions.with_raw_response.create(
+    messages=[{
+        "content": "string",
+        "role": "system",
+    }],
+    model="llama3-8b-instruct",
+)
 print(response.headers.get('X-My-Header'))
 
-assistant = response.parse()  # get the object that `assistants.list()` would have returned
-print(assistant.first_id)
+completion = response.parse()  # get the object that `chat.completions.create()` would have returned
+print(completion.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
@@ -252,7 +286,15 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.assistants.with_streaming_response.list() as response:
+with client.chat.completions.with_streaming_response.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
