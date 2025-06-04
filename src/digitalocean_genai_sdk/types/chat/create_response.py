@@ -20,14 +20,12 @@ class ChoiceLogprobs(BaseModel):
 
 
 class Choice(BaseModel):
-    finish_reason: Literal["stop", "length", "tool_calls", "content_filter", "function_call"]
+    finish_reason: Literal["stop", "length"]
     """The reason the model stopped generating tokens.
 
     This will be `stop` if the model hit a natural stop point or a provided stop
-    sequence, `length` if the maximum number of tokens specified in the request was
-    reached, `content_filter` if content was omitted due to a flag from our content
-    filters, `tool_calls` if the model called a tool, or `function_call`
-    (deprecated) if the model called a function.
+    sequence, or `length` if the maximum number of tokens specified in the request
+    was reached.
     """
 
     index: int
@@ -58,16 +56,6 @@ class CreateResponse(BaseModel):
 
     object: Literal["chat.completion"]
     """The object type, which is always `chat.completion`."""
-
-    service_tier: Optional[Literal["scale", "default"]] = None
-    """The service tier used for processing the request."""
-
-    system_fingerprint: Optional[str] = None
-    """This fingerprint represents the backend configuration that the model runs with.
-
-    Can be used in conjunction with the `seed` request parameter to understand when
-    backend changes have been made that might impact determinism.
-    """
 
     usage: Optional[Usage] = None
     """Usage statistics for the completion request."""
