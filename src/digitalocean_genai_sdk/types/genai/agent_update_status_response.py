@@ -14,7 +14,7 @@ class AgentUpdateStatusResponse(BaseModel):
     agent: Optional["APIAgent"] = None
 
 
-from .api_agent import APIAgent
+from ..shared.api_agent import APIAgent
 
 if PYDANTIC_V2:
     AgentUpdateStatusResponse.model_rebuild()

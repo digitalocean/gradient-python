@@ -8,13 +8,13 @@ from typing_extensions import Literal
 
 from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
-from .api_model import APIModel
-from .api_knowledge_base import APIKnowledgeBase
-from .api_retrieval_method import APIRetrievalMethod
-from .api_deployment_visibility import APIDeploymentVisibility
-from .agents.api_agent_api_key_info import APIAgentAPIKeyInfo
-from .providers.openai.api_openai_api_key_info import APIOpenAIAPIKeyInfo
-from .providers.anthropic.api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
+from ..genai.api_model import APIModel
+from ..genai.api_knowledge_base import APIKnowledgeBase
+from ..genai.api_retrieval_method import APIRetrievalMethod
+from ..genai.api_deployment_visibility import APIDeploymentVisibility
+from ..genai.agents.api_agent_api_key_info import APIAgentAPIKeyInfo
+from ..genai.providers.openai.api_openai_api_key_info import APIOpenAIAPIKeyInfo
+from ..genai.providers.anthropic.api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
 
 __all__ = [
     "APIAgent",

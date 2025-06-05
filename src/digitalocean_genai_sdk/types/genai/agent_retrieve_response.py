@@ -14,7 +14,7 @@ class AgentRetrieveResponse(BaseModel):
     agent: Optional["APIAgent"] = None
 
 
-from .api_agent import APIAgent
+from ..shared.api_agent import APIAgent
 
 if PYDANTIC_V2:
     AgentRetrieveResponse.model_rebuild()

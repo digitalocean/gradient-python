@@ -20,7 +20,7 @@ class KeyRetrieveAgentsResponse(BaseModel):
     meta: Optional[APIMeta] = None
 
 
-from ...api_agent import APIAgent
+from ....shared.api_agent import APIAgent
 
 if PYDANTIC_V2:
     KeyRetrieveAgentsResponse.model_rebuild()

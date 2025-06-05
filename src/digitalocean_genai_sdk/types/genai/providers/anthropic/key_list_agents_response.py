@@ -20,7 +20,7 @@ class KeyListAgentsResponse(BaseModel):
     meta: Optional[APIMeta] = None
 
 
-from ...api_agent import APIAgent
+from ....shared.api_agent import APIAgent
 
 if PYDANTIC_V2:
     KeyListAgentsResponse.model_rebuild()
