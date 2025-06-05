@@ -8,6 +8,14 @@ from .chat import (
     ChatResourceWithStreamingResponse,
     AsyncChatResourceWithStreamingResponse,
 )
+from .genai import (
+    GenaiResource,
+    AsyncGenaiResource,
+    GenaiResourceWithRawResponse,
+    AsyncGenaiResourceWithRawResponse,
+    GenaiResourceWithStreamingResponse,
+    AsyncGenaiResourceWithStreamingResponse,
+)
 from .models import (
     ModelsResource,
     AsyncModelsResource,
@@ -26,6 +34,12 @@ from .embeddings import (
 )
 
 __all__ = [
+    "GenaiResource",
+    "AsyncGenaiResource",
+    "GenaiResourceWithRawResponse",
+    "AsyncGenaiResourceWithRawResponse",
+    "GenaiResourceWithStreamingResponse",
+    "AsyncGenaiResourceWithStreamingResponse",
     "ChatResource",
     "AsyncChatResource",
     "ChatResourceWithRawResponse",
