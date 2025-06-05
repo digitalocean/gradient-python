@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import models, embeddings
+from .resources import chat, models, embeddings
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DigitaloceanGenaiSDKError
 from ._base_client import (
@@ -29,7 +29,7 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.chat import chat
+from .resources.genai import genai
 
 __all__ = [
     "Timeout",
@@ -44,6 +44,7 @@ __all__ = [
 
 
 class DigitaloceanGenaiSDK(SyncAPIClient):
+    genai: genai.GenaiResource
     chat: chat.ChatResource
     embeddings: embeddings.EmbeddingsResource
     models: models.ModelsResource
@@ -91,7 +92,7 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("DIGITALOCEAN_GENAI_SDK_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.digitalocean.com/"
 
         super().__init__(
             version=__version__,
@@ -104,6 +105,7 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.genai = genai.GenaiResource(self)
         self.chat = chat.ChatResource(self)
         self.embeddings = embeddings.EmbeddingsResource(self)
         self.models = models.ModelsResource(self)
@@ -216,6 +218,7 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
 
 
 class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
+    genai: genai.AsyncGenaiResource
     chat: chat.AsyncChatResource
     embeddings: embeddings.AsyncEmbeddingsResource
     models: models.AsyncModelsResource
@@ -263,7 +266,7 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("DIGITALOCEAN_GENAI_SDK_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.digitalocean.com/"
 
         super().__init__(
             version=__version__,
@@ -276,6 +279,7 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.genai = genai.AsyncGenaiResource(self)
         self.chat = chat.AsyncChatResource(self)
         self.embeddings = embeddings.AsyncEmbeddingsResource(self)
         self.models = models.AsyncModelsResource(self)
@@ -389,6 +393,7 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
 
 class DigitaloceanGenaiSDKWithRawResponse:
     def __init__(self, client: DigitaloceanGenaiSDK) -> None:
+        self.genai = genai.GenaiResourceWithRawResponse(client.genai)
         self.chat = chat.ChatResourceWithRawResponse(client.chat)
         self.embeddings = embeddings.EmbeddingsResourceWithRawResponse(client.embeddings)
         self.models = models.ModelsResourceWithRawResponse(client.models)
@@ -396,6 +401,7 @@ class DigitaloceanGenaiSDKWithRawResponse:
 
 class AsyncDigitaloceanGenaiSDKWithRawResponse:
     def __init__(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+        self.genai = genai.AsyncGenaiResourceWithRawResponse(client.genai)
         self.chat = chat.AsyncChatResourceWithRawResponse(client.chat)
         self.embeddings = embeddings.AsyncEmbeddingsResourceWithRawResponse(client.embeddings)
         self.models = models.AsyncModelsResourceWithRawResponse(client.models)
@@ -403,6 +409,7 @@ class AsyncDigitaloceanGenaiSDKWithRawResponse:
 
 class DigitaloceanGenaiSDKWithStreamedResponse:
     def __init__(self, client: DigitaloceanGenaiSDK) -> None:
+        self.genai = genai.GenaiResourceWithStreamingResponse(client.genai)
         self.chat = chat.ChatResourceWithStreamingResponse(client.chat)
         self.embeddings = embeddings.EmbeddingsResourceWithStreamingResponse(client.embeddings)
         self.models = models.ModelsResourceWithStreamingResponse(client.models)
@@ -410,6 +417,7 @@ class DigitaloceanGenaiSDKWithStreamedResponse:
 
 class AsyncDigitaloceanGenaiSDKWithStreamedResponse:
     def __init__(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+        self.genai = genai.AsyncGenaiResourceWithStreamingResponse(client.genai)
         self.chat = chat.AsyncChatResourceWithStreamingResponse(client.chat)
         self.embeddings = embeddings.AsyncEmbeddingsResourceWithStreamingResponse(client.embeddings)
         self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)

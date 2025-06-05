@@ -1,6 +1,6 @@
 # Digitalocean Genai SDK Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/do-genai.svg)](https://pypi.org/project/do-genai/)
+[![PyPI version](https://img.shields.io/pypi/v/digitalocean_genai_sdk.svg)](https://pypi.org/project/digitalocean_genai_sdk/)
 
 The Digitalocean Genai SDK Python library provides convenient access to the Digitalocean Genai SDK REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -10,14 +10,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [help.openai.com](https://help.openai.com/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [developers.digitalocean.com](https://developers.digitalocean.com/documentation/v2/). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from PyPI
-pip install --pre do-genai
+# install from this staging repo
+pip install git+ssh://git@github.com/stainless-sdks/digitalocean-genai-sdk-python.git
 ```
+
+> [!NOTE]
+> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre digitalocean_genai_sdk`
 
 ## Usage
 
@@ -33,16 +36,10 @@ client = DigitaloceanGenaiSDK(
     ),  # This is the default and can be omitted
 )
 
-create_response = client.chat.completions.create(
-    messages=[
-        {
-            "content": "string",
-            "role": "system",
-        }
-    ],
-    model="llama3-8b-instruct",
+versions = client.genai.agents.versions.list(
+    uuid="REPLACE_ME",
 )
-print(create_response.id)
+print(versions.agent_versions)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -67,16 +64,10 @@ client = AsyncDigitaloceanGenaiSDK(
 
 
 async def main() -> None:
-    create_response = await client.chat.completions.create(
-        messages=[
-            {
-                "content": "string",
-                "role": "system",
-            }
-        ],
-        model="llama3-8b-instruct",
+    versions = await client.genai.agents.versions.list(
+        uuid="REPLACE_ME",
     )
-    print(create_response.id)
+    print(versions.agent_versions)
 
 
 asyncio.run(main())
@@ -102,17 +93,11 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
 
-create_response = client.chat.completions.create(
-    messages=[
-        {
-            "content": "string",
-            "role": "system",
-        }
-    ],
-    model="llama3-8b-instruct",
-    stream_options={},
+data_source = client.genai.knowledge_bases.data_sources.create(
+    path_knowledge_base_uuid="knowledge_base_uuid",
+    aws_data_source={},
 )
-print(create_response.stream_options)
+print(data_source.aws_data_source)
 ```
 
 ## Handling errors
@@ -131,14 +116,8 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 client = DigitaloceanGenaiSDK()
 
 try:
-    client.chat.completions.create(
-        messages=[
-            {
-                "content": "string",
-                "role": "system",
-            }
-        ],
-        model="llama3-8b-instruct",
+    client.genai.agents.versions.list(
+        uuid="REPLACE_ME",
     )
 except digitalocean_genai_sdk.APIConnectionError as e:
     print("The server could not be reached")
@@ -182,14 +161,8 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).chat.completions.create(
-    messages=[
-        {
-            "content": "string",
-            "role": "system",
-        }
-    ],
-    model="llama3-8b-instruct",
+client.with_options(max_retries=5).genai.agents.versions.list(
+    uuid="REPLACE_ME",
 )
 ```
 
@@ -213,14 +186,8 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).chat.completions.create(
-    messages=[
-        {
-            "content": "string",
-            "role": "system",
-        }
-    ],
-    model="llama3-8b-instruct",
+client.with_options(timeout=5.0).genai.agents.versions.list(
+    uuid="REPLACE_ME",
 )
 ```
 
@@ -262,22 +229,18 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
-response = client.chat.completions.with_raw_response.create(
-    messages=[{
-        "content": "string",
-        "role": "system",
-    }],
-    model="llama3-8b-instruct",
+response = client.genai.agents.versions.with_raw_response.list(
+    uuid="REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
 
-completion = response.parse()  # get the object that `chat.completions.create()` would have returned
-print(completion.id)
+version = response.parse()  # get the object that `genai.agents.versions.list()` would have returned
+print(version.agent_versions)
 ```
 
-These methods return an [`APIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/src/digitalocean_genai_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -286,14 +249,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.chat.completions.with_streaming_response.create(
-    messages=[
-        {
-            "content": "string",
-            "role": "system",
-        }
-    ],
-    model="llama3-8b-instruct",
+with client.genai.agents.versions.with_streaming_response.list(
+    uuid="REPLACE_ME",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -389,7 +346,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/digitalocean/genai-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
