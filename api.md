@@ -1,3 +1,9 @@
+# Shared Types
+
+```python
+from digitalocean_genai_sdk.types import APIAgent
+```
+
 # Genai
 
 Types:
@@ -16,7 +22,6 @@ Types:
 
 ```python
 from digitalocean_genai_sdk.types.genai import (
-    APIAgent,
     APIDeploymentVisibility,
     APIModel,
     APIRetrievalMethod,
