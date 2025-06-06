@@ -1,4 +1,4 @@
 configured_endpoints: 60
 openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/digitalocean%2Fdigitalocean-genai-sdk-17838dec38ee8475c4bf4695b8dc70fe42a8f4da8ae9ffd415dc895b6628a952.yml
 openapi_spec_hash: cfe5453e150989c8a9dbc9d7b4d1f76a
-config_hash: 43595338207b5728be143c6184c8285e
+config_hash: 25c073783b334ca5170ad34fa03ed57f

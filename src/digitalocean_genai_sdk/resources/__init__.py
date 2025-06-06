@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .auth import (
+    AuthResource,
+    AsyncAuthResource,
+    AuthResourceWithRawResponse,
+    AsyncAuthResourceWithRawResponse,
+    AuthResourceWithStreamingResponse,
+    AsyncAuthResourceWithStreamingResponse,
+)
 from .chat import (
     ChatResource,
     AsyncChatResource,
@@ -8,13 +16,13 @@ from .chat import (
     ChatResourceWithStreamingResponse,
     AsyncChatResourceWithStreamingResponse,
 )
-from .genai import (
-    GenaiResource,
-    AsyncGenaiResource,
-    GenaiResourceWithRawResponse,
-    AsyncGenaiResourceWithRawResponse,
-    GenaiResourceWithStreamingResponse,
-    AsyncGenaiResourceWithStreamingResponse,
+from .agents import (
+    AgentsResource,
+    AsyncAgentsResource,
+    AgentsResourceWithRawResponse,
+    AsyncAgentsResourceWithRawResponse,
+    AgentsResourceWithStreamingResponse,
+    AsyncAgentsResourceWithStreamingResponse,
 )
 from .models import (
     ModelsResource,
@@ -24,6 +32,30 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
+from .regions import (
+    RegionsResource,
+    AsyncRegionsResource,
+    RegionsResourceWithRawResponse,
+    AsyncRegionsResourceWithRawResponse,
+    RegionsResourceWithStreamingResponse,
+    AsyncRegionsResourceWithStreamingResponse,
+)
+from .api_keys import (
+    APIKeysResource,
+    AsyncAPIKeysResource,
+    APIKeysResourceWithRawResponse,
+    AsyncAPIKeysResourceWithRawResponse,
+    APIKeysResourceWithStreamingResponse,
+    AsyncAPIKeysResourceWithStreamingResponse,
+)
+from .providers import (
+    ProvidersResource,
+    AsyncProvidersResource,
+    ProvidersResourceWithRawResponse,
+    AsyncProvidersResourceWithRawResponse,
+    ProvidersResourceWithStreamingResponse,
+    AsyncProvidersResourceWithStreamingResponse,
+)
 from .embeddings import (
     EmbeddingsResource,
     AsyncEmbeddingsResource,
@@ -32,14 +64,66 @@ from .embeddings import (
     EmbeddingsResourceWithStreamingResponse,
     AsyncEmbeddingsResourceWithStreamingResponse,
 )
+from .indexing_jobs import (
+    IndexingJobsResource,
+    AsyncIndexingJobsResource,
+    IndexingJobsResourceWithRawResponse,
+    AsyncIndexingJobsResourceWithRawResponse,
+    IndexingJobsResourceWithStreamingResponse,
+    AsyncIndexingJobsResourceWithStreamingResponse,
+)
+from .knowledge_bases import (
+    KnowledgeBasesResource,
+    AsyncKnowledgeBasesResource,
+    KnowledgeBasesResourceWithRawResponse,
+    AsyncKnowledgeBasesResourceWithRawResponse,
+    KnowledgeBasesResourceWithStreamingResponse,
+    AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
 
 __all__ = [
-    "GenaiResource",
-    "AsyncGenaiResource",
-    "GenaiResourceWithRawResponse",
-    "AsyncGenaiResourceWithRawResponse",
-    "GenaiResourceWithStreamingResponse",
-    "AsyncGenaiResourceWithStreamingResponse",
+    "AgentsResource",
+    "AsyncAgentsResource",
+    "AgentsResourceWithRawResponse",
+    "AsyncAgentsResourceWithRawResponse",
+    "AgentsResourceWithStreamingResponse",
+    "AsyncAgentsResourceWithStreamingResponse",
+    "ProvidersResource",
+    "AsyncProvidersResource",
+    "ProvidersResourceWithRawResponse",
+    "AsyncProvidersResourceWithRawResponse",
+    "ProvidersResourceWithStreamingResponse",
+    "AsyncProvidersResourceWithStreamingResponse",
+    "AuthResource",
+    "AsyncAuthResource",
+    "AuthResourceWithRawResponse",
+    "AsyncAuthResourceWithRawResponse",
+    "AuthResourceWithStreamingResponse",
+    "AsyncAuthResourceWithStreamingResponse",
+    "RegionsResource",
+    "AsyncRegionsResource",
+    "RegionsResourceWithRawResponse",
+    "AsyncRegionsResourceWithRawResponse",
+    "RegionsResourceWithStreamingResponse",
+    "AsyncRegionsResourceWithStreamingResponse",
+    "IndexingJobsResource",
+    "AsyncIndexingJobsResource",
+    "IndexingJobsResourceWithRawResponse",
+    "AsyncIndexingJobsResourceWithRawResponse",
+    "IndexingJobsResourceWithStreamingResponse",
+    "AsyncIndexingJobsResourceWithStreamingResponse",
+    "KnowledgeBasesResource",
+    "AsyncKnowledgeBasesResource",
+    "KnowledgeBasesResourceWithRawResponse",
+    "AsyncKnowledgeBasesResourceWithRawResponse",
+    "KnowledgeBasesResourceWithStreamingResponse",
+    "AsyncKnowledgeBasesResourceWithStreamingResponse",
+    "APIKeysResource",
+    "AsyncAPIKeysResource",
+    "APIKeysResourceWithRawResponse",
+    "AsyncAPIKeysResourceWithRawResponse",
+    "APIKeysResourceWithStreamingResponse",
+    "AsyncAPIKeysResourceWithStreamingResponse",
     "ChatResource",
     "AsyncChatResource",
     "ChatResourceWithRawResponse",

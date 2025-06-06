@@ -36,7 +36,7 @@ client = DigitaloceanGenaiSDK(
     ),  # This is the default and can be omitted
 )
 
-versions = client.genai.agents.versions.list(
+versions = client.agents.versions.list(
     uuid="REPLACE_ME",
 )
 print(versions.agent_versions)
@@ -64,7 +64,7 @@ client = AsyncDigitaloceanGenaiSDK(
 
 
 async def main() -> None:
-    versions = await client.genai.agents.versions.list(
+    versions = await client.agents.versions.list(
         uuid="REPLACE_ME",
     )
     print(versions.agent_versions)
@@ -93,7 +93,7 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
 
-data_source = client.genai.knowledge_bases.data_sources.create(
+data_source = client.knowledge_bases.data_sources.create(
     path_knowledge_base_uuid="knowledge_base_uuid",
     aws_data_source={},
 )
@@ -116,7 +116,7 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 client = DigitaloceanGenaiSDK()
 
 try:
-    client.genai.agents.versions.list(
+    client.agents.versions.list(
         uuid="REPLACE_ME",
     )
 except digitalocean_genai_sdk.APIConnectionError as e:
@@ -161,7 +161,7 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).genai.agents.versions.list(
+client.with_options(max_retries=5).agents.versions.list(
     uuid="REPLACE_ME",
 )
 ```
@@ -186,7 +186,7 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).genai.agents.versions.list(
+client.with_options(timeout=5.0).agents.versions.list(
     uuid="REPLACE_ME",
 )
 ```
@@ -229,12 +229,12 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
-response = client.genai.agents.versions.with_raw_response.list(
+response = client.agents.versions.with_raw_response.list(
     uuid="REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
 
-version = response.parse()  # get the object that `genai.agents.versions.list()` would have returned
+version = response.parse()  # get the object that `agents.versions.list()` would have returned
 print(version.agent_versions)
 ```
 
@@ -249,7 +249,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.genai.agents.versions.with_streaming_response.list(
+with client.agents.versions.with_streaming_response.list(
     uuid="REPLACE_ME",
 ) as response:
     print(response.headers.get("X-My-Header"))
