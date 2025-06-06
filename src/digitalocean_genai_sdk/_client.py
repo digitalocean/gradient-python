@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import TYPE_CHECKING, Any, Union, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     RequestOptions,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import chat, models, embeddings
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DigitaloceanGenaiSDKError
 from ._base_client import (
@@ -29,7 +29,13 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.genai import genai
+
+if TYPE_CHECKING:
+    from .resources import chat, genai, models, embeddings
+    from .resources.chat import ChatResource, AsyncChatResource
+    from .resources.models import ModelsResource, AsyncModelsResource
+    from .resources.embeddings import EmbeddingsResource, AsyncEmbeddingsResource
+    from .resources.genai.genai import GenaiResource, AsyncGenaiResource
 
 __all__ = [
     "Timeout",
@@ -44,13 +50,6 @@ __all__ = [
 
 
 class DigitaloceanGenaiSDK(SyncAPIClient):
-    genai: genai.GenaiResource
-    chat: chat.ChatResource
-    embeddings: embeddings.EmbeddingsResource
-    models: models.ModelsResource
-    with_raw_response: DigitaloceanGenaiSDKWithRawResponse
-    with_streaming_response: DigitaloceanGenaiSDKWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -105,12 +104,37 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.genai = genai.GenaiResource(self)
-        self.chat = chat.ChatResource(self)
-        self.embeddings = embeddings.EmbeddingsResource(self)
-        self.models = models.ModelsResource(self)
-        self.with_raw_response = DigitaloceanGenaiSDKWithRawResponse(self)
-        self.with_streaming_response = DigitaloceanGenaiSDKWithStreamedResponse(self)
+    @cached_property
+    def genai(self) -> GenaiResource:
+        from .resources.genai import GenaiResource
+
+        return GenaiResource(self)
+
+    @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
+    def embeddings(self) -> EmbeddingsResource:
+        from .resources.embeddings import EmbeddingsResource
+
+        return EmbeddingsResource(self)
+
+    @cached_property
+    def models(self) -> ModelsResource:
+        from .resources.models import ModelsResource
+
+        return ModelsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> DigitaloceanGenaiSDKWithRawResponse:
+        return DigitaloceanGenaiSDKWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DigitaloceanGenaiSDKWithStreamedResponse:
+        return DigitaloceanGenaiSDKWithStreamedResponse(self)
 
     @property
     @override
@@ -218,13 +242,6 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
 
 
 class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
-    genai: genai.AsyncGenaiResource
-    chat: chat.AsyncChatResource
-    embeddings: embeddings.AsyncEmbeddingsResource
-    models: models.AsyncModelsResource
-    with_raw_response: AsyncDigitaloceanGenaiSDKWithRawResponse
-    with_streaming_response: AsyncDigitaloceanGenaiSDKWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -279,12 +296,37 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.genai = genai.AsyncGenaiResource(self)
-        self.chat = chat.AsyncChatResource(self)
-        self.embeddings = embeddings.AsyncEmbeddingsResource(self)
-        self.models = models.AsyncModelsResource(self)
-        self.with_raw_response = AsyncDigitaloceanGenaiSDKWithRawResponse(self)
-        self.with_streaming_response = AsyncDigitaloceanGenaiSDKWithStreamedResponse(self)
+    @cached_property
+    def genai(self) -> AsyncGenaiResource:
+        from .resources.genai import AsyncGenaiResource
+
+        return AsyncGenaiResource(self)
+
+    @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
+    def embeddings(self) -> AsyncEmbeddingsResource:
+        from .resources.embeddings import AsyncEmbeddingsResource
+
+        return AsyncEmbeddingsResource(self)
+
+    @cached_property
+    def models(self) -> AsyncModelsResource:
+        from .resources.models import AsyncModelsResource
+
+        return AsyncModelsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncDigitaloceanGenaiSDKWithRawResponse:
+        return AsyncDigitaloceanGenaiSDKWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDigitaloceanGenaiSDKWithStreamedResponse:
+        return AsyncDigitaloceanGenaiSDKWithStreamedResponse(self)
 
     @property
     @override
@@ -392,35 +434,127 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
 
 
 class DigitaloceanGenaiSDKWithRawResponse:
+    _client: DigitaloceanGenaiSDK
+
     def __init__(self, client: DigitaloceanGenaiSDK) -> None:
-        self.genai = genai.GenaiResourceWithRawResponse(client.genai)
-        self.chat = chat.ChatResourceWithRawResponse(client.chat)
-        self.embeddings = embeddings.EmbeddingsResourceWithRawResponse(client.embeddings)
-        self.models = models.ModelsResourceWithRawResponse(client.models)
+        self._client = client
+
+    @cached_property
+    def genai(self) -> genai.GenaiResourceWithRawResponse:
+        from .resources.genai import GenaiResourceWithRawResponse
+
+        return GenaiResourceWithRawResponse(self._client.genai)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.EmbeddingsResourceWithRawResponse:
+        from .resources.embeddings import EmbeddingsResourceWithRawResponse
+
+        return EmbeddingsResourceWithRawResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithRawResponse:
+        from .resources.models import ModelsResourceWithRawResponse
+
+        return ModelsResourceWithRawResponse(self._client.models)
 
 
 class AsyncDigitaloceanGenaiSDKWithRawResponse:
+    _client: AsyncDigitaloceanGenaiSDK
+
     def __init__(self, client: AsyncDigitaloceanGenaiSDK) -> None:
-        self.genai = genai.AsyncGenaiResourceWithRawResponse(client.genai)
-        self.chat = chat.AsyncChatResourceWithRawResponse(client.chat)
-        self.embeddings = embeddings.AsyncEmbeddingsResourceWithRawResponse(client.embeddings)
-        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
+        self._client = client
+
+    @cached_property
+    def genai(self) -> genai.AsyncGenaiResourceWithRawResponse:
+        from .resources.genai import AsyncGenaiResourceWithRawResponse
+
+        return AsyncGenaiResourceWithRawResponse(self._client.genai)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithRawResponse:
+        from .resources.embeddings import AsyncEmbeddingsResourceWithRawResponse
+
+        return AsyncEmbeddingsResourceWithRawResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        from .resources.models import AsyncModelsResourceWithRawResponse
+
+        return AsyncModelsResourceWithRawResponse(self._client.models)
 
 
 class DigitaloceanGenaiSDKWithStreamedResponse:
+    _client: DigitaloceanGenaiSDK
+
     def __init__(self, client: DigitaloceanGenaiSDK) -> None:
-        self.genai = genai.GenaiResourceWithStreamingResponse(client.genai)
-        self.chat = chat.ChatResourceWithStreamingResponse(client.chat)
-        self.embeddings = embeddings.EmbeddingsResourceWithStreamingResponse(client.embeddings)
-        self.models = models.ModelsResourceWithStreamingResponse(client.models)
+        self._client = client
+
+    @cached_property
+    def genai(self) -> genai.GenaiResourceWithStreamingResponse:
+        from .resources.genai import GenaiResourceWithStreamingResponse
+
+        return GenaiResourceWithStreamingResponse(self._client.genai)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.EmbeddingsResourceWithStreamingResponse:
+        from .resources.embeddings import EmbeddingsResourceWithStreamingResponse
+
+        return EmbeddingsResourceWithStreamingResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithStreamingResponse:
+        from .resources.models import ModelsResourceWithStreamingResponse
+
+        return ModelsResourceWithStreamingResponse(self._client.models)
 
 
 class AsyncDigitaloceanGenaiSDKWithStreamedResponse:
+    _client: AsyncDigitaloceanGenaiSDK
+
     def __init__(self, client: AsyncDigitaloceanGenaiSDK) -> None:
-        self.genai = genai.AsyncGenaiResourceWithStreamingResponse(client.genai)
-        self.chat = chat.AsyncChatResourceWithStreamingResponse(client.chat)
-        self.embeddings = embeddings.AsyncEmbeddingsResourceWithStreamingResponse(client.embeddings)
-        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
+        self._client = client
+
+    @cached_property
+    def genai(self) -> genai.AsyncGenaiResourceWithStreamingResponse:
+        from .resources.genai import AsyncGenaiResourceWithStreamingResponse
+
+        return AsyncGenaiResourceWithStreamingResponse(self._client.genai)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithStreamingResponse:
+        from .resources.embeddings import AsyncEmbeddingsResourceWithStreamingResponse
+
+        return AsyncEmbeddingsResourceWithStreamingResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        from .resources.models import AsyncModelsResourceWithStreamingResponse
+
+        return AsyncModelsResourceWithStreamingResponse(self._client.models)
 
 
 Client = DigitaloceanGenaiSDK

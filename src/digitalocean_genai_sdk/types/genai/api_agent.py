@@ -6,15 +6,14 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
-from ..genai.api_model import APIModel
-from ..genai.api_knowledge_base import APIKnowledgeBase
-from ..genai.api_retrieval_method import APIRetrievalMethod
-from ..genai.api_deployment_visibility import APIDeploymentVisibility
-from ..genai.agents.api_agent_api_key_info import APIAgentAPIKeyInfo
-from ..genai.providers.openai.api_openai_api_key_info import APIOpenAIAPIKeyInfo
-from ..genai.providers.anthropic.api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
+from .api_model import APIModel
+from .api_knowledge_base import APIKnowledgeBase
+from .api_retrieval_method import APIRetrievalMethod
+from .api_deployment_visibility import APIDeploymentVisibility
+from .agents.api_agent_api_key_info import APIAgentAPIKeyInfo
+from .providers.openai.api_openai_api_key_info import APIOpenAIAPIKeyInfo
+from .providers.anthropic.api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
 
 __all__ = [
     "APIAgent",
@@ -262,25 +261,3 @@ class APIAgent(BaseModel):
     user_id: Optional[str] = None
 
     uuid: Optional[str] = None
-
-
-if PYDANTIC_V2:
-    APIAgent.model_rebuild()
-    APIKey.model_rebuild()
-    Chatbot.model_rebuild()
-    ChatbotIdentifier.model_rebuild()
-    Deployment.model_rebuild()
-    Function.model_rebuild()
-    Guardrail.model_rebuild()
-    Template.model_rebuild()
-    TemplateGuardrail.model_rebuild()
-else:
-    APIAgent.update_forward_refs()  # type: ignore
-    APIKey.update_forward_refs()  # type: ignore
-    Chatbot.update_forward_refs()  # type: ignore
-    ChatbotIdentifier.update_forward_refs()  # type: ignore
-    Deployment.update_forward_refs()  # type: ignore
-    Function.update_forward_refs()  # type: ignore
-    Guardrail.update_forward_refs()  # type: ignore
-    Template.update_forward_refs()  # type: ignore
-    TemplateGuardrail.update_forward_refs()  # type: ignore
