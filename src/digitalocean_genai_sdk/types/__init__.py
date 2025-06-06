@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .model import Model as Model
-from .shared import APIAgent as APIAgent
 from .model_list_response import ModelListResponse as ModelListResponse
 from .embedding_create_params import EmbeddingCreateParams as EmbeddingCreateParams
 from .embedding_create_response import EmbeddingCreateResponse as EmbeddingCreateResponse
