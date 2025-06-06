@@ -3,12 +3,12 @@
 from typing import Optional
 from datetime import datetime
 
-from ...._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["APIAnthropicAPIKeyInfo"]
+__all__ = ["APIAgentAPIKeyInfo"]
 
 
-class APIAnthropicAPIKeyInfo(BaseModel):
+class APIAgentAPIKeyInfo(BaseModel):
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
@@ -17,6 +17,6 @@ class APIAnthropicAPIKeyInfo(BaseModel):
 
     name: Optional[str] = None
 
-    updated_at: Optional[datetime] = None
+    secret_key: Optional[str] = None
 
     uuid: Optional[str] = None

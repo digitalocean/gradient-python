@@ -10,10 +10,10 @@ from .._models import BaseModel
 from .api_model import APIModel
 from .api_knowledge_base import APIKnowledgeBase
 from .api_retrieval_method import APIRetrievalMethod
+from .api_agent_api_key_info import APIAgentAPIKeyInfo
+from .api_openai_api_key_info import APIOpenAIAPIKeyInfo
 from .api_deployment_visibility import APIDeploymentVisibility
-from .agents.api_agent_api_key_info import APIAgentAPIKeyInfo
-from .providers.openai.api_openai_api_key_info import APIOpenAIAPIKeyInfo
-from .providers.anthropic.api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
+from .api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
 
 __all__ = [
     "APIAgent",

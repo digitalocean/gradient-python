@@ -3,7 +3,7 @@
 from typing import Optional
 
 from ...._models import BaseModel
-from .api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
+from ...api_anthropic_api_key_info import APIAnthropicAPIKeyInfo
 
 __all__ = ["KeyRetrieveResponse"]
 

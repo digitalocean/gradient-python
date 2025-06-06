@@ -3,7 +3,7 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from .api_agent_api_key_info import APIAgentAPIKeyInfo
+from ..api_agent_api_key_info import APIAgentAPIKeyInfo
 
 __all__ = ["APIKeyDeleteResponse"]
 

@@ -10,6 +10,5 @@ from .key_create_response import KeyCreateResponse as KeyCreateResponse
 from .key_delete_response import KeyDeleteResponse as KeyDeleteResponse
 from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
 from .key_retrieve_response import KeyRetrieveResponse as KeyRetrieveResponse
-from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .key_retrieve_agents_params import KeyRetrieveAgentsParams as KeyRetrieveAgentsParams
 from .key_retrieve_agents_response import KeyRetrieveAgentsResponse as KeyRetrieveAgentsResponse
