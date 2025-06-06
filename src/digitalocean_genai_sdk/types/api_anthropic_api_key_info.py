@@ -1,22 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
-from ...._models import BaseModel
-from ...api_model import APIModel
+from .._models import BaseModel
 
-__all__ = ["APIOpenAIAPIKeyInfo"]
+__all__ = ["APIAnthropicAPIKeyInfo"]
 
 
-class APIOpenAIAPIKeyInfo(BaseModel):
+class APIAnthropicAPIKeyInfo(BaseModel):
     created_at: Optional[datetime] = None
 
     created_by: Optional[str] = None
 
     deleted_at: Optional[datetime] = None
-
-    models: Optional[List[APIModel]] = None
 
     name: Optional[str] = None
 

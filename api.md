@@ -5,8 +5,11 @@ Types:
 ```python
 from digitalocean_genai_sdk.types import (
     APIAgent,
+    APIAgentAPIKeyInfo,
+    APIAnthropicAPIKeyInfo,
     APIDeploymentVisibility,
     APIModel,
+    APIOpenAIAPIKeyInfo,
     APIRetrievalMethod,
     AgentCreateResponse,
     AgentRetrieveResponse,
@@ -32,7 +35,6 @@ Types:
 
 ```python
 from digitalocean_genai_sdk.types.agents import (
-    APIAgentAPIKeyInfo,
     APIKeyCreateResponse,
     APIKeyUpdateResponse,
     APIKeyListResponse,
@@ -132,7 +134,6 @@ Types:
 
 ```python
 from digitalocean_genai_sdk.types.providers.anthropic import (
-    APIAnthropicAPIKeyInfo,
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,
@@ -159,7 +160,6 @@ Types:
 
 ```python
 from digitalocean_genai_sdk.types.providers.openai import (
-    APIOpenAIAPIKeyInfo,
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,

@@ -3,7 +3,7 @@
 from typing import Optional
 
 from ...._models import BaseModel
-from .api_openai_api_key_info import APIOpenAIAPIKeyInfo
+from ...api_openai_api_key_info import APIOpenAIAPIKeyInfo
 
 __all__ = ["KeyCreateResponse"]
 

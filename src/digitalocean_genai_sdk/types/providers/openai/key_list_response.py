@@ -5,7 +5,7 @@ from typing import List, Optional
 from ...._models import BaseModel
 from ...agents.api_meta import APIMeta
 from ...agents.api_links import APILinks
-from .api_openai_api_key_info import APIOpenAIAPIKeyInfo
+from ...api_openai_api_key_info import APIOpenAIAPIKeyInfo
 
 __all__ = ["KeyListResponse"]
 
