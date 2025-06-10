@@ -1,4 +1,4 @@
 configured_endpoints: 126
 openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/digitalocean%2Fserverless-inference-sdk-prod-bdf24159c6ebb5402d6c05a5165cb1501dc37cf6c664baa9eb318efb0f89dddd.yml
 openapi_spec_hash: 686329a97002025d118dc2367755c18d
-config_hash: 957c083fd469376dc3f1320ae9222e73
+config_hash: 458cab7339af0d949371a36b603d7dcd
