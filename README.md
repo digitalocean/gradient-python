@@ -16,7 +16,7 @@ The REST API documentation can be found on [help.openai.com](https://help.openai
 
 ```sh
 # install from PyPI
-pip install --pre do-genai
+pip install do-genai
 ```
 
 ## Usage

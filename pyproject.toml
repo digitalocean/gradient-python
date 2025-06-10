@@ -1,6 +1,6 @@
 [project]
 name = "do-genai"
-version = "0.0.1-alpha.0"
+version = "0.0.1"
 description = "The official Python library for the serverless-inference-sdk-prod API"
 dynamic = ["readme"]
 license = "MIT"
