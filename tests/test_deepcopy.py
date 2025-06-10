@@ -1,4 +1,4 @@
-from digitalocean_genai_sdk._utils import deepcopy_minimal
+from serverless_inference_sdk_prod._utils import deepcopy_minimal
 
 
 def assert_different_identities(obj1: object, obj2: object) -> None:

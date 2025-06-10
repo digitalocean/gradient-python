@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types import (
     ImagesResponse,
 )
 
@@ -21,7 +21,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_edit(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_edit(self, client: ServerlessInferenceSDKProd) -> None:
         image = client.images.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -30,7 +30,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_edit_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_edit_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         image = client.images.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -45,7 +45,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_edit(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create_edit(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.images.with_raw_response.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -58,7 +58,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_edit(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create_edit(self, client: ServerlessInferenceSDKProd) -> None:
         with client.images.with_streaming_response.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -73,7 +73,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_generation(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_generation(self, client: ServerlessInferenceSDKProd) -> None:
         image = client.images.create_generation(
             prompt="A cute baby sea otter",
         )
@@ -81,7 +81,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_generation_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_generation_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         image = client.images.create_generation(
             prompt="A cute baby sea otter",
             model="dall-e-3",
@@ -96,7 +96,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_generation(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create_generation(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.images.with_raw_response.create_generation(
             prompt="A cute baby sea otter",
         )
@@ -108,7 +108,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_generation(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create_generation(self, client: ServerlessInferenceSDKProd) -> None:
         with client.images.with_streaming_response.create_generation(
             prompt="A cute baby sea otter",
         ) as response:
@@ -122,7 +122,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_variation(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_variation(self, client: ServerlessInferenceSDKProd) -> None:
         image = client.images.create_variation(
             image=b"raw file contents",
         )
@@ -130,7 +130,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_variation_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_variation_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         image = client.images.create_variation(
             image=b"raw file contents",
             model="dall-e-2",
@@ -143,7 +143,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_variation(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create_variation(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.images.with_raw_response.create_variation(
             image=b"raw file contents",
         )
@@ -155,7 +155,7 @@ class TestImages:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_variation(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create_variation(self, client: ServerlessInferenceSDKProd) -> None:
         with client.images.with_streaming_response.create_variation(
             image=b"raw file contents",
         ) as response:
@@ -173,7 +173,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_edit(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_edit(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         image = await async_client.images.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -182,7 +182,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_edit_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_edit_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         image = await async_client.images.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -197,7 +197,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_edit(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create_edit(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.images.with_raw_response.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -210,7 +210,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_edit(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create_edit(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.images.with_streaming_response.create_edit(
             image=b"raw file contents",
             prompt="A cute baby sea otter wearing a beret",
@@ -225,7 +225,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_generation(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_generation(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         image = await async_client.images.create_generation(
             prompt="A cute baby sea otter",
         )
@@ -233,7 +233,9 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_generation_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_generation_with_all_params(
+        self, async_client: AsyncServerlessInferenceSDKProd
+    ) -> None:
         image = await async_client.images.create_generation(
             prompt="A cute baby sea otter",
             model="dall-e-3",
@@ -248,7 +250,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_generation(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create_generation(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.images.with_raw_response.create_generation(
             prompt="A cute baby sea otter",
         )
@@ -260,7 +262,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_generation(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create_generation(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.images.with_streaming_response.create_generation(
             prompt="A cute baby sea otter",
         ) as response:
@@ -274,7 +276,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_variation(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_variation(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         image = await async_client.images.create_variation(
             image=b"raw file contents",
         )
@@ -282,7 +284,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_variation_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_variation_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         image = await async_client.images.create_variation(
             image=b"raw file contents",
             model="dall-e-2",
@@ -295,7 +297,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_variation(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create_variation(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.images.with_raw_response.create_variation(
             image=b"raw file contents",
         )
@@ -307,7 +309,7 @@ class TestAsyncImages:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_variation(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create_variation(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.images.with_streaming_response.create_variation(
             image=b"raw file contents",
         ) as response:

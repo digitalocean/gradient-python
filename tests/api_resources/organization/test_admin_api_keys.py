@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types.organization import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types.organization import (
     AdminAPIKey,
     AdminAPIKeyListResponse,
     AdminAPIKeyDeleteResponse,
@@ -23,7 +23,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create(self, client: ServerlessInferenceSDKProd) -> None:
         admin_api_key = client.organization.admin_api_keys.create(
             name="New Admin Key",
         )
@@ -31,7 +31,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.admin_api_keys.with_raw_response.create(
             name="New Admin Key",
         )
@@ -43,7 +43,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.admin_api_keys.with_streaming_response.create(
             name="New Admin Key",
         ) as response:
@@ -57,7 +57,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         admin_api_key = client.organization.admin_api_keys.retrieve(
             "key_id",
         )
@@ -65,7 +65,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.admin_api_keys.with_raw_response.retrieve(
             "key_id",
         )
@@ -77,7 +77,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.admin_api_keys.with_streaming_response.retrieve(
             "key_id",
         ) as response:
@@ -91,7 +91,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
             client.organization.admin_api_keys.with_raw_response.retrieve(
                 "",
@@ -99,13 +99,13 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list(self, client: ServerlessInferenceSDKProd) -> None:
         admin_api_key = client.organization.admin_api_keys.list()
         assert_matches_type(AdminAPIKeyListResponse, admin_api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         admin_api_key = client.organization.admin_api_keys.list(
             after="after",
             limit=0,
@@ -115,7 +115,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.admin_api_keys.with_raw_response.list()
 
         assert response.is_closed is True
@@ -125,7 +125,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.admin_api_keys.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,7 +137,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_delete(self, client: ServerlessInferenceSDKProd) -> None:
         admin_api_key = client.organization.admin_api_keys.delete(
             "key_id",
         )
@@ -145,7 +145,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_delete(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.admin_api_keys.with_raw_response.delete(
             "key_id",
         )
@@ -157,7 +157,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_delete(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.admin_api_keys.with_streaming_response.delete(
             "key_id",
         ) as response:
@@ -171,7 +171,7 @@ class TestAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_delete(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
             client.organization.admin_api_keys.with_raw_response.delete(
                 "",
@@ -183,7 +183,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         admin_api_key = await async_client.organization.admin_api_keys.create(
             name="New Admin Key",
         )
@@ -191,7 +191,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.admin_api_keys.with_raw_response.create(
             name="New Admin Key",
         )
@@ -203,7 +203,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.admin_api_keys.with_streaming_response.create(
             name="New Admin Key",
         ) as response:
@@ -217,7 +217,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         admin_api_key = await async_client.organization.admin_api_keys.retrieve(
             "key_id",
         )
@@ -225,7 +225,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.admin_api_keys.with_raw_response.retrieve(
             "key_id",
         )
@@ -237,7 +237,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.admin_api_keys.with_streaming_response.retrieve(
             "key_id",
         ) as response:
@@ -251,7 +251,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
             await async_client.organization.admin_api_keys.with_raw_response.retrieve(
                 "",
@@ -259,13 +259,13 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         admin_api_key = await async_client.organization.admin_api_keys.list()
         assert_matches_type(AdminAPIKeyListResponse, admin_api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         admin_api_key = await async_client.organization.admin_api_keys.list(
             after="after",
             limit=0,
@@ -275,7 +275,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.admin_api_keys.with_raw_response.list()
 
         assert response.is_closed is True
@@ -285,7 +285,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.admin_api_keys.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,7 +297,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         admin_api_key = await async_client.organization.admin_api_keys.delete(
             "key_id",
         )
@@ -305,7 +305,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.admin_api_keys.with_raw_response.delete(
             "key_id",
         )
@@ -317,7 +317,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.admin_api_keys.with_streaming_response.delete(
             "key_id",
         ) as response:
@@ -331,7 +331,7 @@ class TestAsyncAdminAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
             await async_client.organization.admin_api_keys.with_raw_response.delete(
                 "",

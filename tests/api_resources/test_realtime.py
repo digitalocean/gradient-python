@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types import (
     RealtimeCreateSessionResponse,
     RealtimeCreateTranscriptionSessionResponse,
 )
@@ -22,13 +22,13 @@ class TestRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_session(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_session(self, client: ServerlessInferenceSDKProd) -> None:
         realtime = client.realtime.create_session()
         assert_matches_type(RealtimeCreateSessionResponse, realtime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_session_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_session_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         realtime = client.realtime.create_session(
             input_audio_format="pcm16",
             input_audio_noise_reduction={"type": "near_field"},
@@ -67,7 +67,7 @@ class TestRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_session(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create_session(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.realtime.with_raw_response.create_session()
 
         assert response.is_closed is True
@@ -77,7 +77,7 @@ class TestRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_session(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create_session(self, client: ServerlessInferenceSDKProd) -> None:
         with client.realtime.with_streaming_response.create_session() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -89,13 +89,13 @@ class TestRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_transcription_session(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_transcription_session(self, client: ServerlessInferenceSDKProd) -> None:
         realtime = client.realtime.create_transcription_session()
         assert_matches_type(RealtimeCreateTranscriptionSessionResponse, realtime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_transcription_session_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_transcription_session_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         realtime = client.realtime.create_transcription_session(
             include=["string"],
             input_audio_format="pcm16",
@@ -120,7 +120,7 @@ class TestRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_transcription_session(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create_transcription_session(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.realtime.with_raw_response.create_transcription_session()
 
         assert response.is_closed is True
@@ -130,7 +130,7 @@ class TestRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_transcription_session(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create_transcription_session(self, client: ServerlessInferenceSDKProd) -> None:
         with client.realtime.with_streaming_response.create_transcription_session() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -146,13 +146,13 @@ class TestAsyncRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_session(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_session(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         realtime = await async_client.realtime.create_session()
         assert_matches_type(RealtimeCreateSessionResponse, realtime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_session_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_session_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         realtime = await async_client.realtime.create_session(
             input_audio_format="pcm16",
             input_audio_noise_reduction={"type": "near_field"},
@@ -191,7 +191,7 @@ class TestAsyncRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_session(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create_session(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.realtime.with_raw_response.create_session()
 
         assert response.is_closed is True
@@ -201,7 +201,7 @@ class TestAsyncRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_session(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create_session(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.realtime.with_streaming_response.create_session() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -213,14 +213,14 @@ class TestAsyncRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_transcription_session(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_transcription_session(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         realtime = await async_client.realtime.create_transcription_session()
         assert_matches_type(RealtimeCreateTranscriptionSessionResponse, realtime, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_transcription_session_with_all_params(
-        self, async_client: AsyncDigitaloceanGenaiSDK
+        self, async_client: AsyncServerlessInferenceSDKProd
     ) -> None:
         realtime = await async_client.realtime.create_transcription_session(
             include=["string"],
@@ -246,7 +246,9 @@ class TestAsyncRealtime:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_transcription_session(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create_transcription_session(
+        self, async_client: AsyncServerlessInferenceSDKProd
+    ) -> None:
         response = await async_client.realtime.with_raw_response.create_transcription_session()
 
         assert response.is_closed is True
@@ -257,7 +259,7 @@ class TestAsyncRealtime:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create_transcription_session(
-        self, async_client: AsyncDigitaloceanGenaiSDK
+        self, async_client: AsyncServerlessInferenceSDKProd
     ) -> None:
         async with async_client.realtime.with_streaming_response.create_transcription_session() as response:
             assert not response.is_closed

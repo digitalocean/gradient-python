@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from digitalocean_genai_sdk._qs import Querystring, stringify
+from serverless_inference_sdk_prod._qs import Querystring, stringify
 
 
 def test_empty() -> None:

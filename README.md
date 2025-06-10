@@ -1,8 +1,8 @@
-# Digitalocean Genai SDK Python API library
+# Serverless Inference SDK Prod Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/digitalocean_genai_sdk.svg)](https://pypi.org/project/digitalocean_genai_sdk/)
+[![PyPI version](https://img.shields.io/pypi/v/serverless_inference_sdk_prod.svg)](https://pypi.org/project/serverless_inference_sdk_prod/)
 
-The Digitalocean Genai SDK Python library provides convenient access to the Digitalocean Genai SDK REST API from any Python 3.8+
+The Serverless Inference SDK Prod Python library provides convenient access to the Serverless Inference SDK Prod REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -16,11 +16,11 @@ The REST API documentation can be found on [help.openai.com](https://help.openai
 
 ```sh
 # install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/digitalocean-genai-sdk-python.git
+pip install git+ssh://git@github.com/stainless-sdks/serverless-inference-sdk-prod-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre digitalocean_genai_sdk`
+> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre serverless_inference_sdk_prod`
 
 ## Usage
 
@@ -28,11 +28,11 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
-client = DigitaloceanGenaiSDK(
+client = ServerlessInferenceSDKProd(
     api_key=os.environ.get(
-        "DIGITALOCEAN_GENAI_SDK_API_KEY"
+        "SERVERLESS_INFERENCE_SDK_PROD_API_KEY"
     ),  # This is the default and can be omitted
 )
 
@@ -42,21 +42,21 @@ print(assistants.first_id)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `DIGITALOCEAN_GENAI_SDK_API_KEY="My API Key"` to your `.env` file
+to add `SERVERLESS_INFERENCE_SDK_PROD_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncDigitaloceanGenaiSDK` instead of `DigitaloceanGenaiSDK` and use `await` with each API call:
+Simply import `AsyncServerlessInferenceSDKProd` instead of `ServerlessInferenceSDKProd` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from digitalocean_genai_sdk import AsyncDigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import AsyncServerlessInferenceSDKProd
 
-client = AsyncDigitaloceanGenaiSDK(
+client = AsyncServerlessInferenceSDKProd(
     api_key=os.environ.get(
-        "DIGITALOCEAN_GENAI_SDK_API_KEY"
+        "SERVERLESS_INFERENCE_SDK_PROD_API_KEY"
     ),  # This is the default and can be omitted
 )
 
@@ -85,25 +85,13 @@ Typed requests and responses provide autocomplete and documentation within your 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
 ```python
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
-client = DigitaloceanGenaiSDK()
+client = ServerlessInferenceSDKProd()
 
 assistant_object = client.assistants.create(
     model="gpt-4o",
-    tool_resources={
-        "code_interpreter": {"file_ids": ["string"]},
-        "file_search": {
-            "vector_store_ids": ["string"],
-            "vector_stores": [
-                {
-                    "chunking_strategy": {"type": "auto"},
-                    "file_ids": ["string"],
-                    "metadata": {"foo": "string"},
-                }
-            ],
-        },
-    },
+    tool_resources={},
 )
 print(assistant_object.tool_resources)
 ```
@@ -114,9 +102,9 @@ Request parameters that correspond to file uploads can be passed as `bytes`, or 
 
 ```python
 from pathlib import Path
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
-client = DigitaloceanGenaiSDK()
+client = ServerlessInferenceSDKProd()
 
 client.audio.transcribe_audio(
     file=Path("/path/to/file"),
@@ -128,27 +116,27 @@ The async client uses the exact same interface. If you pass a [`PathLike`](https
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `digitalocean_genai_sdk.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `serverless_inference_sdk_prod.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `digitalocean_genai_sdk.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `serverless_inference_sdk_prod.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `digitalocean_genai_sdk.APIError`.
+All errors inherit from `serverless_inference_sdk_prod.APIError`.
 
 ```python
-import digitalocean_genai_sdk
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+import serverless_inference_sdk_prod
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
-client = DigitaloceanGenaiSDK()
+client = ServerlessInferenceSDKProd()
 
 try:
     client.assistants.list()
-except digitalocean_genai_sdk.APIConnectionError as e:
+except serverless_inference_sdk_prod.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except digitalocean_genai_sdk.RateLimitError as e:
+except serverless_inference_sdk_prod.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except digitalocean_genai_sdk.APIStatusError as e:
+except serverless_inference_sdk_prod.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -176,10 +164,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
 # Configure the default for all requests:
-client = DigitaloceanGenaiSDK(
+client = ServerlessInferenceSDKProd(
     # default is 2
     max_retries=0,
 )
@@ -194,16 +182,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
 # Configure the default for all requests:
-client = DigitaloceanGenaiSDK(
+client = ServerlessInferenceSDKProd(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = DigitaloceanGenaiSDK(
+client = ServerlessInferenceSDKProd(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -221,10 +209,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `DIGITALOCEAN_GENAI_SDK_LOG` to `info`.
+You can enable logging by setting the environment variable `SERVERLESS_INFERENCE_SDK_PROD_LOG` to `info`.
 
 ```shell
-$ export DIGITALOCEAN_GENAI_SDK_LOG=info
+$ export SERVERLESS_INFERENCE_SDK_PROD_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -246,9 +234,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
-client = DigitaloceanGenaiSDK()
+client = ServerlessInferenceSDKProd()
 response = client.assistants.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
@@ -256,9 +244,9 @@ assistant = response.parse()  # get the object that `assistants.list()` would ha
 print(assistant.first_id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/serverless-inference-sdk-prod-python/tree/main/src/serverless_inference_sdk_prod/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/src/digitalocean_genai_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/serverless-inference-sdk-prod-python/tree/main/src/serverless_inference_sdk_prod/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -320,10 +308,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, DefaultHttpxClient
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, DefaultHttpxClient
 
-client = DigitaloceanGenaiSDK(
-    # Or use the `DIGITALOCEAN_GENAI_SDK_BASE_URL` env var
+client = ServerlessInferenceSDKProd(
+    # Or use the `SERVERLESS_INFERENCE_SDK_PROD_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -343,9 +331,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd
 
-with DigitaloceanGenaiSDK() as client:
+with ServerlessInferenceSDKProd() as client:
   # make requests here
   ...
 
@@ -362,7 +350,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/serverless-inference-sdk-prod-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
@@ -371,8 +359,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import digitalocean_genai_sdk
-print(digitalocean_genai_sdk.__version__)
+import serverless_inference_sdk_prod
+print(serverless_inference_sdk_prod.__version__)
 ```
 
 ## Requirements

@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types import (
     CompletionCreateResponse,
 )
 
@@ -21,7 +21,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create(self, client: ServerlessInferenceSDKProd) -> None:
         completion = client.completions.create(
             model="string",
             prompt="This is a test.",
@@ -30,7 +30,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         completion = client.completions.create(
             model="string",
             prompt="This is a test.",
@@ -55,7 +55,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.completions.with_raw_response.create(
             model="string",
             prompt="This is a test.",
@@ -68,7 +68,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create(self, client: ServerlessInferenceSDKProd) -> None:
         with client.completions.with_streaming_response.create(
             model="string",
             prompt="This is a test.",
@@ -87,7 +87,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         completion = await async_client.completions.create(
             model="string",
             prompt="This is a test.",
@@ -96,7 +96,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         completion = await async_client.completions.create(
             model="string",
             prompt="This is a test.",
@@ -121,7 +121,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.completions.with_raw_response.create(
             model="string",
             prompt="This is a test.",
@@ -134,7 +134,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.completions.with_streaming_response.create(
             model="string",
             prompt="This is a test.",

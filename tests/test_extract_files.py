@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from digitalocean_genai_sdk._types import FileTypes
-from digitalocean_genai_sdk._utils import extract_files
+from serverless_inference_sdk_prod._types import FileTypes
+from serverless_inference_sdk_prod._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

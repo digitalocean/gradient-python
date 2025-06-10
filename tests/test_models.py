@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from digitalocean_genai_sdk._utils import PropertyInfo
-from digitalocean_genai_sdk._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from digitalocean_genai_sdk._models import BaseModel, construct_type
+from serverless_inference_sdk_prod._utils import PropertyInfo
+from serverless_inference_sdk_prod._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from serverless_inference_sdk_prod._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

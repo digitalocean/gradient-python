@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types import (
     VectorStoreObject,
     VectorStoreListResponse,
     VectorStoreDeleteResponse,
@@ -24,13 +24,13 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.create()
         assert_matches_type(VectorStoreObject, vector_store, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.create(
             chunking_strategy={"type": "auto"},
             expires_after={
@@ -45,7 +45,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.vector_stores.with_raw_response.create()
 
         assert response.is_closed is True
@@ -55,7 +55,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create(self, client: ServerlessInferenceSDKProd) -> None:
         with client.vector_stores.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,7 +67,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.retrieve(
             "vector_store_id",
         )
@@ -75,7 +75,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.vector_stores.with_raw_response.retrieve(
             "vector_store_id",
         )
@@ -87,7 +87,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with client.vector_stores.with_streaming_response.retrieve(
             "vector_store_id",
         ) as response:
@@ -101,7 +101,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             client.vector_stores.with_raw_response.retrieve(
                 "",
@@ -109,7 +109,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_update(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.update(
             vector_store_id="vector_store_id",
         )
@@ -117,7 +117,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_update_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.update(
             vector_store_id="vector_store_id",
             expires_after={
@@ -131,7 +131,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_update(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.vector_stores.with_raw_response.update(
             vector_store_id="vector_store_id",
         )
@@ -143,7 +143,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_update(self, client: ServerlessInferenceSDKProd) -> None:
         with client.vector_stores.with_streaming_response.update(
             vector_store_id="vector_store_id",
         ) as response:
@@ -157,7 +157,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_update(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             client.vector_stores.with_raw_response.update(
                 vector_store_id="",
@@ -165,13 +165,13 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.list()
         assert_matches_type(VectorStoreListResponse, vector_store, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.list(
             after="after",
             before="before",
@@ -182,7 +182,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.vector_stores.with_raw_response.list()
 
         assert response.is_closed is True
@@ -192,7 +192,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         with client.vector_stores.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -204,7 +204,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_delete(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.delete(
             "vector_store_id",
         )
@@ -212,7 +212,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_delete(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.vector_stores.with_raw_response.delete(
             "vector_store_id",
         )
@@ -224,7 +224,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_delete(self, client: ServerlessInferenceSDKProd) -> None:
         with client.vector_stores.with_streaming_response.delete(
             "vector_store_id",
         ) as response:
@@ -238,7 +238,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_delete(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             client.vector_stores.with_raw_response.delete(
                 "",
@@ -246,7 +246,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_search(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_search(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -255,7 +255,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_search_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_search_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         vector_store = client.vector_stores.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -275,7 +275,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_search(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_search(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.vector_stores.with_raw_response.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -288,7 +288,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_search(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_search(self, client: ServerlessInferenceSDKProd) -> None:
         with client.vector_stores.with_streaming_response.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -303,7 +303,7 @@ class TestVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_search(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_search(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             client.vector_stores.with_raw_response.search(
                 vector_store_id="",
@@ -316,13 +316,13 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.create()
         assert_matches_type(VectorStoreObject, vector_store, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.create(
             chunking_strategy={"type": "auto"},
             expires_after={
@@ -337,7 +337,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.vector_stores.with_raw_response.create()
 
         assert response.is_closed is True
@@ -347,7 +347,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.vector_stores.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -359,7 +359,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.retrieve(
             "vector_store_id",
         )
@@ -367,7 +367,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.vector_stores.with_raw_response.retrieve(
             "vector_store_id",
         )
@@ -379,7 +379,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.vector_stores.with_streaming_response.retrieve(
             "vector_store_id",
         ) as response:
@@ -393,7 +393,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             await async_client.vector_stores.with_raw_response.retrieve(
                 "",
@@ -401,7 +401,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_update(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.update(
             vector_store_id="vector_store_id",
         )
@@ -409,7 +409,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.update(
             vector_store_id="vector_store_id",
             expires_after={
@@ -423,7 +423,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_update(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.vector_stores.with_raw_response.update(
             vector_store_id="vector_store_id",
         )
@@ -435,7 +435,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.vector_stores.with_streaming_response.update(
             vector_store_id="vector_store_id",
         ) as response:
@@ -449,7 +449,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_update(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             await async_client.vector_stores.with_raw_response.update(
                 vector_store_id="",
@@ -457,13 +457,13 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.list()
         assert_matches_type(VectorStoreListResponse, vector_store, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.list(
             after="after",
             before="before",
@@ -474,7 +474,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.vector_stores.with_raw_response.list()
 
         assert response.is_closed is True
@@ -484,7 +484,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.vector_stores.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -496,7 +496,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.delete(
             "vector_store_id",
         )
@@ -504,7 +504,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.vector_stores.with_raw_response.delete(
             "vector_store_id",
         )
@@ -516,7 +516,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.vector_stores.with_streaming_response.delete(
             "vector_store_id",
         ) as response:
@@ -530,7 +530,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             await async_client.vector_stores.with_raw_response.delete(
                 "",
@@ -538,7 +538,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_search(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_search(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -547,7 +547,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_search_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_search_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         vector_store = await async_client.vector_stores.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -567,7 +567,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_search(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_search(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.vector_stores.with_raw_response.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -580,7 +580,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_search(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_search(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.vector_stores.with_streaming_response.search(
             vector_store_id="vs_abc123",
             query="string",
@@ -595,7 +595,7 @@ class TestAsyncVectorStores:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_search(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_search(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `vector_store_id` but received ''"):
             await async_client.vector_stores.with_raw_response.search(
                 vector_store_id="",

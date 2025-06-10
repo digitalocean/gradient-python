@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types.threads.runs import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types.threads.runs import (
     RunStepObject,
     StepListResponse,
 )
@@ -22,7 +22,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         step = client.threads.runs.steps.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -32,7 +32,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         step = client.threads.runs.steps.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -43,7 +43,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.threads.runs.steps.with_raw_response.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -57,7 +57,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with client.threads.runs.steps.with_streaming_response.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -73,7 +73,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `thread_id` but received ''"):
             client.threads.runs.steps.with_raw_response.retrieve(
                 step_id="step_id",
@@ -97,7 +97,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list(self, client: ServerlessInferenceSDKProd) -> None:
         step = client.threads.runs.steps.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -106,7 +106,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         step = client.threads.runs.steps.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -120,7 +120,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.threads.runs.steps.with_raw_response.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -133,7 +133,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         with client.threads.runs.steps.with_streaming_response.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -148,7 +148,7 @@ class TestSteps:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_list(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `thread_id` but received ''"):
             client.threads.runs.steps.with_raw_response.list(
                 run_id="run_id",
@@ -167,7 +167,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         step = await async_client.threads.runs.steps.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -177,7 +177,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         step = await async_client.threads.runs.steps.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -188,7 +188,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.threads.runs.steps.with_raw_response.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -202,7 +202,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.threads.runs.steps.with_streaming_response.retrieve(
             step_id="step_id",
             thread_id="thread_id",
@@ -218,7 +218,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `thread_id` but received ''"):
             await async_client.threads.runs.steps.with_raw_response.retrieve(
                 step_id="step_id",
@@ -242,7 +242,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         step = await async_client.threads.runs.steps.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -251,7 +251,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         step = await async_client.threads.runs.steps.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -265,7 +265,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.threads.runs.steps.with_raw_response.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -278,7 +278,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.threads.runs.steps.with_streaming_response.list(
             run_id="run_id",
             thread_id="thread_id",
@@ -293,7 +293,7 @@ class TestAsyncSteps:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `thread_id` but received ''"):
             await async_client.threads.runs.steps.with_raw_response.list(
                 run_id="run_id",

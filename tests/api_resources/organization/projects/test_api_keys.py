@@ -8,9 +8,9 @@ from typing import Any, cast
 import pytest
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types.organization.projects import (
-    APIKey,
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types.organization.projects import (
+    ProjectAPIKey,
     APIKeyListResponse,
     APIKeyDeleteResponse,
 )
@@ -23,16 +23,16 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         api_key = client.organization.projects.api_keys.retrieve(
             key_id="key_id",
             project_id="project_id",
         )
-        assert_matches_type(APIKey, api_key, path=["response"])
+        assert_matches_type(ProjectAPIKey, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.projects.api_keys.with_raw_response.retrieve(
             key_id="key_id",
             project_id="project_id",
@@ -41,11 +41,11 @@ class TestAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = response.parse()
-        assert_matches_type(APIKey, api_key, path=["response"])
+        assert_matches_type(ProjectAPIKey, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.projects.api_keys.with_streaming_response.retrieve(
             key_id="key_id",
             project_id="project_id",
@@ -54,13 +54,13 @@ class TestAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = response.parse()
-            assert_matches_type(APIKey, api_key, path=["response"])
+            assert_matches_type(ProjectAPIKey, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_retrieve(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             client.organization.projects.api_keys.with_raw_response.retrieve(
                 key_id="key_id",
@@ -75,7 +75,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list(self, client: ServerlessInferenceSDKProd) -> None:
         api_key = client.organization.projects.api_keys.list(
             project_id="project_id",
         )
@@ -83,7 +83,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         api_key = client.organization.projects.api_keys.list(
             project_id="project_id",
             after="after",
@@ -93,7 +93,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.projects.api_keys.with_raw_response.list(
             project_id="project_id",
         )
@@ -105,7 +105,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_list(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.projects.api_keys.with_streaming_response.list(
             project_id="project_id",
         ) as response:
@@ -119,7 +119,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_list(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             client.organization.projects.api_keys.with_raw_response.list(
                 project_id="",
@@ -127,7 +127,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_delete(self, client: ServerlessInferenceSDKProd) -> None:
         api_key = client.organization.projects.api_keys.delete(
             key_id="key_id",
             project_id="project_id",
@@ -136,7 +136,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_delete(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.organization.projects.api_keys.with_raw_response.delete(
             key_id="key_id",
             project_id="project_id",
@@ -149,7 +149,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_delete(self, client: ServerlessInferenceSDKProd) -> None:
         with client.organization.projects.api_keys.with_streaming_response.delete(
             key_id="key_id",
             project_id="project_id",
@@ -164,7 +164,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_delete(self, client: ServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             client.organization.projects.api_keys.with_raw_response.delete(
                 key_id="key_id",
@@ -183,16 +183,16 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         api_key = await async_client.organization.projects.api_keys.retrieve(
             key_id="key_id",
             project_id="project_id",
         )
-        assert_matches_type(APIKey, api_key, path=["response"])
+        assert_matches_type(ProjectAPIKey, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.projects.api_keys.with_raw_response.retrieve(
             key_id="key_id",
             project_id="project_id",
@@ -201,11 +201,11 @@ class TestAsyncAPIKeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         api_key = await response.parse()
-        assert_matches_type(APIKey, api_key, path=["response"])
+        assert_matches_type(ProjectAPIKey, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.projects.api_keys.with_streaming_response.retrieve(
             key_id="key_id",
             project_id="project_id",
@@ -214,13 +214,13 @@ class TestAsyncAPIKeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             api_key = await response.parse()
-            assert_matches_type(APIKey, api_key, path=["response"])
+            assert_matches_type(ProjectAPIKey, api_key, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             await async_client.organization.projects.api_keys.with_raw_response.retrieve(
                 key_id="key_id",
@@ -235,7 +235,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         api_key = await async_client.organization.projects.api_keys.list(
             project_id="project_id",
         )
@@ -243,7 +243,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         api_key = await async_client.organization.projects.api_keys.list(
             project_id="project_id",
             after="after",
@@ -253,7 +253,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.projects.api_keys.with_raw_response.list(
             project_id="project_id",
         )
@@ -265,7 +265,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.projects.api_keys.with_streaming_response.list(
             project_id="project_id",
         ) as response:
@@ -279,7 +279,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_list(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             await async_client.organization.projects.api_keys.with_raw_response.list(
                 project_id="",
@@ -287,7 +287,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         api_key = await async_client.organization.projects.api_keys.delete(
             key_id="key_id",
             project_id="project_id",
@@ -296,7 +296,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.organization.projects.api_keys.with_raw_response.delete(
             key_id="key_id",
             project_id="project_id",
@@ -309,7 +309,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.organization.projects.api_keys.with_streaming_response.delete(
             key_id="key_id",
             project_id="project_id",
@@ -324,7 +324,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_delete(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_id` but received ''"):
             await async_client.organization.projects.api_keys.with_raw_response.delete(
                 key_id="key_id",

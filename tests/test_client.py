@@ -21,17 +21,21 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK, APIResponseValidationError
-from digitalocean_genai_sdk._types import Omit
-from digitalocean_genai_sdk._models import BaseModel, FinalRequestOptions
-from digitalocean_genai_sdk._constants import RAW_RESPONSE_HEADER
-from digitalocean_genai_sdk._exceptions import (
+from serverless_inference_sdk_prod import (
+    APIResponseValidationError,
+    ServerlessInferenceSDKProd,
+    AsyncServerlessInferenceSDKProd,
+)
+from serverless_inference_sdk_prod._types import Omit
+from serverless_inference_sdk_prod._models import BaseModel, FinalRequestOptions
+from serverless_inference_sdk_prod._constants import RAW_RESPONSE_HEADER
+from serverless_inference_sdk_prod._exceptions import (
     APIStatusError,
     APITimeoutError,
-    DigitaloceanGenaiSDKError,
     APIResponseValidationError,
+    ServerlessInferenceSDKProdError,
 )
-from digitalocean_genai_sdk._base_client import (
+from serverless_inference_sdk_prod._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
@@ -54,7 +58,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: DigitaloceanGenaiSDK | AsyncDigitaloceanGenaiSDK) -> int:
+def _get_open_connections(client: ServerlessInferenceSDKProd | AsyncServerlessInferenceSDKProd) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -62,8 +66,8 @@ def _get_open_connections(client: DigitaloceanGenaiSDK | AsyncDigitaloceanGenaiS
     return len(pool._requests)
 
 
-class TestDigitaloceanGenaiSDK:
-    client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestServerlessInferenceSDKProd:
+    client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -110,7 +114,7 @@ class TestDigitaloceanGenaiSDK:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = ServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -144,7 +148,7 @@ class TestDigitaloceanGenaiSDK:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = ServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -235,10 +239,10 @@ class TestDigitaloceanGenaiSDK:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "digitalocean_genai_sdk/_legacy_response.py",
-                        "digitalocean_genai_sdk/_response.py",
+                        "serverless_inference_sdk_prod/_legacy_response.py",
+                        "serverless_inference_sdk_prod/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "digitalocean_genai_sdk/_compat.py",
+                        "serverless_inference_sdk_prod/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -269,7 +273,7 @@ class TestDigitaloceanGenaiSDK:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = ServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -280,7 +284,7 @@ class TestDigitaloceanGenaiSDK:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = DigitaloceanGenaiSDK(
+            client = ServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -290,7 +294,7 @@ class TestDigitaloceanGenaiSDK:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = DigitaloceanGenaiSDK(
+            client = ServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -300,7 +304,7 @@ class TestDigitaloceanGenaiSDK:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = DigitaloceanGenaiSDK(
+            client = ServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -311,7 +315,7 @@ class TestDigitaloceanGenaiSDK:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                DigitaloceanGenaiSDK(
+                ServerlessInferenceSDKProd(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -319,14 +323,14 @@ class TestDigitaloceanGenaiSDK:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = ServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = DigitaloceanGenaiSDK(
+        client2 = ServerlessInferenceSDKProd(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -340,17 +344,17 @@ class TestDigitaloceanGenaiSDK:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(DigitaloceanGenaiSDKError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
-                client2 = DigitaloceanGenaiSDK(base_url=base_url, api_key=None, _strict_response_validation=True)
+        with pytest.raises(ServerlessInferenceSDKProdError):
+            with update_env(**{"SERVERLESS_INFERENCE_SDK_PROD_API_KEY": Omit()}):
+                client2 = ServerlessInferenceSDKProd(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = ServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -464,7 +468,7 @@ class TestDigitaloceanGenaiSDK:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_multipart_repeating_array(self, client: ServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -551,7 +555,7 @@ class TestDigitaloceanGenaiSDK:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = ServerlessInferenceSDKProd(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -561,17 +565,17 @@ class TestDigitaloceanGenaiSDK:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(DIGITALOCEAN_GENAI_SDK_BASE_URL="http://localhost:5000/from/env"):
-            client = DigitaloceanGenaiSDK(api_key=api_key, _strict_response_validation=True)
+        with update_env(SERVERLESS_INFERENCE_SDK_PROD_BASE_URL="http://localhost:5000/from/env"):
+            client = ServerlessInferenceSDKProd(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -580,7 +584,7 @@ class TestDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_base_url_trailing_slash(self, client: ServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -593,10 +597,10 @@ class TestDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -605,7 +609,7 @@ class TestDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_base_url_no_trailing_slash(self, client: ServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -618,10 +622,10 @@ class TestDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -630,7 +634,7 @@ class TestDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_absolute_request_url(self, client: ServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -641,7 +645,7 @@ class TestDigitaloceanGenaiSDK:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -652,7 +656,7 @@ class TestDigitaloceanGenaiSDK:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -673,7 +677,7 @@ class TestDigitaloceanGenaiSDK:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            DigitaloceanGenaiSDK(
+            ServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -684,12 +688,12 @@ class TestDigitaloceanGenaiSDK:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -717,14 +721,14 @@ class TestDigitaloceanGenaiSDK:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = ServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/assistants").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -734,7 +738,7 @@ class TestDigitaloceanGenaiSDK:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/assistants").mock(return_value=httpx.Response(500))
@@ -745,12 +749,12 @@ class TestDigitaloceanGenaiSDK:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
         self,
-        client: DigitaloceanGenaiSDK,
+        client: ServerlessInferenceSDKProd,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -776,10 +780,10 @@ class TestDigitaloceanGenaiSDK:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
-        self, client: DigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, client: ServerlessInferenceSDKProd, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -799,10 +803,10 @@ class TestDigitaloceanGenaiSDK:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: DigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, client: ServerlessInferenceSDKProd, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -821,9 +825,36 @@ class TestDigitaloceanGenaiSDK:
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
+    @pytest.mark.respx(base_url=base_url)
+    def test_follow_redirects(self, respx_mock: MockRouter) -> None:
+        # Test that the default follow_redirects=True allows following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+        respx_mock.get("/redirected").mock(return_value=httpx.Response(200, json={"status": "ok"}))
 
-class TestAsyncDigitaloceanGenaiSDK:
-    client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        response = self.client.post("/redirect", body={"key": "value"}, cast_to=httpx.Response)
+        assert response.status_code == 200
+        assert response.json() == {"status": "ok"}
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_follow_redirects_disabled(self, respx_mock: MockRouter) -> None:
+        # Test that follow_redirects=False prevents following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+
+        with pytest.raises(APIStatusError) as exc_info:
+            self.client.post(
+                "/redirect", body={"key": "value"}, options={"follow_redirects": False}, cast_to=httpx.Response
+            )
+
+        assert exc_info.value.response.status_code == 302
+        assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
+
+
+class TestAsyncServerlessInferenceSDKProd:
+    client = AsyncServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -872,7 +903,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -906,7 +937,7 @@ class TestAsyncDigitaloceanGenaiSDK:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -997,10 +1028,10 @@ class TestAsyncDigitaloceanGenaiSDK:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "digitalocean_genai_sdk/_legacy_response.py",
-                        "digitalocean_genai_sdk/_response.py",
+                        "serverless_inference_sdk_prod/_legacy_response.py",
+                        "serverless_inference_sdk_prod/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "digitalocean_genai_sdk/_compat.py",
+                        "serverless_inference_sdk_prod/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1031,7 +1062,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -1042,7 +1073,7 @@ class TestAsyncDigitaloceanGenaiSDK:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncDigitaloceanGenaiSDK(
+            client = AsyncServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1052,7 +1083,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncDigitaloceanGenaiSDK(
+            client = AsyncServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1062,7 +1093,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncDigitaloceanGenaiSDK(
+            client = AsyncServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1073,7 +1104,7 @@ class TestAsyncDigitaloceanGenaiSDK:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncDigitaloceanGenaiSDK(
+                AsyncServerlessInferenceSDKProd(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -1081,14 +1112,14 @@ class TestAsyncDigitaloceanGenaiSDK:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncDigitaloceanGenaiSDK(
+        client2 = AsyncServerlessInferenceSDKProd(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -1102,17 +1133,19 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(DigitaloceanGenaiSDKError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
-                client2 = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=None, _strict_response_validation=True)
+        with pytest.raises(ServerlessInferenceSDKProdError):
+            with update_env(**{"SERVERLESS_INFERENCE_SDK_PROD_API_KEY": Omit()}):
+                client2 = AsyncServerlessInferenceSDKProd(
+                    base_url=base_url, api_key=None, _strict_response_validation=True
+                )
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncServerlessInferenceSDKProd(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1226,7 +1259,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1313,7 +1346,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncServerlessInferenceSDKProd(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1323,17 +1356,17 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(DIGITALOCEAN_GENAI_SDK_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncDigitaloceanGenaiSDK(api_key=api_key, _strict_response_validation=True)
+        with update_env(SERVERLESS_INFERENCE_SDK_PROD_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncServerlessInferenceSDKProd(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1342,7 +1375,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1355,10 +1388,10 @@ class TestAsyncDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1367,7 +1400,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1380,10 +1413,10 @@ class TestAsyncDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1392,7 +1425,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_absolute_request_url(self, client: AsyncServerlessInferenceSDKProd) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1403,7 +1436,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1415,7 +1448,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1437,7 +1470,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncDigitaloceanGenaiSDK(
+            AsyncServerlessInferenceSDKProd(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -1449,12 +1482,14 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncServerlessInferenceSDKProd(
+            base_url=base_url, api_key=api_key, _strict_response_validation=True
+        )
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1483,14 +1518,14 @@ class TestAsyncDigitaloceanGenaiSDK:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncServerlessInferenceSDKProd(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/assistants").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -1502,7 +1537,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.get("/assistants").mock(return_value=httpx.Response(500))
@@ -1515,13 +1550,13 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
         self,
-        async_client: AsyncDigitaloceanGenaiSDK,
+        async_client: AsyncServerlessInferenceSDKProd,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -1547,11 +1582,11 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
-        self, async_client: AsyncDigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncServerlessInferenceSDKProd, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1571,11 +1606,11 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("serverless_inference_sdk_prod._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncDigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncServerlessInferenceSDKProd, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1605,8 +1640,8 @@ class TestAsyncDigitaloceanGenaiSDK:
         import nest_asyncio
         import threading
 
-        from digitalocean_genai_sdk._utils import asyncify
-        from digitalocean_genai_sdk._base_client import get_platform
+        from serverless_inference_sdk_prod._utils import asyncify
+        from serverless_inference_sdk_prod._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
@@ -1638,3 +1673,30 @@ class TestAsyncDigitaloceanGenaiSDK:
                     raise AssertionError("calling get_platform using asyncify resulted in a hung process")
 
                 time.sleep(0.1)
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_follow_redirects(self, respx_mock: MockRouter) -> None:
+        # Test that the default follow_redirects=True allows following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+        respx_mock.get("/redirected").mock(return_value=httpx.Response(200, json={"status": "ok"}))
+
+        response = await self.client.post("/redirect", body={"key": "value"}, cast_to=httpx.Response)
+        assert response.status_code == 200
+        assert response.json() == {"status": "ok"}
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_follow_redirects_disabled(self, respx_mock: MockRouter) -> None:
+        # Test that follow_redirects=False prevents following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+
+        with pytest.raises(APIStatusError) as exc_info:
+            await self.client.post(
+                "/redirect", body={"key": "value"}, options={"follow_redirects": False}, cast_to=httpx.Response
+            )
+
+        assert exc_info.value.response.status_code == 302
+        assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"

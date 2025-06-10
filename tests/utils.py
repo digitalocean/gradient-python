@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from digitalocean_genai_sdk._types import Omit, NoneType
-from digitalocean_genai_sdk._utils import (
+from serverless_inference_sdk_prod._types import Omit, NoneType
+from serverless_inference_sdk_prod._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -18,8 +18,8 @@ from digitalocean_genai_sdk._utils import (
     is_annotated_type,
     is_type_alias_type,
 )
-from digitalocean_genai_sdk._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from digitalocean_genai_sdk._models import BaseModel
+from serverless_inference_sdk_prod._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from serverless_inference_sdk_prod._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 

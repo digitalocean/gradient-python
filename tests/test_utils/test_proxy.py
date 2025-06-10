@@ -2,7 +2,7 @@ import operator
 from typing import Any
 from typing_extensions import override
 
-from digitalocean_genai_sdk._utils import LazyProxy
+from serverless_inference_sdk_prod._utils import LazyProxy
 
 
 class RecursiveLazyProxy(LazyProxy[Any]):

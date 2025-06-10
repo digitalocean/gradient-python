@@ -10,12 +10,12 @@ import pytest
 from respx import MockRouter
 
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import (
+from serverless_inference_sdk_prod import ServerlessInferenceSDKProd, AsyncServerlessInferenceSDKProd
+from serverless_inference_sdk_prod.types import (
     AudioTranslateAudioResponse,
     AudioTranscribeAudioResponse,
 )
-from digitalocean_genai_sdk._response import (
+from serverless_inference_sdk_prod._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
     StreamedBinaryAPIResponse,
@@ -31,7 +31,7 @@ class TestAudio:
     @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_method_generate_speech(self, client: DigitaloceanGenaiSDK, respx_mock: MockRouter) -> None:
+    def test_method_generate_speech(self, client: ServerlessInferenceSDKProd, respx_mock: MockRouter) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         audio = client.audio.generate_speech(
             input="input",
@@ -46,7 +46,9 @@ class TestAudio:
     @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_method_generate_speech_with_all_params(self, client: DigitaloceanGenaiSDK, respx_mock: MockRouter) -> None:
+    def test_method_generate_speech_with_all_params(
+        self, client: ServerlessInferenceSDKProd, respx_mock: MockRouter
+    ) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         audio = client.audio.generate_speech(
             input="input",
@@ -64,7 +66,7 @@ class TestAudio:
     @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_raw_response_generate_speech(self, client: DigitaloceanGenaiSDK, respx_mock: MockRouter) -> None:
+    def test_raw_response_generate_speech(self, client: ServerlessInferenceSDKProd, respx_mock: MockRouter) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         audio = client.audio.with_raw_response.generate_speech(
@@ -81,7 +83,9 @@ class TestAudio:
     @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_streaming_response_generate_speech(self, client: DigitaloceanGenaiSDK, respx_mock: MockRouter) -> None:
+    def test_streaming_response_generate_speech(
+        self, client: ServerlessInferenceSDKProd, respx_mock: MockRouter
+    ) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.audio.with_streaming_response.generate_speech(
             input="input",
@@ -99,7 +103,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_transcribe_audio(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_transcribe_audio(self, client: ServerlessInferenceSDKProd) -> None:
         audio = client.audio.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -108,7 +112,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_transcribe_audio_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_transcribe_audio_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         audio = client.audio.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -124,7 +128,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_transcribe_audio(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_transcribe_audio(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.audio.with_raw_response.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -137,7 +141,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_transcribe_audio(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_transcribe_audio(self, client: ServerlessInferenceSDKProd) -> None:
         with client.audio.with_streaming_response.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -152,7 +156,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_translate_audio(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_translate_audio(self, client: ServerlessInferenceSDKProd) -> None:
         audio = client.audio.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -161,7 +165,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_translate_audio_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_translate_audio_with_all_params(self, client: ServerlessInferenceSDKProd) -> None:
         audio = client.audio.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -173,7 +177,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_translate_audio(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_translate_audio(self, client: ServerlessInferenceSDKProd) -> None:
         response = client.audio.with_raw_response.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -186,7 +190,7 @@ class TestAudio:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_translate_audio(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_translate_audio(self, client: ServerlessInferenceSDKProd) -> None:
         with client.audio.with_streaming_response.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -207,7 +211,7 @@ class TestAsyncAudio:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_generate_speech(
-        self, async_client: AsyncDigitaloceanGenaiSDK, respx_mock: MockRouter
+        self, async_client: AsyncServerlessInferenceSDKProd, respx_mock: MockRouter
     ) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         audio = await async_client.audio.generate_speech(
@@ -224,7 +228,7 @@ class TestAsyncAudio:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_generate_speech_with_all_params(
-        self, async_client: AsyncDigitaloceanGenaiSDK, respx_mock: MockRouter
+        self, async_client: AsyncServerlessInferenceSDKProd, respx_mock: MockRouter
     ) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         audio = await async_client.audio.generate_speech(
@@ -244,7 +248,7 @@ class TestAsyncAudio:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_generate_speech(
-        self, async_client: AsyncDigitaloceanGenaiSDK, respx_mock: MockRouter
+        self, async_client: AsyncServerlessInferenceSDKProd, respx_mock: MockRouter
     ) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
@@ -263,7 +267,7 @@ class TestAsyncAudio:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_generate_speech(
-        self, async_client: AsyncDigitaloceanGenaiSDK, respx_mock: MockRouter
+        self, async_client: AsyncServerlessInferenceSDKProd, respx_mock: MockRouter
     ) -> None:
         respx_mock.post("/audio/speech").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.audio.with_streaming_response.generate_speech(
@@ -282,7 +286,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_transcribe_audio(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_transcribe_audio(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         audio = await async_client.audio.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -291,7 +295,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_transcribe_audio_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_transcribe_audio_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         audio = await async_client.audio.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -307,7 +311,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_transcribe_audio(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_transcribe_audio(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.audio.with_raw_response.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -320,7 +324,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_transcribe_audio(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_transcribe_audio(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.audio.with_streaming_response.transcribe_audio(
             file=b"raw file contents",
             model="gpt-4o-transcribe",
@@ -335,7 +339,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_translate_audio(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_translate_audio(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         audio = await async_client.audio.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -344,7 +348,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_translate_audio_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_translate_audio_with_all_params(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         audio = await async_client.audio.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -356,7 +360,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_translate_audio(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_translate_audio(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         response = await async_client.audio.with_raw_response.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
@@ -369,7 +373,7 @@ class TestAsyncAudio:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_translate_audio(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_translate_audio(self, async_client: AsyncServerlessInferenceSDKProd) -> None:
         async with async_client.audio.with_streaming_response.translate_audio(
             file=b"raw file contents",
             model="whisper-1",
