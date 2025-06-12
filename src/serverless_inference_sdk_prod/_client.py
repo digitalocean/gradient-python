@@ -122,7 +122,7 @@ class ServerlessInferenceSDKProd(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("SERVERLESS_INFERENCE_SDK_PROD_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.example1.com"
 
         super().__init__(
             version=__version__,
@@ -322,7 +322,7 @@ class AsyncServerlessInferenceSDKProd(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("SERVERLESS_INFERENCE_SDK_PROD_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.example1.com"
 
         super().__init__(
             version=__version__,
