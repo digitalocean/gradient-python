@@ -241,9 +241,9 @@ assistant = response.parse()  # get the object that `assistants.list()` would ha
 print(assistant.first_id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/serverless_inference_sdk_prod/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/digitalocean/genai-python/tree/staging/src/serverless_inference_sdk_prod/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/serverless_inference_sdk_prod/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/digitalocean/genai-python/tree/staging/src/serverless_inference_sdk_prod/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
