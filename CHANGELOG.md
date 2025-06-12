@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-06-12)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/digitalocean/genai-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Chores
+
+* update SDK settings ([5b3b94b](https://github.com/digitalocean/genai-python/commit/5b3b94b57a4ba7837093617aafc2ce2d21ac87f1))
+
 ## 0.1.0-alpha.1 (2025-06-12)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/digitalocean/genai-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
