@@ -1,9 +1,9 @@
 [project]
-name = "digitalocean_genai_sdk"
-version = "0.0.1-alpha.0"
+name = "genai-python"
+version = "0.1.0-alpha.1"
 description = "The official Python library for the digitalocean-genai-sdk API"
 dynamic = ["readme"]
-license = "MIT"
+license = "Apache-2.0"
 authors = [
 { name = "Digitalocean Genai SDK", email = "" },
 ]
@@ -30,12 +30,12 @@ classifiers = [
   "Operating System :: POSIX :: Linux",
   "Operating System :: Microsoft :: Windows",
   "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: OSI Approved :: MIT License"
+  "License :: OSI Approved :: Apache Software License"
 ]
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/digitalocean-genai-sdk-python"
-Repository = "https://github.com/stainless-sdks/digitalocean-genai-sdk-python"
+Homepage = "https://github.com/digitalocean/genai-python"
+Repository = "https://github.com/digitalocean/genai-python"
 
 
 [tool.rye]
@@ -121,7 +121,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/digitalocean/genai-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -16,7 +16,6 @@ from .._response import (
 from ..types.model import Model
 from .._base_client import make_request_options
 from ..types.model_list_response import ModelListResponse
-from ..types.model_delete_response import ModelDeleteResponse
 
 __all__ = ["ModelsResource", "AsyncModelsResource"]
 
@@ -28,7 +27,7 @@ class ModelsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/digitalocean/genai-python#accessing-raw-response-data-eg-headers
         """
         return ModelsResourceWithRawResponse(self)
 
@@ -37,7 +36,7 @@ class ModelsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/digitalocean/genai-python#with_streaming_response
         """
         return ModelsResourceWithStreamingResponse(self)
 
@@ -97,41 +96,6 @@ class ModelsResource(SyncAPIResource):
             cast_to=ModelListResponse,
         )
 
-    def delete(
-        self,
-        model: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ModelDeleteResponse:
-        """Delete a fine-tuned model.
-
-        You must have the Owner role in your organization to
-        delete a model.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not model:
-            raise ValueError(f"Expected a non-empty value for `model` but received {model!r}")
-        return self._delete(
-            f"/models/{model}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ModelDeleteResponse,
-        )
-
 
 class AsyncModelsResource(AsyncAPIResource):
     @cached_property
@@ -140,7 +104,7 @@ class AsyncModelsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/digitalocean/genai-python#accessing-raw-response-data-eg-headers
         """
         return AsyncModelsResourceWithRawResponse(self)
 
@@ -149,7 +113,7 @@ class AsyncModelsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/digitalocean/genai-python#with_streaming_response
         """
         return AsyncModelsResourceWithStreamingResponse(self)
 
@@ -209,41 +173,6 @@ class AsyncModelsResource(AsyncAPIResource):
             cast_to=ModelListResponse,
         )
 
-    async def delete(
-        self,
-        model: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ModelDeleteResponse:
-        """Delete a fine-tuned model.
-
-        You must have the Owner role in your organization to
-        delete a model.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not model:
-            raise ValueError(f"Expected a non-empty value for `model` but received {model!r}")
-        return await self._delete(
-            f"/models/{model}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=ModelDeleteResponse,
-        )
-
 
 class ModelsResourceWithRawResponse:
     def __init__(self, models: ModelsResource) -> None:
@@ -254,9 +183,6 @@ class ModelsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             models.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            models.delete,
         )
 
 
@@ -270,9 +196,6 @@ class AsyncModelsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             models.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            models.delete,
-        )
 
 
 class ModelsResourceWithStreamingResponse:
@@ -285,9 +208,6 @@ class ModelsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             models.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            models.delete,
-        )
 
 
 class AsyncModelsResourceWithStreamingResponse:
@@ -299,7 +219,4 @@ class AsyncModelsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             models.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            models.delete,
         )

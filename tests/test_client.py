@@ -727,20 +727,28 @@ class TestDigitaloceanGenaiSDK:
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.get("/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}})
+            self.client.get(
+                "/v2/gen-ai/agents/uuid/versions",
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
+            )
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(return_value=httpx.Response(500))
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.get("/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}})
+            self.client.get(
+                "/v2/gen-ai/agents/uuid/versions",
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
+            )
 
         assert _get_open_connections(self.client) == 0
 
@@ -768,9 +776,9 @@ class TestDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=retry_handler)
 
-        response = client.assistants.with_raw_response.list()
+        response = client.agents.versions.with_raw_response.list(uuid="uuid")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -792,9 +800,11 @@ class TestDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=retry_handler)
 
-        response = client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.agents.versions.with_raw_response.list(
+            uuid="uuid", extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -815,11 +825,40 @@ class TestDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=retry_handler)
 
-        response = client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.agents.versions.with_raw_response.list(
+            uuid="uuid", extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_follow_redirects(self, respx_mock: MockRouter) -> None:
+        # Test that the default follow_redirects=True allows following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+        respx_mock.get("/redirected").mock(return_value=httpx.Response(200, json={"status": "ok"}))
+
+        response = self.client.post("/redirect", body={"key": "value"}, cast_to=httpx.Response)
+        assert response.status_code == 200
+        assert response.json() == {"status": "ok"}
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_follow_redirects_disabled(self, respx_mock: MockRouter) -> None:
+        # Test that follow_redirects=False prevents following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+
+        with pytest.raises(APIStatusError) as exc_info:
+            self.client.post(
+                "/redirect", body={"key": "value"}, options={"follow_redirects": False}, cast_to=httpx.Response
+            )
+
+        assert exc_info.value.response.status_code == 302
+        assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
 
 
 class TestAsyncDigitaloceanGenaiSDK:
@@ -1493,11 +1532,13 @@ class TestAsyncDigitaloceanGenaiSDK:
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.get(
-                "/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
+                "/v2/gen-ai/agents/uuid/versions",
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1505,11 +1546,13 @@ class TestAsyncDigitaloceanGenaiSDK:
     @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.get("/assistants").mock(return_value=httpx.Response(500))
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.get(
-                "/assistants", cast_to=httpx.Response, options={"headers": {RAW_RESPONSE_HEADER: "stream"}}
+                "/v2/gen-ai/agents/uuid/versions",
+                cast_to=httpx.Response,
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1539,9 +1582,9 @@ class TestAsyncDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=retry_handler)
 
-        response = await client.assistants.with_raw_response.list()
+        response = await client.agents.versions.with_raw_response.list(uuid="uuid")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1564,9 +1607,11 @@ class TestAsyncDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=retry_handler)
 
-        response = await client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.agents.versions.with_raw_response.list(
+            uuid="uuid", extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1588,9 +1633,11 @@ class TestAsyncDigitaloceanGenaiSDK:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/assistants").mock(side_effect=retry_handler)
+        respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=retry_handler)
 
-        response = await client.assistants.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.agents.versions.with_raw_response.list(
+            uuid="uuid", extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1638,3 +1685,30 @@ class TestAsyncDigitaloceanGenaiSDK:
                     raise AssertionError("calling get_platform using asyncify resulted in a hung process")
 
                 time.sleep(0.1)
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_follow_redirects(self, respx_mock: MockRouter) -> None:
+        # Test that the default follow_redirects=True allows following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+        respx_mock.get("/redirected").mock(return_value=httpx.Response(200, json={"status": "ok"}))
+
+        response = await self.client.post("/redirect", body={"key": "value"}, cast_to=httpx.Response)
+        assert response.status_code == 200
+        assert response.json() == {"status": "ok"}
+
+    @pytest.mark.respx(base_url=base_url)
+    async def test_follow_redirects_disabled(self, respx_mock: MockRouter) -> None:
+        # Test that follow_redirects=False prevents following redirects
+        respx_mock.post("/redirect").mock(
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
+        )
+
+        with pytest.raises(APIStatusError) as exc_info:
+            await self.client.post(
+                "/redirect", body={"key": "value"}, options={"follow_redirects": False}, cast_to=httpx.Response
+            )
+
+        assert exc_info.value.response.status_code == 302
+        assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"

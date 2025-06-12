@@ -1,6 +1,6 @@
 # Digitalocean Genai SDK Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/digitalocean_genai_sdk.svg)](https://pypi.org/project/digitalocean_genai_sdk/)
+[![PyPI version](https://img.shields.io/pypi/v/genai-python.svg)](https://pypi.org/project/genai-python/)
 
 The Digitalocean Genai SDK Python library provides convenient access to the Digitalocean Genai SDK REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -10,17 +10,14 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [help.openai.com](https://help.openai.com/). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [developers.digitalocean.com](https://developers.digitalocean.com/documentation/v2/). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/digitalocean-genai-sdk-python.git
+# install from PyPI
+pip install --pre genai-python
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre digitalocean_genai_sdk`
 
 ## Usage
 
@@ -36,8 +33,10 @@ client = DigitaloceanGenaiSDK(
     ),  # This is the default and can be omitted
 )
 
-assistants = client.assistants.list()
-print(assistants.first_id)
+versions = client.agents.versions.list(
+    uuid="REPLACE_ME",
+)
+print(versions.agent_versions)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -62,8 +61,10 @@ client = AsyncDigitaloceanGenaiSDK(
 
 
 async def main() -> None:
-    assistants = await client.assistants.list()
-    print(assistants.first_id)
+    versions = await client.agents.versions.list(
+        uuid="REPLACE_ME",
+    )
+    print(versions.agent_versions)
 
 
 asyncio.run(main())
@@ -89,42 +90,12 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
 
-assistant_object = client.assistants.create(
-    model="gpt-4o",
-    tool_resources={
-        "code_interpreter": {"file_ids": ["string"]},
-        "file_search": {
-            "vector_store_ids": ["string"],
-            "vector_stores": [
-                {
-                    "chunking_strategy": {"type": "auto"},
-                    "file_ids": ["string"],
-                    "metadata": {"foo": "string"},
-                }
-            ],
-        },
-    },
+data_source = client.knowledge_bases.data_sources.create(
+    path_knowledge_base_uuid="knowledge_base_uuid",
+    aws_data_source={},
 )
-print(assistant_object.tool_resources)
+print(data_source.aws_data_source)
 ```
-
-## File uploads
-
-Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
-
-```python
-from pathlib import Path
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
-
-client = DigitaloceanGenaiSDK()
-
-client.audio.transcribe_audio(
-    file=Path("/path/to/file"),
-    model="gpt-4o-transcribe",
-)
-```
-
-The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
 
 ## Handling errors
 
@@ -142,7 +113,9 @@ from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 client = DigitaloceanGenaiSDK()
 
 try:
-    client.assistants.list()
+    client.agents.versions.list(
+        uuid="REPLACE_ME",
+    )
 except digitalocean_genai_sdk.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -185,7 +158,9 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).assistants.list()
+client.with_options(max_retries=5).agents.versions.list(
+    uuid="REPLACE_ME",
+)
 ```
 
 ### Timeouts
@@ -208,7 +183,9 @@ client = DigitaloceanGenaiSDK(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).assistants.list()
+client.with_options(timeout=5.0).agents.versions.list(
+    uuid="REPLACE_ME",
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -249,16 +226,18 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from digitalocean_genai_sdk import DigitaloceanGenaiSDK
 
 client = DigitaloceanGenaiSDK()
-response = client.assistants.with_raw_response.list()
+response = client.agents.versions.with_raw_response.list(
+    uuid="REPLACE_ME",
+)
 print(response.headers.get('X-My-Header'))
 
-assistant = response.parse()  # get the object that `assistants.list()` would have returned
-print(assistant.first_id)
+version = response.parse()  # get the object that `agents.versions.list()` would have returned
+print(version.agent_versions)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/digitalocean-genai-sdk-python/tree/main/src/digitalocean_genai_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -267,7 +246,9 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.assistants.with_streaming_response.list() as response:
+with client.agents.versions.with_streaming_response.list(
+    uuid="REPLACE_ME",
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -362,7 +343,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/digitalocean-genai-sdk-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/digitalocean/genai-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 

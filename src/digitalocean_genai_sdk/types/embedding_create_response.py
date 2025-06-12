@@ -10,11 +10,7 @@ __all__ = ["EmbeddingCreateResponse", "Data", "Usage"]
 
 class Data(BaseModel):
     embedding: List[float]
-    """The embedding vector, which is a list of floats.
-
-    The length of vector depends on the model as listed in the
-    [embedding guide](/docs/guides/embeddings).
-    """
+    """The embedding vector, which is a list of floats."""
 
     index: int
     """The index of the embedding in the list of embeddings."""

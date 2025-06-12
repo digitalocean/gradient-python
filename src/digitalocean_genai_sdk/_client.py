@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import TYPE_CHECKING, Any, Union, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,21 +20,8 @@ from ._types import (
     RequestOptions,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    audio,
-    files,
-    images,
-    models,
-    batches,
-    uploads,
-    realtime,
-    responses,
-    assistants,
-    embeddings,
-    completions,
-    moderations,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, DigitaloceanGenaiSDKError
 from ._base_client import (
@@ -42,11 +29,30 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.chat import chat
-from .resources.threads import threads
-from .resources.fine_tuning import fine_tuning
-from .resources.organization import organization
-from .resources.vector_stores import vector_stores
+
+if TYPE_CHECKING:
+    from .resources import (
+        auth,
+        chat,
+        agents,
+        models,
+        regions,
+        api_keys,
+        providers,
+        embeddings,
+        indexing_jobs,
+        knowledge_bases,
+    )
+    from .resources.chat import ChatResource, AsyncChatResource
+    from .resources.models import ModelsResource, AsyncModelsResource
+    from .resources.regions import RegionsResource, AsyncRegionsResource
+    from .resources.auth.auth import AuthResource, AsyncAuthResource
+    from .resources.embeddings import EmbeddingsResource, AsyncEmbeddingsResource
+    from .resources.agents.agents import AgentsResource, AsyncAgentsResource
+    from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
+    from .resources.api_keys.api_keys import APIKeysResource, AsyncAPIKeysResource
+    from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
+    from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
 __all__ = [
     "Timeout",
@@ -61,26 +67,6 @@ __all__ = [
 
 
 class DigitaloceanGenaiSDK(SyncAPIClient):
-    assistants: assistants.AssistantsResource
-    audio: audio.AudioResource
-    batches: batches.BatchesResource
-    chat: chat.ChatResource
-    completions: completions.CompletionsResource
-    embeddings: embeddings.EmbeddingsResource
-    files: files.FilesResource
-    fine_tuning: fine_tuning.FineTuningResource
-    images: images.ImagesResource
-    models: models.ModelsResource
-    moderations: moderations.ModerationsResource
-    organization: organization.OrganizationResource
-    realtime: realtime.RealtimeResource
-    responses: responses.ResponsesResource
-    threads: threads.ThreadsResource
-    uploads: uploads.UploadsResource
-    vector_stores: vector_stores.VectorStoresResource
-    with_raw_response: DigitaloceanGenaiSDKWithRawResponse
-    with_streaming_response: DigitaloceanGenaiSDKWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -122,7 +108,7 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("DIGITALOCEAN_GENAI_SDK_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.digitalocean.com/"
 
         super().__init__(
             version=__version__,
@@ -135,25 +121,73 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.assistants = assistants.AssistantsResource(self)
-        self.audio = audio.AudioResource(self)
-        self.batches = batches.BatchesResource(self)
-        self.chat = chat.ChatResource(self)
-        self.completions = completions.CompletionsResource(self)
-        self.embeddings = embeddings.EmbeddingsResource(self)
-        self.files = files.FilesResource(self)
-        self.fine_tuning = fine_tuning.FineTuningResource(self)
-        self.images = images.ImagesResource(self)
-        self.models = models.ModelsResource(self)
-        self.moderations = moderations.ModerationsResource(self)
-        self.organization = organization.OrganizationResource(self)
-        self.realtime = realtime.RealtimeResource(self)
-        self.responses = responses.ResponsesResource(self)
-        self.threads = threads.ThreadsResource(self)
-        self.uploads = uploads.UploadsResource(self)
-        self.vector_stores = vector_stores.VectorStoresResource(self)
-        self.with_raw_response = DigitaloceanGenaiSDKWithRawResponse(self)
-        self.with_streaming_response = DigitaloceanGenaiSDKWithStreamedResponse(self)
+    @cached_property
+    def agents(self) -> AgentsResource:
+        from .resources.agents import AgentsResource
+
+        return AgentsResource(self)
+
+    @cached_property
+    def providers(self) -> ProvidersResource:
+        from .resources.providers import ProvidersResource
+
+        return ProvidersResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
+
+    @cached_property
+    def regions(self) -> RegionsResource:
+        from .resources.regions import RegionsResource
+
+        return RegionsResource(self)
+
+    @cached_property
+    def indexing_jobs(self) -> IndexingJobsResource:
+        from .resources.indexing_jobs import IndexingJobsResource
+
+        return IndexingJobsResource(self)
+
+    @cached_property
+    def knowledge_bases(self) -> KnowledgeBasesResource:
+        from .resources.knowledge_bases import KnowledgeBasesResource
+
+        return KnowledgeBasesResource(self)
+
+    @cached_property
+    def api_keys(self) -> APIKeysResource:
+        from .resources.api_keys import APIKeysResource
+
+        return APIKeysResource(self)
+
+    @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
+    def embeddings(self) -> EmbeddingsResource:
+        from .resources.embeddings import EmbeddingsResource
+
+        return EmbeddingsResource(self)
+
+    @cached_property
+    def models(self) -> ModelsResource:
+        from .resources.models import ModelsResource
+
+        return ModelsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> DigitaloceanGenaiSDKWithRawResponse:
+        return DigitaloceanGenaiSDKWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> DigitaloceanGenaiSDKWithStreamedResponse:
+        return DigitaloceanGenaiSDKWithStreamedResponse(self)
 
     @property
     @override
@@ -261,26 +295,6 @@ class DigitaloceanGenaiSDK(SyncAPIClient):
 
 
 class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
-    assistants: assistants.AsyncAssistantsResource
-    audio: audio.AsyncAudioResource
-    batches: batches.AsyncBatchesResource
-    chat: chat.AsyncChatResource
-    completions: completions.AsyncCompletionsResource
-    embeddings: embeddings.AsyncEmbeddingsResource
-    files: files.AsyncFilesResource
-    fine_tuning: fine_tuning.AsyncFineTuningResource
-    images: images.AsyncImagesResource
-    models: models.AsyncModelsResource
-    moderations: moderations.AsyncModerationsResource
-    organization: organization.AsyncOrganizationResource
-    realtime: realtime.AsyncRealtimeResource
-    responses: responses.AsyncResponsesResource
-    threads: threads.AsyncThreadsResource
-    uploads: uploads.AsyncUploadsResource
-    vector_stores: vector_stores.AsyncVectorStoresResource
-    with_raw_response: AsyncDigitaloceanGenaiSDKWithRawResponse
-    with_streaming_response: AsyncDigitaloceanGenaiSDKWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -322,7 +336,7 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("DIGITALOCEAN_GENAI_SDK_BASE_URL")
         if base_url is None:
-            base_url = f"https://api.example.com"
+            base_url = f"https://api.digitalocean.com/"
 
         super().__init__(
             version=__version__,
@@ -335,25 +349,73 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.assistants = assistants.AsyncAssistantsResource(self)
-        self.audio = audio.AsyncAudioResource(self)
-        self.batches = batches.AsyncBatchesResource(self)
-        self.chat = chat.AsyncChatResource(self)
-        self.completions = completions.AsyncCompletionsResource(self)
-        self.embeddings = embeddings.AsyncEmbeddingsResource(self)
-        self.files = files.AsyncFilesResource(self)
-        self.fine_tuning = fine_tuning.AsyncFineTuningResource(self)
-        self.images = images.AsyncImagesResource(self)
-        self.models = models.AsyncModelsResource(self)
-        self.moderations = moderations.AsyncModerationsResource(self)
-        self.organization = organization.AsyncOrganizationResource(self)
-        self.realtime = realtime.AsyncRealtimeResource(self)
-        self.responses = responses.AsyncResponsesResource(self)
-        self.threads = threads.AsyncThreadsResource(self)
-        self.uploads = uploads.AsyncUploadsResource(self)
-        self.vector_stores = vector_stores.AsyncVectorStoresResource(self)
-        self.with_raw_response = AsyncDigitaloceanGenaiSDKWithRawResponse(self)
-        self.with_streaming_response = AsyncDigitaloceanGenaiSDKWithStreamedResponse(self)
+    @cached_property
+    def agents(self) -> AsyncAgentsResource:
+        from .resources.agents import AsyncAgentsResource
+
+        return AsyncAgentsResource(self)
+
+    @cached_property
+    def providers(self) -> AsyncProvidersResource:
+        from .resources.providers import AsyncProvidersResource
+
+        return AsyncProvidersResource(self)
+
+    @cached_property
+    def auth(self) -> AsyncAuthResource:
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
+    def regions(self) -> AsyncRegionsResource:
+        from .resources.regions import AsyncRegionsResource
+
+        return AsyncRegionsResource(self)
+
+    @cached_property
+    def indexing_jobs(self) -> AsyncIndexingJobsResource:
+        from .resources.indexing_jobs import AsyncIndexingJobsResource
+
+        return AsyncIndexingJobsResource(self)
+
+    @cached_property
+    def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResource
+
+        return AsyncKnowledgeBasesResource(self)
+
+    @cached_property
+    def api_keys(self) -> AsyncAPIKeysResource:
+        from .resources.api_keys import AsyncAPIKeysResource
+
+        return AsyncAPIKeysResource(self)
+
+    @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
+    def embeddings(self) -> AsyncEmbeddingsResource:
+        from .resources.embeddings import AsyncEmbeddingsResource
+
+        return AsyncEmbeddingsResource(self)
+
+    @cached_property
+    def models(self) -> AsyncModelsResource:
+        from .resources.models import AsyncModelsResource
+
+        return AsyncModelsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncDigitaloceanGenaiSDKWithRawResponse:
+        return AsyncDigitaloceanGenaiSDKWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncDigitaloceanGenaiSDKWithStreamedResponse:
+        return AsyncDigitaloceanGenaiSDKWithStreamedResponse(self)
 
     @property
     @override
@@ -461,87 +523,271 @@ class AsyncDigitaloceanGenaiSDK(AsyncAPIClient):
 
 
 class DigitaloceanGenaiSDKWithRawResponse:
+    _client: DigitaloceanGenaiSDK
+
     def __init__(self, client: DigitaloceanGenaiSDK) -> None:
-        self.assistants = assistants.AssistantsResourceWithRawResponse(client.assistants)
-        self.audio = audio.AudioResourceWithRawResponse(client.audio)
-        self.batches = batches.BatchesResourceWithRawResponse(client.batches)
-        self.chat = chat.ChatResourceWithRawResponse(client.chat)
-        self.completions = completions.CompletionsResourceWithRawResponse(client.completions)
-        self.embeddings = embeddings.EmbeddingsResourceWithRawResponse(client.embeddings)
-        self.files = files.FilesResourceWithRawResponse(client.files)
-        self.fine_tuning = fine_tuning.FineTuningResourceWithRawResponse(client.fine_tuning)
-        self.images = images.ImagesResourceWithRawResponse(client.images)
-        self.models = models.ModelsResourceWithRawResponse(client.models)
-        self.moderations = moderations.ModerationsResourceWithRawResponse(client.moderations)
-        self.organization = organization.OrganizationResourceWithRawResponse(client.organization)
-        self.realtime = realtime.RealtimeResourceWithRawResponse(client.realtime)
-        self.responses = responses.ResponsesResourceWithRawResponse(client.responses)
-        self.threads = threads.ThreadsResourceWithRawResponse(client.threads)
-        self.uploads = uploads.UploadsResourceWithRawResponse(client.uploads)
-        self.vector_stores = vector_stores.VectorStoresResourceWithRawResponse(client.vector_stores)
+        self._client = client
+
+    @cached_property
+    def agents(self) -> agents.AgentsResourceWithRawResponse:
+        from .resources.agents import AgentsResourceWithRawResponse
+
+        return AgentsResourceWithRawResponse(self._client.agents)
+
+    @cached_property
+    def providers(self) -> providers.ProvidersResourceWithRawResponse:
+        from .resources.providers import ProvidersResourceWithRawResponse
+
+        return ProvidersResourceWithRawResponse(self._client.providers)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def regions(self) -> regions.RegionsResourceWithRawResponse:
+        from .resources.regions import RegionsResourceWithRawResponse
+
+        return RegionsResourceWithRawResponse(self._client.regions)
+
+    @cached_property
+    def indexing_jobs(self) -> indexing_jobs.IndexingJobsResourceWithRawResponse:
+        from .resources.indexing_jobs import IndexingJobsResourceWithRawResponse
+
+        return IndexingJobsResourceWithRawResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
+
+        return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def api_keys(self) -> api_keys.APIKeysResourceWithRawResponse:
+        from .resources.api_keys import APIKeysResourceWithRawResponse
+
+        return APIKeysResourceWithRawResponse(self._client.api_keys)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.EmbeddingsResourceWithRawResponse:
+        from .resources.embeddings import EmbeddingsResourceWithRawResponse
+
+        return EmbeddingsResourceWithRawResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithRawResponse:
+        from .resources.models import ModelsResourceWithRawResponse
+
+        return ModelsResourceWithRawResponse(self._client.models)
 
 
 class AsyncDigitaloceanGenaiSDKWithRawResponse:
+    _client: AsyncDigitaloceanGenaiSDK
+
     def __init__(self, client: AsyncDigitaloceanGenaiSDK) -> None:
-        self.assistants = assistants.AsyncAssistantsResourceWithRawResponse(client.assistants)
-        self.audio = audio.AsyncAudioResourceWithRawResponse(client.audio)
-        self.batches = batches.AsyncBatchesResourceWithRawResponse(client.batches)
-        self.chat = chat.AsyncChatResourceWithRawResponse(client.chat)
-        self.completions = completions.AsyncCompletionsResourceWithRawResponse(client.completions)
-        self.embeddings = embeddings.AsyncEmbeddingsResourceWithRawResponse(client.embeddings)
-        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.fine_tuning = fine_tuning.AsyncFineTuningResourceWithRawResponse(client.fine_tuning)
-        self.images = images.AsyncImagesResourceWithRawResponse(client.images)
-        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
-        self.moderations = moderations.AsyncModerationsResourceWithRawResponse(client.moderations)
-        self.organization = organization.AsyncOrganizationResourceWithRawResponse(client.organization)
-        self.realtime = realtime.AsyncRealtimeResourceWithRawResponse(client.realtime)
-        self.responses = responses.AsyncResponsesResourceWithRawResponse(client.responses)
-        self.threads = threads.AsyncThreadsResourceWithRawResponse(client.threads)
-        self.uploads = uploads.AsyncUploadsResourceWithRawResponse(client.uploads)
-        self.vector_stores = vector_stores.AsyncVectorStoresResourceWithRawResponse(client.vector_stores)
+        self._client = client
+
+    @cached_property
+    def agents(self) -> agents.AsyncAgentsResourceWithRawResponse:
+        from .resources.agents import AsyncAgentsResourceWithRawResponse
+
+        return AsyncAgentsResourceWithRawResponse(self._client.agents)
+
+    @cached_property
+    def providers(self) -> providers.AsyncProvidersResourceWithRawResponse:
+        from .resources.providers import AsyncProvidersResourceWithRawResponse
+
+        return AsyncProvidersResourceWithRawResponse(self._client.providers)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
+        from .resources.regions import AsyncRegionsResourceWithRawResponse
+
+        return AsyncRegionsResourceWithRawResponse(self._client.regions)
+
+    @cached_property
+    def indexing_jobs(self) -> indexing_jobs.AsyncIndexingJobsResourceWithRawResponse:
+        from .resources.indexing_jobs import AsyncIndexingJobsResourceWithRawResponse
+
+        return AsyncIndexingJobsResourceWithRawResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
+
+        return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def api_keys(self) -> api_keys.AsyncAPIKeysResourceWithRawResponse:
+        from .resources.api_keys import AsyncAPIKeysResourceWithRawResponse
+
+        return AsyncAPIKeysResourceWithRawResponse(self._client.api_keys)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithRawResponse:
+        from .resources.embeddings import AsyncEmbeddingsResourceWithRawResponse
+
+        return AsyncEmbeddingsResourceWithRawResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        from .resources.models import AsyncModelsResourceWithRawResponse
+
+        return AsyncModelsResourceWithRawResponse(self._client.models)
 
 
 class DigitaloceanGenaiSDKWithStreamedResponse:
+    _client: DigitaloceanGenaiSDK
+
     def __init__(self, client: DigitaloceanGenaiSDK) -> None:
-        self.assistants = assistants.AssistantsResourceWithStreamingResponse(client.assistants)
-        self.audio = audio.AudioResourceWithStreamingResponse(client.audio)
-        self.batches = batches.BatchesResourceWithStreamingResponse(client.batches)
-        self.chat = chat.ChatResourceWithStreamingResponse(client.chat)
-        self.completions = completions.CompletionsResourceWithStreamingResponse(client.completions)
-        self.embeddings = embeddings.EmbeddingsResourceWithStreamingResponse(client.embeddings)
-        self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.fine_tuning = fine_tuning.FineTuningResourceWithStreamingResponse(client.fine_tuning)
-        self.images = images.ImagesResourceWithStreamingResponse(client.images)
-        self.models = models.ModelsResourceWithStreamingResponse(client.models)
-        self.moderations = moderations.ModerationsResourceWithStreamingResponse(client.moderations)
-        self.organization = organization.OrganizationResourceWithStreamingResponse(client.organization)
-        self.realtime = realtime.RealtimeResourceWithStreamingResponse(client.realtime)
-        self.responses = responses.ResponsesResourceWithStreamingResponse(client.responses)
-        self.threads = threads.ThreadsResourceWithStreamingResponse(client.threads)
-        self.uploads = uploads.UploadsResourceWithStreamingResponse(client.uploads)
-        self.vector_stores = vector_stores.VectorStoresResourceWithStreamingResponse(client.vector_stores)
+        self._client = client
+
+    @cached_property
+    def agents(self) -> agents.AgentsResourceWithStreamingResponse:
+        from .resources.agents import AgentsResourceWithStreamingResponse
+
+        return AgentsResourceWithStreamingResponse(self._client.agents)
+
+    @cached_property
+    def providers(self) -> providers.ProvidersResourceWithStreamingResponse:
+        from .resources.providers import ProvidersResourceWithStreamingResponse
+
+        return ProvidersResourceWithStreamingResponse(self._client.providers)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def regions(self) -> regions.RegionsResourceWithStreamingResponse:
+        from .resources.regions import RegionsResourceWithStreamingResponse
+
+        return RegionsResourceWithStreamingResponse(self._client.regions)
+
+    @cached_property
+    def indexing_jobs(self) -> indexing_jobs.IndexingJobsResourceWithStreamingResponse:
+        from .resources.indexing_jobs import IndexingJobsResourceWithStreamingResponse
+
+        return IndexingJobsResourceWithStreamingResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
+
+        return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def api_keys(self) -> api_keys.APIKeysResourceWithStreamingResponse:
+        from .resources.api_keys import APIKeysResourceWithStreamingResponse
+
+        return APIKeysResourceWithStreamingResponse(self._client.api_keys)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.EmbeddingsResourceWithStreamingResponse:
+        from .resources.embeddings import EmbeddingsResourceWithStreamingResponse
+
+        return EmbeddingsResourceWithStreamingResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithStreamingResponse:
+        from .resources.models import ModelsResourceWithStreamingResponse
+
+        return ModelsResourceWithStreamingResponse(self._client.models)
 
 
 class AsyncDigitaloceanGenaiSDKWithStreamedResponse:
+    _client: AsyncDigitaloceanGenaiSDK
+
     def __init__(self, client: AsyncDigitaloceanGenaiSDK) -> None:
-        self.assistants = assistants.AsyncAssistantsResourceWithStreamingResponse(client.assistants)
-        self.audio = audio.AsyncAudioResourceWithStreamingResponse(client.audio)
-        self.batches = batches.AsyncBatchesResourceWithStreamingResponse(client.batches)
-        self.chat = chat.AsyncChatResourceWithStreamingResponse(client.chat)
-        self.completions = completions.AsyncCompletionsResourceWithStreamingResponse(client.completions)
-        self.embeddings = embeddings.AsyncEmbeddingsResourceWithStreamingResponse(client.embeddings)
-        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.fine_tuning = fine_tuning.AsyncFineTuningResourceWithStreamingResponse(client.fine_tuning)
-        self.images = images.AsyncImagesResourceWithStreamingResponse(client.images)
-        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
-        self.moderations = moderations.AsyncModerationsResourceWithStreamingResponse(client.moderations)
-        self.organization = organization.AsyncOrganizationResourceWithStreamingResponse(client.organization)
-        self.realtime = realtime.AsyncRealtimeResourceWithStreamingResponse(client.realtime)
-        self.responses = responses.AsyncResponsesResourceWithStreamingResponse(client.responses)
-        self.threads = threads.AsyncThreadsResourceWithStreamingResponse(client.threads)
-        self.uploads = uploads.AsyncUploadsResourceWithStreamingResponse(client.uploads)
-        self.vector_stores = vector_stores.AsyncVectorStoresResourceWithStreamingResponse(client.vector_stores)
+        self._client = client
+
+    @cached_property
+    def agents(self) -> agents.AsyncAgentsResourceWithStreamingResponse:
+        from .resources.agents import AsyncAgentsResourceWithStreamingResponse
+
+        return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
+
+    @cached_property
+    def providers(self) -> providers.AsyncProvidersResourceWithStreamingResponse:
+        from .resources.providers import AsyncProvidersResourceWithStreamingResponse
+
+        return AsyncProvidersResourceWithStreamingResponse(self._client.providers)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
+        from .resources.regions import AsyncRegionsResourceWithStreamingResponse
+
+        return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
+
+    @cached_property
+    def indexing_jobs(self) -> indexing_jobs.AsyncIndexingJobsResourceWithStreamingResponse:
+        from .resources.indexing_jobs import AsyncIndexingJobsResourceWithStreamingResponse
+
+        return AsyncIndexingJobsResourceWithStreamingResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
+
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def api_keys(self) -> api_keys.AsyncAPIKeysResourceWithStreamingResponse:
+        from .resources.api_keys import AsyncAPIKeysResourceWithStreamingResponse
+
+        return AsyncAPIKeysResourceWithStreamingResponse(self._client.api_keys)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithStreamingResponse:
+        from .resources.embeddings import AsyncEmbeddingsResourceWithStreamingResponse
+
+        return AsyncEmbeddingsResourceWithStreamingResponse(self._client.embeddings)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        from .resources.models import AsyncModelsResourceWithStreamingResponse
+
+        return AsyncModelsResourceWithStreamingResponse(self._client.models)
 
 
 Client = DigitaloceanGenaiSDK
