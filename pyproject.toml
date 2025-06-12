@@ -1,5 +1,5 @@
 [project]
-name = "genai-python"
+name = "do-genai-python"
 version = "0.1.0-alpha.1"
 description = "The official Python library for the digitalocean-genai-sdk API"
 dynamic = ["readme"]

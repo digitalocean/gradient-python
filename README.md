@@ -1,6 +1,6 @@
 # Digitalocean Genai SDK Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/genai-python.svg)](https://pypi.org/project/genai-python/)
+[![PyPI version](https://img.shields.io/pypi/v/do-genai-python.svg)](https://pypi.org/project/do-genai-python/)
 
 The Digitalocean Genai SDK Python library provides convenient access to the Digitalocean Genai SDK REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -16,7 +16,7 @@ The REST API documentation can be found on [developers.digitalocean.com](https:/
 
 ```sh
 # install from PyPI
-pip install --pre genai-python
+pip install --pre do-genai-python
 ```
 
 ## Usage
