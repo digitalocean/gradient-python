@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import ChatCreateCompletionResponse
+from gradientai.types import ChatCreateCompletionResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +19,7 @@ class TestChat:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_completion(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_completion(self, client: GradientAI) -> None:
         chat = client.chat.create_completion(
             messages=[
                 {
@@ -33,7 +33,7 @@ class TestChat:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_completion_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_completion_with_all_params(self, client: GradientAI) -> None:
         chat = client.chat.create_completion(
             messages=[
                 {
@@ -62,7 +62,7 @@ class TestChat:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_completion(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create_completion(self, client: GradientAI) -> None:
         response = client.chat.with_raw_response.create_completion(
             messages=[
                 {
@@ -80,7 +80,7 @@ class TestChat:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_completion(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create_completion(self, client: GradientAI) -> None:
         with client.chat.with_streaming_response.create_completion(
             messages=[
                 {
@@ -104,7 +104,7 @@ class TestAsyncChat:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_completion(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_completion(self, async_client: AsyncGradientAI) -> None:
         chat = await async_client.chat.create_completion(
             messages=[
                 {
@@ -118,7 +118,7 @@ class TestAsyncChat:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_completion_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_completion_with_all_params(self, async_client: AsyncGradientAI) -> None:
         chat = await async_client.chat.create_completion(
             messages=[
                 {
@@ -147,7 +147,7 @@ class TestAsyncChat:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_completion(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create_completion(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.chat.with_raw_response.create_completion(
             messages=[
                 {
@@ -165,7 +165,7 @@ class TestAsyncChat:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_completion(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create_completion(self, async_client: AsyncGradientAI) -> None:
         async with async_client.chat.with_streaming_response.create_completion(
             messages=[
                 {

@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from digitalocean_genai_sdk._utils import PropertyInfo
-from digitalocean_genai_sdk._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from digitalocean_genai_sdk._models import BaseModel, construct_type
+from gradientai._utils import PropertyInfo
+from gradientai._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from gradientai._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):
