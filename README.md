@@ -1,8 +1,8 @@
-# Digitalocean Genai SDK Python API library
+# Gradient AI Python API library
 
 [![PyPI version](https://img.shields.io/pypi/v/c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python.svg)](https://pypi.org/project/c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python/)
 
-The Digitalocean Genai SDK Python library provides convenient access to the Digitalocean Genai SDK REST API from any Python 3.8+
+The Gradient AI Python library provides convenient access to the Gradient AI REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -25,9 +25,9 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from gradientai import GradientAI
 
-client = DigitaloceanGenaiSDK(
+client = GradientAI(
     api_key=os.environ.get(
         "DIGITALOCEAN_GENAI_SDK_API_KEY"
     ),  # This is the default and can be omitted
@@ -46,14 +46,14 @@ so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncDigitaloceanGenaiSDK` instead of `DigitaloceanGenaiSDK` and use `await` with each API call:
+Simply import `AsyncGradientAI` instead of `GradientAI` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from digitalocean_genai_sdk import AsyncDigitaloceanGenaiSDK
+from gradientai import AsyncGradientAI
 
-client = AsyncDigitaloceanGenaiSDK(
+client = AsyncGradientAI(
     api_key=os.environ.get(
         "DIGITALOCEAN_GENAI_SDK_API_KEY"
     ),  # This is the default and can be omitted
@@ -86,42 +86,48 @@ Typed requests and responses provide autocomplete and documentation within your 
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
 ```python
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from gradientai import GradientAI
 
-client = DigitaloceanGenaiSDK()
+client = GradientAI()
 
-data_source = client.knowledge_bases.data_sources.create(
-    path_knowledge_base_uuid="knowledge_base_uuid",
-    aws_data_source={},
+response = client.chat.create_completion(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+    stream_options={},
 )
-print(data_source.aws_data_source)
+print(response.stream_options)
 ```
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `digitalocean_genai_sdk.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `gradientai.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `digitalocean_genai_sdk.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `gradientai.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `digitalocean_genai_sdk.APIError`.
+All errors inherit from `gradientai.APIError`.
 
 ```python
-import digitalocean_genai_sdk
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+import gradientai
+from gradientai import GradientAI
 
-client = DigitaloceanGenaiSDK()
+client = GradientAI()
 
 try:
     client.agents.versions.list(
         uuid="REPLACE_ME",
     )
-except digitalocean_genai_sdk.APIConnectionError as e:
+except gradientai.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except digitalocean_genai_sdk.RateLimitError as e:
+except gradientai.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except digitalocean_genai_sdk.APIStatusError as e:
+except gradientai.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -149,10 +155,10 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from gradientai import GradientAI
 
 # Configure the default for all requests:
-client = DigitaloceanGenaiSDK(
+client = GradientAI(
     # default is 2
     max_retries=0,
 )
@@ -169,16 +175,16 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from gradientai import GradientAI
 
 # Configure the default for all requests:
-client = DigitaloceanGenaiSDK(
+client = GradientAI(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = DigitaloceanGenaiSDK(
+client = GradientAI(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -198,10 +204,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `DIGITALOCEAN_GENAI_SDK_LOG` to `info`.
+You can enable logging by setting the environment variable `GRADIENT_AI_LOG` to `info`.
 
 ```shell
-$ export DIGITALOCEAN_GENAI_SDK_LOG=info
+$ export GRADIENT_AI_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -223,9 +229,9 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from gradientai import GradientAI
 
-client = DigitaloceanGenaiSDK()
+client = GradientAI()
 response = client.agents.versions.with_raw_response.list(
     uuid="REPLACE_ME",
 )
@@ -235,9 +241,9 @@ version = response.parse()  # get the object that `agents.versions.list()` would
 print(version.agent_versions)
 ```
 
-These methods return an [`APIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/digitalocean/gradientai-python/tree/main/src/gradientai/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/digitalocean/genai-python/tree/main/src/digitalocean_genai_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/digitalocean/gradientai-python/tree/main/src/gradientai/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -301,10 +307,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, DefaultHttpxClient
+from gradientai import GradientAI, DefaultHttpxClient
 
-client = DigitaloceanGenaiSDK(
-    # Or use the `DIGITALOCEAN_GENAI_SDK_BASE_URL` env var
+client = GradientAI(
+    # Or use the `GRADIENT_AI_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -324,9 +330,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK
+from gradientai import GradientAI
 
-with DigitaloceanGenaiSDK() as client:
+with GradientAI() as client:
   # make requests here
   ...
 
@@ -343,7 +349,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/digitalocean/genai-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/digitalocean/gradientai-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
@@ -352,8 +358,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import digitalocean_genai_sdk
-print(digitalocean_genai_sdk.__version__)
+import gradientai
+print(gradientai.__version__)
 ```
 
 ## Requirements
