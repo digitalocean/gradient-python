@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-06-13)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/digitalocean/genai-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([abba5be](https://github.com/digitalocean/genai-python/commit/abba5be958d03a7e5ce7d1cbf8069c0bcf52ee20))
+
+
+### Chores
+
+* **tests:** run tests in parallel ([861dd6b](https://github.com/digitalocean/genai-python/commit/861dd6b75956f2c12814ad32b05624d8d8537d52))
+
 ## 0.1.0-alpha.3 (2025-06-12)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/digitalocean/genai-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
