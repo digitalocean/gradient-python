@@ -12,6 +12,9 @@ from tests.utils import assert_matches_type
 from gradientai.types import (
     KnowledgeBaseListResponse,
     KnowledgeBaseCreateResponse,
+    KnowledgeBaseDeleteResponse,
+    KnowledgeBaseUpdateResponse,
+    KnowledgeBaseRetrieveResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -86,6 +89,104 @@ class TestKnowledgeBases:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_retrieve(self, client: GradientAI) -> None:
+        knowledge_base = client.knowledge_bases.retrieve(
+            "uuid",
+        )
+        assert_matches_type(KnowledgeBaseRetrieveResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+        response = client.knowledge_bases.with_raw_response.retrieve(
+            "uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = response.parse()
+        assert_matches_type(KnowledgeBaseRetrieveResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+        with client.knowledge_bases.with_streaming_response.retrieve(
+            "uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = response.parse()
+            assert_matches_type(KnowledgeBaseRetrieveResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_retrieve(self, client: GradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.knowledge_bases.with_raw_response.retrieve(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update(self, client: GradientAI) -> None:
+        knowledge_base = client.knowledge_bases.update(
+            path_uuid="uuid",
+        )
+        assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_update_with_all_params(self, client: GradientAI) -> None:
+        knowledge_base = client.knowledge_bases.update(
+            path_uuid="uuid",
+            database_id="database_id",
+            embedding_model_uuid="embedding_model_uuid",
+            name="name",
+            project_id="project_id",
+            tags=["string"],
+            body_uuid="uuid",
+        )
+        assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_update(self, client: GradientAI) -> None:
+        response = client.knowledge_bases.with_raw_response.update(
+            path_uuid="uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = response.parse()
+        assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_update(self, client: GradientAI) -> None:
+        with client.knowledge_bases.with_streaming_response.update(
+            path_uuid="uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = response.parse()
+            assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_update(self, client: GradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
+            client.knowledge_bases.with_raw_response.update(
+                path_uuid="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     def test_method_list(self, client: GradientAI) -> None:
         knowledge_base = client.knowledge_bases.list()
         assert_matches_type(KnowledgeBaseListResponse, knowledge_base, path=["response"])
@@ -120,6 +221,48 @@ class TestKnowledgeBases:
             assert_matches_type(KnowledgeBaseListResponse, knowledge_base, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_delete(self, client: GradientAI) -> None:
+        knowledge_base = client.knowledge_bases.delete(
+            "uuid",
+        )
+        assert_matches_type(KnowledgeBaseDeleteResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_delete(self, client: GradientAI) -> None:
+        response = client.knowledge_bases.with_raw_response.delete(
+            "uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = response.parse()
+        assert_matches_type(KnowledgeBaseDeleteResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_delete(self, client: GradientAI) -> None:
+        with client.knowledge_bases.with_streaming_response.delete(
+            "uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = response.parse()
+            assert_matches_type(KnowledgeBaseDeleteResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_delete(self, client: GradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.knowledge_bases.with_raw_response.delete(
+                "",
+            )
 
 
 class TestAsyncKnowledgeBases:
@@ -191,6 +334,104 @@ class TestAsyncKnowledgeBases:
 
     @pytest.mark.skip()
     @parametrize
+    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+        knowledge_base = await async_client.knowledge_bases.retrieve(
+            "uuid",
+        )
+        assert_matches_type(KnowledgeBaseRetrieveResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+        response = await async_client.knowledge_bases.with_raw_response.retrieve(
+            "uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = await response.parse()
+        assert_matches_type(KnowledgeBaseRetrieveResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+        async with async_client.knowledge_bases.with_streaming_response.retrieve(
+            "uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = await response.parse()
+            assert_matches_type(KnowledgeBaseRetrieveResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.knowledge_bases.with_raw_response.retrieve(
+                "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update(self, async_client: AsyncGradientAI) -> None:
+        knowledge_base = await async_client.knowledge_bases.update(
+            path_uuid="uuid",
+        )
+        assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
+        knowledge_base = await async_client.knowledge_bases.update(
+            path_uuid="uuid",
+            database_id="database_id",
+            embedding_model_uuid="embedding_model_uuid",
+            name="name",
+            project_id="project_id",
+            tags=["string"],
+            body_uuid="uuid",
+        )
+        assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
+        response = await async_client.knowledge_bases.with_raw_response.update(
+            path_uuid="uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = await response.parse()
+        assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
+        async with async_client.knowledge_bases.with_streaming_response.update(
+            path_uuid="uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = await response.parse()
+            assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
+            await async_client.knowledge_bases.with_raw_response.update(
+                path_uuid="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
         knowledge_base = await async_client.knowledge_bases.list()
         assert_matches_type(KnowledgeBaseListResponse, knowledge_base, path=["response"])
@@ -225,3 +466,45 @@ class TestAsyncKnowledgeBases:
             assert_matches_type(KnowledgeBaseListResponse, knowledge_base, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+        knowledge_base = await async_client.knowledge_bases.delete(
+            "uuid",
+        )
+        assert_matches_type(KnowledgeBaseDeleteResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+        response = await async_client.knowledge_bases.with_raw_response.delete(
+            "uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = await response.parse()
+        assert_matches_type(KnowledgeBaseDeleteResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+        async with async_client.knowledge_bases.with_streaming_response.delete(
+            "uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = await response.parse()
+            assert_matches_type(KnowledgeBaseDeleteResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.knowledge_bases.with_raw_response.delete(
+                "",
+            )

@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .auth import (
+    AuthResource,
+    AsyncAuthResource,
+    AuthResourceWithRawResponse,
+    AsyncAuthResourceWithRawResponse,
+    AuthResourceWithStreamingResponse,
+    AsyncAuthResourceWithStreamingResponse,
+)
 from .chat import (
     ChatResource,
     AsyncChatResource,
@@ -23,6 +31,30 @@ from .models import (
     AsyncModelsResourceWithRawResponse,
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
+)
+from .regions import (
+    RegionsResource,
+    AsyncRegionsResource,
+    RegionsResourceWithRawResponse,
+    AsyncRegionsResourceWithRawResponse,
+    RegionsResourceWithStreamingResponse,
+    AsyncRegionsResourceWithStreamingResponse,
+)
+from .api_keys import (
+    APIKeysResource,
+    AsyncAPIKeysResource,
+    APIKeysResourceWithRawResponse,
+    AsyncAPIKeysResourceWithRawResponse,
+    APIKeysResourceWithStreamingResponse,
+    AsyncAPIKeysResourceWithStreamingResponse,
+)
+from .providers import (
+    ProvidersResource,
+    AsyncProvidersResource,
+    ProvidersResourceWithRawResponse,
+    AsyncProvidersResourceWithRawResponse,
+    ProvidersResourceWithStreamingResponse,
+    AsyncProvidersResourceWithStreamingResponse,
 )
 from .embeddings import (
     EmbeddingsResource,
@@ -56,6 +88,24 @@ __all__ = [
     "AsyncAgentsResourceWithRawResponse",
     "AgentsResourceWithStreamingResponse",
     "AsyncAgentsResourceWithStreamingResponse",
+    "ProvidersResource",
+    "AsyncProvidersResource",
+    "ProvidersResourceWithRawResponse",
+    "AsyncProvidersResourceWithRawResponse",
+    "ProvidersResourceWithStreamingResponse",
+    "AsyncProvidersResourceWithStreamingResponse",
+    "AuthResource",
+    "AsyncAuthResource",
+    "AuthResourceWithRawResponse",
+    "AsyncAuthResourceWithRawResponse",
+    "AuthResourceWithStreamingResponse",
+    "AsyncAuthResourceWithStreamingResponse",
+    "RegionsResource",
+    "AsyncRegionsResource",
+    "RegionsResourceWithRawResponse",
+    "AsyncRegionsResourceWithRawResponse",
+    "RegionsResourceWithStreamingResponse",
+    "AsyncRegionsResourceWithStreamingResponse",
     "IndexingJobsResource",
     "AsyncIndexingJobsResource",
     "IndexingJobsResourceWithRawResponse",
@@ -68,6 +118,12 @@ __all__ = [
     "AsyncKnowledgeBasesResourceWithRawResponse",
     "KnowledgeBasesResourceWithStreamingResponse",
     "AsyncKnowledgeBasesResourceWithStreamingResponse",
+    "APIKeysResource",
+    "AsyncAPIKeysResource",
+    "APIKeysResourceWithRawResponse",
+    "AsyncAPIKeysResourceWithRawResponse",
+    "APIKeysResourceWithStreamingResponse",
+    "AsyncAPIKeysResourceWithStreamingResponse",
     "ChatResource",
     "AsyncChatResource",
     "ChatResourceWithRawResponse",

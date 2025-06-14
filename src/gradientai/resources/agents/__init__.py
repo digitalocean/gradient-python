@@ -32,6 +32,14 @@ from .functions import (
     FunctionsResourceWithStreamingResponse,
     AsyncFunctionsResourceWithStreamingResponse,
 )
+from .child_agents import (
+    ChildAgentsResource,
+    AsyncChildAgentsResource,
+    ChildAgentsResourceWithRawResponse,
+    AsyncChildAgentsResourceWithRawResponse,
+    ChildAgentsResourceWithStreamingResponse,
+    AsyncChildAgentsResourceWithStreamingResponse,
+)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncKnowledgeBasesResourceWithRawResponse",
     "KnowledgeBasesResourceWithStreamingResponse",
     "AsyncKnowledgeBasesResourceWithStreamingResponse",
+    "ChildAgentsResource",
+    "AsyncChildAgentsResource",
+    "ChildAgentsResourceWithRawResponse",
+    "AsyncChildAgentsResourceWithRawResponse",
+    "ChildAgentsResourceWithStreamingResponse",
+    "AsyncChildAgentsResourceWithStreamingResponse",
     "AgentsResource",
     "AsyncAgentsResource",
     "AgentsResourceWithRawResponse",
