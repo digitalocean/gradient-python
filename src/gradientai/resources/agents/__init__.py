@@ -8,6 +8,14 @@ from .agents import (
     AgentsResourceWithStreamingResponse,
     AsyncAgentsResourceWithStreamingResponse,
 )
+from .api_keys import (
+    APIKeysResource,
+    AsyncAPIKeysResource,
+    APIKeysResourceWithRawResponse,
+    AsyncAPIKeysResourceWithRawResponse,
+    APIKeysResourceWithStreamingResponse,
+    AsyncAPIKeysResourceWithStreamingResponse,
+)
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -18,6 +26,12 @@ from .versions import (
 )
 
 __all__ = [
+    "APIKeysResource",
+    "AsyncAPIKeysResource",
+    "APIKeysResourceWithRawResponse",
+    "AsyncAPIKeysResourceWithRawResponse",
+    "APIKeysResourceWithStreamingResponse",
+    "AsyncAPIKeysResourceWithStreamingResponse",
     "VersionsResource",
     "AsyncVersionsResource",
     "VersionsResourceWithRawResponse",
