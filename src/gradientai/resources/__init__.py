@@ -32,6 +32,22 @@ from .embeddings import (
     EmbeddingsResourceWithStreamingResponse,
     AsyncEmbeddingsResourceWithStreamingResponse,
 )
+from .indexing_jobs import (
+    IndexingJobsResource,
+    AsyncIndexingJobsResource,
+    IndexingJobsResourceWithRawResponse,
+    AsyncIndexingJobsResourceWithRawResponse,
+    IndexingJobsResourceWithStreamingResponse,
+    AsyncIndexingJobsResourceWithStreamingResponse,
+)
+from .knowledge_bases import (
+    KnowledgeBasesResource,
+    AsyncKnowledgeBasesResource,
+    KnowledgeBasesResourceWithRawResponse,
+    AsyncKnowledgeBasesResourceWithRawResponse,
+    KnowledgeBasesResourceWithStreamingResponse,
+    AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AgentsResource",
@@ -40,6 +56,18 @@ __all__ = [
     "AsyncAgentsResourceWithRawResponse",
     "AgentsResourceWithStreamingResponse",
     "AsyncAgentsResourceWithStreamingResponse",
+    "IndexingJobsResource",
+    "AsyncIndexingJobsResource",
+    "IndexingJobsResourceWithRawResponse",
+    "AsyncIndexingJobsResourceWithRawResponse",
+    "IndexingJobsResourceWithStreamingResponse",
+    "AsyncIndexingJobsResourceWithStreamingResponse",
+    "KnowledgeBasesResource",
+    "AsyncKnowledgeBasesResource",
+    "KnowledgeBasesResourceWithRawResponse",
+    "AsyncKnowledgeBasesResourceWithRawResponse",
+    "KnowledgeBasesResourceWithStreamingResponse",
+    "AsyncKnowledgeBasesResourceWithStreamingResponse",
     "ChatResource",
     "AsyncChatResource",
     "ChatResourceWithRawResponse",
