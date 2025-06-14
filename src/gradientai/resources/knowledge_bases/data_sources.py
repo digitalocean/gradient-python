@@ -21,6 +21,7 @@ from ...types.knowledge_bases import (
 )
 from ...types.knowledge_bases.data_source_list_response import DataSourceListResponse
 from ...types.knowledge_bases.data_source_create_response import DataSourceCreateResponse
+from ...types.knowledge_bases.data_source_delete_response import DataSourceDeleteResponse
 from ...types.knowledge_bases.api_spaces_data_source_param import APISpacesDataSourceParam
 from ...types.knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 
@@ -148,6 +149,45 @@ class DataSourcesResource(SyncAPIResource):
             cast_to=DataSourceListResponse,
         )
 
+    def delete(
+        self,
+        data_source_uuid: str,
+        *,
+        knowledge_base_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DataSourceDeleteResponse:
+        """
+        To delete a data source from a knowledge base, send a DELETE request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        if not data_source_uuid:
+            raise ValueError(f"Expected a non-empty value for `data_source_uuid` but received {data_source_uuid!r}")
+        return self._delete(
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataSourceDeleteResponse,
+        )
+
 
 class AsyncDataSourcesResource(AsyncAPIResource):
     @cached_property
@@ -270,6 +310,45 @@ class AsyncDataSourcesResource(AsyncAPIResource):
             cast_to=DataSourceListResponse,
         )
 
+    async def delete(
+        self,
+        data_source_uuid: str,
+        *,
+        knowledge_base_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DataSourceDeleteResponse:
+        """
+        To delete a data source from a knowledge base, send a DELETE request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        if not data_source_uuid:
+            raise ValueError(f"Expected a non-empty value for `data_source_uuid` but received {data_source_uuid!r}")
+        return await self._delete(
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataSourceDeleteResponse,
+        )
+
 
 class DataSourcesResourceWithRawResponse:
     def __init__(self, data_sources: DataSourcesResource) -> None:
@@ -280,6 +359,9 @@ class DataSourcesResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             data_sources.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            data_sources.delete,
         )
 
 
@@ -293,6 +375,9 @@ class AsyncDataSourcesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             data_sources.list,
         )
+        self.delete = async_to_raw_response_wrapper(
+            data_sources.delete,
+        )
 
 
 class DataSourcesResourceWithStreamingResponse:
@@ -305,6 +390,9 @@ class DataSourcesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             data_sources.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            data_sources.delete,
+        )
 
 
 class AsyncDataSourcesResourceWithStreamingResponse:
@@ -316,4 +404,7 @@ class AsyncDataSourcesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             data_sources.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            data_sources.delete,
         )

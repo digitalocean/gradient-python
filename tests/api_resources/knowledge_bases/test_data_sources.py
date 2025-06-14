@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from gradientai.types.knowledge_bases import (
     DataSourceListResponse,
     DataSourceCreateResponse,
+    DataSourceDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -142,6 +143,58 @@ class TestDataSources:
                 knowledge_base_uuid="",
             )
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_delete(self, client: GradientAI) -> None:
+        data_source = client.knowledge_bases.data_sources.delete(
+            data_source_uuid="data_source_uuid",
+            knowledge_base_uuid="knowledge_base_uuid",
+        )
+        assert_matches_type(DataSourceDeleteResponse, data_source, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_delete(self, client: GradientAI) -> None:
+        response = client.knowledge_bases.data_sources.with_raw_response.delete(
+            data_source_uuid="data_source_uuid",
+            knowledge_base_uuid="knowledge_base_uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        data_source = response.parse()
+        assert_matches_type(DataSourceDeleteResponse, data_source, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_delete(self, client: GradientAI) -> None:
+        with client.knowledge_bases.data_sources.with_streaming_response.delete(
+            data_source_uuid="data_source_uuid",
+            knowledge_base_uuid="knowledge_base_uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            data_source = response.parse()
+            assert_matches_type(DataSourceDeleteResponse, data_source, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_delete(self, client: GradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
+            client.knowledge_bases.data_sources.with_raw_response.delete(
+                data_source_uuid="data_source_uuid",
+                knowledge_base_uuid="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `data_source_uuid` but received ''"):
+            client.knowledge_bases.data_sources.with_raw_response.delete(
+                data_source_uuid="",
+                knowledge_base_uuid="knowledge_base_uuid",
+            )
+
 
 class TestAsyncDataSources:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -266,4 +319,56 @@ class TestAsyncDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
             await async_client.knowledge_bases.data_sources.with_raw_response.list(
                 knowledge_base_uuid="",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+        data_source = await async_client.knowledge_bases.data_sources.delete(
+            data_source_uuid="data_source_uuid",
+            knowledge_base_uuid="knowledge_base_uuid",
+        )
+        assert_matches_type(DataSourceDeleteResponse, data_source, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+        response = await async_client.knowledge_bases.data_sources.with_raw_response.delete(
+            data_source_uuid="data_source_uuid",
+            knowledge_base_uuid="knowledge_base_uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        data_source = await response.parse()
+        assert_matches_type(DataSourceDeleteResponse, data_source, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+        async with async_client.knowledge_bases.data_sources.with_streaming_response.delete(
+            data_source_uuid="data_source_uuid",
+            knowledge_base_uuid="knowledge_base_uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            data_source = await response.parse()
+            assert_matches_type(DataSourceDeleteResponse, data_source, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
+            await async_client.knowledge_bases.data_sources.with_raw_response.delete(
+                data_source_uuid="data_source_uuid",
+                knowledge_base_uuid="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `data_source_uuid` but received ''"):
+            await async_client.knowledge_bases.data_sources.with_raw_response.delete(
+                data_source_uuid="",
+                knowledge_base_uuid="knowledge_base_uuid",
             )

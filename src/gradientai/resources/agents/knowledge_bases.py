@@ -15,6 +15,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.agents.api_link_knowledge_base_output import APILinkKnowledgeBaseOutput
+from ...types.agents.knowledge_base_detach_response import KnowledgeBaseDetachResponse
 
 __all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource"]
 
@@ -73,6 +74,84 @@ class KnowledgeBasesResource(SyncAPIResource):
             cast_to=APILinkKnowledgeBaseOutput,
         )
 
+    def attach_single(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> APILinkKnowledgeBaseOutput:
+        """
+        To attach a knowledge base to an agent, send a POST request to
+        `/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}`
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return self._post(
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=APILinkKnowledgeBaseOutput,
+        )
+
+    def detach(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KnowledgeBaseDetachResponse:
+        """
+        To detach a knowledge base from an agent, send a DELETE request to
+        `/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return self._delete(
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=KnowledgeBaseDetachResponse,
+        )
+
 
 class AsyncKnowledgeBasesResource(AsyncAPIResource):
     @cached_property
@@ -128,6 +207,84 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
             cast_to=APILinkKnowledgeBaseOutput,
         )
 
+    async def attach_single(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> APILinkKnowledgeBaseOutput:
+        """
+        To attach a knowledge base to an agent, send a POST request to
+        `/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}`
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return await self._post(
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=APILinkKnowledgeBaseOutput,
+        )
+
+    async def detach(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KnowledgeBaseDetachResponse:
+        """
+        To detach a knowledge base from an agent, send a DELETE request to
+        `/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return await self._delete(
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=KnowledgeBaseDetachResponse,
+        )
+
 
 class KnowledgeBasesResourceWithRawResponse:
     def __init__(self, knowledge_bases: KnowledgeBasesResource) -> None:
@@ -135,6 +292,12 @@ class KnowledgeBasesResourceWithRawResponse:
 
         self.attach = to_raw_response_wrapper(
             knowledge_bases.attach,
+        )
+        self.attach_single = to_raw_response_wrapper(
+            knowledge_bases.attach_single,
+        )
+        self.detach = to_raw_response_wrapper(
+            knowledge_bases.detach,
         )
 
 
@@ -145,6 +308,12 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
         self.attach = async_to_raw_response_wrapper(
             knowledge_bases.attach,
         )
+        self.attach_single = async_to_raw_response_wrapper(
+            knowledge_bases.attach_single,
+        )
+        self.detach = async_to_raw_response_wrapper(
+            knowledge_bases.detach,
+        )
 
 
 class KnowledgeBasesResourceWithStreamingResponse:
@@ -154,6 +323,12 @@ class KnowledgeBasesResourceWithStreamingResponse:
         self.attach = to_streamed_response_wrapper(
             knowledge_bases.attach,
         )
+        self.attach_single = to_streamed_response_wrapper(
+            knowledge_bases.attach_single,
+        )
+        self.detach = to_streamed_response_wrapper(
+            knowledge_bases.detach,
+        )
 
 
 class AsyncKnowledgeBasesResourceWithStreamingResponse:
@@ -162,4 +337,10 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
 
         self.attach = async_to_streamed_response_wrapper(
             knowledge_bases.attach,
+        )
+        self.attach_single = async_to_streamed_response_wrapper(
+            knowledge_bases.attach_single,
+        )
+        self.detach = async_to_streamed_response_wrapper(
+            knowledge_bases.detach,
         )
