@@ -31,11 +31,13 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, embeddings
+    from .resources import chat, agents, models, embeddings, indexing_jobs, knowledge_bases
     from .resources.chat import ChatResource, AsyncChatResource
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.embeddings import EmbeddingsResource, AsyncEmbeddingsResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
+    from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
+    from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
 __all__ = [
     "Timeout",
@@ -109,6 +111,18 @@ class GradientAI(SyncAPIClient):
         from .resources.agents import AgentsResource
 
         return AgentsResource(self)
+
+    @cached_property
+    def indexing_jobs(self) -> IndexingJobsResource:
+        from .resources.indexing_jobs import IndexingJobsResource
+
+        return IndexingJobsResource(self)
+
+    @cached_property
+    def knowledge_bases(self) -> KnowledgeBasesResource:
+        from .resources.knowledge_bases import KnowledgeBasesResource
+
+        return KnowledgeBasesResource(self)
 
     @cached_property
     def chat(self) -> ChatResource:
@@ -303,6 +317,18 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncAgentsResource(self)
 
     @cached_property
+    def indexing_jobs(self) -> AsyncIndexingJobsResource:
+        from .resources.indexing_jobs import AsyncIndexingJobsResource
+
+        return AsyncIndexingJobsResource(self)
+
+    @cached_property
+    def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResource
+
+        return AsyncKnowledgeBasesResource(self)
+
+    @cached_property
     def chat(self) -> AsyncChatResource:
         from .resources.chat import AsyncChatResource
 
@@ -446,6 +472,18 @@ class GradientAIWithRawResponse:
         return AgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
+    def indexing_jobs(self) -> indexing_jobs.IndexingJobsResourceWithRawResponse:
+        from .resources.indexing_jobs import IndexingJobsResourceWithRawResponse
+
+        return IndexingJobsResourceWithRawResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
+
+        return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
+
+    @cached_property
     def chat(self) -> chat.ChatResourceWithRawResponse:
         from .resources.chat import ChatResourceWithRawResponse
 
@@ -475,6 +513,18 @@ class AsyncGradientAIWithRawResponse:
         from .resources.agents import AsyncAgentsResourceWithRawResponse
 
         return AsyncAgentsResourceWithRawResponse(self._client.agents)
+
+    @cached_property
+    def indexing_jobs(self) -> indexing_jobs.AsyncIndexingJobsResourceWithRawResponse:
+        from .resources.indexing_jobs import AsyncIndexingJobsResourceWithRawResponse
+
+        return AsyncIndexingJobsResourceWithRawResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
+
+        return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
     def chat(self) -> chat.AsyncChatResourceWithRawResponse:
@@ -508,6 +558,18 @@ class GradientAIWithStreamedResponse:
         return AgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
+    def indexing_jobs(self) -> indexing_jobs.IndexingJobsResourceWithStreamingResponse:
+        from .resources.indexing_jobs import IndexingJobsResourceWithStreamingResponse
+
+        return IndexingJobsResourceWithStreamingResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
+
+        return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+
+    @cached_property
     def chat(self) -> chat.ChatResourceWithStreamingResponse:
         from .resources.chat import ChatResourceWithStreamingResponse
 
@@ -537,6 +599,18 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.agents import AsyncAgentsResourceWithStreamingResponse
 
         return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
+
+    @cached_property
+    def indexing_jobs(self) -> indexing_jobs.AsyncIndexingJobsResourceWithStreamingResponse:
+        from .resources.indexing_jobs import AsyncIndexingJobsResourceWithStreamingResponse
+
+        return AsyncIndexingJobsResourceWithStreamingResponse(self._client.indexing_jobs)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
+
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
     def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:

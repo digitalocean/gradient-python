@@ -90,17 +90,11 @@ from gradientai import GradientAI
 
 client = GradientAI()
 
-response = client.chat.create_completion(
-    messages=[
-        {
-            "content": "string",
-            "role": "system",
-        }
-    ],
-    model="llama3-8b-instruct",
-    stream_options={},
+data_source = client.knowledge_bases.data_sources.create(
+    path_knowledge_base_uuid="knowledge_base_uuid",
+    aws_data_source={},
 )
-print(response.stream_options)
+print(data_source.aws_data_source)
 ```
 
 ## Handling errors
