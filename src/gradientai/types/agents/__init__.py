@@ -8,7 +8,10 @@ from .api_key_list_params import APIKeyListParams as APIKeyListParams
 from .version_list_params import VersionListParams as VersionListParams
 from .api_key_create_params import APIKeyCreateParams as APIKeyCreateParams
 from .api_key_list_response import APIKeyListResponse as APIKeyListResponse
+from .api_key_update_params import APIKeyUpdateParams as APIKeyUpdateParams
 from .version_list_response import VersionListResponse as VersionListResponse
 from .version_update_params import VersionUpdateParams as VersionUpdateParams
 from .api_key_create_response import APIKeyCreateResponse as APIKeyCreateResponse
+from .api_key_delete_response import APIKeyDeleteResponse as APIKeyDeleteResponse
+from .api_key_update_response import APIKeyUpdateResponse as APIKeyUpdateResponse
 from .version_update_response import VersionUpdateResponse as VersionUpdateResponse
