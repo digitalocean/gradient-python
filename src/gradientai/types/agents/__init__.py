@@ -12,9 +12,13 @@ from .api_key_update_params import APIKeyUpdateParams as APIKeyUpdateParams
 from .version_list_response import VersionListResponse as VersionListResponse
 from .version_update_params import VersionUpdateParams as VersionUpdateParams
 from .function_create_params import FunctionCreateParams as FunctionCreateParams
+from .function_update_params import FunctionUpdateParams as FunctionUpdateParams
 from .api_key_create_response import APIKeyCreateResponse as APIKeyCreateResponse
 from .api_key_delete_response import APIKeyDeleteResponse as APIKeyDeleteResponse
 from .api_key_update_response import APIKeyUpdateResponse as APIKeyUpdateResponse
 from .version_update_response import VersionUpdateResponse as VersionUpdateResponse
 from .function_create_response import FunctionCreateResponse as FunctionCreateResponse
+from .function_delete_response import FunctionDeleteResponse as FunctionDeleteResponse
+from .function_update_response import FunctionUpdateResponse as FunctionUpdateResponse
 from .api_key_regenerate_response import APIKeyRegenerateResponse as APIKeyRegenerateResponse
+from .api_link_knowledge_base_output import APILinkKnowledgeBaseOutput as APILinkKnowledgeBaseOutput

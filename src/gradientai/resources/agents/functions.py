@@ -15,8 +15,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.agents import function_create_params
+from ...types.agents import function_create_params, function_update_params
 from ...types.agents.function_create_response import FunctionCreateResponse
+from ...types.agents.function_delete_response import FunctionDeleteResponse
+from ...types.agents.function_update_response import FunctionUpdateResponse
 
 __all__ = ["FunctionsResource", "AsyncFunctionsResource"]
 
@@ -94,6 +96,101 @@ class FunctionsResource(SyncAPIResource):
             cast_to=FunctionCreateResponse,
         )
 
+    def update(
+        self,
+        path_function_uuid: str,
+        *,
+        path_agent_uuid: str,
+        body_agent_uuid: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        faas_name: str | NotGiven = NOT_GIVEN,
+        faas_namespace: str | NotGiven = NOT_GIVEN,
+        function_name: str | NotGiven = NOT_GIVEN,
+        body_function_uuid: str | NotGiven = NOT_GIVEN,
+        input_schema: object | NotGiven = NOT_GIVEN,
+        output_schema: object | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FunctionUpdateResponse:
+        """
+        To update the function route, send a PUT request to
+        `/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not path_agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `path_agent_uuid` but received {path_agent_uuid!r}")
+        if not path_function_uuid:
+            raise ValueError(f"Expected a non-empty value for `path_function_uuid` but received {path_function_uuid!r}")
+        return self._put(
+            f"/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}",
+            body=maybe_transform(
+                {
+                    "body_agent_uuid": body_agent_uuid,
+                    "description": description,
+                    "faas_name": faas_name,
+                    "faas_namespace": faas_namespace,
+                    "function_name": function_name,
+                    "body_function_uuid": body_function_uuid,
+                    "input_schema": input_schema,
+                    "output_schema": output_schema,
+                },
+                function_update_params.FunctionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FunctionUpdateResponse,
+        )
+
+    def delete(
+        self,
+        function_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FunctionDeleteResponse:
+        """
+        To delete a function route from an agent, send a DELETE request to
+        `/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not function_uuid:
+            raise ValueError(f"Expected a non-empty value for `function_uuid` but received {function_uuid!r}")
+        return self._delete(
+            f"/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FunctionDeleteResponse,
+        )
+
 
 class AsyncFunctionsResource(AsyncAPIResource):
     @cached_property
@@ -168,6 +265,101 @@ class AsyncFunctionsResource(AsyncAPIResource):
             cast_to=FunctionCreateResponse,
         )
 
+    async def update(
+        self,
+        path_function_uuid: str,
+        *,
+        path_agent_uuid: str,
+        body_agent_uuid: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        faas_name: str | NotGiven = NOT_GIVEN,
+        faas_namespace: str | NotGiven = NOT_GIVEN,
+        function_name: str | NotGiven = NOT_GIVEN,
+        body_function_uuid: str | NotGiven = NOT_GIVEN,
+        input_schema: object | NotGiven = NOT_GIVEN,
+        output_schema: object | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FunctionUpdateResponse:
+        """
+        To update the function route, send a PUT request to
+        `/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not path_agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `path_agent_uuid` but received {path_agent_uuid!r}")
+        if not path_function_uuid:
+            raise ValueError(f"Expected a non-empty value for `path_function_uuid` but received {path_function_uuid!r}")
+        return await self._put(
+            f"/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}",
+            body=await async_maybe_transform(
+                {
+                    "body_agent_uuid": body_agent_uuid,
+                    "description": description,
+                    "faas_name": faas_name,
+                    "faas_namespace": faas_namespace,
+                    "function_name": function_name,
+                    "body_function_uuid": body_function_uuid,
+                    "input_schema": input_schema,
+                    "output_schema": output_schema,
+                },
+                function_update_params.FunctionUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FunctionUpdateResponse,
+        )
+
+    async def delete(
+        self,
+        function_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FunctionDeleteResponse:
+        """
+        To delete a function route from an agent, send a DELETE request to
+        `/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not function_uuid:
+            raise ValueError(f"Expected a non-empty value for `function_uuid` but received {function_uuid!r}")
+        return await self._delete(
+            f"/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FunctionDeleteResponse,
+        )
+
 
 class FunctionsResourceWithRawResponse:
     def __init__(self, functions: FunctionsResource) -> None:
@@ -175,6 +367,12 @@ class FunctionsResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             functions.create,
+        )
+        self.update = to_raw_response_wrapper(
+            functions.update,
+        )
+        self.delete = to_raw_response_wrapper(
+            functions.delete,
         )
 
 
@@ -185,6 +383,12 @@ class AsyncFunctionsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             functions.create,
         )
+        self.update = async_to_raw_response_wrapper(
+            functions.update,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            functions.delete,
+        )
 
 
 class FunctionsResourceWithStreamingResponse:
@@ -194,6 +398,12 @@ class FunctionsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             functions.create,
         )
+        self.update = to_streamed_response_wrapper(
+            functions.update,
+        )
+        self.delete = to_streamed_response_wrapper(
+            functions.delete,
+        )
 
 
 class AsyncFunctionsResourceWithStreamingResponse:
@@ -202,4 +412,10 @@ class AsyncFunctionsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             functions.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            functions.update,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            functions.delete,
         )

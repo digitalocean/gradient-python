@@ -32,6 +32,14 @@ from .functions import (
     FunctionsResourceWithStreamingResponse,
     AsyncFunctionsResourceWithStreamingResponse,
 )
+from .knowledge_bases import (
+    KnowledgeBasesResource,
+    AsyncKnowledgeBasesResource,
+    KnowledgeBasesResourceWithRawResponse,
+    AsyncKnowledgeBasesResourceWithRawResponse,
+    KnowledgeBasesResourceWithStreamingResponse,
+    AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "APIKeysResource",
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncVersionsResourceWithRawResponse",
     "VersionsResourceWithStreamingResponse",
     "AsyncVersionsResourceWithStreamingResponse",
+    "KnowledgeBasesResource",
+    "AsyncKnowledgeBasesResource",
+    "KnowledgeBasesResourceWithRawResponse",
+    "AsyncKnowledgeBasesResourceWithRawResponse",
+    "KnowledgeBasesResourceWithStreamingResponse",
+    "AsyncKnowledgeBasesResourceWithStreamingResponse",
     "AgentsResource",
     "AsyncAgentsResource",
     "AgentsResourceWithRawResponse",

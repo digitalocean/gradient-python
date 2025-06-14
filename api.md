@@ -48,12 +48,18 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.agents import FunctionCreateResponse
+from gradientai.types.agents import (
+    FunctionCreateResponse,
+    FunctionUpdateResponse,
+    FunctionDeleteResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /v2/gen-ai/agents/{agent_uuid}/functions">client.agents.functions.<a href="./src/gradientai/resources/agents/functions.py">create</a>(path_agent_uuid, \*\*<a href="src/gradientai/types/agents/function_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/function_create_response.py">FunctionCreateResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}">client.agents.functions.<a href="./src/gradientai/resources/agents/functions.py">update</a>(path_function_uuid, \*, path_agent_uuid, \*\*<a href="src/gradientai/types/agents/function_update_params.py">params</a>) -> <a href="./src/gradientai/types/agents/function_update_response.py">FunctionUpdateResponse</a></code>
+- <code title="delete /v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}">client.agents.functions.<a href="./src/gradientai/resources/agents/functions.py">delete</a>(function_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/function_delete_response.py">FunctionDeleteResponse</a></code>
 
 ## Versions
 
@@ -75,6 +81,10 @@ Types:
 ```python
 from gradientai.types.agents import APILinkKnowledgeBaseOutput
 ```
+
+Methods:
+
+- <code title="post /v2/gen-ai/agents/{agent_uuid}/knowledge_bases">client.agents.knowledge_bases.<a href="./src/gradientai/resources/agents/knowledge_bases.py">attach</a>(agent_uuid) -> <a href="./src/gradientai/types/agents/api_link_knowledge_base_output.py">APILinkKnowledgeBaseOutput</a></code>
 
 # IndexingJobs
 
