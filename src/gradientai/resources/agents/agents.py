@@ -26,6 +26,14 @@ from .versions import (
     AsyncVersionsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .functions import (
+    FunctionsResource,
+    AsyncFunctionsResource,
+    FunctionsResourceWithRawResponse,
+    AsyncFunctionsResourceWithRawResponse,
+    FunctionsResourceWithStreamingResponse,
+    AsyncFunctionsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -44,6 +52,10 @@ class AgentsResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
+
+    @cached_property
+    def functions(self) -> FunctionsResource:
+        return FunctionsResource(self._client)
 
     @cached_property
     def versions(self) -> VersionsResource:
@@ -187,6 +199,10 @@ class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
+
+    @cached_property
+    def functions(self) -> AsyncFunctionsResource:
+        return AsyncFunctionsResource(self._client)
 
     @cached_property
     def versions(self) -> AsyncVersionsResource:
@@ -342,6 +358,10 @@ class AgentsResourceWithRawResponse:
         return APIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
+    def functions(self) -> FunctionsResourceWithRawResponse:
+        return FunctionsResourceWithRawResponse(self._agents.functions)
+
+    @cached_property
     def versions(self) -> VersionsResourceWithRawResponse:
         return VersionsResourceWithRawResponse(self._agents.versions)
 
@@ -360,6 +380,10 @@ class AsyncAgentsResourceWithRawResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
         return AsyncAPIKeysResourceWithRawResponse(self._agents.api_keys)
+
+    @cached_property
+    def functions(self) -> AsyncFunctionsResourceWithRawResponse:
+        return AsyncFunctionsResourceWithRawResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
@@ -382,6 +406,10 @@ class AgentsResourceWithStreamingResponse:
         return APIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
+    def functions(self) -> FunctionsResourceWithStreamingResponse:
+        return FunctionsResourceWithStreamingResponse(self._agents.functions)
+
+    @cached_property
     def versions(self) -> VersionsResourceWithStreamingResponse:
         return VersionsResourceWithStreamingResponse(self._agents.versions)
 
@@ -400,6 +428,10 @@ class AsyncAgentsResourceWithStreamingResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
         return AsyncAPIKeysResourceWithStreamingResponse(self._agents.api_keys)
+
+    @cached_property
+    def functions(self) -> AsyncFunctionsResourceWithStreamingResponse:
+        return AsyncFunctionsResourceWithStreamingResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:

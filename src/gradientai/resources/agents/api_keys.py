@@ -20,6 +20,7 @@ from ...types.agents.api_key_list_response import APIKeyListResponse
 from ...types.agents.api_key_create_response import APIKeyCreateResponse
 from ...types.agents.api_key_delete_response import APIKeyDeleteResponse
 from ...types.agents.api_key_update_response import APIKeyUpdateResponse
+from ...types.agents.api_key_regenerate_response import APIKeyRegenerateResponse
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 
@@ -222,6 +223,43 @@ class APIKeysResource(SyncAPIResource):
             cast_to=APIKeyDeleteResponse,
         )
 
+    def regenerate(
+        self,
+        api_key_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> APIKeyRegenerateResponse:
+        """
+        To regenerate an agent API key, send a PUT request to
+        `/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not api_key_uuid:
+            raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
+        return self._put(
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=APIKeyRegenerateResponse,
+        )
+
 
 class AsyncAPIKeysResource(AsyncAPIResource):
     @cached_property
@@ -421,6 +459,43 @@ class AsyncAPIKeysResource(AsyncAPIResource):
             cast_to=APIKeyDeleteResponse,
         )
 
+    async def regenerate(
+        self,
+        api_key_uuid: str,
+        *,
+        agent_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> APIKeyRegenerateResponse:
+        """
+        To regenerate an agent API key, send a PUT request to
+        `/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not agent_uuid:
+            raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
+        if not api_key_uuid:
+            raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
+        return await self._put(
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=APIKeyRegenerateResponse,
+        )
+
 
 class APIKeysResourceWithRawResponse:
     def __init__(self, api_keys: APIKeysResource) -> None:
@@ -437,6 +512,9 @@ class APIKeysResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             api_keys.delete,
+        )
+        self.regenerate = to_raw_response_wrapper(
+            api_keys.regenerate,
         )
 
 
@@ -456,6 +534,9 @@ class AsyncAPIKeysResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             api_keys.delete,
         )
+        self.regenerate = async_to_raw_response_wrapper(
+            api_keys.regenerate,
+        )
 
 
 class APIKeysResourceWithStreamingResponse:
@@ -474,6 +555,9 @@ class APIKeysResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             api_keys.delete,
         )
+        self.regenerate = to_streamed_response_wrapper(
+            api_keys.regenerate,
+        )
 
 
 class AsyncAPIKeysResourceWithStreamingResponse:
@@ -491,4 +575,7 @@ class AsyncAPIKeysResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             api_keys.delete,
+        )
+        self.regenerate = async_to_streamed_response_wrapper(
+            api_keys.regenerate,
         )
