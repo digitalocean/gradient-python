@@ -11,8 +11,15 @@ from gradientai.types import (
     APIModel,
     APIOpenAIAPIKeyInfo,
     APIRetrievalMethod,
+    AgentCreateResponse,
+    AgentListResponse,
 )
 ```
+
+Methods:
+
+- <code title="post /v2/gen-ai/agents">client.agents.<a href="./src/gradientai/resources/agents/agents.py">create</a>(\*\*<a href="src/gradientai/types/agent_create_params.py">params</a>) -> <a href="./src/gradientai/types/agent_create_response.py">AgentCreateResponse</a></code>
+- <code title="get /v2/gen-ai/agents">client.agents.<a href="./src/gradientai/resources/agents/agents.py">list</a>(\*\*<a href="src/gradientai/types/agent_list_params.py">params</a>) -> <a href="./src/gradientai/types/agent_list_response.py">AgentListResponse</a></code>
 
 ## Versions
 
