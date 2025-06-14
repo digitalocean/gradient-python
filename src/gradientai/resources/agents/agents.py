@@ -42,6 +42,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
+from .knowledge_bases import (
+    KnowledgeBasesResource,
+    AsyncKnowledgeBasesResource,
+    KnowledgeBasesResourceWithRawResponse,
+    AsyncKnowledgeBasesResourceWithRawResponse,
+    KnowledgeBasesResourceWithStreamingResponse,
+    AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
 from ...types.agent_list_response import AgentListResponse
 from ...types.agent_create_response import AgentCreateResponse
 
@@ -60,6 +68,10 @@ class AgentsResource(SyncAPIResource):
     @cached_property
     def versions(self) -> VersionsResource:
         return VersionsResource(self._client)
+
+    @cached_property
+    def knowledge_bases(self) -> KnowledgeBasesResource:
+        return KnowledgeBasesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AgentsResourceWithRawResponse:
@@ -207,6 +219,10 @@ class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
     def versions(self) -> AsyncVersionsResource:
         return AsyncVersionsResource(self._client)
+
+    @cached_property
+    def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
+        return AsyncKnowledgeBasesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAgentsResourceWithRawResponse:
@@ -365,6 +381,10 @@ class AgentsResourceWithRawResponse:
     def versions(self) -> VersionsResourceWithRawResponse:
         return VersionsResourceWithRawResponse(self._agents.versions)
 
+    @cached_property
+    def knowledge_bases(self) -> KnowledgeBasesResourceWithRawResponse:
+        return KnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
+
 
 class AsyncAgentsResourceWithRawResponse:
     def __init__(self, agents: AsyncAgentsResource) -> None:
@@ -388,6 +408,10 @@ class AsyncAgentsResourceWithRawResponse:
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
         return AsyncVersionsResourceWithRawResponse(self._agents.versions)
+
+    @cached_property
+    def knowledge_bases(self) -> AsyncKnowledgeBasesResourceWithRawResponse:
+        return AsyncKnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
 
 class AgentsResourceWithStreamingResponse:
@@ -413,6 +437,10 @@ class AgentsResourceWithStreamingResponse:
     def versions(self) -> VersionsResourceWithStreamingResponse:
         return VersionsResourceWithStreamingResponse(self._agents.versions)
 
+    @cached_property
+    def knowledge_bases(self) -> KnowledgeBasesResourceWithStreamingResponse:
+        return KnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
+
 
 class AsyncAgentsResourceWithStreamingResponse:
     def __init__(self, agents: AsyncAgentsResource) -> None:
@@ -436,3 +464,7 @@ class AsyncAgentsResourceWithStreamingResponse:
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
         return AsyncVersionsResourceWithStreamingResponse(self._agents.versions)
+
+    @cached_property
+    def knowledge_bases(self) -> AsyncKnowledgeBasesResourceWithStreamingResponse:
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
