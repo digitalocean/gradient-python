@@ -306,16 +306,8 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import (
-    ChatCompletionRequestMessageContentPartText,
-    ChatCompletionTokenLogprob,
-    ChatCreateCompletionResponse,
-)
+from gradientai.types import ChatCompletionRequestMessageContentPartText, ChatCompletionTokenLogprob
 ```
-
-Methods:
-
-- <code title="post /chat/completions">client.chat.<a href="./src/gradientai/resources/chat.py">create_completion</a>(\*\*<a href="src/gradientai/types/chat_create_completion_params.py">params</a>) -> <a href="./src/gradientai/types/chat_create_completion_response.py">ChatCreateCompletionResponse</a></code>
 
 # Embeddings
 

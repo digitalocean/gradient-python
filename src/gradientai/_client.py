@@ -33,7 +33,6 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         auth,
-        chat,
         agents,
         models,
         regions,
@@ -43,7 +42,6 @@ if TYPE_CHECKING:
         indexing_jobs,
         knowledge_bases,
     )
-    from .resources.chat import ChatResource, AsyncChatResource
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.auth.auth import AuthResource, AsyncAuthResource
@@ -162,12 +160,6 @@ class GradientAI(SyncAPIClient):
         from .resources.api_keys import APIKeysResource
 
         return APIKeysResource(self)
-
-    @cached_property
-    def chat(self) -> ChatResource:
-        from .resources.chat import ChatResource
-
-        return ChatResource(self)
 
     @cached_property
     def embeddings(self) -> EmbeddingsResource:
@@ -392,12 +384,6 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncAPIKeysResource(self)
 
     @cached_property
-    def chat(self) -> AsyncChatResource:
-        from .resources.chat import AsyncChatResource
-
-        return AsyncChatResource(self)
-
-    @cached_property
     def embeddings(self) -> AsyncEmbeddingsResource:
         from .resources.embeddings import AsyncEmbeddingsResource
 
@@ -571,12 +557,6 @@ class GradientAIWithRawResponse:
         return APIKeysResourceWithRawResponse(self._client.api_keys)
 
     @cached_property
-    def chat(self) -> chat.ChatResourceWithRawResponse:
-        from .resources.chat import ChatResourceWithRawResponse
-
-        return ChatResourceWithRawResponse(self._client.chat)
-
-    @cached_property
     def embeddings(self) -> embeddings.EmbeddingsResourceWithRawResponse:
         from .resources.embeddings import EmbeddingsResourceWithRawResponse
 
@@ -636,12 +616,6 @@ class AsyncGradientAIWithRawResponse:
         from .resources.api_keys import AsyncAPIKeysResourceWithRawResponse
 
         return AsyncAPIKeysResourceWithRawResponse(self._client.api_keys)
-
-    @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
-        from .resources.chat import AsyncChatResourceWithRawResponse
-
-        return AsyncChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
     def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithRawResponse:
@@ -705,12 +679,6 @@ class GradientAIWithStreamedResponse:
         return APIKeysResourceWithStreamingResponse(self._client.api_keys)
 
     @cached_property
-    def chat(self) -> chat.ChatResourceWithStreamingResponse:
-        from .resources.chat import ChatResourceWithStreamingResponse
-
-        return ChatResourceWithStreamingResponse(self._client.chat)
-
-    @cached_property
     def embeddings(self) -> embeddings.EmbeddingsResourceWithStreamingResponse:
         from .resources.embeddings import EmbeddingsResourceWithStreamingResponse
 
@@ -770,12 +738,6 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.api_keys import AsyncAPIKeysResourceWithStreamingResponse
 
         return AsyncAPIKeysResourceWithStreamingResponse(self._client.api_keys)
-
-    @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
-        from .resources.chat import AsyncChatResourceWithStreamingResponse
-
-        return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithStreamingResponse:
