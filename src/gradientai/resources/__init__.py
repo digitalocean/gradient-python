@@ -8,14 +8,6 @@ from .auth import (
     AuthResourceWithStreamingResponse,
     AsyncAuthResourceWithStreamingResponse,
 )
-from .chat import (
-    ChatResource,
-    AsyncChatResource,
-    ChatResourceWithRawResponse,
-    AsyncChatResourceWithRawResponse,
-    ChatResourceWithStreamingResponse,
-    AsyncChatResourceWithStreamingResponse,
-)
 from .agents import (
     AgentsResource,
     AsyncAgentsResource,
@@ -124,12 +116,6 @@ __all__ = [
     "AsyncAPIKeysResourceWithRawResponse",
     "APIKeysResourceWithStreamingResponse",
     "AsyncAPIKeysResourceWithStreamingResponse",
-    "ChatResource",
-    "AsyncChatResource",
-    "ChatResourceWithRawResponse",
-    "AsyncChatResourceWithRawResponse",
-    "ChatResourceWithStreamingResponse",
-    "AsyncChatResourceWithStreamingResponse",
     "EmbeddingsResource",
     "AsyncEmbeddingsResource",
     "EmbeddingsResourceWithRawResponse",
