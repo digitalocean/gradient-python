@@ -9,6 +9,7 @@ from .api_agreement import APIAgreement as APIAgreement
 from .api_indexing_job import APIIndexingJob as APIIndexingJob
 from .agent_list_params import AgentListParams as AgentListParams
 from .api_model_version import APIModelVersion as APIModelVersion
+from .model_list_params import ModelListParams as ModelListParams
 from .api_knowledge_base import APIKnowledgeBase as APIKnowledgeBase
 from .region_list_params import RegionListParams as RegionListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams

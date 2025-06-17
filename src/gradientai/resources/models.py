@@ -2,9 +2,14 @@
 
 from __future__ import annotations
 
+from typing import List
+from typing_extensions import Literal
+
 import httpx
 
+from ..types import model_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -77,6 +82,21 @@ class ModelsResource(SyncAPIResource):
     def list(
         self,
         *,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        public_only: bool | NotGiven = NOT_GIVEN,
+        usecases: List[
+            Literal[
+                "MODEL_USECASE_UNKNOWN",
+                "MODEL_USECASE_AGENT",
+                "MODEL_USECASE_FINETUNED",
+                "MODEL_USECASE_KNOWLEDGEBASE",
+                "MODEL_USECASE_GUARDRAIL",
+                "MODEL_USECASE_REASONING",
+                "MODEL_USECASE_SERVERLESS",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,13 +105,50 @@ class ModelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ModelListResponse:
         """
-        Lists the currently available models, and provides basic information about each
-        one such as the owner and availability.
+        To list all models, send a GET request to `/v2/gen-ai/models`.
+
+        Args:
+          page: page number.
+
+          per_page: items per page.
+
+          public_only: only include models that are publicly available.
+
+          usecases: include only models defined for the listed usecases.
+
+              - MODEL_USECASE_UNKNOWN: The use case of the model is unknown
+              - MODEL_USECASE_AGENT: The model maybe used in an agent
+              - MODEL_USECASE_FINETUNED: The model maybe used for fine tuning
+              - MODEL_USECASE_KNOWLEDGEBASE: The model maybe used for knowledge bases
+                (embedding models)
+              - MODEL_USECASE_GUARDRAIL: The model maybe used for guardrails
+              - MODEL_USECASE_REASONING: The model usecase for reasoning
+              - MODEL_USECASE_SERVERLESS: The model usecase for serverless inference
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/models",
+            "/v2/gen-ai/models",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                        "public_only": public_only,
+                        "usecases": usecases,
+                    },
+                    model_list_params.ModelListParams,
+                ),
             ),
             cast_to=ModelListResponse,
         )
@@ -154,6 +211,21 @@ class AsyncModelsResource(AsyncAPIResource):
     async def list(
         self,
         *,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        public_only: bool | NotGiven = NOT_GIVEN,
+        usecases: List[
+            Literal[
+                "MODEL_USECASE_UNKNOWN",
+                "MODEL_USECASE_AGENT",
+                "MODEL_USECASE_FINETUNED",
+                "MODEL_USECASE_KNOWLEDGEBASE",
+                "MODEL_USECASE_GUARDRAIL",
+                "MODEL_USECASE_REASONING",
+                "MODEL_USECASE_SERVERLESS",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,13 +234,50 @@ class AsyncModelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ModelListResponse:
         """
-        Lists the currently available models, and provides basic information about each
-        one such as the owner and availability.
+        To list all models, send a GET request to `/v2/gen-ai/models`.
+
+        Args:
+          page: page number.
+
+          per_page: items per page.
+
+          public_only: only include models that are publicly available.
+
+          usecases: include only models defined for the listed usecases.
+
+              - MODEL_USECASE_UNKNOWN: The use case of the model is unknown
+              - MODEL_USECASE_AGENT: The model maybe used in an agent
+              - MODEL_USECASE_FINETUNED: The model maybe used for fine tuning
+              - MODEL_USECASE_KNOWLEDGEBASE: The model maybe used for knowledge bases
+                (embedding models)
+              - MODEL_USECASE_GUARDRAIL: The model maybe used for guardrails
+              - MODEL_USECASE_REASONING: The model usecase for reasoning
+              - MODEL_USECASE_SERVERLESS: The model usecase for serverless inference
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/models",
+            "/v2/gen-ai/models",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                        "public_only": public_only,
+                        "usecases": usecases,
+                    },
+                    model_list_params.ModelListParams,
+                ),
             ),
             cast_to=ModelListResponse,
         )
