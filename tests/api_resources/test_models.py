@@ -67,6 +67,17 @@ class TestModels:
 
     @pytest.mark.skip()
     @parametrize
+    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+        model = client.models.list(
+            page=0,
+            per_page=0,
+            public_only=True,
+            usecases=["MODEL_USECASE_UNKNOWN"],
+        )
+        assert_matches_type(ModelListResponse, model, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
     def test_raw_response_list(self, client: GradientAI) -> None:
         response = client.models.with_raw_response.list()
 
@@ -137,6 +148,17 @@ class TestAsyncModels:
     @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
         model = await async_client.models.list()
+        assert_matches_type(ModelListResponse, model, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+        model = await async_client.models.list(
+            page=0,
+            per_page=0,
+            public_only=True,
+            usecases=["MODEL_USECASE_UNKNOWN"],
+        )
         assert_matches_type(ModelListResponse, model, path=["response"])
 
     @pytest.mark.skip()
