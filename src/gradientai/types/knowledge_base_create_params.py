@@ -9,7 +9,7 @@ from .knowledge_bases.api_spaces_data_source_param import APISpacesDataSourcePar
 from .knowledge_bases.api_file_upload_data_source_param import APIFileUploadDataSourceParam
 from .knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 
-__all__ = ["KnowledgeBaseCreateParams", "Datasource"]
+__all__ = ["KnowledgeBaseCreateParams", "Datasource", "DatasourceAwsDataSource"]
 
 
 class KnowledgeBaseCreateParams(TypedDict, total=False):
@@ -49,7 +49,21 @@ class KnowledgeBaseCreateParams(TypedDict, total=False):
     vpc_uuid: str
 
 
+class DatasourceAwsDataSource(TypedDict, total=False):
+    bucket_name: str
+
+    item_path: str
+
+    key_id: str
+
+    region: str
+
+    secret_key: str
+
+
 class Datasource(TypedDict, total=False):
+    aws_data_source: DatasourceAwsDataSource
+
     bucket_name: str
 
     bucket_region: str

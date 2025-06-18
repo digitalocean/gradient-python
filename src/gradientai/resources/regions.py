@@ -70,7 +70,9 @@ class RegionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/regions",
+            "/v2/gen-ai/regions"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/regions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -137,7 +139,9 @@ class AsyncRegionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/regions",
+            "/v2/gen-ai/regions"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/regions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

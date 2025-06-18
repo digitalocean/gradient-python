@@ -71,7 +71,9 @@ class VersionsResource(SyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/agents/{path_uuid}/versions",
+            f"/v2/gen-ai/agents/{path_uuid}/versions"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}/versions",
             body=maybe_transform(
                 {
                     "body_uuid": body_uuid,
@@ -118,7 +120,9 @@ class VersionsResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/agents/{uuid}/versions",
+            f"/v2/gen-ai/agents/{uuid}/versions"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/versions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -185,7 +189,9 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/agents/{path_uuid}/versions",
+            f"/v2/gen-ai/agents/{path_uuid}/versions"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}/versions",
             body=await async_maybe_transform(
                 {
                     "body_uuid": body_uuid,
@@ -232,7 +238,9 @@ class AsyncVersionsResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/agents/{uuid}/versions",
+            f"/v2/gen-ai/agents/{uuid}/versions"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/versions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

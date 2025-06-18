@@ -74,7 +74,9 @@ class APIKeysResource(SyncAPIResource):
         if not path_agent_uuid:
             raise ValueError(f"Expected a non-empty value for `path_agent_uuid` but received {path_agent_uuid!r}")
         return self._post(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/api_keys",
             body=maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -121,7 +123,9 @@ class APIKeysResource(SyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys/{path_api_key_uuid}",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys/{path_api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/api_keys/{path_api_key_uuid}",
             body=maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -169,7 +173,9 @@ class APIKeysResource(SyncAPIResource):
         if not agent_uuid:
             raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/agents/{agent_uuid}/api_keys",
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/api_keys",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -216,7 +222,9 @@ class APIKeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -253,7 +261,9 @@ class APIKeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate",
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -310,7 +320,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not path_agent_uuid:
             raise ValueError(f"Expected a non-empty value for `path_agent_uuid` but received {path_agent_uuid!r}")
         return await self._post(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/api_keys",
             body=await async_maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -357,7 +369,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys/{path_api_key_uuid}",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/api_keys/{path_api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/api_keys/{path_api_key_uuid}",
             body=await async_maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -405,7 +419,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not agent_uuid:
             raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/agents/{agent_uuid}/api_keys",
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/api_keys",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -452,7 +468,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -489,7 +507,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate",
+            f"/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

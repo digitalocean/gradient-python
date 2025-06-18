@@ -31,21 +31,9 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import (
-        auth,
-        agents,
-        models,
-        regions,
-        api_keys,
-        providers,
-        embeddings,
-        indexing_jobs,
-        knowledge_bases,
-    )
+    from .resources import agents, models, regions, api_keys, providers, indexing_jobs, knowledge_bases
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
-    from .resources.auth.auth import AuthResource, AsyncAuthResource
-    from .resources.embeddings import EmbeddingsResource, AsyncEmbeddingsResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
     from .resources.api_keys.api_keys import APIKeysResource, AsyncAPIKeysResource
@@ -105,6 +93,7 @@ class GradientAI(SyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.digitalocean.com/"
 
@@ -132,12 +121,6 @@ class GradientAI(SyncAPIClient):
         return ProvidersResource(self)
 
     @cached_property
-    def auth(self) -> AuthResource:
-        from .resources.auth import AuthResource
-
-        return AuthResource(self)
-
-    @cached_property
     def regions(self) -> RegionsResource:
         from .resources.regions import RegionsResource
 
@@ -160,12 +143,6 @@ class GradientAI(SyncAPIClient):
         from .resources.api_keys import APIKeysResource
 
         return APIKeysResource(self)
-
-    @cached_property
-    def embeddings(self) -> EmbeddingsResource:
-        from .resources.embeddings import EmbeddingsResource
-
-        return EmbeddingsResource(self)
 
     @cached_property
     def models(self) -> ModelsResource:
@@ -237,7 +214,7 @@ class GradientAI(SyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -247,6 +224,8 @@ class GradientAI(SyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -327,6 +306,7 @@ class AsyncGradientAI(AsyncAPIClient):
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
+        self._base_url_overridden = base_url is not None
         if base_url is None:
             base_url = f"https://api.digitalocean.com/"
 
@@ -354,12 +334,6 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncProvidersResource(self)
 
     @cached_property
-    def auth(self) -> AsyncAuthResource:
-        from .resources.auth import AsyncAuthResource
-
-        return AsyncAuthResource(self)
-
-    @cached_property
     def regions(self) -> AsyncRegionsResource:
         from .resources.regions import AsyncRegionsResource
 
@@ -382,12 +356,6 @@ class AsyncGradientAI(AsyncAPIClient):
         from .resources.api_keys import AsyncAPIKeysResource
 
         return AsyncAPIKeysResource(self)
-
-    @cached_property
-    def embeddings(self) -> AsyncEmbeddingsResource:
-        from .resources.embeddings import AsyncEmbeddingsResource
-
-        return AsyncEmbeddingsResource(self)
 
     @cached_property
     def models(self) -> AsyncModelsResource:
@@ -459,7 +427,7 @@ class AsyncGradientAI(AsyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(
+        client = self.__class__(
             api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -469,6 +437,8 @@ class AsyncGradientAI(AsyncAPIClient):
             default_query=params,
             **_extra_kwargs,
         )
+        client._base_url_overridden = self._base_url_overridden or base_url is not None
+        return client
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
@@ -527,12 +497,6 @@ class GradientAIWithRawResponse:
         return ProvidersResourceWithRawResponse(self._client.providers)
 
     @cached_property
-    def auth(self) -> auth.AuthResourceWithRawResponse:
-        from .resources.auth import AuthResourceWithRawResponse
-
-        return AuthResourceWithRawResponse(self._client.auth)
-
-    @cached_property
     def regions(self) -> regions.RegionsResourceWithRawResponse:
         from .resources.regions import RegionsResourceWithRawResponse
 
@@ -555,12 +519,6 @@ class GradientAIWithRawResponse:
         from .resources.api_keys import APIKeysResourceWithRawResponse
 
         return APIKeysResourceWithRawResponse(self._client.api_keys)
-
-    @cached_property
-    def embeddings(self) -> embeddings.EmbeddingsResourceWithRawResponse:
-        from .resources.embeddings import EmbeddingsResourceWithRawResponse
-
-        return EmbeddingsResourceWithRawResponse(self._client.embeddings)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithRawResponse:
@@ -588,12 +546,6 @@ class AsyncGradientAIWithRawResponse:
         return AsyncProvidersResourceWithRawResponse(self._client.providers)
 
     @cached_property
-    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
-        from .resources.auth import AsyncAuthResourceWithRawResponse
-
-        return AsyncAuthResourceWithRawResponse(self._client.auth)
-
-    @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
         from .resources.regions import AsyncRegionsResourceWithRawResponse
 
@@ -616,12 +568,6 @@ class AsyncGradientAIWithRawResponse:
         from .resources.api_keys import AsyncAPIKeysResourceWithRawResponse
 
         return AsyncAPIKeysResourceWithRawResponse(self._client.api_keys)
-
-    @cached_property
-    def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithRawResponse:
-        from .resources.embeddings import AsyncEmbeddingsResourceWithRawResponse
-
-        return AsyncEmbeddingsResourceWithRawResponse(self._client.embeddings)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithRawResponse:
@@ -649,12 +595,6 @@ class GradientAIWithStreamedResponse:
         return ProvidersResourceWithStreamingResponse(self._client.providers)
 
     @cached_property
-    def auth(self) -> auth.AuthResourceWithStreamingResponse:
-        from .resources.auth import AuthResourceWithStreamingResponse
-
-        return AuthResourceWithStreamingResponse(self._client.auth)
-
-    @cached_property
     def regions(self) -> regions.RegionsResourceWithStreamingResponse:
         from .resources.regions import RegionsResourceWithStreamingResponse
 
@@ -677,12 +617,6 @@ class GradientAIWithStreamedResponse:
         from .resources.api_keys import APIKeysResourceWithStreamingResponse
 
         return APIKeysResourceWithStreamingResponse(self._client.api_keys)
-
-    @cached_property
-    def embeddings(self) -> embeddings.EmbeddingsResourceWithStreamingResponse:
-        from .resources.embeddings import EmbeddingsResourceWithStreamingResponse
-
-        return EmbeddingsResourceWithStreamingResponse(self._client.embeddings)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithStreamingResponse:
@@ -710,12 +644,6 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncProvidersResourceWithStreamingResponse(self._client.providers)
 
     @cached_property
-    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
-        from .resources.auth import AsyncAuthResourceWithStreamingResponse
-
-        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
-
-    @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
         from .resources.regions import AsyncRegionsResourceWithStreamingResponse
 
@@ -738,12 +666,6 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.api_keys import AsyncAPIKeysResourceWithStreamingResponse
 
         return AsyncAPIKeysResourceWithStreamingResponse(self._client.api_keys)
-
-    @cached_property
-    def embeddings(self) -> embeddings.AsyncEmbeddingsResourceWithStreamingResponse:
-        from .resources.embeddings import AsyncEmbeddingsResourceWithStreamingResponse
-
-        return AsyncEmbeddingsResourceWithStreamingResponse(self._client.embeddings)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:

@@ -81,7 +81,9 @@ class DataSourcesResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_knowledge_base_uuid` but received {path_knowledge_base_uuid!r}"
             )
         return self._post(
-            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
+            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
             body=maybe_transform(
                 {
                     "aws_data_source": aws_data_source,
@@ -132,7 +134,9 @@ class DataSourcesResource(SyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources",
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,7 +185,9 @@ class DataSourcesResource(SyncAPIResource):
         if not data_source_uuid:
             raise ValueError(f"Expected a non-empty value for `data_source_uuid` but received {data_source_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -242,7 +248,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_knowledge_base_uuid` but received {path_knowledge_base_uuid!r}"
             )
         return await self._post(
-            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
+            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
             body=await async_maybe_transform(
                 {
                     "aws_data_source": aws_data_source,
@@ -293,7 +301,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources",
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -342,7 +352,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         if not data_source_uuid:
             raise ValueError(f"Expected a non-empty value for `data_source_uuid` but received {data_source_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

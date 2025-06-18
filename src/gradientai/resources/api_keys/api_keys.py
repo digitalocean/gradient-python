@@ -104,7 +104,9 @@ class APIKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/models",
+            "/v2/gen-ai/models"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -203,7 +205,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/models",
+            "/v2/gen-ai/models"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

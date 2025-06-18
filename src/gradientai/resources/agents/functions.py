@@ -77,7 +77,9 @@ class FunctionsResource(SyncAPIResource):
         if not path_agent_uuid:
             raise ValueError(f"Expected a non-empty value for `path_agent_uuid` but received {path_agent_uuid!r}")
         return self._post(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/functions",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/functions"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/functions",
             body=maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -134,7 +136,9 @@ class FunctionsResource(SyncAPIResource):
         if not path_function_uuid:
             raise ValueError(f"Expected a non-empty value for `path_function_uuid` but received {path_function_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}",
             body=maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -184,7 +188,9 @@ class FunctionsResource(SyncAPIResource):
         if not function_uuid:
             raise ValueError(f"Expected a non-empty value for `function_uuid` but received {function_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -246,7 +252,9 @@ class AsyncFunctionsResource(AsyncAPIResource):
         if not path_agent_uuid:
             raise ValueError(f"Expected a non-empty value for `path_agent_uuid` but received {path_agent_uuid!r}")
         return await self._post(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/functions",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/functions"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/functions",
             body=await async_maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -303,7 +311,9 @@ class AsyncFunctionsResource(AsyncAPIResource):
         if not path_function_uuid:
             raise ValueError(f"Expected a non-empty value for `path_function_uuid` but received {path_function_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}",
+            f"/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_agent_uuid}/functions/{path_function_uuid}",
             body=await async_maybe_transform(
                 {
                     "body_agent_uuid": body_agent_uuid,
@@ -353,7 +363,9 @@ class AsyncFunctionsResource(AsyncAPIResource):
         if not function_uuid:
             raise ValueError(f"Expected a non-empty value for `function_uuid` but received {function_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

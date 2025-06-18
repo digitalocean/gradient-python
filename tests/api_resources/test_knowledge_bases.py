@@ -36,6 +36,13 @@ class TestKnowledgeBases:
             database_id="database_id",
             datasources=[
                 {
+                    "aws_data_source": {
+                        "bucket_name": "bucket_name",
+                        "item_path": "item_path",
+                        "key_id": "key_id",
+                        "region": "region",
+                        "secret_key": "secret_key",
+                    },
                     "bucket_name": "bucket_name",
                     "bucket_region": "bucket_region",
                     "file_upload_data_source": {
@@ -281,6 +288,13 @@ class TestAsyncKnowledgeBases:
             database_id="database_id",
             datasources=[
                 {
+                    "aws_data_source": {
+                        "bucket_name": "bucket_name",
+                        "item_path": "item_path",
+                        "key_id": "key_id",
+                        "region": "region",
+                        "secret_key": "secret_key",
+                    },
                     "bucket_name": "bucket_name",
                     "bucket_region": "bucket_region",
                     "file_upload_data_source": {

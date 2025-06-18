@@ -9,10 +9,20 @@ from .api_spaces_data_source import APISpacesDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
 from .api_web_crawler_data_source import APIWebCrawlerDataSource
 
-__all__ = ["APIKnowledgeBaseDataSource"]
+__all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource"]
+
+
+class AwsDataSource(BaseModel):
+    bucket_name: Optional[str] = None
+
+    item_path: Optional[str] = None
+
+    region: Optional[str] = None
 
 
 class APIKnowledgeBaseDataSource(BaseModel):
+    aws_data_source: Optional[AwsDataSource] = None
+
     bucket_name: Optional[str] = None
 
     created_at: Optional[datetime] = None
