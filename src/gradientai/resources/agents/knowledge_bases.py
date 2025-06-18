@@ -67,7 +67,9 @@ class KnowledgeBasesResource(SyncAPIResource):
         if not agent_uuid:
             raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
         return self._post(
-            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases",
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/knowledge_bases",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -106,7 +108,9 @@ class KnowledgeBasesResource(SyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return self._post(
-            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -145,7 +149,9 @@ class KnowledgeBasesResource(SyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return self._delete(
-            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -200,7 +206,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         if not agent_uuid:
             raise ValueError(f"Expected a non-empty value for `agent_uuid` but received {agent_uuid!r}")
         return await self._post(
-            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases",
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/knowledge_bases",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -239,7 +247,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return await self._post(
-            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -278,7 +288,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return await self._delete(
-            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
+            f"/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

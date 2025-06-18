@@ -109,7 +109,9 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/gen-ai/knowledge_bases",
+            "/v2/gen-ai/knowledge_bases"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
             body=maybe_transform(
                 {
                     "database_id": database_id,
@@ -156,7 +158,9 @@ class KnowledgeBasesResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/knowledge_bases/{uuid}",
+            f"/v2/gen-ai/knowledge_bases/{uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -202,7 +206,9 @@ class KnowledgeBasesResource(SyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/knowledge_bases/{path_uuid}",
+            f"/v2/gen-ai/knowledge_bases/{path_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_uuid}",
             body=maybe_transform(
                 {
                     "database_id": database_id,
@@ -249,7 +255,9 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/knowledge_bases",
+            "/v2/gen-ai/knowledge_bases"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -293,7 +301,9 @@ class KnowledgeBasesResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/knowledge_bases/{uuid}",
+            f"/v2/gen-ai/knowledge_bases/{uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +385,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/gen-ai/knowledge_bases",
+            "/v2/gen-ai/knowledge_bases"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
             body=await async_maybe_transform(
                 {
                     "database_id": database_id,
@@ -422,7 +434,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/knowledge_bases/{uuid}",
+            f"/v2/gen-ai/knowledge_bases/{uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -468,7 +482,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/knowledge_bases/{path_uuid}",
+            f"/v2/gen-ai/knowledge_bases/{path_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_uuid}",
             body=await async_maybe_transform(
                 {
                     "database_id": database_id,
@@ -515,7 +531,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/knowledge_bases",
+            "/v2/gen-ai/knowledge_bases"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -559,7 +577,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/knowledge_bases/{uuid}",
+            f"/v2/gen-ai/knowledge_bases/{uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

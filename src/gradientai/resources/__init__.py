@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .auth import (
-    AuthResource,
-    AsyncAuthResource,
-    AuthResourceWithRawResponse,
-    AsyncAuthResourceWithRawResponse,
-    AuthResourceWithStreamingResponse,
-    AsyncAuthResourceWithStreamingResponse,
-)
 from .agents import (
     AgentsResource,
     AsyncAgentsResource,
@@ -48,14 +40,6 @@ from .providers import (
     ProvidersResourceWithStreamingResponse,
     AsyncProvidersResourceWithStreamingResponse,
 )
-from .embeddings import (
-    EmbeddingsResource,
-    AsyncEmbeddingsResource,
-    EmbeddingsResourceWithRawResponse,
-    AsyncEmbeddingsResourceWithRawResponse,
-    EmbeddingsResourceWithStreamingResponse,
-    AsyncEmbeddingsResourceWithStreamingResponse,
-)
 from .indexing_jobs import (
     IndexingJobsResource,
     AsyncIndexingJobsResource,
@@ -86,12 +70,6 @@ __all__ = [
     "AsyncProvidersResourceWithRawResponse",
     "ProvidersResourceWithStreamingResponse",
     "AsyncProvidersResourceWithStreamingResponse",
-    "AuthResource",
-    "AsyncAuthResource",
-    "AuthResourceWithRawResponse",
-    "AsyncAuthResourceWithRawResponse",
-    "AuthResourceWithStreamingResponse",
-    "AsyncAuthResourceWithStreamingResponse",
     "RegionsResource",
     "AsyncRegionsResource",
     "RegionsResourceWithRawResponse",
@@ -116,12 +94,6 @@ __all__ = [
     "AsyncAPIKeysResourceWithRawResponse",
     "APIKeysResourceWithStreamingResponse",
     "AsyncAPIKeysResourceWithStreamingResponse",
-    "EmbeddingsResource",
-    "AsyncEmbeddingsResource",
-    "EmbeddingsResourceWithRawResponse",
-    "AsyncEmbeddingsResourceWithRawResponse",
-    "EmbeddingsResourceWithStreamingResponse",
-    "AsyncEmbeddingsResourceWithStreamingResponse",
     "ModelsResource",
     "AsyncModelsResource",
     "ModelsResourceWithRawResponse",

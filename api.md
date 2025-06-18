@@ -170,22 +170,6 @@ Methods:
 - <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/gradientai/resources/providers/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/providers/openai/key_delete_response.py">KeyDeleteResponse</a></code>
 - <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.providers.openai.keys.<a href="./src/gradientai/resources/providers/openai/keys.py">retrieve_agents</a>(uuid, \*\*<a href="src/gradientai/types/providers/openai/key_retrieve_agents_params.py">params</a>) -> <a href="./src/gradientai/types/providers/openai/key_retrieve_agents_response.py">KeyRetrieveAgentsResponse</a></code>
 
-# Auth
-
-## Agents
-
-### Token
-
-Types:
-
-```python
-from gradientai.types.auth.agents import TokenCreateResponse
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/auth/agents/{agent_uuid}/token">client.auth.agents.token.<a href="./src/gradientai/resources/auth/agents/token.py">create</a>(path_agent_uuid, \*\*<a href="src/gradientai/types/auth/agents/token_create_params.py">params</a>) -> <a href="./src/gradientai/types/auth/agents/token_create_response.py">TokenCreateResponse</a></code>
-
 # Regions
 
 Types:
@@ -306,20 +290,8 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import ChatCompletionRequestMessageContentPartText, ChatCompletionTokenLogprob
+from gradientai.types import ChatCompletionTokenLogprob
 ```
-
-# Embeddings
-
-Types:
-
-```python
-from gradientai.types import EmbeddingCreateResponse
-```
-
-Methods:
-
-- <code title="post /embeddings">client.embeddings.<a href="./src/gradientai/resources/embeddings.py">create</a>(\*\*<a href="src/gradientai/types/embedding_create_params.py">params</a>) -> <a href="./src/gradientai/types/embedding_create_response.py">EmbeddingCreateResponse</a></code>
 
 # Models
 

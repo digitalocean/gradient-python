@@ -69,7 +69,9 @@ class APIKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/gen-ai/models/api_keys",
+            "/v2/gen-ai/models/api_keys"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models/api_keys",
             body=maybe_transform({"name": name}, api_key_create_params.APIKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -106,7 +108,9 @@ class APIKeysResource(SyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/models/api_keys/{path_api_key_uuid}",
+            f"/v2/gen-ai/models/api_keys/{path_api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/models/api_keys/{path_api_key_uuid}",
             body=maybe_transform(
                 {
                     "body_api_key_uuid": body_api_key_uuid,
@@ -149,7 +153,9 @@ class APIKeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/models/api_keys",
+            "/v2/gen-ai/models/api_keys"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models/api_keys",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +199,9 @@ class APIKeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/models/api_keys/{api_key_uuid}",
+            f"/v2/gen-ai/models/api_keys/{api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/models/api_keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -227,7 +235,9 @@ class APIKeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate",
+            f"/v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -279,7 +289,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/gen-ai/models/api_keys",
+            "/v2/gen-ai/models/api_keys"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models/api_keys",
             body=await async_maybe_transform({"name": name}, api_key_create_params.APIKeyCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -316,7 +328,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/models/api_keys/{path_api_key_uuid}",
+            f"/v2/gen-ai/models/api_keys/{path_api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/models/api_keys/{path_api_key_uuid}",
             body=await async_maybe_transform(
                 {
                     "body_api_key_uuid": body_api_key_uuid,
@@ -359,7 +373,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/models/api_keys",
+            "/v2/gen-ai/models/api_keys"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models/api_keys",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,7 +419,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/models/api_keys/{api_key_uuid}",
+            f"/v2/gen-ai/models/api_keys/{api_key_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/models/api_keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,7 +455,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate",
+            f"/v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

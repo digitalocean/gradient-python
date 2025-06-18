@@ -85,7 +85,9 @@ class ChildAgentsResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_child_agent_uuid` but received {path_child_agent_uuid!r}"
             )
         return self._put(
-            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
+            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
             body=maybe_transform(
                 {
                     "body_child_agent_uuid": body_child_agent_uuid,
@@ -132,7 +134,9 @@ class ChildAgentsResource(SyncAPIResource):
         if not child_agent_uuid:
             raise ValueError(f"Expected a non-empty value for `child_agent_uuid` but received {child_agent_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}",
+            f"/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -179,7 +183,9 @@ class ChildAgentsResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_child_agent_uuid` but received {path_child_agent_uuid!r}"
             )
         return self._post(
-            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
+            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
             body=maybe_transform(
                 {
                     "body_child_agent_uuid": body_child_agent_uuid,
@@ -222,7 +228,9 @@ class ChildAgentsResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/agents/{uuid}/child_agents",
+            f"/v2/gen-ai/agents/{uuid}/child_agents"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/child_agents",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -291,7 +299,9 @@ class AsyncChildAgentsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_child_agent_uuid` but received {path_child_agent_uuid!r}"
             )
         return await self._put(
-            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
+            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
             body=await async_maybe_transform(
                 {
                     "body_child_agent_uuid": body_child_agent_uuid,
@@ -338,7 +348,9 @@ class AsyncChildAgentsResource(AsyncAPIResource):
         if not child_agent_uuid:
             raise ValueError(f"Expected a non-empty value for `child_agent_uuid` but received {child_agent_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}",
+            f"/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -385,7 +397,9 @@ class AsyncChildAgentsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_child_agent_uuid` but received {path_child_agent_uuid!r}"
             )
         return await self._post(
-            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
+            f"/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_parent_agent_uuid}/child_agents/{path_child_agent_uuid}",
             body=await async_maybe_transform(
                 {
                     "body_child_agent_uuid": body_child_agent_uuid,
@@ -428,7 +442,9 @@ class AsyncChildAgentsResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/agents/{uuid}/child_agents",
+            f"/v2/gen-ai/agents/{uuid}/child_agents"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/child_agents",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

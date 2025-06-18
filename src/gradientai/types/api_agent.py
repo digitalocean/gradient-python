@@ -261,3 +261,5 @@ class APIAgent(BaseModel):
     user_id: Optional[str] = None
 
     uuid: Optional[str] = None
+
+    workspace: Optional[object] = None

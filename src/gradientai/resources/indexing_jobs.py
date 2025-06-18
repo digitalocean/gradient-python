@@ -73,7 +73,9 @@ class IndexingJobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/gen-ai/indexing_jobs",
+            "/v2/gen-ai/indexing_jobs"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/indexing_jobs",
             body=maybe_transform(
                 {
                     "data_source_uuids": data_source_uuids,
@@ -114,7 +116,9 @@ class IndexingJobsResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/indexing_jobs/{uuid}",
+            f"/v2/gen-ai/indexing_jobs/{uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -151,7 +155,9 @@ class IndexingJobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/indexing_jobs",
+            "/v2/gen-ai/indexing_jobs"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/indexing_jobs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,7 +201,9 @@ class IndexingJobsResource(SyncAPIResource):
         if not indexing_job_uuid:
             raise ValueError(f"Expected a non-empty value for `indexing_job_uuid` but received {indexing_job_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources",
+            f"/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -232,7 +240,9 @@ class IndexingJobsResource(SyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/indexing_jobs/{path_uuid}/cancel",
+            f"/v2/gen-ai/indexing_jobs/{path_uuid}/cancel"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{path_uuid}/cancel",
             body=maybe_transform(
                 {"body_uuid": body_uuid}, indexing_job_update_cancel_params.IndexingJobUpdateCancelParams
             ),
@@ -289,7 +299,9 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/gen-ai/indexing_jobs",
+            "/v2/gen-ai/indexing_jobs"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/indexing_jobs",
             body=await async_maybe_transform(
                 {
                     "data_source_uuids": data_source_uuids,
@@ -330,7 +342,9 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/indexing_jobs/{uuid}",
+            f"/v2/gen-ai/indexing_jobs/{uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -367,7 +381,9 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/indexing_jobs",
+            "/v2/gen-ai/indexing_jobs"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/indexing_jobs",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -411,7 +427,9 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         if not indexing_job_uuid:
             raise ValueError(f"Expected a non-empty value for `indexing_job_uuid` but received {indexing_job_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources",
+            f"/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -448,7 +466,9 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/indexing_jobs/{path_uuid}/cancel",
+            f"/v2/gen-ai/indexing_jobs/{path_uuid}/cancel"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{path_uuid}/cancel",
             body=await async_maybe_transform(
                 {"body_uuid": body_uuid}, indexing_job_update_cancel_params.IndexingJobUpdateCancelParams
             ),

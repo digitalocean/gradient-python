@@ -72,7 +72,9 @@ class ModelsResource(SyncAPIResource):
         if not model:
             raise ValueError(f"Expected a non-empty value for `model` but received {model!r}")
         return self._get(
-            f"/models/{model}",
+            f"/models/{model}"
+            if self._client._base_url_overridden
+            else f"https://inference.do-ai.run/v1/models/{model}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -134,7 +136,9 @@ class ModelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/models",
+            "/v2/gen-ai/models"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +205,9 @@ class AsyncModelsResource(AsyncAPIResource):
         if not model:
             raise ValueError(f"Expected a non-empty value for `model` but received {model!r}")
         return await self._get(
-            f"/models/{model}",
+            f"/models/{model}"
+            if self._client._base_url_overridden
+            else f"https://inference.do-ai.run/v1/models/{model}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -263,7 +269,9 @@ class AsyncModelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/models",
+            "/v2/gen-ai/models"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/models",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
