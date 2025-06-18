@@ -24,7 +24,6 @@ from pydantic import ValidationError
 from gradientai import GradientAI, AsyncGradientAI, APIResponseValidationError
 from gradientai._types import Omit
 from gradientai._models import BaseModel, FinalRequestOptions
-from gradientai._constants import RAW_RESPONSE_HEADER
 from gradientai._exceptions import APIStatusError, APITimeoutError, GradientAIError, APIResponseValidationError
 from gradientai._base_client import (
     DEFAULT_TIMEOUT,
@@ -721,30 +720,21 @@ class TestGradientAI:
 
     @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: GradientAI) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.agents.versions.with_streaming_response.list(uuid="uuid").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: GradientAI) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.agents.versions.with_streaming_response.list(uuid="uuid").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1548,30 +1538,25 @@ class TestAsyncGradientAI:
 
     @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncGradientAI
+    ) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.agents.versions.with_streaming_response.list(uuid="uuid").__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncGradientAI
+    ) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.agents.versions.with_streaming_response.list(uuid="uuid").__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
