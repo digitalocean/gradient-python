@@ -4,23 +4,23 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import api_key_list_params, api_key_create_params, api_key_update_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.api_keys import api_key_list_params, api_key_create_params, api_key_update_params
-from ...types.api_keys.api_key_list_response import APIKeyListResponse
-from ...types.api_keys.api_key_create_response import APIKeyCreateResponse
-from ...types.api_keys.api_key_delete_response import APIKeyDeleteResponse
-from ...types.api_keys.api_key_update_response import APIKeyUpdateResponse
-from ...types.api_keys.api_key_update_regenerate_response import APIKeyUpdateRegenerateResponse
+from .._base_client import make_request_options
+from ..types.api_key_list_response import APIKeyListResponse
+from ..types.api_key_create_response import APIKeyCreateResponse
+from ..types.api_key_delete_response import APIKeyDeleteResponse
+from ..types.api_key_update_response import APIKeyUpdateResponse
+from ..types.api_key_update_regenerate_response import APIKeyUpdateRegenerateResponse
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 

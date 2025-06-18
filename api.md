@@ -255,19 +255,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import APIAgreement, APIModelVersion, APIKeyListResponse
-```
-
-Methods:
-
-- <code title="get /v2/gen-ai/models">client.api_keys.<a href="./src/gradientai/resources/api_keys/api_keys.py">list</a>(\*\*<a href="src/gradientai/types/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_list_response.py">APIKeyListResponse</a></code>
-
-## APIKeys
-
-Types:
-
-```python
-from gradientai.types.api_keys import (
+from gradientai.types import (
     APIModelAPIKeyInfo,
     APIKeyCreateResponse,
     APIKeyUpdateResponse,
@@ -279,11 +267,11 @@ from gradientai.types.api_keys import (
 
 Methods:
 
-- <code title="post /v2/gen-ai/models/api_keys">client.api*keys.api_keys.<a href="./src/gradientai/resources/api_keys/api_keys*.py">create</a>(\*\*<a href="src/gradientai/types/api_keys/api_key_create_params.py">params</a>) -> <a href="./src/gradientai/types/api_keys/api_key_create_response.py">APIKeyCreateResponse</a></code>
-- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}">client.api*keys.api_keys.<a href="./src/gradientai/resources/api_keys/api_keys*.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/api_keys/api_key_update_params.py">params</a>) -> <a href="./src/gradientai/types/api_keys/api_key_update_response.py">APIKeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/models/api_keys">client.api*keys.api_keys.<a href="./src/gradientai/resources/api_keys/api_keys*.py">list</a>(\*\*<a href="src/gradientai/types/api_keys/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/api_keys/api_key_list_response.py">APIKeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/models/api_keys/{api_key_uuid}">client.api*keys.api_keys.<a href="./src/gradientai/resources/api_keys/api_keys*.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/api_keys/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
-- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate">client.api*keys.api_keys.<a href="./src/gradientai/resources/api_keys/api_keys*.py">update_regenerate</a>(api_key_uuid) -> <a href="./src/gradientai/types/api_keys/api_key_update_regenerate_response.py">APIKeyUpdateRegenerateResponse</a></code>
+- <code title="post /v2/gen-ai/models/api_keys">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">create</a>(\*\*<a href="src/gradientai/types/api_key_create_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_create_response.py">APIKeyCreateResponse</a></code>
+- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/api_key_update_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_update_response.py">APIKeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/models/api_keys">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">list</a>(\*\*<a href="src/gradientai/types/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_list_response.py">APIKeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/models/api_keys/{api_key_uuid}">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
+- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">update_regenerate</a>(api_key_uuid) -> <a href="./src/gradientai/types/api_key_update_regenerate_response.py">APIKeyUpdateRegenerateResponse</a></code>
 
 # Chat
 
@@ -309,5 +297,4 @@ from gradientai.types import Model, ModelListResponse
 
 Methods:
 
-- <code title="get /models/{model}">client.models.<a href="./src/gradientai/resources/models.py">retrieve</a>(model) -> <a href="./src/gradientai/types/model.py">Model</a></code>
 - <code title="get /v2/gen-ai/models">client.models.<a href="./src/gradientai/resources/models.py">list</a>(\*\*<a href="src/gradientai/types/model_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
