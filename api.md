@@ -287,11 +287,17 @@ Methods:
 
 # Chat
 
+## Completions
+
 Types:
 
 ```python
-from gradientai.types import ChatCompletionTokenLogprob
+from gradientai.types.chat import CompletionCreateResponse
 ```
+
+Methods:
+
+- <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
 # Models
 
