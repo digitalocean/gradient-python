@@ -4,16 +4,32 @@ from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
-from .api_agreement import APIAgreement
 from .agents.api_meta import APIMeta
 from .agents.api_links import APILinks
-from .api_model_version import APIModelVersion
 
-__all__ = ["ModelListResponse", "Model"]
+__all__ = ["ModelListResponse", "Model", "ModelAgreement", "ModelVersion"]
+
+
+class ModelAgreement(BaseModel):
+    description: Optional[str] = None
+
+    name: Optional[str] = None
+
+    url: Optional[str] = None
+
+    uuid: Optional[str] = None
+
+
+class ModelVersion(BaseModel):
+    major: Optional[int] = None
+
+    minor: Optional[int] = None
+
+    patch: Optional[int] = None
 
 
 class Model(BaseModel):
-    agreement: Optional[APIAgreement] = None
+    agreement: Optional[ModelAgreement] = None
 
     created_at: Optional[datetime] = None
 
@@ -31,7 +47,7 @@ class Model(BaseModel):
 
     uuid: Optional[str] = None
 
-    version: Optional[APIModelVersion] = None
+    version: Optional[ModelVersion] = None
 
 
 class ModelListResponse(BaseModel):

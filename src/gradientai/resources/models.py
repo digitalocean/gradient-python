@@ -18,7 +18,6 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..types.model import Model
 from .._base_client import make_request_options
 from ..types.model_list_response import ModelListResponse
 
@@ -44,42 +43,6 @@ class ModelsResource(SyncAPIResource):
         For more information, see https://www.github.com/digitalocean/genai-python#with_streaming_response
         """
         return ModelsResourceWithStreamingResponse(self)
-
-    def retrieve(
-        self,
-        model: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Model:
-        """
-        Retrieves a model instance, providing basic information about the model such as
-        the owner and permissioning.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not model:
-            raise ValueError(f"Expected a non-empty value for `model` but received {model!r}")
-        return self._get(
-            f"/models/{model}"
-            if self._client._base_url_overridden
-            else f"https://inference.do-ai.run/v1/models/{model}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Model,
-        )
 
     def list(
         self,
@@ -178,42 +141,6 @@ class AsyncModelsResource(AsyncAPIResource):
         """
         return AsyncModelsResourceWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        model: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Model:
-        """
-        Retrieves a model instance, providing basic information about the model such as
-        the owner and permissioning.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not model:
-            raise ValueError(f"Expected a non-empty value for `model` but received {model!r}")
-        return await self._get(
-            f"/models/{model}"
-            if self._client._base_url_overridden
-            else f"https://inference.do-ai.run/v1/models/{model}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Model,
-        )
-
     async def list(
         self,
         *,
@@ -295,9 +222,6 @@ class ModelsResourceWithRawResponse:
     def __init__(self, models: ModelsResource) -> None:
         self._models = models
 
-        self.retrieve = to_raw_response_wrapper(
-            models.retrieve,
-        )
         self.list = to_raw_response_wrapper(
             models.list,
         )
@@ -307,9 +231,6 @@ class AsyncModelsResourceWithRawResponse:
     def __init__(self, models: AsyncModelsResource) -> None:
         self._models = models
 
-        self.retrieve = async_to_raw_response_wrapper(
-            models.retrieve,
-        )
         self.list = async_to_raw_response_wrapper(
             models.list,
         )
@@ -319,9 +240,6 @@ class ModelsResourceWithStreamingResponse:
     def __init__(self, models: ModelsResource) -> None:
         self._models = models
 
-        self.retrieve = to_streamed_response_wrapper(
-            models.retrieve,
-        )
         self.list = to_streamed_response_wrapper(
             models.list,
         )
@@ -331,9 +249,6 @@ class AsyncModelsResourceWithStreamingResponse:
     def __init__(self, models: AsyncModelsResource) -> None:
         self._models = models
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            models.retrieve,
-        )
         self.list = async_to_streamed_response_wrapper(
             models.list,
         )

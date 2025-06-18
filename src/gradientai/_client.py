@@ -34,10 +34,10 @@ if TYPE_CHECKING:
     from .resources import chat, agents, models, regions, api_keys, providers, indexing_jobs, knowledge_bases
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
+    from .resources.api_keys import APIKeysResource, AsyncAPIKeysResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
-    from .resources.api_keys.api_keys import APIKeysResource, AsyncAPIKeysResource
     from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
