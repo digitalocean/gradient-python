@@ -250,29 +250,6 @@ Methods:
 - <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradientai/resources/knowledge_bases/data_sources.py">list</a>(knowledge_base_uuid, \*\*<a href="src/gradientai/types/knowledge_bases/data_source_list_params.py">params</a>) -> <a href="./src/gradientai/types/knowledge_bases/data_source_list_response.py">DataSourceListResponse</a></code>
 - <code title="delete /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/gradientai/resources/knowledge_bases/data_sources.py">delete</a>(data_source_uuid, \*, knowledge_base_uuid) -> <a href="./src/gradientai/types/knowledge_bases/data_source_delete_response.py">DataSourceDeleteResponse</a></code>
 
-# APIKeys
-
-Types:
-
-```python
-from gradientai.types import (
-    APIModelAPIKeyInfo,
-    APIKeyCreateResponse,
-    APIKeyUpdateResponse,
-    APIKeyListResponse,
-    APIKeyDeleteResponse,
-    APIKeyUpdateRegenerateResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/models/api_keys">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">create</a>(\*\*<a href="src/gradientai/types/api_key_create_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_create_response.py">APIKeyCreateResponse</a></code>
-- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/api_key_update_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_update_response.py">APIKeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/models/api_keys">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">list</a>(\*\*<a href="src/gradientai/types/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/api_key_list_response.py">APIKeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/models/api_keys/{api_key_uuid}">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
-- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate">client.api_keys.<a href="./src/gradientai/resources/api_keys.py">update_regenerate</a>(api_key_uuid) -> <a href="./src/gradientai/types/api_key_update_regenerate_response.py">APIKeyUpdateRegenerateResponse</a></code>
-
 # Chat
 
 ## Completions
@@ -286,6 +263,44 @@ from gradientai.types.chat import CompletionCreateResponse
 Methods:
 
 - <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+
+# Inference
+
+## APIKeys
+
+Types:
+
+```python
+from gradientai.types.inference import (
+    APIModelAPIKeyInfo,
+    APIKeyCreateResponse,
+    APIKeyUpdateResponse,
+    APIKeyListResponse,
+    APIKeyDeleteResponse,
+    APIKeyUpdateRegenerateResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/models/api_keys">client.inference.api_keys.<a href="./src/gradientai/resources/inference/api_keys.py">create</a>(\*\*<a href="src/gradientai/types/inference/api_key_create_params.py">params</a>) -> <a href="./src/gradientai/types/inference/api_key_create_response.py">APIKeyCreateResponse</a></code>
+- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}">client.inference.api_keys.<a href="./src/gradientai/resources/inference/api_keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/inference/api_key_update_params.py">params</a>) -> <a href="./src/gradientai/types/inference/api_key_update_response.py">APIKeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/models/api_keys">client.inference.api_keys.<a href="./src/gradientai/resources/inference/api_keys.py">list</a>(\*\*<a href="src/gradientai/types/inference/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/inference/api_key_list_response.py">APIKeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/models/api_keys/{api_key_uuid}">client.inference.api_keys.<a href="./src/gradientai/resources/inference/api_keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/inference/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
+- <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate">client.inference.api_keys.<a href="./src/gradientai/resources/inference/api_keys.py">update_regenerate</a>(api_key_uuid) -> <a href="./src/gradientai/types/inference/api_key_update_regenerate_response.py">APIKeyUpdateRegenerateResponse</a></code>
+
+## Models
+
+Types:
+
+```python
+from gradientai.types.inference import ModelRetrieveResponse, ModelListResponse
+```
+
+Methods:
+
+- <code title="get /models/{model}">client.inference.models.<a href="./src/gradientai/resources/inference/models.py">retrieve</a>(model) -> <a href="./src/gradientai/types/inference/model_retrieve_response.py">ModelRetrieveResponse</a></code>
+- <code title="get /models">client.inference.models.<a href="./src/gradientai/resources/inference/models.py">list</a>() -> <a href="./src/gradientai/types/inference/model_list_response.py">ModelListResponse</a></code>
 
 # Models
 

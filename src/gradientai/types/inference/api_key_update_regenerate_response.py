@@ -2,11 +2,11 @@
 
 from typing import Optional
 
-from .._models import BaseModel
+from ..._models import BaseModel
 from .api_model_api_key_info import APIModelAPIKeyInfo
 
-__all__ = ["APIKeyUpdateResponse"]
+__all__ = ["APIKeyUpdateRegenerateResponse"]
 
 
-class APIKeyUpdateResponse(BaseModel):
+class APIKeyUpdateRegenerateResponse(BaseModel):
     api_key_info: Optional[APIModelAPIKeyInfo] = None
