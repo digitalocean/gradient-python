@@ -4,10 +4,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["ModelRetrieveResponse"]
+__all__ = ["Model"]
 
 
-class ModelRetrieveResponse(BaseModel):
+class Model(BaseModel):
     id: str
     """The model identifier, which can be referenced in the API endpoints."""
 
