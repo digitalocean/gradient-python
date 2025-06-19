@@ -9,7 +9,7 @@ import pytest
 
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types import (
+from gradientai.types.inference import (
     APIKeyListResponse,
     APIKeyCreateResponse,
     APIKeyDeleteResponse,
@@ -26,13 +26,13 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: GradientAI) -> None:
-        api_key = client.api_keys.create()
+        api_key = client.inference.api_keys.create()
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
-        api_key = client.api_keys.create(
+        api_key = client.inference.api_keys.create(
             name="name",
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
@@ -40,7 +40,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: GradientAI) -> None:
-        response = client.api_keys.with_raw_response.create()
+        response = client.inference.api_keys.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -50,7 +50,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: GradientAI) -> None:
-        with client.api_keys.with_streaming_response.create() as response:
+        with client.inference.api_keys.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -62,7 +62,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
-        api_key = client.api_keys.update(
+        api_key = client.inference.api_keys.update(
             path_api_key_uuid="api_key_uuid",
         )
         assert_matches_type(APIKeyUpdateResponse, api_key, path=["response"])
@@ -70,7 +70,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
-        api_key = client.api_keys.update(
+        api_key = client.inference.api_keys.update(
             path_api_key_uuid="api_key_uuid",
             body_api_key_uuid="api_key_uuid",
             name="name",
@@ -80,7 +80,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
-        response = client.api_keys.with_raw_response.update(
+        response = client.inference.api_keys.with_raw_response.update(
             path_api_key_uuid="api_key_uuid",
         )
 
@@ -92,7 +92,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
-        with client.api_keys.with_streaming_response.update(
+        with client.inference.api_keys.with_streaming_response.update(
             path_api_key_uuid="api_key_uuid",
         ) as response:
             assert not response.is_closed
@@ -107,20 +107,20 @@ class TestAPIKeys:
     @parametrize
     def test_path_params_update(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_api_key_uuid` but received ''"):
-            client.api_keys.with_raw_response.update(
+            client.inference.api_keys.with_raw_response.update(
                 path_api_key_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: GradientAI) -> None:
-        api_key = client.api_keys.list()
+        api_key = client.inference.api_keys.list()
         assert_matches_type(APIKeyListResponse, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
-        api_key = client.api_keys.list(
+        api_key = client.inference.api_keys.list(
             page=0,
             per_page=0,
         )
@@ -129,7 +129,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: GradientAI) -> None:
-        response = client.api_keys.with_raw_response.list()
+        response = client.inference.api_keys.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -139,7 +139,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: GradientAI) -> None:
-        with client.api_keys.with_streaming_response.list() as response:
+        with client.inference.api_keys.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -151,7 +151,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
-        api_key = client.api_keys.delete(
+        api_key = client.inference.api_keys.delete(
             "api_key_uuid",
         )
         assert_matches_type(APIKeyDeleteResponse, api_key, path=["response"])
@@ -159,7 +159,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
-        response = client.api_keys.with_raw_response.delete(
+        response = client.inference.api_keys.with_raw_response.delete(
             "api_key_uuid",
         )
 
@@ -171,7 +171,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
-        with client.api_keys.with_streaming_response.delete(
+        with client.inference.api_keys.with_streaming_response.delete(
             "api_key_uuid",
         ) as response:
             assert not response.is_closed
@@ -186,14 +186,14 @@ class TestAPIKeys:
     @parametrize
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
-            client.api_keys.with_raw_response.delete(
+            client.inference.api_keys.with_raw_response.delete(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update_regenerate(self, client: GradientAI) -> None:
-        api_key = client.api_keys.update_regenerate(
+        api_key = client.inference.api_keys.update_regenerate(
             "api_key_uuid",
         )
         assert_matches_type(APIKeyUpdateRegenerateResponse, api_key, path=["response"])
@@ -201,7 +201,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_regenerate(self, client: GradientAI) -> None:
-        response = client.api_keys.with_raw_response.update_regenerate(
+        response = client.inference.api_keys.with_raw_response.update_regenerate(
             "api_key_uuid",
         )
 
@@ -213,7 +213,7 @@ class TestAPIKeys:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_regenerate(self, client: GradientAI) -> None:
-        with client.api_keys.with_streaming_response.update_regenerate(
+        with client.inference.api_keys.with_streaming_response.update_regenerate(
             "api_key_uuid",
         ) as response:
             assert not response.is_closed
@@ -228,7 +228,7 @@ class TestAPIKeys:
     @parametrize
     def test_path_params_update_regenerate(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
-            client.api_keys.with_raw_response.update_regenerate(
+            client.inference.api_keys.with_raw_response.update_regenerate(
                 "",
             )
 
@@ -239,13 +239,13 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.create()
+        api_key = await async_client.inference.api_keys.create()
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.create(
+        api_key = await async_client.inference.api_keys.create(
             name="name",
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
@@ -253,7 +253,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.api_keys.with_raw_response.create()
+        response = await async_client.inference.api_keys.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -263,7 +263,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.api_keys.with_streaming_response.create() as response:
+        async with async_client.inference.api_keys.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -275,7 +275,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.update(
+        api_key = await async_client.inference.api_keys.update(
             path_api_key_uuid="api_key_uuid",
         )
         assert_matches_type(APIKeyUpdateResponse, api_key, path=["response"])
@@ -283,7 +283,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.update(
+        api_key = await async_client.inference.api_keys.update(
             path_api_key_uuid="api_key_uuid",
             body_api_key_uuid="api_key_uuid",
             name="name",
@@ -293,7 +293,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.api_keys.with_raw_response.update(
+        response = await async_client.inference.api_keys.with_raw_response.update(
             path_api_key_uuid="api_key_uuid",
         )
 
@@ -305,7 +305,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.api_keys.with_streaming_response.update(
+        async with async_client.inference.api_keys.with_streaming_response.update(
             path_api_key_uuid="api_key_uuid",
         ) as response:
             assert not response.is_closed
@@ -320,20 +320,20 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_api_key_uuid` but received ''"):
-            await async_client.api_keys.with_raw_response.update(
+            await async_client.inference.api_keys.with_raw_response.update(
                 path_api_key_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.list()
+        api_key = await async_client.inference.api_keys.list()
         assert_matches_type(APIKeyListResponse, api_key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.list(
+        api_key = await async_client.inference.api_keys.list(
             page=0,
             per_page=0,
         )
@@ -342,7 +342,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.api_keys.with_raw_response.list()
+        response = await async_client.inference.api_keys.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -352,7 +352,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.api_keys.with_streaming_response.list() as response:
+        async with async_client.inference.api_keys.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -364,7 +364,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.delete(
+        api_key = await async_client.inference.api_keys.delete(
             "api_key_uuid",
         )
         assert_matches_type(APIKeyDeleteResponse, api_key, path=["response"])
@@ -372,7 +372,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.api_keys.with_raw_response.delete(
+        response = await async_client.inference.api_keys.with_raw_response.delete(
             "api_key_uuid",
         )
 
@@ -384,7 +384,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.api_keys.with_streaming_response.delete(
+        async with async_client.inference.api_keys.with_streaming_response.delete(
             "api_key_uuid",
         ) as response:
             assert not response.is_closed
@@ -399,14 +399,14 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
-            await async_client.api_keys.with_raw_response.delete(
+            await async_client.inference.api_keys.with_raw_response.delete(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_regenerate(self, async_client: AsyncGradientAI) -> None:
-        api_key = await async_client.api_keys.update_regenerate(
+        api_key = await async_client.inference.api_keys.update_regenerate(
             "api_key_uuid",
         )
         assert_matches_type(APIKeyUpdateRegenerateResponse, api_key, path=["response"])
@@ -414,7 +414,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_regenerate(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.api_keys.with_raw_response.update_regenerate(
+        response = await async_client.inference.api_keys.with_raw_response.update_regenerate(
             "api_key_uuid",
         )
 
@@ -426,7 +426,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_regenerate(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.api_keys.with_streaming_response.update_regenerate(
+        async with async_client.inference.api_keys.with_streaming_response.update_regenerate(
             "api_key_uuid",
         ) as response:
             assert not response.is_closed
@@ -441,6 +441,6 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_path_params_update_regenerate(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
-            await async_client.api_keys.with_raw_response.update_regenerate(
+            await async_client.inference.api_keys.with_raw_response.update_regenerate(
                 "",
             )

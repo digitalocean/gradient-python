@@ -31,13 +31,13 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, api_keys, providers, indexing_jobs, knowledge_bases
+    from .resources import chat, agents, models, regions, inference, providers, indexing_jobs, knowledge_bases
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
-    from .resources.api_keys import APIKeysResource, AsyncAPIKeysResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
+    from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
@@ -140,16 +140,16 @@ class GradientAI(SyncAPIClient):
         return KnowledgeBasesResource(self)
 
     @cached_property
-    def api_keys(self) -> APIKeysResource:
-        from .resources.api_keys import APIKeysResource
-
-        return APIKeysResource(self)
-
-    @cached_property
     def chat(self) -> ChatResource:
         from .resources.chat import ChatResource
 
         return ChatResource(self)
+
+    @cached_property
+    def inference(self) -> InferenceResource:
+        from .resources.inference import InferenceResource
+
+        return InferenceResource(self)
 
     @cached_property
     def models(self) -> ModelsResource:
@@ -359,16 +359,16 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncKnowledgeBasesResource(self)
 
     @cached_property
-    def api_keys(self) -> AsyncAPIKeysResource:
-        from .resources.api_keys import AsyncAPIKeysResource
-
-        return AsyncAPIKeysResource(self)
-
-    @cached_property
     def chat(self) -> AsyncChatResource:
         from .resources.chat import AsyncChatResource
 
         return AsyncChatResource(self)
+
+    @cached_property
+    def inference(self) -> AsyncInferenceResource:
+        from .resources.inference import AsyncInferenceResource
+
+        return AsyncInferenceResource(self)
 
     @cached_property
     def models(self) -> AsyncModelsResource:
@@ -528,16 +528,16 @@ class GradientAIWithRawResponse:
         return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
-    def api_keys(self) -> api_keys.APIKeysResourceWithRawResponse:
-        from .resources.api_keys import APIKeysResourceWithRawResponse
-
-        return APIKeysResourceWithRawResponse(self._client.api_keys)
-
-    @cached_property
     def chat(self) -> chat.ChatResourceWithRawResponse:
         from .resources.chat import ChatResourceWithRawResponse
 
         return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def inference(self) -> inference.InferenceResourceWithRawResponse:
+        from .resources.inference import InferenceResourceWithRawResponse
+
+        return InferenceResourceWithRawResponse(self._client.inference)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithRawResponse:
@@ -583,16 +583,16 @@ class AsyncGradientAIWithRawResponse:
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
-    def api_keys(self) -> api_keys.AsyncAPIKeysResourceWithRawResponse:
-        from .resources.api_keys import AsyncAPIKeysResourceWithRawResponse
-
-        return AsyncAPIKeysResourceWithRawResponse(self._client.api_keys)
-
-    @cached_property
     def chat(self) -> chat.AsyncChatResourceWithRawResponse:
         from .resources.chat import AsyncChatResourceWithRawResponse
 
         return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def inference(self) -> inference.AsyncInferenceResourceWithRawResponse:
+        from .resources.inference import AsyncInferenceResourceWithRawResponse
+
+        return AsyncInferenceResourceWithRawResponse(self._client.inference)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithRawResponse:
@@ -638,16 +638,16 @@ class GradientAIWithStreamedResponse:
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
-    def api_keys(self) -> api_keys.APIKeysResourceWithStreamingResponse:
-        from .resources.api_keys import APIKeysResourceWithStreamingResponse
-
-        return APIKeysResourceWithStreamingResponse(self._client.api_keys)
-
-    @cached_property
     def chat(self) -> chat.ChatResourceWithStreamingResponse:
         from .resources.chat import ChatResourceWithStreamingResponse
 
         return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def inference(self) -> inference.InferenceResourceWithStreamingResponse:
+        from .resources.inference import InferenceResourceWithStreamingResponse
+
+        return InferenceResourceWithStreamingResponse(self._client.inference)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithStreamingResponse:
@@ -693,16 +693,16 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
-    def api_keys(self) -> api_keys.AsyncAPIKeysResourceWithStreamingResponse:
-        from .resources.api_keys import AsyncAPIKeysResourceWithStreamingResponse
-
-        return AsyncAPIKeysResourceWithStreamingResponse(self._client.api_keys)
-
-    @cached_property
     def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
         from .resources.chat import AsyncChatResourceWithStreamingResponse
 
         return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
+    def inference(self) -> inference.AsyncInferenceResourceWithStreamingResponse:
+        from .resources.inference import AsyncInferenceResourceWithStreamingResponse
+
+        return AsyncInferenceResourceWithStreamingResponse(self._client.inference)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
