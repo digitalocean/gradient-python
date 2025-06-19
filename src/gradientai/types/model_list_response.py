@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 
-from .model import Model
 from .._models import BaseModel
+from .api_model import APIModel
 from .agents.api_meta import APIMeta
 from .agents.api_links import APILinks
 
@@ -15,4 +15,4 @@ class ModelListResponse(BaseModel):
 
     meta: Optional[APIMeta] = None
 
-    models: Optional[List[Model]] = None
+    models: Optional[List[APIModel]] = None

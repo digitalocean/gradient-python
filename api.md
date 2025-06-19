@@ -8,7 +8,6 @@ from gradientai.types import (
     APIAgentAPIKeyInfo,
     APIAnthropicAPIKeyInfo,
     APIDeploymentVisibility,
-    APIModel,
     APIOpenAIAPIKeyInfo,
     APIRetrievalMethod,
     AgentCreateResponse,
@@ -307,7 +306,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import Model, ModelListResponse
+from gradientai.types import APIModel, ModelListResponse
 ```
 
 Methods:

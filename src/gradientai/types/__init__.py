@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .model import Model as Model
 from .api_agent import APIAgent as APIAgent
 from .api_model import APIModel as APIModel
 from .api_indexing_job import APIIndexingJob as APIIndexingJob
