@@ -294,12 +294,12 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.inference import ModelRetrieveResponse, ModelListResponse
+from gradientai.types.inference import Model, ModelListResponse
 ```
 
 Methods:
 
-- <code title="get /models/{model}">client.inference.models.<a href="./src/gradientai/resources/inference/models.py">retrieve</a>(model) -> <a href="./src/gradientai/types/inference/model_retrieve_response.py">ModelRetrieveResponse</a></code>
+- <code title="get /models/{model}">client.inference.models.<a href="./src/gradientai/resources/inference/models.py">retrieve</a>(model) -> <a href="./src/gradientai/types/inference/model.py">Model</a></code>
 - <code title="get /models">client.inference.models.<a href="./src/gradientai/resources/inference/models.py">list</a>() -> <a href="./src/gradientai/types/inference/model_list_response.py">ModelListResponse</a></code>
 
 # Models

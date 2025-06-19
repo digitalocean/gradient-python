@@ -9,7 +9,7 @@ import pytest
 
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.inference import ModelListResponse, ModelRetrieveResponse
+from gradientai.types.inference import Model, ModelListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestModels:
         model = client.inference.models.retrieve(
             "llama3-8b-instruct",
         )
-        assert_matches_type(ModelRetrieveResponse, model, path=["response"])
+        assert_matches_type(Model, model, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -35,7 +35,7 @@ class TestModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = response.parse()
-        assert_matches_type(ModelRetrieveResponse, model, path=["response"])
+        assert_matches_type(Model, model, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -47,7 +47,7 @@ class TestModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = response.parse()
-            assert_matches_type(ModelRetrieveResponse, model, path=["response"])
+            assert_matches_type(Model, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -97,7 +97,7 @@ class TestAsyncModels:
         model = await async_client.inference.models.retrieve(
             "llama3-8b-instruct",
         )
-        assert_matches_type(ModelRetrieveResponse, model, path=["response"])
+        assert_matches_type(Model, model, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -109,7 +109,7 @@ class TestAsyncModels:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         model = await response.parse()
-        assert_matches_type(ModelRetrieveResponse, model, path=["response"])
+        assert_matches_type(Model, model, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
@@ -121,7 +121,7 @@ class TestAsyncModels:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             model = await response.parse()
-            assert_matches_type(ModelRetrieveResponse, model, path=["response"])
+            assert_matches_type(Model, model, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

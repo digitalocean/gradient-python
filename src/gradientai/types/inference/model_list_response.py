@@ -3,26 +3,13 @@
 from typing import List
 from typing_extensions import Literal
 
+from .model import Model
 from ..._models import BaseModel
 
-__all__ = ["ModelListResponse", "Data"]
-
-
-class Data(BaseModel):
-    id: str
-    """The model identifier, which can be referenced in the API endpoints."""
-
-    created: int
-    """The Unix timestamp (in seconds) when the model was created."""
-
-    object: Literal["model"]
-    """The object type, which is always "model"."""
-
-    owned_by: str
-    """The organization that owns the model."""
+__all__ = ["ModelListResponse"]
 
 
 class ModelListResponse(BaseModel):
-    data: List[Data]
+    data: List[Model]
 
     object: Literal["list"]
