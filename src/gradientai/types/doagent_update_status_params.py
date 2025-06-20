@@ -7,10 +7,10 @@ from typing_extensions import Annotated, TypedDict
 from .._utils import PropertyInfo
 from .api_deployment_visibility import APIDeploymentVisibility
 
-__all__ = ["AgentUpdateStatusParams"]
+__all__ = ["DoagentUpdateStatusParams"]
 
 
-class AgentUpdateStatusParams(TypedDict, total=False):
+class DoagentUpdateStatusParams(TypedDict, total=False):
     body_uuid: Annotated[str, PropertyInfo(alias="uuid")]
 
     visibility: APIDeploymentVisibility

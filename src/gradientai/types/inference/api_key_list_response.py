@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..agents.api_meta import APIMeta
-from ..agents.api_links import APILinks
+from ..doagents.api_meta import APIMeta
+from ..doagents.api_links import APILinks
 from .api_model_api_key_info import APIModelAPIKeyInfo
 
 __all__ = ["APIKeyListResponse"]

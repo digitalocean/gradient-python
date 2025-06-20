@@ -10,30 +10,30 @@ import pytest
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
 from gradientai.types import (
-    AgentListResponse,
-    AgentCreateResponse,
-    AgentDeleteResponse,
-    AgentUpdateResponse,
-    AgentRetrieveResponse,
-    AgentUpdateStatusResponse,
+    DoagentListResponse,
+    DoagentCreateResponse,
+    DoagentDeleteResponse,
+    DoagentUpdateResponse,
+    DoagentRetrieveResponse,
+    DoagentUpdateStatusResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestAgents:
+class TestDoagents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: GradientAI) -> None:
-        agent = client.agents.create()
-        assert_matches_type(AgentCreateResponse, agent, path=["response"])
+        doagent = client.doagents.create()
+        assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
-        agent = client.agents.create(
+        doagent = client.doagents.create(
             anthropic_key_uuid="anthropic_key_uuid",
             description="description",
             instruction="instruction",
@@ -45,61 +45,61 @@ class TestAgents:
             region="region",
             tags=["string"],
         )
-        assert_matches_type(AgentCreateResponse, agent, path=["response"])
+        assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: GradientAI) -> None:
-        response = client.agents.with_raw_response.create()
+        response = client.doagents.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = response.parse()
-        assert_matches_type(AgentCreateResponse, agent, path=["response"])
+        doagent = response.parse()
+        assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: GradientAI) -> None:
-        with client.agents.with_streaming_response.create() as response:
+        with client.doagents.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = response.parse()
-            assert_matches_type(AgentCreateResponse, agent, path=["response"])
+            doagent = response.parse()
+            assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_retrieve(self, client: GradientAI) -> None:
-        agent = client.agents.retrieve(
+        doagent = client.doagents.retrieve(
             "uuid",
         )
-        assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+        assert_matches_type(DoagentRetrieveResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_retrieve(self, client: GradientAI) -> None:
-        response = client.agents.with_raw_response.retrieve(
+        response = client.doagents.with_raw_response.retrieve(
             "uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = response.parse()
-        assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+        doagent = response.parse()
+        assert_matches_type(DoagentRetrieveResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_retrieve(self, client: GradientAI) -> None:
-        with client.agents.with_streaming_response.retrieve(
+        with client.doagents.with_streaming_response.retrieve(
             "uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = response.parse()
-            assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+            doagent = response.parse()
+            assert_matches_type(DoagentRetrieveResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,22 +107,22 @@ class TestAgents:
     @parametrize
     def test_path_params_retrieve(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.agents.with_raw_response.retrieve(
+            client.doagents.with_raw_response.retrieve(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
-        agent = client.agents.update(
+        doagent = client.doagents.update(
             path_uuid="uuid",
         )
-        assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
-        agent = client.agents.update(
+        doagent = client.doagents.update(
             path_uuid="uuid",
             anthropic_key_uuid="anthropic_key_uuid",
             description="description",
@@ -140,31 +140,31 @@ class TestAgents:
             top_p=0,
             body_uuid="uuid",
         )
-        assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
-        response = client.agents.with_raw_response.update(
+        response = client.doagents.with_raw_response.update(
             path_uuid="uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = response.parse()
-        assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+        doagent = response.parse()
+        assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
-        with client.agents.with_streaming_response.update(
+        with client.doagents.with_streaming_response.update(
             path_uuid="uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = response.parse()
-            assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+            doagent = response.parse()
+            assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -172,79 +172,79 @@ class TestAgents:
     @parametrize
     def test_path_params_update(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
-            client.agents.with_raw_response.update(
+            client.doagents.with_raw_response.update(
                 path_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: GradientAI) -> None:
-        agent = client.agents.list()
-        assert_matches_type(AgentListResponse, agent, path=["response"])
+        doagent = client.doagents.list()
+        assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
-        agent = client.agents.list(
+        doagent = client.doagents.list(
             only_deployed=True,
             page=0,
             per_page=0,
         )
-        assert_matches_type(AgentListResponse, agent, path=["response"])
+        assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: GradientAI) -> None:
-        response = client.agents.with_raw_response.list()
+        response = client.doagents.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = response.parse()
-        assert_matches_type(AgentListResponse, agent, path=["response"])
+        doagent = response.parse()
+        assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: GradientAI) -> None:
-        with client.agents.with_streaming_response.list() as response:
+        with client.doagents.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = response.parse()
-            assert_matches_type(AgentListResponse, agent, path=["response"])
+            doagent = response.parse()
+            assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
-        agent = client.agents.delete(
+        doagent = client.doagents.delete(
             "uuid",
         )
-        assert_matches_type(AgentDeleteResponse, agent, path=["response"])
+        assert_matches_type(DoagentDeleteResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
-        response = client.agents.with_raw_response.delete(
+        response = client.doagents.with_raw_response.delete(
             "uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = response.parse()
-        assert_matches_type(AgentDeleteResponse, agent, path=["response"])
+        doagent = response.parse()
+        assert_matches_type(DoagentDeleteResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
-        with client.agents.with_streaming_response.delete(
+        with client.doagents.with_streaming_response.delete(
             "uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = response.parse()
-            assert_matches_type(AgentDeleteResponse, agent, path=["response"])
+            doagent = response.parse()
+            assert_matches_type(DoagentDeleteResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -252,51 +252,51 @@ class TestAgents:
     @parametrize
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.agents.with_raw_response.delete(
+            client.doagents.with_raw_response.delete(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update_status(self, client: GradientAI) -> None:
-        agent = client.agents.update_status(
+        doagent = client.doagents.update_status(
             path_uuid="uuid",
         )
-        assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update_status_with_all_params(self, client: GradientAI) -> None:
-        agent = client.agents.update_status(
+        doagent = client.doagents.update_status(
             path_uuid="uuid",
             body_uuid="uuid",
             visibility="VISIBILITY_UNKNOWN",
         )
-        assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_status(self, client: GradientAI) -> None:
-        response = client.agents.with_raw_response.update_status(
+        response = client.doagents.with_raw_response.update_status(
             path_uuid="uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = response.parse()
-        assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+        doagent = response.parse()
+        assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_status(self, client: GradientAI) -> None:
-        with client.agents.with_streaming_response.update_status(
+        with client.doagents.with_streaming_response.update_status(
             path_uuid="uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = response.parse()
-            assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+            doagent = response.parse()
+            assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -304,24 +304,24 @@ class TestAgents:
     @parametrize
     def test_path_params_update_status(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
-            client.agents.with_raw_response.update_status(
+            client.doagents.with_raw_response.update_status(
                 path_uuid="",
             )
 
 
-class TestAsyncAgents:
+class TestAsyncDoagents:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.create()
-        assert_matches_type(AgentCreateResponse, agent, path=["response"])
+        doagent = await async_client.doagents.create()
+        assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.create(
+        doagent = await async_client.doagents.create(
             anthropic_key_uuid="anthropic_key_uuid",
             description="description",
             instruction="instruction",
@@ -333,61 +333,61 @@ class TestAsyncAgents:
             region="region",
             tags=["string"],
         )
-        assert_matches_type(AgentCreateResponse, agent, path=["response"])
+        assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.with_raw_response.create()
+        response = await async_client.doagents.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = await response.parse()
-        assert_matches_type(AgentCreateResponse, agent, path=["response"])
+        doagent = await response.parse()
+        assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.with_streaming_response.create() as response:
+        async with async_client.doagents.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = await response.parse()
-            assert_matches_type(AgentCreateResponse, agent, path=["response"])
+            doagent = await response.parse()
+            assert_matches_type(DoagentCreateResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.retrieve(
+        doagent = await async_client.doagents.retrieve(
             "uuid",
         )
-        assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+        assert_matches_type(DoagentRetrieveResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.with_raw_response.retrieve(
+        response = await async_client.doagents.with_raw_response.retrieve(
             "uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = await response.parse()
-        assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+        doagent = await response.parse()
+        assert_matches_type(DoagentRetrieveResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.with_streaming_response.retrieve(
+        async with async_client.doagents.with_streaming_response.retrieve(
             "uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = await response.parse()
-            assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+            doagent = await response.parse()
+            assert_matches_type(DoagentRetrieveResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -395,22 +395,22 @@ class TestAsyncAgents:
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.agents.with_raw_response.retrieve(
+            await async_client.doagents.with_raw_response.retrieve(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.update(
+        doagent = await async_client.doagents.update(
             path_uuid="uuid",
         )
-        assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.update(
+        doagent = await async_client.doagents.update(
             path_uuid="uuid",
             anthropic_key_uuid="anthropic_key_uuid",
             description="description",
@@ -428,31 +428,31 @@ class TestAsyncAgents:
             top_p=0,
             body_uuid="uuid",
         )
-        assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.with_raw_response.update(
+        response = await async_client.doagents.with_raw_response.update(
             path_uuid="uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = await response.parse()
-        assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+        doagent = await response.parse()
+        assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.with_streaming_response.update(
+        async with async_client.doagents.with_streaming_response.update(
             path_uuid="uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = await response.parse()
-            assert_matches_type(AgentUpdateResponse, agent, path=["response"])
+            doagent = await response.parse()
+            assert_matches_type(DoagentUpdateResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,79 +460,79 @@ class TestAsyncAgents:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
-            await async_client.agents.with_raw_response.update(
+            await async_client.doagents.with_raw_response.update(
                 path_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.list()
-        assert_matches_type(AgentListResponse, agent, path=["response"])
+        doagent = await async_client.doagents.list()
+        assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.list(
+        doagent = await async_client.doagents.list(
             only_deployed=True,
             page=0,
             per_page=0,
         )
-        assert_matches_type(AgentListResponse, agent, path=["response"])
+        assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.with_raw_response.list()
+        response = await async_client.doagents.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = await response.parse()
-        assert_matches_type(AgentListResponse, agent, path=["response"])
+        doagent = await response.parse()
+        assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.with_streaming_response.list() as response:
+        async with async_client.doagents.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = await response.parse()
-            assert_matches_type(AgentListResponse, agent, path=["response"])
+            doagent = await response.parse()
+            assert_matches_type(DoagentListResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.delete(
+        doagent = await async_client.doagents.delete(
             "uuid",
         )
-        assert_matches_type(AgentDeleteResponse, agent, path=["response"])
+        assert_matches_type(DoagentDeleteResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.with_raw_response.delete(
+        response = await async_client.doagents.with_raw_response.delete(
             "uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = await response.parse()
-        assert_matches_type(AgentDeleteResponse, agent, path=["response"])
+        doagent = await response.parse()
+        assert_matches_type(DoagentDeleteResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.with_streaming_response.delete(
+        async with async_client.doagents.with_streaming_response.delete(
             "uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = await response.parse()
-            assert_matches_type(AgentDeleteResponse, agent, path=["response"])
+            doagent = await response.parse()
+            assert_matches_type(DoagentDeleteResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -540,51 +540,51 @@ class TestAsyncAgents:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.agents.with_raw_response.delete(
+            await async_client.doagents.with_raw_response.delete(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_status(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.update_status(
+        doagent = await async_client.doagents.update_status(
             path_uuid="uuid",
         )
-        assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_status_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        agent = await async_client.agents.update_status(
+        doagent = await async_client.doagents.update_status(
             path_uuid="uuid",
             body_uuid="uuid",
             visibility="VISIBILITY_UNKNOWN",
         )
-        assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+        assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_status(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.with_raw_response.update_status(
+        response = await async_client.doagents.with_raw_response.update_status(
             path_uuid="uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        agent = await response.parse()
-        assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+        doagent = await response.parse()
+        assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_status(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.with_streaming_response.update_status(
+        async with async_client.doagents.with_streaming_response.update_status(
             path_uuid="uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            agent = await response.parse()
-            assert_matches_type(AgentUpdateStatusResponse, agent, path=["response"])
+            doagent = await response.parse()
+            assert_matches_type(DoagentUpdateStatusResponse, doagent, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -592,6 +592,6 @@ class TestAsyncAgents:
     @parametrize
     async def test_path_params_update_status(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
-            await async_client.agents.with_raw_response.update_status(
+            await async_client.doagents.with_raw_response.update_status(
                 path_uuid="",
             )

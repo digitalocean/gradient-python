@@ -9,7 +9,7 @@ import pytest
 
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents import (
+from gradientai.types.doagents import (
     ChildAgentAddResponse,
     ChildAgentViewResponse,
     ChildAgentDeleteResponse,
@@ -25,7 +25,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.update(
+        child_agent = client.doagents.child_agents.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -34,7 +34,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.update(
+        child_agent = client.doagents.child_agents.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -48,7 +48,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.update(
+        response = client.doagents.child_agents.with_raw_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -61,7 +61,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.update(
+        with client.doagents.child_agents.with_streaming_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
@@ -79,13 +79,13 @@ class TestChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            client.agents.child_agents.with_raw_response.update(
+            client.doagents.child_agents.with_raw_response.update(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.update(
+            client.doagents.child_agents.with_raw_response.update(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -93,7 +93,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.delete(
+        child_agent = client.doagents.child_agents.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
@@ -102,7 +102,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.delete(
+        response = client.doagents.child_agents.with_raw_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
@@ -115,7 +115,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.delete(
+        with client.doagents.child_agents.with_streaming_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         ) as response:
@@ -131,13 +131,13 @@ class TestChildAgents:
     @parametrize
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `parent_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.delete(
+            client.doagents.child_agents.with_raw_response.delete(
                 child_agent_uuid="child_agent_uuid",
                 parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `child_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.delete(
+            client.doagents.child_agents.with_raw_response.delete(
                 child_agent_uuid="",
                 parent_agent_uuid="parent_agent_uuid",
             )
@@ -145,7 +145,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_add(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.add(
+        child_agent = client.doagents.child_agents.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -154,7 +154,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_add_with_all_params(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.add(
+        child_agent = client.doagents.child_agents.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -167,7 +167,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_add(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.add(
+        response = client.doagents.child_agents.with_raw_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -180,7 +180,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_add(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.add(
+        with client.doagents.child_agents.with_streaming_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
@@ -198,13 +198,13 @@ class TestChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            client.agents.child_agents.with_raw_response.add(
+            client.doagents.child_agents.with_raw_response.add(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.add(
+            client.doagents.child_agents.with_raw_response.add(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -212,7 +212,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_view(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.view(
+        child_agent = client.doagents.child_agents.view(
             "uuid",
         )
         assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
@@ -220,7 +220,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_view(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.view(
+        response = client.doagents.child_agents.with_raw_response.view(
             "uuid",
         )
 
@@ -232,7 +232,7 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_view(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.view(
+        with client.doagents.child_agents.with_streaming_response.view(
             "uuid",
         ) as response:
             assert not response.is_closed
@@ -247,7 +247,7 @@ class TestChildAgents:
     @parametrize
     def test_path_params_view(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.view(
+            client.doagents.child_agents.with_raw_response.view(
                 "",
             )
 
@@ -258,7 +258,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.update(
+        child_agent = await async_client.doagents.child_agents.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -267,7 +267,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.update(
+        child_agent = await async_client.doagents.child_agents.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -281,7 +281,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.update(
+        response = await async_client.doagents.child_agents.with_raw_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -294,7 +294,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.update(
+        async with async_client.doagents.child_agents.with_streaming_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
@@ -312,13 +312,13 @@ class TestAsyncChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            await async_client.agents.child_agents.with_raw_response.update(
+            await async_client.doagents.child_agents.with_raw_response.update(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.update(
+            await async_client.doagents.child_agents.with_raw_response.update(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -326,7 +326,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.delete(
+        child_agent = await async_client.doagents.child_agents.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
@@ -335,7 +335,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.delete(
+        response = await async_client.doagents.child_agents.with_raw_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
@@ -348,7 +348,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.delete(
+        async with async_client.doagents.child_agents.with_streaming_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         ) as response:
@@ -364,13 +364,13 @@ class TestAsyncChildAgents:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `parent_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.delete(
+            await async_client.doagents.child_agents.with_raw_response.delete(
                 child_agent_uuid="child_agent_uuid",
                 parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `child_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.delete(
+            await async_client.doagents.child_agents.with_raw_response.delete(
                 child_agent_uuid="",
                 parent_agent_uuid="parent_agent_uuid",
             )
@@ -378,7 +378,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_add(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.add(
+        child_agent = await async_client.doagents.child_agents.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -387,7 +387,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_add_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.add(
+        child_agent = await async_client.doagents.child_agents.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -400,7 +400,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.add(
+        response = await async_client.doagents.child_agents.with_raw_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
@@ -413,7 +413,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.add(
+        async with async_client.doagents.child_agents.with_streaming_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
@@ -431,13 +431,13 @@ class TestAsyncChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            await async_client.agents.child_agents.with_raw_response.add(
+            await async_client.doagents.child_agents.with_raw_response.add(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.add(
+            await async_client.doagents.child_agents.with_raw_response.add(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -445,7 +445,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_view(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.view(
+        child_agent = await async_client.doagents.child_agents.view(
             "uuid",
         )
         assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
@@ -453,7 +453,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_view(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.view(
+        response = await async_client.doagents.child_agents.with_raw_response.view(
             "uuid",
         )
 
@@ -465,7 +465,7 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_view(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.view(
+        async with async_client.doagents.child_agents.with_streaming_response.view(
             "uuid",
         ) as response:
             assert not response.is_closed
@@ -480,6 +480,6 @@ class TestAsyncChildAgents:
     @parametrize
     async def test_path_params_view(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.view(
+            await async_client.doagents.child_agents.with_raw_response.view(
                 "",
             )

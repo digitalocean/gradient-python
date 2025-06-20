@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import List, Optional
 
 from ...._models import BaseModel
-from ...agents.api_meta import APIMeta
-from ...agents.api_links import APILinks
+from ...doagents.api_meta import APIMeta
+from ...doagents.api_links import APILinks
 
 __all__ = ["KeyRetrieveAgentsResponse"]
 

@@ -7,10 +7,10 @@ from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["AgentCreateParams"]
+__all__ = ["DoagentCreateParams"]
 
 
-class AgentCreateParams(TypedDict, total=False):
+class DoagentCreateParams(TypedDict, total=False):
     anthropic_key_uuid: str
 
     description: str

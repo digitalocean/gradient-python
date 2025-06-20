@@ -33,7 +33,7 @@ client = GradientAI(
     ),  # This is the default and can be omitted
 )
 
-versions = client.agents.versions.list(
+versions = client.doagents.versions.list(
     uuid="REPLACE_ME",
 )
 print(versions.agent_versions)
@@ -61,7 +61,7 @@ client = AsyncGradientAI(
 
 
 async def main() -> None:
-    versions = await client.agents.versions.list(
+    versions = await client.doagents.versions.list(
         uuid="REPLACE_ME",
     )
     print(versions.agent_versions)
@@ -113,7 +113,7 @@ from gradientai import GradientAI
 client = GradientAI()
 
 try:
-    client.agents.versions.list(
+    client.doagents.versions.list(
         uuid="REPLACE_ME",
     )
 except gradientai.APIConnectionError as e:
@@ -158,7 +158,7 @@ client = GradientAI(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).agents.versions.list(
+client.with_options(max_retries=5).doagents.versions.list(
     uuid="REPLACE_ME",
 )
 ```
@@ -183,7 +183,7 @@ client = GradientAI(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).agents.versions.list(
+client.with_options(timeout=5.0).doagents.versions.list(
     uuid="REPLACE_ME",
 )
 ```
@@ -226,12 +226,12 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from gradientai import GradientAI
 
 client = GradientAI()
-response = client.agents.versions.with_raw_response.list(
+response = client.doagents.versions.with_raw_response.list(
     uuid="REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
 
-version = response.parse()  # get the object that `agents.versions.list()` would have returned
+version = response.parse()  # get the object that `doagents.versions.list()` would have returned
 print(version.agent_versions)
 ```
 
@@ -246,7 +246,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.agents.versions.with_streaming_response.list(
+with client.doagents.versions.with_streaming_response.list(
     uuid="REPLACE_ME",
 ) as response:
     print(response.headers.get("X-My-Header"))

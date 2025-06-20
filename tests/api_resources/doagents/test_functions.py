@@ -9,7 +9,7 @@ import pytest
 
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents import (
+from gradientai.types.doagents import (
     FunctionCreateResponse,
     FunctionDeleteResponse,
     FunctionUpdateResponse,
@@ -24,7 +24,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: GradientAI) -> None:
-        function = client.agents.functions.create(
+        function = client.doagents.functions.create(
             path_agent_uuid="agent_uuid",
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
@@ -32,7 +32,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
-        function = client.agents.functions.create(
+        function = client.doagents.functions.create(
             path_agent_uuid="agent_uuid",
             body_agent_uuid="agent_uuid",
             description="description",
@@ -47,7 +47,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: GradientAI) -> None:
-        response = client.agents.functions.with_raw_response.create(
+        response = client.doagents.functions.with_raw_response.create(
             path_agent_uuid="agent_uuid",
         )
 
@@ -59,7 +59,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: GradientAI) -> None:
-        with client.agents.functions.with_streaming_response.create(
+        with client.doagents.functions.with_streaming_response.create(
             path_agent_uuid="agent_uuid",
         ) as response:
             assert not response.is_closed
@@ -74,14 +74,14 @@ class TestFunctions:
     @parametrize
     def test_path_params_create(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
-            client.agents.functions.with_raw_response.create(
+            client.doagents.functions.with_raw_response.create(
                 path_agent_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
-        function = client.agents.functions.update(
+        function = client.doagents.functions.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
         )
@@ -90,7 +90,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
-        function = client.agents.functions.update(
+        function = client.doagents.functions.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
             body_agent_uuid="agent_uuid",
@@ -107,7 +107,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
-        response = client.agents.functions.with_raw_response.update(
+        response = client.doagents.functions.with_raw_response.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
         )
@@ -120,7 +120,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
-        with client.agents.functions.with_streaming_response.update(
+        with client.doagents.functions.with_streaming_response.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
         ) as response:
@@ -136,13 +136,13 @@ class TestFunctions:
     @parametrize
     def test_path_params_update(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
-            client.agents.functions.with_raw_response.update(
+            client.doagents.functions.with_raw_response.update(
                 path_function_uuid="function_uuid",
                 path_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_function_uuid` but received ''"):
-            client.agents.functions.with_raw_response.update(
+            client.doagents.functions.with_raw_response.update(
                 path_function_uuid="",
                 path_agent_uuid="agent_uuid",
             )
@@ -150,7 +150,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
-        function = client.agents.functions.delete(
+        function = client.doagents.functions.delete(
             function_uuid="function_uuid",
             agent_uuid="agent_uuid",
         )
@@ -159,7 +159,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
-        response = client.agents.functions.with_raw_response.delete(
+        response = client.doagents.functions.with_raw_response.delete(
             function_uuid="function_uuid",
             agent_uuid="agent_uuid",
         )
@@ -172,7 +172,7 @@ class TestFunctions:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
-        with client.agents.functions.with_streaming_response.delete(
+        with client.doagents.functions.with_streaming_response.delete(
             function_uuid="function_uuid",
             agent_uuid="agent_uuid",
         ) as response:
@@ -188,13 +188,13 @@ class TestFunctions:
     @parametrize
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            client.agents.functions.with_raw_response.delete(
+            client.doagents.functions.with_raw_response.delete(
                 function_uuid="function_uuid",
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `function_uuid` but received ''"):
-            client.agents.functions.with_raw_response.delete(
+            client.doagents.functions.with_raw_response.delete(
                 function_uuid="",
                 agent_uuid="agent_uuid",
             )
@@ -206,7 +206,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncGradientAI) -> None:
-        function = await async_client.agents.functions.create(
+        function = await async_client.doagents.functions.create(
             path_agent_uuid="agent_uuid",
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
@@ -214,7 +214,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        function = await async_client.agents.functions.create(
+        function = await async_client.doagents.functions.create(
             path_agent_uuid="agent_uuid",
             body_agent_uuid="agent_uuid",
             description="description",
@@ -229,7 +229,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.functions.with_raw_response.create(
+        response = await async_client.doagents.functions.with_raw_response.create(
             path_agent_uuid="agent_uuid",
         )
 
@@ -241,7 +241,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.functions.with_streaming_response.create(
+        async with async_client.doagents.functions.with_streaming_response.create(
             path_agent_uuid="agent_uuid",
         ) as response:
             assert not response.is_closed
@@ -256,14 +256,14 @@ class TestAsyncFunctions:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
-            await async_client.agents.functions.with_raw_response.create(
+            await async_client.doagents.functions.with_raw_response.create(
                 path_agent_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
-        function = await async_client.agents.functions.update(
+        function = await async_client.doagents.functions.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
         )
@@ -272,7 +272,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        function = await async_client.agents.functions.update(
+        function = await async_client.doagents.functions.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
             body_agent_uuid="agent_uuid",
@@ -289,7 +289,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.functions.with_raw_response.update(
+        response = await async_client.doagents.functions.with_raw_response.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
         )
@@ -302,7 +302,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.functions.with_streaming_response.update(
+        async with async_client.doagents.functions.with_streaming_response.update(
             path_function_uuid="function_uuid",
             path_agent_uuid="agent_uuid",
         ) as response:
@@ -318,13 +318,13 @@ class TestAsyncFunctions:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
-            await async_client.agents.functions.with_raw_response.update(
+            await async_client.doagents.functions.with_raw_response.update(
                 path_function_uuid="function_uuid",
                 path_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_function_uuid` but received ''"):
-            await async_client.agents.functions.with_raw_response.update(
+            await async_client.doagents.functions.with_raw_response.update(
                 path_function_uuid="",
                 path_agent_uuid="agent_uuid",
             )
@@ -332,7 +332,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
-        function = await async_client.agents.functions.delete(
+        function = await async_client.doagents.functions.delete(
             function_uuid="function_uuid",
             agent_uuid="agent_uuid",
         )
@@ -341,7 +341,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.functions.with_raw_response.delete(
+        response = await async_client.doagents.functions.with_raw_response.delete(
             function_uuid="function_uuid",
             agent_uuid="agent_uuid",
         )
@@ -354,7 +354,7 @@ class TestAsyncFunctions:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.functions.with_streaming_response.delete(
+        async with async_client.doagents.functions.with_streaming_response.delete(
             function_uuid="function_uuid",
             agent_uuid="agent_uuid",
         ) as response:
@@ -370,13 +370,13 @@ class TestAsyncFunctions:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            await async_client.agents.functions.with_raw_response.delete(
+            await async_client.doagents.functions.with_raw_response.delete(
                 function_uuid="function_uuid",
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `function_uuid` but received ''"):
-            await async_client.agents.functions.with_raw_response.delete(
+            await async_client.doagents.functions.with_raw_response.delete(
                 function_uuid="",
                 agent_uuid="agent_uuid",
             )

@@ -9,7 +9,7 @@ import pytest
 
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents import APILinkKnowledgeBaseOutput, KnowledgeBaseDetachResponse
+from gradientai.types.doagents import APILinkKnowledgeBaseOutput, KnowledgeBaseDetachResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_method_attach(self, client: GradientAI) -> None:
-        knowledge_base = client.agents.knowledge_bases.attach(
+        knowledge_base = client.doagents.knowledge_bases.attach(
             "agent_uuid",
         )
         assert_matches_type(APILinkKnowledgeBaseOutput, knowledge_base, path=["response"])
@@ -28,7 +28,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_attach(self, client: GradientAI) -> None:
-        response = client.agents.knowledge_bases.with_raw_response.attach(
+        response = client.doagents.knowledge_bases.with_raw_response.attach(
             "agent_uuid",
         )
 
@@ -40,7 +40,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_attach(self, client: GradientAI) -> None:
-        with client.agents.knowledge_bases.with_streaming_response.attach(
+        with client.doagents.knowledge_bases.with_streaming_response.attach(
             "agent_uuid",
         ) as response:
             assert not response.is_closed
@@ -55,14 +55,14 @@ class TestKnowledgeBases:
     @parametrize
     def test_path_params_attach(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            client.agents.knowledge_bases.with_raw_response.attach(
+            client.doagents.knowledge_bases.with_raw_response.attach(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_attach_single(self, client: GradientAI) -> None:
-        knowledge_base = client.agents.knowledge_bases.attach_single(
+        knowledge_base = client.doagents.knowledge_bases.attach_single(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -71,7 +71,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_attach_single(self, client: GradientAI) -> None:
-        response = client.agents.knowledge_bases.with_raw_response.attach_single(
+        response = client.doagents.knowledge_bases.with_raw_response.attach_single(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -84,7 +84,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_attach_single(self, client: GradientAI) -> None:
-        with client.agents.knowledge_bases.with_streaming_response.attach_single(
+        with client.doagents.knowledge_bases.with_streaming_response.attach_single(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         ) as response:
@@ -100,13 +100,13 @@ class TestKnowledgeBases:
     @parametrize
     def test_path_params_attach_single(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            client.agents.knowledge_bases.with_raw_response.attach_single(
+            client.doagents.knowledge_bases.with_raw_response.attach_single(
                 knowledge_base_uuid="knowledge_base_uuid",
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
-            client.agents.knowledge_bases.with_raw_response.attach_single(
+            client.doagents.knowledge_bases.with_raw_response.attach_single(
                 knowledge_base_uuid="",
                 agent_uuid="agent_uuid",
             )
@@ -114,7 +114,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_method_detach(self, client: GradientAI) -> None:
-        knowledge_base = client.agents.knowledge_bases.detach(
+        knowledge_base = client.doagents.knowledge_bases.detach(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -123,7 +123,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_detach(self, client: GradientAI) -> None:
-        response = client.agents.knowledge_bases.with_raw_response.detach(
+        response = client.doagents.knowledge_bases.with_raw_response.detach(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -136,7 +136,7 @@ class TestKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_detach(self, client: GradientAI) -> None:
-        with client.agents.knowledge_bases.with_streaming_response.detach(
+        with client.doagents.knowledge_bases.with_streaming_response.detach(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         ) as response:
@@ -152,13 +152,13 @@ class TestKnowledgeBases:
     @parametrize
     def test_path_params_detach(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            client.agents.knowledge_bases.with_raw_response.detach(
+            client.doagents.knowledge_bases.with_raw_response.detach(
                 knowledge_base_uuid="knowledge_base_uuid",
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
-            client.agents.knowledge_bases.with_raw_response.detach(
+            client.doagents.knowledge_bases.with_raw_response.detach(
                 knowledge_base_uuid="",
                 agent_uuid="agent_uuid",
             )
@@ -170,7 +170,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_method_attach(self, async_client: AsyncGradientAI) -> None:
-        knowledge_base = await async_client.agents.knowledge_bases.attach(
+        knowledge_base = await async_client.doagents.knowledge_bases.attach(
             "agent_uuid",
         )
         assert_matches_type(APILinkKnowledgeBaseOutput, knowledge_base, path=["response"])
@@ -178,7 +178,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_attach(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.knowledge_bases.with_raw_response.attach(
+        response = await async_client.doagents.knowledge_bases.with_raw_response.attach(
             "agent_uuid",
         )
 
@@ -190,7 +190,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_attach(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.knowledge_bases.with_streaming_response.attach(
+        async with async_client.doagents.knowledge_bases.with_streaming_response.attach(
             "agent_uuid",
         ) as response:
             assert not response.is_closed
@@ -205,14 +205,14 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_path_params_attach(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            await async_client.agents.knowledge_bases.with_raw_response.attach(
+            await async_client.doagents.knowledge_bases.with_raw_response.attach(
                 "",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_attach_single(self, async_client: AsyncGradientAI) -> None:
-        knowledge_base = await async_client.agents.knowledge_bases.attach_single(
+        knowledge_base = await async_client.doagents.knowledge_bases.attach_single(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -221,7 +221,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_attach_single(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.knowledge_bases.with_raw_response.attach_single(
+        response = await async_client.doagents.knowledge_bases.with_raw_response.attach_single(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -234,7 +234,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_attach_single(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.knowledge_bases.with_streaming_response.attach_single(
+        async with async_client.doagents.knowledge_bases.with_streaming_response.attach_single(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         ) as response:
@@ -250,13 +250,13 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_path_params_attach_single(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            await async_client.agents.knowledge_bases.with_raw_response.attach_single(
+            await async_client.doagents.knowledge_bases.with_raw_response.attach_single(
                 knowledge_base_uuid="knowledge_base_uuid",
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
-            await async_client.agents.knowledge_bases.with_raw_response.attach_single(
+            await async_client.doagents.knowledge_bases.with_raw_response.attach_single(
                 knowledge_base_uuid="",
                 agent_uuid="agent_uuid",
             )
@@ -264,7 +264,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_method_detach(self, async_client: AsyncGradientAI) -> None:
-        knowledge_base = await async_client.agents.knowledge_bases.detach(
+        knowledge_base = await async_client.doagents.knowledge_bases.detach(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -273,7 +273,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_detach(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.knowledge_bases.with_raw_response.detach(
+        response = await async_client.doagents.knowledge_bases.with_raw_response.detach(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         )
@@ -286,7 +286,7 @@ class TestAsyncKnowledgeBases:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_detach(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.knowledge_bases.with_streaming_response.detach(
+        async with async_client.doagents.knowledge_bases.with_streaming_response.detach(
             knowledge_base_uuid="knowledge_base_uuid",
             agent_uuid="agent_uuid",
         ) as response:
@@ -302,13 +302,13 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_path_params_detach(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
-            await async_client.agents.knowledge_bases.with_raw_response.detach(
+            await async_client.doagents.knowledge_bases.with_raw_response.detach(
                 knowledge_base_uuid="knowledge_base_uuid",
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
-            await async_client.agents.knowledge_bases.with_raw_response.detach(
+            await async_client.doagents.knowledge_bases.with_raw_response.detach(
                 knowledge_base_uuid="",
                 agent_uuid="agent_uuid",
             )
