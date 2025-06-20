@@ -15,9 +15,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.doagents import version_list_params, version_update_params
-from ...types.doagents.version_list_response import VersionListResponse
-from ...types.doagents.version_update_response import VersionUpdateResponse
+from ...types.agents import version_list_params, version_update_params
+from ...types.agents.version_list_response import VersionListResponse
+from ...types.agents.version_update_response import VersionUpdateResponse
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 

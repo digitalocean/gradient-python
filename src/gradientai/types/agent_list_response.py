@@ -5,14 +5,14 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .doagents.api_meta import APIMeta
+from .agents.api_meta import APIMeta
+from .agents.api_links import APILinks
 from .api_knowledge_base import APIKnowledgeBase
-from .doagents.api_links import APILinks
 from .api_retrieval_method import APIRetrievalMethod
 from .api_deployment_visibility import APIDeploymentVisibility
 
 __all__ = [
-    "DoagentListResponse",
+    "AgentListResponse",
     "Agent",
     "AgentChatbot",
     "AgentChatbotIdentifier",
@@ -323,7 +323,7 @@ class Agent(BaseModel):
     uuid: Optional[str] = None
 
 
-class DoagentListResponse(BaseModel):
+class AgentListResponse(BaseModel):
     agents: Optional[List[Agent]] = None
 
     links: Optional[APILinks] = None

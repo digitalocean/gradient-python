@@ -15,10 +15,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.doagents import function_create_params, function_update_params
-from ...types.doagents.function_create_response import FunctionCreateResponse
-from ...types.doagents.function_delete_response import FunctionDeleteResponse
-from ...types.doagents.function_update_response import FunctionUpdateResponse
+from ...types.agents import function_create_params, function_update_params
+from ...types.agents.function_create_response import FunctionCreateResponse
+from ...types.agents.function_delete_response import FunctionDeleteResponse
+from ...types.agents.function_update_response import FunctionUpdateResponse
 
 __all__ = ["FunctionsResource", "AsyncFunctionsResource"]
 

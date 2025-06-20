@@ -9,10 +9,10 @@ import httpx
 from ...types import (
     APIRetrievalMethod,
     APIDeploymentVisibility,
-    doagent_list_params,
-    doagent_create_params,
-    doagent_update_params,
-    doagent_update_status_params,
+    agent_list_params,
+    agent_create_params,
+    agent_update_params,
+    agent_update_status_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform, async_maybe_transform
@@ -65,19 +65,19 @@ from .knowledge_bases import (
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
 )
+from ...types.agent_list_response import AgentListResponse
 from ...types.api_retrieval_method import APIRetrievalMethod
-from ...types.doagent_list_response import DoagentListResponse
-from ...types.doagent_create_response import DoagentCreateResponse
-from ...types.doagent_delete_response import DoagentDeleteResponse
-from ...types.doagent_update_response import DoagentUpdateResponse
+from ...types.agent_create_response import AgentCreateResponse
+from ...types.agent_delete_response import AgentDeleteResponse
+from ...types.agent_update_response import AgentUpdateResponse
+from ...types.agent_retrieve_response import AgentRetrieveResponse
 from ...types.api_deployment_visibility import APIDeploymentVisibility
-from ...types.doagent_retrieve_response import DoagentRetrieveResponse
-from ...types.doagent_update_status_response import DoagentUpdateStatusResponse
+from ...types.agent_update_status_response import AgentUpdateStatusResponse
 
-__all__ = ["DoagentsResource", "AsyncDoagentsResource"]
+__all__ = ["AgentsResource", "AsyncAgentsResource"]
 
 
-class DoagentsResource(SyncAPIResource):
+class AgentsResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
@@ -99,23 +99,23 @@ class DoagentsResource(SyncAPIResource):
         return ChildAgentsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> DoagentsResourceWithRawResponse:
+    def with_raw_response(self) -> AgentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/digitalocean/genai-python#accessing-raw-response-data-eg-headers
         """
-        return DoagentsResourceWithRawResponse(self)
+        return AgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DoagentsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AgentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/digitalocean/genai-python#with_streaming_response
         """
-        return DoagentsResourceWithStreamingResponse(self)
+        return AgentsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -136,7 +136,7 @@ class DoagentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentCreateResponse:
+    ) -> AgentCreateResponse:
         """To create a new agent, send a POST request to `/v2/gen-ai/agents`.
 
         The response
@@ -175,12 +175,12 @@ class DoagentsResource(SyncAPIResource):
                     "region": region,
                     "tags": tags,
                 },
-                doagent_create_params.DoagentCreateParams,
+                agent_create_params.AgentCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentCreateResponse,
+            cast_to=AgentCreateResponse,
         )
 
     def retrieve(
@@ -193,7 +193,7 @@ class DoagentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentRetrieveResponse:
+    ) -> AgentRetrieveResponse:
         """To retrieve details of an agent, GET request to `/v2/gen-ai/agents/{uuid}`.
 
         The
@@ -217,7 +217,7 @@ class DoagentsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentRetrieveResponse,
+            cast_to=AgentRetrieveResponse,
         )
 
     def update(
@@ -245,7 +245,7 @@ class DoagentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentUpdateResponse:
+    ) -> AgentUpdateResponse:
         """To update an agent, send a PUT request to `/v2/gen-ai/agents/{uuid}`.
 
         The
@@ -303,12 +303,12 @@ class DoagentsResource(SyncAPIResource):
                     "top_p": top_p,
                     "body_uuid": body_uuid,
                 },
-                doagent_update_params.DoagentUpdateParams,
+                agent_update_params.AgentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentUpdateResponse,
+            cast_to=AgentUpdateResponse,
         )
 
     def list(
@@ -323,7 +323,7 @@ class DoagentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentListResponse:
+    ) -> AgentListResponse:
         """
         To list all agents, send a GET request to `/v2/gen-ai/agents`.
 
@@ -357,10 +357,10 @@ class DoagentsResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                     },
-                    doagent_list_params.DoagentListParams,
+                    agent_list_params.AgentListParams,
                 ),
             ),
-            cast_to=DoagentListResponse,
+            cast_to=AgentListResponse,
         )
 
     def delete(
@@ -373,7 +373,7 @@ class DoagentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentDeleteResponse:
+    ) -> AgentDeleteResponse:
         """
         To delete an agent, send a DELETE request to `/v2/gen-ai/agents/{uuid}`.
 
@@ -395,7 +395,7 @@ class DoagentsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentDeleteResponse,
+            cast_to=AgentDeleteResponse,
         )
 
     def update_status(
@@ -410,7 +410,7 @@ class DoagentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentUpdateStatusResponse:
+    ) -> AgentUpdateStatusResponse:
         """Check whether an agent is public or private.
 
         To update the agent status, send a
@@ -436,16 +436,16 @@ class DoagentsResource(SyncAPIResource):
                     "body_uuid": body_uuid,
                     "visibility": visibility,
                 },
-                doagent_update_status_params.DoagentUpdateStatusParams,
+                agent_update_status_params.AgentUpdateStatusParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentUpdateStatusResponse,
+            cast_to=AgentUpdateStatusResponse,
         )
 
 
-class AsyncDoagentsResource(AsyncAPIResource):
+class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
@@ -467,23 +467,23 @@ class AsyncDoagentsResource(AsyncAPIResource):
         return AsyncChildAgentsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncDoagentsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncAgentsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/digitalocean/genai-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncDoagentsResourceWithRawResponse(self)
+        return AsyncAgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDoagentsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncAgentsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/digitalocean/genai-python#with_streaming_response
         """
-        return AsyncDoagentsResourceWithStreamingResponse(self)
+        return AsyncAgentsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -504,7 +504,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentCreateResponse:
+    ) -> AgentCreateResponse:
         """To create a new agent, send a POST request to `/v2/gen-ai/agents`.
 
         The response
@@ -543,12 +543,12 @@ class AsyncDoagentsResource(AsyncAPIResource):
                     "region": region,
                     "tags": tags,
                 },
-                doagent_create_params.DoagentCreateParams,
+                agent_create_params.AgentCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentCreateResponse,
+            cast_to=AgentCreateResponse,
         )
 
     async def retrieve(
@@ -561,7 +561,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentRetrieveResponse:
+    ) -> AgentRetrieveResponse:
         """To retrieve details of an agent, GET request to `/v2/gen-ai/agents/{uuid}`.
 
         The
@@ -585,7 +585,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentRetrieveResponse,
+            cast_to=AgentRetrieveResponse,
         )
 
     async def update(
@@ -613,7 +613,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentUpdateResponse:
+    ) -> AgentUpdateResponse:
         """To update an agent, send a PUT request to `/v2/gen-ai/agents/{uuid}`.
 
         The
@@ -671,12 +671,12 @@ class AsyncDoagentsResource(AsyncAPIResource):
                     "top_p": top_p,
                     "body_uuid": body_uuid,
                 },
-                doagent_update_params.DoagentUpdateParams,
+                agent_update_params.AgentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentUpdateResponse,
+            cast_to=AgentUpdateResponse,
         )
 
     async def list(
@@ -691,7 +691,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentListResponse:
+    ) -> AgentListResponse:
         """
         To list all agents, send a GET request to `/v2/gen-ai/agents`.
 
@@ -725,10 +725,10 @@ class AsyncDoagentsResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                     },
-                    doagent_list_params.DoagentListParams,
+                    agent_list_params.AgentListParams,
                 ),
             ),
-            cast_to=DoagentListResponse,
+            cast_to=AgentListResponse,
         )
 
     async def delete(
@@ -741,7 +741,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentDeleteResponse:
+    ) -> AgentDeleteResponse:
         """
         To delete an agent, send a DELETE request to `/v2/gen-ai/agents/{uuid}`.
 
@@ -763,7 +763,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentDeleteResponse,
+            cast_to=AgentDeleteResponse,
         )
 
     async def update_status(
@@ -778,7 +778,7 @@ class AsyncDoagentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DoagentUpdateStatusResponse:
+    ) -> AgentUpdateStatusResponse:
         """Check whether an agent is public or private.
 
         To update the agent status, send a
@@ -804,186 +804,186 @@ class AsyncDoagentsResource(AsyncAPIResource):
                     "body_uuid": body_uuid,
                     "visibility": visibility,
                 },
-                doagent_update_status_params.DoagentUpdateStatusParams,
+                agent_update_status_params.AgentUpdateStatusParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DoagentUpdateStatusResponse,
+            cast_to=AgentUpdateStatusResponse,
         )
 
 
-class DoagentsResourceWithRawResponse:
-    def __init__(self, doagents: DoagentsResource) -> None:
-        self._doagents = doagents
+class AgentsResourceWithRawResponse:
+    def __init__(self, agents: AgentsResource) -> None:
+        self._agents = agents
 
         self.create = to_raw_response_wrapper(
-            doagents.create,
+            agents.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            doagents.retrieve,
+            agents.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            doagents.update,
+            agents.update,
         )
         self.list = to_raw_response_wrapper(
-            doagents.list,
+            agents.list,
         )
         self.delete = to_raw_response_wrapper(
-            doagents.delete,
+            agents.delete,
         )
         self.update_status = to_raw_response_wrapper(
-            doagents.update_status,
+            agents.update_status,
         )
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithRawResponse:
-        return APIKeysResourceWithRawResponse(self._doagents.api_keys)
+        return APIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
     def functions(self) -> FunctionsResourceWithRawResponse:
-        return FunctionsResourceWithRawResponse(self._doagents.functions)
+        return FunctionsResourceWithRawResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> VersionsResourceWithRawResponse:
-        return VersionsResourceWithRawResponse(self._doagents.versions)
+        return VersionsResourceWithRawResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResourceWithRawResponse:
-        return KnowledgeBasesResourceWithRawResponse(self._doagents.knowledge_bases)
+        return KnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
     @cached_property
     def child_agents(self) -> ChildAgentsResourceWithRawResponse:
-        return ChildAgentsResourceWithRawResponse(self._doagents.child_agents)
+        return ChildAgentsResourceWithRawResponse(self._agents.child_agents)
 
 
-class AsyncDoagentsResourceWithRawResponse:
-    def __init__(self, doagents: AsyncDoagentsResource) -> None:
-        self._doagents = doagents
+class AsyncAgentsResourceWithRawResponse:
+    def __init__(self, agents: AsyncAgentsResource) -> None:
+        self._agents = agents
 
         self.create = async_to_raw_response_wrapper(
-            doagents.create,
+            agents.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            doagents.retrieve,
+            agents.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            doagents.update,
+            agents.update,
         )
         self.list = async_to_raw_response_wrapper(
-            doagents.list,
+            agents.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            doagents.delete,
+            agents.delete,
         )
         self.update_status = async_to_raw_response_wrapper(
-            doagents.update_status,
+            agents.update_status,
         )
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
-        return AsyncAPIKeysResourceWithRawResponse(self._doagents.api_keys)
+        return AsyncAPIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResourceWithRawResponse:
-        return AsyncFunctionsResourceWithRawResponse(self._doagents.functions)
+        return AsyncFunctionsResourceWithRawResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
-        return AsyncVersionsResourceWithRawResponse(self._doagents.versions)
+        return AsyncVersionsResourceWithRawResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResourceWithRawResponse:
-        return AsyncKnowledgeBasesResourceWithRawResponse(self._doagents.knowledge_bases)
+        return AsyncKnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
     @cached_property
     def child_agents(self) -> AsyncChildAgentsResourceWithRawResponse:
-        return AsyncChildAgentsResourceWithRawResponse(self._doagents.child_agents)
+        return AsyncChildAgentsResourceWithRawResponse(self._agents.child_agents)
 
 
-class DoagentsResourceWithStreamingResponse:
-    def __init__(self, doagents: DoagentsResource) -> None:
-        self._doagents = doagents
+class AgentsResourceWithStreamingResponse:
+    def __init__(self, agents: AgentsResource) -> None:
+        self._agents = agents
 
         self.create = to_streamed_response_wrapper(
-            doagents.create,
+            agents.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            doagents.retrieve,
+            agents.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            doagents.update,
+            agents.update,
         )
         self.list = to_streamed_response_wrapper(
-            doagents.list,
+            agents.list,
         )
         self.delete = to_streamed_response_wrapper(
-            doagents.delete,
+            agents.delete,
         )
         self.update_status = to_streamed_response_wrapper(
-            doagents.update_status,
+            agents.update_status,
         )
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
-        return APIKeysResourceWithStreamingResponse(self._doagents.api_keys)
+        return APIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
     def functions(self) -> FunctionsResourceWithStreamingResponse:
-        return FunctionsResourceWithStreamingResponse(self._doagents.functions)
+        return FunctionsResourceWithStreamingResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> VersionsResourceWithStreamingResponse:
-        return VersionsResourceWithStreamingResponse(self._doagents.versions)
+        return VersionsResourceWithStreamingResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResourceWithStreamingResponse:
-        return KnowledgeBasesResourceWithStreamingResponse(self._doagents.knowledge_bases)
+        return KnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
 
     @cached_property
     def child_agents(self) -> ChildAgentsResourceWithStreamingResponse:
-        return ChildAgentsResourceWithStreamingResponse(self._doagents.child_agents)
+        return ChildAgentsResourceWithStreamingResponse(self._agents.child_agents)
 
 
-class AsyncDoagentsResourceWithStreamingResponse:
-    def __init__(self, doagents: AsyncDoagentsResource) -> None:
-        self._doagents = doagents
+class AsyncAgentsResourceWithStreamingResponse:
+    def __init__(self, agents: AsyncAgentsResource) -> None:
+        self._agents = agents
 
         self.create = async_to_streamed_response_wrapper(
-            doagents.create,
+            agents.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            doagents.retrieve,
+            agents.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            doagents.update,
+            agents.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            doagents.list,
+            agents.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            doagents.delete,
+            agents.delete,
         )
         self.update_status = async_to_streamed_response_wrapper(
-            doagents.update_status,
+            agents.update_status,
         )
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
-        return AsyncAPIKeysResourceWithStreamingResponse(self._doagents.api_keys)
+        return AsyncAPIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResourceWithStreamingResponse:
-        return AsyncFunctionsResourceWithStreamingResponse(self._doagents.functions)
+        return AsyncFunctionsResourceWithStreamingResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
-        return AsyncVersionsResourceWithStreamingResponse(self._doagents.versions)
+        return AsyncVersionsResourceWithStreamingResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResourceWithStreamingResponse:
-        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._doagents.knowledge_bases)
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
 
     @cached_property
     def child_agents(self) -> AsyncChildAgentsResourceWithStreamingResponse:
-        return AsyncChildAgentsResourceWithStreamingResponse(self._doagents.child_agents)
+        return AsyncChildAgentsResourceWithStreamingResponse(self._agents.child_agents)
