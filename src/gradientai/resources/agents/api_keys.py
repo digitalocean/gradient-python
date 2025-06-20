@@ -15,12 +15,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.doagents import api_key_list_params, api_key_create_params, api_key_update_params
-from ...types.doagents.api_key_list_response import APIKeyListResponse
-from ...types.doagents.api_key_create_response import APIKeyCreateResponse
-from ...types.doagents.api_key_delete_response import APIKeyDeleteResponse
-from ...types.doagents.api_key_update_response import APIKeyUpdateResponse
-from ...types.doagents.api_key_regenerate_response import APIKeyRegenerateResponse
+from ...types.agents import api_key_list_params, api_key_create_params, api_key_update_params
+from ...types.agents.api_key_list_response import APIKeyListResponse
+from ...types.agents.api_key_create_response import APIKeyCreateResponse
+from ...types.agents.api_key_delete_response import APIKeyDeleteResponse
+from ...types.agents.api_key_update_response import APIKeyUpdateResponse
+from ...types.agents.api_key_regenerate_response import APIKeyRegenerateResponse
 
 __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 

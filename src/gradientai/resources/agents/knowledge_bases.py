@@ -14,8 +14,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.doagents.api_link_knowledge_base_output import APILinkKnowledgeBaseOutput
-from ...types.doagents.knowledge_base_detach_response import KnowledgeBaseDetachResponse
+from ...types.agents.api_link_knowledge_base_output import APILinkKnowledgeBaseOutput
+from ...types.agents.knowledge_base_detach_response import KnowledgeBaseDetachResponse
 
 __all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource"]
 

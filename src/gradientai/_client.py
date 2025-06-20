@@ -31,12 +31,12 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, models, regions, doagents, inference, providers, indexing_jobs, knowledge_bases
+    from .resources import chat, agents, models, regions, inference, providers, indexing_jobs, knowledge_bases
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
+    from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
-    from .resources.doagents.doagents import DoagentsResource, AsyncDoagentsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
@@ -110,10 +110,10 @@ class GradientAI(SyncAPIClient):
         )
 
     @cached_property
-    def doagents(self) -> DoagentsResource:
-        from .resources.doagents import DoagentsResource
+    def agents(self) -> AgentsResource:
+        from .resources.agents import AgentsResource
 
-        return DoagentsResource(self)
+        return AgentsResource(self)
 
     @cached_property
     def providers(self) -> ProvidersResource:
@@ -329,10 +329,10 @@ class AsyncGradientAI(AsyncAPIClient):
         )
 
     @cached_property
-    def doagents(self) -> AsyncDoagentsResource:
-        from .resources.doagents import AsyncDoagentsResource
+    def agents(self) -> AsyncAgentsResource:
+        from .resources.agents import AsyncAgentsResource
 
-        return AsyncDoagentsResource(self)
+        return AsyncAgentsResource(self)
 
     @cached_property
     def providers(self) -> AsyncProvidersResource:
@@ -498,10 +498,10 @@ class GradientAIWithRawResponse:
         self._client = client
 
     @cached_property
-    def doagents(self) -> doagents.DoagentsResourceWithRawResponse:
-        from .resources.doagents import DoagentsResourceWithRawResponse
+    def agents(self) -> agents.AgentsResourceWithRawResponse:
+        from .resources.agents import AgentsResourceWithRawResponse
 
-        return DoagentsResourceWithRawResponse(self._client.doagents)
+        return AgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
     def providers(self) -> providers.ProvidersResourceWithRawResponse:
@@ -553,10 +553,10 @@ class AsyncGradientAIWithRawResponse:
         self._client = client
 
     @cached_property
-    def doagents(self) -> doagents.AsyncDoagentsResourceWithRawResponse:
-        from .resources.doagents import AsyncDoagentsResourceWithRawResponse
+    def agents(self) -> agents.AsyncAgentsResourceWithRawResponse:
+        from .resources.agents import AsyncAgentsResourceWithRawResponse
 
-        return AsyncDoagentsResourceWithRawResponse(self._client.doagents)
+        return AsyncAgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
     def providers(self) -> providers.AsyncProvidersResourceWithRawResponse:
@@ -608,10 +608,10 @@ class GradientAIWithStreamedResponse:
         self._client = client
 
     @cached_property
-    def doagents(self) -> doagents.DoagentsResourceWithStreamingResponse:
-        from .resources.doagents import DoagentsResourceWithStreamingResponse
+    def agents(self) -> agents.AgentsResourceWithStreamingResponse:
+        from .resources.agents import AgentsResourceWithStreamingResponse
 
-        return DoagentsResourceWithStreamingResponse(self._client.doagents)
+        return AgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
     def providers(self) -> providers.ProvidersResourceWithStreamingResponse:
@@ -663,10 +663,10 @@ class AsyncGradientAIWithStreamedResponse:
         self._client = client
 
     @cached_property
-    def doagents(self) -> doagents.AsyncDoagentsResourceWithStreamingResponse:
-        from .resources.doagents import AsyncDoagentsResourceWithStreamingResponse
+    def agents(self) -> agents.AsyncAgentsResourceWithStreamingResponse:
+        from .resources.agents import AsyncAgentsResourceWithStreamingResponse
 
-        return AsyncDoagentsResourceWithStreamingResponse(self._client.doagents)
+        return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
     def providers(self) -> providers.AsyncProvidersResourceWithStreamingResponse:

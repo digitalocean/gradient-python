@@ -9,7 +9,7 @@ import pytest
 
 from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.doagents import (
+from gradientai.types.agents import (
     VersionListResponse,
     VersionUpdateResponse,
 )
@@ -23,7 +23,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
-        version = client.doagents.versions.update(
+        version = client.agents.versions.update(
             path_uuid="uuid",
         )
         assert_matches_type(VersionUpdateResponse, version, path=["response"])
@@ -31,7 +31,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
-        version = client.doagents.versions.update(
+        version = client.agents.versions.update(
             path_uuid="uuid",
             body_uuid="uuid",
             version_hash="version_hash",
@@ -41,7 +41,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
-        response = client.doagents.versions.with_raw_response.update(
+        response = client.agents.versions.with_raw_response.update(
             path_uuid="uuid",
         )
 
@@ -53,7 +53,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
-        with client.doagents.versions.with_streaming_response.update(
+        with client.agents.versions.with_streaming_response.update(
             path_uuid="uuid",
         ) as response:
             assert not response.is_closed
@@ -68,14 +68,14 @@ class TestVersions:
     @parametrize
     def test_path_params_update(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
-            client.doagents.versions.with_raw_response.update(
+            client.agents.versions.with_raw_response.update(
                 path_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: GradientAI) -> None:
-        version = client.doagents.versions.list(
+        version = client.agents.versions.list(
             uuid="uuid",
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
@@ -83,7 +83,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
-        version = client.doagents.versions.list(
+        version = client.agents.versions.list(
             uuid="uuid",
             page=0,
             per_page=0,
@@ -93,7 +93,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: GradientAI) -> None:
-        response = client.doagents.versions.with_raw_response.list(
+        response = client.agents.versions.with_raw_response.list(
             uuid="uuid",
         )
 
@@ -105,7 +105,7 @@ class TestVersions:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: GradientAI) -> None:
-        with client.doagents.versions.with_streaming_response.list(
+        with client.agents.versions.with_streaming_response.list(
             uuid="uuid",
         ) as response:
             assert not response.is_closed
@@ -120,7 +120,7 @@ class TestVersions:
     @parametrize
     def test_path_params_list(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.doagents.versions.with_raw_response.list(
+            client.agents.versions.with_raw_response.list(
                 uuid="",
             )
 
@@ -131,7 +131,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
-        version = await async_client.doagents.versions.update(
+        version = await async_client.agents.versions.update(
             path_uuid="uuid",
         )
         assert_matches_type(VersionUpdateResponse, version, path=["response"])
@@ -139,7 +139,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        version = await async_client.doagents.versions.update(
+        version = await async_client.agents.versions.update(
             path_uuid="uuid",
             body_uuid="uuid",
             version_hash="version_hash",
@@ -149,7 +149,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.doagents.versions.with_raw_response.update(
+        response = await async_client.agents.versions.with_raw_response.update(
             path_uuid="uuid",
         )
 
@@ -161,7 +161,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.doagents.versions.with_streaming_response.update(
+        async with async_client.agents.versions.with_streaming_response.update(
             path_uuid="uuid",
         ) as response:
             assert not response.is_closed
@@ -176,14 +176,14 @@ class TestAsyncVersions:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
-            await async_client.doagents.versions.with_raw_response.update(
+            await async_client.agents.versions.with_raw_response.update(
                 path_uuid="",
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
-        version = await async_client.doagents.versions.list(
+        version = await async_client.agents.versions.list(
             uuid="uuid",
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
@@ -191,7 +191,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        version = await async_client.doagents.versions.list(
+        version = await async_client.agents.versions.list(
             uuid="uuid",
             page=0,
             per_page=0,
@@ -201,7 +201,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.doagents.versions.with_raw_response.list(
+        response = await async_client.agents.versions.with_raw_response.list(
             uuid="uuid",
         )
 
@@ -213,7 +213,7 @@ class TestAsyncVersions:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.doagents.versions.with_streaming_response.list(
+        async with async_client.agents.versions.with_streaming_response.list(
             uuid="uuid",
         ) as response:
             assert not response.is_closed
@@ -228,6 +228,6 @@ class TestAsyncVersions:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.doagents.versions.with_raw_response.list(
+            await async_client.agents.versions.with_raw_response.list(
                 uuid="",
             )

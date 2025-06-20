@@ -15,11 +15,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.doagents import child_agent_add_params, child_agent_update_params
-from ...types.doagents.child_agent_add_response import ChildAgentAddResponse
-from ...types.doagents.child_agent_view_response import ChildAgentViewResponse
-from ...types.doagents.child_agent_delete_response import ChildAgentDeleteResponse
-from ...types.doagents.child_agent_update_response import ChildAgentUpdateResponse
+from ...types.agents import child_agent_add_params, child_agent_update_params
+from ...types.agents.child_agent_add_response import ChildAgentAddResponse
+from ...types.agents.child_agent_view_response import ChildAgentViewResponse
+from ...types.agents.child_agent_delete_response import ChildAgentDeleteResponse
+from ...types.agents.child_agent_update_response import ChildAgentUpdateResponse
 
 __all__ = ["ChildAgentsResource", "AsyncChildAgentsResource"]
 
