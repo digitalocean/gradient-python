@@ -8,10 +8,10 @@ from typing_extensions import Annotated, TypedDict
 from .._utils import PropertyInfo
 from .api_retrieval_method import APIRetrievalMethod
 
-__all__ = ["AgentUpdateParams"]
+__all__ = ["DoagentUpdateParams"]
 
 
-class AgentUpdateParams(TypedDict, total=False):
+class DoagentUpdateParams(TypedDict, total=False):
     anthropic_key_uuid: str
 
     description: str

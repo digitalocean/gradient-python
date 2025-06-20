@@ -8,14 +8,6 @@ from .chat import (
     ChatResourceWithStreamingResponse,
     AsyncChatResourceWithStreamingResponse,
 )
-from .agents import (
-    AgentsResource,
-    AsyncAgentsResource,
-    AgentsResourceWithRawResponse,
-    AsyncAgentsResourceWithRawResponse,
-    AgentsResourceWithStreamingResponse,
-    AsyncAgentsResourceWithStreamingResponse,
-)
 from .models import (
     ModelsResource,
     AsyncModelsResource,
@@ -31,6 +23,14 @@ from .regions import (
     AsyncRegionsResourceWithRawResponse,
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
+)
+from .doagents import (
+    DoagentsResource,
+    AsyncDoagentsResource,
+    DoagentsResourceWithRawResponse,
+    AsyncDoagentsResourceWithRawResponse,
+    DoagentsResourceWithStreamingResponse,
+    AsyncDoagentsResourceWithStreamingResponse,
 )
 from .inference import (
     InferenceResource,
@@ -66,12 +66,12 @@ from .knowledge_bases import (
 )
 
 __all__ = [
-    "AgentsResource",
-    "AsyncAgentsResource",
-    "AgentsResourceWithRawResponse",
-    "AsyncAgentsResourceWithRawResponse",
-    "AgentsResourceWithStreamingResponse",
-    "AsyncAgentsResourceWithStreamingResponse",
+    "DoagentsResource",
+    "AsyncDoagentsResource",
+    "DoagentsResourceWithRawResponse",
+    "AsyncDoagentsResourceWithRawResponse",
+    "DoagentsResourceWithStreamingResponse",
+    "AsyncDoagentsResourceWithStreamingResponse",
     "ProvidersResource",
     "AsyncProvidersResource",
     "ProvidersResourceWithRawResponse",

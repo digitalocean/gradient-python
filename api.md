@@ -1,4 +1,4 @@
-# Agents
+# Doagents
 
 Types:
 
@@ -10,30 +10,30 @@ from gradientai.types import (
     APIDeploymentVisibility,
     APIOpenAIAPIKeyInfo,
     APIRetrievalMethod,
-    AgentCreateResponse,
-    AgentRetrieveResponse,
-    AgentUpdateResponse,
-    AgentListResponse,
-    AgentDeleteResponse,
-    AgentUpdateStatusResponse,
+    DoagentCreateResponse,
+    DoagentRetrieveResponse,
+    DoagentUpdateResponse,
+    DoagentListResponse,
+    DoagentDeleteResponse,
+    DoagentUpdateStatusResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /v2/gen-ai/agents">client.agents.<a href="./src/gradientai/resources/agents/agents.py">create</a>(\*\*<a href="src/gradientai/types/agent_create_params.py">params</a>) -> <a href="./src/gradientai/types/agent_create_response.py">AgentCreateResponse</a></code>
-- <code title="get /v2/gen-ai/agents/{uuid}">client.agents.<a href="./src/gradientai/resources/agents/agents.py">retrieve</a>(uuid) -> <a href="./src/gradientai/types/agent_retrieve_response.py">AgentRetrieveResponse</a></code>
-- <code title="put /v2/gen-ai/agents/{uuid}">client.agents.<a href="./src/gradientai/resources/agents/agents.py">update</a>(path_uuid, \*\*<a href="src/gradientai/types/agent_update_params.py">params</a>) -> <a href="./src/gradientai/types/agent_update_response.py">AgentUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/agents">client.agents.<a href="./src/gradientai/resources/agents/agents.py">list</a>(\*\*<a href="src/gradientai/types/agent_list_params.py">params</a>) -> <a href="./src/gradientai/types/agent_list_response.py">AgentListResponse</a></code>
-- <code title="delete /v2/gen-ai/agents/{uuid}">client.agents.<a href="./src/gradientai/resources/agents/agents.py">delete</a>(uuid) -> <a href="./src/gradientai/types/agent_delete_response.py">AgentDeleteResponse</a></code>
-- <code title="put /v2/gen-ai/agents/{uuid}/deployment_visibility">client.agents.<a href="./src/gradientai/resources/agents/agents.py">update_status</a>(path_uuid, \*\*<a href="src/gradientai/types/agent_update_status_params.py">params</a>) -> <a href="./src/gradientai/types/agent_update_status_response.py">AgentUpdateStatusResponse</a></code>
+- <code title="post /v2/gen-ai/agents">client.doagents.<a href="./src/gradientai/resources/doagents/doagents.py">create</a>(\*\*<a href="src/gradientai/types/doagent_create_params.py">params</a>) -> <a href="./src/gradientai/types/doagent_create_response.py">DoagentCreateResponse</a></code>
+- <code title="get /v2/gen-ai/agents/{uuid}">client.doagents.<a href="./src/gradientai/resources/doagents/doagents.py">retrieve</a>(uuid) -> <a href="./src/gradientai/types/doagent_retrieve_response.py">DoagentRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{uuid}">client.doagents.<a href="./src/gradientai/resources/doagents/doagents.py">update</a>(path_uuid, \*\*<a href="src/gradientai/types/doagent_update_params.py">params</a>) -> <a href="./src/gradientai/types/doagent_update_response.py">DoagentUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/agents">client.doagents.<a href="./src/gradientai/resources/doagents/doagents.py">list</a>(\*\*<a href="src/gradientai/types/doagent_list_params.py">params</a>) -> <a href="./src/gradientai/types/doagent_list_response.py">DoagentListResponse</a></code>
+- <code title="delete /v2/gen-ai/agents/{uuid}">client.doagents.<a href="./src/gradientai/resources/doagents/doagents.py">delete</a>(uuid) -> <a href="./src/gradientai/types/doagent_delete_response.py">DoagentDeleteResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{uuid}/deployment_visibility">client.doagents.<a href="./src/gradientai/resources/doagents/doagents.py">update_status</a>(path_uuid, \*\*<a href="src/gradientai/types/doagent_update_status_params.py">params</a>) -> <a href="./src/gradientai/types/doagent_update_status_response.py">DoagentUpdateStatusResponse</a></code>
 
 ## APIKeys
 
 Types:
 
 ```python
-from gradientai.types.agents import (
+from gradientai.types.doagents import (
     APIKeyCreateResponse,
     APIKeyUpdateResponse,
     APIKeyListResponse,
@@ -44,18 +44,18 @@ from gradientai.types.agents import (
 
 Methods:
 
-- <code title="post /v2/gen-ai/agents/{agent_uuid}/api_keys">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">create</a>(path_agent_uuid, \*\*<a href="src/gradientai/types/agents/api_key_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/api_key_create_response.py">APIKeyCreateResponse</a></code>
-- <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">update</a>(path_api_key_uuid, \*, path_agent_uuid, \*\*<a href="src/gradientai/types/agents/api_key_update_params.py">params</a>) -> <a href="./src/gradientai/types/agents/api_key_update_response.py">APIKeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/agents/{agent_uuid}/api_keys">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">list</a>(agent_uuid, \*\*<a href="src/gradientai/types/agents/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/agents/api_key_list_response.py">APIKeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">delete</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
-- <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">regenerate</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_key_regenerate_response.py">APIKeyRegenerateResponse</a></code>
+- <code title="post /v2/gen-ai/agents/{agent_uuid}/api_keys">client.doagents.api_keys.<a href="./src/gradientai/resources/doagents/api_keys.py">create</a>(path_agent_uuid, \*\*<a href="src/gradientai/types/doagents/api_key_create_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/api_key_create_response.py">APIKeyCreateResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.doagents.api_keys.<a href="./src/gradientai/resources/doagents/api_keys.py">update</a>(path_api_key_uuid, \*, path_agent_uuid, \*\*<a href="src/gradientai/types/doagents/api_key_update_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/api_key_update_response.py">APIKeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/agents/{agent_uuid}/api_keys">client.doagents.api_keys.<a href="./src/gradientai/resources/doagents/api_keys.py">list</a>(agent_uuid, \*\*<a href="src/gradientai/types/doagents/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/api_key_list_response.py">APIKeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.doagents.api_keys.<a href="./src/gradientai/resources/doagents/api_keys.py">delete</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/doagents/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate">client.doagents.api_keys.<a href="./src/gradientai/resources/doagents/api_keys.py">regenerate</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/doagents/api_key_regenerate_response.py">APIKeyRegenerateResponse</a></code>
 
 ## Functions
 
 Types:
 
 ```python
-from gradientai.types.agents import (
+from gradientai.types.doagents import (
     FunctionCreateResponse,
     FunctionUpdateResponse,
     FunctionDeleteResponse,
@@ -64,43 +64,43 @@ from gradientai.types.agents import (
 
 Methods:
 
-- <code title="post /v2/gen-ai/agents/{agent_uuid}/functions">client.agents.functions.<a href="./src/gradientai/resources/agents/functions.py">create</a>(path_agent_uuid, \*\*<a href="src/gradientai/types/agents/function_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/function_create_response.py">FunctionCreateResponse</a></code>
-- <code title="put /v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}">client.agents.functions.<a href="./src/gradientai/resources/agents/functions.py">update</a>(path_function_uuid, \*, path_agent_uuid, \*\*<a href="src/gradientai/types/agents/function_update_params.py">params</a>) -> <a href="./src/gradientai/types/agents/function_update_response.py">FunctionUpdateResponse</a></code>
-- <code title="delete /v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}">client.agents.functions.<a href="./src/gradientai/resources/agents/functions.py">delete</a>(function_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/function_delete_response.py">FunctionDeleteResponse</a></code>
+- <code title="post /v2/gen-ai/agents/{agent_uuid}/functions">client.doagents.functions.<a href="./src/gradientai/resources/doagents/functions.py">create</a>(path_agent_uuid, \*\*<a href="src/gradientai/types/doagents/function_create_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/function_create_response.py">FunctionCreateResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}">client.doagents.functions.<a href="./src/gradientai/resources/doagents/functions.py">update</a>(path_function_uuid, \*, path_agent_uuid, \*\*<a href="src/gradientai/types/doagents/function_update_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/function_update_response.py">FunctionUpdateResponse</a></code>
+- <code title="delete /v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}">client.doagents.functions.<a href="./src/gradientai/resources/doagents/functions.py">delete</a>(function_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/doagents/function_delete_response.py">FunctionDeleteResponse</a></code>
 
 ## Versions
 
 Types:
 
 ```python
-from gradientai.types.agents import APILinks, APIMeta, VersionUpdateResponse, VersionListResponse
+from gradientai.types.doagents import APILinks, APIMeta, VersionUpdateResponse, VersionListResponse
 ```
 
 Methods:
 
-- <code title="put /v2/gen-ai/agents/{uuid}/versions">client.agents.versions.<a href="./src/gradientai/resources/agents/versions.py">update</a>(path_uuid, \*\*<a href="src/gradientai/types/agents/version_update_params.py">params</a>) -> <a href="./src/gradientai/types/agents/version_update_response.py">VersionUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/agents/{uuid}/versions">client.agents.versions.<a href="./src/gradientai/resources/agents/versions.py">list</a>(uuid, \*\*<a href="src/gradientai/types/agents/version_list_params.py">params</a>) -> <a href="./src/gradientai/types/agents/version_list_response.py">VersionListResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{uuid}/versions">client.doagents.versions.<a href="./src/gradientai/resources/doagents/versions.py">update</a>(path_uuid, \*\*<a href="src/gradientai/types/doagents/version_update_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/version_update_response.py">VersionUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/agents/{uuid}/versions">client.doagents.versions.<a href="./src/gradientai/resources/doagents/versions.py">list</a>(uuid, \*\*<a href="src/gradientai/types/doagents/version_list_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/version_list_response.py">VersionListResponse</a></code>
 
 ## KnowledgeBases
 
 Types:
 
 ```python
-from gradientai.types.agents import APILinkKnowledgeBaseOutput, KnowledgeBaseDetachResponse
+from gradientai.types.doagents import APILinkKnowledgeBaseOutput, KnowledgeBaseDetachResponse
 ```
 
 Methods:
 
-- <code title="post /v2/gen-ai/agents/{agent_uuid}/knowledge_bases">client.agents.knowledge_bases.<a href="./src/gradientai/resources/agents/knowledge_bases.py">attach</a>(agent_uuid) -> <a href="./src/gradientai/types/agents/api_link_knowledge_base_output.py">APILinkKnowledgeBaseOutput</a></code>
-- <code title="post /v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}">client.agents.knowledge_bases.<a href="./src/gradientai/resources/agents/knowledge_bases.py">attach_single</a>(knowledge_base_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_link_knowledge_base_output.py">APILinkKnowledgeBaseOutput</a></code>
-- <code title="delete /v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}">client.agents.knowledge_bases.<a href="./src/gradientai/resources/agents/knowledge_bases.py">detach</a>(knowledge_base_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/knowledge_base_detach_response.py">KnowledgeBaseDetachResponse</a></code>
+- <code title="post /v2/gen-ai/agents/{agent_uuid}/knowledge_bases">client.doagents.knowledge_bases.<a href="./src/gradientai/resources/doagents/knowledge_bases.py">attach</a>(agent_uuid) -> <a href="./src/gradientai/types/doagents/api_link_knowledge_base_output.py">APILinkKnowledgeBaseOutput</a></code>
+- <code title="post /v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}">client.doagents.knowledge_bases.<a href="./src/gradientai/resources/doagents/knowledge_bases.py">attach_single</a>(knowledge_base_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/doagents/api_link_knowledge_base_output.py">APILinkKnowledgeBaseOutput</a></code>
+- <code title="delete /v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}">client.doagents.knowledge_bases.<a href="./src/gradientai/resources/doagents/knowledge_bases.py">detach</a>(knowledge_base_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/doagents/knowledge_base_detach_response.py">KnowledgeBaseDetachResponse</a></code>
 
 ## ChildAgents
 
 Types:
 
 ```python
-from gradientai.types.agents import (
+from gradientai.types.doagents import (
     ChildAgentUpdateResponse,
     ChildAgentDeleteResponse,
     ChildAgentAddResponse,
@@ -110,10 +110,10 @@ from gradientai.types.agents import (
 
 Methods:
 
-- <code title="put /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/gradientai/resources/agents/child_agents.py">update</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/gradientai/types/agents/child_agent_update_params.py">params</a>) -> <a href="./src/gradientai/types/agents/child_agent_update_response.py">ChildAgentUpdateResponse</a></code>
-- <code title="delete /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/gradientai/resources/agents/child_agents.py">delete</a>(child_agent_uuid, \*, parent_agent_uuid) -> <a href="./src/gradientai/types/agents/child_agent_delete_response.py">ChildAgentDeleteResponse</a></code>
-- <code title="post /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/gradientai/resources/agents/child_agents.py">add</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/gradientai/types/agents/child_agent_add_params.py">params</a>) -> <a href="./src/gradientai/types/agents/child_agent_add_response.py">ChildAgentAddResponse</a></code>
-- <code title="get /v2/gen-ai/agents/{uuid}/child_agents">client.agents.child_agents.<a href="./src/gradientai/resources/agents/child_agents.py">view</a>(uuid) -> <a href="./src/gradientai/types/agents/child_agent_view_response.py">ChildAgentViewResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.doagents.child_agents.<a href="./src/gradientai/resources/doagents/child_agents.py">update</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/gradientai/types/doagents/child_agent_update_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/child_agent_update_response.py">ChildAgentUpdateResponse</a></code>
+- <code title="delete /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.doagents.child_agents.<a href="./src/gradientai/resources/doagents/child_agents.py">delete</a>(child_agent_uuid, \*, parent_agent_uuid) -> <a href="./src/gradientai/types/doagents/child_agent_delete_response.py">ChildAgentDeleteResponse</a></code>
+- <code title="post /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.doagents.child_agents.<a href="./src/gradientai/resources/doagents/child_agents.py">add</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/gradientai/types/doagents/child_agent_add_params.py">params</a>) -> <a href="./src/gradientai/types/doagents/child_agent_add_response.py">ChildAgentAddResponse</a></code>
+- <code title="get /v2/gen-ai/agents/{uuid}/child_agents">client.doagents.child_agents.<a href="./src/gradientai/resources/doagents/child_agents.py">view</a>(uuid) -> <a href="./src/gradientai/types/doagents/child_agent_view_response.py">ChildAgentViewResponse</a></code>
 
 # Providers
 

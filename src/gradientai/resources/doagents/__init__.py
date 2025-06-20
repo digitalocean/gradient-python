@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .agents import (
-    AgentsResource,
-    AsyncAgentsResource,
-    AgentsResourceWithRawResponse,
-    AsyncAgentsResourceWithRawResponse,
-    AgentsResourceWithStreamingResponse,
-    AsyncAgentsResourceWithStreamingResponse,
-)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -15,6 +7,14 @@ from .api_keys import (
     AsyncAPIKeysResourceWithRawResponse,
     APIKeysResourceWithStreamingResponse,
     AsyncAPIKeysResourceWithStreamingResponse,
+)
+from .doagents import (
+    DoagentsResource,
+    AsyncDoagentsResource,
+    DoagentsResourceWithRawResponse,
+    AsyncDoagentsResourceWithRawResponse,
+    DoagentsResourceWithStreamingResponse,
+    AsyncDoagentsResourceWithStreamingResponse,
 )
 from .versions import (
     VersionsResource,
@@ -80,10 +80,10 @@ __all__ = [
     "AsyncChildAgentsResourceWithRawResponse",
     "ChildAgentsResourceWithStreamingResponse",
     "AsyncChildAgentsResourceWithStreamingResponse",
-    "AgentsResource",
-    "AsyncAgentsResource",
-    "AgentsResourceWithRawResponse",
-    "AsyncAgentsResourceWithRawResponse",
-    "AgentsResourceWithStreamingResponse",
-    "AsyncAgentsResourceWithStreamingResponse",
+    "DoagentsResource",
+    "AsyncDoagentsResource",
+    "DoagentsResourceWithRawResponse",
+    "AsyncDoagentsResourceWithRawResponse",
+    "DoagentsResourceWithStreamingResponse",
+    "AsyncDoagentsResourceWithStreamingResponse",
 ]

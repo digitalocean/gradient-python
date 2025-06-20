@@ -6,10 +6,10 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["AgentUpdateResponse"]
+__all__ = ["DoagentCreateResponse"]
 
 
-class AgentUpdateResponse(BaseModel):
+class DoagentCreateResponse(BaseModel):
     agent: Optional["APIAgent"] = None
 
 
