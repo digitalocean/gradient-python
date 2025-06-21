@@ -341,7 +341,7 @@ class TestGradientAI:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(GradientAIError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
+            with update_env(**{"DIGITALOCEAN_GRADIENTAI_API_KEY": Omit()}):
                 client2 = GradientAI(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
@@ -1153,7 +1153,7 @@ class TestAsyncGradientAI:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(GradientAIError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
+            with update_env(**{"DIGITALOCEAN_GRADIENTAI_API_KEY": Omit()}):
                 client2 = AsyncGradientAI(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 

@@ -82,13 +82,13 @@ class GradientAI(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous GradientAI client instance.
 
-        This automatically infers the `api_key` argument from the `DIGITALOCEAN_GENAI_SDK_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `DIGITALOCEAN_GRADIENTAI_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("DIGITALOCEAN_GENAI_SDK_API_KEY")
+            api_key = os.environ.get("DIGITALOCEAN_GRADIENTAI_API_KEY")
         if api_key is None:
             raise GradientAIError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the DIGITALOCEAN_GENAI_SDK_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the DIGITALOCEAN_GRADIENTAI_API_KEY environment variable"
             )
         self.api_key = api_key
 
@@ -301,13 +301,13 @@ class AsyncGradientAI(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncGradientAI client instance.
 
-        This automatically infers the `api_key` argument from the `DIGITALOCEAN_GENAI_SDK_API_KEY` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `DIGITALOCEAN_GRADIENTAI_API_KEY` environment variable if it is not provided.
         """
         if api_key is None:
-            api_key = os.environ.get("DIGITALOCEAN_GENAI_SDK_API_KEY")
+            api_key = os.environ.get("DIGITALOCEAN_GRADIENTAI_API_KEY")
         if api_key is None:
             raise GradientAIError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the DIGITALOCEAN_GENAI_SDK_API_KEY environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the DIGITALOCEAN_GRADIENTAI_API_KEY environment variable"
             )
         self.api_key = api_key
 
