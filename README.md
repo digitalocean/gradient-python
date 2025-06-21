@@ -28,9 +28,7 @@ import os
 from gradientai import GradientAI
 
 client = GradientAI(
-    api_key=os.environ.get(
-        "DIGITALOCEAN_GRADIENTAI_API_KEY"
-    ),  # This is the default and can be omitted
+    api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 
 versions = client.agents.versions.list(
@@ -41,7 +39,7 @@ print(versions.agent_versions)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `DIGITALOCEAN_GRADIENTAI_API_KEY="My API Key"` to your `.env` file
+to add `GRADIENTAI_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -54,9 +52,7 @@ import asyncio
 from gradientai import AsyncGradientAI
 
 client = AsyncGradientAI(
-    api_key=os.environ.get(
-        "DIGITALOCEAN_GRADIENTAI_API_KEY"
-    ),  # This is the default and can be omitted
+    api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 
 
@@ -94,9 +90,7 @@ from gradientai import AsyncGradientAI
 
 async def main() -> None:
     async with AsyncGradientAI(
-        api_key=os.environ.get(
-            "DIGITALOCEAN_GRADIENTAI_API_KEY"
-        ),  # This is the default and can be omitted
+        api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         versions = await client.agents.versions.list(
