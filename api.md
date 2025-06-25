@@ -191,6 +191,60 @@ Methods:
 - <code title="post /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/do_gradientai/resources/agents/child_agents.py">add</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/do_gradientai/types/agents/child_agent_add_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/child_agent_add_response.py">ChildAgentAddResponse</a></code>
 - <code title="get /v2/gen-ai/agents/{uuid}/child_agents">client.agents.child_agents.<a href="./src/do_gradientai/resources/agents/child_agents.py">view</a>(uuid) -> <a href="./src/do_gradientai/types/agents/child_agent_view_response.py">ChildAgentViewResponse</a></code>
 
+# Providers
+
+## Anthropic
+
+### Keys
+
+Types:
+
+```python
+from do_gradientai.types.providers.anthropic import (
+    KeyCreateResponse,
+    KeyRetrieveResponse,
+    KeyUpdateResponse,
+    KeyListResponse,
+    KeyDeleteResponse,
+    KeyListAgentsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/anthropic/keys">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/providers/anthropic/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/anthropic/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/providers/anthropic/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/providers/anthropic/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/anthropic/key_delete_response.py">KeyDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{uuid}/agents">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">list_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/providers/anthropic/key_list_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_list_agents_response.py">KeyListAgentsResponse</a></code>
+
+## OpenAI
+
+### Keys
+
+Types:
+
+```python
+from do_gradientai.types.providers.openai import (
+    KeyCreateResponse,
+    KeyRetrieveResponse,
+    KeyUpdateResponse,
+    KeyListResponse,
+    KeyDeleteResponse,
+    KeyRetrieveAgentsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/openai/keys">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/providers/openai/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/openai/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/providers/openai/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/providers/openai/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/openai/key_delete_response.py">KeyDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">retrieve_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/providers/openai/key_retrieve_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_retrieve_agents_response.py">KeyRetrieveAgentsResponse</a></code>
+
 # Regions
 
 Types:
@@ -321,4 +375,4 @@ from do_gradientai.types import APIAgreement, APIModel, APIModelVersion, ModelLi
 
 Methods:
 
-- <code title="get /v2/gen-ai/models">client.models.<a href="./src/do_gradientai/resources/models/models.py">list</a>(\*\*<a href="src/do_gradientai/types/model_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_list_response.py">ModelListResponse</a></code>
+- <code title="get /v2/gen-ai/models">client.models.<a href="./src/do_gradientai/resources/models.py">list</a>(\*\*<a href="src/do_gradientai/types/model_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_list_response.py">ModelListResponse</a></code>

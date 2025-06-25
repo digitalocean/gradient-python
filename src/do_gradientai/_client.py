@@ -31,13 +31,14 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, inference, indexing_jobs, knowledge_bases
+    from .resources import chat, agents, models, regions, inference, providers, indexing_jobs, knowledge_bases
+    from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
-    from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
+    from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
 __all__ = [
@@ -113,6 +114,12 @@ class GradientAI(SyncAPIClient):
         from .resources.agents import AgentsResource
 
         return AgentsResource(self)
+
+    @cached_property
+    def providers(self) -> ProvidersResource:
+        from .resources.providers import ProvidersResource
+
+        return ProvidersResource(self)
 
     @cached_property
     def regions(self) -> RegionsResource:
@@ -328,6 +335,12 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncAgentsResource(self)
 
     @cached_property
+    def providers(self) -> AsyncProvidersResource:
+        from .resources.providers import AsyncProvidersResource
+
+        return AsyncProvidersResource(self)
+
+    @cached_property
     def regions(self) -> AsyncRegionsResource:
         from .resources.regions import AsyncRegionsResource
 
@@ -491,6 +504,12 @@ class GradientAIWithRawResponse:
         return AgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
+    def providers(self) -> providers.ProvidersResourceWithRawResponse:
+        from .resources.providers import ProvidersResourceWithRawResponse
+
+        return ProvidersResourceWithRawResponse(self._client.providers)
+
+    @cached_property
     def regions(self) -> regions.RegionsResourceWithRawResponse:
         from .resources.regions import RegionsResourceWithRawResponse
 
@@ -538,6 +557,12 @@ class AsyncGradientAIWithRawResponse:
         from .resources.agents import AsyncAgentsResourceWithRawResponse
 
         return AsyncAgentsResourceWithRawResponse(self._client.agents)
+
+    @cached_property
+    def providers(self) -> providers.AsyncProvidersResourceWithRawResponse:
+        from .resources.providers import AsyncProvidersResourceWithRawResponse
+
+        return AsyncProvidersResourceWithRawResponse(self._client.providers)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
@@ -589,6 +614,12 @@ class GradientAIWithStreamedResponse:
         return AgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
+    def providers(self) -> providers.ProvidersResourceWithStreamingResponse:
+        from .resources.providers import ProvidersResourceWithStreamingResponse
+
+        return ProvidersResourceWithStreamingResponse(self._client.providers)
+
+    @cached_property
     def regions(self) -> regions.RegionsResourceWithStreamingResponse:
         from .resources.regions import RegionsResourceWithStreamingResponse
 
@@ -636,6 +667,12 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.agents import AsyncAgentsResourceWithStreamingResponse
 
         return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
+
+    @cached_property
+    def providers(self) -> providers.AsyncProvidersResourceWithStreamingResponse:
+        from .resources.providers import AsyncProvidersResourceWithStreamingResponse
+
+        return AsyncProvidersResourceWithStreamingResponse(self._client.providers)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
