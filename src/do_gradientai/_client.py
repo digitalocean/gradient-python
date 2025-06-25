@@ -86,14 +86,14 @@ class GradientAI(SyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GRADIENTAI_API_KEY`
-        - `inference_key` from `GRADIENTAI_API_KEY`
+        - `inference_key` from `GRADIENTAI_INFERENCE_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("GRADIENTAI_API_KEY")
         self.api_key = api_key
 
         if inference_key is None:
-            inference_key = os.environ.get("GRADIENTAI_API_KEY")
+            inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
         self.inference_key = inference_key
 
         if base_url is None:
@@ -318,14 +318,14 @@ class AsyncGradientAI(AsyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GRADIENTAI_API_KEY`
-        - `inference_key` from `GRADIENTAI_API_KEY`
+        - `inference_key` from `GRADIENTAI_INFERENCE_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("GRADIENTAI_API_KEY")
         self.api_key = api_key
 
         if inference_key is None:
-            inference_key = os.environ.get("GRADIENTAI_API_KEY")
+            inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
         self.inference_key = inference_key
 
         if base_url is None:
