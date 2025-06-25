@@ -34,6 +34,18 @@ class APIIndexingJob(BaseModel):
 
     started_at: Optional[datetime] = None
 
+    status: Optional[
+        Literal[
+            "INDEX_JOB_STATUS_UNKNOWN",
+            "INDEX_JOB_STATUS_PARTIAL",
+            "INDEX_JOB_STATUS_IN_PROGRESS",
+            "INDEX_JOB_STATUS_COMPLETED",
+            "INDEX_JOB_STATUS_FAILED",
+            "INDEX_JOB_STATUS_NO_CHANGES",
+            "INDEX_JOB_STATUS_PENDING",
+        ]
+    ] = None
+
     tokens: Optional[int] = None
 
     total_datasources: Optional[int] = None

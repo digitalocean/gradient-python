@@ -5,6 +5,7 @@ from __future__ import annotations
 from .api_indexing_job import APIIndexingJob as APIIndexingJob
 from .aws_data_source_param import AwsDataSourceParam as AwsDataSourceParam
 from .api_spaces_data_source import APISpacesDataSource as APISpacesDataSource
+from .api_indexed_data_source import APIIndexedDataSource as APIIndexedDataSource
 from .data_source_list_params import DataSourceListParams as DataSourceListParams
 from .indexing_job_list_params import IndexingJobListParams as IndexingJobListParams
 from .data_source_create_params import DataSourceCreateParams as DataSourceCreateParams

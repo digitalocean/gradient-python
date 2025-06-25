@@ -73,14 +73,6 @@ from .knowledge_bases import (
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
 )
-from .evaluation_metrics import (
-    EvaluationMetricsResource,
-    AsyncEvaluationMetricsResource,
-    EvaluationMetricsResourceWithRawResponse,
-    AsyncEvaluationMetricsResourceWithRawResponse,
-    EvaluationMetricsResourceWithStreamingResponse,
-    AsyncEvaluationMetricsResourceWithStreamingResponse,
-)
 from .evaluation_datasets import (
     EvaluationDatasetsResource,
     AsyncEvaluationDatasetsResource,
@@ -105,6 +97,14 @@ from ...types.agent_update_response import AgentUpdateResponse
 from ...types.agent_retrieve_response import AgentRetrieveResponse
 from ...types.api_deployment_visibility import APIDeploymentVisibility
 from ...types.agent_update_status_response import AgentUpdateStatusResponse
+from .evaluation_metrics.evaluation_metrics import (
+    EvaluationMetricsResource,
+    AsyncEvaluationMetricsResource,
+    EvaluationMetricsResourceWithRawResponse,
+    AsyncEvaluationMetricsResourceWithRawResponse,
+    EvaluationMetricsResourceWithStreamingResponse,
+    AsyncEvaluationMetricsResourceWithStreamingResponse,
+)
 
 __all__ = ["AgentsResource", "AsyncAgentsResource"]
 

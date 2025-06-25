@@ -72,7 +72,16 @@ class TestEvaluationTestCases:
     @parametrize
     def test_method_retrieve(self, client: GradientAI) -> None:
         evaluation_test_case = client.agents.evaluation_test_cases.retrieve(
-            "test_case_uuid",
+            test_case_uuid="test_case_uuid",
+        )
+        assert_matches_type(EvaluationTestCaseRetrieveResponse, evaluation_test_case, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: GradientAI) -> None:
+        evaluation_test_case = client.agents.evaluation_test_cases.retrieve(
+            test_case_uuid="test_case_uuid",
+            evaluation_test_case_version=0,
         )
         assert_matches_type(EvaluationTestCaseRetrieveResponse, evaluation_test_case, path=["response"])
 
@@ -80,7 +89,7 @@ class TestEvaluationTestCases:
     @parametrize
     def test_raw_response_retrieve(self, client: GradientAI) -> None:
         response = client.agents.evaluation_test_cases.with_raw_response.retrieve(
-            "test_case_uuid",
+            test_case_uuid="test_case_uuid",
         )
 
         assert response.is_closed is True
@@ -92,7 +101,7 @@ class TestEvaluationTestCases:
     @parametrize
     def test_streaming_response_retrieve(self, client: GradientAI) -> None:
         with client.agents.evaluation_test_cases.with_streaming_response.retrieve(
-            "test_case_uuid",
+            test_case_uuid="test_case_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,7 +116,7 @@ class TestEvaluationTestCases:
     def test_path_params_retrieve(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_case_uuid` but received ''"):
             client.agents.evaluation_test_cases.with_raw_response.retrieve(
-                "",
+                test_case_uuid="",
             )
 
     @pytest.mark.skip()
@@ -306,7 +315,16 @@ class TestAsyncEvaluationTestCases:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
         evaluation_test_case = await async_client.agents.evaluation_test_cases.retrieve(
-            "test_case_uuid",
+            test_case_uuid="test_case_uuid",
+        )
+        assert_matches_type(EvaluationTestCaseRetrieveResponse, evaluation_test_case, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncGradientAI) -> None:
+        evaluation_test_case = await async_client.agents.evaluation_test_cases.retrieve(
+            test_case_uuid="test_case_uuid",
+            evaluation_test_case_version=0,
         )
         assert_matches_type(EvaluationTestCaseRetrieveResponse, evaluation_test_case, path=["response"])
 
@@ -314,7 +332,7 @@ class TestAsyncEvaluationTestCases:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.evaluation_test_cases.with_raw_response.retrieve(
-            "test_case_uuid",
+            test_case_uuid="test_case_uuid",
         )
 
         assert response.is_closed is True
@@ -326,7 +344,7 @@ class TestAsyncEvaluationTestCases:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.evaluation_test_cases.with_streaming_response.retrieve(
-            "test_case_uuid",
+            test_case_uuid="test_case_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -341,7 +359,7 @@ class TestAsyncEvaluationTestCases:
     async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_case_uuid` but received ''"):
             await async_client.agents.evaluation_test_cases.with_raw_response.retrieve(
-                "",
+                test_case_uuid="",
             )
 
     @pytest.mark.skip()

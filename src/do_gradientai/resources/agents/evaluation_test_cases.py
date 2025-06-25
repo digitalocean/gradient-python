@@ -20,6 +20,7 @@ from ..._base_client import make_request_options
 from ...types.agents import (
     evaluation_test_case_create_params,
     evaluation_test_case_update_params,
+    evaluation_test_case_retrieve_params,
     evaluation_test_case_list_evaluation_runs_params,
 )
 from ...types.agents.api_star_metric_param import APIStarMetricParam
@@ -118,6 +119,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
         self,
         test_case_uuid: str,
         *,
+        evaluation_test_case_version: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,6 +132,8 @@ class EvaluationTestCasesResource(SyncAPIResource):
         request to `/v2/gen-ai/evaluation_test_case/{test_case_uuid}`.
 
         Args:
+          evaluation_test_case_version: Version of the test case.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -145,7 +149,14 @@ class EvaluationTestCasesResource(SyncAPIResource):
             if self._client._base_url_overridden
             else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{test_case_uuid}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"evaluation_test_case_version": evaluation_test_case_version},
+                    evaluation_test_case_retrieve_params.EvaluationTestCaseRetrieveParams,
+                ),
             ),
             cast_to=EvaluationTestCaseRetrieveResponse,
         )
@@ -368,6 +379,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         self,
         test_case_uuid: str,
         *,
+        evaluation_test_case_version: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,6 +392,8 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         request to `/v2/gen-ai/evaluation_test_case/{test_case_uuid}`.
 
         Args:
+          evaluation_test_case_version: Version of the test case.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -395,7 +409,14 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
             if self._client._base_url_overridden
             else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{test_case_uuid}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"evaluation_test_case_version": evaluation_test_case_version},
+                    evaluation_test_case_retrieve_params.EvaluationTestCaseRetrieveParams,
+                ),
             ),
             cast_to=EvaluationTestCaseRetrieveResponse,
         )

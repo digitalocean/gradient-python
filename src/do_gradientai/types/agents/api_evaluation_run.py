@@ -11,10 +11,22 @@ __all__ = ["APIEvaluationRun"]
 
 
 class APIEvaluationRun(BaseModel):
+    agent_deleted: Optional[bool] = None
+
+    agent_name: Optional[str] = None
+
     agent_uuid: Optional[str] = None
     """Agent UUID."""
 
     agent_version_hash: Optional[str] = None
+
+    agent_workspace_uuid: Optional[str] = None
+
+    created_by_user_email: Optional[str] = None
+
+    created_by_user_id: Optional[str] = None
+
+    error_description: Optional[str] = None
 
     evaluation_run_uuid: Optional[str] = None
     """Evaluation run UUID."""
