@@ -15,13 +15,18 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._base_client import make_request_options
-from ....types.providers.anthropic import key_list_params, key_create_params, key_update_params, key_list_agents_params
-from ....types.providers.anthropic.key_list_response import KeyListResponse
-from ....types.providers.anthropic.key_create_response import KeyCreateResponse
-from ....types.providers.anthropic.key_delete_response import KeyDeleteResponse
-from ....types.providers.anthropic.key_update_response import KeyUpdateResponse
-from ....types.providers.anthropic.key_retrieve_response import KeyRetrieveResponse
-from ....types.providers.anthropic.key_list_agents_response import KeyListAgentsResponse
+from ....types.model_providers.openai import (
+    key_list_params,
+    key_create_params,
+    key_update_params,
+    key_retrieve_agents_params,
+)
+from ....types.model_providers.openai.key_list_response import KeyListResponse
+from ....types.model_providers.openai.key_create_response import KeyCreateResponse
+from ....types.model_providers.openai.key_delete_response import KeyDeleteResponse
+from ....types.model_providers.openai.key_update_response import KeyUpdateResponse
+from ....types.model_providers.openai.key_retrieve_response import KeyRetrieveResponse
+from ....types.model_providers.openai.key_retrieve_agents_response import KeyRetrieveAgentsResponse
 
 __all__ = ["KeysResource", "AsyncKeysResource"]
 
@@ -59,8 +64,7 @@ class KeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyCreateResponse:
         """
-        To create an Anthropic API key, send a POST request to
-        `/v2/gen-ai/anthropic/keys`.
+        To create an OpenAI API key, send a POST request to `/v2/gen-ai/openai/keys`.
 
         Args:
           extra_headers: Send extra headers
@@ -72,9 +76,9 @@ class KeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/gen-ai/anthropic/keys"
+            "/v2/gen-ai/openai/keys"
             if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/anthropic/keys",
+            else "https://api.digitalocean.com/v2/gen-ai/openai/keys",
             body=maybe_transform(
                 {
                     "api_key": api_key,
@@ -100,8 +104,8 @@ class KeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyRetrieveResponse:
         """
-        To retrieve details of an Anthropic API key, send a GET request to
-        `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
+        To retrieve details of an OpenAI API key, send a GET request to
+        `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
           extra_headers: Send extra headers
@@ -115,9 +119,9 @@ class KeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
+            f"/v2/gen-ai/openai/keys/{api_key_uuid}"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -139,8 +143,8 @@ class KeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyUpdateResponse:
         """
-        To update an Anthropic API key, send a PUT request to
-        `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
+        To update an OpenAI API key, send a PUT request to
+        `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
           extra_headers: Send extra headers
@@ -154,9 +158,9 @@ class KeysResource(SyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/anthropic/keys/{path_api_key_uuid}"
+            f"/v2/gen-ai/openai/keys/{path_api_key_uuid}"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{path_api_key_uuid}",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{path_api_key_uuid}",
             body=maybe_transform(
                 {
                     "api_key": api_key,
@@ -184,8 +188,7 @@ class KeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyListResponse:
         """
-        To list all Anthropic API keys, send a GET request to
-        `/v2/gen-ai/anthropic/keys`.
+        To list all OpenAI API keys, send a GET request to `/v2/gen-ai/openai/keys`.
 
         Args:
           page: page number.
@@ -201,9 +204,9 @@ class KeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/anthropic/keys"
+            "/v2/gen-ai/openai/keys"
             if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/anthropic/keys",
+            else "https://api.digitalocean.com/v2/gen-ai/openai/keys",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -232,8 +235,8 @@ class KeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyDeleteResponse:
         """
-        To delete an Anthropic API key, send a DELETE request to
-        `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
+        To delete an OpenAI API key, send a DELETE request to
+        `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
           extra_headers: Send extra headers
@@ -247,16 +250,16 @@ class KeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
+            f"/v2/gen-ai/openai/keys/{api_key_uuid}"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=KeyDeleteResponse,
         )
 
-    def list_agents(
+    def retrieve_agents(
         self,
         uuid: str,
         *,
@@ -268,9 +271,9 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListAgentsResponse:
+    ) -> KeyRetrieveAgentsResponse:
         """
-        List Agents by Anthropic Key.
+        List Agents by OpenAI Key.
 
         Args:
           page: page number.
@@ -288,9 +291,9 @@ class KeysResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/anthropic/keys/{uuid}/agents"
+            f"/v2/gen-ai/openai/keys/{uuid}/agents"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{uuid}/agents",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{uuid}/agents",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -301,10 +304,10 @@ class KeysResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                     },
-                    key_list_agents_params.KeyListAgentsParams,
+                    key_retrieve_agents_params.KeyRetrieveAgentsParams,
                 ),
             ),
-            cast_to=KeyListAgentsResponse,
+            cast_to=KeyRetrieveAgentsResponse,
         )
 
 
@@ -341,8 +344,7 @@ class AsyncKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyCreateResponse:
         """
-        To create an Anthropic API key, send a POST request to
-        `/v2/gen-ai/anthropic/keys`.
+        To create an OpenAI API key, send a POST request to `/v2/gen-ai/openai/keys`.
 
         Args:
           extra_headers: Send extra headers
@@ -354,9 +356,9 @@ class AsyncKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/gen-ai/anthropic/keys"
+            "/v2/gen-ai/openai/keys"
             if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/anthropic/keys",
+            else "https://api.digitalocean.com/v2/gen-ai/openai/keys",
             body=await async_maybe_transform(
                 {
                     "api_key": api_key,
@@ -382,8 +384,8 @@ class AsyncKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyRetrieveResponse:
         """
-        To retrieve details of an Anthropic API key, send a GET request to
-        `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
+        To retrieve details of an OpenAI API key, send a GET request to
+        `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
           extra_headers: Send extra headers
@@ -397,9 +399,9 @@ class AsyncKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
+            f"/v2/gen-ai/openai/keys/{api_key_uuid}"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -421,8 +423,8 @@ class AsyncKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyUpdateResponse:
         """
-        To update an Anthropic API key, send a PUT request to
-        `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
+        To update an OpenAI API key, send a PUT request to
+        `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
           extra_headers: Send extra headers
@@ -436,9 +438,9 @@ class AsyncKeysResource(AsyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/anthropic/keys/{path_api_key_uuid}"
+            f"/v2/gen-ai/openai/keys/{path_api_key_uuid}"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{path_api_key_uuid}",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{path_api_key_uuid}",
             body=await async_maybe_transform(
                 {
                     "api_key": api_key,
@@ -466,8 +468,7 @@ class AsyncKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyListResponse:
         """
-        To list all Anthropic API keys, send a GET request to
-        `/v2/gen-ai/anthropic/keys`.
+        To list all OpenAI API keys, send a GET request to `/v2/gen-ai/openai/keys`.
 
         Args:
           page: page number.
@@ -483,9 +484,9 @@ class AsyncKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/anthropic/keys"
+            "/v2/gen-ai/openai/keys"
             if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/anthropic/keys",
+            else "https://api.digitalocean.com/v2/gen-ai/openai/keys",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -514,8 +515,8 @@ class AsyncKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> KeyDeleteResponse:
         """
-        To delete an Anthropic API key, send a DELETE request to
-        `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
+        To delete an OpenAI API key, send a DELETE request to
+        `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
           extra_headers: Send extra headers
@@ -529,16 +530,16 @@ class AsyncKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
+            f"/v2/gen-ai/openai/keys/{api_key_uuid}"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{api_key_uuid}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=KeyDeleteResponse,
         )
 
-    async def list_agents(
+    async def retrieve_agents(
         self,
         uuid: str,
         *,
@@ -550,9 +551,9 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyListAgentsResponse:
+    ) -> KeyRetrieveAgentsResponse:
         """
-        List Agents by Anthropic Key.
+        List Agents by OpenAI Key.
 
         Args:
           page: page number.
@@ -570,9 +571,9 @@ class AsyncKeysResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/anthropic/keys/{uuid}/agents"
+            f"/v2/gen-ai/openai/keys/{uuid}/agents"
             if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{uuid}/agents",
+            else f"https://api.digitalocean.com/v2/gen-ai/openai/keys/{uuid}/agents",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -583,10 +584,10 @@ class AsyncKeysResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                     },
-                    key_list_agents_params.KeyListAgentsParams,
+                    key_retrieve_agents_params.KeyRetrieveAgentsParams,
                 ),
             ),
-            cast_to=KeyListAgentsResponse,
+            cast_to=KeyRetrieveAgentsResponse,
         )
 
 
@@ -609,8 +610,8 @@ class KeysResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             keys.delete,
         )
-        self.list_agents = to_raw_response_wrapper(
-            keys.list_agents,
+        self.retrieve_agents = to_raw_response_wrapper(
+            keys.retrieve_agents,
         )
 
 
@@ -633,8 +634,8 @@ class AsyncKeysResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             keys.delete,
         )
-        self.list_agents = async_to_raw_response_wrapper(
-            keys.list_agents,
+        self.retrieve_agents = async_to_raw_response_wrapper(
+            keys.retrieve_agents,
         )
 
 
@@ -657,8 +658,8 @@ class KeysResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             keys.delete,
         )
-        self.list_agents = to_streamed_response_wrapper(
-            keys.list_agents,
+        self.retrieve_agents = to_streamed_response_wrapper(
+            keys.retrieve_agents,
         )
 
 
@@ -681,6 +682,6 @@ class AsyncKeysResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             keys.delete,
         )
-        self.list_agents = async_to_streamed_response_wrapper(
-            keys.list_agents,
+        self.retrieve_agents = async_to_streamed_response_wrapper(
+            keys.retrieve_agents,
         )

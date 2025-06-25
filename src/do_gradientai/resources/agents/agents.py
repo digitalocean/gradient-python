@@ -6,6 +6,14 @@ from typing import List
 
 import httpx
 
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from ...types import (
     APIRetrievalMethod,
     APIDeploymentVisibility,
@@ -47,14 +55,6 @@ from ..._response import (
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
-)
-from .child_agents import (
-    ChildAgentsResource,
-    AsyncChildAgentsResource,
-    ChildAgentsResourceWithRawResponse,
-    AsyncChildAgentsResourceWithRawResponse,
-    ChildAgentsResourceWithStreamingResponse,
-    AsyncChildAgentsResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
 from .evaluation_runs import (
@@ -143,8 +143,8 @@ class AgentsResource(SyncAPIResource):
         return KnowledgeBasesResource(self._client)
 
     @cached_property
-    def child_agents(self) -> ChildAgentsResource:
-        return ChildAgentsResource(self._client)
+    def routes(self) -> RoutesResource:
+        return RoutesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AgentsResourceWithRawResponse:
@@ -527,8 +527,8 @@ class AsyncAgentsResource(AsyncAPIResource):
         return AsyncKnowledgeBasesResource(self._client)
 
     @cached_property
-    def child_agents(self) -> AsyncChildAgentsResource:
-        return AsyncChildAgentsResource(self._client)
+    def routes(self) -> AsyncRoutesResource:
+        return AsyncRoutesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAgentsResourceWithRawResponse:
@@ -933,8 +933,8 @@ class AgentsResourceWithRawResponse:
         return KnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
     @cached_property
-    def child_agents(self) -> ChildAgentsResourceWithRawResponse:
-        return ChildAgentsResourceWithRawResponse(self._agents.child_agents)
+    def routes(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self._agents.routes)
 
 
 class AsyncAgentsResourceWithRawResponse:
@@ -993,8 +993,8 @@ class AsyncAgentsResourceWithRawResponse:
         return AsyncKnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
     @cached_property
-    def child_agents(self) -> AsyncChildAgentsResourceWithRawResponse:
-        return AsyncChildAgentsResourceWithRawResponse(self._agents.child_agents)
+    def routes(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self._agents.routes)
 
 
 class AgentsResourceWithStreamingResponse:
@@ -1053,8 +1053,8 @@ class AgentsResourceWithStreamingResponse:
         return KnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
 
     @cached_property
-    def child_agents(self) -> ChildAgentsResourceWithStreamingResponse:
-        return ChildAgentsResourceWithStreamingResponse(self._agents.child_agents)
+    def routes(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self._agents.routes)
 
 
 class AsyncAgentsResourceWithStreamingResponse:
@@ -1113,5 +1113,5 @@ class AsyncAgentsResourceWithStreamingResponse:
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
 
     @cached_property
-    def child_agents(self) -> AsyncChildAgentsResourceWithStreamingResponse:
-        return AsyncChildAgentsResourceWithStreamingResponse(self._agents.child_agents)
+    def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self._agents.routes)

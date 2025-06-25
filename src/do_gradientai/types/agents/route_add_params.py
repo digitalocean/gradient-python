@@ -6,10 +6,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["ChildAgentAddParams"]
+__all__ = ["RouteAddParams"]
 
 
-class ChildAgentAddParams(TypedDict, total=False):
+class RouteAddParams(TypedDict, total=False):
     path_parent_agent_uuid: Required[Annotated[str, PropertyInfo(alias="parent_agent_uuid")]]
 
     body_child_agent_uuid: Annotated[str, PropertyInfo(alias="child_agent_uuid")]

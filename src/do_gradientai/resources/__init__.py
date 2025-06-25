@@ -40,14 +40,6 @@ from .inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
-from .providers import (
-    ProvidersResource,
-    AsyncProvidersResource,
-    ProvidersResourceWithRawResponse,
-    AsyncProvidersResourceWithRawResponse,
-    ProvidersResourceWithStreamingResponse,
-    AsyncProvidersResourceWithStreamingResponse,
-)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -55,6 +47,14 @@ from .knowledge_bases import (
     AsyncKnowledgeBasesResourceWithRawResponse,
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
+from .model_providers import (
+    ModelProvidersResource,
+    AsyncModelProvidersResource,
+    ModelProvidersResourceWithRawResponse,
+    AsyncModelProvidersResourceWithRawResponse,
+    ModelProvidersResourceWithStreamingResponse,
+    AsyncModelProvidersResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -64,12 +64,12 @@ __all__ = [
     "AsyncAgentsResourceWithRawResponse",
     "AgentsResourceWithStreamingResponse",
     "AsyncAgentsResourceWithStreamingResponse",
-    "ProvidersResource",
-    "AsyncProvidersResource",
-    "ProvidersResourceWithRawResponse",
-    "AsyncProvidersResourceWithRawResponse",
-    "ProvidersResourceWithStreamingResponse",
-    "AsyncProvidersResourceWithStreamingResponse",
+    "ModelProvidersResource",
+    "AsyncModelProvidersResource",
+    "ModelProvidersResourceWithRawResponse",
+    "AsyncModelProvidersResourceWithRawResponse",
+    "ModelProvidersResourceWithStreamingResponse",
+    "AsyncModelProvidersResourceWithStreamingResponse",
     "RegionsResource",
     "AsyncRegionsResource",
     "RegionsResourceWithRawResponse",
