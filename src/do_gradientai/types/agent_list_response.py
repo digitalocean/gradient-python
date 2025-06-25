@@ -5,9 +5,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .agents.api_meta import APIMeta
 from .api_agent_model import APIAgentModel
-from .agents.api_links import APILinks
+from .shared.api_meta import APIMeta
+from .shared.api_links import APILinks
 from .api_knowledge_base import APIKnowledgeBase
 from .api_retrieval_method import APIRetrievalMethod
 from .api_deployment_visibility import APIDeploymentVisibility

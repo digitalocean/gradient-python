@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .shared import APIMeta as APIMeta, APILinks as APILinks
 from .api_agent import APIAgent as APIAgent
 from .api_model import APIModel as APIModel
 from .api_agreement import APIAgreement as APIAgreement

@@ -5,9 +5,9 @@ from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
-from .api_meta import APIMeta
 from ..._models import BaseModel
-from .api_links import APILinks
+from ..shared.api_meta import APIMeta
+from ..shared.api_links import APILinks
 from ..api_retrieval_method import APIRetrievalMethod
 
 __all__ = [
