@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
-from .knowledge_bases.api_indexing_job import APIIndexingJob
+from .api_indexing_job import APIIndexingJob
 
 __all__ = ["APIKnowledgeBase"]
 

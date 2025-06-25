@@ -25,14 +25,6 @@ from .data_sources import (
     DataSourcesResourceWithStreamingResponse,
     AsyncDataSourcesResourceWithStreamingResponse,
 )
-from .indexing_jobs import (
-    IndexingJobsResource,
-    AsyncIndexingJobsResource,
-    IndexingJobsResourceWithRawResponse,
-    AsyncIndexingJobsResourceWithRawResponse,
-    IndexingJobsResourceWithStreamingResponse,
-    AsyncIndexingJobsResourceWithStreamingResponse,
-)
 from ..._base_client import make_request_options
 from ...types.knowledge_base_list_response import KnowledgeBaseListResponse
 from ...types.knowledge_base_create_response import KnowledgeBaseCreateResponse
@@ -47,10 +39,6 @@ class KnowledgeBasesResource(SyncAPIResource):
     @cached_property
     def data_sources(self) -> DataSourcesResource:
         return DataSourcesResource(self._client)
-
-    @cached_property
-    def indexing_jobs(self) -> IndexingJobsResource:
-        return IndexingJobsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> KnowledgeBasesResourceWithRawResponse:
@@ -327,10 +315,6 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResource:
         return AsyncDataSourcesResource(self._client)
-
-    @cached_property
-    def indexing_jobs(self) -> AsyncIndexingJobsResource:
-        return AsyncIndexingJobsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncKnowledgeBasesResourceWithRawResponse:
@@ -627,10 +611,6 @@ class KnowledgeBasesResourceWithRawResponse:
     def data_sources(self) -> DataSourcesResourceWithRawResponse:
         return DataSourcesResourceWithRawResponse(self._knowledge_bases.data_sources)
 
-    @cached_property
-    def indexing_jobs(self) -> IndexingJobsResourceWithRawResponse:
-        return IndexingJobsResourceWithRawResponse(self._knowledge_bases.indexing_jobs)
-
 
 class AsyncKnowledgeBasesResourceWithRawResponse:
     def __init__(self, knowledge_bases: AsyncKnowledgeBasesResource) -> None:
@@ -655,10 +635,6 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
         return AsyncDataSourcesResourceWithRawResponse(self._knowledge_bases.data_sources)
-
-    @cached_property
-    def indexing_jobs(self) -> AsyncIndexingJobsResourceWithRawResponse:
-        return AsyncIndexingJobsResourceWithRawResponse(self._knowledge_bases.indexing_jobs)
 
 
 class KnowledgeBasesResourceWithStreamingResponse:
@@ -685,10 +661,6 @@ class KnowledgeBasesResourceWithStreamingResponse:
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
         return DataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
 
-    @cached_property
-    def indexing_jobs(self) -> IndexingJobsResourceWithStreamingResponse:
-        return IndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)
-
 
 class AsyncKnowledgeBasesResourceWithStreamingResponse:
     def __init__(self, knowledge_bases: AsyncKnowledgeBasesResource) -> None:
@@ -713,7 +685,3 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithStreamingResponse:
         return AsyncDataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
-
-    @cached_property
-    def indexing_jobs(self) -> AsyncIndexingJobsResourceWithStreamingResponse:
-        return AsyncIndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)

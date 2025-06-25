@@ -6,27 +6,23 @@ from typing import List
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import indexing_job_list_params, indexing_job_create_params, indexing_job_update_cancel_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.knowledge_bases import (
-    indexing_job_list_params,
-    indexing_job_create_params,
-    indexing_job_update_cancel_params,
-)
-from ...types.knowledge_bases.indexing_job_list_response import IndexingJobListResponse
-from ...types.knowledge_bases.indexing_job_create_response import IndexingJobCreateResponse
-from ...types.knowledge_bases.indexing_job_retrieve_response import IndexingJobRetrieveResponse
-from ...types.knowledge_bases.indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse
-from ...types.knowledge_bases.indexing_job_retrieve_data_sources_response import IndexingJobRetrieveDataSourcesResponse
+from .._base_client import make_request_options
+from ..types.indexing_job_list_response import IndexingJobListResponse
+from ..types.indexing_job_create_response import IndexingJobCreateResponse
+from ..types.indexing_job_retrieve_response import IndexingJobRetrieveResponse
+from ..types.indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse
+from ..types.indexing_job_retrieve_data_sources_response import IndexingJobRetrieveDataSourcesResponse
 
 __all__ = ["IndexingJobsResource", "AsyncIndexingJobsResource"]
 
