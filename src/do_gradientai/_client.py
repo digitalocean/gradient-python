@@ -13,6 +13,7 @@ from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
     Omit,
+    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -23,7 +24,7 @@ from ._utils import is_given, get_async_library
 from ._compat import cached_property
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError, GradientAIError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -54,12 +55,14 @@ __all__ = [
 
 class GradientAI(SyncAPIClient):
     # client options
-    api_key: str
+    api_key: str | None
+    inference_key: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
+        inference_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -81,15 +84,17 @@ class GradientAI(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous GradientAI client instance.
 
-        This automatically infers the `api_key` argument from the `GRADIENTAI_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `GRADIENTAI_API_KEY`
+        - `inference_key` from `GRADIENTAI_API_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("GRADIENTAI_API_KEY")
-        if api_key is None:
-            raise GradientAIError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the GRADIENTAI_API_KEY environment variable"
-            )
         self.api_key = api_key
+
+        if inference_key is None:
+            inference_key = os.environ.get("GRADIENTAI_API_KEY")
+        self.inference_key = inference_key
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
@@ -167,6 +172,8 @@ class GradientAI(SyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
+        if api_key is None:
+            return {}
         return {"Authorization": f"Bearer {api_key}"}
 
     @property
@@ -178,10 +185,22 @@ class GradientAI(SyncAPIClient):
             **self._custom_headers,
         }
 
+    @override
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        if self.api_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        raise TypeError(
+            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
+        )
+
     def copy(
         self,
         *,
         api_key: str | None = None,
+        inference_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -216,6 +235,7 @@ class GradientAI(SyncAPIClient):
         http_client = http_client or self._client
         client = self.__class__(
             api_key=api_key or self.api_key,
+            inference_key=inference_key or self.inference_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -267,12 +287,14 @@ class GradientAI(SyncAPIClient):
 
 class AsyncGradientAI(AsyncAPIClient):
     # client options
-    api_key: str
+    api_key: str | None
+    inference_key: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
+        inference_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -294,15 +316,17 @@ class AsyncGradientAI(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncGradientAI client instance.
 
-        This automatically infers the `api_key` argument from the `GRADIENTAI_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `GRADIENTAI_API_KEY`
+        - `inference_key` from `GRADIENTAI_API_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("GRADIENTAI_API_KEY")
-        if api_key is None:
-            raise GradientAIError(
-                "The api_key client option must be set either by passing api_key to the client or by setting the GRADIENTAI_API_KEY environment variable"
-            )
         self.api_key = api_key
+
+        if inference_key is None:
+            inference_key = os.environ.get("GRADIENTAI_API_KEY")
+        self.inference_key = inference_key
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
@@ -380,6 +404,8 @@ class AsyncGradientAI(AsyncAPIClient):
     @override
     def auth_headers(self) -> dict[str, str]:
         api_key = self.api_key
+        if api_key is None:
+            return {}
         return {"Authorization": f"Bearer {api_key}"}
 
     @property
@@ -391,10 +417,22 @@ class AsyncGradientAI(AsyncAPIClient):
             **self._custom_headers,
         }
 
+    @override
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        if self.api_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        raise TypeError(
+            '"Could not resolve authentication method. Expected the api_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
+        )
+
     def copy(
         self,
         *,
         api_key: str | None = None,
+        inference_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -429,6 +467,7 @@ class AsyncGradientAI(AsyncAPIClient):
         http_client = http_client or self._client
         client = self.__class__(
             api_key=api_key or self.api_key,
+            inference_key=inference_key or self.inference_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
