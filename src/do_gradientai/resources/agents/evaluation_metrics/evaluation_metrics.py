@@ -4,22 +4,34 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
-from ...types.agents.evaluation_metric_list_response import EvaluationMetricListResponse
+from ...._base_client import make_request_options
+from .workspaces.workspaces import (
+    WorkspacesResource,
+    AsyncWorkspacesResource,
+    WorkspacesResourceWithRawResponse,
+    AsyncWorkspacesResourceWithRawResponse,
+    WorkspacesResourceWithStreamingResponse,
+    AsyncWorkspacesResourceWithStreamingResponse,
+)
+from ....types.agents.evaluation_metric_list_response import EvaluationMetricListResponse
 
 __all__ = ["EvaluationMetricsResource", "AsyncEvaluationMetricsResource"]
 
 
 class EvaluationMetricsResource(SyncAPIResource):
+    @cached_property
+    def workspaces(self) -> WorkspacesResource:
+        return WorkspacesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> EvaluationMetricsResourceWithRawResponse:
         """
@@ -65,6 +77,10 @@ class EvaluationMetricsResource(SyncAPIResource):
 
 
 class AsyncEvaluationMetricsResource(AsyncAPIResource):
+    @cached_property
+    def workspaces(self) -> AsyncWorkspacesResource:
+        return AsyncWorkspacesResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
         """
@@ -117,6 +133,10 @@ class EvaluationMetricsResourceWithRawResponse:
             evaluation_metrics.list,
         )
 
+    @cached_property
+    def workspaces(self) -> WorkspacesResourceWithRawResponse:
+        return WorkspacesResourceWithRawResponse(self._evaluation_metrics.workspaces)
+
 
 class AsyncEvaluationMetricsResourceWithRawResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -125,6 +145,10 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             evaluation_metrics.list,
         )
+
+    @cached_property
+    def workspaces(self) -> AsyncWorkspacesResourceWithRawResponse:
+        return AsyncWorkspacesResourceWithRawResponse(self._evaluation_metrics.workspaces)
 
 
 class EvaluationMetricsResourceWithStreamingResponse:
@@ -135,6 +159,10 @@ class EvaluationMetricsResourceWithStreamingResponse:
             evaluation_metrics.list,
         )
 
+    @cached_property
+    def workspaces(self) -> WorkspacesResourceWithStreamingResponse:
+        return WorkspacesResourceWithStreamingResponse(self._evaluation_metrics.workspaces)
+
 
 class AsyncEvaluationMetricsResourceWithStreamingResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -143,3 +171,7 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             evaluation_metrics.list,
         )
+
+    @cached_property
+    def workspaces(self) -> AsyncWorkspacesResourceWithStreamingResponse:
+        return AsyncWorkspacesResourceWithStreamingResponse(self._evaluation_metrics.workspaces)

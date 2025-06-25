@@ -13,6 +13,7 @@ from do_gradientai.types.agents import (
     EvaluationRunCreateResponse,
     EvaluationRunRetrieveResponse,
     EvaluationRunListResultsResponse,
+    EvaluationRunRetrieveResultsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +32,7 @@ class TestEvaluationRuns:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         evaluation_run = client.agents.evaluation_runs.create(
-            agent_uuid="agent_uuid",
+            agent_uuids=["string"],
             run_name="run_name",
             test_case_uuid="test_case_uuid",
         )
@@ -143,6 +144,52 @@ class TestEvaluationRuns:
                 "",
             )
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_retrieve_results(self, client: GradientAI) -> None:
+        evaluation_run = client.agents.evaluation_runs.retrieve_results(
+            prompt_id=0,
+            evaluation_run_uuid="evaluation_run_uuid",
+        )
+        assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_retrieve_results(self, client: GradientAI) -> None:
+        response = client.agents.evaluation_runs.with_raw_response.retrieve_results(
+            prompt_id=0,
+            evaluation_run_uuid="evaluation_run_uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        evaluation_run = response.parse()
+        assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_retrieve_results(self, client: GradientAI) -> None:
+        with client.agents.evaluation_runs.with_streaming_response.retrieve_results(
+            prompt_id=0,
+            evaluation_run_uuid="evaluation_run_uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            evaluation_run = response.parse()
+            assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_path_params_retrieve_results(self, client: GradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
+            client.agents.evaluation_runs.with_raw_response.retrieve_results(
+                prompt_id=0,
+                evaluation_run_uuid="",
+            )
+
 
 class TestAsyncEvaluationRuns:
     parametrize = pytest.mark.parametrize(
@@ -159,7 +206,7 @@ class TestAsyncEvaluationRuns:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.create(
-            agent_uuid="agent_uuid",
+            agent_uuids=["string"],
             run_name="run_name",
             test_case_uuid="test_case_uuid",
         )
@@ -269,4 +316,50 @@ class TestAsyncEvaluationRuns:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             await async_client.agents.evaluation_runs.with_raw_response.list_results(
                 "",
+            )
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+        evaluation_run = await async_client.agents.evaluation_runs.retrieve_results(
+            prompt_id=0,
+            evaluation_run_uuid="evaluation_run_uuid",
+        )
+        assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+        response = await async_client.agents.evaluation_runs.with_raw_response.retrieve_results(
+            prompt_id=0,
+            evaluation_run_uuid="evaluation_run_uuid",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        evaluation_run = await response.parse()
+        assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+        async with async_client.agents.evaluation_runs.with_streaming_response.retrieve_results(
+            prompt_id=0,
+            evaluation_run_uuid="evaluation_run_uuid",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            evaluation_run = await response.parse()
+            assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_path_params_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
+            await async_client.agents.evaluation_runs.with_raw_response.retrieve_results(
+                prompt_id=0,
+                evaluation_run_uuid="",
             )

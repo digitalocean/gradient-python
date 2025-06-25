@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
 
 __all__ = ["EvaluationRunCreateParams"]
 
 
 class EvaluationRunCreateParams(TypedDict, total=False):
-    agent_uuid: str
-    """Agent UUID to run the test case against."""
+    agent_uuids: List[str]
+    """Agent UUIDs to run the test case against."""
 
     run_name: str
     """The name of the run."""

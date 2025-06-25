@@ -6,6 +6,7 @@ from datetime import datetime
 from ..._models import BaseModel
 from .api_indexing_job import APIIndexingJob
 from .api_spaces_data_source import APISpacesDataSource
+from .api_indexed_data_source import APIIndexedDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
 from .api_web_crawler_data_source import APIWebCrawlerDataSource
 
@@ -31,6 +32,8 @@ class APIKnowledgeBaseDataSource(BaseModel):
     """File to upload as data source for knowledge base."""
 
     item_path: Optional[str] = None
+
+    last_datasource_indexing_job: Optional[APIIndexedDataSource] = None
 
     last_indexing_job: Optional[APIIndexingJob] = None
 

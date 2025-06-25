@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import List
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,6 +21,7 @@ from ...types.agents import evaluation_run_create_params
 from ...types.agents.evaluation_run_create_response import EvaluationRunCreateResponse
 from ...types.agents.evaluation_run_retrieve_response import EvaluationRunRetrieveResponse
 from ...types.agents.evaluation_run_list_results_response import EvaluationRunListResultsResponse
+from ...types.agents.evaluation_run_retrieve_results_response import EvaluationRunRetrieveResultsResponse
 
 __all__ = ["EvaluationRunsResource", "AsyncEvaluationRunsResource"]
 
@@ -46,7 +49,7 @@ class EvaluationRunsResource(SyncAPIResource):
     def create(
         self,
         *,
-        agent_uuid: str | NotGiven = NOT_GIVEN,
+        agent_uuids: List[str] | NotGiven = NOT_GIVEN,
         run_name: str | NotGiven = NOT_GIVEN,
         test_case_uuid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -61,7 +64,7 @@ class EvaluationRunsResource(SyncAPIResource):
         `/v2/gen-ai/evaluation_runs`.
 
         Args:
-          agent_uuid: Agent UUID to run the test case against.
+          agent_uuids: Agent UUIDs to run the test case against.
 
           run_name: The name of the run.
 
@@ -79,7 +82,7 @@ class EvaluationRunsResource(SyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_runs",
             body=maybe_transform(
                 {
-                    "agent_uuid": agent_uuid,
+                    "agent_uuids": agent_uuids,
                     "run_name": run_name,
                     "test_case_uuid": test_case_uuid,
                 },
@@ -167,6 +170,45 @@ class EvaluationRunsResource(SyncAPIResource):
             cast_to=EvaluationRunListResultsResponse,
         )
 
+    def retrieve_results(
+        self,
+        prompt_id: int,
+        *,
+        evaluation_run_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> EvaluationRunRetrieveResultsResponse:
+        """
+        To retrieve results of an evaluation run, send a GET request to
+        `/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not evaluation_run_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
+            )
+        return self._get(
+            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EvaluationRunRetrieveResultsResponse,
+        )
+
 
 class AsyncEvaluationRunsResource(AsyncAPIResource):
     @cached_property
@@ -191,7 +233,7 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        agent_uuid: str | NotGiven = NOT_GIVEN,
+        agent_uuids: List[str] | NotGiven = NOT_GIVEN,
         run_name: str | NotGiven = NOT_GIVEN,
         test_case_uuid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -206,7 +248,7 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
         `/v2/gen-ai/evaluation_runs`.
 
         Args:
-          agent_uuid: Agent UUID to run the test case against.
+          agent_uuids: Agent UUIDs to run the test case against.
 
           run_name: The name of the run.
 
@@ -224,7 +266,7 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_runs",
             body=await async_maybe_transform(
                 {
-                    "agent_uuid": agent_uuid,
+                    "agent_uuids": agent_uuids,
                     "run_name": run_name,
                     "test_case_uuid": test_case_uuid,
                 },
@@ -312,6 +354,45 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
             cast_to=EvaluationRunListResultsResponse,
         )
 
+    async def retrieve_results(
+        self,
+        prompt_id: int,
+        *,
+        evaluation_run_uuid: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> EvaluationRunRetrieveResultsResponse:
+        """
+        To retrieve results of an evaluation run, send a GET request to
+        `/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not evaluation_run_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
+            )
+        return await self._get(
+            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=EvaluationRunRetrieveResultsResponse,
+        )
+
 
 class EvaluationRunsResourceWithRawResponse:
     def __init__(self, evaluation_runs: EvaluationRunsResource) -> None:
@@ -325,6 +406,9 @@ class EvaluationRunsResourceWithRawResponse:
         )
         self.list_results = to_raw_response_wrapper(
             evaluation_runs.list_results,
+        )
+        self.retrieve_results = to_raw_response_wrapper(
+            evaluation_runs.retrieve_results,
         )
 
 
@@ -341,6 +425,9 @@ class AsyncEvaluationRunsResourceWithRawResponse:
         self.list_results = async_to_raw_response_wrapper(
             evaluation_runs.list_results,
         )
+        self.retrieve_results = async_to_raw_response_wrapper(
+            evaluation_runs.retrieve_results,
+        )
 
 
 class EvaluationRunsResourceWithStreamingResponse:
@@ -356,6 +443,9 @@ class EvaluationRunsResourceWithStreamingResponse:
         self.list_results = to_streamed_response_wrapper(
             evaluation_runs.list_results,
         )
+        self.retrieve_results = to_streamed_response_wrapper(
+            evaluation_runs.retrieve_results,
+        )
 
 
 class AsyncEvaluationRunsResourceWithStreamingResponse:
@@ -370,4 +460,7 @@ class AsyncEvaluationRunsResourceWithStreamingResponse:
         )
         self.list_results = async_to_streamed_response_wrapper(
             evaluation_runs.list_results,
+        )
+        self.retrieve_results = async_to_streamed_response_wrapper(
+            evaluation_runs.retrieve_results,
         )
