@@ -31,10 +31,16 @@ client = GradientAI(
     api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 
-versions = client.agents.versions.list(
-    uuid="REPLACE_ME",
+completion = client.chat.completions.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
 )
-print(versions.agent_versions)
+print(completion.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -57,10 +63,16 @@ client = AsyncGradientAI(
 
 
 async def main() -> None:
-    versions = await client.agents.versions.list(
-        uuid="REPLACE_ME",
+    completion = await client.chat.completions.create(
+        messages=[
+            {
+                "content": "string",
+                "role": "system",
+            }
+        ],
+        model="llama3-8b-instruct",
     )
-    print(versions.agent_versions)
+    print(completion.id)
 
 
 asyncio.run(main())
@@ -93,10 +105,16 @@ async def main() -> None:
         api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        versions = await client.agents.versions.list(
-            uuid="REPLACE_ME",
+        completion = await client.chat.completions.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
         )
-        print(versions.agent_versions)
+        print(completion.id)
 
 
 asyncio.run(main())
@@ -120,10 +138,17 @@ from do_gradientai import GradientAI
 
 client = GradientAI()
 
-evaluation_test_case = client.agents.evaluation_test_cases.create(
-    star_metric={},
+completion = client.chat.completions.create(
+    messages=[
+        {
+            "content": "string",
+            "role": "system",
+        }
+    ],
+    model="llama3-8b-instruct",
+    stream_options={},
 )
-print(evaluation_test_case.star_metric)
+print(completion.stream_options)
 ```
 
 ## Handling errors
