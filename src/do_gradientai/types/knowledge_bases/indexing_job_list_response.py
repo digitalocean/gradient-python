@@ -2,10 +2,10 @@
 
 from typing import List, Optional
 
-from .._models import BaseModel
-from .agents.api_meta import APIMeta
-from .agents.api_links import APILinks
+from ..._models import BaseModel
+from ..agents.api_meta import APIMeta
 from .api_indexing_job import APIIndexingJob
+from ..agents.api_links import APILinks
 
 __all__ = ["IndexingJobListResponse"]
 

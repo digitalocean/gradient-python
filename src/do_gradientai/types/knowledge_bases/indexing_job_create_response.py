@@ -2,11 +2,11 @@
 
 from typing import Optional
 
-from .._models import BaseModel
+from ..._models import BaseModel
 from .api_indexing_job import APIIndexingJob
 
-__all__ = ["IndexingJobRetrieveResponse"]
+__all__ = ["IndexingJobCreateResponse"]
 
 
-class IndexingJobRetrieveResponse(BaseModel):
+class IndexingJobCreateResponse(BaseModel):
     job: Optional[APIIndexingJob] = None
