@@ -5,7 +5,7 @@ from datetime import datetime
 
 from ..._models import BaseModel
 from .api_star_metric import APIStarMetric
-from ..api_evaluation_metric import APIEvaluationMetric
+from .api_evaluation_metric import APIEvaluationMetric
 
 __all__ = ["APIEvaluationTestCase"]
 

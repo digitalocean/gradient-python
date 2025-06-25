@@ -6,7 +6,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from .._models import BaseModel
-from .regions.api_evaluation_test_case import APIEvaluationTestCase
+from .agents.api_evaluation_test_case import APIEvaluationTestCase
 
 __all__ = ["APIWorkspace"]
 

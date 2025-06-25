@@ -9,7 +9,7 @@ import pytest
 
 from tests.utils import assert_matches_type
 from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.regions import (
+from do_gradientai.types.agents import (
     EvaluationDatasetCreateResponse,
     EvaluationDatasetCreateFileUploadPresignedURLsResponse,
 )
@@ -23,13 +23,13 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: GradientAI) -> None:
-        evaluation_dataset = client.regions.evaluation_datasets.create()
+        evaluation_dataset = client.agents.evaluation_datasets.create()
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
-        evaluation_dataset = client.regions.evaluation_datasets.create(
+        evaluation_dataset = client.agents.evaluation_datasets.create(
             file_upload_dataset={
                 "original_file_name": "original_file_name",
                 "size_in_bytes": "size_in_bytes",
@@ -42,7 +42,7 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: GradientAI) -> None:
-        response = client.regions.evaluation_datasets.with_raw_response.create()
+        response = client.agents.evaluation_datasets.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -52,7 +52,7 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: GradientAI) -> None:
-        with client.regions.evaluation_datasets.with_streaming_response.create() as response:
+        with client.agents.evaluation_datasets.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -64,7 +64,7 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_method_create_file_upload_presigned_urls(self, client: GradientAI) -> None:
-        evaluation_dataset = client.regions.evaluation_datasets.create_file_upload_presigned_urls()
+        evaluation_dataset = client.agents.evaluation_datasets.create_file_upload_presigned_urls()
         assert_matches_type(
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
@@ -72,7 +72,7 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_method_create_file_upload_presigned_urls_with_all_params(self, client: GradientAI) -> None:
-        evaluation_dataset = client.regions.evaluation_datasets.create_file_upload_presigned_urls(
+        evaluation_dataset = client.agents.evaluation_datasets.create_file_upload_presigned_urls(
             files=[
                 {
                     "file_name": "file_name",
@@ -87,7 +87,7 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_create_file_upload_presigned_urls(self, client: GradientAI) -> None:
-        response = client.regions.evaluation_datasets.with_raw_response.create_file_upload_presigned_urls()
+        response = client.agents.evaluation_datasets.with_raw_response.create_file_upload_presigned_urls()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -99,7 +99,7 @@ class TestEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create_file_upload_presigned_urls(self, client: GradientAI) -> None:
-        with client.regions.evaluation_datasets.with_streaming_response.create_file_upload_presigned_urls() as response:
+        with client.agents.evaluation_datasets.with_streaming_response.create_file_upload_presigned_urls() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -119,13 +119,13 @@ class TestAsyncEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncGradientAI) -> None:
-        evaluation_dataset = await async_client.regions.evaluation_datasets.create()
+        evaluation_dataset = await async_client.agents.evaluation_datasets.create()
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        evaluation_dataset = await async_client.regions.evaluation_datasets.create(
+        evaluation_dataset = await async_client.agents.evaluation_datasets.create(
             file_upload_dataset={
                 "original_file_name": "original_file_name",
                 "size_in_bytes": "size_in_bytes",
@@ -138,7 +138,7 @@ class TestAsyncEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.regions.evaluation_datasets.with_raw_response.create()
+        response = await async_client.agents.evaluation_datasets.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,7 +148,7 @@ class TestAsyncEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.regions.evaluation_datasets.with_streaming_response.create() as response:
+        async with async_client.agents.evaluation_datasets.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -160,7 +160,7 @@ class TestAsyncEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     async def test_method_create_file_upload_presigned_urls(self, async_client: AsyncGradientAI) -> None:
-        evaluation_dataset = await async_client.regions.evaluation_datasets.create_file_upload_presigned_urls()
+        evaluation_dataset = await async_client.agents.evaluation_datasets.create_file_upload_presigned_urls()
         assert_matches_type(
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
@@ -170,7 +170,7 @@ class TestAsyncEvaluationDatasets:
     async def test_method_create_file_upload_presigned_urls_with_all_params(
         self, async_client: AsyncGradientAI
     ) -> None:
-        evaluation_dataset = await async_client.regions.evaluation_datasets.create_file_upload_presigned_urls(
+        evaluation_dataset = await async_client.agents.evaluation_datasets.create_file_upload_presigned_urls(
             files=[
                 {
                     "file_name": "file_name",
@@ -185,7 +185,7 @@ class TestAsyncEvaluationDatasets:
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create_file_upload_presigned_urls(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.regions.evaluation_datasets.with_raw_response.create_file_upload_presigned_urls()
+        response = await async_client.agents.evaluation_datasets.with_raw_response.create_file_upload_presigned_urls()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -198,7 +198,7 @@ class TestAsyncEvaluationDatasets:
     @parametrize
     async def test_streaming_response_create_file_upload_presigned_urls(self, async_client: AsyncGradientAI) -> None:
         async with (
-            async_client.regions.evaluation_datasets.with_streaming_response.create_file_upload_presigned_urls()
+            async_client.agents.evaluation_datasets.with_streaming_response.create_file_upload_presigned_urls()
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

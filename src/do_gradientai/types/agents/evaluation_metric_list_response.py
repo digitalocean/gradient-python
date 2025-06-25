@@ -2,11 +2,11 @@
 
 from typing import List, Optional
 
-from .._models import BaseModel
+from ..._models import BaseModel
 from .api_evaluation_metric import APIEvaluationMetric
 
-__all__ = ["RegionListEvaluationMetricsResponse"]
+__all__ = ["EvaluationMetricListResponse"]
 
 
-class RegionListEvaluationMetricsResponse(BaseModel):
+class EvaluationMetricListResponse(BaseModel):
     metrics: Optional[List[APIEvaluationMetric]] = None

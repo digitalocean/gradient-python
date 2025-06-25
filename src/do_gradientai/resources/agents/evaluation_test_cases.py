@@ -17,17 +17,17 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.regions import (
+from ...types.agents import (
     evaluation_test_case_create_params,
     evaluation_test_case_update_params,
     evaluation_test_case_list_evaluation_runs_params,
 )
-from ...types.regions.api_star_metric_param import APIStarMetricParam
-from ...types.regions.evaluation_test_case_list_response import EvaluationTestCaseListResponse
-from ...types.regions.evaluation_test_case_create_response import EvaluationTestCaseCreateResponse
-from ...types.regions.evaluation_test_case_update_response import EvaluationTestCaseUpdateResponse
-from ...types.regions.evaluation_test_case_retrieve_response import EvaluationTestCaseRetrieveResponse
-from ...types.regions.evaluation_test_case_list_evaluation_runs_response import (
+from ...types.agents.api_star_metric_param import APIStarMetricParam
+from ...types.agents.evaluation_test_case_list_response import EvaluationTestCaseListResponse
+from ...types.agents.evaluation_test_case_create_response import EvaluationTestCaseCreateResponse
+from ...types.agents.evaluation_test_case_update_response import EvaluationTestCaseUpdateResponse
+from ...types.agents.evaluation_test_case_retrieve_response import EvaluationTestCaseRetrieveResponse
+from ...types.agents.evaluation_test_case_list_evaluation_runs_response import (
     EvaluationTestCaseListEvaluationRunsResponse,
 )
 

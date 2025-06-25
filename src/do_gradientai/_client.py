@@ -33,10 +33,10 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import chat, agents, models, regions, inference, providers, indexing_jobs, knowledge_bases
     from .resources.models import ModelsResource, AsyncModelsResource
+    from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
-    from .resources.regions.regions import RegionsResource, AsyncRegionsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource

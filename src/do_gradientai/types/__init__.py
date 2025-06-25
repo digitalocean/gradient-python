@@ -22,7 +22,6 @@ from .region_list_response import RegionListResponse as RegionListResponse
 from .agent_create_response import AgentCreateResponse as AgentCreateResponse
 from .agent_delete_response import AgentDeleteResponse as AgentDeleteResponse
 from .agent_update_response import AgentUpdateResponse as AgentUpdateResponse
-from .api_evaluation_metric import APIEvaluationMetric as APIEvaluationMetric
 from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
@@ -45,9 +44,6 @@ from .knowledge_base_update_response import KnowledgeBaseUpdateResponse as Knowl
 from .knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse as KnowledgeBaseRetrieveResponse
 from .indexing_job_update_cancel_params import IndexingJobUpdateCancelParams as IndexingJobUpdateCancelParams
 from .indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse as IndexingJobUpdateCancelResponse
-from .region_list_evaluation_metrics_response import (
-    RegionListEvaluationMetricsResponse as RegionListEvaluationMetricsResponse,
-)
 from .indexing_job_retrieve_data_sources_response import (
     IndexingJobRetrieveDataSourcesResponse as IndexingJobRetrieveDataSourcesResponse,
 )

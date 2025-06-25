@@ -3,7 +3,7 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from .evaluation_runs.api_evaluation_run import APIEvaluationRun
+from .api_evaluation_run import APIEvaluationRun
 
 __all__ = ["EvaluationRunRetrieveResponse"]
 

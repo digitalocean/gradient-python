@@ -57,6 +57,14 @@ from .child_agents import (
     AsyncChildAgentsResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
+from .evaluation_runs import (
+    EvaluationRunsResource,
+    AsyncEvaluationRunsResource,
+    EvaluationRunsResourceWithRawResponse,
+    AsyncEvaluationRunsResourceWithRawResponse,
+    EvaluationRunsResourceWithStreamingResponse,
+    AsyncEvaluationRunsResourceWithStreamingResponse,
+)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -64,6 +72,30 @@ from .knowledge_bases import (
     AsyncKnowledgeBasesResourceWithRawResponse,
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
+from .evaluation_metrics import (
+    EvaluationMetricsResource,
+    AsyncEvaluationMetricsResource,
+    EvaluationMetricsResourceWithRawResponse,
+    AsyncEvaluationMetricsResourceWithRawResponse,
+    EvaluationMetricsResourceWithStreamingResponse,
+    AsyncEvaluationMetricsResourceWithStreamingResponse,
+)
+from .evaluation_datasets import (
+    EvaluationDatasetsResource,
+    AsyncEvaluationDatasetsResource,
+    EvaluationDatasetsResourceWithRawResponse,
+    AsyncEvaluationDatasetsResourceWithRawResponse,
+    EvaluationDatasetsResourceWithStreamingResponse,
+    AsyncEvaluationDatasetsResourceWithStreamingResponse,
+)
+from .evaluation_test_cases import (
+    EvaluationTestCasesResource,
+    AsyncEvaluationTestCasesResource,
+    EvaluationTestCasesResourceWithRawResponse,
+    AsyncEvaluationTestCasesResourceWithRawResponse,
+    EvaluationTestCasesResourceWithStreamingResponse,
+    AsyncEvaluationTestCasesResourceWithStreamingResponse,
 )
 from ...types.agent_list_response import AgentListResponse
 from ...types.api_retrieval_method import APIRetrievalMethod
@@ -81,6 +113,22 @@ class AgentsResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
+
+    @cached_property
+    def evaluation_metrics(self) -> EvaluationMetricsResource:
+        return EvaluationMetricsResource(self._client)
+
+    @cached_property
+    def evaluation_runs(self) -> EvaluationRunsResource:
+        return EvaluationRunsResource(self._client)
+
+    @cached_property
+    def evaluation_test_cases(self) -> EvaluationTestCasesResource:
+        return EvaluationTestCasesResource(self._client)
+
+    @cached_property
+    def evaluation_datasets(self) -> EvaluationDatasetsResource:
+        return EvaluationDatasetsResource(self._client)
 
     @cached_property
     def functions(self) -> FunctionsResource:
@@ -449,6 +497,22 @@ class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
+
+    @cached_property
+    def evaluation_metrics(self) -> AsyncEvaluationMetricsResource:
+        return AsyncEvaluationMetricsResource(self._client)
+
+    @cached_property
+    def evaluation_runs(self) -> AsyncEvaluationRunsResource:
+        return AsyncEvaluationRunsResource(self._client)
+
+    @cached_property
+    def evaluation_test_cases(self) -> AsyncEvaluationTestCasesResource:
+        return AsyncEvaluationTestCasesResource(self._client)
+
+    @cached_property
+    def evaluation_datasets(self) -> AsyncEvaluationDatasetsResource:
+        return AsyncEvaluationDatasetsResource(self._client)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResource:
@@ -841,6 +905,22 @@ class AgentsResourceWithRawResponse:
         return APIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
+    def evaluation_metrics(self) -> EvaluationMetricsResourceWithRawResponse:
+        return EvaluationMetricsResourceWithRawResponse(self._agents.evaluation_metrics)
+
+    @cached_property
+    def evaluation_runs(self) -> EvaluationRunsResourceWithRawResponse:
+        return EvaluationRunsResourceWithRawResponse(self._agents.evaluation_runs)
+
+    @cached_property
+    def evaluation_test_cases(self) -> EvaluationTestCasesResourceWithRawResponse:
+        return EvaluationTestCasesResourceWithRawResponse(self._agents.evaluation_test_cases)
+
+    @cached_property
+    def evaluation_datasets(self) -> EvaluationDatasetsResourceWithRawResponse:
+        return EvaluationDatasetsResourceWithRawResponse(self._agents.evaluation_datasets)
+
+    @cached_property
     def functions(self) -> FunctionsResourceWithRawResponse:
         return FunctionsResourceWithRawResponse(self._agents.functions)
 
@@ -883,6 +963,22 @@ class AsyncAgentsResourceWithRawResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
         return AsyncAPIKeysResourceWithRawResponse(self._agents.api_keys)
+
+    @cached_property
+    def evaluation_metrics(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
+        return AsyncEvaluationMetricsResourceWithRawResponse(self._agents.evaluation_metrics)
+
+    @cached_property
+    def evaluation_runs(self) -> AsyncEvaluationRunsResourceWithRawResponse:
+        return AsyncEvaluationRunsResourceWithRawResponse(self._agents.evaluation_runs)
+
+    @cached_property
+    def evaluation_test_cases(self) -> AsyncEvaluationTestCasesResourceWithRawResponse:
+        return AsyncEvaluationTestCasesResourceWithRawResponse(self._agents.evaluation_test_cases)
+
+    @cached_property
+    def evaluation_datasets(self) -> AsyncEvaluationDatasetsResourceWithRawResponse:
+        return AsyncEvaluationDatasetsResourceWithRawResponse(self._agents.evaluation_datasets)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResourceWithRawResponse:
@@ -929,6 +1025,22 @@ class AgentsResourceWithStreamingResponse:
         return APIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
+    def evaluation_metrics(self) -> EvaluationMetricsResourceWithStreamingResponse:
+        return EvaluationMetricsResourceWithStreamingResponse(self._agents.evaluation_metrics)
+
+    @cached_property
+    def evaluation_runs(self) -> EvaluationRunsResourceWithStreamingResponse:
+        return EvaluationRunsResourceWithStreamingResponse(self._agents.evaluation_runs)
+
+    @cached_property
+    def evaluation_test_cases(self) -> EvaluationTestCasesResourceWithStreamingResponse:
+        return EvaluationTestCasesResourceWithStreamingResponse(self._agents.evaluation_test_cases)
+
+    @cached_property
+    def evaluation_datasets(self) -> EvaluationDatasetsResourceWithStreamingResponse:
+        return EvaluationDatasetsResourceWithStreamingResponse(self._agents.evaluation_datasets)
+
+    @cached_property
     def functions(self) -> FunctionsResourceWithStreamingResponse:
         return FunctionsResourceWithStreamingResponse(self._agents.functions)
 
@@ -971,6 +1083,22 @@ class AsyncAgentsResourceWithStreamingResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
         return AsyncAPIKeysResourceWithStreamingResponse(self._agents.api_keys)
+
+    @cached_property
+    def evaluation_metrics(self) -> AsyncEvaluationMetricsResourceWithStreamingResponse:
+        return AsyncEvaluationMetricsResourceWithStreamingResponse(self._agents.evaluation_metrics)
+
+    @cached_property
+    def evaluation_runs(self) -> AsyncEvaluationRunsResourceWithStreamingResponse:
+        return AsyncEvaluationRunsResourceWithStreamingResponse(self._agents.evaluation_runs)
+
+    @cached_property
+    def evaluation_test_cases(self) -> AsyncEvaluationTestCasesResourceWithStreamingResponse:
+        return AsyncEvaluationTestCasesResourceWithStreamingResponse(self._agents.evaluation_test_cases)
+
+    @cached_property
+    def evaluation_datasets(self) -> AsyncEvaluationDatasetsResourceWithStreamingResponse:
+        return AsyncEvaluationDatasetsResourceWithStreamingResponse(self._agents.evaluation_datasets)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResourceWithStreamingResponse:

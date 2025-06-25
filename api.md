@@ -52,6 +52,80 @@ Methods:
 - <code title="delete /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.agents.api_keys.<a href="./src/do_gradientai/resources/agents/api_keys.py">delete</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/do_gradientai/types/agents/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
 - <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate">client.agents.api_keys.<a href="./src/do_gradientai/resources/agents/api_keys.py">regenerate</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/do_gradientai/types/agents/api_key_regenerate_response.py">APIKeyRegenerateResponse</a></code>
 
+## EvaluationMetrics
+
+Types:
+
+```python
+from do_gradientai.types.agents import EvaluationMetricListResponse
+```
+
+Methods:
+
+- <code title="get /v2/gen-ai/evaluation_metrics">client.agents.evaluation_metrics.<a href="./src/do_gradientai/resources/agents/evaluation_metrics.py">list</a>() -> <a href="./src/do_gradientai/types/agents/evaluation_metric_list_response.py">EvaluationMetricListResponse</a></code>
+
+## EvaluationRuns
+
+Types:
+
+```python
+from do_gradientai.types.agents import (
+    APIEvaluationMetric,
+    APIEvaluationMetricResult,
+    APIEvaluationPrompt,
+    APIEvaluationRun,
+    EvaluationRunCreateResponse,
+    EvaluationRunRetrieveResponse,
+    EvaluationRunListResultsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/evaluation_runs">client.agents.evaluation_runs.<a href="./src/do_gradientai/resources/agents/evaluation_runs.py">create</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_run_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_run_create_response.py">EvaluationRunCreateResponse</a></code>
+- <code title="get /v2/gen-ai/evaluation_runs/{evaluation_run_uuid}">client.agents.evaluation_runs.<a href="./src/do_gradientai/resources/agents/evaluation_runs.py">retrieve</a>(evaluation_run_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_run_retrieve_response.py">EvaluationRunRetrieveResponse</a></code>
+- <code title="get /v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results">client.agents.evaluation_runs.<a href="./src/do_gradientai/resources/agents/evaluation_runs.py">list_results</a>(evaluation_run_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_run_list_results_response.py">EvaluationRunListResultsResponse</a></code>
+
+## EvaluationTestCases
+
+Types:
+
+```python
+from do_gradientai.types.agents import (
+    APIEvaluationTestCase,
+    APIStarMetric,
+    EvaluationTestCaseCreateResponse,
+    EvaluationTestCaseRetrieveResponse,
+    EvaluationTestCaseUpdateResponse,
+    EvaluationTestCaseListResponse,
+    EvaluationTestCaseListEvaluationRunsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/evaluation_test_cases">client.agents.evaluation_test_cases.<a href="./src/do_gradientai/resources/agents/evaluation_test_cases.py">create</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_test_case_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_test_case_create_response.py">EvaluationTestCaseCreateResponse</a></code>
+- <code title="get /v2/gen-ai/evaluation_test_cases/{test_case_uuid}">client.agents.evaluation_test_cases.<a href="./src/do_gradientai/resources/agents/evaluation_test_cases.py">retrieve</a>(test_case_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_test_case_retrieve_response.py">EvaluationTestCaseRetrieveResponse</a></code>
+- <code title="post /v2/gen-ai/evaluation_test_cases/{test_case_uuid}">client.agents.evaluation_test_cases.<a href="./src/do_gradientai/resources/agents/evaluation_test_cases.py">update</a>(path_test_case_uuid, \*\*<a href="src/do_gradientai/types/agents/evaluation_test_case_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_test_case_update_response.py">EvaluationTestCaseUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/evaluation_test_cases">client.agents.evaluation_test_cases.<a href="./src/do_gradientai/resources/agents/evaluation_test_cases.py">list</a>() -> <a href="./src/do_gradientai/types/agents/evaluation_test_case_list_response.py">EvaluationTestCaseListResponse</a></code>
+- <code title="get /v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs">client.agents.evaluation_test_cases.<a href="./src/do_gradientai/resources/agents/evaluation_test_cases.py">list_evaluation_runs</a>(evaluation_test_case_uuid, \*\*<a href="src/do_gradientai/types/agents/evaluation_test_case_list_evaluation_runs_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_test_case_list_evaluation_runs_response.py">EvaluationTestCaseListEvaluationRunsResponse</a></code>
+
+## EvaluationDatasets
+
+Types:
+
+```python
+from do_gradientai.types.agents import (
+    EvaluationDatasetCreateResponse,
+    EvaluationDatasetCreateFileUploadPresignedURLsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/evaluation_datasets">client.agents.evaluation_datasets.<a href="./src/do_gradientai/resources/agents/evaluation_datasets.py">create</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_dataset_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_dataset_create_response.py">EvaluationDatasetCreateResponse</a></code>
+- <code title="post /v2/gen-ai/evaluation_datasets/file_upload_presigned_urls">client.agents.evaluation_datasets.<a href="./src/do_gradientai/resources/agents/evaluation_datasets.py">create_file_upload_presigned_urls</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_dataset_create_file_upload_presigned_urls_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_dataset_create_file_upload_presigned_urls_response.py">EvaluationDatasetCreateFileUploadPresignedURLsResponse</a></code>
+
 ## Functions
 
 Types:
@@ -176,89 +250,12 @@ Methods:
 Types:
 
 ```python
-from do_gradientai.types import (
-    APIEvaluationMetric,
-    RegionListResponse,
-    RegionListEvaluationMetricsResponse,
-)
+from do_gradientai.types import RegionListResponse
 ```
 
 Methods:
 
-- <code title="get /v2/gen-ai/regions">client.regions.<a href="./src/do_gradientai/resources/regions/regions.py">list</a>(\*\*<a href="src/do_gradientai/types/region_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/region_list_response.py">RegionListResponse</a></code>
-- <code title="get /v2/gen-ai/evaluation_metrics">client.regions.<a href="./src/do_gradientai/resources/regions/regions.py">list_evaluation_metrics</a>() -> <a href="./src/do_gradientai/types/region_list_evaluation_metrics_response.py">RegionListEvaluationMetricsResponse</a></code>
-
-## EvaluationRuns
-
-Types:
-
-```python
-from do_gradientai.types.regions import EvaluationRunCreateResponse, EvaluationRunRetrieveResponse
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/evaluation_runs">client.regions.evaluation_runs.<a href="./src/do_gradientai/resources/regions/evaluation_runs/evaluation_runs.py">create</a>(\*\*<a href="src/do_gradientai/types/regions/evaluation_run_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/regions/evaluation_run_create_response.py">EvaluationRunCreateResponse</a></code>
-- <code title="get /v2/gen-ai/evaluation_runs/{evaluation_run_uuid}">client.regions.evaluation_runs.<a href="./src/do_gradientai/resources/regions/evaluation_runs/evaluation_runs.py">retrieve</a>(evaluation_run_uuid) -> <a href="./src/do_gradientai/types/regions/evaluation_run_retrieve_response.py">EvaluationRunRetrieveResponse</a></code>
-
-### Results
-
-Types:
-
-```python
-from do_gradientai.types.regions.evaluation_runs import (
-    APIEvaluationMetricResult,
-    APIEvaluationRun,
-    APIPrompt,
-    ResultRetrieveResponse,
-    ResultRetrievePromptResponse,
-)
-```
-
-Methods:
-
-- <code title="get /v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results">client.regions.evaluation_runs.results.<a href="./src/do_gradientai/resources/regions/evaluation_runs/results.py">retrieve</a>(evaluation_run_uuid) -> <a href="./src/do_gradientai/types/regions/evaluation_runs/result_retrieve_response.py">ResultRetrieveResponse</a></code>
-- <code title="get /v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}">client.regions.evaluation_runs.results.<a href="./src/do_gradientai/resources/regions/evaluation_runs/results.py">retrieve_prompt</a>(prompt_id, \*, evaluation_run_uuid) -> <a href="./src/do_gradientai/types/regions/evaluation_runs/result_retrieve_prompt_response.py">ResultRetrievePromptResponse</a></code>
-
-## EvaluationTestCases
-
-Types:
-
-```python
-from do_gradientai.types.regions import (
-    APIEvaluationTestCase,
-    APIStarMetric,
-    EvaluationTestCaseCreateResponse,
-    EvaluationTestCaseRetrieveResponse,
-    EvaluationTestCaseUpdateResponse,
-    EvaluationTestCaseListResponse,
-    EvaluationTestCaseListEvaluationRunsResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/evaluation_test_cases">client.regions.evaluation_test_cases.<a href="./src/do_gradientai/resources/regions/evaluation_test_cases.py">create</a>(\*\*<a href="src/do_gradientai/types/regions/evaluation_test_case_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/regions/evaluation_test_case_create_response.py">EvaluationTestCaseCreateResponse</a></code>
-- <code title="get /v2/gen-ai/evaluation_test_cases/{test_case_uuid}">client.regions.evaluation_test_cases.<a href="./src/do_gradientai/resources/regions/evaluation_test_cases.py">retrieve</a>(test_case_uuid) -> <a href="./src/do_gradientai/types/regions/evaluation_test_case_retrieve_response.py">EvaluationTestCaseRetrieveResponse</a></code>
-- <code title="post /v2/gen-ai/evaluation_test_cases/{test_case_uuid}">client.regions.evaluation_test_cases.<a href="./src/do_gradientai/resources/regions/evaluation_test_cases.py">update</a>(path_test_case_uuid, \*\*<a href="src/do_gradientai/types/regions/evaluation_test_case_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/regions/evaluation_test_case_update_response.py">EvaluationTestCaseUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/evaluation_test_cases">client.regions.evaluation_test_cases.<a href="./src/do_gradientai/resources/regions/evaluation_test_cases.py">list</a>() -> <a href="./src/do_gradientai/types/regions/evaluation_test_case_list_response.py">EvaluationTestCaseListResponse</a></code>
-- <code title="get /v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs">client.regions.evaluation_test_cases.<a href="./src/do_gradientai/resources/regions/evaluation_test_cases.py">list_evaluation_runs</a>(evaluation_test_case_uuid, \*\*<a href="src/do_gradientai/types/regions/evaluation_test_case_list_evaluation_runs_params.py">params</a>) -> <a href="./src/do_gradientai/types/regions/evaluation_test_case_list_evaluation_runs_response.py">EvaluationTestCaseListEvaluationRunsResponse</a></code>
-
-## EvaluationDatasets
-
-Types:
-
-```python
-from do_gradientai.types.regions import (
-    EvaluationDatasetCreateResponse,
-    EvaluationDatasetCreateFileUploadPresignedURLsResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/evaluation_datasets">client.regions.evaluation_datasets.<a href="./src/do_gradientai/resources/regions/evaluation_datasets.py">create</a>(\*\*<a href="src/do_gradientai/types/regions/evaluation_dataset_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/regions/evaluation_dataset_create_response.py">EvaluationDatasetCreateResponse</a></code>
-- <code title="post /v2/gen-ai/evaluation_datasets/file_upload_presigned_urls">client.regions.evaluation_datasets.<a href="./src/do_gradientai/resources/regions/evaluation_datasets.py">create_file_upload_presigned_urls</a>(\*\*<a href="src/do_gradientai/types/regions/evaluation_dataset_create_file_upload_presigned_urls_params.py">params</a>) -> <a href="./src/do_gradientai/types/regions/evaluation_dataset_create_file_upload_presigned_urls_response.py">EvaluationDatasetCreateFileUploadPresignedURLsResponse</a></code>
+- <code title="get /v2/gen-ai/regions">client.regions.<a href="./src/do_gradientai/resources/regions.py">list</a>(\*\*<a href="src/do_gradientai/types/region_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/region_list_response.py">RegionListResponse</a></code>
 
 # IndexingJobs
 
