@@ -1,3 +1,9 @@
+# Shared Types
+
+```python
+from do_gradientai.types import APILinks, APIMeta
+```
+
 # Agents
 
 Types:
@@ -149,7 +155,7 @@ Methods:
 Types:
 
 ```python
-from do_gradientai.types.agents import APILinks, APIMeta, VersionUpdateResponse, VersionListResponse
+from do_gradientai.types.agents import VersionUpdateResponse, VersionListResponse
 ```
 
 Methods:

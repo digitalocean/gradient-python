@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..agents.api_meta import APIMeta
-from ..agents.api_links import APILinks
+from ..shared.api_meta import APIMeta
+from ..shared.api_links import APILinks
 from .api_knowledge_base_data_source import APIKnowledgeBaseDataSource
 
 __all__ = ["DataSourceListResponse"]
