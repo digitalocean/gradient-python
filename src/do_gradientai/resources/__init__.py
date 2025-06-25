@@ -40,14 +40,6 @@ from .inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
-from .providers import (
-    ProvidersResource,
-    AsyncProvidersResource,
-    ProvidersResourceWithRawResponse,
-    AsyncProvidersResourceWithRawResponse,
-    ProvidersResourceWithStreamingResponse,
-    AsyncProvidersResourceWithStreamingResponse,
-)
 from .indexing_jobs import (
     IndexingJobsResource,
     AsyncIndexingJobsResource,
@@ -72,12 +64,6 @@ __all__ = [
     "AsyncAgentsResourceWithRawResponse",
     "AgentsResourceWithStreamingResponse",
     "AsyncAgentsResourceWithStreamingResponse",
-    "ProvidersResource",
-    "AsyncProvidersResource",
-    "ProvidersResourceWithRawResponse",
-    "AsyncProvidersResourceWithRawResponse",
-    "ProvidersResourceWithStreamingResponse",
-    "AsyncProvidersResourceWithStreamingResponse",
     "RegionsResource",
     "AsyncRegionsResource",
     "RegionsResourceWithRawResponse",
