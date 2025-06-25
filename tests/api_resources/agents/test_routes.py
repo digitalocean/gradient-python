@@ -10,31 +10,31 @@ import pytest
 from tests.utils import assert_matches_type
 from do_gradientai import GradientAI, AsyncGradientAI
 from do_gradientai.types.agents import (
-    ChildAgentAddResponse,
-    ChildAgentViewResponse,
-    ChildAgentDeleteResponse,
-    ChildAgentUpdateResponse,
+    RouteAddResponse,
+    RouteViewResponse,
+    RouteDeleteResponse,
+    RouteUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestChildAgents:
+class TestRoutes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.update(
+        route = client.agents.routes.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
-        assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.update(
+        route = client.agents.routes.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -43,33 +43,33 @@ class TestChildAgents:
             route_name="route_name",
             uuid="uuid",
         )
-        assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.update(
+        response = client.agents.routes.with_raw_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = response.parse()
-        assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+        route = response.parse()
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.update(
+        with client.agents.routes.with_streaming_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = response.parse()
-            assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+            route = response.parse()
+            assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -79,13 +79,13 @@ class TestChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            client.agents.child_agents.with_raw_response.update(
+            client.agents.routes.with_raw_response.update(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.update(
+            client.agents.routes.with_raw_response.update(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -93,37 +93,37 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.delete(
+        route = client.agents.routes.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
-        assert_matches_type(ChildAgentDeleteResponse, child_agent, path=["response"])
+        assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.delete(
+        response = client.agents.routes.with_raw_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = response.parse()
-        assert_matches_type(ChildAgentDeleteResponse, child_agent, path=["response"])
+        route = response.parse()
+        assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.delete(
+        with client.agents.routes.with_streaming_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = response.parse()
-            assert_matches_type(ChildAgentDeleteResponse, child_agent, path=["response"])
+            route = response.parse()
+            assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,13 +131,13 @@ class TestChildAgents:
     @parametrize
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `parent_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.delete(
+            client.agents.routes.with_raw_response.delete(
                 child_agent_uuid="child_agent_uuid",
                 parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `child_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.delete(
+            client.agents.routes.with_raw_response.delete(
                 child_agent_uuid="",
                 parent_agent_uuid="parent_agent_uuid",
             )
@@ -145,16 +145,16 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_add(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.add(
+        route = client.agents.routes.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
-        assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+        assert_matches_type(RouteAddResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_method_add_with_all_params(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.add(
+        route = client.agents.routes.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -162,33 +162,33 @@ class TestChildAgents:
             body_parent_agent_uuid="parent_agent_uuid",
             route_name="route_name",
         )
-        assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+        assert_matches_type(RouteAddResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_add(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.add(
+        response = client.agents.routes.with_raw_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = response.parse()
-        assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+        route = response.parse()
+        assert_matches_type(RouteAddResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_add(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.add(
+        with client.agents.routes.with_streaming_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = response.parse()
-            assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+            route = response.parse()
+            assert_matches_type(RouteAddResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,13 +198,13 @@ class TestChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            client.agents.child_agents.with_raw_response.add(
+            client.agents.routes.with_raw_response.add(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.add(
+            client.agents.routes.with_raw_response.add(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -212,34 +212,34 @@ class TestChildAgents:
     @pytest.mark.skip()
     @parametrize
     def test_method_view(self, client: GradientAI) -> None:
-        child_agent = client.agents.child_agents.view(
+        route = client.agents.routes.view(
             "uuid",
         )
-        assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
+        assert_matches_type(RouteViewResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_raw_response_view(self, client: GradientAI) -> None:
-        response = client.agents.child_agents.with_raw_response.view(
+        response = client.agents.routes.with_raw_response.view(
             "uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = response.parse()
-        assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
+        route = response.parse()
+        assert_matches_type(RouteViewResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     def test_streaming_response_view(self, client: GradientAI) -> None:
-        with client.agents.child_agents.with_streaming_response.view(
+        with client.agents.routes.with_streaming_response.view(
             "uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = response.parse()
-            assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
+            route = response.parse()
+            assert_matches_type(RouteViewResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,12 +247,12 @@ class TestChildAgents:
     @parametrize
     def test_path_params_view(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            client.agents.child_agents.with_raw_response.view(
+            client.agents.routes.with_raw_response.view(
                 "",
             )
 
 
-class TestAsyncChildAgents:
+class TestAsyncRoutes:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -260,16 +260,16 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.update(
+        route = await async_client.agents.routes.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
-        assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.update(
+        route = await async_client.agents.routes.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -278,33 +278,33 @@ class TestAsyncChildAgents:
             route_name="route_name",
             uuid="uuid",
         )
-        assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.update(
+        response = await async_client.agents.routes.with_raw_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = await response.parse()
-        assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+        route = await response.parse()
+        assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.update(
+        async with async_client.agents.routes.with_streaming_response.update(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = await response.parse()
-            assert_matches_type(ChildAgentUpdateResponse, child_agent, path=["response"])
+            route = await response.parse()
+            assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,13 +314,13 @@ class TestAsyncChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            await async_client.agents.child_agents.with_raw_response.update(
+            await async_client.agents.routes.with_raw_response.update(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.update(
+            await async_client.agents.routes.with_raw_response.update(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -328,37 +328,37 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.delete(
+        route = await async_client.agents.routes.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
-        assert_matches_type(ChildAgentDeleteResponse, child_agent, path=["response"])
+        assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.delete(
+        response = await async_client.agents.routes.with_raw_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = await response.parse()
-        assert_matches_type(ChildAgentDeleteResponse, child_agent, path=["response"])
+        route = await response.parse()
+        assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.delete(
+        async with async_client.agents.routes.with_streaming_response.delete(
             child_agent_uuid="child_agent_uuid",
             parent_agent_uuid="parent_agent_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = await response.parse()
-            assert_matches_type(ChildAgentDeleteResponse, child_agent, path=["response"])
+            route = await response.parse()
+            assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -366,13 +366,13 @@ class TestAsyncChildAgents:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `parent_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.delete(
+            await async_client.agents.routes.with_raw_response.delete(
                 child_agent_uuid="child_agent_uuid",
                 parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `child_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.delete(
+            await async_client.agents.routes.with_raw_response.delete(
                 child_agent_uuid="",
                 parent_agent_uuid="parent_agent_uuid",
             )
@@ -380,16 +380,16 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_add(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.add(
+        route = await async_client.agents.routes.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
-        assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+        assert_matches_type(RouteAddResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_add_with_all_params(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.add(
+        route = await async_client.agents.routes.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
             body_child_agent_uuid="child_agent_uuid",
@@ -397,33 +397,33 @@ class TestAsyncChildAgents:
             body_parent_agent_uuid="parent_agent_uuid",
             route_name="route_name",
         )
-        assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+        assert_matches_type(RouteAddResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.add(
+        response = await async_client.agents.routes.with_raw_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = await response.parse()
-        assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+        route = await response.parse()
+        assert_matches_type(RouteAddResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.add(
+        async with async_client.agents.routes.with_streaming_response.add(
             path_child_agent_uuid="child_agent_uuid",
             path_parent_agent_uuid="parent_agent_uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = await response.parse()
-            assert_matches_type(ChildAgentAddResponse, child_agent, path=["response"])
+            route = await response.parse()
+            assert_matches_type(RouteAddResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -433,13 +433,13 @@ class TestAsyncChildAgents:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
-            await async_client.agents.child_agents.with_raw_response.add(
+            await async_client.agents.routes.with_raw_response.add(
                 path_child_agent_uuid="child_agent_uuid",
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.add(
+            await async_client.agents.routes.with_raw_response.add(
                 path_child_agent_uuid="",
                 path_parent_agent_uuid="parent_agent_uuid",
             )
@@ -447,34 +447,34 @@ class TestAsyncChildAgents:
     @pytest.mark.skip()
     @parametrize
     async def test_method_view(self, async_client: AsyncGradientAI) -> None:
-        child_agent = await async_client.agents.child_agents.view(
+        route = await async_client.agents.routes.view(
             "uuid",
         )
-        assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
+        assert_matches_type(RouteViewResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_raw_response_view(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.agents.child_agents.with_raw_response.view(
+        response = await async_client.agents.routes.with_raw_response.view(
             "uuid",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        child_agent = await response.parse()
-        assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
+        route = await response.parse()
+        assert_matches_type(RouteViewResponse, route, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_view(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.agents.child_agents.with_streaming_response.view(
+        async with async_client.agents.routes.with_streaming_response.view(
             "uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            child_agent = await response.parse()
-            assert_matches_type(ChildAgentViewResponse, child_agent, path=["response"])
+            route = await response.parse()
+            assert_matches_type(RouteViewResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -482,6 +482,6 @@ class TestAsyncChildAgents:
     @parametrize
     async def test_path_params_view(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
-            await async_client.agents.child_agents.with_raw_response.view(
+            await async_client.agents.routes.with_raw_response.view(
                 "",
             )

@@ -6,10 +6,10 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ChildAgentViewResponse"]
+__all__ = ["RouteViewResponse"]
 
 
-class ChildAgentViewResponse(BaseModel):
+class RouteViewResponse(BaseModel):
     children: Optional[List["APIAgent"]] = None
 
 

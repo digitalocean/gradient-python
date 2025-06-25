@@ -31,14 +31,14 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, inference, providers, knowledge_bases
+    from .resources import chat, agents, models, regions, inference, knowledge_bases, model_providers
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
-    from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
+    from .resources.model_providers.model_providers import ModelProvidersResource, AsyncModelProvidersResource
 
 __all__ = [
     "Timeout",
@@ -115,10 +115,10 @@ class GradientAI(SyncAPIClient):
         return AgentsResource(self)
 
     @cached_property
-    def providers(self) -> ProvidersResource:
-        from .resources.providers import ProvidersResource
+    def model_providers(self) -> ModelProvidersResource:
+        from .resources.model_providers import ModelProvidersResource
 
-        return ProvidersResource(self)
+        return ModelProvidersResource(self)
 
     @cached_property
     def regions(self) -> RegionsResource:
@@ -328,10 +328,10 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncAgentsResource(self)
 
     @cached_property
-    def providers(self) -> AsyncProvidersResource:
-        from .resources.providers import AsyncProvidersResource
+    def model_providers(self) -> AsyncModelProvidersResource:
+        from .resources.model_providers import AsyncModelProvidersResource
 
-        return AsyncProvidersResource(self)
+        return AsyncModelProvidersResource(self)
 
     @cached_property
     def regions(self) -> AsyncRegionsResource:
@@ -491,10 +491,10 @@ class GradientAIWithRawResponse:
         return AgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
-    def providers(self) -> providers.ProvidersResourceWithRawResponse:
-        from .resources.providers import ProvidersResourceWithRawResponse
+    def model_providers(self) -> model_providers.ModelProvidersResourceWithRawResponse:
+        from .resources.model_providers import ModelProvidersResourceWithRawResponse
 
-        return ProvidersResourceWithRawResponse(self._client.providers)
+        return ModelProvidersResourceWithRawResponse(self._client.model_providers)
 
     @cached_property
     def regions(self) -> regions.RegionsResourceWithRawResponse:
@@ -540,10 +540,10 @@ class AsyncGradientAIWithRawResponse:
         return AsyncAgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
-    def providers(self) -> providers.AsyncProvidersResourceWithRawResponse:
-        from .resources.providers import AsyncProvidersResourceWithRawResponse
+    def model_providers(self) -> model_providers.AsyncModelProvidersResourceWithRawResponse:
+        from .resources.model_providers import AsyncModelProvidersResourceWithRawResponse
 
-        return AsyncProvidersResourceWithRawResponse(self._client.providers)
+        return AsyncModelProvidersResourceWithRawResponse(self._client.model_providers)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
@@ -589,10 +589,10 @@ class GradientAIWithStreamedResponse:
         return AgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
-    def providers(self) -> providers.ProvidersResourceWithStreamingResponse:
-        from .resources.providers import ProvidersResourceWithStreamingResponse
+    def model_providers(self) -> model_providers.ModelProvidersResourceWithStreamingResponse:
+        from .resources.model_providers import ModelProvidersResourceWithStreamingResponse
 
-        return ProvidersResourceWithStreamingResponse(self._client.providers)
+        return ModelProvidersResourceWithStreamingResponse(self._client.model_providers)
 
     @cached_property
     def regions(self) -> regions.RegionsResourceWithStreamingResponse:
@@ -638,10 +638,10 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
-    def providers(self) -> providers.AsyncProvidersResourceWithStreamingResponse:
-        from .resources.providers import AsyncProvidersResourceWithStreamingResponse
+    def model_providers(self) -> model_providers.AsyncModelProvidersResourceWithStreamingResponse:
+        from .resources.model_providers import AsyncModelProvidersResourceWithStreamingResponse
 
-        return AsyncProvidersResourceWithStreamingResponse(self._client.providers)
+        return AsyncModelProvidersResourceWithStreamingResponse(self._client.model_providers)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:

@@ -4,10 +4,15 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ChildAgentDeleteResponse"]
+__all__ = ["RouteUpdateResponse"]
 
 
-class ChildAgentDeleteResponse(BaseModel):
+class RouteUpdateResponse(BaseModel):
     child_agent_uuid: Optional[str] = None
 
     parent_agent_uuid: Optional[str] = None
+    """A unique identifier for the parent agent."""
+
+    rollback: Optional[bool] = None
+
+    uuid: Optional[str] = None

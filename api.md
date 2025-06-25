@@ -171,27 +171,27 @@ Methods:
 - <code title="post /v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}">client.agents.knowledge_bases.<a href="./src/do_gradientai/resources/agents/knowledge_bases.py">attach_single</a>(knowledge_base_uuid, \*, agent_uuid) -> <a href="./src/do_gradientai/types/agents/api_link_knowledge_base_output.py">APILinkKnowledgeBaseOutput</a></code>
 - <code title="delete /v2/gen-ai/agents/{agent_uuid}/knowledge_bases/{knowledge_base_uuid}">client.agents.knowledge_bases.<a href="./src/do_gradientai/resources/agents/knowledge_bases.py">detach</a>(knowledge_base_uuid, \*, agent_uuid) -> <a href="./src/do_gradientai/types/agents/knowledge_base_detach_response.py">KnowledgeBaseDetachResponse</a></code>
 
-## ChildAgents
+## Routes
 
 Types:
 
 ```python
 from do_gradientai.types.agents import (
-    ChildAgentUpdateResponse,
-    ChildAgentDeleteResponse,
-    ChildAgentAddResponse,
-    ChildAgentViewResponse,
+    RouteUpdateResponse,
+    RouteDeleteResponse,
+    RouteAddResponse,
+    RouteViewResponse,
 )
 ```
 
 Methods:
 
-- <code title="put /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/do_gradientai/resources/agents/child_agents.py">update</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/do_gradientai/types/agents/child_agent_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/child_agent_update_response.py">ChildAgentUpdateResponse</a></code>
-- <code title="delete /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/do_gradientai/resources/agents/child_agents.py">delete</a>(child_agent_uuid, \*, parent_agent_uuid) -> <a href="./src/do_gradientai/types/agents/child_agent_delete_response.py">ChildAgentDeleteResponse</a></code>
-- <code title="post /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.child_agents.<a href="./src/do_gradientai/resources/agents/child_agents.py">add</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/do_gradientai/types/agents/child_agent_add_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/child_agent_add_response.py">ChildAgentAddResponse</a></code>
-- <code title="get /v2/gen-ai/agents/{uuid}/child_agents">client.agents.child_agents.<a href="./src/do_gradientai/resources/agents/child_agents.py">view</a>(uuid) -> <a href="./src/do_gradientai/types/agents/child_agent_view_response.py">ChildAgentViewResponse</a></code>
+- <code title="put /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.routes.<a href="./src/do_gradientai/resources/agents/routes.py">update</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/do_gradientai/types/agents/route_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/route_update_response.py">RouteUpdateResponse</a></code>
+- <code title="delete /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.routes.<a href="./src/do_gradientai/resources/agents/routes.py">delete</a>(child_agent_uuid, \*, parent_agent_uuid) -> <a href="./src/do_gradientai/types/agents/route_delete_response.py">RouteDeleteResponse</a></code>
+- <code title="post /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.routes.<a href="./src/do_gradientai/resources/agents/routes.py">add</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/do_gradientai/types/agents/route_add_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/route_add_response.py">RouteAddResponse</a></code>
+- <code title="get /v2/gen-ai/agents/{uuid}/child_agents">client.agents.routes.<a href="./src/do_gradientai/resources/agents/routes.py">view</a>(uuid) -> <a href="./src/do_gradientai/types/agents/route_view_response.py">RouteViewResponse</a></code>
 
-# Providers
+# ModelProviders
 
 ## Anthropic
 
@@ -200,7 +200,7 @@ Methods:
 Types:
 
 ```python
-from do_gradientai.types.providers.anthropic import (
+from do_gradientai.types.model_providers.anthropic import (
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,
@@ -212,12 +212,12 @@ from do_gradientai.types.providers.anthropic import (
 
 Methods:
 
-- <code title="post /v2/gen-ai/anthropic/keys">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/providers/anthropic/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="get /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/anthropic/key_retrieve_response.py">KeyRetrieveResponse</a></code>
-- <code title="put /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/providers/anthropic/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_update_response.py">KeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/anthropic/keys">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/providers/anthropic/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_list_response.py">KeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/anthropic/key_delete_response.py">KeyDeleteResponse</a></code>
-- <code title="get /v2/gen-ai/anthropic/keys/{uuid}/agents">client.providers.anthropic.keys.<a href="./src/do_gradientai/resources/providers/anthropic/keys.py">list_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/providers/anthropic/key_list_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/anthropic/key_list_agents_response.py">KeyListAgentsResponse</a></code>
+- <code title="post /v2/gen-ai/anthropic/keys">client.model_providers.anthropic.keys.<a href="./src/do_gradientai/resources/model_providers/anthropic/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/model_providers/anthropic/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/anthropic/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.model_providers.anthropic.keys.<a href="./src/do_gradientai/resources/model_providers/anthropic/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/model_providers/anthropic/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.model_providers.anthropic.keys.<a href="./src/do_gradientai/resources/model_providers/anthropic/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/model_providers/anthropic/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/anthropic/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys">client.model_providers.anthropic.keys.<a href="./src/do_gradientai/resources/model_providers/anthropic/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/model_providers/anthropic/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/anthropic/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.model_providers.anthropic.keys.<a href="./src/do_gradientai/resources/model_providers/anthropic/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/model_providers/anthropic/key_delete_response.py">KeyDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{uuid}/agents">client.model_providers.anthropic.keys.<a href="./src/do_gradientai/resources/model_providers/anthropic/keys.py">list_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/model_providers/anthropic/key_list_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/anthropic/key_list_agents_response.py">KeyListAgentsResponse</a></code>
 
 ## OpenAI
 
@@ -226,7 +226,7 @@ Methods:
 Types:
 
 ```python
-from do_gradientai.types.providers.openai import (
+from do_gradientai.types.model_providers.openai import (
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,
@@ -238,12 +238,12 @@ from do_gradientai.types.providers.openai import (
 
 Methods:
 
-- <code title="post /v2/gen-ai/openai/keys">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/providers/openai/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="get /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/openai/key_retrieve_response.py">KeyRetrieveResponse</a></code>
-- <code title="put /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/providers/openai/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_update_response.py">KeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/openai/keys">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/providers/openai/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_list_response.py">KeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/providers/openai/key_delete_response.py">KeyDeleteResponse</a></code>
-- <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.providers.openai.keys.<a href="./src/do_gradientai/resources/providers/openai/keys.py">retrieve_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/providers/openai/key_retrieve_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/providers/openai/key_retrieve_agents_response.py">KeyRetrieveAgentsResponse</a></code>
+- <code title="post /v2/gen-ai/openai/keys">client.model_providers.openai.keys.<a href="./src/do_gradientai/resources/model_providers/openai/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/model_providers/openai/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/openai/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{api_key_uuid}">client.model_providers.openai.keys.<a href="./src/do_gradientai/resources/model_providers/openai/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/model_providers/openai/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/openai/keys/{api_key_uuid}">client.model_providers.openai.keys.<a href="./src/do_gradientai/resources/model_providers/openai/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/model_providers/openai/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/openai/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys">client.model_providers.openai.keys.<a href="./src/do_gradientai/resources/model_providers/openai/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/model_providers/openai/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/openai/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.model_providers.openai.keys.<a href="./src/do_gradientai/resources/model_providers/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/model_providers/openai/key_delete_response.py">KeyDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.model_providers.openai.keys.<a href="./src/do_gradientai/resources/model_providers/openai/keys.py">retrieve_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/model_providers/openai/key_retrieve_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/model_providers/openai/key_retrieve_agents_response.py">KeyRetrieveAgentsResponse</a></code>
 
 # Regions
 

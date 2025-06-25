@@ -16,13 +16,13 @@ from .anthropic import (
     AnthropicResourceWithStreamingResponse,
     AsyncAnthropicResourceWithStreamingResponse,
 )
-from .providers import (
-    ProvidersResource,
-    AsyncProvidersResource,
-    ProvidersResourceWithRawResponse,
-    AsyncProvidersResourceWithRawResponse,
-    ProvidersResourceWithStreamingResponse,
-    AsyncProvidersResourceWithStreamingResponse,
+from .model_providers import (
+    ModelProvidersResource,
+    AsyncModelProvidersResource,
+    ModelProvidersResourceWithRawResponse,
+    AsyncModelProvidersResourceWithRawResponse,
+    ModelProvidersResourceWithStreamingResponse,
+    AsyncModelProvidersResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -38,10 +38,10 @@ __all__ = [
     "AsyncOpenAIResourceWithRawResponse",
     "OpenAIResourceWithStreamingResponse",
     "AsyncOpenAIResourceWithStreamingResponse",
-    "ProvidersResource",
-    "AsyncProvidersResource",
-    "ProvidersResourceWithRawResponse",
-    "AsyncProvidersResourceWithRawResponse",
-    "ProvidersResourceWithStreamingResponse",
-    "AsyncProvidersResourceWithStreamingResponse",
+    "ModelProvidersResource",
+    "AsyncModelProvidersResource",
+    "ModelProvidersResourceWithRawResponse",
+    "AsyncModelProvidersResourceWithRawResponse",
+    "ModelProvidersResourceWithStreamingResponse",
+    "AsyncModelProvidersResourceWithStreamingResponse",
 ]

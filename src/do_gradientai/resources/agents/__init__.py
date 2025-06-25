@@ -8,6 +8,14 @@ from .agents import (
     AgentsResourceWithStreamingResponse,
     AsyncAgentsResourceWithStreamingResponse,
 )
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -31,14 +39,6 @@ from .functions import (
     AsyncFunctionsResourceWithRawResponse,
     FunctionsResourceWithStreamingResponse,
     AsyncFunctionsResourceWithStreamingResponse,
-)
-from .child_agents import (
-    ChildAgentsResource,
-    AsyncChildAgentsResource,
-    ChildAgentsResourceWithRawResponse,
-    AsyncChildAgentsResourceWithRawResponse,
-    ChildAgentsResourceWithStreamingResponse,
-    AsyncChildAgentsResourceWithStreamingResponse,
 )
 from .evaluation_runs import (
     EvaluationRunsResource,
@@ -130,12 +130,12 @@ __all__ = [
     "AsyncKnowledgeBasesResourceWithRawResponse",
     "KnowledgeBasesResourceWithStreamingResponse",
     "AsyncKnowledgeBasesResourceWithStreamingResponse",
-    "ChildAgentsResource",
-    "AsyncChildAgentsResource",
-    "ChildAgentsResourceWithRawResponse",
-    "AsyncChildAgentsResourceWithRawResponse",
-    "ChildAgentsResourceWithStreamingResponse",
-    "AsyncChildAgentsResourceWithStreamingResponse",
+    "RoutesResource",
+    "AsyncRoutesResource",
+    "RoutesResourceWithRawResponse",
+    "AsyncRoutesResourceWithRawResponse",
+    "RoutesResourceWithStreamingResponse",
+    "AsyncRoutesResourceWithStreamingResponse",
     "AgentsResource",
     "AsyncAgentsResource",
     "AgentsResourceWithRawResponse",
