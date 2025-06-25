@@ -120,11 +120,10 @@ from gradientai import GradientAI
 
 client = GradientAI()
 
-data_source = client.knowledge_bases.data_sources.create(
-    path_knowledge_base_uuid="knowledge_base_uuid",
-    aws_data_source={},
+evaluation_test_case = client.regions.evaluation_test_cases.create(
+    star_metric={},
 )
-print(data_source.aws_data_source)
+print(evaluation_test_case.star_metric)
 ```
 
 ## Handling errors
