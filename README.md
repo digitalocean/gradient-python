@@ -1,8 +1,8 @@
-# Gradient AI Python API library
+# GradientAI Python API library
 
 [![PyPI version](<https://img.shields.io/pypi/v/c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python.svg?label=pypi%20(stable)>)](https://pypi.org/project/c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python/)
 
-The Gradient AI Python library provides convenient access to the Gradient AI REST API from any Python 3.8+
+The GradientAI Python library provides convenient access to the GradientAI REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
