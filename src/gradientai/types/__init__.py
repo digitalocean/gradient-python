@@ -45,6 +45,9 @@ from .knowledge_base_update_response import KnowledgeBaseUpdateResponse as Knowl
 from .knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse as KnowledgeBaseRetrieveResponse
 from .indexing_job_update_cancel_params import IndexingJobUpdateCancelParams as IndexingJobUpdateCancelParams
 from .indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse as IndexingJobUpdateCancelResponse
+from .region_list_evaluation_metrics_response import (
+    RegionListEvaluationMetricsResponse as RegionListEvaluationMetricsResponse,
+)
 from .indexing_job_retrieve_data_sources_response import (
     IndexingJobRetrieveDataSourcesResponse as IndexingJobRetrieveDataSourcesResponse,
 )
