@@ -48,14 +48,6 @@ from .providers import (
     ProvidersResourceWithStreamingResponse,
     AsyncProvidersResourceWithStreamingResponse,
 )
-from .indexing_jobs import (
-    IndexingJobsResource,
-    AsyncIndexingJobsResource,
-    IndexingJobsResourceWithRawResponse,
-    AsyncIndexingJobsResourceWithRawResponse,
-    IndexingJobsResourceWithStreamingResponse,
-    AsyncIndexingJobsResourceWithStreamingResponse,
-)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -84,12 +76,6 @@ __all__ = [
     "AsyncRegionsResourceWithRawResponse",
     "RegionsResourceWithStreamingResponse",
     "AsyncRegionsResourceWithStreamingResponse",
-    "IndexingJobsResource",
-    "AsyncIndexingJobsResource",
-    "IndexingJobsResourceWithRawResponse",
-    "AsyncIndexingJobsResourceWithRawResponse",
-    "IndexingJobsResourceWithStreamingResponse",
-    "AsyncIndexingJobsResourceWithStreamingResponse",
     "KnowledgeBasesResource",
     "AsyncKnowledgeBasesResource",
     "KnowledgeBasesResourceWithRawResponse",

@@ -31,11 +31,10 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, inference, providers, indexing_jobs, knowledge_bases
+    from .resources import chat, agents, models, regions, inference, providers, knowledge_bases
     from .resources.models import ModelsResource, AsyncModelsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
-    from .resources.indexing_jobs import IndexingJobsResource, AsyncIndexingJobsResource
     from .resources.regions.regions import RegionsResource, AsyncRegionsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.providers.providers import ProvidersResource, AsyncProvidersResource
@@ -126,12 +125,6 @@ class GradientAI(SyncAPIClient):
         from .resources.regions import RegionsResource
 
         return RegionsResource(self)
-
-    @cached_property
-    def indexing_jobs(self) -> IndexingJobsResource:
-        from .resources.indexing_jobs import IndexingJobsResource
-
-        return IndexingJobsResource(self)
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResource:
@@ -347,12 +340,6 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncRegionsResource(self)
 
     @cached_property
-    def indexing_jobs(self) -> AsyncIndexingJobsResource:
-        from .resources.indexing_jobs import AsyncIndexingJobsResource
-
-        return AsyncIndexingJobsResource(self)
-
-    @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResource
 
@@ -516,12 +503,6 @@ class GradientAIWithRawResponse:
         return RegionsResourceWithRawResponse(self._client.regions)
 
     @cached_property
-    def indexing_jobs(self) -> indexing_jobs.IndexingJobsResourceWithRawResponse:
-        from .resources.indexing_jobs import IndexingJobsResourceWithRawResponse
-
-        return IndexingJobsResourceWithRawResponse(self._client.indexing_jobs)
-
-    @cached_property
     def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
         from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
 
@@ -569,12 +550,6 @@ class AsyncGradientAIWithRawResponse:
         from .resources.regions import AsyncRegionsResourceWithRawResponse
 
         return AsyncRegionsResourceWithRawResponse(self._client.regions)
-
-    @cached_property
-    def indexing_jobs(self) -> indexing_jobs.AsyncIndexingJobsResourceWithRawResponse:
-        from .resources.indexing_jobs import AsyncIndexingJobsResourceWithRawResponse
-
-        return AsyncIndexingJobsResourceWithRawResponse(self._client.indexing_jobs)
 
     @cached_property
     def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
@@ -626,12 +601,6 @@ class GradientAIWithStreamedResponse:
         return RegionsResourceWithStreamingResponse(self._client.regions)
 
     @cached_property
-    def indexing_jobs(self) -> indexing_jobs.IndexingJobsResourceWithStreamingResponse:
-        from .resources.indexing_jobs import IndexingJobsResourceWithStreamingResponse
-
-        return IndexingJobsResourceWithStreamingResponse(self._client.indexing_jobs)
-
-    @cached_property
     def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
         from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
 
@@ -679,12 +648,6 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.regions import AsyncRegionsResourceWithStreamingResponse
 
         return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
-
-    @cached_property
-    def indexing_jobs(self) -> indexing_jobs.AsyncIndexingJobsResourceWithStreamingResponse:
-        from .resources.indexing_jobs import AsyncIndexingJobsResourceWithStreamingResponse
-
-        return AsyncIndexingJobsResourceWithStreamingResponse(self._client.indexing_jobs)
 
     @cached_property
     def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
