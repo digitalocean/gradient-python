@@ -21,20 +21,16 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK, APIResponseValidationError
-from digitalocean_genai_sdk._types import Omit
-from digitalocean_genai_sdk._models import BaseModel, FinalRequestOptions
-from digitalocean_genai_sdk._constants import RAW_RESPONSE_HEADER
-from digitalocean_genai_sdk._exceptions import (
-    APIStatusError,
-    APITimeoutError,
-    DigitaloceanGenaiSDKError,
-    APIResponseValidationError,
-)
-from digitalocean_genai_sdk._base_client import (
+from gradientai import GradientAI, AsyncGradientAI, APIResponseValidationError
+from gradientai._types import Omit
+from gradientai._models import BaseModel, FinalRequestOptions
+from gradientai._exceptions import APIStatusError, APITimeoutError, GradientAIError, APIResponseValidationError
+from gradientai._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
+    DefaultHttpxClient,
+    DefaultAsyncHttpxClient,
     make_request_options,
 )
 
@@ -54,7 +50,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: DigitaloceanGenaiSDK | AsyncDigitaloceanGenaiSDK) -> int:
+def _get_open_connections(client: GradientAI | AsyncGradientAI) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -62,8 +58,8 @@ def _get_open_connections(client: DigitaloceanGenaiSDK | AsyncDigitaloceanGenaiS
     return len(pool._requests)
 
 
-class TestDigitaloceanGenaiSDK:
-    client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestGradientAI:
+    client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -110,7 +106,7 @@ class TestDigitaloceanGenaiSDK:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = GradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -144,7 +140,7 @@ class TestDigitaloceanGenaiSDK:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = GradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -235,10 +231,10 @@ class TestDigitaloceanGenaiSDK:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "digitalocean_genai_sdk/_legacy_response.py",
-                        "digitalocean_genai_sdk/_response.py",
+                        "gradientai/_legacy_response.py",
+                        "gradientai/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "digitalocean_genai_sdk/_compat.py",
+                        "gradientai/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -269,7 +265,7 @@ class TestDigitaloceanGenaiSDK:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = GradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -280,7 +276,7 @@ class TestDigitaloceanGenaiSDK:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = DigitaloceanGenaiSDK(
+            client = GradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -290,7 +286,7 @@ class TestDigitaloceanGenaiSDK:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = DigitaloceanGenaiSDK(
+            client = GradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -300,7 +296,7 @@ class TestDigitaloceanGenaiSDK:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = DigitaloceanGenaiSDK(
+            client = GradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -311,7 +307,7 @@ class TestDigitaloceanGenaiSDK:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                DigitaloceanGenaiSDK(
+                GradientAI(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -319,14 +315,14 @@ class TestDigitaloceanGenaiSDK:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = GradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = DigitaloceanGenaiSDK(
+        client2 = GradientAI(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -340,17 +336,17 @@ class TestDigitaloceanGenaiSDK:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(DigitaloceanGenaiSDKError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
-                client2 = DigitaloceanGenaiSDK(base_url=base_url, api_key=None, _strict_response_validation=True)
+        with pytest.raises(GradientAIError):
+            with update_env(**{"GRADIENTAI_API_KEY": Omit()}):
+                client2 = GradientAI(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = DigitaloceanGenaiSDK(
+        client = GradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -464,7 +460,7 @@ class TestDigitaloceanGenaiSDK:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_multipart_repeating_array(self, client: GradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -551,9 +547,7 @@ class TestDigitaloceanGenaiSDK:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = DigitaloceanGenaiSDK(
-            base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
-        )
+        client = GradientAI(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -561,17 +555,17 @@ class TestDigitaloceanGenaiSDK:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(DIGITALOCEAN_GENAI_SDK_BASE_URL="http://localhost:5000/from/env"):
-            client = DigitaloceanGenaiSDK(api_key=api_key, _strict_response_validation=True)
+        with update_env(GRADIENT_AI_BASE_URL="http://localhost:5000/from/env"):
+            client = GradientAI(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -580,7 +574,7 @@ class TestDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_base_url_trailing_slash(self, client: GradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -593,10 +587,10 @@ class TestDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -605,7 +599,7 @@ class TestDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_base_url_no_trailing_slash(self, client: GradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -618,10 +612,10 @@ class TestDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -630,7 +624,7 @@ class TestDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_absolute_request_url(self, client: GradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -641,7 +635,7 @@ class TestDigitaloceanGenaiSDK:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -652,7 +646,7 @@ class TestDigitaloceanGenaiSDK:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -673,7 +667,7 @@ class TestDigitaloceanGenaiSDK:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            DigitaloceanGenaiSDK(
+            GradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -684,12 +678,12 @@ class TestDigitaloceanGenaiSDK:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -717,48 +711,39 @@ class TestDigitaloceanGenaiSDK:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = DigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = GradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: GradientAI) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            client.agents.versions.with_streaming_response.list(uuid="uuid").__enter__()
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: GradientAI) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            client.agents.versions.with_streaming_response.list(uuid="uuid").__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
         self,
-        client: DigitaloceanGenaiSDK,
+        client: GradientAI,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -784,10 +769,10 @@ class TestDigitaloceanGenaiSDK:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
-        self, client: DigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, client: GradientAI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -809,10 +794,10 @@ class TestDigitaloceanGenaiSDK:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: DigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, client: GradientAI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -832,6 +817,28 @@ class TestDigitaloceanGenaiSDK:
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
+
+    def test_proxy_environment_variables(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        # Test that the proxy environment variables are set correctly
+        monkeypatch.setenv("HTTPS_PROXY", "https://example.org")
+
+        client = DefaultHttpxClient()
+
+        mounts = tuple(client._mounts.items())
+        assert len(mounts) == 1
+        assert mounts[0][0].pattern == "https://"
+
+    @pytest.mark.filterwarnings("ignore:.*deprecated.*:DeprecationWarning")
+    def test_default_client_creation(self) -> None:
+        # Ensure that the client can be initialized without any exceptions
+        DefaultHttpxClient(
+            verify=True,
+            cert=None,
+            trust_env=True,
+            http1=True,
+            http2=False,
+            limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+        )
 
     @pytest.mark.respx(base_url=base_url)
     def test_follow_redirects(self, respx_mock: MockRouter) -> None:
@@ -861,8 +868,8 @@ class TestDigitaloceanGenaiSDK:
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
 
 
-class TestAsyncDigitaloceanGenaiSDK:
-    client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestAsyncGradientAI:
+    client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -911,7 +918,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncGradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         assert client.default_headers["X-Foo"] == "bar"
@@ -945,7 +952,7 @@ class TestAsyncDigitaloceanGenaiSDK:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncGradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
@@ -1036,10 +1043,10 @@ class TestAsyncDigitaloceanGenaiSDK:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "digitalocean_genai_sdk/_legacy_response.py",
-                        "digitalocean_genai_sdk/_response.py",
+                        "gradientai/_legacy_response.py",
+                        "gradientai/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "digitalocean_genai_sdk/_compat.py",
+                        "gradientai/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1070,7 +1077,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncGradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
@@ -1081,7 +1088,7 @@ class TestAsyncDigitaloceanGenaiSDK:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncDigitaloceanGenaiSDK(
+            client = AsyncGradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1091,7 +1098,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncDigitaloceanGenaiSDK(
+            client = AsyncGradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1101,7 +1108,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncDigitaloceanGenaiSDK(
+            client = AsyncGradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
             )
 
@@ -1112,7 +1119,7 @@ class TestAsyncDigitaloceanGenaiSDK:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncDigitaloceanGenaiSDK(
+                AsyncGradientAI(
                     base_url=base_url,
                     api_key=api_key,
                     _strict_response_validation=True,
@@ -1120,14 +1127,14 @@ class TestAsyncDigitaloceanGenaiSDK:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncGradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncDigitaloceanGenaiSDK(
+        client2 = AsyncGradientAI(
             base_url=base_url,
             api_key=api_key,
             _strict_response_validation=True,
@@ -1141,17 +1148,17 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with pytest.raises(DigitaloceanGenaiSDKError):
-            with update_env(**{"DIGITALOCEAN_GENAI_SDK_API_KEY": Omit()}):
-                client2 = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=None, _strict_response_validation=True)
+        with pytest.raises(GradientAIError):
+            with update_env(**{"GRADIENTAI_API_KEY": Omit()}):
+                client2 = AsyncGradientAI(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
     def test_default_query_option(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncGradientAI(
             base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1265,7 +1272,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncGradientAI) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1352,7 +1359,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(
+        client = AsyncGradientAI(
             base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1362,17 +1369,17 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(DIGITALOCEAN_GENAI_SDK_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncDigitaloceanGenaiSDK(api_key=api_key, _strict_response_validation=True)
+        with update_env(GRADIENT_AI_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncGradientAI(api_key=api_key, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1381,7 +1388,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncGradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1394,10 +1401,10 @@ class TestAsyncDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1406,7 +1413,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncGradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1419,10 +1426,10 @@ class TestAsyncDigitaloceanGenaiSDK:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
             ),
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 _strict_response_validation=True,
@@ -1431,7 +1438,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncDigitaloceanGenaiSDK) -> None:
+    def test_absolute_request_url(self, client: AsyncGradientAI) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1442,7 +1449,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1454,7 +1461,7 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1476,7 +1483,7 @@ class TestAsyncDigitaloceanGenaiSDK:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncDigitaloceanGenaiSDK(
+            AsyncGradientAI(
                 base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
             )
 
@@ -1488,12 +1495,12 @@ class TestAsyncDigitaloceanGenaiSDK:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1522,49 +1529,44 @@ class TestAsyncDigitaloceanGenaiSDK:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncDigitaloceanGenaiSDK(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncGradientAI(base_url=base_url, api_key=api_key, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_timeout_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncGradientAI
+    ) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
+            await async_client.agents.versions.with_streaming_response.list(uuid="uuid").__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
+    async def test_retrying_status_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncGradientAI
+    ) -> None:
         respx_mock.get("/v2/gen-ai/agents/uuid/versions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await self.client.get(
-                "/v2/gen-ai/agents/uuid/versions",
-                cast_to=httpx.Response,
-                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
-            )
-
+            await async_client.agents.versions.with_streaming_response.list(uuid="uuid").__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
         self,
-        async_client: AsyncDigitaloceanGenaiSDK,
+        async_client: AsyncGradientAI,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -1590,11 +1592,11 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
-        self, async_client: AsyncDigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGradientAI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1616,11 +1618,11 @@ class TestAsyncDigitaloceanGenaiSDK:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("digitalocean_genai_sdk._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncDigitaloceanGenaiSDK, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGradientAI, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1652,8 +1654,8 @@ class TestAsyncDigitaloceanGenaiSDK:
         import nest_asyncio
         import threading
 
-        from digitalocean_genai_sdk._utils import asyncify
-        from digitalocean_genai_sdk._base_client import get_platform
+        from gradientai._utils import asyncify
+        from gradientai._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
@@ -1685,6 +1687,28 @@ class TestAsyncDigitaloceanGenaiSDK:
                     raise AssertionError("calling get_platform using asyncify resulted in a hung process")
 
                 time.sleep(0.1)
+
+    async def test_proxy_environment_variables(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        # Test that the proxy environment variables are set correctly
+        monkeypatch.setenv("HTTPS_PROXY", "https://example.org")
+
+        client = DefaultAsyncHttpxClient()
+
+        mounts = tuple(client._mounts.items())
+        assert len(mounts) == 1
+        assert mounts[0][0].pattern == "https://"
+
+    @pytest.mark.filterwarnings("ignore:.*deprecated.*:DeprecationWarning")
+    async def test_default_client_creation(self) -> None:
+        # Ensure that the client can be initialized without any exceptions
+        DefaultAsyncHttpxClient(
+            verify=True,
+            cert=None,
+            trust_env=True,
+            http1=True,
+            http2=False,
+            limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+        )
 
     @pytest.mark.respx(base_url=base_url)
     async def test_follow_redirects(self, respx_mock: MockRouter) -> None:

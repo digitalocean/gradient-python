@@ -7,12 +7,16 @@ on:
       - 'integrated/**'
       - 'stl-preview-head/**'
       - 'stl-preview-base/**'
+  pull_request:
+    branches-ignore:
+      - 'stl-preview-head/**'
+      - 'stl-preview-base/**'
 
 jobs:
   lint:
     timeout-minutes: 10
     name: lint
-    runs-on: ${{ github.repository == 'stainless-sdks/digitalocean-genai-sdk-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/gradientai-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -31,7 +35,7 @@ jobs:
         run: ./scripts/lint
 
   upload:
-    if: github.repository == 'stainless-sdks/digitalocean-genai-sdk-python'
+    if: github.repository == 'stainless-sdks/gradientai-python'
     timeout-minutes: 10
     name: upload
     permissions:
@@ -57,7 +61,7 @@ jobs:
   test:
     timeout-minutes: 10
     name: test
-    runs-on: ${{ github.repository == 'stainless-sdks/digitalocean-genai-sdk-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    runs-on: ${{ github.repository == 'stainless-sdks/gradientai-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     steps:
       - uses: actions/checkout@v4
 

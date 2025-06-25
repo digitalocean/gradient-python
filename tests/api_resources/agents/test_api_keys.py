@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types.agents import (
+from gradientai.types.agents import (
     APIKeyListResponse,
     APIKeyCreateResponse,
     APIKeyDeleteResponse,
@@ -25,7 +25,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.create(
             path_agent_uuid="agent_uuid",
         )
@@ -33,7 +33,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_with_all_params(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.create(
             path_agent_uuid="agent_uuid",
             body_agent_uuid="agent_uuid",
@@ -43,7 +43,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create(self, client: GradientAI) -> None:
         response = client.agents.api_keys.with_raw_response.create(
             path_agent_uuid="agent_uuid",
         )
@@ -55,7 +55,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create(self, client: GradientAI) -> None:
         with client.agents.api_keys.with_streaming_response.create(
             path_agent_uuid="agent_uuid",
         ) as response:
@@ -69,7 +69,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_create(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
             client.agents.api_keys.with_raw_response.create(
                 path_agent_uuid="",
@@ -77,7 +77,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_update(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -86,7 +86,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_update_with_all_params(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -98,7 +98,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.agents.api_keys.with_raw_response.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -111,7 +111,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.agents.api_keys.with_streaming_response.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -126,7 +126,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_update(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
             client.agents.api_keys.with_raw_response.update(
                 path_api_key_uuid="api_key_uuid",
@@ -141,7 +141,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.list(
             agent_uuid="agent_uuid",
         )
@@ -149,7 +149,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list_with_all_params(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.list(
             agent_uuid="agent_uuid",
             page=0,
@@ -159,7 +159,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_list(self, client: GradientAI) -> None:
         response = client.agents.api_keys.with_raw_response.list(
             agent_uuid="agent_uuid",
         )
@@ -171,7 +171,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_list(self, client: GradientAI) -> None:
         with client.agents.api_keys.with_streaming_response.list(
             agent_uuid="agent_uuid",
         ) as response:
@@ -185,7 +185,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_list(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             client.agents.api_keys.with_raw_response.list(
                 agent_uuid="",
@@ -193,7 +193,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_delete(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.delete(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -202,7 +202,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_delete(self, client: GradientAI) -> None:
         response = client.agents.api_keys.with_raw_response.delete(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -215,7 +215,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_delete(self, client: GradientAI) -> None:
         with client.agents.api_keys.with_streaming_response.delete(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -230,7 +230,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             client.agents.api_keys.with_raw_response.delete(
                 api_key_uuid="api_key_uuid",
@@ -245,7 +245,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_regenerate(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_regenerate(self, client: GradientAI) -> None:
         api_key = client.agents.api_keys.regenerate(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -254,7 +254,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_regenerate(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_regenerate(self, client: GradientAI) -> None:
         response = client.agents.api_keys.with_raw_response.regenerate(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -267,7 +267,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_regenerate(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_regenerate(self, client: GradientAI) -> None:
         with client.agents.api_keys.with_streaming_response.regenerate(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -282,7 +282,7 @@ class TestAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_regenerate(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_regenerate(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             client.agents.api_keys.with_raw_response.regenerate(
                 api_key_uuid="api_key_uuid",
@@ -297,11 +297,13 @@ class TestAPIKeys:
 
 
 class TestAsyncAPIKeys:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.create(
             path_agent_uuid="agent_uuid",
         )
@@ -309,7 +311,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.create(
             path_agent_uuid="agent_uuid",
             body_agent_uuid="agent_uuid",
@@ -319,7 +321,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.api_keys.with_raw_response.create(
             path_agent_uuid="agent_uuid",
         )
@@ -331,7 +333,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.api_keys.with_streaming_response.create(
             path_agent_uuid="agent_uuid",
         ) as response:
@@ -345,7 +347,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_create(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
             await async_client.agents.api_keys.with_raw_response.create(
                 path_agent_uuid="",
@@ -353,7 +355,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -362,7 +364,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -374,7 +376,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.api_keys.with_raw_response.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -387,7 +389,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.api_keys.with_streaming_response.update(
             path_api_key_uuid="api_key_uuid",
             path_agent_uuid="agent_uuid",
@@ -402,7 +404,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
             await async_client.agents.api_keys.with_raw_response.update(
                 path_api_key_uuid="api_key_uuid",
@@ -417,7 +419,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.list(
             agent_uuid="agent_uuid",
         )
@@ -425,7 +427,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.list(
             agent_uuid="agent_uuid",
             page=0,
@@ -435,7 +437,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.api_keys.with_raw_response.list(
             agent_uuid="agent_uuid",
         )
@@ -447,7 +449,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.api_keys.with_streaming_response.list(
             agent_uuid="agent_uuid",
         ) as response:
@@ -461,7 +463,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_list(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             await async_client.agents.api_keys.with_raw_response.list(
                 agent_uuid="",
@@ -469,7 +471,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.delete(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -478,7 +480,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.api_keys.with_raw_response.delete(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -491,7 +493,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.api_keys.with_streaming_response.delete(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -506,7 +508,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             await async_client.agents.api_keys.with_raw_response.delete(
                 api_key_uuid="api_key_uuid",
@@ -521,7 +523,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_regenerate(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_regenerate(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.agents.api_keys.regenerate(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -530,7 +532,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_regenerate(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_regenerate(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.api_keys.with_raw_response.regenerate(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -543,7 +545,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_regenerate(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_regenerate(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.api_keys.with_streaming_response.regenerate(
             api_key_uuid="api_key_uuid",
             agent_uuid="agent_uuid",
@@ -558,7 +560,7 @@ class TestAsyncAPIKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_regenerate(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_regenerate(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             await async_client.agents.api_keys.with_raw_response.regenerate(
                 api_key_uuid="api_key_uuid",

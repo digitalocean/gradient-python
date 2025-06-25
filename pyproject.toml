@@ -1,11 +1,11 @@
 [project]
 name = "c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python"
-version = "0.1.0-alpha.3"
-description = "The official Python library for the digitalocean-genai-sdk API"
+version = "0.1.0-alpha.4"
+description = "The official Python library for the GradientAI API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Digitalocean Genai SDK", email = "" },
+{ name = "Gradient AI", email = "" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -34,9 +34,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/digitalocean/genai-python"
-Repository = "https://github.com/digitalocean/genai-python"
+Homepage = "https://github.com/digitalocean/gradientai-python"
+Repository = "https://github.com/digitalocean/gradientai-python"
 
+[project.optional-dependencies]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.6"]
 
 [tool.rye]
 managed = true
@@ -54,6 +56,7 @@ dev-dependencies = [
     "importlib-metadata>=6.7.0",
     "rich>=13.7.1",
     "nest_asyncio==1.6.0",
+    "pytest-xdist>=3.6.1",
 ]
 
 [tool.rye.scripts]
@@ -75,14 +78,14 @@ format = { chain = [
 "check:ruff" = "ruff check ."
 "fix:ruff" = "ruff check --fix ."
 
-"check:importable" = "python -c 'import digitalocean_genai_sdk'"
+"check:importable" = "python -c 'import gradientai'"
 
 typecheck = { chain = [
   "typecheck:pyright",
   "typecheck:mypy"
 ]}
 "typecheck:pyright" = "pyright"
-"typecheck:verify-types" = "pyright --verifytypes digitalocean_genai_sdk --ignoreexternal"
+"typecheck:verify-types" = "pyright --verifytypes gradientai --ignoreexternal"
 "typecheck:mypy" = "mypy ."
 
 [build-system]
@@ -95,7 +98,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/digitalocean_genai_sdk"]
+packages = ["src/gradientai"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -121,11 +124,11 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/digitalocean/genai-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/digitalocean/gradientai-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--tb=short"
+addopts = "--tb=short -n auto"
 xfail_strict = true
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
@@ -198,7 +201,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["digitalocean_genai_sdk", "tests"]
+known-first-party = ["gradientai", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]

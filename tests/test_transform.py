@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from digitalocean_genai_sdk._types import NOT_GIVEN, Base64FileInput
-from digitalocean_genai_sdk._utils import (
+from gradientai._types import NOT_GIVEN, Base64FileInput
+from gradientai._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from digitalocean_genai_sdk._compat import PYDANTIC_V2
-from digitalocean_genai_sdk._models import BaseModel
+from gradientai._compat import PYDANTIC_V2
+from gradientai._models import BaseModel
 
 _T = TypeVar("_T")
 

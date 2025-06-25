@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from digitalocean_genai_sdk import DigitaloceanGenaiSDK, AsyncDigitaloceanGenaiSDK
-from digitalocean_genai_sdk.types import (
+from gradientai.types import (
     IndexingJobListResponse,
     IndexingJobCreateResponse,
     IndexingJobRetrieveResponse,
@@ -25,13 +25,13 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.create()
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_create_with_all_params(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.create(
             data_source_uuids=["string"],
             knowledge_base_uuid="knowledge_base_uuid",
@@ -40,7 +40,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_create(self, client: GradientAI) -> None:
         response = client.indexing_jobs.with_raw_response.create()
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_create(self, client: GradientAI) -> None:
         with client.indexing_jobs.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -62,7 +62,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.retrieve(
             "uuid",
         )
@@ -70,7 +70,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_retrieve(self, client: GradientAI) -> None:
         response = client.indexing_jobs.with_raw_response.retrieve(
             "uuid",
         )
@@ -82,7 +82,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
         with client.indexing_jobs.with_streaming_response.retrieve(
             "uuid",
         ) as response:
@@ -96,7 +96,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_retrieve(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.indexing_jobs.with_raw_response.retrieve(
                 "",
@@ -104,13 +104,13 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.list()
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_list_with_all_params(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.list(
             page=0,
             per_page=0,
@@ -119,7 +119,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_list(self, client: GradientAI) -> None:
         response = client.indexing_jobs.with_raw_response.list()
 
         assert response.is_closed is True
@@ -129,7 +129,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_list(self, client: GradientAI) -> None:
         with client.indexing_jobs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -141,7 +141,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_data_sources(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_retrieve_data_sources(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.retrieve_data_sources(
             "indexing_job_uuid",
         )
@@ -149,7 +149,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve_data_sources(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_retrieve_data_sources(self, client: GradientAI) -> None:
         response = client.indexing_jobs.with_raw_response.retrieve_data_sources(
             "indexing_job_uuid",
         )
@@ -161,7 +161,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve_data_sources(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_retrieve_data_sources(self, client: GradientAI) -> None:
         with client.indexing_jobs.with_streaming_response.retrieve_data_sources(
             "indexing_job_uuid",
         ) as response:
@@ -175,7 +175,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve_data_sources(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_retrieve_data_sources(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
             client.indexing_jobs.with_raw_response.retrieve_data_sources(
                 "",
@@ -183,7 +183,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_cancel(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_update_cancel(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.update_cancel(
             path_uuid="uuid",
         )
@@ -191,7 +191,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_cancel_with_all_params(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_method_update_cancel_with_all_params(self, client: GradientAI) -> None:
         indexing_job = client.indexing_jobs.update_cancel(
             path_uuid="uuid",
             body_uuid="uuid",
@@ -200,7 +200,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update_cancel(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_raw_response_update_cancel(self, client: GradientAI) -> None:
         response = client.indexing_jobs.with_raw_response.update_cancel(
             path_uuid="uuid",
         )
@@ -212,7 +212,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update_cancel(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_streaming_response_update_cancel(self, client: GradientAI) -> None:
         with client.indexing_jobs.with_streaming_response.update_cancel(
             path_uuid="uuid",
         ) as response:
@@ -226,7 +226,7 @@ class TestIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update_cancel(self, client: DigitaloceanGenaiSDK) -> None:
+    def test_path_params_update_cancel(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
             client.indexing_jobs.with_raw_response.update_cancel(
                 path_uuid="",
@@ -234,17 +234,19 @@ class TestIndexingJobs:
 
 
 class TestAsyncIndexingJobs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.create()
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.create(
             data_source_uuids=["string"],
             knowledge_base_uuid="knowledge_base_uuid",
@@ -253,7 +255,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.indexing_jobs.with_raw_response.create()
 
         assert response.is_closed is True
@@ -263,7 +265,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
         async with async_client.indexing_jobs.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -275,7 +277,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.retrieve(
             "uuid",
         )
@@ -283,7 +285,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.indexing_jobs.with_raw_response.retrieve(
             "uuid",
         )
@@ -295,7 +297,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
         async with async_client.indexing_jobs.with_streaming_response.retrieve(
             "uuid",
         ) as response:
@@ -309,7 +311,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.indexing_jobs.with_raw_response.retrieve(
                 "",
@@ -317,13 +319,13 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.list()
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.list(
             page=0,
             per_page=0,
@@ -332,7 +334,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.indexing_jobs.with_raw_response.list()
 
         assert response.is_closed is True
@@ -342,7 +344,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
         async with async_client.indexing_jobs.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -354,7 +356,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve_data_sources(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_retrieve_data_sources(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.retrieve_data_sources(
             "indexing_job_uuid",
         )
@@ -362,7 +364,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve_data_sources(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_retrieve_data_sources(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.indexing_jobs.with_raw_response.retrieve_data_sources(
             "indexing_job_uuid",
         )
@@ -374,7 +376,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve_data_sources(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_retrieve_data_sources(self, async_client: AsyncGradientAI) -> None:
         async with async_client.indexing_jobs.with_streaming_response.retrieve_data_sources(
             "indexing_job_uuid",
         ) as response:
@@ -388,7 +390,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve_data_sources(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_retrieve_data_sources(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
             await async_client.indexing_jobs.with_raw_response.retrieve_data_sources(
                 "",
@@ -396,7 +398,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_cancel(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_update_cancel(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.update_cancel(
             path_uuid="uuid",
         )
@@ -404,7 +406,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_cancel_with_all_params(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_method_update_cancel_with_all_params(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.indexing_jobs.update_cancel(
             path_uuid="uuid",
             body_uuid="uuid",
@@ -413,7 +415,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update_cancel(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_raw_response_update_cancel(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.indexing_jobs.with_raw_response.update_cancel(
             path_uuid="uuid",
         )
@@ -425,7 +427,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update_cancel(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_streaming_response_update_cancel(self, async_client: AsyncGradientAI) -> None:
         async with async_client.indexing_jobs.with_streaming_response.update_cancel(
             path_uuid="uuid",
         ) as response:
@@ -439,7 +441,7 @@ class TestAsyncIndexingJobs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update_cancel(self, async_client: AsyncDigitaloceanGenaiSDK) -> None:
+    async def test_path_params_update_cancel(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
             await async_client.indexing_jobs.with_raw_response.update_cancel(
                 path_uuid="",
