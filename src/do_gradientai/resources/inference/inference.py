@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .models import (
-    ModelsResource,
-    AsyncModelsResource,
-    ModelsResourceWithRawResponse,
-    AsyncModelsResourceWithRawResponse,
-    ModelsResourceWithStreamingResponse,
-    AsyncModelsResourceWithStreamingResponse,
-)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -28,10 +20,6 @@ class InferenceResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
-
-    @cached_property
-    def models(self) -> ModelsResource:
-        return ModelsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InferenceResourceWithRawResponse:
@@ -57,10 +45,6 @@ class AsyncInferenceResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
-
-    @cached_property
-    def models(self) -> AsyncModelsResource:
-        return AsyncModelsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncInferenceResourceWithRawResponse:
@@ -90,10 +74,6 @@ class InferenceResourceWithRawResponse:
     def api_keys(self) -> APIKeysResourceWithRawResponse:
         return APIKeysResourceWithRawResponse(self._inference.api_keys)
 
-    @cached_property
-    def models(self) -> ModelsResourceWithRawResponse:
-        return ModelsResourceWithRawResponse(self._inference.models)
-
 
 class AsyncInferenceResourceWithRawResponse:
     def __init__(self, inference: AsyncInferenceResource) -> None:
@@ -102,10 +82,6 @@ class AsyncInferenceResourceWithRawResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
         return AsyncAPIKeysResourceWithRawResponse(self._inference.api_keys)
-
-    @cached_property
-    def models(self) -> AsyncModelsResourceWithRawResponse:
-        return AsyncModelsResourceWithRawResponse(self._inference.models)
 
 
 class InferenceResourceWithStreamingResponse:
@@ -116,10 +92,6 @@ class InferenceResourceWithStreamingResponse:
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
         return APIKeysResourceWithStreamingResponse(self._inference.api_keys)
 
-    @cached_property
-    def models(self) -> ModelsResourceWithStreamingResponse:
-        return ModelsResourceWithStreamingResponse(self._inference.models)
-
 
 class AsyncInferenceResourceWithStreamingResponse:
     def __init__(self, inference: AsyncInferenceResource) -> None:
@@ -128,7 +100,3 @@ class AsyncInferenceResourceWithStreamingResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
         return AsyncAPIKeysResourceWithStreamingResponse(self._inference.api_keys)
-
-    @cached_property
-    def models(self) -> AsyncModelsResourceWithStreamingResponse:
-        return AsyncModelsResourceWithStreamingResponse(self._inference.models)

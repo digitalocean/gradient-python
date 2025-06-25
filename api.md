@@ -365,19 +365,6 @@ Methods:
 - <code title="delete /v2/gen-ai/models/api_keys/{api_key_uuid}">client.inference.api_keys.<a href="./src/do_gradientai/resources/inference/api_keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/inference/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
 - <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate">client.inference.api_keys.<a href="./src/do_gradientai/resources/inference/api_keys.py">update_regenerate</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/inference/api_key_update_regenerate_response.py">APIKeyUpdateRegenerateResponse</a></code>
 
-## Models
-
-Types:
-
-```python
-from do_gradientai.types.inference import Model, ModelListResponse
-```
-
-Methods:
-
-- <code title="get /models/{model}">client.inference.models.<a href="./src/do_gradientai/resources/inference/models.py">retrieve</a>(model) -> <a href="./src/do_gradientai/types/inference/model.py">Model</a></code>
-- <code title="get /models">client.inference.models.<a href="./src/do_gradientai/resources/inference/models.py">list</a>() -> <a href="./src/do_gradientai/types/inference/model_list_response.py">ModelListResponse</a></code>
-
 # Models
 
 Types:
