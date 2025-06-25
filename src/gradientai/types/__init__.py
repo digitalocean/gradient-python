@@ -4,8 +4,12 @@ from __future__ import annotations
 
 from .api_agent import APIAgent as APIAgent
 from .api_model import APIModel as APIModel
+from .api_agreement import APIAgreement as APIAgreement
+from .api_workspace import APIWorkspace as APIWorkspace
+from .api_agent_model import APIAgentModel as APIAgentModel
 from .api_indexing_job import APIIndexingJob as APIIndexingJob
 from .agent_list_params import AgentListParams as AgentListParams
+from .api_model_version import APIModelVersion as APIModelVersion
 from .model_list_params import ModelListParams as ModelListParams
 from .api_knowledge_base import APIKnowledgeBase as APIKnowledgeBase
 from .region_list_params import RegionListParams as RegionListParams
@@ -18,6 +22,7 @@ from .region_list_response import RegionListResponse as RegionListResponse
 from .agent_create_response import AgentCreateResponse as AgentCreateResponse
 from .agent_delete_response import AgentDeleteResponse as AgentDeleteResponse
 from .agent_update_response import AgentUpdateResponse as AgentUpdateResponse
+from .api_evaluation_metric import APIEvaluationMetric as APIEvaluationMetric
 from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo

@@ -6,10 +6,12 @@ Types:
 from gradientai.types import (
     APIAgent,
     APIAgentAPIKeyInfo,
+    APIAgentModel,
     APIAnthropicAPIKeyInfo,
     APIDeploymentVisibility,
     APIOpenAIAPIKeyInfo,
     APIRetrievalMethod,
+    APIWorkspace,
     AgentCreateResponse,
     AgentRetrieveResponse,
     AgentUpdateResponse,
@@ -174,12 +176,34 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import RegionListResponse
+from gradientai.types import APIEvaluationMetric, RegionListResponse
 ```
 
 Methods:
 
-- <code title="get /v2/gen-ai/regions">client.regions.<a href="./src/gradientai/resources/regions.py">list</a>(\*\*<a href="src/gradientai/types/region_list_params.py">params</a>) -> <a href="./src/gradientai/types/region_list_response.py">RegionListResponse</a></code>
+- <code title="get /v2/gen-ai/regions">client.regions.<a href="./src/gradientai/resources/regions/regions.py">list</a>(\*\*<a href="src/gradientai/types/region_list_params.py">params</a>) -> <a href="./src/gradientai/types/region_list_response.py">RegionListResponse</a></code>
+
+## EvaluationRuns
+
+### Results
+
+Types:
+
+```python
+from gradientai.types.regions.evaluation_runs import (
+    APIEvaluationMetricResult,
+    APIEvaluationRun,
+    APIPrompt,
+)
+```
+
+## EvaluationTestCases
+
+Types:
+
+```python
+from gradientai.types.regions import APIEvaluationTestCase, APIStarMetric
+```
 
 # IndexingJobs
 
@@ -237,6 +261,7 @@ from gradientai.types.knowledge_bases import (
     APIKnowledgeBaseDataSource,
     APISpacesDataSource,
     APIWebCrawlerDataSource,
+    AwsDataSource,
     DataSourceCreateResponse,
     DataSourceListResponse,
     DataSourceDeleteResponse,
@@ -256,7 +281,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.chat import CompletionCreateResponse
+from gradientai.types.chat import ChatCompletionTokenLogprob, CompletionCreateResponse
 ```
 
 Methods:
@@ -306,7 +331,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import APIModel, ModelListResponse
+from gradientai.types import APIAgreement, APIModel, APIModelVersion, ModelListResponse
 ```
 
 Methods:

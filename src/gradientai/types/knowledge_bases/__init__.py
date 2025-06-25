@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .aws_data_source_param import AwsDataSourceParam as AwsDataSourceParam
 from .api_spaces_data_source import APISpacesDataSource as APISpacesDataSource
 from .data_source_list_params import DataSourceListParams as DataSourceListParams
 from .data_source_create_params import DataSourceCreateParams as DataSourceCreateParams
