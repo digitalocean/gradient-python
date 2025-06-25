@@ -2,15 +2,15 @@
 
 from typing import List, Optional
 
-from ...._models import BaseModel
-from .api_prompt import APIPrompt
+from ..._models import BaseModel
 from .api_evaluation_run import APIEvaluationRun
+from .api_evaluation_prompt import APIEvaluationPrompt
 
-__all__ = ["ResultRetrieveResponse"]
+__all__ = ["EvaluationRunListResultsResponse"]
 
 
-class ResultRetrieveResponse(BaseModel):
+class EvaluationRunListResultsResponse(BaseModel):
     evaluation_run: Optional[APIEvaluationRun] = None
 
-    prompts: Optional[List[APIPrompt]] = None
+    prompts: Optional[List[APIEvaluationPrompt]] = None
     """The prompt level results."""

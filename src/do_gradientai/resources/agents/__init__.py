@@ -40,6 +40,14 @@ from .child_agents import (
     ChildAgentsResourceWithStreamingResponse,
     AsyncChildAgentsResourceWithStreamingResponse,
 )
+from .evaluation_runs import (
+    EvaluationRunsResource,
+    AsyncEvaluationRunsResource,
+    EvaluationRunsResourceWithRawResponse,
+    AsyncEvaluationRunsResourceWithRawResponse,
+    EvaluationRunsResourceWithStreamingResponse,
+    AsyncEvaluationRunsResourceWithStreamingResponse,
+)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -47,6 +55,30 @@ from .knowledge_bases import (
     AsyncKnowledgeBasesResourceWithRawResponse,
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
+)
+from .evaluation_metrics import (
+    EvaluationMetricsResource,
+    AsyncEvaluationMetricsResource,
+    EvaluationMetricsResourceWithRawResponse,
+    AsyncEvaluationMetricsResourceWithRawResponse,
+    EvaluationMetricsResourceWithStreamingResponse,
+    AsyncEvaluationMetricsResourceWithStreamingResponse,
+)
+from .evaluation_datasets import (
+    EvaluationDatasetsResource,
+    AsyncEvaluationDatasetsResource,
+    EvaluationDatasetsResourceWithRawResponse,
+    AsyncEvaluationDatasetsResourceWithRawResponse,
+    EvaluationDatasetsResourceWithStreamingResponse,
+    AsyncEvaluationDatasetsResourceWithStreamingResponse,
+)
+from .evaluation_test_cases import (
+    EvaluationTestCasesResource,
+    AsyncEvaluationTestCasesResource,
+    EvaluationTestCasesResourceWithRawResponse,
+    AsyncEvaluationTestCasesResourceWithRawResponse,
+    EvaluationTestCasesResourceWithStreamingResponse,
+    AsyncEvaluationTestCasesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -56,6 +88,30 @@ __all__ = [
     "AsyncAPIKeysResourceWithRawResponse",
     "APIKeysResourceWithStreamingResponse",
     "AsyncAPIKeysResourceWithStreamingResponse",
+    "EvaluationMetricsResource",
+    "AsyncEvaluationMetricsResource",
+    "EvaluationMetricsResourceWithRawResponse",
+    "AsyncEvaluationMetricsResourceWithRawResponse",
+    "EvaluationMetricsResourceWithStreamingResponse",
+    "AsyncEvaluationMetricsResourceWithStreamingResponse",
+    "EvaluationRunsResource",
+    "AsyncEvaluationRunsResource",
+    "EvaluationRunsResourceWithRawResponse",
+    "AsyncEvaluationRunsResourceWithRawResponse",
+    "EvaluationRunsResourceWithStreamingResponse",
+    "AsyncEvaluationRunsResourceWithStreamingResponse",
+    "EvaluationTestCasesResource",
+    "AsyncEvaluationTestCasesResource",
+    "EvaluationTestCasesResourceWithRawResponse",
+    "AsyncEvaluationTestCasesResourceWithRawResponse",
+    "EvaluationTestCasesResourceWithStreamingResponse",
+    "AsyncEvaluationTestCasesResourceWithStreamingResponse",
+    "EvaluationDatasetsResource",
+    "AsyncEvaluationDatasetsResource",
+    "EvaluationDatasetsResourceWithRawResponse",
+    "AsyncEvaluationDatasetsResourceWithRawResponse",
+    "EvaluationDatasetsResourceWithStreamingResponse",
+    "AsyncEvaluationDatasetsResourceWithStreamingResponse",
     "FunctionsResource",
     "AsyncFunctionsResource",
     "FunctionsResourceWithRawResponse",

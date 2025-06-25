@@ -2,10 +2,10 @@
 
 from typing import List, Optional
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 from .api_evaluation_metric_result import APIEvaluationMetricResult
 
-__all__ = ["APIPrompt", "PromptChunk"]
+__all__ = ["APIEvaluationPrompt", "PromptChunk"]
 
 
 class PromptChunk(BaseModel):
@@ -25,7 +25,7 @@ class PromptChunk(BaseModel):
     """Text content of the chunk."""
 
 
-class APIPrompt(BaseModel):
+class APIEvaluationPrompt(BaseModel):
     ground_truth: Optional[str] = None
     """The ground truth for the prompt."""
 

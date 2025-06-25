@@ -17,13 +17,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.regions import (
+from ...types.agents import (
     evaluation_dataset_create_params,
     evaluation_dataset_create_file_upload_presigned_urls_params,
 )
-from ...types.regions.evaluation_dataset_create_response import EvaluationDatasetCreateResponse
+from ...types.agents.evaluation_dataset_create_response import EvaluationDatasetCreateResponse
 from ...types.knowledge_bases.api_file_upload_data_source_param import APIFileUploadDataSourceParam
-from ...types.regions.evaluation_dataset_create_file_upload_presigned_urls_response import (
+from ...types.agents.evaluation_dataset_create_file_upload_presigned_urls_response import (
     EvaluationDatasetCreateFileUploadPresignedURLsResponse,
 )
 

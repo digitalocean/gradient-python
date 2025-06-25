@@ -120,7 +120,7 @@ from do_gradientai import GradientAI
 
 client = GradientAI()
 
-evaluation_test_case = client.regions.evaluation_test_cases.create(
+evaluation_test_case = client.agents.evaluation_test_cases.create(
     star_metric={},
 )
 print(evaluation_test_case.star_metric)
