@@ -7,7 +7,6 @@ from .api_model import APIModel as APIModel
 from .api_agreement import APIAgreement as APIAgreement
 from .api_workspace import APIWorkspace as APIWorkspace
 from .api_agent_model import APIAgentModel as APIAgentModel
-from .api_indexing_job import APIIndexingJob as APIIndexingJob
 from .agent_list_params import AgentListParams as AgentListParams
 from .api_model_version import APIModelVersion as APIModelVersion
 from .model_list_params import ModelListParams as ModelListParams
@@ -25,25 +24,15 @@ from .agent_update_response import AgentUpdateResponse as AgentUpdateResponse
 from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
-from .indexing_job_list_params import IndexingJobListParams as IndexingJobListParams
 from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .agent_update_status_params import AgentUpdateStatusParams as AgentUpdateStatusParams
 from .api_anthropic_api_key_info import APIAnthropicAPIKeyInfo as APIAnthropicAPIKeyInfo
-from .indexing_job_create_params import IndexingJobCreateParams as IndexingJobCreateParams
-from .indexing_job_list_response import IndexingJobListResponse as IndexingJobListResponse
 from .knowledge_base_list_params import KnowledgeBaseListParams as KnowledgeBaseListParams
 from .agent_update_status_response import AgentUpdateStatusResponse as AgentUpdateStatusResponse
-from .indexing_job_create_response import IndexingJobCreateResponse as IndexingJobCreateResponse
 from .knowledge_base_create_params import KnowledgeBaseCreateParams as KnowledgeBaseCreateParams
 from .knowledge_base_list_response import KnowledgeBaseListResponse as KnowledgeBaseListResponse
 from .knowledge_base_update_params import KnowledgeBaseUpdateParams as KnowledgeBaseUpdateParams
-from .indexing_job_retrieve_response import IndexingJobRetrieveResponse as IndexingJobRetrieveResponse
 from .knowledge_base_create_response import KnowledgeBaseCreateResponse as KnowledgeBaseCreateResponse
 from .knowledge_base_delete_response import KnowledgeBaseDeleteResponse as KnowledgeBaseDeleteResponse
 from .knowledge_base_update_response import KnowledgeBaseUpdateResponse as KnowledgeBaseUpdateResponse
 from .knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse as KnowledgeBaseRetrieveResponse
-from .indexing_job_update_cancel_params import IndexingJobUpdateCancelParams as IndexingJobUpdateCancelParams
-from .indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse as IndexingJobUpdateCancelResponse
-from .indexing_job_retrieve_data_sources_response import (
-    IndexingJobRetrieveDataSourcesResponse as IndexingJobRetrieveDataSourcesResponse,
-)

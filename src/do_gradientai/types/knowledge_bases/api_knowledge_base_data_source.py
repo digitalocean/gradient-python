@@ -4,7 +4,7 @@ from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..api_indexing_job import APIIndexingJob
+from .api_indexing_job import APIIndexingJob
 from .api_spaces_data_source import APISpacesDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
 from .api_web_crawler_data_source import APIWebCrawlerDataSource

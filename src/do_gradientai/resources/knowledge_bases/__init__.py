@@ -8,6 +8,14 @@ from .data_sources import (
     DataSourcesResourceWithStreamingResponse,
     AsyncDataSourcesResourceWithStreamingResponse,
 )
+from .indexing_jobs import (
+    IndexingJobsResource,
+    AsyncIndexingJobsResource,
+    IndexingJobsResourceWithRawResponse,
+    AsyncIndexingJobsResourceWithRawResponse,
+    IndexingJobsResourceWithStreamingResponse,
+    AsyncIndexingJobsResourceWithStreamingResponse,
+)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncDataSourcesResourceWithRawResponse",
     "DataSourcesResourceWithStreamingResponse",
     "AsyncDataSourcesResourceWithStreamingResponse",
+    "IndexingJobsResource",
+    "AsyncIndexingJobsResource",
+    "IndexingJobsResourceWithRawResponse",
+    "AsyncIndexingJobsResourceWithRawResponse",
+    "IndexingJobsResourceWithStreamingResponse",
+    "AsyncIndexingJobsResourceWithStreamingResponse",
     "KnowledgeBasesResource",
     "AsyncKnowledgeBasesResource",
     "KnowledgeBasesResourceWithRawResponse",
