@@ -4,30 +4,14 @@ from typing import Optional
 from datetime import datetime
 
 from .._models import BaseModel
+from .api_agreement import APIAgreement
+from .api_model_version import APIModelVersion
 
-__all__ = ["APIModel", "Agreement", "Version"]
-
-
-class Agreement(BaseModel):
-    description: Optional[str] = None
-
-    name: Optional[str] = None
-
-    url: Optional[str] = None
-
-    uuid: Optional[str] = None
-
-
-class Version(BaseModel):
-    major: Optional[int] = None
-
-    minor: Optional[int] = None
-
-    patch: Optional[int] = None
+__all__ = ["APIModel"]
 
 
 class APIModel(BaseModel):
-    agreement: Optional[Agreement] = None
+    agreement: Optional[APIAgreement] = None
 
     created_at: Optional[datetime] = None
 
@@ -45,4 +29,4 @@ class APIModel(BaseModel):
 
     uuid: Optional[str] = None
 
-    version: Optional[Version] = None
+    version: Optional[APIModelVersion] = None

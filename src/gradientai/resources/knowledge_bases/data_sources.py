@@ -19,6 +19,7 @@ from ...types.knowledge_bases import (
     data_source_list_params,
     data_source_create_params,
 )
+from ...types.knowledge_bases.aws_data_source_param import AwsDataSourceParam
 from ...types.knowledge_bases.data_source_list_response import DataSourceListResponse
 from ...types.knowledge_bases.data_source_create_response import DataSourceCreateResponse
 from ...types.knowledge_bases.data_source_delete_response import DataSourceDeleteResponse
@@ -52,7 +53,7 @@ class DataSourcesResource(SyncAPIResource):
         self,
         path_knowledge_base_uuid: str,
         *,
-        aws_data_source: data_source_create_params.AwsDataSource | NotGiven = NOT_GIVEN,
+        aws_data_source: AwsDataSourceParam | NotGiven = NOT_GIVEN,
         body_knowledge_base_uuid: str | NotGiven = NOT_GIVEN,
         spaces_data_source: APISpacesDataSourceParam | NotGiven = NOT_GIVEN,
         web_crawler_data_source: APIWebCrawlerDataSourceParam | NotGiven = NOT_GIVEN,
@@ -219,7 +220,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         path_knowledge_base_uuid: str,
         *,
-        aws_data_source: data_source_create_params.AwsDataSource | NotGiven = NOT_GIVEN,
+        aws_data_source: AwsDataSourceParam | NotGiven = NOT_GIVEN,
         body_knowledge_base_uuid: str | NotGiven = NOT_GIVEN,
         spaces_data_source: APISpacesDataSourceParam | NotGiven = NOT_GIVEN,
         web_crawler_data_source: APIWebCrawlerDataSourceParam | NotGiven = NOT_GIVEN,

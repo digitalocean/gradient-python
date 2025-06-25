@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .agents.api_meta import APIMeta
+from .api_agent_model import APIAgentModel
 from .agents.api_links import APILinks
 from .api_knowledge_base import APIKnowledgeBase
 from .api_retrieval_method import APIRetrievalMethod
@@ -17,14 +18,8 @@ __all__ = [
     "AgentChatbot",
     "AgentChatbotIdentifier",
     "AgentDeployment",
-    "AgentModel",
-    "AgentModelAgreement",
-    "AgentModelVersion",
     "AgentTemplate",
     "AgentTemplateGuardrail",
-    "AgentTemplateModel",
-    "AgentTemplateModelAgreement",
-    "AgentTemplateModelVersion",
 ]
 
 
@@ -74,138 +69,10 @@ class AgentDeployment(BaseModel):
     visibility: Optional[APIDeploymentVisibility] = None
 
 
-class AgentModelAgreement(BaseModel):
-    description: Optional[str] = None
-
-    name: Optional[str] = None
-
-    url: Optional[str] = None
-
-    uuid: Optional[str] = None
-
-
-class AgentModelVersion(BaseModel):
-    major: Optional[int] = None
-
-    minor: Optional[int] = None
-
-    patch: Optional[int] = None
-
-
-class AgentModel(BaseModel):
-    agreement: Optional[AgentModelAgreement] = None
-
-    created_at: Optional[datetime] = None
-
-    inference_name: Optional[str] = None
-
-    inference_version: Optional[str] = None
-
-    is_foundational: Optional[bool] = None
-
-    metadata: Optional[object] = None
-
-    name: Optional[str] = None
-
-    parent_uuid: Optional[str] = None
-
-    provider: Optional[Literal["MODEL_PROVIDER_DIGITALOCEAN", "MODEL_PROVIDER_ANTHROPIC", "MODEL_PROVIDER_OPENAI"]] = (
-        None
-    )
-
-    updated_at: Optional[datetime] = None
-
-    upload_complete: Optional[bool] = None
-
-    url: Optional[str] = None
-
-    usecases: Optional[
-        List[
-            Literal[
-                "MODEL_USECASE_UNKNOWN",
-                "MODEL_USECASE_AGENT",
-                "MODEL_USECASE_FINETUNED",
-                "MODEL_USECASE_KNOWLEDGEBASE",
-                "MODEL_USECASE_GUARDRAIL",
-                "MODEL_USECASE_REASONING",
-                "MODEL_USECASE_SERVERLESS",
-            ]
-        ]
-    ] = None
-
-    uuid: Optional[str] = None
-
-    version: Optional[AgentModelVersion] = None
-
-
 class AgentTemplateGuardrail(BaseModel):
     priority: Optional[int] = None
 
     uuid: Optional[str] = None
-
-
-class AgentTemplateModelAgreement(BaseModel):
-    description: Optional[str] = None
-
-    name: Optional[str] = None
-
-    url: Optional[str] = None
-
-    uuid: Optional[str] = None
-
-
-class AgentTemplateModelVersion(BaseModel):
-    major: Optional[int] = None
-
-    minor: Optional[int] = None
-
-    patch: Optional[int] = None
-
-
-class AgentTemplateModel(BaseModel):
-    agreement: Optional[AgentTemplateModelAgreement] = None
-
-    created_at: Optional[datetime] = None
-
-    inference_name: Optional[str] = None
-
-    inference_version: Optional[str] = None
-
-    is_foundational: Optional[bool] = None
-
-    metadata: Optional[object] = None
-
-    name: Optional[str] = None
-
-    parent_uuid: Optional[str] = None
-
-    provider: Optional[Literal["MODEL_PROVIDER_DIGITALOCEAN", "MODEL_PROVIDER_ANTHROPIC", "MODEL_PROVIDER_OPENAI"]] = (
-        None
-    )
-
-    updated_at: Optional[datetime] = None
-
-    upload_complete: Optional[bool] = None
-
-    url: Optional[str] = None
-
-    usecases: Optional[
-        List[
-            Literal[
-                "MODEL_USECASE_UNKNOWN",
-                "MODEL_USECASE_AGENT",
-                "MODEL_USECASE_FINETUNED",
-                "MODEL_USECASE_KNOWLEDGEBASE",
-                "MODEL_USECASE_GUARDRAIL",
-                "MODEL_USECASE_REASONING",
-                "MODEL_USECASE_SERVERLESS",
-            ]
-        ]
-    ] = None
-
-    uuid: Optional[str] = None
-
-    version: Optional[AgentTemplateModelVersion] = None
 
 
 class AgentTemplate(BaseModel):
@@ -225,7 +92,7 @@ class AgentTemplate(BaseModel):
 
     max_tokens: Optional[int] = None
 
-    model: Optional[AgentTemplateModel] = None
+    model: Optional[APIAgentModel] = None
 
     name: Optional[str] = None
 
@@ -276,7 +143,7 @@ class Agent(BaseModel):
     response.
     """
 
-    model: Optional[AgentModel] = None
+    model: Optional[APIAgentModel] = None
 
     name: Optional[str] = None
 

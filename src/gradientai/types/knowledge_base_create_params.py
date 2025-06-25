@@ -5,11 +5,12 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import TypedDict
 
+from .knowledge_bases.aws_data_source_param import AwsDataSourceParam
 from .knowledge_bases.api_spaces_data_source_param import APISpacesDataSourceParam
 from .knowledge_bases.api_file_upload_data_source_param import APIFileUploadDataSourceParam
 from .knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 
-__all__ = ["KnowledgeBaseCreateParams", "Datasource", "DatasourceAwsDataSource"]
+__all__ = ["KnowledgeBaseCreateParams", "Datasource"]
 
 
 class KnowledgeBaseCreateParams(TypedDict, total=False):
@@ -49,20 +50,8 @@ class KnowledgeBaseCreateParams(TypedDict, total=False):
     vpc_uuid: str
 
 
-class DatasourceAwsDataSource(TypedDict, total=False):
-    bucket_name: str
-
-    item_path: str
-
-    key_id: str
-
-    region: str
-
-    secret_key: str
-
-
 class Datasource(TypedDict, total=False):
-    aws_data_source: DatasourceAwsDataSource
+    aws_data_source: AwsDataSourceParam
 
     bucket_name: str
 
