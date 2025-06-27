@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai._streaming import Stream, AsyncStream, ServerSentEvent
+from gradientai import GradientAI, AsyncGradientAI
+from gradientai._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio

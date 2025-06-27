@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.agents import EvaluationMetricListResponse
+from gradientai.types.agents import EvaluationMetricListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
