@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-06-27)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** manual updates ([04eb1be](https://github.com/digitalocean/gradientai-python/commit/04eb1be35de7db04e1f0d4e1da8719b54a353bb5))
+
 ## 0.1.0-alpha.5 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
