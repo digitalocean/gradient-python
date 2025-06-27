@@ -58,6 +58,20 @@ Methods:
 - <code title="delete /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">delete</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
 - <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">regenerate</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_key_regenerate_response.py">APIKeyRegenerateResponse</a></code>
 
+## Chat
+
+### Completions
+
+Types:
+
+```python
+from gradientai.types.agents.chat import ChatCompletionTokenLogprob, CompletionCreateResponse
+```
+
+Methods:
+
+- <code title="post /chat/completions">client.agents.chat.completions.<a href="./src/gradientai/resources/agents/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/agents/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+
 ## EvaluationMetrics
 
 Types:

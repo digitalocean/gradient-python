@@ -41,6 +41,14 @@ from .versions import (
     AsyncVersionsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .chat.chat import (
+    ChatResource,
+    AsyncChatResource,
+    ChatResourceWithRawResponse,
+    AsyncChatResourceWithRawResponse,
+    ChatResourceWithStreamingResponse,
+    AsyncChatResourceWithStreamingResponse,
+)
 from .functions import (
     FunctionsResource,
     AsyncFunctionsResource,
@@ -113,6 +121,10 @@ class AgentsResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
         return APIKeysResource(self._client)
+
+    @cached_property
+    def chat(self) -> ChatResource:
+        return ChatResource(self._client)
 
     @cached_property
     def evaluation_metrics(self) -> EvaluationMetricsResource:
@@ -497,6 +509,10 @@ class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
         return AsyncAPIKeysResource(self._client)
+
+    @cached_property
+    def chat(self) -> AsyncChatResource:
+        return AsyncChatResource(self._client)
 
     @cached_property
     def evaluation_metrics(self) -> AsyncEvaluationMetricsResource:
@@ -905,6 +921,10 @@ class AgentsResourceWithRawResponse:
         return APIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
+    def chat(self) -> ChatResourceWithRawResponse:
+        return ChatResourceWithRawResponse(self._agents.chat)
+
+    @cached_property
     def evaluation_metrics(self) -> EvaluationMetricsResourceWithRawResponse:
         return EvaluationMetricsResourceWithRawResponse(self._agents.evaluation_metrics)
 
@@ -963,6 +983,10 @@ class AsyncAgentsResourceWithRawResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
         return AsyncAPIKeysResourceWithRawResponse(self._agents.api_keys)
+
+    @cached_property
+    def chat(self) -> AsyncChatResourceWithRawResponse:
+        return AsyncChatResourceWithRawResponse(self._agents.chat)
 
     @cached_property
     def evaluation_metrics(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
@@ -1025,6 +1049,10 @@ class AgentsResourceWithStreamingResponse:
         return APIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
+    def chat(self) -> ChatResourceWithStreamingResponse:
+        return ChatResourceWithStreamingResponse(self._agents.chat)
+
+    @cached_property
     def evaluation_metrics(self) -> EvaluationMetricsResourceWithStreamingResponse:
         return EvaluationMetricsResourceWithStreamingResponse(self._agents.evaluation_metrics)
 
@@ -1083,6 +1111,10 @@ class AsyncAgentsResourceWithStreamingResponse:
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
         return AsyncAPIKeysResourceWithStreamingResponse(self._agents.api_keys)
+
+    @cached_property
+    def chat(self) -> AsyncChatResourceWithStreamingResponse:
+        return AsyncChatResourceWithStreamingResponse(self._agents.chat)
 
     @cached_property
     def evaluation_metrics(self) -> AsyncEvaluationMetricsResourceWithStreamingResponse:
