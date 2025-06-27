@@ -153,6 +153,15 @@ class CompletionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+
+        # This method requires an inference_key to be set via client argument or environment variable
+        if not self._client.inference_key:
+            raise TypeError(
+                "Could not resolve authentication method. Expected the inference_key to be set for chat completions."
+            )
+        headers = extra_headers or {}
+        headers = {"Authorization": f"Bearer {self._client.inference_key}", **headers}
+
         return self._post(
             "/chat/completions"
             if self._client._base_url_overridden
@@ -180,7 +189,7 @@ class CompletionsResource(SyncAPIResource):
                 completion_create_params.CompletionCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CompletionCreateResponse,
         )
@@ -316,6 +325,15 @@ class AsyncCompletionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+
+        # This method requires an inference_key to be set via client argument or environment variable
+        if not hasattr(self._client, "inference_key") or not self._client.inference_key:
+            raise TypeError(
+                "Could not resolve authentication method. Expected the inference_key to be set for chat completions."
+            )
+        headers = extra_headers or {}
+        headers = {"Authorization": f"Bearer {self._client.inference_key}", **headers}
+
         return await self._post(
             "/chat/completions"
             if self._client._base_url_overridden
@@ -343,7 +361,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
                 completion_create_params.CompletionCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CompletionCreateResponse,
         )
