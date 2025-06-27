@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types import RegionListResponse, RegionListEvaluationMetricsResponse
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types import RegionListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -54,34 +54,6 @@ class TestRegions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
-    @parametrize
-    def test_method_list_evaluation_metrics(self, client: GradientAI) -> None:
-        region = client.regions.list_evaluation_metrics()
-        assert_matches_type(RegionListEvaluationMetricsResponse, region, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_raw_response_list_evaluation_metrics(self, client: GradientAI) -> None:
-        response = client.regions.with_raw_response.list_evaluation_metrics()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        region = response.parse()
-        assert_matches_type(RegionListEvaluationMetricsResponse, region, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    def test_streaming_response_list_evaluation_metrics(self, client: GradientAI) -> None:
-        with client.regions.with_streaming_response.list_evaluation_metrics() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            region = response.parse()
-            assert_matches_type(RegionListEvaluationMetricsResponse, region, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncRegions:
     parametrize = pytest.mark.parametrize(
@@ -122,33 +94,5 @@ class TestAsyncRegions:
 
             region = await response.parse()
             assert_matches_type(RegionListResponse, region, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_method_list_evaluation_metrics(self, async_client: AsyncGradientAI) -> None:
-        region = await async_client.regions.list_evaluation_metrics()
-        assert_matches_type(RegionListEvaluationMetricsResponse, region, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_raw_response_list_evaluation_metrics(self, async_client: AsyncGradientAI) -> None:
-        response = await async_client.regions.with_raw_response.list_evaluation_metrics()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        region = await response.parse()
-        assert_matches_type(RegionListEvaluationMetricsResponse, region, path=["response"])
-
-    @pytest.mark.skip()
-    @parametrize
-    async def test_streaming_response_list_evaluation_metrics(self, async_client: AsyncGradientAI) -> None:
-        async with async_client.regions.with_streaming_response.list_evaluation_metrics() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            region = await response.parse()
-            assert_matches_type(RegionListEvaluationMetricsResponse, region, path=["response"])
 
         assert cast(Any, response.is_closed) is True

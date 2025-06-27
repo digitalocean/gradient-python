@@ -1,5 +1,36 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-06-27)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** define api links and meta as shared models ([8d87001](https://github.com/digitalocean/gradientai-python/commit/8d87001b51de17dd1a36419c0e926cef119f20b8))
+* **api:** update OpenAI spec and add endpoint/smodels ([e92c54b](https://github.com/digitalocean/gradientai-python/commit/e92c54b05f1025b6173945524724143fdafc7728))
+* **api:** update via SDK Studio ([1ae76f7](https://github.com/digitalocean/gradientai-python/commit/1ae76f78ce9e74f8fd555e3497299127e9aa6889))
+* **api:** update via SDK Studio ([98424f4](https://github.com/digitalocean/gradientai-python/commit/98424f4a2c7e00138fb5eecf94ca72e2ffcc1212))
+* **api:** update via SDK Studio ([299fd1b](https://github.com/digitalocean/gradientai-python/commit/299fd1b29b42f6f2581150e52dcf65fc73270862))
+* **api:** update via SDK Studio ([9a45427](https://github.com/digitalocean/gradientai-python/commit/9a45427678644c34afe9792a2561f394718e64ff))
+* **api:** update via SDK Studio ([abe573f](https://github.com/digitalocean/gradientai-python/commit/abe573fcc2233c7d71f0a925eea8fa9dd4d0fb91))
+* **api:** update via SDK Studio ([e5ce590](https://github.com/digitalocean/gradientai-python/commit/e5ce59057792968892317215078ac2c11e811812))
+* **api:** update via SDK Studio ([1daa3f5](https://github.com/digitalocean/gradientai-python/commit/1daa3f55a49b5411d1b378fce30aea3ccbccb6d7))
+* **api:** update via SDK Studio ([1c702b3](https://github.com/digitalocean/gradientai-python/commit/1c702b340e4fd723393c0f02df2a87d03ca8c9bb))
+* **api:** update via SDK Studio ([891d6b3](https://github.com/digitalocean/gradientai-python/commit/891d6b32e5bdb07d23abf898cec17a60ee64f99d))
+* **api:** update via SDK Studio ([dcbe442](https://github.com/digitalocean/gradientai-python/commit/dcbe442efc67554e60b3b28360a4d9f7dcbb313a))
+* use inference key for chat.completions.create() ([5d38e2e](https://github.com/digitalocean/gradientai-python/commit/5d38e2eb8604a0a4065d146ba71aa4a5a0e93d85))
+
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([4d2b3dc](https://github.com/digitalocean/gradientai-python/commit/4d2b3dcefdefc3830d631c5ac27b58778a299983))
+
+
+### Chores
+
+* clean up pyproject ([78637e9](https://github.com/digitalocean/gradientai-python/commit/78637e99816d459c27b4f2fd2f6d79c8d32ecfbe))
+* **internal:** codegen related update ([58d7319](https://github.com/digitalocean/gradientai-python/commit/58d7319ce68c639c2151a3e96a5d522ec06ff96f))
+
 ## 0.1.0-alpha.4 (2025-06-25)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
