@@ -3,8 +3,8 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..._models import BaseModel
-from ..shared.chat_completion_token_logprob import ChatCompletionTokenLogprob
+from ...._models import BaseModel
+from ...shared.chat_completion_token_logprob import ChatCompletionTokenLogprob
 
 __all__ = ["CompletionCreateResponse", "Choice", "ChoiceLogprobs", "ChoiceMessage", "Usage"]
 

@@ -57,12 +57,14 @@ class GradientAI(SyncAPIClient):
     # client options
     api_key: str | None
     inference_key: str | None
+    agent_domain: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -95,6 +97,8 @@ class GradientAI(SyncAPIClient):
         if inference_key is None:
             inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
         self.inference_key = inference_key
+
+        self.agent_domain = agent_domain
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
@@ -201,6 +205,7 @@ class GradientAI(SyncAPIClient):
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -236,6 +241,7 @@ class GradientAI(SyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
+            agent_domain=agent_domain or self.agent_domain,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -289,12 +295,14 @@ class AsyncGradientAI(AsyncAPIClient):
     # client options
     api_key: str | None
     inference_key: str | None
+    agent_domain: str | None
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -327,6 +335,8 @@ class AsyncGradientAI(AsyncAPIClient):
         if inference_key is None:
             inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
         self.inference_key = inference_key
+
+        self.agent_domain = agent_domain
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
@@ -433,6 +443,7 @@ class AsyncGradientAI(AsyncAPIClient):
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -468,6 +479,7 @@ class AsyncGradientAI(AsyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
+            agent_domain=agent_domain or self.agent_domain,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,

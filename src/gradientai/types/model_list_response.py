@@ -1,15 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from typing_extensions import Literal
+from typing import List, Optional
 
-from .model import Model
 from .._models import BaseModel
+from .api_model import APIModel
+from .shared.api_meta import APIMeta
+from .shared.api_links import APILinks
 
 __all__ = ["ModelListResponse"]
 
 
 class ModelListResponse(BaseModel):
-    data: List[Model]
+    links: Optional[APILinks] = None
 
-    object: Literal["list"]
+    meta: Optional[APIMeta] = None
+
+    models: Optional[List[APIModel]] = None

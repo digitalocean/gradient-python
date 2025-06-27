@@ -1,7 +1,7 @@
 # Shared Types
 
 ```python
-from gradientai.types import APILinks, APIMeta
+from gradientai.types import APILinks, APIMeta, ChatCompletionTokenLogprob
 ```
 
 # Agents
@@ -57,6 +57,20 @@ Methods:
 - <code title="get /v2/gen-ai/agents/{agent_uuid}/api_keys">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">list</a>(agent_uuid, \*\*<a href="src/gradientai/types/agents/api_key_list_params.py">params</a>) -> <a href="./src/gradientai/types/agents/api_key_list_response.py">APIKeyListResponse</a></code>
 - <code title="delete /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">delete</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
 - <code title="put /v2/gen-ai/agents/{agent_uuid}/api_keys/{api_key_uuid}/regenerate">client.agents.api_keys.<a href="./src/gradientai/resources/agents/api_keys.py">regenerate</a>(api_key_uuid, \*, agent_uuid) -> <a href="./src/gradientai/types/agents/api_key_regenerate_response.py">APIKeyRegenerateResponse</a></code>
+
+## Chat
+
+### Completions
+
+Types:
+
+```python
+from gradientai.types.agents.chat import CompletionCreateResponse
+```
+
+Methods:
+
+- <code title="post /chat/completions">client.agents.chat.completions.<a href="./src/gradientai/resources/agents/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/agents/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
 ## EvaluationMetrics
 
@@ -382,7 +396,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.chat import ChatCompletionTokenLogprob, CompletionCreateResponse
+from gradientai.types.chat import CompletionCreateResponse
 ```
 
 Methods:
@@ -419,10 +433,9 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import APIAgreement, APIModel, APIModelVersion, Model, ModelListResponse
+from gradientai.types import APIAgreement, APIModel, APIModelVersion, ModelListResponse
 ```
 
 Methods:
 
-- <code title="get /models/{model}">client.models.<a href="./src/gradientai/resources/models.py">retrieve</a>(model) -> <a href="./src/gradientai/types/model.py">Model</a></code>
-- <code title="get /models">client.models.<a href="./src/gradientai/resources/models.py">list</a>() -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
+- <code title="get /v2/gen-ai/models">client.models.<a href="./src/gradientai/resources/models.py">list</a>(\*\*<a href="src/gradientai/types/model_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
