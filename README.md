@@ -31,7 +31,7 @@ client = GradientAI(
     api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 
-completion = client.chat.completions.create(
+completion = client.agents.chat.completions.create(
     messages=[
         {
             "content": "string",
@@ -63,7 +63,7 @@ client = AsyncGradientAI(
 
 
 async def main() -> None:
-    completion = await client.chat.completions.create(
+    completion = await client.agents.chat.completions.create(
         messages=[
             {
                 "content": "string",
@@ -105,7 +105,7 @@ async def main() -> None:
         api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        completion = await client.chat.completions.create(
+        completion = await client.agents.chat.completions.create(
             messages=[
                 {
                     "content": "string",
@@ -138,7 +138,7 @@ from gradientai import GradientAI
 
 client = GradientAI()
 
-completion = client.chat.completions.create(
+completion = client.agents.chat.completions.create(
     messages=[
         {
             "content": "string",
