@@ -433,10 +433,9 @@ Methods:
 Types:
 
 ```python
-from gradientai.types import APIAgreement, APIModel, APIModelVersion, Model, ModelListResponse
+from gradientai.types import APIAgreement, APIModel, APIModelVersion, ModelListResponse
 ```
 
 Methods:
 
-- <code title="get /models/{model}">client.models.<a href="./src/gradientai/resources/models.py">retrieve</a>(model) -> <a href="./src/gradientai/types/model.py">Model</a></code>
-- <code title="get /models">client.models.<a href="./src/gradientai/resources/models.py">list</a>() -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
+- <code title="get /v2/gen-ai/models">client.models.<a href="./src/gradientai/resources/models.py">list</a>(\*\*<a href="src/gradientai/types/model_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
