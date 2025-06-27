@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2025-06-27)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Features
+
+* **api:** manual updates ([63b9ec0](https://github.com/digitalocean/gradientai-python/commit/63b9ec02a646dad258afbd048db8db1af8d4401b))
+* **api:** manual updates ([5247aee](https://github.com/digitalocean/gradientai-python/commit/5247aee6d6052f6380fbe892d7c2bd9a8d0a32c0))
+* **api:** manual updates ([aa9e2c7](https://github.com/digitalocean/gradientai-python/commit/aa9e2c78956162f6195fdbaa1c95754ee4af207e))
+* **client:** add agent_domain option ([b4b6260](https://github.com/digitalocean/gradientai-python/commit/b4b62609a12a1dfa0b505e9ec54334b776fb0515))
+
 ## 0.1.0-alpha.6 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
