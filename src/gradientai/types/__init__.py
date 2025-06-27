@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from .model import Model as Model
-from .shared import APIMeta as APIMeta, APILinks as APILinks
+from .shared import APIMeta as APIMeta, APILinks as APILinks, ChatCompletionTokenLogprob as ChatCompletionTokenLogprob
 from .api_agent import APIAgent as APIAgent
 from .api_agreement import APIAgreement as APIAgreement
 from .api_workspace import APIWorkspace as APIWorkspace
