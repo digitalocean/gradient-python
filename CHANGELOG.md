@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2025-06-27)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **client:** setup streaming ([3fd6e57](https://github.com/digitalocean/gradientai-python/commit/3fd6e575f6f5952860e42d8c1fa22ccb0b10c623))
+
 ## 0.1.0-alpha.7 (2025-06-27)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
