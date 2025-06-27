@@ -117,6 +117,8 @@ class GradientAI(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self._default_stream_cls = Stream
+
     @cached_property
     def agents(self) -> AgentsResource:
         from .resources.agents import AgentsResource
@@ -354,6 +356,8 @@ class AsyncGradientAI(AsyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+        self._default_stream_cls = AsyncStream
 
     @cached_property
     def agents(self) -> AsyncAgentsResource:

@@ -24,6 +24,7 @@ from pydantic import ValidationError
 from gradientai import GradientAI, AsyncGradientAI, APIResponseValidationError
 from gradientai._types import Omit
 from gradientai._models import BaseModel, FinalRequestOptions
+from gradientai._streaming import Stream, AsyncStream
 from gradientai._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from gradientai._base_client import (
     DEFAULT_TIMEOUT,
@@ -750,6 +751,17 @@ class TestGradientAI:
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
+
+    @pytest.mark.respx(base_url=base_url)
+    def test_default_stream_cls(self, respx_mock: MockRouter) -> None:
+        class Model(BaseModel):
+            name: str
+
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        stream = self.client.post("/foo", cast_to=Model, stream=True, stream_cls=Stream[Model])
+        assert isinstance(stream, Stream)
+        stream.response.close()
 
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -1649,6 +1661,18 @@ class TestAsyncGradientAI:
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
+
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_default_stream_cls(self, respx_mock: MockRouter) -> None:
+        class Model(BaseModel):
+            name: str
+
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
+
+        stream = await self.client.post("/foo", cast_to=Model, stream=True, stream_cls=AsyncStream[Model])
+        assert isinstance(stream, AsyncStream)
+        await stream.response.aclose()
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio

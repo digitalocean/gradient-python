@@ -6,17 +6,19 @@ from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
-    "CompletionCreateParams",
+    "CompletionCreateParamsBase",
     "Message",
     "MessageChatCompletionRequestSystemMessage",
     "MessageChatCompletionRequestDeveloperMessage",
     "MessageChatCompletionRequestUserMessage",
     "MessageChatCompletionRequestAssistantMessage",
     "StreamOptions",
+    "CompletionCreateParamsNonStreaming",
+    "CompletionCreateParamsStreaming",
 ]
 
 
-class CompletionCreateParams(TypedDict, total=False):
+class CompletionCreateParamsBase(TypedDict, total=False):
     messages: Required[Iterable[Message]]
     """A list of messages comprising the conversation so far."""
 
@@ -90,12 +92,6 @@ class CompletionCreateParams(TypedDict, total=False):
     """Up to 4 sequences where the API will stop generating further tokens.
 
     The returned text will not contain the stop sequence.
-    """
-
-    stream: Optional[bool]
-    """
-    If set to true, the model response data will be streamed to the client as it is
-    generated using server-sent events.
     """
 
     stream_options: Optional[StreamOptions]
@@ -183,3 +179,22 @@ class StreamOptions(TypedDict, total=False):
     **NOTE:** If the stream is interrupted, you may not receive the final usage
     chunk which contains the total token usage for the request.
     """
+
+
+class CompletionCreateParamsNonStreaming(CompletionCreateParamsBase, total=False):
+    stream: Optional[Literal[False]]
+    """
+    If set to true, the model response data will be streamed to the client as it is
+    generated using server-sent events.
+    """
+
+
+class CompletionCreateParamsStreaming(CompletionCreateParamsBase):
+    stream: Required[Literal[True]]
+    """
+    If set to true, the model response data will be streamed to the client as it is
+    generated using server-sent events.
+    """
+
+
+CompletionCreateParams = Union[CompletionCreateParamsNonStreaming, CompletionCreateParamsStreaming]

@@ -65,7 +65,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.agents.chat import CompletionCreateResponse
+from gradientai.types.agents.chat import ChatCompletionChunk, CompletionCreateResponse
 ```
 
 Methods:
