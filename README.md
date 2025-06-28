@@ -49,10 +49,10 @@ print(completion.choices[0].message)
 
 ```
 
-While you can provide an `inference_key` keyword argument,
+While you can provide an `api_key`, `inference_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `GRADIENTAI_INFERENCE_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
+to add `GRADIENTAI_API_KEY="My API Key"`, `GRADIENTAI_INFERENCE_KEY="My INFERENCE Key"` to your `.env` file
+so that your keys are not stored in source control.
 
 ## Async usage
 
