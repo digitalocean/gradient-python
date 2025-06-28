@@ -6,7 +6,7 @@ from typing_extensions import Literal
 from ...._models import BaseModel
 from ...shared.chat_completion_token_logprob import ChatCompletionTokenLogprob
 
-__all__ = ["ChatCompletionChunk", "Choice", "ChoiceDelta", "ChoiceLogprobs", "Usage"]
+__all__ = ["AgentChatCompletionChunk", "Choice", "ChoiceDelta", "ChoiceLogprobs", "Usage"]
 
 
 class ChoiceDelta(BaseModel):
@@ -58,7 +58,7 @@ class Usage(BaseModel):
     """Total number of tokens used in the request (prompt + completion)."""
 
 
-class ChatCompletionChunk(BaseModel):
+class AgentChatCompletionChunk(BaseModel):
     id: str
     """A unique identifier for the chat completion. Each chunk has the same ID."""
 
