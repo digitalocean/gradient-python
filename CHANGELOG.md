@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-06-28)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Features
+
+* **api:** manual updates ([8d918dc](https://github.com/digitalocean/gradientai-python/commit/8d918dcc45f03d799b3aed4e94276086e2d7ea9b))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([adfb5b5](https://github.com/digitalocean/gradientai-python/commit/adfb5b51149f667bf9a0b4b4c4c6418e91f843d8))
+* Move model providers ([8d918dc](https://github.com/digitalocean/gradientai-python/commit/8d918dcc45f03d799b3aed4e94276086e2d7ea9b))
+
 ## 0.1.0-alpha.10 (2025-06-28)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
