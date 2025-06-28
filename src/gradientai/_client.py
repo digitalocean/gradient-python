@@ -120,16 +120,16 @@ class GradientAI(SyncAPIClient):
         self._default_stream_cls = Stream
 
     @cached_property
-    def chat(self) -> ChatResource:
-        from .resources.chat import ChatResource
-
-        return ChatResource(self)
-
-    @cached_property
     def agents(self) -> AgentsResource:
         from .resources.agents import AgentsResource
 
         return AgentsResource(self)
+
+    @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
 
     @cached_property
     def model_providers(self) -> ModelProvidersResource:
@@ -360,16 +360,16 @@ class AsyncGradientAI(AsyncAPIClient):
         self._default_stream_cls = AsyncStream
 
     @cached_property
-    def chat(self) -> AsyncChatResource:
-        from .resources.chat import AsyncChatResource
-
-        return AsyncChatResource(self)
-
-    @cached_property
     def agents(self) -> AsyncAgentsResource:
         from .resources.agents import AsyncAgentsResource
 
         return AsyncAgentsResource(self)
+
+    @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
 
     @cached_property
     def model_providers(self) -> AsyncModelProvidersResource:
@@ -540,16 +540,16 @@ class GradientAIWithRawResponse:
         self._client = client
 
     @cached_property
-    def chat(self) -> chat.ChatResourceWithRawResponse:
-        from .resources.chat import ChatResourceWithRawResponse
-
-        return ChatResourceWithRawResponse(self._client.chat)
-
-    @cached_property
     def agents(self) -> agents.AgentsResourceWithRawResponse:
         from .resources.agents import AgentsResourceWithRawResponse
 
         return AgentsResourceWithRawResponse(self._client.agents)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
     def model_providers(self) -> model_providers.ModelProvidersResourceWithRawResponse:
@@ -589,16 +589,16 @@ class AsyncGradientAIWithRawResponse:
         self._client = client
 
     @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
-        from .resources.chat import AsyncChatResourceWithRawResponse
-
-        return AsyncChatResourceWithRawResponse(self._client.chat)
-
-    @cached_property
     def agents(self) -> agents.AsyncAgentsResourceWithRawResponse:
         from .resources.agents import AsyncAgentsResourceWithRawResponse
 
         return AsyncAgentsResourceWithRawResponse(self._client.agents)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
     def model_providers(self) -> model_providers.AsyncModelProvidersResourceWithRawResponse:
@@ -638,16 +638,16 @@ class GradientAIWithStreamedResponse:
         self._client = client
 
     @cached_property
-    def chat(self) -> chat.ChatResourceWithStreamingResponse:
-        from .resources.chat import ChatResourceWithStreamingResponse
-
-        return ChatResourceWithStreamingResponse(self._client.chat)
-
-    @cached_property
     def agents(self) -> agents.AgentsResourceWithStreamingResponse:
         from .resources.agents import AgentsResourceWithStreamingResponse
 
         return AgentsResourceWithStreamingResponse(self._client.agents)
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def model_providers(self) -> model_providers.ModelProvidersResourceWithStreamingResponse:
@@ -687,16 +687,16 @@ class AsyncGradientAIWithStreamedResponse:
         self._client = client
 
     @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
-        from .resources.chat import AsyncChatResourceWithStreamingResponse
-
-        return AsyncChatResourceWithStreamingResponse(self._client.chat)
-
-    @cached_property
     def agents(self) -> agents.AsyncAgentsResourceWithStreamingResponse:
         from .resources.agents import AsyncAgentsResourceWithStreamingResponse
 
         return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def model_providers(self) -> model_providers.AsyncModelProvidersResourceWithStreamingResponse:

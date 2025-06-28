@@ -4,20 +4,6 @@
 from gradientai.types import APILinks, APIMeta, ChatCompletionTokenLogprob
 ```
 
-# Chat
-
-## Completions
-
-Types:
-
-```python
-from gradientai.types.chat import ChatCompletionChunk, CompletionCreateResponse
-```
-
-Methods:
-
-- <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
-
 # Agents
 
 Types:
@@ -266,6 +252,20 @@ Methods:
 - <code title="delete /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.routes.<a href="./src/gradientai/resources/agents/routes.py">delete</a>(child_agent_uuid, \*, parent_agent_uuid) -> <a href="./src/gradientai/types/agents/route_delete_response.py">RouteDeleteResponse</a></code>
 - <code title="post /v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}">client.agents.routes.<a href="./src/gradientai/resources/agents/routes.py">add</a>(path_child_agent_uuid, \*, path_parent_agent_uuid, \*\*<a href="src/gradientai/types/agents/route_add_params.py">params</a>) -> <a href="./src/gradientai/types/agents/route_add_response.py">RouteAddResponse</a></code>
 - <code title="get /v2/gen-ai/agents/{uuid}/child_agents">client.agents.routes.<a href="./src/gradientai/resources/agents/routes.py">view</a>(uuid) -> <a href="./src/gradientai/types/agents/route_view_response.py">RouteViewResponse</a></code>
+
+# Chat
+
+## Completions
+
+Types:
+
+```python
+from gradientai.types.chat import ChatCompletionChunk, CompletionCreateResponse
+```
+
+Methods:
+
+- <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
 # ModelProviders
 
