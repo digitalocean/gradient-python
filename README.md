@@ -126,6 +126,30 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
+## Streaming
+Support for streaming responses are available by Server Side Events (SSE) for Serverless Inference and Agents.
+```
+import os
+from gradientai import GradientAI
+
+client = GradientAI(
+    inference_key=os.environ.get("GRADIENTAI_INFERENCE_KEY")
+)
+
+response = client.chat.completions.create(
+    model="llama3.3-70b-instruct",
+    messages=[{ "role": "user", "content": "Write a story about a brave squirrel."}],
+    stream=True,
+)
+
+for chunk in response:
+    if len(chunk.choices) > 0:
+          if chunk.choices[0].delta.content:
+              print(chunk.choices[0].delta.content, end="", flush=True)
+
+```
+
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
