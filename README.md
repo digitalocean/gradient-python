@@ -27,11 +27,16 @@ The full API of this library can be found in [api.md](api.md).
 import os
 from gradientai import GradientAI
 
-client = GradientAI(
+api_client = GradientAI(
     api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
+inference_client = GradientAI(
+    inference_key=os.environ.get("GRADIENTAI_INFERENCE_KEY"),  # This is the default and can be omitted
+)
 
-completion = client.agents.chat.completions.create(
+print(api_client.agents.list())
+
+completion = inference_client.agents.chat.completions.create(
     messages=[
         {
             "content": "string",
@@ -40,12 +45,13 @@ completion = client.agents.chat.completions.create(
     ],
     model="llama3-8b-instruct",
 )
-print(completion.id)
+print(completion.choices[0].message)
+
 ```
 
-While you can provide an `api_key` keyword argument,
+While you can provide an `inference_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `GRADIENTAI_API_KEY="My API Key"` to your `.env` file
+to add `GRADIENTAI_INFERENCE_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
