@@ -31,16 +31,16 @@ client = GradientAI(
     api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 
-completion = client.agents.chat.completions.create(
+completion = client.chat.completions.create(
     messages=[
         {
-            "content": "string",
-            "role": "system",
+            "role": "user",
+            "content": "What is the capital of France?",
         }
     ],
-    model="llama3-8b-instruct",
+    model="llama3.3-70b-instruct",
 )
-print(completion.id)
+print(completion.choices)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -63,16 +63,16 @@ client = AsyncGradientAI(
 
 
 async def main() -> None:
-    completion = await client.agents.chat.completions.create(
+    completion = await client.chat.completions.create(
         messages=[
             {
-                "content": "string",
-                "role": "system",
+                "role": "user",
+                "content": "What is the capital of France?",
             }
         ],
-        model="llama3-8b-instruct",
+        model="llama3.3-70b-instruct",
     )
-    print(completion.id)
+    print(completion.choices)
 
 
 asyncio.run(main())
@@ -105,16 +105,16 @@ async def main() -> None:
         api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        completion = await client.agents.chat.completions.create(
+        completion = await client.chat.completions.create(
             messages=[
                 {
-                    "content": "string",
-                    "role": "system",
+                    "role": "user",
+                    "content": "What is the capital of France?",
                 }
             ],
-            model="llama3-8b-instruct",
+            model="llama3.3-70b-instruct",
         )
-        print(completion.id)
+        print(completion.choices)
 
 
 asyncio.run(main())
@@ -138,7 +138,7 @@ from gradientai import GradientAI
 
 client = GradientAI()
 
-completion = client.agents.chat.completions.create(
+completion = client.chat.completions.create(
     messages=[
         {
             "content": "string",
