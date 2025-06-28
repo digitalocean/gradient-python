@@ -4,6 +4,20 @@
 from gradientai.types import APILinks, APIMeta, ChatCompletionTokenLogprob
 ```
 
+# Chat
+
+## Completions
+
+Types:
+
+```python
+from gradientai.types.chat import ChatCompletionChunk, CompletionCreateResponse
+```
+
+Methods:
+
+- <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+
 # Agents
 
 Types:
@@ -388,20 +402,6 @@ Methods:
 - <code title="get /v2/gen-ai/indexing_jobs">client.knowledge_bases.indexing_jobs.<a href="./src/gradientai/resources/knowledge_bases/indexing_jobs.py">list</a>(\*\*<a href="src/gradientai/types/knowledge_bases/indexing_job_list_params.py">params</a>) -> <a href="./src/gradientai/types/knowledge_bases/indexing_job_list_response.py">IndexingJobListResponse</a></code>
 - <code title="get /v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources">client.knowledge_bases.indexing_jobs.<a href="./src/gradientai/resources/knowledge_bases/indexing_jobs.py">retrieve_data_sources</a>(indexing_job_uuid) -> <a href="./src/gradientai/types/knowledge_bases/indexing_job_retrieve_data_sources_response.py">IndexingJobRetrieveDataSourcesResponse</a></code>
 - <code title="put /v2/gen-ai/indexing_jobs/{uuid}/cancel">client.knowledge_bases.indexing_jobs.<a href="./src/gradientai/resources/knowledge_bases/indexing_jobs.py">update_cancel</a>(path_uuid, \*\*<a href="src/gradientai/types/knowledge_bases/indexing_job_update_cancel_params.py">params</a>) -> <a href="./src/gradientai/types/knowledge_bases/indexing_job_update_cancel_response.py">IndexingJobUpdateCancelResponse</a></code>
-
-# Chat
-
-## Completions
-
-Types:
-
-```python
-from gradientai.types.chat import ChatCompletionChunk, CompletionCreateResponse
-```
-
-Methods:
-
-- <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
 # Inference
 

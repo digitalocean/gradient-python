@@ -58,6 +58,12 @@ from .model_providers import (
 )
 
 __all__ = [
+    "ChatResource",
+    "AsyncChatResource",
+    "ChatResourceWithRawResponse",
+    "AsyncChatResourceWithRawResponse",
+    "ChatResourceWithStreamingResponse",
+    "AsyncChatResourceWithStreamingResponse",
     "AgentsResource",
     "AsyncAgentsResource",
     "AgentsResourceWithRawResponse",
@@ -82,12 +88,6 @@ __all__ = [
     "AsyncKnowledgeBasesResourceWithRawResponse",
     "KnowledgeBasesResourceWithStreamingResponse",
     "AsyncKnowledgeBasesResourceWithStreamingResponse",
-    "ChatResource",
-    "AsyncChatResource",
-    "ChatResourceWithRawResponse",
-    "AsyncChatResourceWithRawResponse",
-    "ChatResourceWithStreamingResponse",
-    "AsyncChatResourceWithStreamingResponse",
     "InferenceResource",
     "AsyncInferenceResource",
     "InferenceResourceWithRawResponse",

@@ -120,6 +120,12 @@ class GradientAI(SyncAPIClient):
         self._default_stream_cls = Stream
 
     @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
     def agents(self) -> AgentsResource:
         from .resources.agents import AgentsResource
 
@@ -142,12 +148,6 @@ class GradientAI(SyncAPIClient):
         from .resources.knowledge_bases import KnowledgeBasesResource
 
         return KnowledgeBasesResource(self)
-
-    @cached_property
-    def chat(self) -> ChatResource:
-        from .resources.chat import ChatResource
-
-        return ChatResource(self)
 
     @cached_property
     def inference(self) -> InferenceResource:
@@ -360,6 +360,12 @@ class AsyncGradientAI(AsyncAPIClient):
         self._default_stream_cls = AsyncStream
 
     @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
     def agents(self) -> AsyncAgentsResource:
         from .resources.agents import AsyncAgentsResource
 
@@ -382,12 +388,6 @@ class AsyncGradientAI(AsyncAPIClient):
         from .resources.knowledge_bases import AsyncKnowledgeBasesResource
 
         return AsyncKnowledgeBasesResource(self)
-
-    @cached_property
-    def chat(self) -> AsyncChatResource:
-        from .resources.chat import AsyncChatResource
-
-        return AsyncChatResource(self)
 
     @cached_property
     def inference(self) -> AsyncInferenceResource:
@@ -540,6 +540,12 @@ class GradientAIWithRawResponse:
         self._client = client
 
     @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
     def agents(self) -> agents.AgentsResourceWithRawResponse:
         from .resources.agents import AgentsResourceWithRawResponse
 
@@ -564,12 +570,6 @@ class GradientAIWithRawResponse:
         return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
-    def chat(self) -> chat.ChatResourceWithRawResponse:
-        from .resources.chat import ChatResourceWithRawResponse
-
-        return ChatResourceWithRawResponse(self._client.chat)
-
-    @cached_property
     def inference(self) -> inference.InferenceResourceWithRawResponse:
         from .resources.inference import InferenceResourceWithRawResponse
 
@@ -587,6 +587,12 @@ class AsyncGradientAIWithRawResponse:
 
     def __init__(self, client: AsyncGradientAI) -> None:
         self._client = client
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
     def agents(self) -> agents.AsyncAgentsResourceWithRawResponse:
@@ -613,12 +619,6 @@ class AsyncGradientAIWithRawResponse:
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
-        from .resources.chat import AsyncChatResourceWithRawResponse
-
-        return AsyncChatResourceWithRawResponse(self._client.chat)
-
-    @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithRawResponse:
         from .resources.inference import AsyncInferenceResourceWithRawResponse
 
@@ -636,6 +636,12 @@ class GradientAIWithStreamedResponse:
 
     def __init__(self, client: GradientAI) -> None:
         self._client = client
+
+    @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def agents(self) -> agents.AgentsResourceWithStreamingResponse:
@@ -662,12 +668,6 @@ class GradientAIWithStreamedResponse:
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
-    def chat(self) -> chat.ChatResourceWithStreamingResponse:
-        from .resources.chat import ChatResourceWithStreamingResponse
-
-        return ChatResourceWithStreamingResponse(self._client.chat)
-
-    @cached_property
     def inference(self) -> inference.InferenceResourceWithStreamingResponse:
         from .resources.inference import InferenceResourceWithStreamingResponse
 
@@ -685,6 +685,12 @@ class AsyncGradientAIWithStreamedResponse:
 
     def __init__(self, client: AsyncGradientAI) -> None:
         self._client = client
+
+    @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def agents(self) -> agents.AsyncAgentsResourceWithStreamingResponse:
@@ -709,12 +715,6 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
 
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
-
-    @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
-        from .resources.chat import AsyncChatResourceWithStreamingResponse
-
-        return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithStreamingResponse:
