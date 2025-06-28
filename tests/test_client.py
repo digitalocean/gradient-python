@@ -822,7 +822,7 @@ class TestGradientAI:
         respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.chat.completions.with_streaming_response.create(
+            client.agents.chat.completions.with_streaming_response.create(
                 messages=[
                     {
                         "content": "string",
@@ -840,7 +840,7 @@ class TestGradientAI:
         respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.chat.completions.with_streaming_response.create(
+            client.agents.chat.completions.with_streaming_response.create(
                 messages=[
                     {
                         "content": "string",
@@ -877,7 +877,7 @@ class TestGradientAI:
 
         respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = client.chat.completions.with_raw_response.create(
+        response = client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
                     "content": "string",
@@ -909,7 +909,7 @@ class TestGradientAI:
 
         respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = client.chat.completions.with_raw_response.create(
+        response = client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
                     "content": "string",
@@ -941,7 +941,7 @@ class TestGradientAI:
 
         respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = client.chat.completions.with_raw_response.create(
+        response = client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
                     "content": "string",
@@ -1775,7 +1775,7 @@ class TestAsyncGradientAI:
         respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.chat.completions.with_streaming_response.create(
+            await async_client.agents.chat.completions.with_streaming_response.create(
                 messages=[
                     {
                         "content": "string",
@@ -1795,7 +1795,7 @@ class TestAsyncGradientAI:
         respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.chat.completions.with_streaming_response.create(
+            await async_client.agents.chat.completions.with_streaming_response.create(
                 messages=[
                     {
                         "content": "string",
@@ -1833,7 +1833,7 @@ class TestAsyncGradientAI:
 
         respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = await client.chat.completions.with_raw_response.create(
+        response = await client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
                     "content": "string",
@@ -1866,7 +1866,7 @@ class TestAsyncGradientAI:
 
         respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = await client.chat.completions.with_raw_response.create(
+        response = await client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
                     "content": "string",
@@ -1899,7 +1899,7 @@ class TestAsyncGradientAI:
 
         respx_mock.post("/chat/completions").mock(side_effect=retry_handler)
 
-        response = await client.chat.completions.with_raw_response.create(
+        response = await client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
                     "content": "string",
