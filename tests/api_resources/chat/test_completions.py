@@ -19,7 +19,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create_overload_1(self, client: GradientAI) -> None:
         completion = client.chat.completions.create(
             messages=[
                 {
@@ -33,7 +33,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: GradientAI) -> None:
         completion = client.chat.completions.create(
             messages=[
                 {
@@ -51,7 +51,7 @@ class TestCompletions:
             n=1,
             presence_penalty=-2,
             stop="\n",
-            stream=True,
+            stream=False,
             stream_options={"include_usage": True},
             temperature=1,
             top_logprobs=0,
@@ -62,7 +62,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
         response = client.chat.completions.with_raw_response.create(
             messages=[
                 {
@@ -80,7 +80,7 @@ class TestCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
         with client.chat.completions.with_streaming_response.create(
             messages=[
                 {
@@ -98,6 +98,89 @@ class TestCompletions:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_overload_2(self, client: GradientAI) -> None:
+        completion_stream = client.chat.completions.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+        )
+        completion_stream.response.close()
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: GradientAI) -> None:
+        completion_stream = client.chat.completions.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+            frequency_penalty=-2,
+            logit_bias={"foo": 0},
+            logprobs=True,
+            max_completion_tokens=256,
+            max_tokens=0,
+            metadata={"foo": "string"},
+            n=1,
+            presence_penalty=-2,
+            stop="\n",
+            stream_options={"include_usage": True},
+            temperature=1,
+            top_logprobs=0,
+            top_p=1,
+            user="user-1234",
+        )
+        completion_stream.response.close()
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
+        response = client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = response.parse()
+        stream.close()
+
+    @pytest.mark.skip()
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
+        with client.chat.completions.with_streaming_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            stream = response.parse()
+            stream.close()
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncCompletions:
     parametrize = pytest.mark.parametrize(
@@ -106,7 +189,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
         completion = await async_client.chat.completions.create(
             messages=[
                 {
@@ -120,7 +203,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
         completion = await async_client.chat.completions.create(
             messages=[
                 {
@@ -138,7 +221,7 @@ class TestAsyncCompletions:
             n=1,
             presence_penalty=-2,
             stop="\n",
-            stream=True,
+            stream=False,
             stream_options={"include_usage": True},
             temperature=1,
             top_logprobs=0,
@@ -149,7 +232,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.chat.completions.with_raw_response.create(
             messages=[
                 {
@@ -167,7 +250,7 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
         async with async_client.chat.completions.with_streaming_response.create(
             messages=[
                 {
@@ -182,5 +265,88 @@ class TestAsyncCompletions:
 
             completion = await response.parse()
             assert_matches_type(CompletionCreateResponse, completion, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+        completion_stream = await async_client.chat.completions.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+        )
+        await completion_stream.response.aclose()
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+        completion_stream = await async_client.chat.completions.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+            frequency_penalty=-2,
+            logit_bias={"foo": 0},
+            logprobs=True,
+            max_completion_tokens=256,
+            max_tokens=0,
+            metadata={"foo": "string"},
+            n=1,
+            presence_penalty=-2,
+            stop="\n",
+            stream_options={"include_usage": True},
+            temperature=1,
+            top_logprobs=0,
+            top_p=1,
+            user="user-1234",
+        )
+        await completion_stream.response.aclose()
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+        response = await async_client.chat.completions.with_raw_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = await response.parse()
+        await stream.close()
+
+    @pytest.mark.skip()
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+        async with async_client.chat.completions.with_streaming_response.create(
+            messages=[
+                {
+                    "content": "string",
+                    "role": "system",
+                }
+            ],
+            model="llama3-8b-instruct",
+            stream=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            stream = await response.parse()
+            await stream.close()
 
         assert cast(Any, response.is_closed) is True
