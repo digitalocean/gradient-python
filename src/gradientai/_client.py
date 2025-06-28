@@ -126,6 +126,12 @@ class GradientAI(SyncAPIClient):
         return AgentsResource(self)
 
     @cached_property
+    def chat(self) -> ChatResource:
+        from .resources.chat import ChatResource
+
+        return ChatResource(self)
+
+    @cached_property
     def model_providers(self) -> ModelProvidersResource:
         from .resources.model_providers import ModelProvidersResource
 
@@ -142,12 +148,6 @@ class GradientAI(SyncAPIClient):
         from .resources.knowledge_bases import KnowledgeBasesResource
 
         return KnowledgeBasesResource(self)
-
-    @cached_property
-    def chat(self) -> ChatResource:
-        from .resources.chat import ChatResource
-
-        return ChatResource(self)
 
     @cached_property
     def inference(self) -> InferenceResource:
@@ -366,6 +366,12 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncAgentsResource(self)
 
     @cached_property
+    def chat(self) -> AsyncChatResource:
+        from .resources.chat import AsyncChatResource
+
+        return AsyncChatResource(self)
+
+    @cached_property
     def model_providers(self) -> AsyncModelProvidersResource:
         from .resources.model_providers import AsyncModelProvidersResource
 
@@ -382,12 +388,6 @@ class AsyncGradientAI(AsyncAPIClient):
         from .resources.knowledge_bases import AsyncKnowledgeBasesResource
 
         return AsyncKnowledgeBasesResource(self)
-
-    @cached_property
-    def chat(self) -> AsyncChatResource:
-        from .resources.chat import AsyncChatResource
-
-        return AsyncChatResource(self)
 
     @cached_property
     def inference(self) -> AsyncInferenceResource:
@@ -546,6 +546,12 @@ class GradientAIWithRawResponse:
         return AgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
+    def chat(self) -> chat.ChatResourceWithRawResponse:
+        from .resources.chat import ChatResourceWithRawResponse
+
+        return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
     def model_providers(self) -> model_providers.ModelProvidersResourceWithRawResponse:
         from .resources.model_providers import ModelProvidersResourceWithRawResponse
 
@@ -562,12 +568,6 @@ class GradientAIWithRawResponse:
         from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
 
         return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
-
-    @cached_property
-    def chat(self) -> chat.ChatResourceWithRawResponse:
-        from .resources.chat import ChatResourceWithRawResponse
-
-        return ChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
     def inference(self) -> inference.InferenceResourceWithRawResponse:
@@ -595,6 +595,12 @@ class AsyncGradientAIWithRawResponse:
         return AsyncAgentsResourceWithRawResponse(self._client.agents)
 
     @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
+        from .resources.chat import AsyncChatResourceWithRawResponse
+
+        return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
     def model_providers(self) -> model_providers.AsyncModelProvidersResourceWithRawResponse:
         from .resources.model_providers import AsyncModelProvidersResourceWithRawResponse
 
@@ -611,12 +617,6 @@ class AsyncGradientAIWithRawResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
 
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
-
-    @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithRawResponse:
-        from .resources.chat import AsyncChatResourceWithRawResponse
-
-        return AsyncChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithRawResponse:
@@ -644,6 +644,12 @@ class GradientAIWithStreamedResponse:
         return AgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
+    def chat(self) -> chat.ChatResourceWithStreamingResponse:
+        from .resources.chat import ChatResourceWithStreamingResponse
+
+        return ChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
     def model_providers(self) -> model_providers.ModelProvidersResourceWithStreamingResponse:
         from .resources.model_providers import ModelProvidersResourceWithStreamingResponse
 
@@ -660,12 +666,6 @@ class GradientAIWithStreamedResponse:
         from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
 
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
-
-    @cached_property
-    def chat(self) -> chat.ChatResourceWithStreamingResponse:
-        from .resources.chat import ChatResourceWithStreamingResponse
-
-        return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def inference(self) -> inference.InferenceResourceWithStreamingResponse:
@@ -693,6 +693,12 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
 
     @cached_property
+    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
+        from .resources.chat import AsyncChatResourceWithStreamingResponse
+
+        return AsyncChatResourceWithStreamingResponse(self._client.chat)
+
+    @cached_property
     def model_providers(self) -> model_providers.AsyncModelProvidersResourceWithStreamingResponse:
         from .resources.model_providers import AsyncModelProvidersResourceWithStreamingResponse
 
@@ -709,12 +715,6 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
 
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
-
-    @cached_property
-    def chat(self) -> chat.AsyncChatResourceWithStreamingResponse:
-        from .resources.chat import AsyncChatResourceWithStreamingResponse
-
-        return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithStreamingResponse:
