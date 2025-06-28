@@ -36,7 +36,7 @@ inference_client = GradientAI(
 
 print(api_client.agents.list())
 
-completion = inference_client.agents.chat.completions.create(
+completion = inference_client.chat.completions.create(
     messages=[
         {
             "content": "string",
