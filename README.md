@@ -120,6 +120,50 @@ async def main() -> None:
 asyncio.run(main())
 ```
 
+## Streaming responses
+
+We provide support for streaming responses using Server Side Events (SSE).
+
+```python
+from gradientai import GradientAI
+
+client = GradientAI()
+
+stream = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the capital of France?",
+        }
+    ],
+    model="llama3.3-70b-instruct",
+    stream=True,
+)
+for completion in stream:
+    print(completion.choices)
+```
+
+The async client uses the exact same interface.
+
+```python
+from gradientai import AsyncGradientAI
+
+client = AsyncGradientAI()
+
+stream = await client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the capital of France?",
+        }
+    ],
+    model="llama3.3-70b-instruct",
+    stream=True,
+)
+async for completion in stream:
+    print(completion.choices)
+```
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
@@ -167,8 +211,14 @@ from gradientai import GradientAI
 client = GradientAI()
 
 try:
-    client.agents.versions.list(
-        uuid="REPLACE_ME",
+    client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": "What is the capital of France?",
+            }
+        ],
+        model="llama3.3-70b-instruct",
     )
 except gradientai.APIConnectionError as e:
     print("The server could not be reached")
@@ -212,8 +262,14 @@ client = GradientAI(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).agents.versions.list(
-    uuid="REPLACE_ME",
+client.with_options(max_retries=5).chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the capital of France?",
+        }
+    ],
+    model="llama3.3-70b-instruct",
 )
 ```
 
@@ -237,8 +293,14 @@ client = GradientAI(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).agents.versions.list(
-    uuid="REPLACE_ME",
+client.with_options(timeout=5.0).chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the capital of France?",
+        }
+    ],
+    model="llama3.3-70b-instruct",
 )
 ```
 
@@ -280,13 +342,17 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from gradientai import GradientAI
 
 client = GradientAI()
-response = client.agents.versions.with_raw_response.list(
-    uuid="REPLACE_ME",
+response = client.chat.completions.with_raw_response.create(
+    messages=[{
+        "role": "user",
+        "content": "What is the capital of France?",
+    }],
+    model="llama3.3-70b-instruct",
 )
 print(response.headers.get('X-My-Header'))
 
-version = response.parse()  # get the object that `agents.versions.list()` would have returned
-print(version.agent_versions)
+completion = response.parse()  # get the object that `chat.completions.create()` would have returned
+print(completion.choices)
 ```
 
 These methods return an [`APIResponse`](https://github.com/digitalocean/gradientai-python/tree/main/src/gradientai/_response.py) object.
@@ -300,8 +366,14 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.agents.versions.with_streaming_response.list(
-    uuid="REPLACE_ME",
+with client.chat.completions.with_streaming_response.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the capital of France?",
+        }
+    ],
+    model="llama3.3-70b-instruct",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
