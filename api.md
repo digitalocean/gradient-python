@@ -267,60 +267,6 @@ Methods:
 
 - <code title="post /chat/completions">client.chat.completions.<a href="./src/gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
-# ModelProviders
-
-## Anthropic
-
-### Keys
-
-Types:
-
-```python
-from gradientai.types.model_providers.anthropic import (
-    KeyCreateResponse,
-    KeyRetrieveResponse,
-    KeyUpdateResponse,
-    KeyListResponse,
-    KeyDeleteResponse,
-    KeyListAgentsResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/anthropic/keys">client.model_providers.anthropic.keys.<a href="./src/gradientai/resources/model_providers/anthropic/keys.py">create</a>(\*\*<a href="src/gradientai/types/model_providers/anthropic/key_create_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/anthropic/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="get /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.model_providers.anthropic.keys.<a href="./src/gradientai/resources/model_providers/anthropic/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/gradientai/types/model_providers/anthropic/key_retrieve_response.py">KeyRetrieveResponse</a></code>
-- <code title="put /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.model_providers.anthropic.keys.<a href="./src/gradientai/resources/model_providers/anthropic/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/model_providers/anthropic/key_update_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/anthropic/key_update_response.py">KeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/anthropic/keys">client.model_providers.anthropic.keys.<a href="./src/gradientai/resources/model_providers/anthropic/keys.py">list</a>(\*\*<a href="src/gradientai/types/model_providers/anthropic/key_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/anthropic/key_list_response.py">KeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.model_providers.anthropic.keys.<a href="./src/gradientai/resources/model_providers/anthropic/keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/model_providers/anthropic/key_delete_response.py">KeyDeleteResponse</a></code>
-- <code title="get /v2/gen-ai/anthropic/keys/{uuid}/agents">client.model_providers.anthropic.keys.<a href="./src/gradientai/resources/model_providers/anthropic/keys.py">list_agents</a>(uuid, \*\*<a href="src/gradientai/types/model_providers/anthropic/key_list_agents_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/anthropic/key_list_agents_response.py">KeyListAgentsResponse</a></code>
-
-## OpenAI
-
-### Keys
-
-Types:
-
-```python
-from gradientai.types.model_providers.openai import (
-    KeyCreateResponse,
-    KeyRetrieveResponse,
-    KeyUpdateResponse,
-    KeyListResponse,
-    KeyDeleteResponse,
-    KeyRetrieveAgentsResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/openai/keys">client.model_providers.openai.keys.<a href="./src/gradientai/resources/model_providers/openai/keys.py">create</a>(\*\*<a href="src/gradientai/types/model_providers/openai/key_create_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/openai/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="get /v2/gen-ai/openai/keys/{api_key_uuid}">client.model_providers.openai.keys.<a href="./src/gradientai/resources/model_providers/openai/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/gradientai/types/model_providers/openai/key_retrieve_response.py">KeyRetrieveResponse</a></code>
-- <code title="put /v2/gen-ai/openai/keys/{api_key_uuid}">client.model_providers.openai.keys.<a href="./src/gradientai/resources/model_providers/openai/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/model_providers/openai/key_update_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/openai/key_update_response.py">KeyUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/openai/keys">client.model_providers.openai.keys.<a href="./src/gradientai/resources/model_providers/openai/keys.py">list</a>(\*\*<a href="src/gradientai/types/model_providers/openai/key_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/openai/key_list_response.py">KeyListResponse</a></code>
-- <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.model_providers.openai.keys.<a href="./src/gradientai/resources/model_providers/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/model_providers/openai/key_delete_response.py">KeyDeleteResponse</a></code>
-- <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.model_providers.openai.keys.<a href="./src/gradientai/resources/model_providers/openai/keys.py">retrieve_agents</a>(uuid, \*\*<a href="src/gradientai/types/model_providers/openai/key_retrieve_agents_params.py">params</a>) -> <a href="./src/gradientai/types/model_providers/openai/key_retrieve_agents_response.py">KeyRetrieveAgentsResponse</a></code>
-
 # Regions
 
 Types:
@@ -438,4 +384,54 @@ from gradientai.types import APIAgreement, APIModel, APIModelVersion, ModelListR
 
 Methods:
 
-- <code title="get /v2/gen-ai/models">client.models.<a href="./src/gradientai/resources/models.py">list</a>(\*\*<a href="src/gradientai/types/model_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
+- <code title="get /v2/gen-ai/models">client.models.<a href="./src/gradientai/resources/models/models.py">list</a>(\*\*<a href="src/gradientai/types/model_list_params.py">params</a>) -> <a href="./src/gradientai/types/model_list_response.py">ModelListResponse</a></code>
+
+## Providers
+
+### Anthropic
+
+Types:
+
+```python
+from gradientai.types.models.providers import (
+    AnthropicCreateResponse,
+    AnthropicRetrieveResponse,
+    AnthropicUpdateResponse,
+    AnthropicListResponse,
+    AnthropicDeleteResponse,
+    AnthropicListAgentsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/anthropic/keys">client.models.providers.anthropic.<a href="./src/gradientai/resources/models/providers/anthropic.py">create</a>(\*\*<a href="src/gradientai/types/models/providers/anthropic_create_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/anthropic_create_response.py">AnthropicCreateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.models.providers.anthropic.<a href="./src/gradientai/resources/models/providers/anthropic.py">retrieve</a>(api_key_uuid) -> <a href="./src/gradientai/types/models/providers/anthropic_retrieve_response.py">AnthropicRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.models.providers.anthropic.<a href="./src/gradientai/resources/models/providers/anthropic.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/models/providers/anthropic_update_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/anthropic_update_response.py">AnthropicUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys">client.models.providers.anthropic.<a href="./src/gradientai/resources/models/providers/anthropic.py">list</a>(\*\*<a href="src/gradientai/types/models/providers/anthropic_list_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/anthropic_list_response.py">AnthropicListResponse</a></code>
+- <code title="delete /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.models.providers.anthropic.<a href="./src/gradientai/resources/models/providers/anthropic.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/models/providers/anthropic_delete_response.py">AnthropicDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{uuid}/agents">client.models.providers.anthropic.<a href="./src/gradientai/resources/models/providers/anthropic.py">list_agents</a>(uuid, \*\*<a href="src/gradientai/types/models/providers/anthropic_list_agents_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/anthropic_list_agents_response.py">AnthropicListAgentsResponse</a></code>
+
+### OpenAI
+
+Types:
+
+```python
+from gradientai.types.models.providers import (
+    OpenAICreateResponse,
+    OpenAIRetrieveResponse,
+    OpenAIUpdateResponse,
+    OpenAIListResponse,
+    OpenAIDeleteResponse,
+    OpenAIRetrieveAgentsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/openai/keys">client.models.providers.openai.<a href="./src/gradientai/resources/models/providers/openai.py">create</a>(\*\*<a href="src/gradientai/types/models/providers/openai_create_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/openai_create_response.py">OpenAICreateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{api_key_uuid}">client.models.providers.openai.<a href="./src/gradientai/resources/models/providers/openai.py">retrieve</a>(api_key_uuid) -> <a href="./src/gradientai/types/models/providers/openai_retrieve_response.py">OpenAIRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/openai/keys/{api_key_uuid}">client.models.providers.openai.<a href="./src/gradientai/resources/models/providers/openai.py">update</a>(path_api_key_uuid, \*\*<a href="src/gradientai/types/models/providers/openai_update_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/openai_update_response.py">OpenAIUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys">client.models.providers.openai.<a href="./src/gradientai/resources/models/providers/openai.py">list</a>(\*\*<a href="src/gradientai/types/models/providers/openai_list_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/openai_list_response.py">OpenAIListResponse</a></code>
+- <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.models.providers.openai.<a href="./src/gradientai/resources/models/providers/openai.py">delete</a>(api_key_uuid) -> <a href="./src/gradientai/types/models/providers/openai_delete_response.py">OpenAIDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.models.providers.openai.<a href="./src/gradientai/resources/models/providers/openai.py">retrieve_agents</a>(uuid, \*\*<a href="src/gradientai/types/models/providers/openai_retrieve_agents_params.py">params</a>) -> <a href="./src/gradientai/types/models/providers/openai_retrieve_agents_response.py">OpenAIRetrieveAgentsResponse</a></code>
