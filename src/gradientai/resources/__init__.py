@@ -48,14 +48,6 @@ from .knowledge_bases import (
     KnowledgeBasesResourceWithStreamingResponse,
     AsyncKnowledgeBasesResourceWithStreamingResponse,
 )
-from .model_providers import (
-    ModelProvidersResource,
-    AsyncModelProvidersResource,
-    ModelProvidersResourceWithRawResponse,
-    AsyncModelProvidersResourceWithRawResponse,
-    ModelProvidersResourceWithStreamingResponse,
-    AsyncModelProvidersResourceWithStreamingResponse,
-)
 
 __all__ = [
     "AgentsResource",
@@ -70,12 +62,6 @@ __all__ = [
     "AsyncChatResourceWithRawResponse",
     "ChatResourceWithStreamingResponse",
     "AsyncChatResourceWithStreamingResponse",
-    "ModelProvidersResource",
-    "AsyncModelProvidersResource",
-    "ModelProvidersResourceWithRawResponse",
-    "AsyncModelProvidersResourceWithRawResponse",
-    "ModelProvidersResourceWithStreamingResponse",
-    "AsyncModelProvidersResourceWithStreamingResponse",
     "RegionsResource",
     "AsyncRegionsResource",
     "RegionsResourceWithRawResponse",
