@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-07-02)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([646b4c6](https://github.com/digitalocean/gradientai-python/commit/646b4c62044c9bb5211c50e008ef30c777715acb))
+
+
+### Chores
+
+* **ci:** change upload type ([7449413](https://github.com/digitalocean/gradientai-python/commit/7449413efc16c58bc484f5f5793aa9cd36c3f405))
+* **internal:** codegen related update ([434929c](https://github.com/digitalocean/gradientai-python/commit/434929ce29b314182dec1542a3093c98ca0bb24a))
+
 ## 0.1.0-alpha.11 (2025-06-28)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
