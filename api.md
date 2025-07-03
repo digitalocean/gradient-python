@@ -70,7 +70,7 @@ from gradientai.types.agents.chat import CompletionCreateResponse
 
 Methods:
 
-- <code title="post /chat/completions">client.agents.chat.completions.<a href="./src/gradientai/resources/agents/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/agents/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+- <code title="post /chat/completions?agent=true">client.agents.chat.completions.<a href="./src/gradientai/resources/agents/chat/completions.py">create</a>(\*\*<a href="src/gradientai/types/agents/chat/completion_create_params.py">params</a>) -> <a href="./src/gradientai/types/agents/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
 ## EvaluationMetrics
 
