@@ -47,6 +47,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 api_key = "My API Key"
 inference_key = "My Inference Key"
+agent_key = "My Agent Key"
 
 
 @pytest.fixture(scope="session")
@@ -56,7 +57,11 @@ def client(request: FixtureRequest) -> Iterator[GradientAI]:
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
     with GradientAI(
-        base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=strict
+        base_url=base_url,
+        api_key=api_key,
+        inference_key=inference_key,
+        agent_key=agent_key,
+        _strict_response_validation=strict,
     ) as client:
         yield client
 
@@ -85,6 +90,7 @@ async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGradientAI
         base_url=base_url,
         api_key=api_key,
         inference_key=inference_key,
+        agent_key=agent_key,
         _strict_response_validation=strict,
         http_client=http_client,
     ) as client:

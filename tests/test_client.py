@@ -40,6 +40,7 @@ from .utils import update_env
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
 inference_key = "My Inference Key"
+agent_key = "My Agent Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -62,7 +63,11 @@ def _get_open_connections(client: GradientAI | AsyncGradientAI) -> int:
 
 class TestGradientAI:
     client = GradientAI(
-        base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+        base_url=base_url,
+        api_key=api_key,
+        inference_key=inference_key,
+        agent_key=agent_key,
+        _strict_response_validation=True,
     )
 
     @pytest.mark.respx(base_url=base_url)
@@ -97,6 +102,10 @@ class TestGradientAI:
         assert copied.inference_key == "another My Inference Key"
         assert self.client.inference_key == "My Inference Key"
 
+        copied = self.client.copy(agent_key="another My Agent Key")
+        assert copied.agent_key == "another My Agent Key"
+        assert self.client.agent_key == "My Agent Key"
+
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -118,6 +127,7 @@ class TestGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -156,6 +166,7 @@ class TestGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_query={"foo": "bar"},
         )
@@ -286,6 +297,7 @@ class TestGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             timeout=httpx.Timeout(0),
         )
@@ -301,6 +313,7 @@ class TestGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -315,6 +328,7 @@ class TestGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -329,6 +343,7 @@ class TestGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -344,6 +359,7 @@ class TestGradientAI:
                     base_url=base_url,
                     api_key=api_key,
                     inference_key=inference_key,
+                    agent_key=agent_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -353,6 +369,7 @@ class TestGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -364,6 +381,7 @@ class TestGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -376,14 +394,22 @@ class TestGradientAI:
 
     def test_validate_headers(self) -> None:
         client = GradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with update_env(**{"GRADIENTAI_API_KEY": Omit()}):
             client2 = GradientAI(
-                base_url=base_url, api_key=None, inference_key=inference_key, _strict_response_validation=True
+                base_url=base_url,
+                api_key=None,
+                inference_key=inference_key,
+                agent_key=agent_key,
+                _strict_response_validation=True,
             )
 
         with pytest.raises(
@@ -402,6 +428,7 @@ class TestGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -607,6 +634,7 @@ class TestGradientAI:
             base_url="https://example.com/from_init",
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -617,7 +645,9 @@ class TestGradientAI:
 
     def test_base_url_env(self) -> None:
         with update_env(GRADIENT_AI_BASE_URL="http://localhost:5000/from/env"):
-            client = GradientAI(api_key=api_key, inference_key=inference_key, _strict_response_validation=True)
+            client = GradientAI(
+                api_key=api_key, inference_key=inference_key, agent_key=agent_key, _strict_response_validation=True
+            )
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
@@ -627,12 +657,14 @@ class TestGradientAI:
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
             ),
             GradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -656,12 +688,14 @@ class TestGradientAI:
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
             ),
             GradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -685,12 +719,14 @@ class TestGradientAI:
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
             ),
             GradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -709,7 +745,11 @@ class TestGradientAI:
 
     def test_copied_client_does_not_close_http(self) -> None:
         client = GradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
         assert not client.is_closed()
 
@@ -722,7 +762,11 @@ class TestGradientAI:
 
     def test_client_context_manager(self) -> None:
         client = GradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
         with client as c2:
             assert c2 is client
@@ -748,6 +792,7 @@ class TestGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -771,14 +816,22 @@ class TestGradientAI:
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
         strict_client = GradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
         client = GradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=False
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=False,
         )
 
         response = client.get("/foo", cast_to=Model)
@@ -808,7 +861,11 @@ class TestGradientAI:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = GradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
 
         headers = httpx.Headers({"retry-after": retry_after})
@@ -1006,7 +1063,11 @@ class TestGradientAI:
 
 class TestAsyncGradientAI:
     client = AsyncGradientAI(
-        base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+        base_url=base_url,
+        api_key=api_key,
+        inference_key=inference_key,
+        agent_key=agent_key,
+        _strict_response_validation=True,
     )
 
     @pytest.mark.respx(base_url=base_url)
@@ -1043,6 +1104,10 @@ class TestAsyncGradientAI:
         assert copied.inference_key == "another My Inference Key"
         assert self.client.inference_key == "My Inference Key"
 
+        copied = self.client.copy(agent_key="another My Agent Key")
+        assert copied.agent_key == "another My Agent Key"
+        assert self.client.agent_key == "My Agent Key"
+
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -1064,6 +1129,7 @@ class TestAsyncGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1102,6 +1168,7 @@ class TestAsyncGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_query={"foo": "bar"},
         )
@@ -1232,6 +1299,7 @@ class TestAsyncGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             timeout=httpx.Timeout(0),
         )
@@ -1247,6 +1315,7 @@ class TestAsyncGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -1261,6 +1330,7 @@ class TestAsyncGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -1275,6 +1345,7 @@ class TestAsyncGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -1290,6 +1361,7 @@ class TestAsyncGradientAI:
                     base_url=base_url,
                     api_key=api_key,
                     inference_key=inference_key,
+                    agent_key=agent_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -1299,6 +1371,7 @@ class TestAsyncGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1310,6 +1383,7 @@ class TestAsyncGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1322,14 +1396,22 @@ class TestAsyncGradientAI:
 
     def test_validate_headers(self) -> None:
         client = AsyncGradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with update_env(**{"GRADIENTAI_API_KEY": Omit()}):
             client2 = AsyncGradientAI(
-                base_url=base_url, api_key=None, inference_key=inference_key, _strict_response_validation=True
+                base_url=base_url,
+                api_key=None,
+                inference_key=inference_key,
+                agent_key=agent_key,
+                _strict_response_validation=True,
             )
 
         with pytest.raises(
@@ -1348,6 +1430,7 @@ class TestAsyncGradientAI:
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -1553,6 +1636,7 @@ class TestAsyncGradientAI:
             base_url="https://example.com/from_init",
             api_key=api_key,
             inference_key=inference_key,
+            agent_key=agent_key,
             _strict_response_validation=True,
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1563,7 +1647,9 @@ class TestAsyncGradientAI:
 
     def test_base_url_env(self) -> None:
         with update_env(GRADIENT_AI_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncGradientAI(api_key=api_key, inference_key=inference_key, _strict_response_validation=True)
+            client = AsyncGradientAI(
+                api_key=api_key, inference_key=inference_key, agent_key=agent_key, _strict_response_validation=True
+            )
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
@@ -1573,12 +1659,14 @@ class TestAsyncGradientAI:
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
             ),
             AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1602,12 +1690,14 @@ class TestAsyncGradientAI:
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
             ),
             AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1631,12 +1721,14 @@ class TestAsyncGradientAI:
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
             ),
             AsyncGradientAI(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1655,7 +1747,11 @@ class TestAsyncGradientAI:
 
     async def test_copied_client_does_not_close_http(self) -> None:
         client = AsyncGradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
         assert not client.is_closed()
 
@@ -1669,7 +1765,11 @@ class TestAsyncGradientAI:
 
     async def test_client_context_manager(self) -> None:
         client = AsyncGradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
         async with client as c2:
             assert c2 is client
@@ -1696,6 +1796,7 @@ class TestAsyncGradientAI:
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
+                agent_key=agent_key,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -1721,14 +1822,22 @@ class TestAsyncGradientAI:
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
         strict_client = AsyncGradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
         client = AsyncGradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=False
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=False,
         )
 
         response = await client.get("/foo", cast_to=Model)
@@ -1759,7 +1868,11 @@ class TestAsyncGradientAI:
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = AsyncGradientAI(
-            base_url=base_url, api_key=api_key, inference_key=inference_key, _strict_response_validation=True
+            base_url=base_url,
+            api_key=api_key,
+            inference_key=inference_key,
+            agent_key=agent_key,
+            _strict_response_validation=True,
         )
 
         headers = httpx.Headers({"retry-after": retry_after})
