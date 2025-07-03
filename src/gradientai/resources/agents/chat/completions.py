@@ -414,9 +414,9 @@ class CompletionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | Stream[ChatCompletionChunk]:
         return self._post(
-            "/chat/completions"
+            "/chat/completions?agent=true"
             if self._client._base_url_overridden
-            else "https://inference.do-ai.run/v1/chat/completions",
+            else "https://inference.do-ai.run/v1/chat/completions?agent=true",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -838,9 +838,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | AsyncStream[ChatCompletionChunk]:
         return await self._post(
-            "/chat/completions"
+            "/chat/completions?agent=true"
             if self._client._base_url_overridden
-            else "https://inference.do-ai.run/v1/chat/completions",
+            else "https://inference.do-ai.run/v1/chat/completions?agent=true",
             body=await async_maybe_transform(
                 {
                     "messages": messages,

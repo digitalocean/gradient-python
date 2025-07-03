@@ -31,7 +31,7 @@ client = GradientAI(
     api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 
-completion = client.agents.chat.completions.create(
+completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
@@ -63,7 +63,7 @@ client = AsyncGradientAI(
 
 
 async def main() -> None:
-    completion = await client.agents.chat.completions.create(
+    completion = await client.chat.completions.create(
         messages=[
             {
                 "role": "user",
@@ -105,7 +105,7 @@ async def main() -> None:
         api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
-        completion = await client.agents.chat.completions.create(
+        completion = await client.chat.completions.create(
             messages=[
                 {
                     "role": "user",
@@ -129,7 +129,7 @@ from gradientai import GradientAI
 
 client = GradientAI()
 
-stream = client.agents.chat.completions.create(
+stream = client.chat.completions.create(
     messages=[
         {
             "role": "user",
@@ -150,7 +150,7 @@ from gradientai import AsyncGradientAI
 
 client = AsyncGradientAI()
 
-stream = await client.agents.chat.completions.create(
+stream = await client.chat.completions.create(
     messages=[
         {
             "role": "user",
@@ -182,7 +182,7 @@ from gradientai import GradientAI
 
 client = GradientAI()
 
-completion = client.agents.chat.completions.create(
+completion = client.chat.completions.create(
     messages=[
         {
             "content": "string",
@@ -211,7 +211,7 @@ from gradientai import GradientAI
 client = GradientAI()
 
 try:
-    client.agents.chat.completions.create(
+    client.chat.completions.create(
         messages=[
             {
                 "role": "user",
@@ -262,7 +262,7 @@ client = GradientAI(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).agents.chat.completions.create(
+client.with_options(max_retries=5).chat.completions.create(
     messages=[
         {
             "role": "user",
@@ -293,7 +293,7 @@ client = GradientAI(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).agents.chat.completions.create(
+client.with_options(timeout=5.0).chat.completions.create(
     messages=[
         {
             "role": "user",
@@ -342,7 +342,7 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from gradientai import GradientAI
 
 client = GradientAI()
-response = client.agents.chat.completions.with_raw_response.create(
+response = client.chat.completions.with_raw_response.create(
     messages=[{
         "role": "user",
         "content": "What is the capital of France?",
@@ -351,7 +351,7 @@ response = client.agents.chat.completions.with_raw_response.create(
 )
 print(response.headers.get('X-My-Header'))
 
-completion = response.parse()  # get the object that `agents.chat.completions.create()` would have returned
+completion = response.parse()  # get the object that `chat.completions.create()` would have returned
 print(completion.choices)
 ```
 
@@ -366,7 +366,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.agents.chat.completions.with_streaming_response.create(
+with client.chat.completions.with_streaming_response.create(
     messages=[
         {
             "role": "user",
