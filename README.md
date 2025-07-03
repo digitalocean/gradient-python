@@ -33,6 +33,9 @@ api_client = GradientAI(
 inference_client = GradientAI(
     inference_key=os.environ.get("GRADIENTAI_INFERENCE_KEY"),  # This is the default and can be omitted
 )
+agent_client = GradientAI(
+    agent_key=os.environ.get("GRADIENTAI_AGENT_KEY"),  # This is the default and can be omitted
+)
 
 print(api_client.agents.list())
 
