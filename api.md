@@ -1,7 +1,7 @@
 # Shared Types
 
 ```python
-from gradientai.types import APILinks, APIMeta, ChatCompletionTokenLogprob
+from gradientai.types import APILinks, APIMeta, ChatCompletionChunk, ChatCompletionTokenLogprob
 ```
 
 # Agents
@@ -65,7 +65,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.agents.chat import AgentChatCompletionChunk, CompletionCreateResponse
+from gradientai.types.agents.chat import CompletionCreateResponse
 ```
 
 Methods:
@@ -260,7 +260,7 @@ Methods:
 Types:
 
 ```python
-from gradientai.types.chat import ChatCompletionChunk, CompletionCreateResponse
+from gradientai.types.chat import CompletionCreateResponse
 ```
 
 Methods:
