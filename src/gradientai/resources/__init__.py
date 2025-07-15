@@ -8,6 +8,14 @@ from .chat import (
     ChatResourceWithStreamingResponse,
     AsyncChatResourceWithStreamingResponse,
 )
+from .sizes import (
+    SizesResource,
+    AsyncSizesResource,
+    SizesResourceWithRawResponse,
+    AsyncSizesResourceWithRawResponse,
+    SizesResourceWithStreamingResponse,
+    AsyncSizesResourceWithStreamingResponse,
+)
 from .agents import (
     AgentsResource,
     AsyncAgentsResource,
@@ -15,6 +23,14 @@ from .agents import (
     AsyncAgentsResourceWithRawResponse,
     AgentsResourceWithStreamingResponse,
     AsyncAgentsResourceWithStreamingResponse,
+)
+from .images import (
+    ImagesResource,
+    AsyncImagesResource,
+    ImagesResourceWithRawResponse,
+    AsyncImagesResourceWithRawResponse,
+    ImagesResourceWithStreamingResponse,
+    AsyncImagesResourceWithStreamingResponse,
 )
 from .models import (
     ModelsResource,
@@ -24,6 +40,14 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
+from .account import (
+    AccountResource,
+    AsyncAccountResource,
+    AccountResourceWithRawResponse,
+    AsyncAccountResourceWithRawResponse,
+    AccountResourceWithStreamingResponse,
+    AsyncAccountResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -32,6 +56,30 @@ from .regions import (
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
 )
+from .volumes import (
+    VolumesResource,
+    AsyncVolumesResource,
+    VolumesResourceWithRawResponse,
+    AsyncVolumesResourceWithRawResponse,
+    VolumesResourceWithStreamingResponse,
+    AsyncVolumesResourceWithStreamingResponse,
+)
+from .droplets import (
+    DropletsResource,
+    AsyncDropletsResource,
+    DropletsResourceWithRawResponse,
+    AsyncDropletsResourceWithRawResponse,
+    DropletsResourceWithStreamingResponse,
+    AsyncDropletsResourceWithStreamingResponse,
+)
+from .firewalls import (
+    FirewallsResource,
+    AsyncFirewallsResource,
+    FirewallsResourceWithRawResponse,
+    AsyncFirewallsResourceWithRawResponse,
+    FirewallsResourceWithStreamingResponse,
+    AsyncFirewallsResourceWithStreamingResponse,
+)
 from .inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -39,6 +87,30 @@ from .inference import (
     AsyncInferenceResourceWithRawResponse,
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
+)
+from .snapshots import (
+    SnapshotsResource,
+    AsyncSnapshotsResource,
+    SnapshotsResourceWithRawResponse,
+    AsyncSnapshotsResourceWithRawResponse,
+    SnapshotsResourceWithStreamingResponse,
+    AsyncSnapshotsResourceWithStreamingResponse,
+)
+from .floating_ips import (
+    FloatingIPsResource,
+    AsyncFloatingIPsResource,
+    FloatingIPsResourceWithRawResponse,
+    AsyncFloatingIPsResourceWithRawResponse,
+    FloatingIPsResourceWithStreamingResponse,
+    AsyncFloatingIPsResourceWithStreamingResponse,
+)
+from .load_balancers import (
+    LoadBalancersResource,
+    AsyncLoadBalancersResource,
+    LoadBalancersResourceWithRawResponse,
+    AsyncLoadBalancersResourceWithRawResponse,
+    LoadBalancersResourceWithStreamingResponse,
+    AsyncLoadBalancersResourceWithStreamingResponse,
 )
 from .knowledge_bases import (
     KnowledgeBasesResource,
@@ -86,4 +158,58 @@ __all__ = [
     "AsyncModelsResourceWithRawResponse",
     "ModelsResourceWithStreamingResponse",
     "AsyncModelsResourceWithStreamingResponse",
+    "DropletsResource",
+    "AsyncDropletsResource",
+    "DropletsResourceWithRawResponse",
+    "AsyncDropletsResourceWithRawResponse",
+    "DropletsResourceWithStreamingResponse",
+    "AsyncDropletsResourceWithStreamingResponse",
+    "FirewallsResource",
+    "AsyncFirewallsResource",
+    "FirewallsResourceWithRawResponse",
+    "AsyncFirewallsResourceWithRawResponse",
+    "FirewallsResourceWithStreamingResponse",
+    "AsyncFirewallsResourceWithStreamingResponse",
+    "FloatingIPsResource",
+    "AsyncFloatingIPsResource",
+    "FloatingIPsResourceWithRawResponse",
+    "AsyncFloatingIPsResourceWithRawResponse",
+    "FloatingIPsResourceWithStreamingResponse",
+    "AsyncFloatingIPsResourceWithStreamingResponse",
+    "ImagesResource",
+    "AsyncImagesResource",
+    "ImagesResourceWithRawResponse",
+    "AsyncImagesResourceWithRawResponse",
+    "ImagesResourceWithStreamingResponse",
+    "AsyncImagesResourceWithStreamingResponse",
+    "LoadBalancersResource",
+    "AsyncLoadBalancersResource",
+    "LoadBalancersResourceWithRawResponse",
+    "AsyncLoadBalancersResourceWithRawResponse",
+    "LoadBalancersResourceWithStreamingResponse",
+    "AsyncLoadBalancersResourceWithStreamingResponse",
+    "SizesResource",
+    "AsyncSizesResource",
+    "SizesResourceWithRawResponse",
+    "AsyncSizesResourceWithRawResponse",
+    "SizesResourceWithStreamingResponse",
+    "AsyncSizesResourceWithStreamingResponse",
+    "SnapshotsResource",
+    "AsyncSnapshotsResource",
+    "SnapshotsResourceWithRawResponse",
+    "AsyncSnapshotsResourceWithRawResponse",
+    "SnapshotsResourceWithStreamingResponse",
+    "AsyncSnapshotsResourceWithStreamingResponse",
+    "VolumesResource",
+    "AsyncVolumesResource",
+    "VolumesResourceWithRawResponse",
+    "AsyncVolumesResourceWithRawResponse",
+    "VolumesResourceWithStreamingResponse",
+    "AsyncVolumesResourceWithStreamingResponse",
+    "AccountResource",
+    "AsyncAccountResource",
+    "AccountResourceWithRawResponse",
+    "AsyncAccountResourceWithRawResponse",
+    "AccountResourceWithStreamingResponse",
+    "AsyncAccountResourceWithStreamingResponse",
 ]

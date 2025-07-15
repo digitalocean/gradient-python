@@ -24,7 +24,7 @@ class TestAgents:
     @parametrize
     def test_method_list(self, client: GradientAI) -> None:
         agent = client.agents.evaluation_metrics.workspaces.agents.list(
-            workspace_uuid="workspace_uuid",
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentListResponse, agent, path=["response"])
 
@@ -32,8 +32,7 @@ class TestAgents:
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
         agent = client.agents.evaluation_metrics.workspaces.agents.list(
-            workspace_uuid="workspace_uuid",
-            field_mask={"paths": ["string"]},
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             only_deployed=True,
             page=0,
             per_page=0,
@@ -44,7 +43,7 @@ class TestAgents:
     @parametrize
     def test_raw_response_list(self, client: GradientAI) -> None:
         response = client.agents.evaluation_metrics.workspaces.agents.with_raw_response.list(
-            workspace_uuid="workspace_uuid",
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -56,7 +55,7 @@ class TestAgents:
     @parametrize
     def test_streaming_response_list(self, client: GradientAI) -> None:
         with client.agents.evaluation_metrics.workspaces.agents.with_streaming_response.list(
-            workspace_uuid="workspace_uuid",
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,7 +77,7 @@ class TestAgents:
     @parametrize
     def test_method_move(self, client: GradientAI) -> None:
         agent = client.agents.evaluation_metrics.workspaces.agents.move(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentMoveResponse, agent, path=["response"])
 
@@ -86,9 +85,9 @@ class TestAgents:
     @parametrize
     def test_method_move_with_all_params(self, client: GradientAI) -> None:
         agent = client.agents.evaluation_metrics.workspaces.agents.move(
-            path_workspace_uuid="workspace_uuid",
-            agent_uuids=["string"],
-            body_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuids=["example string"],
+            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentMoveResponse, agent, path=["response"])
 
@@ -96,7 +95,7 @@ class TestAgents:
     @parametrize
     def test_raw_response_move(self, client: GradientAI) -> None:
         response = client.agents.evaluation_metrics.workspaces.agents.with_raw_response.move(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -108,7 +107,7 @@ class TestAgents:
     @parametrize
     def test_streaming_response_move(self, client: GradientAI) -> None:
         with client.agents.evaluation_metrics.workspaces.agents.with_streaming_response.move(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,7 +135,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
         agent = await async_client.agents.evaluation_metrics.workspaces.agents.list(
-            workspace_uuid="workspace_uuid",
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentListResponse, agent, path=["response"])
 
@@ -144,8 +143,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
         agent = await async_client.agents.evaluation_metrics.workspaces.agents.list(
-            workspace_uuid="workspace_uuid",
-            field_mask={"paths": ["string"]},
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             only_deployed=True,
             page=0,
             per_page=0,
@@ -156,7 +154,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.agents.with_raw_response.list(
-            workspace_uuid="workspace_uuid",
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -168,7 +166,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.agents.with_streaming_response.list(
-            workspace_uuid="workspace_uuid",
+            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,7 +188,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_method_move(self, async_client: AsyncGradientAI) -> None:
         agent = await async_client.agents.evaluation_metrics.workspaces.agents.move(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentMoveResponse, agent, path=["response"])
 
@@ -198,9 +196,9 @@ class TestAsyncAgents:
     @parametrize
     async def test_method_move_with_all_params(self, async_client: AsyncGradientAI) -> None:
         agent = await async_client.agents.evaluation_metrics.workspaces.agents.move(
-            path_workspace_uuid="workspace_uuid",
-            agent_uuids=["string"],
-            body_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuids=["example string"],
+            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentMoveResponse, agent, path=["response"])
 
@@ -208,7 +206,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_raw_response_move(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.agents.with_raw_response.move(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -220,7 +218,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_streaming_response_move(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.agents.with_streaming_response.move(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

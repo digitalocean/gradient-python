@@ -9,7 +9,9 @@ __all__ = ["APISpacesDataSource"]
 
 class APISpacesDataSource(BaseModel):
     bucket_name: Optional[str] = None
+    """Spaces bucket name"""
 
     item_path: Optional[str] = None
 
     region: Optional[str] = None
+    """Region of bucket"""

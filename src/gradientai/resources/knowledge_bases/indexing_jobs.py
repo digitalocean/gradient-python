@@ -68,6 +68,11 @@ class IndexingJobsResource(SyncAPIResource):
         `/v2/gen-ai/indexing_jobs`.
 
         Args:
+          data_source_uuids: List of data source ids to index, if none are provided, all data sources will be
+              indexed
+
+          knowledge_base_uuid: Knowledge base id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -146,9 +151,9 @@ class IndexingJobsResource(SyncAPIResource):
         `/v2/gen-ai/indexing_jobs`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 
@@ -294,6 +299,11 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         `/v2/gen-ai/indexing_jobs`.
 
         Args:
+          data_source_uuids: List of data source ids to index, if none are provided, all data sources will be
+              indexed
+
+          knowledge_base_uuid: Knowledge base id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -372,9 +382,9 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         `/v2/gen-ai/indexing_jobs`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 

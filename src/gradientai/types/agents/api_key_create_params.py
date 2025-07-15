@@ -11,5 +11,7 @@ __all__ = ["APIKeyCreateParams"]
 
 class APIKeyCreateParams(TypedDict, total=False):
     body_agent_uuid: Annotated[str, PropertyInfo(alias="agent_uuid")]
+    """Agent id"""
 
     name: str
+    """A human friendly name to identify the key"""

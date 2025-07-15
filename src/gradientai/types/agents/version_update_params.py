@@ -11,5 +11,7 @@ __all__ = ["VersionUpdateParams"]
 
 class VersionUpdateParams(TypedDict, total=False):
     body_uuid: Annotated[str, PropertyInfo(alias="uuid")]
+    """Agent unique identifier"""
 
     version_hash: str
+    """Unique identifier"""

@@ -7,7 +7,27 @@ from ..._models import BaseModel
 from .api_star_metric import APIStarMetric
 from .api_evaluation_metric import APIEvaluationMetric
 
-__all__ = ["APIEvaluationTestCase"]
+__all__ = ["APIEvaluationTestCase", "Dataset"]
+
+
+class Dataset(BaseModel):
+    created_at: Optional[datetime] = None
+    """Time created at."""
+
+    dataset_name: Optional[str] = None
+    """Name of the dataset."""
+
+    dataset_uuid: Optional[str] = None
+    """UUID of the dataset."""
+
+    file_size: Optional[str] = None
+    """The size of the dataset uploaded file in bytes."""
+
+    has_ground_truth: Optional[bool] = None
+    """Does the dataset have a ground truth column?"""
+
+    row_count: Optional[int] = None
+    """Number of rows in the dataset."""
 
 
 class APIEvaluationTestCase(BaseModel):
@@ -18,6 +38,8 @@ class APIEvaluationTestCase(BaseModel):
     created_by_user_email: Optional[str] = None
 
     created_by_user_id: Optional[str] = None
+
+    dataset: Optional[Dataset] = None
 
     dataset_name: Optional[str] = None
 

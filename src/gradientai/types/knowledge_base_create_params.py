@@ -48,14 +48,18 @@ class KnowledgeBaseCreateParams(TypedDict, total=False):
     """Tags to organize your knowledge base."""
 
     vpc_uuid: str
+    """The VPC to deploy the knowledge base database in"""
 
 
 class Datasource(TypedDict, total=False):
     aws_data_source: AwsDataSourceParam
+    """AWS S3 Data Source"""
 
     bucket_name: str
+    """Deprecated, moved to data_source_details"""
 
     bucket_region: str
+    """Deprecated, moved to data_source_details"""
 
     file_upload_data_source: APIFileUploadDataSourceParam
     """File to upload as data source for knowledge base."""
@@ -63,5 +67,7 @@ class Datasource(TypedDict, total=False):
     item_path: str
 
     spaces_data_source: APISpacesDataSourceParam
+    """Spaces Bucket Data Source"""
 
     web_crawler_data_source: APIWebCrawlerDataSourceParam
+    """WebCrawlerDataSource"""

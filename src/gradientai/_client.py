@@ -32,12 +32,37 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, inference, knowledge_bases
+    from .resources import (
+        chat,
+        sizes,
+        agents,
+        images,
+        models,
+        account,
+        regions,
+        volumes,
+        droplets,
+        firewalls,
+        inference,
+        snapshots,
+        floating_ips,
+        load_balancers,
+        knowledge_bases,
+    )
+    from .resources.sizes import SizesResource, AsyncSizesResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
+    from .resources.snapshots import SnapshotsResource, AsyncSnapshotsResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
+    from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
+    from .resources.account.account import AccountResource, AsyncAccountResource
+    from .resources.volumes.volumes import VolumesResource, AsyncVolumesResource
+    from .resources.droplets.droplets import DropletsResource, AsyncDropletsResource
+    from .resources.firewalls.firewalls import FirewallsResource, AsyncFirewallsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
+    from .resources.floating_ips.floating_ips import FloatingIPsResource, AsyncFloatingIPsResource
+    from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
 __all__ = [
@@ -160,6 +185,60 @@ class GradientAI(SyncAPIClient):
         from .resources.models import ModelsResource
 
         return ModelsResource(self)
+
+    @cached_property
+    def droplets(self) -> DropletsResource:
+        from .resources.droplets import DropletsResource
+
+        return DropletsResource(self)
+
+    @cached_property
+    def firewalls(self) -> FirewallsResource:
+        from .resources.firewalls import FirewallsResource
+
+        return FirewallsResource(self)
+
+    @cached_property
+    def floating_ips(self) -> FloatingIPsResource:
+        from .resources.floating_ips import FloatingIPsResource
+
+        return FloatingIPsResource(self)
+
+    @cached_property
+    def images(self) -> ImagesResource:
+        from .resources.images import ImagesResource
+
+        return ImagesResource(self)
+
+    @cached_property
+    def load_balancers(self) -> LoadBalancersResource:
+        from .resources.load_balancers import LoadBalancersResource
+
+        return LoadBalancersResource(self)
+
+    @cached_property
+    def sizes(self) -> SizesResource:
+        from .resources.sizes import SizesResource
+
+        return SizesResource(self)
+
+    @cached_property
+    def snapshots(self) -> SnapshotsResource:
+        from .resources.snapshots import SnapshotsResource
+
+        return SnapshotsResource(self)
+
+    @cached_property
+    def volumes(self) -> VolumesResource:
+        from .resources.volumes import VolumesResource
+
+        return VolumesResource(self)
+
+    @cached_property
+    def account(self) -> AccountResource:
+        from .resources.account import AccountResource
+
+        return AccountResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientAIWithRawResponse:
@@ -405,6 +484,60 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncModelsResource(self)
 
     @cached_property
+    def droplets(self) -> AsyncDropletsResource:
+        from .resources.droplets import AsyncDropletsResource
+
+        return AsyncDropletsResource(self)
+
+    @cached_property
+    def firewalls(self) -> AsyncFirewallsResource:
+        from .resources.firewalls import AsyncFirewallsResource
+
+        return AsyncFirewallsResource(self)
+
+    @cached_property
+    def floating_ips(self) -> AsyncFloatingIPsResource:
+        from .resources.floating_ips import AsyncFloatingIPsResource
+
+        return AsyncFloatingIPsResource(self)
+
+    @cached_property
+    def images(self) -> AsyncImagesResource:
+        from .resources.images import AsyncImagesResource
+
+        return AsyncImagesResource(self)
+
+    @cached_property
+    def load_balancers(self) -> AsyncLoadBalancersResource:
+        from .resources.load_balancers import AsyncLoadBalancersResource
+
+        return AsyncLoadBalancersResource(self)
+
+    @cached_property
+    def sizes(self) -> AsyncSizesResource:
+        from .resources.sizes import AsyncSizesResource
+
+        return AsyncSizesResource(self)
+
+    @cached_property
+    def snapshots(self) -> AsyncSnapshotsResource:
+        from .resources.snapshots import AsyncSnapshotsResource
+
+        return AsyncSnapshotsResource(self)
+
+    @cached_property
+    def volumes(self) -> AsyncVolumesResource:
+        from .resources.volumes import AsyncVolumesResource
+
+        return AsyncVolumesResource(self)
+
+    @cached_property
+    def account(self) -> AsyncAccountResource:
+        from .resources.account import AsyncAccountResource
+
+        return AsyncAccountResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientAIWithRawResponse:
         return AsyncGradientAIWithRawResponse(self)
 
@@ -580,6 +713,60 @@ class GradientAIWithRawResponse:
 
         return ModelsResourceWithRawResponse(self._client.models)
 
+    @cached_property
+    def droplets(self) -> droplets.DropletsResourceWithRawResponse:
+        from .resources.droplets import DropletsResourceWithRawResponse
+
+        return DropletsResourceWithRawResponse(self._client.droplets)
+
+    @cached_property
+    def firewalls(self) -> firewalls.FirewallsResourceWithRawResponse:
+        from .resources.firewalls import FirewallsResourceWithRawResponse
+
+        return FirewallsResourceWithRawResponse(self._client.firewalls)
+
+    @cached_property
+    def floating_ips(self) -> floating_ips.FloatingIPsResourceWithRawResponse:
+        from .resources.floating_ips import FloatingIPsResourceWithRawResponse
+
+        return FloatingIPsResourceWithRawResponse(self._client.floating_ips)
+
+    @cached_property
+    def images(self) -> images.ImagesResourceWithRawResponse:
+        from .resources.images import ImagesResourceWithRawResponse
+
+        return ImagesResourceWithRawResponse(self._client.images)
+
+    @cached_property
+    def load_balancers(self) -> load_balancers.LoadBalancersResourceWithRawResponse:
+        from .resources.load_balancers import LoadBalancersResourceWithRawResponse
+
+        return LoadBalancersResourceWithRawResponse(self._client.load_balancers)
+
+    @cached_property
+    def sizes(self) -> sizes.SizesResourceWithRawResponse:
+        from .resources.sizes import SizesResourceWithRawResponse
+
+        return SizesResourceWithRawResponse(self._client.sizes)
+
+    @cached_property
+    def snapshots(self) -> snapshots.SnapshotsResourceWithRawResponse:
+        from .resources.snapshots import SnapshotsResourceWithRawResponse
+
+        return SnapshotsResourceWithRawResponse(self._client.snapshots)
+
+    @cached_property
+    def volumes(self) -> volumes.VolumesResourceWithRawResponse:
+        from .resources.volumes import VolumesResourceWithRawResponse
+
+        return VolumesResourceWithRawResponse(self._client.volumes)
+
+    @cached_property
+    def account(self) -> account.AccountResourceWithRawResponse:
+        from .resources.account import AccountResourceWithRawResponse
+
+        return AccountResourceWithRawResponse(self._client.account)
+
 
 class AsyncGradientAIWithRawResponse:
     _client: AsyncGradientAI
@@ -622,6 +809,60 @@ class AsyncGradientAIWithRawResponse:
         from .resources.models import AsyncModelsResourceWithRawResponse
 
         return AsyncModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def droplets(self) -> droplets.AsyncDropletsResourceWithRawResponse:
+        from .resources.droplets import AsyncDropletsResourceWithRawResponse
+
+        return AsyncDropletsResourceWithRawResponse(self._client.droplets)
+
+    @cached_property
+    def firewalls(self) -> firewalls.AsyncFirewallsResourceWithRawResponse:
+        from .resources.firewalls import AsyncFirewallsResourceWithRawResponse
+
+        return AsyncFirewallsResourceWithRawResponse(self._client.firewalls)
+
+    @cached_property
+    def floating_ips(self) -> floating_ips.AsyncFloatingIPsResourceWithRawResponse:
+        from .resources.floating_ips import AsyncFloatingIPsResourceWithRawResponse
+
+        return AsyncFloatingIPsResourceWithRawResponse(self._client.floating_ips)
+
+    @cached_property
+    def images(self) -> images.AsyncImagesResourceWithRawResponse:
+        from .resources.images import AsyncImagesResourceWithRawResponse
+
+        return AsyncImagesResourceWithRawResponse(self._client.images)
+
+    @cached_property
+    def load_balancers(self) -> load_balancers.AsyncLoadBalancersResourceWithRawResponse:
+        from .resources.load_balancers import AsyncLoadBalancersResourceWithRawResponse
+
+        return AsyncLoadBalancersResourceWithRawResponse(self._client.load_balancers)
+
+    @cached_property
+    def sizes(self) -> sizes.AsyncSizesResourceWithRawResponse:
+        from .resources.sizes import AsyncSizesResourceWithRawResponse
+
+        return AsyncSizesResourceWithRawResponse(self._client.sizes)
+
+    @cached_property
+    def snapshots(self) -> snapshots.AsyncSnapshotsResourceWithRawResponse:
+        from .resources.snapshots import AsyncSnapshotsResourceWithRawResponse
+
+        return AsyncSnapshotsResourceWithRawResponse(self._client.snapshots)
+
+    @cached_property
+    def volumes(self) -> volumes.AsyncVolumesResourceWithRawResponse:
+        from .resources.volumes import AsyncVolumesResourceWithRawResponse
+
+        return AsyncVolumesResourceWithRawResponse(self._client.volumes)
+
+    @cached_property
+    def account(self) -> account.AsyncAccountResourceWithRawResponse:
+        from .resources.account import AsyncAccountResourceWithRawResponse
+
+        return AsyncAccountResourceWithRawResponse(self._client.account)
 
 
 class GradientAIWithStreamedResponse:
@@ -666,6 +907,60 @@ class GradientAIWithStreamedResponse:
 
         return ModelsResourceWithStreamingResponse(self._client.models)
 
+    @cached_property
+    def droplets(self) -> droplets.DropletsResourceWithStreamingResponse:
+        from .resources.droplets import DropletsResourceWithStreamingResponse
+
+        return DropletsResourceWithStreamingResponse(self._client.droplets)
+
+    @cached_property
+    def firewalls(self) -> firewalls.FirewallsResourceWithStreamingResponse:
+        from .resources.firewalls import FirewallsResourceWithStreamingResponse
+
+        return FirewallsResourceWithStreamingResponse(self._client.firewalls)
+
+    @cached_property
+    def floating_ips(self) -> floating_ips.FloatingIPsResourceWithStreamingResponse:
+        from .resources.floating_ips import FloatingIPsResourceWithStreamingResponse
+
+        return FloatingIPsResourceWithStreamingResponse(self._client.floating_ips)
+
+    @cached_property
+    def images(self) -> images.ImagesResourceWithStreamingResponse:
+        from .resources.images import ImagesResourceWithStreamingResponse
+
+        return ImagesResourceWithStreamingResponse(self._client.images)
+
+    @cached_property
+    def load_balancers(self) -> load_balancers.LoadBalancersResourceWithStreamingResponse:
+        from .resources.load_balancers import LoadBalancersResourceWithStreamingResponse
+
+        return LoadBalancersResourceWithStreamingResponse(self._client.load_balancers)
+
+    @cached_property
+    def sizes(self) -> sizes.SizesResourceWithStreamingResponse:
+        from .resources.sizes import SizesResourceWithStreamingResponse
+
+        return SizesResourceWithStreamingResponse(self._client.sizes)
+
+    @cached_property
+    def snapshots(self) -> snapshots.SnapshotsResourceWithStreamingResponse:
+        from .resources.snapshots import SnapshotsResourceWithStreamingResponse
+
+        return SnapshotsResourceWithStreamingResponse(self._client.snapshots)
+
+    @cached_property
+    def volumes(self) -> volumes.VolumesResourceWithStreamingResponse:
+        from .resources.volumes import VolumesResourceWithStreamingResponse
+
+        return VolumesResourceWithStreamingResponse(self._client.volumes)
+
+    @cached_property
+    def account(self) -> account.AccountResourceWithStreamingResponse:
+        from .resources.account import AccountResourceWithStreamingResponse
+
+        return AccountResourceWithStreamingResponse(self._client.account)
+
 
 class AsyncGradientAIWithStreamedResponse:
     _client: AsyncGradientAI
@@ -708,6 +1003,60 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.models import AsyncModelsResourceWithStreamingResponse
 
         return AsyncModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def droplets(self) -> droplets.AsyncDropletsResourceWithStreamingResponse:
+        from .resources.droplets import AsyncDropletsResourceWithStreamingResponse
+
+        return AsyncDropletsResourceWithStreamingResponse(self._client.droplets)
+
+    @cached_property
+    def firewalls(self) -> firewalls.AsyncFirewallsResourceWithStreamingResponse:
+        from .resources.firewalls import AsyncFirewallsResourceWithStreamingResponse
+
+        return AsyncFirewallsResourceWithStreamingResponse(self._client.firewalls)
+
+    @cached_property
+    def floating_ips(self) -> floating_ips.AsyncFloatingIPsResourceWithStreamingResponse:
+        from .resources.floating_ips import AsyncFloatingIPsResourceWithStreamingResponse
+
+        return AsyncFloatingIPsResourceWithStreamingResponse(self._client.floating_ips)
+
+    @cached_property
+    def images(self) -> images.AsyncImagesResourceWithStreamingResponse:
+        from .resources.images import AsyncImagesResourceWithStreamingResponse
+
+        return AsyncImagesResourceWithStreamingResponse(self._client.images)
+
+    @cached_property
+    def load_balancers(self) -> load_balancers.AsyncLoadBalancersResourceWithStreamingResponse:
+        from .resources.load_balancers import AsyncLoadBalancersResourceWithStreamingResponse
+
+        return AsyncLoadBalancersResourceWithStreamingResponse(self._client.load_balancers)
+
+    @cached_property
+    def sizes(self) -> sizes.AsyncSizesResourceWithStreamingResponse:
+        from .resources.sizes import AsyncSizesResourceWithStreamingResponse
+
+        return AsyncSizesResourceWithStreamingResponse(self._client.sizes)
+
+    @cached_property
+    def snapshots(self) -> snapshots.AsyncSnapshotsResourceWithStreamingResponse:
+        from .resources.snapshots import AsyncSnapshotsResourceWithStreamingResponse
+
+        return AsyncSnapshotsResourceWithStreamingResponse(self._client.snapshots)
+
+    @cached_property
+    def volumes(self) -> volumes.AsyncVolumesResourceWithStreamingResponse:
+        from .resources.volumes import AsyncVolumesResourceWithStreamingResponse
+
+        return AsyncVolumesResourceWithStreamingResponse(self._client.volumes)
+
+    @cached_property
+    def account(self) -> account.AsyncAccountResourceWithStreamingResponse:
+        from .resources.account import AsyncAccountResourceWithStreamingResponse
+
+        return AsyncAccountResourceWithStreamingResponse(self._client.account)
 
 
 Client = GradientAI

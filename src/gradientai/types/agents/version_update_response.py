@@ -28,3 +28,4 @@ class VersionUpdateResponse(BaseModel):
     """An alternative way to provide auth information. for internal use only."""
 
     version_hash: Optional[str] = None
+    """Unique identifier"""

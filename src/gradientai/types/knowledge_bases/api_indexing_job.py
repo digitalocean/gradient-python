@@ -11,14 +11,17 @@ __all__ = ["APIIndexingJob"]
 
 class APIIndexingJob(BaseModel):
     completed_datasources: Optional[int] = None
+    """Number of datasources indexed completed"""
 
     created_at: Optional[datetime] = None
+    """Creation date / time"""
 
     data_source_uuids: Optional[List[str]] = None
 
     finished_at: Optional[datetime] = None
 
     knowledge_base_uuid: Optional[str] = None
+    """Knowledge base id"""
 
     phase: Optional[
         Literal[
@@ -47,9 +50,13 @@ class APIIndexingJob(BaseModel):
     ] = None
 
     tokens: Optional[int] = None
+    """Number of tokens"""
 
     total_datasources: Optional[int] = None
+    """Number of datasources being indexed"""
 
     updated_at: Optional[datetime] = None
+    """Last modified"""
 
     uuid: Optional[str] = None
+    """Unique id"""

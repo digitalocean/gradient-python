@@ -12,6 +12,12 @@ class APIStarMetricParam(TypedDict, total=False):
 
     name: str
 
+    success_threshold: float
+    """
+    The success threshold for the star metric. This is a value that the metric must
+    reach to be considered successful.
+    """
+
     success_threshold_pct: int
     """
     The success threshold for the star metric. This is a percentage value between 0
