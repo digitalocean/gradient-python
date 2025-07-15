@@ -4,4 +4,3 @@ from __future__ import annotations
 
 from .completion_create_params import CompletionCreateParams as CompletionCreateParams
 from .completion_create_response import CompletionCreateResponse as CompletionCreateResponse
-from .agent_chat_completion_chunk import AgentChatCompletionChunk as AgentChatCompletionChunk

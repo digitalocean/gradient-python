@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.1.0-alpha.13 (2025-07-15)
+
+Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
+
+### Features
+
+* **api:** manual updates ([bd6fecc](https://github.com/digitalocean/gradientai-python/commit/bd6feccf97fa5877085783419f11dad04c57d700))
+* **api:** manual updates ([c2b96ce](https://github.com/digitalocean/gradientai-python/commit/c2b96ce3d95cc9b74bffd8d6a499927eefd23b14))
+* **api:** share chat completion chunk model between chat and agent.chat ([d67371f](https://github.com/digitalocean/gradientai-python/commit/d67371f9f4d0761ea03097820bc3e77654b4d2bf))
+* clean up environment call outs ([64ee5b4](https://github.com/digitalocean/gradientai-python/commit/64ee5b449c0195288d0a1dc55d2725e8cdd6afcf))
+
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([507a342](https://github.com/digitalocean/gradientai-python/commit/507a342fbcc7c801ba36708e56ea2d2a28a1a392))
+* **parsing:** correctly handle nested discriminated unions ([569e473](https://github.com/digitalocean/gradientai-python/commit/569e473d422928597ccf762133d5e52ac9a8665a))
+
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([6f4e960](https://github.com/digitalocean/gradientai-python/commit/6f4e960b6cb838cbf5e50301375fcb4b60a2cfb3))
+* **internal:** codegen related update ([1df657d](https://github.com/digitalocean/gradientai-python/commit/1df657d9b384cb85d27fe839c0dab212a7773f8f))
+* **package:** mark python 3.13 as supported ([1a899b6](https://github.com/digitalocean/gradientai-python/commit/1a899b66a484986672a380e405f09b1ae94b6310))
+* **readme:** fix version rendering on pypi ([6fbe83b](https://github.com/digitalocean/gradientai-python/commit/6fbe83b11a9e3dbb40cf7f9f627abbbd086ee24a))
+
 ## 0.1.0-alpha.12 (2025-07-02)
 
 Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)

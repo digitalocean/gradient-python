@@ -1,6 +1,6 @@
 [project]
 name = "c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python"
-version = "0.1.0-alpha.12"
+version = "0.1.0-alpha.13"
 description = "The official Python library for GradientAI"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -24,6 +24,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Operating System :: OS Independent",
   "Operating System :: POSIX",
   "Operating System :: MacOS",
@@ -38,7 +39,7 @@ Homepage = "https://github.com/digitalocean/gradientai-python"
 Repository = "https://github.com/digitalocean/gradientai-python"
 
 [project.optional-dependencies]
-aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.6"]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.8"]
 
 [tool.rye]
 managed = true

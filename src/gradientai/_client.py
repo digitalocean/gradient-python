@@ -56,6 +56,7 @@ class GradientAI(SyncAPIClient):
     # client options
     api_key: str | None
     inference_key: str | None
+    agent_key: str | None
     agent_domain: str | None
 
     def __init__(
@@ -63,6 +64,7 @@ class GradientAI(SyncAPIClient):
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_key: str | None = None,
         agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -88,6 +90,7 @@ class GradientAI(SyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GRADIENTAI_API_KEY`
         - `inference_key` from `GRADIENTAI_INFERENCE_KEY`
+        - `agent_key` from `GRADIENTAI_AGENT_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("GRADIENTAI_API_KEY")
@@ -96,6 +99,10 @@ class GradientAI(SyncAPIClient):
         if inference_key is None:
             inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
         self.inference_key = inference_key
+
+        if agent_key is None:
+            agent_key = os.environ.get("GRADIENTAI_AGENT_KEY")
+        self.agent_key = agent_key
 
         self.agent_domain = agent_domain
 
@@ -200,6 +207,7 @@ class GradientAI(SyncAPIClient):
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_key: str | None = None,
         agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -236,6 +244,7 @@ class GradientAI(SyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
+            agent_key=agent_key or self.agent_key,
             agent_domain=agent_domain or self.agent_domain,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -290,6 +299,7 @@ class AsyncGradientAI(AsyncAPIClient):
     # client options
     api_key: str | None
     inference_key: str | None
+    agent_key: str | None
     agent_domain: str | None
 
     def __init__(
@@ -297,6 +307,7 @@ class AsyncGradientAI(AsyncAPIClient):
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_key: str | None = None,
         agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -322,6 +333,7 @@ class AsyncGradientAI(AsyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_key` from `GRADIENTAI_API_KEY`
         - `inference_key` from `GRADIENTAI_INFERENCE_KEY`
+        - `agent_key` from `GRADIENTAI_AGENT_KEY`
         """
         if api_key is None:
             api_key = os.environ.get("GRADIENTAI_API_KEY")
@@ -330,6 +342,10 @@ class AsyncGradientAI(AsyncAPIClient):
         if inference_key is None:
             inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
         self.inference_key = inference_key
+
+        if agent_key is None:
+            agent_key = os.environ.get("GRADIENTAI_AGENT_KEY")
+        self.agent_key = agent_key
 
         self.agent_domain = agent_domain
 
@@ -434,6 +450,7 @@ class AsyncGradientAI(AsyncAPIClient):
         *,
         api_key: str | None = None,
         inference_key: str | None = None,
+        agent_key: str | None = None,
         agent_domain: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -470,6 +487,7 @@ class AsyncGradientAI(AsyncAPIClient):
         client = self.__class__(
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
+            agent_key=agent_key or self.agent_key,
             agent_domain=agent_domain or self.agent_domain,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
