@@ -105,7 +105,6 @@ pip install --pre c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from gradientai import DefaultAioHttpClient
 from gradientai import AsyncGradientAI
@@ -113,7 +112,7 @@ from gradientai import AsyncGradientAI
 
 async def main() -> None:
     async with AsyncGradientAI(
-        api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         completion = await client.chat.completions.create(
