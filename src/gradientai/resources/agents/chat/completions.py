@@ -50,6 +50,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -78,6 +79,8 @@ class CompletionsResource(SyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
+          agent_domain: The agent domain to use for the request.
+
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -163,6 +166,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: Literal[True],
@@ -191,6 +195,8 @@ class CompletionsResource(SyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
+          agent_domain: The agent domain to use for the request.
+
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -276,6 +282,7 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: bool,
@@ -304,6 +311,8 @@ class CompletionsResource(SyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
+          agent_domain: The agent domain to use for the request.
+
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -385,10 +394,11 @@ class CompletionsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["messages", "model"], ["messages", "model", "stream"])
+    @required_args(["agent_domain", "messages", "model"], ["agent_domain", "messages", "model", "stream"])
     def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -416,7 +426,7 @@ class CompletionsResource(SyncAPIResource):
         return self._post(
             "/chat/completions?agent=true"
             if self._client._base_url_overridden
-            else "https://inference.do-ai.run/v1/chat/completions?agent=true",
+            else f"https://{agent_domain}/v1/chat/completions?agent=true",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -474,6 +484,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -502,6 +513,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
+          agent_domain: The agent domain to use for the request.
+
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -587,6 +600,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: Literal[True],
@@ -615,6 +629,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
+          agent_domain: The agent domain to use for the request.
+
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -700,6 +716,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: bool,
@@ -728,6 +745,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
+          agent_domain: The agent domain to use for the request.
+
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -809,10 +828,11 @@ class AsyncCompletionsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["messages", "model"], ["messages", "model", "stream"])
+    @required_args(["agent_domain", "messages", "model"], ["agent_domain", "messages", "model", "stream"])
     async def create(
         self,
         *,
+        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -840,7 +860,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         return await self._post(
             "/chat/completions?agent=true"
             if self._client._base_url_overridden
-            else "https://inference.do-ai.run/v1/chat/completions?agent=true",
+            else f"https://{agent_domain}/v1/chat/completions?agent=true",
             body=await async_maybe_transform(
                 {
                     "messages": messages,

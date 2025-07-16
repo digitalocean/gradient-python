@@ -21,6 +21,7 @@ class TestCompletions:
     @parametrize
     def test_method_create_overload_1(self, client: GradientAI) -> None:
         completion = client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -35,6 +36,7 @@ class TestCompletions:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: GradientAI) -> None:
         completion = client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -64,6 +66,7 @@ class TestCompletions:
     @parametrize
     def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
         response = client.agents.chat.completions.with_raw_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -82,6 +85,7 @@ class TestCompletions:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
         with client.agents.chat.completions.with_streaming_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -102,6 +106,7 @@ class TestCompletions:
     @parametrize
     def test_method_create_overload_2(self, client: GradientAI) -> None:
         completion_stream = client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -117,6 +122,7 @@ class TestCompletions:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: GradientAI) -> None:
         completion_stream = client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -146,6 +152,7 @@ class TestCompletions:
     @parametrize
     def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
         response = client.agents.chat.completions.with_raw_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -164,6 +171,7 @@ class TestCompletions:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
         with client.agents.chat.completions.with_streaming_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -191,6 +199,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
         completion = await async_client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -205,6 +214,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
         completion = await async_client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -234,6 +244,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.chat.completions.with_raw_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -252,6 +263,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.chat.completions.with_streaming_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -272,6 +284,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
         completion_stream = await async_client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -287,6 +300,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
         completion_stream = await async_client.agents.chat.completions.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -316,6 +330,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.chat.completions.with_raw_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -334,6 +349,7 @@ class TestAsyncCompletions:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.chat.completions.with_streaming_response.create(
+            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
