@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.account import (
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.account import (
     KeyListResponse,
     KeyCreateResponse,
     KeyUpdateResponse,

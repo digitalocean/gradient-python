@@ -1,4 +1,4 @@
-from gradientai._utils import deepcopy_minimal
+from do_gradientai._utils import deepcopy_minimal
 
 
 def assert_different_identities(obj1: object, obj2: object) -> None:
