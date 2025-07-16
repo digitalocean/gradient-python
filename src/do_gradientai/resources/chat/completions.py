@@ -461,7 +461,6 @@ class CompletionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | Stream[ChatCompletionChunk]:
-
         # This method requires an inference_key to be set via client argument or environment variable
         if not self._client.inference_key:
             raise TypeError(
@@ -944,7 +943,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | AsyncStream[ChatCompletionChunk]:
-
         # This method requires an inference_key to be set via client argument or environment variable
         if not hasattr(self._client, "inference_key") or not self._client.inference_key:
             raise TypeError(
