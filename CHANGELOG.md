@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2025-07-17)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Features
+
+* **api:** update via SDK Studio ([6cdcc6a](https://github.com/digitalocean/gradientai-python/commit/6cdcc6a36b9dde2117295ee7bcb9a3bc15571779))
+* **api:** update via SDK Studio ([5475a94](https://github.com/digitalocean/gradientai-python/commit/5475a9460676d1c48e99e0d1e75e50de7caecf3a))
+* dynamically build domain for agents.chat.completions.create() ([dee4ef0](https://github.com/digitalocean/gradientai-python/commit/dee4ef07ebb3367abc7f05c15271d43ab57e2081))
+* dynamically build domain for agents.chat.completions.create() ([3dbd194](https://github.com/digitalocean/gradientai-python/commit/3dbd194643e31907a78ab7e222e95e7508378ada))
+
+
+### Bug Fixes
+
+* add /api prefix for agent routes ([00c62b3](https://github.com/digitalocean/gradientai-python/commit/00c62b35f3a29ea8b6e7c96b2e755e6b5199ae55))
+* add /api prefix for agent routes ([72a59db](https://github.com/digitalocean/gradientai-python/commit/72a59db98ebeccdf0c4498f6cce37ffe1cb198dd))
+* fix validation for inference_key and agent_key auth ([d27046d](https://github.com/digitalocean/gradientai-python/commit/d27046d0c1e8214dd09ab5508e4fcb11fa549dfe))
+
+
+### Chores
+
+* **internal:** version bump ([f3629f1](https://github.com/digitalocean/gradientai-python/commit/f3629f169267f240aeb2c4d400606761a649dff7))
+
 ## 0.1.0-alpha.13 (2025-07-15)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
