@@ -470,6 +470,14 @@ class CompletionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | Stream[ChatCompletionChunk]:
+        # This method requires an agent_key to be set via client argument or environment variable
+        if not self._client.agent_key:
+            raise TypeError(
+                "Could not resolve authentication method. Expected agent_key to be set for chat completions."
+            )
+        headers = extra_headers or {}
+        headers = {"Authorization": f"Bearer {self._client.agent_key}", **headers}
+
         return self._post(
             "/chat/completions?agent=true"
             if self._client._base_url_overridden
@@ -501,7 +509,7 @@ class CompletionsResource(SyncAPIResource):
                 else completion_create_params.CompletionCreateParamsNonStreaming,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CompletionCreateResponse,
             stream=stream or False,
@@ -953,6 +961,14 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | AsyncStream[ChatCompletionChunk]:
+        # This method requires an agent_key to be set via client argument or environment variable
+        if not self._client.agent_key:
+            raise TypeError(
+                "Could not resolve authentication method. Expected agent_key to be set for chat completions."
+            )
+        headers = extra_headers or {}
+        headers = {"Authorization": f"Bearer {self._client.agent_key}", **headers}
+
         return await self._post(
             "/chat/completions?agent=true"
             if self._client._base_url_overridden
@@ -984,7 +1000,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
                 else completion_create_params.CompletionCreateParamsNonStreaming,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CompletionCreateResponse,
             stream=stream or False,
