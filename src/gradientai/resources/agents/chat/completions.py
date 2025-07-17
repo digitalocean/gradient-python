@@ -62,9 +62,7 @@ class CompletionsResource(SyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -192,9 +190,7 @@ class CompletionsResource(SyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -322,9 +318,7 @@ class CompletionsResource(SyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -455,9 +449,7 @@ class CompletionsResource(SyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -561,9 +553,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -691,9 +681,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -821,9 +809,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -951,9 +937,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
