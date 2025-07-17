@@ -2,7 +2,7 @@ import operator
 from typing import Any
 from typing_extensions import override
 
-from gradientai._utils import LazyProxy
+from do_gradientai._utils import LazyProxy
 
 
 class RecursiveLazyProxy(LazyProxy[Any]):

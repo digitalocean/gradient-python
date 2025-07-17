@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from gradientai._utils import PropertyInfo
-from gradientai._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
-from gradientai._models import BaseModel, construct_type
+from do_gradientai._utils import PropertyInfo
+from do_gradientai._compat import PYDANTIC_V2, parse_obj, model_dump, model_json
+from do_gradientai._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

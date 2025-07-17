@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents import (
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.agents import (
     RouteAddResponse,
     RouteViewResponse,
     RouteDeleteResponse,
@@ -26,8 +26,8 @@ class TestRoutes:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         route = client.agents.routes.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
@@ -35,13 +35,13 @@ class TestRoutes:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         route = client.agents.routes.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
-            body_child_agent_uuid="child_agent_uuid",
-            if_case="if_case",
-            body_parent_agent_uuid="parent_agent_uuid",
-            route_name="route_name",
-            uuid="uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_child_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            if_case='"use this to get weather information"',
+            body_parent_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            route_name='"weather_route"',
+            uuid='"12345678-1234-1234-1234-123456789012"',
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
@@ -49,8 +49,8 @@ class TestRoutes:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.agents.routes.with_raw_response.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -62,8 +62,8 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.agents.routes.with_streaming_response.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,22 +80,22 @@ class TestRoutes:
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
             client.agents.routes.with_raw_response.update(
-                path_child_agent_uuid="child_agent_uuid",
+                path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
             client.agents.routes.with_raw_response.update(
                 path_child_agent_uuid="",
-                path_parent_agent_uuid="parent_agent_uuid",
+                path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
         route = client.agents.routes.delete(
-            child_agent_uuid="child_agent_uuid",
-            parent_agent_uuid="parent_agent_uuid",
+            child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
@@ -103,8 +103,8 @@ class TestRoutes:
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
         response = client.agents.routes.with_raw_response.delete(
-            child_agent_uuid="child_agent_uuid",
-            parent_agent_uuid="parent_agent_uuid",
+            child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -116,8 +116,8 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
         with client.agents.routes.with_streaming_response.delete(
-            child_agent_uuid="child_agent_uuid",
-            parent_agent_uuid="parent_agent_uuid",
+            child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,22 +132,22 @@ class TestRoutes:
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `parent_agent_uuid` but received ''"):
             client.agents.routes.with_raw_response.delete(
-                child_agent_uuid="child_agent_uuid",
+                child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `child_agent_uuid` but received ''"):
             client.agents.routes.with_raw_response.delete(
                 child_agent_uuid="",
-                parent_agent_uuid="parent_agent_uuid",
+                parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_add(self, client: GradientAI) -> None:
         route = client.agents.routes.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteAddResponse, route, path=["response"])
 
@@ -155,12 +155,12 @@ class TestRoutes:
     @parametrize
     def test_method_add_with_all_params(self, client: GradientAI) -> None:
         route = client.agents.routes.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
-            body_child_agent_uuid="child_agent_uuid",
-            if_case="if_case",
-            body_parent_agent_uuid="parent_agent_uuid",
-            route_name="route_name",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_child_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            if_case='"use this to get weather information"',
+            body_parent_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            route_name='"weather_route"',
         )
         assert_matches_type(RouteAddResponse, route, path=["response"])
 
@@ -168,8 +168,8 @@ class TestRoutes:
     @parametrize
     def test_raw_response_add(self, client: GradientAI) -> None:
         response = client.agents.routes.with_raw_response.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -181,8 +181,8 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_add(self, client: GradientAI) -> None:
         with client.agents.routes.with_streaming_response.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -199,14 +199,14 @@ class TestRoutes:
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
             client.agents.routes.with_raw_response.add(
-                path_child_agent_uuid="child_agent_uuid",
+                path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
             client.agents.routes.with_raw_response.add(
                 path_child_agent_uuid="",
-                path_parent_agent_uuid="parent_agent_uuid",
+                path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
@@ -261,8 +261,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         route = await async_client.agents.routes.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
@@ -270,13 +270,13 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         route = await async_client.agents.routes.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
-            body_child_agent_uuid="child_agent_uuid",
-            if_case="if_case",
-            body_parent_agent_uuid="parent_agent_uuid",
-            route_name="route_name",
-            uuid="uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_child_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            if_case='"use this to get weather information"',
+            body_parent_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            route_name='"weather_route"',
+            uuid='"12345678-1234-1234-1234-123456789012"',
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
@@ -284,8 +284,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.routes.with_raw_response.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -297,8 +297,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.routes.with_streaming_response.update(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,22 +315,22 @@ class TestAsyncRoutes:
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
             await async_client.agents.routes.with_raw_response.update(
-                path_child_agent_uuid="child_agent_uuid",
+                path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
             await async_client.agents.routes.with_raw_response.update(
                 path_child_agent_uuid="",
-                path_parent_agent_uuid="parent_agent_uuid",
+                path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
         route = await async_client.agents.routes.delete(
-            child_agent_uuid="child_agent_uuid",
-            parent_agent_uuid="parent_agent_uuid",
+            child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
@@ -338,8 +338,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.routes.with_raw_response.delete(
-            child_agent_uuid="child_agent_uuid",
-            parent_agent_uuid="parent_agent_uuid",
+            child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -351,8 +351,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.routes.with_streaming_response.delete(
-            child_agent_uuid="child_agent_uuid",
-            parent_agent_uuid="parent_agent_uuid",
+            child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -367,22 +367,22 @@ class TestAsyncRoutes:
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `parent_agent_uuid` but received ''"):
             await async_client.agents.routes.with_raw_response.delete(
-                child_agent_uuid="child_agent_uuid",
+                child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `child_agent_uuid` but received ''"):
             await async_client.agents.routes.with_raw_response.delete(
                 child_agent_uuid="",
-                parent_agent_uuid="parent_agent_uuid",
+                parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_add(self, async_client: AsyncGradientAI) -> None:
         route = await async_client.agents.routes.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteAddResponse, route, path=["response"])
 
@@ -390,12 +390,12 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_add_with_all_params(self, async_client: AsyncGradientAI) -> None:
         route = await async_client.agents.routes.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
-            body_child_agent_uuid="child_agent_uuid",
-            if_case="if_case",
-            body_parent_agent_uuid="parent_agent_uuid",
-            route_name="route_name",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_child_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            if_case='"use this to get weather information"',
+            body_parent_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            route_name='"weather_route"',
         )
         assert_matches_type(RouteAddResponse, route, path=["response"])
 
@@ -403,8 +403,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.routes.with_raw_response.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -416,8 +416,8 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.routes.with_streaming_response.add(
-            path_child_agent_uuid="child_agent_uuid",
-            path_parent_agent_uuid="parent_agent_uuid",
+            path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -434,14 +434,14 @@ class TestAsyncRoutes:
             ValueError, match=r"Expected a non-empty value for `path_parent_agent_uuid` but received ''"
         ):
             await async_client.agents.routes.with_raw_response.add(
-                path_child_agent_uuid="child_agent_uuid",
+                path_child_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 path_parent_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_child_agent_uuid` but received ''"):
             await async_client.agents.routes.with_raw_response.add(
                 path_child_agent_uuid="",
-                path_parent_agent_uuid="parent_agent_uuid",
+                path_parent_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()

@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.inference import (
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.inference import (
     APIKeyListResponse,
     APIKeyCreateResponse,
     APIKeyDeleteResponse,
@@ -33,7 +33,7 @@ class TestAPIKeys:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         api_key = client.inference.api_keys.create(
-            name="name",
+            name="Production Key",
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -63,7 +63,7 @@ class TestAPIKeys:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         api_key = client.inference.api_keys.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APIKeyUpdateResponse, api_key, path=["response"])
 
@@ -71,9 +71,9 @@ class TestAPIKeys:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         api_key = client.inference.api_keys.update(
-            path_api_key_uuid="api_key_uuid",
-            body_api_key_uuid="api_key_uuid",
-            name="name",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_api_key_uuid='"12345678-1234-1234-1234-123456789012"',
+            name='"Production Key"',
         )
         assert_matches_type(APIKeyUpdateResponse, api_key, path=["response"])
 
@@ -81,7 +81,7 @@ class TestAPIKeys:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.inference.api_keys.with_raw_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -93,7 +93,7 @@ class TestAPIKeys:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.inference.api_keys.with_streaming_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,7 +248,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.inference.api_keys.create(
-            name="name",
+            name="Production Key",
         )
         assert_matches_type(APIKeyCreateResponse, api_key, path=["response"])
 
@@ -278,7 +278,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.inference.api_keys.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APIKeyUpdateResponse, api_key, path=["response"])
 
@@ -286,9 +286,9 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         api_key = await async_client.inference.api_keys.update(
-            path_api_key_uuid="api_key_uuid",
-            body_api_key_uuid="api_key_uuid",
-            name="name",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_api_key_uuid='"12345678-1234-1234-1234-123456789012"',
+            name='"Production Key"',
         )
         assert_matches_type(APIKeyUpdateResponse, api_key, path=["response"])
 
@@ -296,7 +296,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.inference.api_keys.with_raw_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -308,7 +308,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.inference.api_keys.with_streaming_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

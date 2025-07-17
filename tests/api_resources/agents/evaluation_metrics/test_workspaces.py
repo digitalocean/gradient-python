@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents.evaluation_metrics import (
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.agents.evaluation_metrics import (
     WorkspaceListResponse,
     WorkspaceCreateResponse,
     WorkspaceDeleteResponse,
@@ -34,9 +34,9 @@ class TestWorkspaces:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.create(
-            agent_uuids=["string"],
-            description="description",
-            name="name",
+            agent_uuids=["example string"],
+            description='"example string"',
+            name='"example name"',
         )
         assert_matches_type(WorkspaceCreateResponse, workspace, path=["response"])
 
@@ -108,7 +108,7 @@ class TestWorkspaces:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.update(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceUpdateResponse, workspace, path=["response"])
 
@@ -116,10 +116,10 @@ class TestWorkspaces:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.update(
-            path_workspace_uuid="workspace_uuid",
-            description="description",
-            name="name",
-            body_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            description='"example string"',
+            name='"example name"',
+            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceUpdateResponse, workspace, path=["response"])
 
@@ -127,7 +127,7 @@ class TestWorkspaces:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.update(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -139,7 +139,7 @@ class TestWorkspaces:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.update(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -285,9 +285,9 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.create(
-            agent_uuids=["string"],
-            description="description",
-            name="name",
+            agent_uuids=["example string"],
+            description='"example string"',
+            name='"example name"',
         )
         assert_matches_type(WorkspaceCreateResponse, workspace, path=["response"])
 
@@ -359,7 +359,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.update(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceUpdateResponse, workspace, path=["response"])
 
@@ -367,10 +367,10 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.update(
-            path_workspace_uuid="workspace_uuid",
-            description="description",
-            name="name",
-            body_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            description='"example string"',
+            name='"example name"',
+            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceUpdateResponse, workspace, path=["response"])
 
@@ -378,7 +378,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.update(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -390,7 +390,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.update(
-            path_workspace_uuid="workspace_uuid",
+            path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
