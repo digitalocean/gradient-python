@@ -8,8 +8,8 @@ __all__ = ["RegionListParams"]
 
 
 class RegionListParams(TypedDict, total=False):
-    page: int
-    """Which 'page' of paginated results to return."""
+    serves_batch: bool
+    """include datacenters that are capable of running batch jobs."""
 
-    per_page: int
-    """Number of items returned per page"""
+    serves_inference: bool
+    """include datacenters that serve inference."""

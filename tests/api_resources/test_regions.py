@@ -27,8 +27,8 @@ class TestRegions:
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
         region = client.regions.list(
-            page=1,
-            per_page=1,
+            serves_batch=True,
+            serves_inference=True,
         )
         assert_matches_type(RegionListResponse, region, path=["response"])
 
@@ -70,8 +70,8 @@ class TestAsyncRegions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
         region = await async_client.regions.list(
-            page=1,
-            per_page=1,
+            serves_batch=True,
+            serves_inference=True,
         )
         assert_matches_type(RegionListResponse, region, path=["response"])
 

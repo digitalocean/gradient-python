@@ -10,4 +10,3 @@ __all__ = ["KnowledgeBaseCreateResponse"]
 
 class KnowledgeBaseCreateResponse(BaseModel):
     knowledge_base: Optional[APIKnowledgeBase] = None
-    """Knowledgebase Description"""

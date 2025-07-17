@@ -9,15 +9,11 @@ __all__ = ["AwsDataSourceParam"]
 
 class AwsDataSourceParam(TypedDict, total=False):
     bucket_name: str
-    """Spaces bucket name"""
 
     item_path: str
 
     key_id: str
-    """The AWS Key ID"""
 
     region: str
-    """Region of bucket"""
 
     secret_key: str
-    """The AWS Secret Key"""

@@ -26,7 +26,6 @@ class EvaluationTestCaseUpdateParams(TypedDict, total=False):
     star_metric: APIStarMetricParam
 
     body_test_case_uuid: Annotated[str, PropertyInfo(alias="test_case_uuid")]
-    """Test-case UUID to update"""
 
 
 class Metrics(TypedDict, total=False):

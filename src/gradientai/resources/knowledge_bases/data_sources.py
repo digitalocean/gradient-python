@@ -69,14 +69,6 @@ class DataSourcesResource(SyncAPIResource):
         `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources`.
 
         Args:
-          aws_data_source: AWS S3 Data Source
-
-          body_knowledge_base_uuid: Knowledge base id
-
-          spaces_data_source: Spaces Bucket Data Source
-
-          web_crawler_data_source: WebCrawlerDataSource
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -126,9 +118,9 @@ class DataSourcesResource(SyncAPIResource):
         `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources`.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -244,14 +236,6 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources`.
 
         Args:
-          aws_data_source: AWS S3 Data Source
-
-          body_knowledge_base_uuid: Knowledge base id
-
-          spaces_data_source: Spaces Bucket Data Source
-
-          web_crawler_data_source: WebCrawlerDataSource
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -301,9 +285,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources`.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 

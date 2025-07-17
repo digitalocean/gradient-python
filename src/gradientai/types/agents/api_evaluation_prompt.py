@@ -31,19 +31,12 @@ class APIEvaluationPrompt(BaseModel):
 
     input: Optional[str] = None
 
-    input_tokens: Optional[str] = None
-    """The number of input tokens used in the prompt."""
-
     output: Optional[str] = None
-
-    output_tokens: Optional[str] = None
-    """The number of output tokens used in the prompt."""
 
     prompt_chunks: Optional[List[PromptChunk]] = None
     """The list of prompt chunks."""
 
     prompt_id: Optional[int] = None
-    """Prompt ID"""
 
     prompt_level_metric_results: Optional[List[APIEvaluationMetricResult]] = None
     """The metric results for the prompt."""

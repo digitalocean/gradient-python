@@ -16,4 +16,3 @@ class EvaluationRunCreateParams(TypedDict, total=False):
     """The name of the run."""
 
     test_case_uuid: str
-    """Test-case UUID to run"""

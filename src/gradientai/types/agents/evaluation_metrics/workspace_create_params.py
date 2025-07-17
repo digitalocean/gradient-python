@@ -10,10 +10,7 @@ __all__ = ["WorkspaceCreateParams"]
 
 class WorkspaceCreateParams(TypedDict, total=False):
     agent_uuids: List[str]
-    """Ids of the agents(s) to attach to the workspace"""
 
     description: str
-    """Description of the workspace"""
 
     name: str
-    """Name of the workspace"""

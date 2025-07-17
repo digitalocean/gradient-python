@@ -12,10 +12,7 @@ __all__ = ["DataSourceListResponse"]
 
 class DataSourceListResponse(BaseModel):
     knowledge_base_data_sources: Optional[List[APIKnowledgeBaseDataSource]] = None
-    """The data sources"""
 
     links: Optional[APILinks] = None
-    """Links to other pages"""
 
     meta: Optional[APIMeta] = None
-    """Meta information about the data set"""

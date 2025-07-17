@@ -66,20 +66,6 @@ class FunctionsResource(SyncAPIResource):
         `/v2/gen-ai/agents/{agent_uuid}/functions`.
 
         Args:
-          body_agent_uuid: Agent id
-
-          description: Function description
-
-          faas_name: The name of the function in the DigitalOcean functions platform
-
-          faas_namespace: The namespace of the function in the DigitalOcean functions platform
-
-          function_name: Function name
-
-          input_schema: Describe the input schema for the function so the agent may call it
-
-          output_schema: Describe the output schema for the function so the agent handle its response
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -137,22 +123,6 @@ class FunctionsResource(SyncAPIResource):
         `/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}`.
 
         Args:
-          body_agent_uuid: Agent id
-
-          description: Funciton description
-
-          faas_name: The name of the function in the DigitalOcean functions platform
-
-          faas_namespace: The namespace of the function in the DigitalOcean functions platform
-
-          function_name: Function name
-
-          body_function_uuid: Function id
-
-          input_schema: Describe the input schema for the function so the agent may call it
-
-          output_schema: Describe the output schema for the function so the agent handle its response
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -271,20 +241,6 @@ class AsyncFunctionsResource(AsyncAPIResource):
         `/v2/gen-ai/agents/{agent_uuid}/functions`.
 
         Args:
-          body_agent_uuid: Agent id
-
-          description: Function description
-
-          faas_name: The name of the function in the DigitalOcean functions platform
-
-          faas_namespace: The namespace of the function in the DigitalOcean functions platform
-
-          function_name: Function name
-
-          input_schema: Describe the input schema for the function so the agent may call it
-
-          output_schema: Describe the output schema for the function so the agent handle its response
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -342,22 +298,6 @@ class AsyncFunctionsResource(AsyncAPIResource):
         `/v2/gen-ai/agents/{agent_uuid}/functions/{function_uuid}`.
 
         Args:
-          body_agent_uuid: Agent id
-
-          description: Funciton description
-
-          faas_name: The name of the function in the DigitalOcean functions platform
-
-          faas_namespace: The namespace of the function in the DigitalOcean functions platform
-
-          function_name: Function name
-
-          body_function_uuid: Function id
-
-          input_schema: Describe the input schema for the function so the agent may call it
-
-          output_schema: Describe the output schema for the function so the agent handle its response
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

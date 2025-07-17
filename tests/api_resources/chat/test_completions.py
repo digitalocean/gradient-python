@@ -54,17 +54,6 @@ class TestCompletions:
             stream=False,
             stream_options={"include_usage": True},
             temperature=1,
-            tool_choice="none",
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                }
-            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -147,17 +136,6 @@ class TestCompletions:
             stop="\n",
             stream_options={"include_usage": True},
             temperature=1,
-            tool_choice="none",
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                }
-            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -246,17 +224,6 @@ class TestAsyncCompletions:
             stream=False,
             stream_options={"include_usage": True},
             temperature=1,
-            tool_choice="none",
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                }
-            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -339,17 +306,6 @@ class TestAsyncCompletions:
             stop="\n",
             stream_options={"include_usage": True},
             temperature=1,
-            tool_choice="none",
-            tools=[
-                {
-                    "function": {
-                        "name": "name",
-                        "description": "description",
-                        "parameters": {"foo": "bar"},
-                    },
-                    "type": "function",
-                }
-            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",

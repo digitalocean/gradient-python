@@ -81,12 +81,6 @@ class WorkspacesResource(SyncAPIResource):
         response body contains a JSON object with the newly created workspace object.
 
         Args:
-          agent_uuids: Ids of the agents(s) to attach to the workspace
-
-          description: Description of the workspace
-
-          name: Name of the workspace
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -170,10 +164,6 @@ class WorkspacesResource(SyncAPIResource):
         containing the workspace.
 
         Args:
-          description: The new description of the workspace
-
-          name: The new name of the workspace
-
           body_workspace_uuid: Workspace UUID.
 
           extra_headers: Send extra headers
@@ -343,12 +333,6 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         response body contains a JSON object with the newly created workspace object.
 
         Args:
-          agent_uuids: Ids of the agents(s) to attach to the workspace
-
-          description: Description of the workspace
-
-          name: Name of the workspace
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -432,10 +416,6 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         containing the workspace.
 
         Args:
-          description: The new description of the workspace
-
-          name: The new name of the workspace
-
           body_workspace_uuid: Workspace UUID.
 
           extra_headers: Send extra headers

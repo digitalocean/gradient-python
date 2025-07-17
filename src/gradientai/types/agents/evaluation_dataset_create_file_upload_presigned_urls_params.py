@@ -15,7 +15,6 @@ class EvaluationDatasetCreateFileUploadPresignedURLsParams(TypedDict, total=Fals
 
 class File(TypedDict, total=False):
     file_name: str
-    """Local filename"""
 
     file_size: str
     """The size of the file in bytes."""

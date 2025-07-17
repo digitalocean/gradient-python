@@ -10,7 +10,3 @@ __all__ = ["EvaluationTestCaseListResponse"]
 
 class EvaluationTestCaseListResponse(BaseModel):
     evaluation_test_cases: Optional[List[APIEvaluationTestCase]] = None
-    """
-    Alternative way of authentication for internal usage only - should not be
-    exposed to public api
-    """

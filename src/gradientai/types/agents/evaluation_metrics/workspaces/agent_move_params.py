@@ -12,7 +12,5 @@ __all__ = ["AgentMoveParams"]
 
 class AgentMoveParams(TypedDict, total=False):
     agent_uuids: List[str]
-    """Agent uuids"""
 
     body_workspace_uuid: Annotated[str, PropertyInfo(alias="workspace_uuid")]
-    """Workspace uuid to move agents to"""

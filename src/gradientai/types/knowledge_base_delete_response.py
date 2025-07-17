@@ -9,4 +9,3 @@ __all__ = ["KnowledgeBaseDeleteResponse"]
 
 class KnowledgeBaseDeleteResponse(BaseModel):
     uuid: Optional[str] = None
-    """The id of the deleted knowledge base"""

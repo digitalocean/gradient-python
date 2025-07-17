@@ -179,7 +179,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationTestCaseUpdateResponse:
         """
-        To update an evaluation test-case send a PUT request to
+        To update an evaluation test-case send a POST request to
         `/v2/gen-ai/evaluation_test_cases/{test_case_uuid}`.
 
         Args:
@@ -188,8 +188,6 @@ class EvaluationTestCasesResource(SyncAPIResource):
           description: Description of the test case.
 
           name: Name of the test case.
-
-          body_test_case_uuid: Test-case UUID to update
 
           extra_headers: Send extra headers
 
@@ -203,7 +201,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `path_test_case_uuid` but received {path_test_case_uuid!r}"
             )
-        return self._put(
+        return self._post(
             f"/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}"
             if self._client._base_url_overridden
             else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}",
@@ -441,7 +439,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationTestCaseUpdateResponse:
         """
-        To update an evaluation test-case send a PUT request to
+        To update an evaluation test-case send a POST request to
         `/v2/gen-ai/evaluation_test_cases/{test_case_uuid}`.
 
         Args:
@@ -450,8 +448,6 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
           description: Description of the test case.
 
           name: Name of the test case.
-
-          body_test_case_uuid: Test-case UUID to update
 
           extra_headers: Send extra headers
 
@@ -465,7 +461,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `path_test_case_uuid` but received {path_test_case_uuid!r}"
             )
-        return await self._put(
+        return await self._post(
             f"/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}"
             if self._client._base_url_overridden
             else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}",

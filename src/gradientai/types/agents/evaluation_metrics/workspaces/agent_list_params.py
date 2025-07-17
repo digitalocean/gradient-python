@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
 
-__all__ = ["AgentListParams"]
+__all__ = ["AgentListParams", "FieldMask"]
 
 
 class AgentListParams(TypedDict, total=False):
+    field_mask: FieldMask
+
     only_deployed: bool
     """Only list agents that are deployed."""
 
     page: int
-    """Page number."""
+    """page number."""
 
     per_page: int
-    """Items per page."""
+    """items per page."""
+
+
+class FieldMask(TypedDict, total=False):
+    paths: List[str]
+    """The set of field mask paths."""

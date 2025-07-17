@@ -67,10 +67,6 @@ class OpenAIResource(SyncAPIResource):
         To create an OpenAI API key, send a POST request to `/v2/gen-ai/openai/keys`.
 
         Args:
-          api_key: OpenAI API key
-
-          name: Name of the key
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -151,12 +147,6 @@ class OpenAIResource(SyncAPIResource):
         `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
-          api_key: OpenAI API key
-
-          body_api_key_uuid: API key ID
-
-          name: Name of the key
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -201,9 +191,9 @@ class OpenAIResource(SyncAPIResource):
         To list all OpenAI API keys, send a GET request to `/v2/gen-ai/openai/keys`.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -286,9 +276,9 @@ class OpenAIResource(SyncAPIResource):
         List Agents by OpenAI Key.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -357,10 +347,6 @@ class AsyncOpenAIResource(AsyncAPIResource):
         To create an OpenAI API key, send a POST request to `/v2/gen-ai/openai/keys`.
 
         Args:
-          api_key: OpenAI API key
-
-          name: Name of the key
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -441,12 +427,6 @@ class AsyncOpenAIResource(AsyncAPIResource):
         `/v2/gen-ai/openai/keys/{api_key_uuid}`.
 
         Args:
-          api_key: OpenAI API key
-
-          body_api_key_uuid: API key ID
-
-          name: Name of the key
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -491,9 +471,9 @@ class AsyncOpenAIResource(AsyncAPIResource):
         To list all OpenAI API keys, send a GET request to `/v2/gen-ai/openai/keys`.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -576,9 +556,9 @@ class AsyncOpenAIResource(AsyncAPIResource):
         List Agents by OpenAI Key.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 

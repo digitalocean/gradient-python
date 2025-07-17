@@ -9,7 +9,6 @@ __all__ = ["RouteUpdateResponse"]
 
 class RouteUpdateResponse(BaseModel):
     child_agent_uuid: Optional[str] = None
-    """Routed agent id"""
 
     parent_agent_uuid: Optional[str] = None
     """A unique identifier for the parent agent."""
@@ -17,4 +16,3 @@ class RouteUpdateResponse(BaseModel):
     rollback: Optional[bool] = None
 
     uuid: Optional[str] = None
-    """Unique id of linkage"""

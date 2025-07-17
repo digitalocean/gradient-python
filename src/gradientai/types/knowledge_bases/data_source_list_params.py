@@ -9,7 +9,7 @@ __all__ = ["DataSourceListParams"]
 
 class DataSourceListParams(TypedDict, total=False):
     page: int
-    """Page number."""
+    """page number."""
 
     per_page: int
-    """Items per page."""
+    """items per page."""

@@ -10,4 +10,3 @@ __all__ = ["DataSourceCreateResponse"]
 
 class DataSourceCreateResponse(BaseModel):
     knowledge_base_data_source: Optional[APIKnowledgeBaseDataSource] = None
-    """Data Source configuration for Knowledge Bases"""

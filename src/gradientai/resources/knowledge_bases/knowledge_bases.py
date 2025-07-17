@@ -112,8 +112,6 @@ class KnowledgeBasesResource(SyncAPIResource):
 
           tags: Tags to organize your knowledge base.
 
-          vpc_uuid: The VPC to deploy the knowledge base database in
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -203,17 +201,11 @@ class KnowledgeBasesResource(SyncAPIResource):
         `/v2/gen-ai/knowledge_bases/{uuid}`.
 
         Args:
-          database_id: The id of the DigitalOcean database this knowledge base will use, optiona.
+          database_id: the id of the DigitalOcean database this knowledge base will use, optiona.
 
           embedding_model_uuid: Identifier for the foundation model.
 
-          name: Knowledge base name
-
-          project_id: The id of the DigitalOcean project this knowledge base will belong to
-
           tags: Tags to organize your knowledge base.
-
-          body_uuid: Knowledge base id
 
           extra_headers: Send extra headers
 
@@ -262,9 +254,9 @@ class KnowledgeBasesResource(SyncAPIResource):
         To list all knowledge bases, send a GET request to `/v2/gen-ai/knowledge_bases`.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -400,8 +392,6 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
 
           tags: Tags to organize your knowledge base.
 
-          vpc_uuid: The VPC to deploy the knowledge base database in
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -491,17 +481,11 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         `/v2/gen-ai/knowledge_bases/{uuid}`.
 
         Args:
-          database_id: The id of the DigitalOcean database this knowledge base will use, optiona.
+          database_id: the id of the DigitalOcean database this knowledge base will use, optiona.
 
           embedding_model_uuid: Identifier for the foundation model.
 
-          name: Knowledge base name
-
-          project_id: The id of the DigitalOcean project this knowledge base will belong to
-
           tags: Tags to organize your knowledge base.
-
-          body_uuid: Knowledge base id
 
           extra_headers: Send extra headers
 
@@ -550,9 +534,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         To list all knowledge bases, send a GET request to `/v2/gen-ai/knowledge_bases`.
 
         Args:
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 

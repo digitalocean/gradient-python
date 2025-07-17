@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .models import (
-    ModelsResource,
-    AsyncModelsResource,
-    ModelsResourceWithRawResponse,
-    AsyncModelsResourceWithRawResponse,
-    ModelsResourceWithStreamingResponse,
-    AsyncModelsResourceWithStreamingResponse,
-)
 from .workspaces import (
     WorkspacesResource,
     AsyncWorkspacesResource,
@@ -32,12 +24,6 @@ __all__ = [
     "AsyncWorkspacesResourceWithRawResponse",
     "WorkspacesResourceWithStreamingResponse",
     "AsyncWorkspacesResourceWithStreamingResponse",
-    "ModelsResource",
-    "AsyncModelsResource",
-    "ModelsResourceWithRawResponse",
-    "AsyncModelsResourceWithRawResponse",
-    "ModelsResourceWithStreamingResponse",
-    "AsyncModelsResourceWithStreamingResponse",
     "EvaluationMetricsResource",
     "AsyncEvaluationMetricsResource",
     "EvaluationMetricsResourceWithRawResponse",

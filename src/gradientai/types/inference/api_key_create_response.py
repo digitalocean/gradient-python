@@ -10,4 +10,3 @@ __all__ = ["APIKeyCreateResponse"]
 
 class APIKeyCreateResponse(BaseModel):
     api_key_info: Optional[APIModelAPIKeyInfo] = None
-    """Model API Key Info"""

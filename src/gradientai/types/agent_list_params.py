@@ -9,10 +9,10 @@ __all__ = ["AgentListParams"]
 
 class AgentListParams(TypedDict, total=False):
     only_deployed: bool
-    """Only list agents that are deployed."""
+    """only list agents that are deployed."""
 
     page: int
-    """Page number."""
+    """page number."""
 
     per_page: int
-    """Items per page."""
+    """items per page."""

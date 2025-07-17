@@ -11,7 +11,6 @@ __all__ = ["AgentUpdateResponse"]
 
 class AgentUpdateResponse(BaseModel):
     agent: Optional["APIAgent"] = None
-    """An Agent"""
 
 
 from .api_agent import APIAgent

@@ -10,4 +10,3 @@ __all__ = ["AnthropicCreateResponse"]
 
 class AnthropicCreateResponse(BaseModel):
     api_key_info: Optional[APIAnthropicAPIKeyInfo] = None
-    """Anthropic API Key Info"""

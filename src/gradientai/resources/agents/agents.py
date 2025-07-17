@@ -203,28 +203,12 @@ class AgentsResource(SyncAPIResource):
         body contains a JSON object with the newly created agent object.
 
         Args:
-          anthropic_key_uuid: Optional Anthropic API key ID to use with Anthropic models
-
-          description: A text description of the agent, not used in inference
-
           instruction: Agent instruction. Instructions help your agent to perform its job effectively.
               See
               [Write Effective Agent Instructions](https://docs.digitalocean.com/products/genai-platform/concepts/best-practices/#agent-instructions)
               for best practices.
 
-          knowledge_base_uuid: Ids of the knowledge base(s) to attach to the agent
-
           model_uuid: Identifier for the foundation model.
-
-          name: Agent name
-
-          openai_key_uuid: Optional OpenAI API key ID to use with OpenAI models
-
-          project_id: The id of the DigitalOcean project this agent will belong to
-
-          region: The DigitalOcean region to deploy your agent in
-
-          tags: Agent tag to organize related resources
 
           extra_headers: Send extra headers
 
@@ -301,7 +285,6 @@ class AgentsResource(SyncAPIResource):
         path_uuid: str,
         *,
         anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
-        conversation_logs_enabled: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         instruction: str | NotGiven = NOT_GIVEN,
         k: int | NotGiven = NOT_GIVEN,
@@ -329,38 +312,16 @@ class AgentsResource(SyncAPIResource):
         response body is a JSON object containing the agent.
 
         Args:
-          anthropic_key_uuid: Optional anthropic key uuid for use with anthropic models
-
-          conversation_logs_enabled: Optional update of conversation logs enabled
-
-          description: Agent description
-
           instruction: Agent instruction. Instructions help your agent to perform its job effectively.
               See
               [Write Effective Agent Instructions](https://docs.digitalocean.com/products/genai-platform/concepts/best-practices/#agent-instructions)
               for best practices.
-
-          k: How many results should be considered from an attached knowledge base
 
           max_tokens: Specifies the maximum number of tokens the model can process in a single input
               or output, set as a number between 1 and 512. This determines the length of each
               response.
 
           model_uuid: Identifier for the foundation model.
-
-          name: Agent name
-
-          openai_key_uuid: Optional OpenAI key uuid for use with OpenAI models
-
-          project_id: The id of the DigitalOcean project this agent will belong to
-
-          retrieval_method: - RETRIEVAL_METHOD_UNKNOWN: The retrieval method is unknown
-              - RETRIEVAL_METHOD_REWRITE: The retrieval method is rewrite
-              - RETRIEVAL_METHOD_STEP_BACK: The retrieval method is step back
-              - RETRIEVAL_METHOD_SUB_QUERIES: The retrieval method is sub queries
-              - RETRIEVAL_METHOD_NONE: The retrieval method is none
-
-          tags: A set of abitrary tags to organize your agent
 
           temperature: Controls the model’s creativity, specified as a number between 0 and 1. Lower
               values produce more predictable and conservative responses, while higher values
@@ -369,8 +330,6 @@ class AgentsResource(SyncAPIResource):
           top_p: Defines the cumulative probability threshold for word selection, specified as a
               number between 0 and 1. Higher values allow for more diverse outputs, while
               lower values ensure focused and coherent responses.
-
-          body_uuid: Unique agent id
 
           extra_headers: Send extra headers
 
@@ -389,7 +348,6 @@ class AgentsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "anthropic_key_uuid": anthropic_key_uuid,
-                    "conversation_logs_enabled": conversation_logs_enabled,
                     "description": description,
                     "instruction": instruction,
                     "k": k,
@@ -430,11 +388,11 @@ class AgentsResource(SyncAPIResource):
         To list all agents, send a GET request to `/v2/gen-ai/agents`.
 
         Args:
-          only_deployed: Only list agents that are deployed.
+          only_deployed: only list agents that are deployed.
 
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -519,17 +477,6 @@ class AgentsResource(SyncAPIResource):
         PUT request to `/v2/gen-ai/agents/{uuid}/deployment_visibility`.
 
         Args:
-          body_uuid: Unique id
-
-          visibility: - VISIBILITY_UNKNOWN: The status of the deployment is unknown
-              - VISIBILITY_DISABLED: The deployment is disabled and will no longer service
-                requests
-              - VISIBILITY_PLAYGROUND: Deprecated: No longer a valid state
-              - VISIBILITY_PUBLIC: The deployment is public and will service requests from the
-                public internet
-              - VISIBILITY_PRIVATE: The deployment is private and will only service requests
-                from other agents, or through API keys
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -644,28 +591,12 @@ class AsyncAgentsResource(AsyncAPIResource):
         body contains a JSON object with the newly created agent object.
 
         Args:
-          anthropic_key_uuid: Optional Anthropic API key ID to use with Anthropic models
-
-          description: A text description of the agent, not used in inference
-
           instruction: Agent instruction. Instructions help your agent to perform its job effectively.
               See
               [Write Effective Agent Instructions](https://docs.digitalocean.com/products/genai-platform/concepts/best-practices/#agent-instructions)
               for best practices.
 
-          knowledge_base_uuid: Ids of the knowledge base(s) to attach to the agent
-
           model_uuid: Identifier for the foundation model.
-
-          name: Agent name
-
-          openai_key_uuid: Optional OpenAI API key ID to use with OpenAI models
-
-          project_id: The id of the DigitalOcean project this agent will belong to
-
-          region: The DigitalOcean region to deploy your agent in
-
-          tags: Agent tag to organize related resources
 
           extra_headers: Send extra headers
 
@@ -742,7 +673,6 @@ class AsyncAgentsResource(AsyncAPIResource):
         path_uuid: str,
         *,
         anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
-        conversation_logs_enabled: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         instruction: str | NotGiven = NOT_GIVEN,
         k: int | NotGiven = NOT_GIVEN,
@@ -770,38 +700,16 @@ class AsyncAgentsResource(AsyncAPIResource):
         response body is a JSON object containing the agent.
 
         Args:
-          anthropic_key_uuid: Optional anthropic key uuid for use with anthropic models
-
-          conversation_logs_enabled: Optional update of conversation logs enabled
-
-          description: Agent description
-
           instruction: Agent instruction. Instructions help your agent to perform its job effectively.
               See
               [Write Effective Agent Instructions](https://docs.digitalocean.com/products/genai-platform/concepts/best-practices/#agent-instructions)
               for best practices.
-
-          k: How many results should be considered from an attached knowledge base
 
           max_tokens: Specifies the maximum number of tokens the model can process in a single input
               or output, set as a number between 1 and 512. This determines the length of each
               response.
 
           model_uuid: Identifier for the foundation model.
-
-          name: Agent name
-
-          openai_key_uuid: Optional OpenAI key uuid for use with OpenAI models
-
-          project_id: The id of the DigitalOcean project this agent will belong to
-
-          retrieval_method: - RETRIEVAL_METHOD_UNKNOWN: The retrieval method is unknown
-              - RETRIEVAL_METHOD_REWRITE: The retrieval method is rewrite
-              - RETRIEVAL_METHOD_STEP_BACK: The retrieval method is step back
-              - RETRIEVAL_METHOD_SUB_QUERIES: The retrieval method is sub queries
-              - RETRIEVAL_METHOD_NONE: The retrieval method is none
-
-          tags: A set of abitrary tags to organize your agent
 
           temperature: Controls the model’s creativity, specified as a number between 0 and 1. Lower
               values produce more predictable and conservative responses, while higher values
@@ -810,8 +718,6 @@ class AsyncAgentsResource(AsyncAPIResource):
           top_p: Defines the cumulative probability threshold for word selection, specified as a
               number between 0 and 1. Higher values allow for more diverse outputs, while
               lower values ensure focused and coherent responses.
-
-          body_uuid: Unique agent id
 
           extra_headers: Send extra headers
 
@@ -830,7 +736,6 @@ class AsyncAgentsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "anthropic_key_uuid": anthropic_key_uuid,
-                    "conversation_logs_enabled": conversation_logs_enabled,
                     "description": description,
                     "instruction": instruction,
                     "k": k,
@@ -871,11 +776,11 @@ class AsyncAgentsResource(AsyncAPIResource):
         To list all agents, send a GET request to `/v2/gen-ai/agents`.
 
         Args:
-          only_deployed: Only list agents that are deployed.
+          only_deployed: only list agents that are deployed.
 
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -960,17 +865,6 @@ class AsyncAgentsResource(AsyncAPIResource):
         PUT request to `/v2/gen-ai/agents/{uuid}/deployment_visibility`.
 
         Args:
-          body_uuid: Unique id
-
-          visibility: - VISIBILITY_UNKNOWN: The status of the deployment is unknown
-              - VISIBILITY_DISABLED: The deployment is disabled and will no longer service
-                requests
-              - VISIBILITY_PLAYGROUND: Deprecated: No longer a valid state
-              - VISIBILITY_PUBLIC: The deployment is public and will service requests from the
-                public internet
-              - VISIBILITY_PRIVATE: The deployment is private and will only service requests
-                from other agents, or through API keys
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

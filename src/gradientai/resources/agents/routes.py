@@ -66,15 +66,7 @@ class RoutesResource(SyncAPIResource):
         `/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}`.
 
         Args:
-          body_child_agent_uuid: Routed agent id
-
-          if_case: Describes the case in which the child agent should be used
-
           body_parent_agent_uuid: A unique identifier for the parent agent.
-
-          route_name: Route name
-
-          uuid: Unique id of linkage
 
           extra_headers: Send extra headers
 
@@ -172,11 +164,7 @@ class RoutesResource(SyncAPIResource):
         `/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}`.
 
         Args:
-          body_child_agent_uuid: Routed agent id
-
           body_parent_agent_uuid: A unique identifier for the parent agent.
-
-          route_name: Name of route
 
           extra_headers: Send extra headers
 
@@ -292,15 +280,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         `/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}`.
 
         Args:
-          body_child_agent_uuid: Routed agent id
-
-          if_case: Describes the case in which the child agent should be used
-
           body_parent_agent_uuid: A unique identifier for the parent agent.
-
-          route_name: Route name
-
-          uuid: Unique id of linkage
 
           extra_headers: Send extra headers
 
@@ -398,11 +378,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         `/v2/gen-ai/agents/{parent_agent_uuid}/child_agents/{child_agent_uuid}`.
 
         Args:
-          body_child_agent_uuid: Routed agent id
-
           body_parent_agent_uuid: A unique identifier for the parent agent.
-
-          route_name: Name of route
 
           extra_headers: Send extra headers
 

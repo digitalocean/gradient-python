@@ -14,13 +14,9 @@ __all__ = ["DataSourceCreateParams"]
 
 class DataSourceCreateParams(TypedDict, total=False):
     aws_data_source: AwsDataSourceParam
-    """AWS S3 Data Source"""
 
     body_knowledge_base_uuid: Annotated[str, PropertyInfo(alias="knowledge_base_uuid")]
-    """Knowledge base id"""
 
     spaces_data_source: APISpacesDataSourceParam
-    """Spaces Bucket Data Source"""
 
     web_crawler_data_source: APIWebCrawlerDataSourceParam
-    """WebCrawlerDataSource"""

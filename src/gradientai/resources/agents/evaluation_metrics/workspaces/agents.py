@@ -48,6 +48,7 @@ class AgentsResource(SyncAPIResource):
         self,
         workspace_uuid: str,
         *,
+        field_mask: agent_list_params.FieldMask | NotGiven = NOT_GIVEN,
         only_deployed: bool | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -65,9 +66,9 @@ class AgentsResource(SyncAPIResource):
         Args:
           only_deployed: Only list agents that are deployed.
 
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -90,6 +91,7 @@ class AgentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "field_mask": field_mask,
                         "only_deployed": only_deployed,
                         "page": page,
                         "per_page": per_page,
@@ -114,14 +116,10 @@ class AgentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AgentMoveResponse:
         """
-        To move all listed agents a given workspace, send a PUT request to
+        To move all listed agetns a given workspace, send a PUT request to
         `/v2/gen-ai/workspaces/{workspace_uuid}/agents`.
 
         Args:
-          agent_uuids: Agent uuids
-
-          body_workspace_uuid: Workspace uuid to move agents to
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -176,6 +174,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         self,
         workspace_uuid: str,
         *,
+        field_mask: agent_list_params.FieldMask | NotGiven = NOT_GIVEN,
         only_deployed: bool | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
@@ -193,9 +192,9 @@ class AsyncAgentsResource(AsyncAPIResource):
         Args:
           only_deployed: Only list agents that are deployed.
 
-          page: Page number.
+          page: page number.
 
-          per_page: Items per page.
+          per_page: items per page.
 
           extra_headers: Send extra headers
 
@@ -218,6 +217,7 @@ class AsyncAgentsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "field_mask": field_mask,
                         "only_deployed": only_deployed,
                         "page": page,
                         "per_page": per_page,
@@ -242,14 +242,10 @@ class AsyncAgentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AgentMoveResponse:
         """
-        To move all listed agents a given workspace, send a PUT request to
+        To move all listed agetns a given workspace, send a PUT request to
         `/v2/gen-ai/workspaces/{workspace_uuid}/agents`.
 
         Args:
-          agent_uuids: Agent uuids
-
-          body_workspace_uuid: Workspace uuid to move agents to
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

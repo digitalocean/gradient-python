@@ -11,7 +11,6 @@ __all__ = ["WorkspaceListResponse"]
 
 class WorkspaceListResponse(BaseModel):
     workspaces: Optional[List["APIWorkspace"]] = None
-    """Workspaces"""
 
 
 from ...api_workspace import APIWorkspace

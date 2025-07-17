@@ -9,7 +9,5 @@ __all__ = ["OpenAICreateParams"]
 
 class OpenAICreateParams(TypedDict, total=False):
     api_key: str
-    """OpenAI API key"""
 
     name: str
-    """Name of the key"""

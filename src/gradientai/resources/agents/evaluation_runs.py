@@ -17,7 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.agents import evaluation_run_create_params, evaluation_run_list_results_params
+from ...types.agents import evaluation_run_create_params
 from ...types.agents.evaluation_run_create_response import EvaluationRunCreateResponse
 from ...types.agents.evaluation_run_retrieve_response import EvaluationRunRetrieveResponse
 from ...types.agents.evaluation_run_list_results_response import EvaluationRunListResultsResponse
@@ -67,8 +67,6 @@ class EvaluationRunsResource(SyncAPIResource):
           agent_uuids: Agent UUIDs to run the test case against.
 
           run_name: The name of the run.
-
-          test_case_uuid: Test-case UUID to run
 
           extra_headers: Send extra headers
 
@@ -138,8 +136,6 @@ class EvaluationRunsResource(SyncAPIResource):
         self,
         evaluation_run_uuid: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -152,10 +148,6 @@ class EvaluationRunsResource(SyncAPIResource):
         `/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results`.
 
         Args:
-          page: Page number.
-
-          per_page: Items per page.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -173,17 +165,7 @@ class EvaluationRunsResource(SyncAPIResource):
             if self._client._base_url_overridden
             else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    evaluation_run_list_results_params.EvaluationRunListResultsParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=EvaluationRunListResultsResponse,
         )
@@ -270,8 +252,6 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
 
           run_name: The name of the run.
 
-          test_case_uuid: Test-case UUID to run
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -340,8 +320,6 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
         self,
         evaluation_run_uuid: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -354,10 +332,6 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
         `/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results`.
 
         Args:
-          page: Page number.
-
-          per_page: Items per page.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -375,17 +349,7 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
             if self._client._base_url_overridden
             else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    evaluation_run_list_results_params.EvaluationRunListResultsParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=EvaluationRunListResultsResponse,
         )

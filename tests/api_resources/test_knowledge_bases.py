@@ -33,42 +33,42 @@ class TestKnowledgeBases:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         knowledge_base = client.knowledge_bases.create(
-            database_id='"12345678-1234-1234-1234-123456789012"',
+            database_id="database_id",
             datasources=[
                 {
                     "aws_data_source": {
-                        "bucket_name": '"example name"',
-                        "item_path": '"example string"',
-                        "key_id": '"123e4567-e89b-12d3-a456-426614174000"',
-                        "region": '"example string"',
-                        "secret_key": '"example string"',
+                        "bucket_name": "bucket_name",
+                        "item_path": "item_path",
+                        "key_id": "key_id",
+                        "region": "region",
+                        "secret_key": "secret_key",
                     },
-                    "bucket_name": '"example name"',
-                    "bucket_region": '"example string"',
+                    "bucket_name": "bucket_name",
+                    "bucket_region": "bucket_region",
                     "file_upload_data_source": {
-                        "original_file_name": '"example name"',
-                        "size_in_bytes": '"12345"',
-                        "stored_object_key": '"example string"',
+                        "original_file_name": "original_file_name",
+                        "size_in_bytes": "size_in_bytes",
+                        "stored_object_key": "stored_object_key",
                     },
-                    "item_path": '"example string"',
+                    "item_path": "item_path",
                     "spaces_data_source": {
-                        "bucket_name": '"example name"',
-                        "item_path": '"example string"',
-                        "region": '"example string"',
+                        "bucket_name": "bucket_name",
+                        "item_path": "item_path",
+                        "region": "region",
                     },
                     "web_crawler_data_source": {
-                        "base_url": '"example string"',
+                        "base_url": "base_url",
                         "crawling_option": "UNKNOWN",
                         "embed_media": True,
                     },
                 }
             ],
-            embedding_model_uuid='"12345678-1234-1234-1234-123456789012"',
-            name='"My Knowledge Base"',
-            project_id='"12345678-1234-1234-1234-123456789012"',
-            region='"tor1"',
-            tags=["example string"],
-            vpc_uuid='"12345678-1234-1234-1234-123456789012"',
+            embedding_model_uuid="embedding_model_uuid",
+            name="name",
+            project_id="project_id",
+            region="region",
+            tags=["string"],
+            vpc_uuid="vpc_uuid",
         )
         assert_matches_type(KnowledgeBaseCreateResponse, knowledge_base, path=["response"])
 
@@ -140,7 +140,7 @@ class TestKnowledgeBases:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         knowledge_base = client.knowledge_bases.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_uuid="uuid",
         )
         assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
 
@@ -148,13 +148,13 @@ class TestKnowledgeBases:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         knowledge_base = client.knowledge_bases.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            database_id='"12345678-1234-1234-1234-123456789012"',
-            embedding_model_uuid='"12345678-1234-1234-1234-123456789012"',
-            name='"My Knowledge Base"',
-            project_id='"12345678-1234-1234-1234-123456789012"',
-            tags=["example string"],
-            body_uuid='"12345678-1234-1234-1234-123456789012"',
+            path_uuid="uuid",
+            database_id="database_id",
+            embedding_model_uuid="embedding_model_uuid",
+            name="name",
+            project_id="project_id",
+            tags=["string"],
+            body_uuid="uuid",
         )
         assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
 
@@ -162,7 +162,7 @@ class TestKnowledgeBases:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.knowledge_bases.with_raw_response.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_uuid="uuid",
         )
 
         assert response.is_closed is True
@@ -174,7 +174,7 @@ class TestKnowledgeBases:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.knowledge_bases.with_streaming_response.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_uuid="uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -287,42 +287,42 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         knowledge_base = await async_client.knowledge_bases.create(
-            database_id='"12345678-1234-1234-1234-123456789012"',
+            database_id="database_id",
             datasources=[
                 {
                     "aws_data_source": {
-                        "bucket_name": '"example name"',
-                        "item_path": '"example string"',
-                        "key_id": '"123e4567-e89b-12d3-a456-426614174000"',
-                        "region": '"example string"',
-                        "secret_key": '"example string"',
+                        "bucket_name": "bucket_name",
+                        "item_path": "item_path",
+                        "key_id": "key_id",
+                        "region": "region",
+                        "secret_key": "secret_key",
                     },
-                    "bucket_name": '"example name"',
-                    "bucket_region": '"example string"',
+                    "bucket_name": "bucket_name",
+                    "bucket_region": "bucket_region",
                     "file_upload_data_source": {
-                        "original_file_name": '"example name"',
-                        "size_in_bytes": '"12345"',
-                        "stored_object_key": '"example string"',
+                        "original_file_name": "original_file_name",
+                        "size_in_bytes": "size_in_bytes",
+                        "stored_object_key": "stored_object_key",
                     },
-                    "item_path": '"example string"',
+                    "item_path": "item_path",
                     "spaces_data_source": {
-                        "bucket_name": '"example name"',
-                        "item_path": '"example string"',
-                        "region": '"example string"',
+                        "bucket_name": "bucket_name",
+                        "item_path": "item_path",
+                        "region": "region",
                     },
                     "web_crawler_data_source": {
-                        "base_url": '"example string"',
+                        "base_url": "base_url",
                         "crawling_option": "UNKNOWN",
                         "embed_media": True,
                     },
                 }
             ],
-            embedding_model_uuid='"12345678-1234-1234-1234-123456789012"',
-            name='"My Knowledge Base"',
-            project_id='"12345678-1234-1234-1234-123456789012"',
-            region='"tor1"',
-            tags=["example string"],
-            vpc_uuid='"12345678-1234-1234-1234-123456789012"',
+            embedding_model_uuid="embedding_model_uuid",
+            name="name",
+            project_id="project_id",
+            region="region",
+            tags=["string"],
+            vpc_uuid="vpc_uuid",
         )
         assert_matches_type(KnowledgeBaseCreateResponse, knowledge_base, path=["response"])
 
@@ -394,7 +394,7 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         knowledge_base = await async_client.knowledge_bases.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_uuid="uuid",
         )
         assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
 
@@ -402,13 +402,13 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         knowledge_base = await async_client.knowledge_bases.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            database_id='"12345678-1234-1234-1234-123456789012"',
-            embedding_model_uuid='"12345678-1234-1234-1234-123456789012"',
-            name='"My Knowledge Base"',
-            project_id='"12345678-1234-1234-1234-123456789012"',
-            tags=["example string"],
-            body_uuid='"12345678-1234-1234-1234-123456789012"',
+            path_uuid="uuid",
+            database_id="database_id",
+            embedding_model_uuid="embedding_model_uuid",
+            name="name",
+            project_id="project_id",
+            tags=["string"],
+            body_uuid="uuid",
         )
         assert_matches_type(KnowledgeBaseUpdateResponse, knowledge_base, path=["response"])
 
@@ -416,7 +416,7 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.knowledge_bases.with_raw_response.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_uuid="uuid",
         )
 
         assert response.is_closed is True
@@ -428,7 +428,7 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.knowledge_bases.with_streaming_response.update(
-            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_uuid="uuid",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

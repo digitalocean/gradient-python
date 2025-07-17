@@ -12,10 +12,8 @@ __all__ = ["AgentCreateParams"]
 
 class AgentCreateParams(TypedDict, total=False):
     anthropic_key_uuid: str
-    """Optional Anthropic API key ID to use with Anthropic models"""
 
     description: str
-    """A text description of the agent, not used in inference"""
 
     instruction: str
     """Agent instruction.
@@ -26,22 +24,16 @@ class AgentCreateParams(TypedDict, total=False):
     """
 
     knowledge_base_uuid: List[str]
-    """Ids of the knowledge base(s) to attach to the agent"""
 
     model_uuid: str
     """Identifier for the foundation model."""
 
     name: str
-    """Agent name"""
 
     openai_key_uuid: Annotated[str, PropertyInfo(alias="open_ai_key_uuid")]
-    """Optional OpenAI API key ID to use with OpenAI models"""
 
     project_id: str
-    """The id of the DigitalOcean project this agent will belong to"""
 
     region: str
-    """The DigitalOcean region to deploy your agent in"""
 
     tags: List[str]
-    """Agent tag to organize related resources"""

@@ -9,10 +9,7 @@ __all__ = ["APIFileUploadDataSourceParam"]
 
 class APIFileUploadDataSourceParam(TypedDict, total=False):
     original_file_name: str
-    """The original file name"""
 
     size_in_bytes: str
-    """The size of the file in bytes"""
 
     stored_object_key: str
-    """The object key the file was stored as"""

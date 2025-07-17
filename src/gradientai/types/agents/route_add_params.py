@@ -13,7 +13,6 @@ class RouteAddParams(TypedDict, total=False):
     path_parent_agent_uuid: Required[Annotated[str, PropertyInfo(alias="parent_agent_uuid")]]
 
     body_child_agent_uuid: Annotated[str, PropertyInfo(alias="child_agent_uuid")]
-    """Routed agent id"""
 
     if_case: str
 
@@ -21,4 +20,3 @@ class RouteAddParams(TypedDict, total=False):
     """A unique identifier for the parent agent."""
 
     route_name: str
-    """Name of route"""
