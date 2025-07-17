@@ -12,7 +12,10 @@ __all__ = ["IndexingJobListResponse"]
 
 class IndexingJobListResponse(BaseModel):
     jobs: Optional[List[APIIndexingJob]] = None
+    """The indexing jobs"""
 
     links: Optional[APILinks] = None
+    """Links to other pages"""
 
     meta: Optional[APIMeta] = None
+    """Meta information about the data set"""

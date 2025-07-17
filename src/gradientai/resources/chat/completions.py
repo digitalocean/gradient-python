@@ -64,6 +64,8 @@ class CompletionsResource(SyncAPIResource):
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -136,6 +138,19 @@ class CompletionsResource(SyncAPIResource):
               focused and deterministic. We generally recommend altering this or `top_p` but
               not both.
 
+          tool_choice: Controls which (if any) tool is called by the model. `none` means the model will
+              not call any tool and instead generates a message. `auto` means the model can
+              pick between generating a message or calling one or more tools. `required` means
+              the model must call one or more tools. Specifying a particular tool via
+              `{"type": "function", "function": {"name": "my_function"}}` forces the model to
+              call that tool.
+
+              `none` is the default when no tools are present. `auto` is the default if tools
+              are present.
+
+          tools: A list of tools the model may call. Currently, only functions are supported as a
+              tool.
+
           top_logprobs: An integer between 0 and 20 specifying the number of most likely tokens to
               return at each token position, each with an associated log probability.
               `logprobs` must be set to `true` if this parameter is used.
@@ -178,6 +193,8 @@ class CompletionsResource(SyncAPIResource):
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -250,6 +267,19 @@ class CompletionsResource(SyncAPIResource):
               focused and deterministic. We generally recommend altering this or `top_p` but
               not both.
 
+          tool_choice: Controls which (if any) tool is called by the model. `none` means the model will
+              not call any tool and instead generates a message. `auto` means the model can
+              pick between generating a message or calling one or more tools. `required` means
+              the model must call one or more tools. Specifying a particular tool via
+              `{"type": "function", "function": {"name": "my_function"}}` forces the model to
+              call that tool.
+
+              `none` is the default when no tools are present. `auto` is the default if tools
+              are present.
+
+          tools: A list of tools the model may call. Currently, only functions are supported as a
+              tool.
+
           top_logprobs: An integer between 0 and 20 specifying the number of most likely tokens to
               return at each token position, each with an associated log probability.
               `logprobs` must be set to `true` if this parameter is used.
@@ -291,6 +321,8 @@ class CompletionsResource(SyncAPIResource):
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -363,6 +395,19 @@ class CompletionsResource(SyncAPIResource):
               focused and deterministic. We generally recommend altering this or `top_p` but
               not both.
 
+          tool_choice: Controls which (if any) tool is called by the model. `none` means the model will
+              not call any tool and instead generates a message. `auto` means the model can
+              pick between generating a message or calling one or more tools. `required` means
+              the model must call one or more tools. Specifying a particular tool via
+              `{"type": "function", "function": {"name": "my_function"}}` forces the model to
+              call that tool.
+
+              `none` is the default when no tools are present. `auto` is the default if tools
+              are present.
+
+          tools: A list of tools the model may call. Currently, only functions are supported as a
+              tool.
+
           top_logprobs: An integer between 0 and 20 specifying the number of most likely tokens to
               return at each token position, each with an associated log probability.
               `logprobs` must be set to `true` if this parameter is used.
@@ -404,6 +449,8 @@ class CompletionsResource(SyncAPIResource):
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -442,6 +489,8 @@ class CompletionsResource(SyncAPIResource):
                     "stream": stream,
                     "stream_options": stream_options,
                     "temperature": temperature,
+                    "tool_choice": tool_choice,
+                    "tools": tools,
                     "top_logprobs": top_logprobs,
                     "top_p": top_p,
                     "user": user,
@@ -497,6 +546,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -569,6 +620,19 @@ class AsyncCompletionsResource(AsyncAPIResource):
               focused and deterministic. We generally recommend altering this or `top_p` but
               not both.
 
+          tool_choice: Controls which (if any) tool is called by the model. `none` means the model will
+              not call any tool and instead generates a message. `auto` means the model can
+              pick between generating a message or calling one or more tools. `required` means
+              the model must call one or more tools. Specifying a particular tool via
+              `{"type": "function", "function": {"name": "my_function"}}` forces the model to
+              call that tool.
+
+              `none` is the default when no tools are present. `auto` is the default if tools
+              are present.
+
+          tools: A list of tools the model may call. Currently, only functions are supported as a
+              tool.
+
           top_logprobs: An integer between 0 and 20 specifying the number of most likely tokens to
               return at each token position, each with an associated log probability.
               `logprobs` must be set to `true` if this parameter is used.
@@ -611,6 +675,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -683,6 +749,19 @@ class AsyncCompletionsResource(AsyncAPIResource):
               focused and deterministic. We generally recommend altering this or `top_p` but
               not both.
 
+          tool_choice: Controls which (if any) tool is called by the model. `none` means the model will
+              not call any tool and instead generates a message. `auto` means the model can
+              pick between generating a message or calling one or more tools. `required` means
+              the model must call one or more tools. Specifying a particular tool via
+              `{"type": "function", "function": {"name": "my_function"}}` forces the model to
+              call that tool.
+
+              `none` is the default when no tools are present. `auto` is the default if tools
+              are present.
+
+          tools: A list of tools the model may call. Currently, only functions are supported as a
+              tool.
+
           top_logprobs: An integer between 0 and 20 specifying the number of most likely tokens to
               return at each token position, each with an associated log probability.
               `logprobs` must be set to `true` if this parameter is used.
@@ -724,6 +803,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -796,6 +877,19 @@ class AsyncCompletionsResource(AsyncAPIResource):
               focused and deterministic. We generally recommend altering this or `top_p` but
               not both.
 
+          tool_choice: Controls which (if any) tool is called by the model. `none` means the model will
+              not call any tool and instead generates a message. `auto` means the model can
+              pick between generating a message or calling one or more tools. `required` means
+              the model must call one or more tools. Specifying a particular tool via
+              `{"type": "function", "function": {"name": "my_function"}}` forces the model to
+              call that tool.
+
+              `none` is the default when no tools are present. `auto` is the default if tools
+              are present.
+
+          tools: A list of tools the model may call. Currently, only functions are supported as a
+              tool.
+
           top_logprobs: An integer between 0 and 20 specifying the number of most likely tokens to
               return at each token position, each with an associated log probability.
               `logprobs` must be set to `true` if this parameter is used.
@@ -837,6 +931,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
         stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
+        tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
+        tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_logprobs: Optional[int] | NotGiven = NOT_GIVEN,
         top_p: Optional[float] | NotGiven = NOT_GIVEN,
         user: str | NotGiven = NOT_GIVEN,
@@ -875,6 +971,8 @@ class AsyncCompletionsResource(AsyncAPIResource):
                     "stream": stream,
                     "stream_options": stream_options,
                     "temperature": temperature,
+                    "tool_choice": tool_choice,
+                    "tools": tools,
                     "top_logprobs": top_logprobs,
                     "top_p": top_p,
                     "user": user,

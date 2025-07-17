@@ -60,6 +60,8 @@ class APIKeysResource(SyncAPIResource):
         To create a model API key, send a POST request to `/v2/gen-ai/models/api_keys`.
 
         Args:
+          name: A human friendly name to identify the key
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -97,6 +99,10 @@ class APIKeysResource(SyncAPIResource):
         `/v2/gen-ai/models/api_keys/{api_key_uuid}`.
 
         Args:
+          body_api_key_uuid: API key ID
+
+          name: Name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -140,9 +146,9 @@ class APIKeysResource(SyncAPIResource):
         To list all model API keys, send a GET request to `/v2/gen-ai/models/api_keys`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 
@@ -280,6 +286,8 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         To create a model API key, send a POST request to `/v2/gen-ai/models/api_keys`.
 
         Args:
+          name: A human friendly name to identify the key
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -317,6 +325,10 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         `/v2/gen-ai/models/api_keys/{api_key_uuid}`.
 
         Args:
+          body_api_key_uuid: API key ID
+
+          name: Name
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -360,9 +372,9 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         To list all model API keys, send a GET request to `/v2/gen-ai/models/api_keys`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 

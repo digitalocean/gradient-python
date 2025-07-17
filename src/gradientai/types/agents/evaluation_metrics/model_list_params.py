@@ -10,13 +10,13 @@ __all__ = ["ModelListParams"]
 
 class ModelListParams(TypedDict, total=False):
     page: int
-    """page number."""
+    """Page number."""
 
     per_page: int
-    """items per page."""
+    """Items per page."""
 
     public_only: bool
-    """only include models that are publicly available."""
+    """Only include models that are publicly available."""
 
     usecases: List[
         Literal[
@@ -29,7 +29,7 @@ class ModelListParams(TypedDict, total=False):
             "MODEL_USECASE_SERVERLESS",
         ]
     ]
-    """include only models defined for the listed usecases.
+    """Include only models defined for the listed usecases.
 
     - MODEL_USECASE_UNKNOWN: The use case of the model is unknown
     - MODEL_USECASE_AGENT: The model maybe used in an agent

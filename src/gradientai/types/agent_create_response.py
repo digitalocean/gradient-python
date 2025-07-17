@@ -11,6 +11,7 @@ __all__ = ["AgentCreateResponse"]
 
 class AgentCreateResponse(BaseModel):
     agent: Optional["APIAgent"] = None
+    """An Agent"""
 
 
 from .api_agent import APIAgent

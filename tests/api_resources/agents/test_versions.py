@@ -24,7 +24,7 @@ class TestVersions:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         version = client.agents.versions.update(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(VersionUpdateResponse, version, path=["response"])
 
@@ -32,9 +32,9 @@ class TestVersions:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         version = client.agents.versions.update(
-            path_uuid="uuid",
-            body_uuid="uuid",
-            version_hash="version_hash",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_uuid='"12345678-1234-1234-1234-123456789012"',
+            version_hash="c3658d8b5c05494cd03ce042926ef08157889ed54b1b74b5ee0b3d66dcee4b73",
         )
         assert_matches_type(VersionUpdateResponse, version, path=["response"])
 
@@ -42,7 +42,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.agents.versions.with_raw_response.update(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -54,7 +54,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.agents.versions.with_streaming_response.update(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,7 +76,7 @@ class TestVersions:
     @parametrize
     def test_method_list(self, client: GradientAI) -> None:
         version = client.agents.versions.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
 
@@ -84,7 +84,7 @@ class TestVersions:
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
         version = client.agents.versions.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
             per_page=0,
         )
@@ -94,7 +94,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_list(self, client: GradientAI) -> None:
         response = client.agents.versions.with_raw_response.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -106,7 +106,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_list(self, client: GradientAI) -> None:
         with client.agents.versions.with_streaming_response.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,7 +134,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         version = await async_client.agents.versions.update(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(VersionUpdateResponse, version, path=["response"])
 
@@ -142,9 +142,9 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         version = await async_client.agents.versions.update(
-            path_uuid="uuid",
-            body_uuid="uuid",
-            version_hash="version_hash",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_uuid='"12345678-1234-1234-1234-123456789012"',
+            version_hash="c3658d8b5c05494cd03ce042926ef08157889ed54b1b74b5ee0b3d66dcee4b73",
         )
         assert_matches_type(VersionUpdateResponse, version, path=["response"])
 
@@ -152,7 +152,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.versions.with_raw_response.update(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -164,7 +164,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.versions.with_streaming_response.update(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,7 +186,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_list(self, async_client: AsyncGradientAI) -> None:
         version = await async_client.agents.versions.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(VersionListResponse, version, path=["response"])
 
@@ -194,7 +194,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
         version = await async_client.agents.versions.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
             per_page=0,
         )
@@ -204,7 +204,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.versions.with_raw_response.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -216,7 +216,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.versions.with_streaming_response.list(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -3,21 +3,17 @@
 from typing import List, Optional
 
 from .._models import BaseModel
+from .shared.region import Region
+from .shared.page_links import PageLinks
+from .shared.meta_properties import MetaProperties
 
-__all__ = ["RegionListResponse", "Region"]
-
-
-class Region(BaseModel):
-    inference_url: Optional[str] = None
-
-    region: Optional[str] = None
-
-    serves_batch: Optional[bool] = None
-
-    serves_inference: Optional[bool] = None
-
-    stream_inference_url: Optional[str] = None
+__all__ = ["RegionListResponse"]
 
 
 class RegionListResponse(BaseModel):
-    regions: Optional[List[Region]] = None
+    meta: MetaProperties
+    """Information about the response itself."""
+
+    regions: List[Region]
+
+    links: Optional[PageLinks] = None

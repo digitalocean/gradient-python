@@ -9,5 +9,7 @@ __all__ = ["RouteDeleteResponse"]
 
 class RouteDeleteResponse(BaseModel):
     child_agent_uuid: Optional[str] = None
+    """Routed agent id"""
 
     parent_agent_uuid: Optional[str] = None
+    """Pagent agent id"""

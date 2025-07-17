@@ -9,7 +9,9 @@ __all__ = ["APISpacesDataSourceParam"]
 
 class APISpacesDataSourceParam(TypedDict, total=False):
     bucket_name: str
+    """Spaces bucket name"""
 
     item_path: str
 
     region: str
+    """Region of bucket"""

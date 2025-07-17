@@ -40,6 +40,14 @@ from .inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
+from .gpu_droplets import (
+    GPUDropletsResource,
+    AsyncGPUDropletsResource,
+    GPUDropletsResourceWithRawResponse,
+    AsyncGPUDropletsResourceWithRawResponse,
+    GPUDropletsResourceWithStreamingResponse,
+    AsyncGPUDropletsResourceWithStreamingResponse,
+)
 from .knowledge_bases import (
     KnowledgeBasesResource,
     AsyncKnowledgeBasesResource,
@@ -86,4 +94,10 @@ __all__ = [
     "AsyncModelsResourceWithRawResponse",
     "ModelsResourceWithStreamingResponse",
     "AsyncModelsResourceWithStreamingResponse",
+    "GPUDropletsResource",
+    "AsyncGPUDropletsResource",
+    "GPUDropletsResourceWithRawResponse",
+    "AsyncGPUDropletsResourceWithRawResponse",
+    "GPUDropletsResourceWithStreamingResponse",
+    "AsyncGPUDropletsResourceWithStreamingResponse",
 ]

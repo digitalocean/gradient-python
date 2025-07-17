@@ -9,3 +9,4 @@ __all__ = ["APIKeyCreateParams"]
 
 class APIKeyCreateParams(TypedDict, total=False):
     name: str
+    """A human friendly name to identify the key"""

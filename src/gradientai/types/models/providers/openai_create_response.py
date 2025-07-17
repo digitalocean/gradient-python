@@ -10,3 +10,4 @@ __all__ = ["OpenAICreateResponse"]
 
 class OpenAICreateResponse(BaseModel):
     api_key_info: Optional[APIOpenAIAPIKeyInfo] = None
+    """OpenAI API Key Info"""

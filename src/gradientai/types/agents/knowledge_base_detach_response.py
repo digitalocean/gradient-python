@@ -11,6 +11,7 @@ __all__ = ["KnowledgeBaseDetachResponse"]
 
 class KnowledgeBaseDetachResponse(BaseModel):
     agent: Optional["APIAgent"] = None
+    """An Agent"""
 
 
 from ..api_agent import APIAgent
