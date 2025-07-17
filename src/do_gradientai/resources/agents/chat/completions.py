@@ -473,7 +473,7 @@ class CompletionsResource(SyncAPIResource):
         return self._post(
             "/chat/completions?agent=true"
             if self._client._base_url_overridden
-            else f"https://{agent_domain}/v1/chat/completions?agent=true",
+            else f"https://{agent_domain}/api/v1/chat/completions?agent=true",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -956,7 +956,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         return await self._post(
             "/chat/completions?agent=true"
             if self._client._base_url_overridden
-            else f"https://{agent_domain}/v1/chat/completions?agent=true",
+            else f"https://{agent_domain}/api/v1/chat/completions?agent=true",
             body=await async_maybe_transform(
                 {
                     "messages": messages,
