@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types import RegionListResponse
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types import RegionListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,8 +27,8 @@ class TestRegions:
     @parametrize
     def test_method_list_with_all_params(self, client: GradientAI) -> None:
         region = client.regions.list(
-            serves_batch=True,
-            serves_inference=True,
+            page=1,
+            per_page=1,
         )
         assert_matches_type(RegionListResponse, region, path=["response"])
 
@@ -70,8 +70,8 @@ class TestAsyncRegions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
         region = await async_client.regions.list(
-            serves_batch=True,
-            serves_inference=True,
+            page=1,
+            per_page=1,
         )
         assert_matches_type(RegionListResponse, region, path=["response"])
 

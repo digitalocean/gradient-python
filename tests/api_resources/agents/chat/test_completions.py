@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents.chat import CompletionCreateResponse
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.agents.chat import CompletionCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -56,6 +56,17 @@ class TestCompletions:
             stream=False,
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -142,6 +153,17 @@ class TestCompletions:
             stop="\n",
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -234,6 +256,17 @@ class TestAsyncCompletions:
             stream=False,
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -320,6 +353,17 @@ class TestAsyncCompletions:
             stop="\n",
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
