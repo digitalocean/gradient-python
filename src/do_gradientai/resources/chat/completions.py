@@ -464,7 +464,7 @@ class CompletionsResource(SyncAPIResource):
         # This method requires an inference_key to be set via client argument or environment variable
         if not self._client.inference_key:
             raise TypeError(
-                "Could not resolve authentication method. Expected the inference_key to be set for chat completions."
+                "Could not resolve authentication method. Expected inference_key to be set for chat completions."
             )
         headers = extra_headers or {}
         headers = {"Authorization": f"Bearer {self._client.inference_key}", **headers}
@@ -946,7 +946,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         # This method requires an inference_key to be set via client argument or environment variable
         if not hasattr(self._client, "inference_key") or not self._client.inference_key:
             raise TypeError(
-                "Could not resolve authentication method. Expected the inference_key to be set for chat completions."
+                "Could not resolve authentication method. Expected inference_key to be set for chat completions."
             )
         headers = extra_headers or {}
         headers = {"Authorization": f"Bearer {self._client.inference_key}", **headers}
