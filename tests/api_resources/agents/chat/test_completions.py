@@ -7,15 +7,17 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.agents.chat import CompletionCreateResponse
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.agents.chat import CompletionCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestCompletions:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "client", [False, True], indirect=True, ids=["loose", "strict"]
+    )
 
     @pytest.mark.skip()
     @parametrize
@@ -54,6 +56,17 @@ class TestCompletions:
             stream=False,
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -136,6 +149,17 @@ class TestCompletions:
             stop="\n",
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -184,12 +208,17 @@ class TestCompletions:
 
 class TestAsyncCompletions:
     parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+        "async_client",
+        [False, True, {"http_client": "aiohttp"}],
+        indirect=True,
+        ids=["loose", "strict", "aiohttp"],
     )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion = await async_client.agents.chat.completions.create(
             messages=[
                 {
@@ -203,7 +232,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion = await async_client.agents.chat.completions.create(
             messages=[
                 {
@@ -224,6 +255,17 @@ class TestAsyncCompletions:
             stream=False,
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -232,7 +274,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         response = await async_client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
@@ -250,7 +294,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         async with async_client.agents.chat.completions.with_streaming_response.create(
             messages=[
                 {
@@ -270,7 +316,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion_stream = await async_client.agents.chat.completions.create(
             messages=[
                 {
@@ -285,7 +333,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion_stream = await async_client.agents.chat.completions.create(
             messages=[
                 {
@@ -306,6 +356,17 @@ class TestAsyncCompletions:
             stop="\n",
             stream_options={"include_usage": True},
             temperature=1,
+            tool_choice="none",
+            tools=[
+                {
+                    "function": {
+                        "name": "name",
+                        "description": "description",
+                        "parameters": {"foo": "bar"},
+                    },
+                    "type": "function",
+                }
+            ],
             top_logprobs=0,
             top_p=1,
             user="user-1234",
@@ -314,7 +375,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         response = await async_client.agents.chat.completions.with_raw_response.create(
             messages=[
                 {
@@ -332,7 +395,9 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         async with async_client.agents.chat.completions.with_streaming_response.create(
             messages=[
                 {
