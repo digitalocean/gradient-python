@@ -9,7 +9,10 @@ __all__ = ["APIMeta"]
 
 class APIMeta(BaseModel):
     page: Optional[int] = None
+    """The current page"""
 
     pages: Optional[int] = None
+    """Total number of pages"""
 
     total: Optional[int] = None
+    """Total amount of items over all pages"""

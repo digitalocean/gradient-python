@@ -9,7 +9,7 @@ __all__ = ["APIKeyListParams"]
 
 class APIKeyListParams(TypedDict, total=False):
     page: int
-    """page number."""
+    """Page number."""
 
     per_page: int
-    """items per page."""
+    """Items per page."""

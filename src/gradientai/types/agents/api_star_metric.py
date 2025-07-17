@@ -12,6 +12,12 @@ class APIStarMetric(BaseModel):
 
     name: Optional[str] = None
 
+    success_threshold: Optional[float] = None
+    """
+    The success threshold for the star metric. This is a value that the metric must
+    reach to be considered successful.
+    """
+
     success_threshold_pct: Optional[int] = None
     """
     The success threshold for the star metric. This is a percentage value between 0

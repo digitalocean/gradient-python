@@ -31,11 +31,11 @@ class TestEvaluationDatasets:
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         evaluation_dataset = client.agents.evaluation_datasets.create(
             file_upload_dataset={
-                "original_file_name": "original_file_name",
-                "size_in_bytes": "size_in_bytes",
-                "stored_object_key": "stored_object_key",
+                "original_file_name": '"example name"',
+                "size_in_bytes": '"12345"',
+                "stored_object_key": '"example string"',
             },
-            name="name",
+            name='"example name"',
         )
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
@@ -75,7 +75,7 @@ class TestEvaluationDatasets:
         evaluation_dataset = client.agents.evaluation_datasets.create_file_upload_presigned_urls(
             files=[
                 {
-                    "file_name": "file_name",
+                    "file_name": '"example name"',
                     "file_size": "file_size",
                 }
             ],
@@ -127,11 +127,11 @@ class TestAsyncEvaluationDatasets:
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create(
             file_upload_dataset={
-                "original_file_name": "original_file_name",
-                "size_in_bytes": "size_in_bytes",
-                "stored_object_key": "stored_object_key",
+                "original_file_name": '"example name"',
+                "size_in_bytes": '"12345"',
+                "stored_object_key": '"example string"',
             },
-            name="name",
+            name='"example name"',
         )
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
@@ -173,7 +173,7 @@ class TestAsyncEvaluationDatasets:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create_file_upload_presigned_urls(
             files=[
                 {
-                    "file_name": "file_name",
+                    "file_name": '"example name"',
                     "file_size": "file_size",
                 }
             ],

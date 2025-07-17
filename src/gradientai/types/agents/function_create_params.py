@@ -11,15 +11,22 @@ __all__ = ["FunctionCreateParams"]
 
 class FunctionCreateParams(TypedDict, total=False):
     body_agent_uuid: Annotated[str, PropertyInfo(alias="agent_uuid")]
+    """Agent id"""
 
     description: str
+    """Function description"""
 
     faas_name: str
+    """The name of the function in the DigitalOcean functions platform"""
 
     faas_namespace: str
+    """The namespace of the function in the DigitalOcean functions platform"""
 
     function_name: str
+    """Function name"""
 
     input_schema: object
+    """Describe the input schema for the function so the agent may call it"""
 
     output_schema: object
+    """Describe the output schema for the function so the agent handle its response"""

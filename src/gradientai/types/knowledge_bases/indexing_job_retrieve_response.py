@@ -10,3 +10,4 @@ __all__ = ["IndexingJobRetrieveResponse"]
 
 class IndexingJobRetrieveResponse(BaseModel):
     job: Optional[APIIndexingJob] = None
+    """IndexingJob description"""

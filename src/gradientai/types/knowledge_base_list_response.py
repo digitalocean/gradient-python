@@ -12,7 +12,10 @@ __all__ = ["KnowledgeBaseListResponse"]
 
 class KnowledgeBaseListResponse(BaseModel):
     knowledge_bases: Optional[List[APIKnowledgeBase]] = None
+    """The knowledge bases"""
 
     links: Optional[APILinks] = None
+    """Links to other pages"""
 
     meta: Optional[APIMeta] = None
+    """Meta information about the data set"""

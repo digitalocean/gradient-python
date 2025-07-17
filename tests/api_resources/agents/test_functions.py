@@ -25,7 +25,7 @@ class TestFunctions:
     @parametrize
     def test_method_create(self, client: GradientAI) -> None:
         function = client.agents.functions.create(
-            path_agent_uuid="agent_uuid",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
@@ -33,12 +33,12 @@ class TestFunctions:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         function = client.agents.functions.create(
-            path_agent_uuid="agent_uuid",
-            body_agent_uuid="agent_uuid",
-            description="description",
-            faas_name="faas_name",
-            faas_namespace="faas_namespace",
-            function_name="function_name",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            description='"My Function Description"',
+            faas_name='"my-function"',
+            faas_namespace='"default"',
+            function_name='"My Function"',
             input_schema={},
             output_schema={},
         )
@@ -48,7 +48,7 @@ class TestFunctions:
     @parametrize
     def test_raw_response_create(self, client: GradientAI) -> None:
         response = client.agents.functions.with_raw_response.create(
-            path_agent_uuid="agent_uuid",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -60,7 +60,7 @@ class TestFunctions:
     @parametrize
     def test_streaming_response_create(self, client: GradientAI) -> None:
         with client.agents.functions.with_streaming_response.create(
-            path_agent_uuid="agent_uuid",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -82,8 +82,8 @@ class TestFunctions:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         function = client.agents.functions.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
@@ -91,14 +91,14 @@ class TestFunctions:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         function = client.agents.functions.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
-            body_agent_uuid="agent_uuid",
-            description="description",
-            faas_name="faas_name",
-            faas_namespace="faas_namespace",
-            function_name="function_name",
-            body_function_uuid="function_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            description='"My Function Description"',
+            faas_name='"my-function"',
+            faas_namespace='"default"',
+            function_name='"My Function"',
+            body_function_uuid='"12345678-1234-1234-1234-123456789012"',
             input_schema={},
             output_schema={},
         )
@@ -108,8 +108,8 @@ class TestFunctions:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.agents.functions.with_raw_response.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -121,8 +121,8 @@ class TestFunctions:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.agents.functions.with_streaming_response.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,22 +137,22 @@ class TestFunctions:
     def test_path_params_update(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
             client.agents.functions.with_raw_response.update(
-                path_function_uuid="function_uuid",
+                path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 path_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_function_uuid` but received ''"):
             client.agents.functions.with_raw_response.update(
                 path_function_uuid="",
-                path_agent_uuid="agent_uuid",
+                path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: GradientAI) -> None:
         function = client.agents.functions.delete(
-            function_uuid="function_uuid",
-            agent_uuid="agent_uuid",
+            function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(FunctionDeleteResponse, function, path=["response"])
 
@@ -160,8 +160,8 @@ class TestFunctions:
     @parametrize
     def test_raw_response_delete(self, client: GradientAI) -> None:
         response = client.agents.functions.with_raw_response.delete(
-            function_uuid="function_uuid",
-            agent_uuid="agent_uuid",
+            function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -173,8 +173,8 @@ class TestFunctions:
     @parametrize
     def test_streaming_response_delete(self, client: GradientAI) -> None:
         with client.agents.functions.with_streaming_response.delete(
-            function_uuid="function_uuid",
-            agent_uuid="agent_uuid",
+            function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -189,14 +189,14 @@ class TestFunctions:
     def test_path_params_delete(self, client: GradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             client.agents.functions.with_raw_response.delete(
-                function_uuid="function_uuid",
+                function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `function_uuid` but received ''"):
             client.agents.functions.with_raw_response.delete(
                 function_uuid="",
-                agent_uuid="agent_uuid",
+                agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
 
@@ -209,7 +209,7 @@ class TestAsyncFunctions:
     @parametrize
     async def test_method_create(self, async_client: AsyncGradientAI) -> None:
         function = await async_client.agents.functions.create(
-            path_agent_uuid="agent_uuid",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
@@ -217,12 +217,12 @@ class TestAsyncFunctions:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         function = await async_client.agents.functions.create(
-            path_agent_uuid="agent_uuid",
-            body_agent_uuid="agent_uuid",
-            description="description",
-            faas_name="faas_name",
-            faas_namespace="faas_namespace",
-            function_name="function_name",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            description='"My Function Description"',
+            faas_name='"my-function"',
+            faas_namespace='"default"',
+            function_name='"My Function"',
             input_schema={},
             output_schema={},
         )
@@ -232,7 +232,7 @@ class TestAsyncFunctions:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.functions.with_raw_response.create(
-            path_agent_uuid="agent_uuid",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -244,7 +244,7 @@ class TestAsyncFunctions:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.functions.with_streaming_response.create(
-            path_agent_uuid="agent_uuid",
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -266,8 +266,8 @@ class TestAsyncFunctions:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         function = await async_client.agents.functions.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
@@ -275,14 +275,14 @@ class TestAsyncFunctions:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         function = await async_client.agents.functions.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
-            body_agent_uuid="agent_uuid",
-            description="description",
-            faas_name="faas_name",
-            faas_namespace="faas_namespace",
-            function_name="function_name",
-            body_function_uuid="function_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_agent_uuid='"12345678-1234-1234-1234-123456789012"',
+            description='"My Function Description"',
+            faas_name='"my-function"',
+            faas_namespace='"default"',
+            function_name='"My Function"',
+            body_function_uuid='"12345678-1234-1234-1234-123456789012"',
             input_schema={},
             output_schema={},
         )
@@ -292,8 +292,8 @@ class TestAsyncFunctions:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.functions.with_raw_response.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -305,8 +305,8 @@ class TestAsyncFunctions:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.functions.with_streaming_response.update(
-            path_function_uuid="function_uuid",
-            path_agent_uuid="agent_uuid",
+            path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -321,22 +321,22 @@ class TestAsyncFunctions:
     async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
             await async_client.agents.functions.with_raw_response.update(
-                path_function_uuid="function_uuid",
+                path_function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 path_agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_function_uuid` but received ''"):
             await async_client.agents.functions.with_raw_response.update(
                 path_function_uuid="",
-                path_agent_uuid="agent_uuid",
+                path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
     @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
         function = await async_client.agents.functions.delete(
-            function_uuid="function_uuid",
-            agent_uuid="agent_uuid",
+            function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(FunctionDeleteResponse, function, path=["response"])
 
@@ -344,8 +344,8 @@ class TestAsyncFunctions:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.agents.functions.with_raw_response.delete(
-            function_uuid="function_uuid",
-            agent_uuid="agent_uuid",
+            function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -357,8 +357,8 @@ class TestAsyncFunctions:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
         async with async_client.agents.functions.with_streaming_response.delete(
-            function_uuid="function_uuid",
-            agent_uuid="agent_uuid",
+            function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -373,12 +373,12 @@ class TestAsyncFunctions:
     async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
             await async_client.agents.functions.with_raw_response.delete(
-                function_uuid="function_uuid",
+                function_uuid='"123e4567-e89b-12d3-a456-426614174000"',
                 agent_uuid="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `function_uuid` but received ''"):
             await async_client.agents.functions.with_raw_response.delete(
                 function_uuid="",
-                agent_uuid="agent_uuid",
+                agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )

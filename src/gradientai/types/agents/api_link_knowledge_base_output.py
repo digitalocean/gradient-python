@@ -11,6 +11,7 @@ __all__ = ["APILinkKnowledgeBaseOutput"]
 
 class APILinkKnowledgeBaseOutput(BaseModel):
     agent: Optional["APIAgent"] = None
+    """An Agent"""
 
 
 from ..api_agent import APIAgent

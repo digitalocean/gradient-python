@@ -11,6 +11,7 @@ __all__ = ["RouteViewResponse"]
 
 class RouteViewResponse(BaseModel):
     children: Optional[List["APIAgent"]] = None
+    """Child agents"""
 
 
 from ..api_agent import APIAgent

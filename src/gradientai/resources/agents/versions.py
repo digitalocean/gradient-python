@@ -60,6 +60,10 @@ class VersionsResource(SyncAPIResource):
         `/v2/gen-ai/agents/{uuid}/versions`.
 
         Args:
+          body_uuid: Agent unique identifier
+
+          version_hash: Unique identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -105,9 +109,9 @@ class VersionsResource(SyncAPIResource):
         `/v2/gen-ai/agents/{uuid}/versions`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 
@@ -178,6 +182,10 @@ class AsyncVersionsResource(AsyncAPIResource):
         `/v2/gen-ai/agents/{uuid}/versions`.
 
         Args:
+          body_uuid: Agent unique identifier
+
+          version_hash: Unique identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -223,9 +231,9 @@ class AsyncVersionsResource(AsyncAPIResource):
         `/v2/gen-ai/agents/{uuid}/versions`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 

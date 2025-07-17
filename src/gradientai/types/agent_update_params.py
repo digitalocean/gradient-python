@@ -13,8 +13,13 @@ __all__ = ["AgentUpdateParams"]
 
 class AgentUpdateParams(TypedDict, total=False):
     anthropic_key_uuid: str
+    """Optional anthropic key uuid for use with anthropic models"""
+
+    conversation_logs_enabled: bool
+    """Optional update of conversation logs enabled"""
 
     description: str
+    """Agent description"""
 
     instruction: str
     """Agent instruction.
@@ -25,6 +30,7 @@ class AgentUpdateParams(TypedDict, total=False):
     """
 
     k: int
+    """How many results should be considered from an attached knowledge base"""
 
     max_tokens: int
     """
@@ -37,16 +43,27 @@ class AgentUpdateParams(TypedDict, total=False):
     """Identifier for the foundation model."""
 
     name: str
+    """Agent name"""
 
     openai_key_uuid: Annotated[str, PropertyInfo(alias="open_ai_key_uuid")]
+    """Optional OpenAI key uuid for use with OpenAI models"""
 
     project_id: str
+    """The id of the DigitalOcean project this agent will belong to"""
 
     provide_citations: bool
 
     retrieval_method: APIRetrievalMethod
+    """
+    - RETRIEVAL_METHOD_UNKNOWN: The retrieval method is unknown
+    - RETRIEVAL_METHOD_REWRITE: The retrieval method is rewrite
+    - RETRIEVAL_METHOD_STEP_BACK: The retrieval method is step back
+    - RETRIEVAL_METHOD_SUB_QUERIES: The retrieval method is sub queries
+    - RETRIEVAL_METHOD_NONE: The retrieval method is none
+    """
 
     tags: List[str]
+    """A set of abitrary tags to organize your agent"""
 
     temperature: float
     """Controls the model’s creativity, specified as a number between 0 and 1.
@@ -63,3 +80,4 @@ class AgentUpdateParams(TypedDict, total=False):
     """
 
     body_uuid: Annotated[str, PropertyInfo(alias="uuid")]
+    """Unique agent id"""

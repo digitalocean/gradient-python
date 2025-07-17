@@ -68,6 +68,10 @@ class AnthropicResource(SyncAPIResource):
         `/v2/gen-ai/anthropic/keys`.
 
         Args:
+          api_key: Anthropic API key
+
+          name: Name of the key
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -148,6 +152,12 @@ class AnthropicResource(SyncAPIResource):
         `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
 
         Args:
+          api_key: Anthropic API key
+
+          body_api_key_uuid: API key ID
+
+          name: Name of the key
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,9 +203,9 @@ class AnthropicResource(SyncAPIResource):
         `/v2/gen-ai/anthropic/keys`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 
@@ -278,9 +288,9 @@ class AnthropicResource(SyncAPIResource):
         List Agents by Anthropic Key.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 
@@ -350,6 +360,10 @@ class AsyncAnthropicResource(AsyncAPIResource):
         `/v2/gen-ai/anthropic/keys`.
 
         Args:
+          api_key: Anthropic API key
+
+          name: Name of the key
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -430,6 +444,12 @@ class AsyncAnthropicResource(AsyncAPIResource):
         `/v2/gen-ai/anthropic/keys/{api_key_uuid}`.
 
         Args:
+          api_key: Anthropic API key
+
+          body_api_key_uuid: API key ID
+
+          name: Name of the key
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -475,9 +495,9 @@ class AsyncAnthropicResource(AsyncAPIResource):
         `/v2/gen-ai/anthropic/keys`.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 
@@ -560,9 +580,9 @@ class AsyncAnthropicResource(AsyncAPIResource):
         List Agents by Anthropic Key.
 
         Args:
-          page: page number.
+          page: Page number.
 
-          per_page: items per page.
+          per_page: Items per page.
 
           extra_headers: Send extra headers
 

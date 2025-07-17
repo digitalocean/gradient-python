@@ -15,8 +15,10 @@ class AgentListResponse(BaseModel):
     agents: Optional[List["APIAgent"]] = None
 
     links: Optional[APILinks] = None
+    """Links to other pages"""
 
     meta: Optional[APIMeta] = None
+    """Meta information about the data set"""
 
 
 from ....api_agent import APIAgent

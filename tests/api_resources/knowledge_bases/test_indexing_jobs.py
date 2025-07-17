@@ -33,8 +33,8 @@ class TestIndexingJobs:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.create(
-            data_source_uuids=["string"],
-            knowledge_base_uuid="knowledge_base_uuid",
+            data_source_uuids=["example string"],
+            knowledge_base_uuid='"12345678-1234-1234-1234-123456789012"',
         )
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
@@ -185,7 +185,7 @@ class TestIndexingJobs:
     @parametrize
     def test_method_update_cancel(self, client: GradientAI) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.update_cancel(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
@@ -193,8 +193,8 @@ class TestIndexingJobs:
     @parametrize
     def test_method_update_cancel_with_all_params(self, client: GradientAI) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.update_cancel(
-            path_uuid="uuid",
-            body_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_uuid='"12345678-1234-1234-1234-123456789012"',
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
@@ -202,7 +202,7 @@ class TestIndexingJobs:
     @parametrize
     def test_raw_response_update_cancel(self, client: GradientAI) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.update_cancel(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -214,7 +214,7 @@ class TestIndexingJobs:
     @parametrize
     def test_streaming_response_update_cancel(self, client: GradientAI) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.update_cancel(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,8 +248,8 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.create(
-            data_source_uuids=["string"],
-            knowledge_base_uuid="knowledge_base_uuid",
+            data_source_uuids=["example string"],
+            knowledge_base_uuid='"12345678-1234-1234-1234-123456789012"',
         )
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
@@ -400,7 +400,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_method_update_cancel(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.update_cancel(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
@@ -408,8 +408,8 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_method_update_cancel_with_all_params(self, async_client: AsyncGradientAI) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.update_cancel(
-            path_uuid="uuid",
-            body_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_uuid='"12345678-1234-1234-1234-123456789012"',
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
@@ -417,7 +417,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_raw_response_update_cancel(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.update_cancel(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -429,7 +429,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_streaming_response_update_cancel(self, async_client: AsyncGradientAI) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.update_cancel(
-            path_uuid="uuid",
+            path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -32,12 +32,13 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, inference, knowledge_bases
+    from .resources import chat, agents, models, regions, inference, gpu_droplets, knowledge_bases
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
+    from .resources.gpu_droplets.gpu_droplets import GPUDropletsResource, AsyncGPUDropletsResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
 
 __all__ = [
@@ -160,6 +161,12 @@ class GradientAI(SyncAPIClient):
         from .resources.models import ModelsResource
 
         return ModelsResource(self)
+
+    @cached_property
+    def gpu_droplets(self) -> GPUDropletsResource:
+        from .resources.gpu_droplets import GPUDropletsResource
+
+        return GPUDropletsResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientAIWithRawResponse:
@@ -405,6 +412,12 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncModelsResource(self)
 
     @cached_property
+    def gpu_droplets(self) -> AsyncGPUDropletsResource:
+        from .resources.gpu_droplets import AsyncGPUDropletsResource
+
+        return AsyncGPUDropletsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientAIWithRawResponse:
         return AsyncGradientAIWithRawResponse(self)
 
@@ -580,6 +593,12 @@ class GradientAIWithRawResponse:
 
         return ModelsResourceWithRawResponse(self._client.models)
 
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
+        from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
+
+        return GPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
+
 
 class AsyncGradientAIWithRawResponse:
     _client: AsyncGradientAI
@@ -622,6 +641,12 @@ class AsyncGradientAIWithRawResponse:
         from .resources.models import AsyncModelsResourceWithRawResponse
 
         return AsyncModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
+        from .resources.gpu_droplets import AsyncGPUDropletsResourceWithRawResponse
+
+        return AsyncGPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
 
 
 class GradientAIWithStreamedResponse:
@@ -666,6 +691,12 @@ class GradientAIWithStreamedResponse:
 
         return ModelsResourceWithStreamingResponse(self._client.models)
 
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
+        from .resources.gpu_droplets import GPUDropletsResourceWithStreamingResponse
+
+        return GPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
+
 
 class AsyncGradientAIWithStreamedResponse:
     _client: AsyncGradientAI
@@ -708,6 +739,12 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.models import AsyncModelsResourceWithStreamingResponse
 
         return AsyncModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
+        from .resources.gpu_droplets import AsyncGPUDropletsResourceWithStreamingResponse
+
+        return AsyncGPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
 
 
 Client = GradientAI

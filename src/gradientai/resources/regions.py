@@ -44,8 +44,8 @@ class RegionsResource(SyncAPIResource):
     def list(
         self,
         *,
-        serves_batch: bool | NotGiven = NOT_GIVEN,
-        serves_inference: bool | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -54,12 +54,15 @@ class RegionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegionListResponse:
         """
-        To list all datacenter regions, send a GET request to `/v2/gen-ai/regions`.
+        To list all of the regions that are available, send a GET request to
+        `/v2/regions`. The response will be a JSON object with a key called `regions`.
+        The value of this will be an array of `region` objects, each of which will
+        contain the standard region attributes.
 
         Args:
-          serves_batch: include datacenters that are capable of running batch jobs.
+          page: Which 'page' of paginated results to return.
 
-          serves_inference: include datacenters that serve inference.
+          per_page: Number of items returned per page
 
           extra_headers: Send extra headers
 
@@ -70,9 +73,7 @@ class RegionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/regions"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/regions",
+            "/v2/regions" if self._client._base_url_overridden else "https://api.digitalocean.com/v2/regions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -80,8 +81,8 @@ class RegionsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "serves_batch": serves_batch,
-                        "serves_inference": serves_inference,
+                        "page": page,
+                        "per_page": per_page,
                     },
                     region_list_params.RegionListParams,
                 ),
@@ -113,8 +114,8 @@ class AsyncRegionsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        serves_batch: bool | NotGiven = NOT_GIVEN,
-        serves_inference: bool | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,12 +124,15 @@ class AsyncRegionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RegionListResponse:
         """
-        To list all datacenter regions, send a GET request to `/v2/gen-ai/regions`.
+        To list all of the regions that are available, send a GET request to
+        `/v2/regions`. The response will be a JSON object with a key called `regions`.
+        The value of this will be an array of `region` objects, each of which will
+        contain the standard region attributes.
 
         Args:
-          serves_batch: include datacenters that are capable of running batch jobs.
+          page: Which 'page' of paginated results to return.
 
-          serves_inference: include datacenters that serve inference.
+          per_page: Number of items returned per page
 
           extra_headers: Send extra headers
 
@@ -139,9 +143,7 @@ class AsyncRegionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/regions"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/regions",
+            "/v2/regions" if self._client._base_url_overridden else "https://api.digitalocean.com/v2/regions",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,8 +151,8 @@ class AsyncRegionsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "serves_batch": serves_batch,
-                        "serves_inference": serves_inference,
+                        "page": page,
+                        "per_page": per_page,
                     },
                     region_list_params.RegionListParams,
                 ),

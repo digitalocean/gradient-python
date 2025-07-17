@@ -9,3 +9,4 @@ __all__ = ["WorkspaceDeleteResponse"]
 
 class WorkspaceDeleteResponse(BaseModel):
     workspace_uuid: Optional[str] = None
+    """Workspace"""

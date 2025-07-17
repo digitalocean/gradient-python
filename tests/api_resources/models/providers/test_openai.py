@@ -34,8 +34,8 @@ class TestOpenAI:
     @parametrize
     def test_method_create_with_all_params(self, client: GradientAI) -> None:
         openai = client.models.providers.openai.create(
-            api_key="api_key",
-            name="name",
+            api_key='"sk-proj--123456789098765432123456789"',
+            name='"Production Key"',
         )
         assert_matches_type(OpenAICreateResponse, openai, path=["response"])
 
@@ -107,7 +107,7 @@ class TestOpenAI:
     @parametrize
     def test_method_update(self, client: GradientAI) -> None:
         openai = client.models.providers.openai.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIUpdateResponse, openai, path=["response"])
 
@@ -115,10 +115,10 @@ class TestOpenAI:
     @parametrize
     def test_method_update_with_all_params(self, client: GradientAI) -> None:
         openai = client.models.providers.openai.update(
-            path_api_key_uuid="api_key_uuid",
-            api_key="api_key",
-            body_api_key_uuid="api_key_uuid",
-            name="name",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            api_key='"sk-ant-12345678901234567890123456789012"',
+            body_api_key_uuid='"12345678-1234-1234-1234-123456789012"',
+            name='"Production Key"',
         )
         assert_matches_type(OpenAIUpdateResponse, openai, path=["response"])
 
@@ -126,7 +126,7 @@ class TestOpenAI:
     @parametrize
     def test_raw_response_update(self, client: GradientAI) -> None:
         response = client.models.providers.openai.with_raw_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -138,7 +138,7 @@ class TestOpenAI:
     @parametrize
     def test_streaming_response_update(self, client: GradientAI) -> None:
         with client.models.providers.openai.with_streaming_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -239,7 +239,7 @@ class TestOpenAI:
     @parametrize
     def test_method_retrieve_agents(self, client: GradientAI) -> None:
         openai = client.models.providers.openai.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIRetrieveAgentsResponse, openai, path=["response"])
 
@@ -247,7 +247,7 @@ class TestOpenAI:
     @parametrize
     def test_method_retrieve_agents_with_all_params(self, client: GradientAI) -> None:
         openai = client.models.providers.openai.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
             per_page=0,
         )
@@ -257,7 +257,7 @@ class TestOpenAI:
     @parametrize
     def test_raw_response_retrieve_agents(self, client: GradientAI) -> None:
         response = client.models.providers.openai.with_raw_response.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -269,7 +269,7 @@ class TestOpenAI:
     @parametrize
     def test_streaming_response_retrieve_agents(self, client: GradientAI) -> None:
         with client.models.providers.openai.with_streaming_response.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,8 +303,8 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
         openai = await async_client.models.providers.openai.create(
-            api_key="api_key",
-            name="name",
+            api_key='"sk-proj--123456789098765432123456789"',
+            name='"Production Key"',
         )
         assert_matches_type(OpenAICreateResponse, openai, path=["response"])
 
@@ -376,7 +376,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_update(self, async_client: AsyncGradientAI) -> None:
         openai = await async_client.models.providers.openai.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIUpdateResponse, openai, path=["response"])
 
@@ -384,10 +384,10 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
         openai = await async_client.models.providers.openai.update(
-            path_api_key_uuid="api_key_uuid",
-            api_key="api_key",
-            body_api_key_uuid="api_key_uuid",
-            name="name",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            api_key='"sk-ant-12345678901234567890123456789012"',
+            body_api_key_uuid='"12345678-1234-1234-1234-123456789012"',
+            name='"Production Key"',
         )
         assert_matches_type(OpenAIUpdateResponse, openai, path=["response"])
 
@@ -395,7 +395,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.models.providers.openai.with_raw_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -407,7 +407,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
         async with async_client.models.providers.openai.with_streaming_response.update(
-            path_api_key_uuid="api_key_uuid",
+            path_api_key_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -508,7 +508,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_retrieve_agents(self, async_client: AsyncGradientAI) -> None:
         openai = await async_client.models.providers.openai.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIRetrieveAgentsResponse, openai, path=["response"])
 
@@ -516,7 +516,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_retrieve_agents_with_all_params(self, async_client: AsyncGradientAI) -> None:
         openai = await async_client.models.providers.openai.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
             per_page=0,
         )
@@ -526,7 +526,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_raw_response_retrieve_agents(self, async_client: AsyncGradientAI) -> None:
         response = await async_client.models.providers.openai.with_raw_response.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -538,7 +538,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_streaming_response_retrieve_agents(self, async_client: AsyncGradientAI) -> None:
         async with async_client.models.providers.openai.with_streaming_response.retrieve_agents(
-            uuid="uuid",
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

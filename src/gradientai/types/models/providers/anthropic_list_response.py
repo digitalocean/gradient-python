@@ -12,7 +12,10 @@ __all__ = ["AnthropicListResponse"]
 
 class AnthropicListResponse(BaseModel):
     api_key_infos: Optional[List[APIAnthropicAPIKeyInfo]] = None
+    """Api key infos"""
 
     links: Optional[APILinks] = None
+    """Links to other pages"""
 
     meta: Optional[APIMeta] = None
+    """Meta information about the data set"""

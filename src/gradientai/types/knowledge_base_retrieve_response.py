@@ -28,3 +28,4 @@ class KnowledgeBaseRetrieveResponse(BaseModel):
     ] = None
 
     knowledge_base: Optional[APIKnowledgeBase] = None
+    """Knowledgebase Description"""

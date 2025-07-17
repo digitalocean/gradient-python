@@ -9,5 +9,7 @@ __all__ = ["AnthropicCreateParams"]
 
 class AnthropicCreateParams(TypedDict, total=False):
     api_key: str
+    """Anthropic API key"""
 
     name: str
+    """Name of the key"""
