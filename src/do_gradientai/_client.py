@@ -61,9 +61,18 @@ if TYPE_CHECKING:
     from .resources.droplets.droplets import DropletsResource, AsyncDropletsResource
     from .resources.firewalls.firewalls import FirewallsResource, AsyncFirewallsResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
-    from .resources.floating_ips.floating_ips import FloatingIPsResource, AsyncFloatingIPsResource
-    from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
-    from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
+    from .resources.floating_ips.floating_ips import (
+        FloatingIPsResource,
+        AsyncFloatingIPsResource,
+    )
+    from .resources.load_balancers.load_balancers import (
+        LoadBalancersResource,
+        AsyncLoadBalancersResource,
+    )
+    from .resources.knowledge_bases.knowledge_bases import (
+        KnowledgeBasesResource,
+        AsyncKnowledgeBasesResource,
+    )
 
 __all__ = [
     "Timeout",
@@ -82,7 +91,7 @@ class GradientAI(SyncAPIClient):
     api_key: str | None
     inference_key: str | None
     agent_key: str | None
-    agent_domain: str | None
+    _agent_endpoint: str | None
 
     def __init__(
         self,
@@ -90,7 +99,7 @@ class GradientAI(SyncAPIClient):
         api_key: str | None = None,
         inference_key: str | None = None,
         agent_key: str | None = None,
-        agent_domain: str | None = None,
+        agent_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -129,7 +138,7 @@ class GradientAI(SyncAPIClient):
             agent_key = os.environ.get("GRADIENTAI_AGENT_KEY")
         self.agent_key = agent_key
 
-        self.agent_domain = agent_domain
+        self._agent_endpoint = agent_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
@@ -149,6 +158,19 @@ class GradientAI(SyncAPIClient):
         )
 
         self._default_stream_cls = Stream
+
+    @cached_property
+    def agent_endpoint(self) -> str:
+        """
+        Returns the agent endpoint URL.
+        """
+        if self._agent_endpoint is None:
+            raise ValueError(
+                "Agent endpoint is not set. Please provide an agent endpoint when initializing the client."
+            )
+        if self._agent_endpoint.startswith("https://"):
+            return self._agent_endpoint
+        return "https://" + self._agent_endpoint
 
     @cached_property
     def agents(self) -> AgentsResource:
@@ -272,7 +294,9 @@ class GradientAI(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.api_key or self.agent_key or self.inference_key) and headers.get("Authorization"):
+        if (self.api_key or self.agent_key or self.inference_key) and headers.get(
+            "Authorization"
+        ):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
@@ -287,7 +311,7 @@ class GradientAI(SyncAPIClient):
         api_key: str | None = None,
         inference_key: str | None = None,
         agent_key: str | None = None,
-        agent_domain: str | None = None,
+        agent_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -302,10 +326,14 @@ class GradientAI(SyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
+            )
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_query` and `set_default_query` arguments are mutually exclusive"
+            )
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -324,7 +352,7 @@ class GradientAI(SyncAPIClient):
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
             agent_key=agent_key or self.agent_key,
-            agent_domain=agent_domain or self.agent_domain,
+            agent_endpoint=agent_endpoint or self._agent_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -352,10 +380,14 @@ class GradientAI(SyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
+            return _exceptions.AuthenticationError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
+            return _exceptions.PermissionDeniedError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -364,13 +396,17 @@ class GradientAI(SyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
+            return _exceptions.UnprocessableEntityError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(err_msg, response=response, body=body)
+            return _exceptions.InternalServerError(
+                err_msg, response=response, body=body
+            )
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -379,7 +415,7 @@ class AsyncGradientAI(AsyncAPIClient):
     api_key: str | None
     inference_key: str | None
     agent_key: str | None
-    agent_domain: str | None
+    _agent_endpoint: str | None
 
     def __init__(
         self,
@@ -387,7 +423,7 @@ class AsyncGradientAI(AsyncAPIClient):
         api_key: str | None = None,
         inference_key: str | None = None,
         agent_key: str | None = None,
-        agent_domain: str | None = None,
+        agent_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -426,7 +462,7 @@ class AsyncGradientAI(AsyncAPIClient):
             agent_key = os.environ.get("GRADIENTAI_AGENT_KEY")
         self.agent_key = agent_key
 
-        self.agent_domain = agent_domain
+        self._agent_endpoint = agent_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_AI_BASE_URL")
@@ -446,6 +482,19 @@ class AsyncGradientAI(AsyncAPIClient):
         )
 
         self._default_stream_cls = AsyncStream
+
+    @cached_property
+    def agent_endpoint(self) -> str:
+        """
+        Returns the agent endpoint URL.
+        """
+        if self._agent_endpoint is None:
+            raise ValueError(
+                "Agent endpoint is not set. Please provide an agent endpoint when initializing the client."
+            )
+        if self._agent_endpoint.startswith("https://"):
+            return self._agent_endpoint
+        return "https://" + self._agent_endpoint
 
     @cached_property
     def agents(self) -> AsyncAgentsResource:
@@ -569,7 +618,9 @@ class AsyncGradientAI(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.api_key or self.agent_key or self.inference_key) and headers.get("Authorization"):
+        if (self.api_key or self.agent_key or self.inference_key) and headers.get(
+            "Authorization"
+        ):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
@@ -584,7 +635,7 @@ class AsyncGradientAI(AsyncAPIClient):
         api_key: str | None = None,
         inference_key: str | None = None,
         agent_key: str | None = None,
-        agent_domain: str | None = None,
+        agent_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -599,10 +650,14 @@ class AsyncGradientAI(AsyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
+            )
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_query` and `set_default_query` arguments are mutually exclusive"
+            )
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -621,7 +676,7 @@ class AsyncGradientAI(AsyncAPIClient):
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
             agent_key=agent_key or self.agent_key,
-            agent_domain=agent_domain or self.agent_domain,
+            agent_endpoint=agent_endpoint or self._agent_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -649,10 +704,14 @@ class AsyncGradientAI(AsyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
+            return _exceptions.AuthenticationError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
+            return _exceptions.PermissionDeniedError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -661,13 +720,17 @@ class AsyncGradientAI(AsyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
+            return _exceptions.UnprocessableEntityError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(err_msg, response=response, body=body)
+            return _exceptions.InternalServerError(
+                err_msg, response=response, body=body
+            )
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -793,8 +856,12 @@ class AsyncGradientAIWithRawResponse:
         return AsyncRegionsResourceWithRawResponse(self._client.regions)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
-        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
+    def knowledge_bases(
+        self,
+    ) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import (
+            AsyncKnowledgeBasesResourceWithRawResponse,
+        )
 
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
@@ -835,7 +902,9 @@ class AsyncGradientAIWithRawResponse:
         return AsyncImagesResourceWithRawResponse(self._client.images)
 
     @cached_property
-    def load_balancers(self) -> load_balancers.AsyncLoadBalancersResourceWithRawResponse:
+    def load_balancers(
+        self,
+    ) -> load_balancers.AsyncLoadBalancersResourceWithRawResponse:
         from .resources.load_balancers import AsyncLoadBalancersResourceWithRawResponse
 
         return AsyncLoadBalancersResourceWithRawResponse(self._client.load_balancers)
@@ -890,8 +959,12 @@ class GradientAIWithStreamedResponse:
         return RegionsResourceWithStreamingResponse(self._client.regions)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
-        from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
+    def knowledge_bases(
+        self,
+    ) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import (
+            KnowledgeBasesResourceWithStreamingResponse,
+        )
 
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
@@ -932,7 +1005,9 @@ class GradientAIWithStreamedResponse:
         return ImagesResourceWithStreamingResponse(self._client.images)
 
     @cached_property
-    def load_balancers(self) -> load_balancers.LoadBalancersResourceWithStreamingResponse:
+    def load_balancers(
+        self,
+    ) -> load_balancers.LoadBalancersResourceWithStreamingResponse:
         from .resources.load_balancers import LoadBalancersResourceWithStreamingResponse
 
         return LoadBalancersResourceWithStreamingResponse(self._client.load_balancers)
@@ -987,10 +1062,16 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
-        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
+    def knowledge_bases(
+        self,
+    ) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import (
+            AsyncKnowledgeBasesResourceWithStreamingResponse,
+        )
 
-        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(
+            self._client.knowledge_bases
+        )
 
     @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithStreamingResponse:
@@ -1017,8 +1098,12 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncFirewallsResourceWithStreamingResponse(self._client.firewalls)
 
     @cached_property
-    def floating_ips(self) -> floating_ips.AsyncFloatingIPsResourceWithStreamingResponse:
-        from .resources.floating_ips import AsyncFloatingIPsResourceWithStreamingResponse
+    def floating_ips(
+        self,
+    ) -> floating_ips.AsyncFloatingIPsResourceWithStreamingResponse:
+        from .resources.floating_ips import (
+            AsyncFloatingIPsResourceWithStreamingResponse,
+        )
 
         return AsyncFloatingIPsResourceWithStreamingResponse(self._client.floating_ips)
 
@@ -1029,10 +1114,16 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncImagesResourceWithStreamingResponse(self._client.images)
 
     @cached_property
-    def load_balancers(self) -> load_balancers.AsyncLoadBalancersResourceWithStreamingResponse:
-        from .resources.load_balancers import AsyncLoadBalancersResourceWithStreamingResponse
+    def load_balancers(
+        self,
+    ) -> load_balancers.AsyncLoadBalancersResourceWithStreamingResponse:
+        from .resources.load_balancers import (
+            AsyncLoadBalancersResourceWithStreamingResponse,
+        )
 
-        return AsyncLoadBalancersResourceWithStreamingResponse(self._client.load_balancers)
+        return AsyncLoadBalancersResourceWithStreamingResponse(
+            self._client.load_balancers
+        )
 
     @cached_property
     def sizes(self) -> sizes.AsyncSizesResourceWithStreamingResponse:

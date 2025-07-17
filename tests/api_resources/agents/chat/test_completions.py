@@ -15,13 +15,14 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestCompletions:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "client", [False, True], indirect=True, ids=["loose", "strict"]
+    )
 
     @pytest.mark.skip()
     @parametrize
     def test_method_create_overload_1(self, client: GradientAI) -> None:
         completion = client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -36,7 +37,6 @@ class TestCompletions:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: GradientAI) -> None:
         completion = client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -77,7 +77,6 @@ class TestCompletions:
     @parametrize
     def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
         response = client.agents.chat.completions.with_raw_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -96,7 +95,6 @@ class TestCompletions:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
         with client.agents.chat.completions.with_streaming_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -117,7 +115,6 @@ class TestCompletions:
     @parametrize
     def test_method_create_overload_2(self, client: GradientAI) -> None:
         completion_stream = client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -133,7 +130,6 @@ class TestCompletions:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: GradientAI) -> None:
         completion_stream = client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -174,7 +170,6 @@ class TestCompletions:
     @parametrize
     def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
         response = client.agents.chat.completions.with_raw_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -193,7 +188,6 @@ class TestCompletions:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
         with client.agents.chat.completions.with_streaming_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -214,14 +208,18 @@ class TestCompletions:
 
 class TestAsyncCompletions:
     parametrize = pytest.mark.parametrize(
-        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+        "async_client",
+        [False, True, {"http_client": "aiohttp"}],
+        indirect=True,
+        ids=["loose", "strict", "aiohttp"],
     )
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion = await async_client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -234,9 +232,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion = await async_client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -275,9 +274,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         response = await async_client.agents.chat.completions.with_raw_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -294,9 +294,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         async with async_client.agents.chat.completions.with_streaming_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -315,9 +316,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion_stream = await async_client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -331,9 +333,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         completion_stream = await async_client.agents.chat.completions.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -372,9 +375,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         response = await async_client.agents.chat.completions.with_raw_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
@@ -391,9 +395,10 @@ class TestAsyncCompletions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_2(
+        self, async_client: AsyncGradientAI
+    ) -> None:
         async with async_client.agents.chat.completions.with_streaming_response.create(
-            agent_domain="inference.do-ai.run",
             messages=[
                 {
                     "content": "string",
