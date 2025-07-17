@@ -50,7 +50,6 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -63,7 +62,9 @@ class CompletionsResource(SyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -81,8 +82,6 @@ class CompletionsResource(SyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
-          agent_domain: The agent domain to use for the request.
-
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -181,7 +180,6 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: Literal[True],
@@ -194,7 +192,9 @@ class CompletionsResource(SyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -212,8 +212,6 @@ class CompletionsResource(SyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
-          agent_domain: The agent domain to use for the request.
-
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -312,7 +310,6 @@ class CompletionsResource(SyncAPIResource):
     def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: bool,
@@ -325,7 +322,9 @@ class CompletionsResource(SyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -343,8 +342,6 @@ class CompletionsResource(SyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
-          agent_domain: The agent domain to use for the request.
-
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -439,11 +436,13 @@ class CompletionsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["agent_domain", "messages", "model"], ["agent_domain", "messages", "model", "stream"])
+    @required_args(
+        ["messages", "model"],
+        ["messages", "model", "stream"],
+    )
     def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -456,7 +455,9 @@ class CompletionsResource(SyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -479,9 +480,11 @@ class CompletionsResource(SyncAPIResource):
         headers = {"Authorization": f"Bearer {self._client.agent_key}", **headers}
 
         return self._post(
-            "/chat/completions?agent=true"
-            if self._client._base_url_overridden
-            else f"https://{agent_domain}/api/v1/chat/completions?agent=true",
+            (
+                "/chat/completions?agent=true"
+                if self._client._base_url_overridden
+                else f"{self._client.agent_endpoint}/api/v1/chat/completions?agent=true"
+            ),
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -504,12 +507,17 @@ class CompletionsResource(SyncAPIResource):
                     "top_p": top_p,
                     "user": user,
                 },
-                completion_create_params.CompletionCreateParamsStreaming
-                if stream
-                else completion_create_params.CompletionCreateParamsNonStreaming,
+                (
+                    completion_create_params.CompletionCreateParamsStreaming
+                    if stream
+                    else completion_create_params.CompletionCreateParamsNonStreaming
+                ),
             ),
             options=make_request_options(
-                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=CompletionCreateResponse,
             stream=stream or False,
@@ -541,7 +549,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -554,7 +561,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -572,8 +581,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
-          agent_domain: The agent domain to use for the request.
-
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -672,7 +679,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: Literal[True],
@@ -685,7 +691,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -703,8 +711,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
-          agent_domain: The agent domain to use for the request.
-
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -803,7 +809,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         stream: bool,
@@ -816,7 +821,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -834,8 +841,6 @@ class AsyncCompletionsResource(AsyncAPIResource):
         Creates a model response for the given chat conversation.
 
         Args:
-          agent_domain: The agent domain to use for the request.
-
           messages: A list of messages comprising the conversation so far.
 
           model: Model ID used to generate the response.
@@ -930,11 +935,10 @@ class AsyncCompletionsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["agent_domain", "messages", "model"], ["agent_domain", "messages", "model", "stream"])
+    @required_args(["messages", "model"], ["messages", "model", "stream"])
     async def create(
         self,
         *,
-        agent_domain: str,
         messages: Iterable[completion_create_params.Message],
         model: str,
         frequency_penalty: Optional[float] | NotGiven = NOT_GIVEN,
@@ -947,7 +951,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: Optional[completion_create_params.StreamOptions] | NotGiven = NOT_GIVEN,
+        stream_options: (
+            Optional[completion_create_params.StreamOptions] | NotGiven
+        ) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -970,9 +976,11 @@ class AsyncCompletionsResource(AsyncAPIResource):
         headers = {"Authorization": f"Bearer {self._client.agent_key}", **headers}
 
         return await self._post(
-            "/chat/completions?agent=true"
-            if self._client._base_url_overridden
-            else f"https://{agent_domain}/api/v1/chat/completions?agent=true",
+            (
+                "/chat/completions?agent=true"
+                if self._client._base_url_overridden
+                else f"{self._client.agent_endpoint}/api/v1/chat/completions?agent=true"
+            ),
             body=await async_maybe_transform(
                 {
                     "messages": messages,
@@ -995,12 +1003,17 @@ class AsyncCompletionsResource(AsyncAPIResource):
                     "top_p": top_p,
                     "user": user,
                 },
-                completion_create_params.CompletionCreateParamsStreaming
-                if stream
-                else completion_create_params.CompletionCreateParamsNonStreaming,
+                (
+                    completion_create_params.CompletionCreateParamsStreaming
+                    if stream
+                    else completion_create_params.CompletionCreateParamsNonStreaming
+                ),
             ),
             options=make_request_options(
-                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=CompletionCreateResponse,
             stream=stream or False,

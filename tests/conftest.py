@@ -48,6 +48,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 api_key = "My API Key"
 inference_key = "My Inference Key"
 agent_key = "My Agent Key"
+agent_endpoint = "https://inference.do-ai.run"
 
 
 @pytest.fixture(scope="session")
@@ -61,6 +62,7 @@ def client(request: FixtureRequest) -> Iterator[GradientAI]:
         api_key=api_key,
         inference_key=inference_key,
         agent_key=agent_key,
+        agent_endpoint=agent_endpoint,
         _strict_response_validation=strict,
     ) as client:
         yield client
