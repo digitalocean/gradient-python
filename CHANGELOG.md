@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-07-18)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **api:** add gpu droplets ([b207e9a](https://github.com/digitalocean/gradientai-python/commit/b207e9a69ddf821522f5d9e9f10502850220585f))
+* **api:** add gpu droplets ([b9e317b](https://github.com/digitalocean/gradientai-python/commit/b9e317bac2c541a7eafcfb59a4b19c81e1145075))
+
+
+### Chores
+
+* format ([d940e66](https://github.com/digitalocean/gradientai-python/commit/d940e66107e00f351853c0bc667ca6ed3cf98605))
+* **internal:** version bump ([1a66126](https://github.com/digitalocean/gradientai-python/commit/1a661264f68580dff74c3f7d4891ab2661fde190))
+* **internal:** version bump ([9c546a1](https://github.com/digitalocean/gradientai-python/commit/9c546a1f97241bb448430e1e43f4e20589e243c1))
+* **internal:** version bump ([8814098](https://github.com/digitalocean/gradientai-python/commit/881409847161671b798baf2c89f37ae29e195f29))
+* **internal:** version bump ([bb3ad60](https://github.com/digitalocean/gradientai-python/commit/bb3ad60d02fe01b937eaced64682fd66d95a9aec))
+* **internal:** version bump ([2022024](https://github.com/digitalocean/gradientai-python/commit/20220246634accf95c4a53df200db5ace7107c55))
+* **internal:** version bump ([52e2c23](https://github.com/digitalocean/gradientai-python/commit/52e2c23c23d4dc27c176ebf4783c8fbd86a4c07b))
+* **internal:** version bump ([8ac0f2a](https://github.com/digitalocean/gradientai-python/commit/8ac0f2a6d4862907243ba78b132373289e2c3543))
+* **internal:** version bump ([d83fe97](https://github.com/digitalocean/gradientai-python/commit/d83fe97aa2f77c84c3c7f4bf40b9fb94c5c28aca))
+* **internal:** version bump ([9d20399](https://github.com/digitalocean/gradientai-python/commit/9d2039919e1d9c9e6d153edfb03bccff18b56686))
+* **internal:** version bump ([44a045a](https://github.com/digitalocean/gradientai-python/commit/44a045a9c0ce0f0769cce66bc7421a9d81cbc645))
+* **internal:** version bump ([95d1dd2](https://github.com/digitalocean/gradientai-python/commit/95d1dd24d290d7d5f23328e4c45c439dca5df748))
+* **internal:** version bump ([7416147](https://github.com/digitalocean/gradientai-python/commit/74161477f98e3a76b7227b07d942e1f26a4612b3))
+* **internal:** version bump ([06d7f19](https://github.com/digitalocean/gradientai-python/commit/06d7f19cd42a6bc578b39709fe6efed8741a24bc))
+
 ## 0.1.0-alpha.14 (2025-07-17)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)

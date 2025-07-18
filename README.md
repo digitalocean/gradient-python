@@ -32,10 +32,13 @@ api_client = GradientAI(
     api_key=os.environ.get("GRADIENTAI_API_KEY"),  # This is the default and can be omitted
 )
 inference_client = GradientAI(
-    inference_key=os.environ.get("GRADIENTAI_INFERENCE_KEY"),  # This is the default and can be omitted
+    inference_key=os.environ.get(
+        "GRADIENTAI_INFERENCE_KEY"
+    ),  # This is the default and can be omitted
 )
 agent_client = GradientAI(
     agent_key=os.environ.get("GRADIENTAI_AGENT_KEY"),  # This is the default and can be omitted
+    agent_endpoint="https://my-cool-agent.agents.do-ai.run",
 )
 
 print(api_client.agents.list())
@@ -51,7 +54,6 @@ completion = inference_client.chat.completions.create(
 )
 
 print(completion.choices[0].message)
-
 ```
 
 While you can provide an `api_key`, `inference_key` keyword argument,

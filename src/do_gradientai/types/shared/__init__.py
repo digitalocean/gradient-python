@@ -19,12 +19,9 @@ from .vpc_peering import VpcPeering as VpcPeering
 from .subscription import Subscription as Subscription
 from .forward_links import ForwardLinks as ForwardLinks
 from .backward_links import BackwardLinks as BackwardLinks
-from .repository_tag import RepositoryTag as RepositoryTag
 from .meta_properties import MetaProperties as MetaProperties
-from .repository_blob import RepositoryBlob as RepositoryBlob
 from .completion_usage import CompletionUsage as CompletionUsage
 from .garbage_collection import GarbageCollection as GarbageCollection
-from .repository_manifest import RepositoryManifest as RepositoryManifest
 from .firewall_rule_target import FirewallRuleTarget as FirewallRuleTarget
 from .chat_completion_chunk import ChatCompletionChunk as ChatCompletionChunk
 from .subscription_tier_base import SubscriptionTierBase as SubscriptionTierBase

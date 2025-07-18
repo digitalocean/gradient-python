@@ -24,9 +24,6 @@ from do_gradientai.types import (
     NetworkV6,
     PageLinks,
     Region,
-    RepositoryBlob,
-    RepositoryManifest,
-    RepositoryTag,
     Size,
     Snapshots,
     Subscription,
@@ -490,41 +487,41 @@ Methods:
 - <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.models.providers.openai.<a href="./src/do_gradientai/resources/models/providers/openai.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/models/providers/openai_delete_response.py">OpenAIDeleteResponse</a></code>
 - <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.models.providers.openai.<a href="./src/do_gradientai/resources/models/providers/openai.py">retrieve_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/models/providers/openai_retrieve_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/models/providers/openai_retrieve_agents_response.py">OpenAIRetrieveAgentsResponse</a></code>
 
-# Droplets
+# GPUDroplets
 
 Types:
 
 ```python
 from do_gradientai.types import (
     DropletBackupPolicy,
-    DropletCreateResponse,
-    DropletRetrieveResponse,
-    DropletListResponse,
-    DropletListFirewallsResponse,
-    DropletListKernelsResponse,
-    DropletListNeighborsResponse,
-    DropletListSnapshotsResponse,
+    GPUDropletCreateResponse,
+    GPUDropletRetrieveResponse,
+    GPUDropletListResponse,
+    GPUDropletListFirewallsResponse,
+    GPUDropletListKernelsResponse,
+    GPUDropletListNeighborsResponse,
+    GPUDropletListSnapshotsResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /v2/droplets">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">create</a>(\*\*<a href="src/do_gradientai/types/droplet_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplet_create_response.py">DropletCreateResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">retrieve</a>(droplet_id) -> <a href="./src/do_gradientai/types/droplet_retrieve_response.py">DropletRetrieveResponse</a></code>
-- <code title="get /v2/droplets">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">list</a>(\*\*<a href="src/do_gradientai/types/droplet_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplet_list_response.py">DropletListResponse</a></code>
-- <code title="delete /v2/droplets/{droplet_id}">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">delete</a>(droplet_id) -> None</code>
-- <code title="delete /v2/droplets">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">delete_by_tag</a>(\*\*<a href="src/do_gradientai/types/droplet_delete_by_tag_params.py">params</a>) -> None</code>
-- <code title="get /v2/droplets/{droplet_id}/firewalls">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">list_firewalls</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplet_list_firewalls_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplet_list_firewalls_response.py">DropletListFirewallsResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}/kernels">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">list_kernels</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplet_list_kernels_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplet_list_kernels_response.py">DropletListKernelsResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}/neighbors">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">list_neighbors</a>(droplet_id) -> <a href="./src/do_gradientai/types/droplet_list_neighbors_response.py">DropletListNeighborsResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}/snapshots">client.droplets.<a href="./src/do_gradientai/resources/droplets/droplets.py">list_snapshots</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplet_list_snapshots_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplet_list_snapshots_response.py">DropletListSnapshotsResponse</a></code>
+- <code title="post /v2/droplets">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplet_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplet_create_response.py">GPUDropletCreateResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">retrieve</a>(droplet_id) -> <a href="./src/do_gradientai/types/gpu_droplet_retrieve_response.py">GPUDropletRetrieveResponse</a></code>
+- <code title="get /v2/droplets">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplet_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplet_list_response.py">GPUDropletListResponse</a></code>
+- <code title="delete /v2/droplets/{droplet_id}">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">delete</a>(droplet_id) -> None</code>
+- <code title="delete /v2/droplets">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">delete_by_tag</a>(\*\*<a href="src/do_gradientai/types/gpu_droplet_delete_by_tag_params.py">params</a>) -> None</code>
+- <code title="get /v2/droplets/{droplet_id}/firewalls">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">list_firewalls</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplet_list_firewalls_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplet_list_firewalls_response.py">GPUDropletListFirewallsResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/kernels">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">list_kernels</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplet_list_kernels_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplet_list_kernels_response.py">GPUDropletListKernelsResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/neighbors">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">list_neighbors</a>(droplet_id) -> <a href="./src/do_gradientai/types/gpu_droplet_list_neighbors_response.py">GPUDropletListNeighborsResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/snapshots">client.gpu_droplets.<a href="./src/do_gradientai/resources/gpu_droplets/gpu_droplets.py">list_snapshots</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplet_list_snapshots_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplet_list_snapshots_response.py">GPUDropletListSnapshotsResponse</a></code>
 
 ## Backups
 
 Types:
 
 ```python
-from do_gradientai.types.droplets import (
+from do_gradientai.types.gpu_droplets import (
     BackupListResponse,
     BackupListPoliciesResponse,
     BackupListSupportedPoliciesResponse,
@@ -534,17 +531,17 @@ from do_gradientai.types.droplets import (
 
 Methods:
 
-- <code title="get /v2/droplets/{droplet_id}/backups">client.droplets.backups.<a href="./src/do_gradientai/resources/droplets/backups.py">list</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplets/backup_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/backup_list_response.py">BackupListResponse</a></code>
-- <code title="get /v2/droplets/backups/policies">client.droplets.backups.<a href="./src/do_gradientai/resources/droplets/backups.py">list_policies</a>(\*\*<a href="src/do_gradientai/types/droplets/backup_list_policies_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/backup_list_policies_response.py">BackupListPoliciesResponse</a></code>
-- <code title="get /v2/droplets/backups/supported_policies">client.droplets.backups.<a href="./src/do_gradientai/resources/droplets/backups.py">list_supported_policies</a>() -> <a href="./src/do_gradientai/types/droplets/backup_list_supported_policies_response.py">BackupListSupportedPoliciesResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}/backups/policy">client.droplets.backups.<a href="./src/do_gradientai/resources/droplets/backups.py">retrieve_policy</a>(droplet_id) -> <a href="./src/do_gradientai/types/droplets/backup_retrieve_policy_response.py">BackupRetrievePolicyResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/backups">client.gpu_droplets.backups.<a href="./src/do_gradientai/resources/gpu_droplets/backups.py">list</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/backup_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/backup_list_response.py">BackupListResponse</a></code>
+- <code title="get /v2/droplets/backups/policies">client.gpu_droplets.backups.<a href="./src/do_gradientai/resources/gpu_droplets/backups.py">list_policies</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/backup_list_policies_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/backup_list_policies_response.py">BackupListPoliciesResponse</a></code>
+- <code title="get /v2/droplets/backups/supported_policies">client.gpu_droplets.backups.<a href="./src/do_gradientai/resources/gpu_droplets/backups.py">list_supported_policies</a>() -> <a href="./src/do_gradientai/types/gpu_droplets/backup_list_supported_policies_response.py">BackupListSupportedPoliciesResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/backups/policy">client.gpu_droplets.backups.<a href="./src/do_gradientai/resources/gpu_droplets/backups.py">retrieve_policy</a>(droplet_id) -> <a href="./src/do_gradientai/types/gpu_droplets/backup_retrieve_policy_response.py">BackupRetrievePolicyResponse</a></code>
 
 ## Actions
 
 Types:
 
 ```python
-from do_gradientai.types.droplets import (
+from do_gradientai.types.gpu_droplets import (
     ActionRetrieveResponse,
     ActionListResponse,
     ActionBulkInitiateResponse,
@@ -554,17 +551,17 @@ from do_gradientai.types.droplets import (
 
 Methods:
 
-- <code title="get /v2/droplets/{droplet_id}/actions/{action_id}">client.droplets.actions.<a href="./src/do_gradientai/resources/droplets/actions.py">retrieve</a>(action_id, \*, droplet_id) -> <a href="./src/do_gradientai/types/droplets/action_retrieve_response.py">ActionRetrieveResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}/actions">client.droplets.actions.<a href="./src/do_gradientai/resources/droplets/actions.py">list</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplets/action_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/action_list_response.py">ActionListResponse</a></code>
-- <code title="post /v2/droplets/actions">client.droplets.actions.<a href="./src/do_gradientai/resources/droplets/actions.py">bulk_initiate</a>(\*\*<a href="src/do_gradientai/types/droplets/action_bulk_initiate_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/action_bulk_initiate_response.py">ActionBulkInitiateResponse</a></code>
-- <code title="post /v2/droplets/{droplet_id}/actions">client.droplets.actions.<a href="./src/do_gradientai/resources/droplets/actions.py">initiate</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplets/action_initiate_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/action_initiate_response.py">ActionInitiateResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/actions/{action_id}">client.gpu_droplets.actions.<a href="./src/do_gradientai/resources/gpu_droplets/actions.py">retrieve</a>(action_id, \*, droplet_id) -> <a href="./src/do_gradientai/types/gpu_droplets/action_retrieve_response.py">ActionRetrieveResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/actions">client.gpu_droplets.actions.<a href="./src/do_gradientai/resources/gpu_droplets/actions.py">list</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/action_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/action_list_response.py">ActionListResponse</a></code>
+- <code title="post /v2/droplets/actions">client.gpu_droplets.actions.<a href="./src/do_gradientai/resources/gpu_droplets/actions.py">bulk_initiate</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/action_bulk_initiate_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/action_bulk_initiate_response.py">ActionBulkInitiateResponse</a></code>
+- <code title="post /v2/droplets/{droplet_id}/actions">client.gpu_droplets.actions.<a href="./src/do_gradientai/resources/gpu_droplets/actions.py">initiate</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/action_initiate_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/action_initiate_response.py">ActionInitiateResponse</a></code>
 
 ## DestroyWithAssociatedResources
 
 Types:
 
 ```python
-from do_gradientai.types.droplets import (
+from do_gradientai.types.gpu_droplets import (
     AssociatedResource,
     DestroyedAssociatedResource,
     DestroyWithAssociatedResourceListResponse,
@@ -574,18 +571,18 @@ from do_gradientai.types.droplets import (
 
 Methods:
 
-- <code title="get /v2/droplets/{droplet_id}/destroy_with_associated_resources">client.droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/droplets/destroy_with_associated_resources.py">list</a>(droplet_id) -> <a href="./src/do_gradientai/types/droplets/destroy_with_associated_resource_list_response.py">DestroyWithAssociatedResourceListResponse</a></code>
-- <code title="get /v2/droplets/{droplet_id}/destroy_with_associated_resources/status">client.droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/droplets/destroy_with_associated_resources.py">check_status</a>(droplet_id) -> <a href="./src/do_gradientai/types/droplets/destroy_with_associated_resource_check_status_response.py">DestroyWithAssociatedResourceCheckStatusResponse</a></code>
-- <code title="delete /v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous">client.droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/droplets/destroy_with_associated_resources.py">delete_dangerous</a>(droplet_id) -> None</code>
-- <code title="delete /v2/droplets/{droplet_id}/destroy_with_associated_resources/selective">client.droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/droplets/destroy_with_associated_resources.py">delete_selective</a>(droplet_id, \*\*<a href="src/do_gradientai/types/droplets/destroy_with_associated_resource_delete_selective_params.py">params</a>) -> None</code>
-- <code title="post /v2/droplets/{droplet_id}/destroy_with_associated_resources/retry">client.droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/droplets/destroy_with_associated_resources.py">retry</a>(droplet_id) -> None</code>
+- <code title="get /v2/droplets/{droplet_id}/destroy_with_associated_resources">client.gpu_droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/gpu_droplets/destroy_with_associated_resources.py">list</a>(droplet_id) -> <a href="./src/do_gradientai/types/gpu_droplets/destroy_with_associated_resource_list_response.py">DestroyWithAssociatedResourceListResponse</a></code>
+- <code title="get /v2/droplets/{droplet_id}/destroy_with_associated_resources/status">client.gpu_droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/gpu_droplets/destroy_with_associated_resources.py">check_status</a>(droplet_id) -> <a href="./src/do_gradientai/types/gpu_droplets/destroy_with_associated_resource_check_status_response.py">DestroyWithAssociatedResourceCheckStatusResponse</a></code>
+- <code title="delete /v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous">client.gpu_droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/gpu_droplets/destroy_with_associated_resources.py">delete_dangerous</a>(droplet_id) -> None</code>
+- <code title="delete /v2/droplets/{droplet_id}/destroy_with_associated_resources/selective">client.gpu_droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/gpu_droplets/destroy_with_associated_resources.py">delete_selective</a>(droplet_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/destroy_with_associated_resource_delete_selective_params.py">params</a>) -> None</code>
+- <code title="post /v2/droplets/{droplet_id}/destroy_with_associated_resources/retry">client.gpu_droplets.destroy_with_associated_resources.<a href="./src/do_gradientai/resources/gpu_droplets/destroy_with_associated_resources.py">retry</a>(droplet_id) -> None</code>
 
 ## Autoscale
 
 Types:
 
 ```python
-from do_gradientai.types.droplets import (
+from do_gradientai.types.gpu_droplets import (
     AutoscalePool,
     AutoscalePoolDropletTemplate,
     AutoscalePoolDynamicConfig,
@@ -602,21 +599,21 @@ from do_gradientai.types.droplets import (
 
 Methods:
 
-- <code title="post /v2/droplets/autoscale">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">create</a>(\*\*<a href="src/do_gradientai/types/droplets/autoscale_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/autoscale_create_response.py">AutoscaleCreateResponse</a></code>
-- <code title="get /v2/droplets/autoscale/{autoscale_pool_id}">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">retrieve</a>(autoscale_pool_id) -> <a href="./src/do_gradientai/types/droplets/autoscale_retrieve_response.py">AutoscaleRetrieveResponse</a></code>
-- <code title="put /v2/droplets/autoscale/{autoscale_pool_id}">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">update</a>(autoscale_pool_id, \*\*<a href="src/do_gradientai/types/droplets/autoscale_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/autoscale_update_response.py">AutoscaleUpdateResponse</a></code>
-- <code title="get /v2/droplets/autoscale">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">list</a>(\*\*<a href="src/do_gradientai/types/droplets/autoscale_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/autoscale_list_response.py">AutoscaleListResponse</a></code>
-- <code title="delete /v2/droplets/autoscale/{autoscale_pool_id}">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">delete</a>(autoscale_pool_id) -> None</code>
-- <code title="delete /v2/droplets/autoscale/{autoscale_pool_id}/dangerous">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">delete_dangerous</a>(autoscale_pool_id) -> None</code>
-- <code title="get /v2/droplets/autoscale/{autoscale_pool_id}/history">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">list_history</a>(autoscale_pool_id, \*\*<a href="src/do_gradientai/types/droplets/autoscale_list_history_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/autoscale_list_history_response.py">AutoscaleListHistoryResponse</a></code>
-- <code title="get /v2/droplets/autoscale/{autoscale_pool_id}/members">client.droplets.autoscale.<a href="./src/do_gradientai/resources/droplets/autoscale.py">list_members</a>(autoscale_pool_id, \*\*<a href="src/do_gradientai/types/droplets/autoscale_list_members_params.py">params</a>) -> <a href="./src/do_gradientai/types/droplets/autoscale_list_members_response.py">AutoscaleListMembersResponse</a></code>
+- <code title="post /v2/droplets/autoscale">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/autoscale_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/autoscale_create_response.py">AutoscaleCreateResponse</a></code>
+- <code title="get /v2/droplets/autoscale/{autoscale_pool_id}">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">retrieve</a>(autoscale_pool_id) -> <a href="./src/do_gradientai/types/gpu_droplets/autoscale_retrieve_response.py">AutoscaleRetrieveResponse</a></code>
+- <code title="put /v2/droplets/autoscale/{autoscale_pool_id}">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">update</a>(autoscale_pool_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/autoscale_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/autoscale_update_response.py">AutoscaleUpdateResponse</a></code>
+- <code title="get /v2/droplets/autoscale">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/autoscale_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/autoscale_list_response.py">AutoscaleListResponse</a></code>
+- <code title="delete /v2/droplets/autoscale/{autoscale_pool_id}">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">delete</a>(autoscale_pool_id) -> None</code>
+- <code title="delete /v2/droplets/autoscale/{autoscale_pool_id}/dangerous">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">delete_dangerous</a>(autoscale_pool_id) -> None</code>
+- <code title="get /v2/droplets/autoscale/{autoscale_pool_id}/history">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">list_history</a>(autoscale_pool_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/autoscale_list_history_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/autoscale_list_history_response.py">AutoscaleListHistoryResponse</a></code>
+- <code title="get /v2/droplets/autoscale/{autoscale_pool_id}/members">client.gpu_droplets.autoscale.<a href="./src/do_gradientai/resources/gpu_droplets/autoscale.py">list_members</a>(autoscale_pool_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/autoscale_list_members_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/autoscale_list_members_response.py">AutoscaleListMembersResponse</a></code>
 
-# Firewalls
+## Firewalls
 
 Types:
 
 ```python
-from do_gradientai.types import (
+from do_gradientai.types.gpu_droplets import (
     Firewall,
     FirewallCreateResponse,
     FirewallRetrieveResponse,
@@ -627,39 +624,39 @@ from do_gradientai.types import (
 
 Methods:
 
-- <code title="post /v2/firewalls">client.firewalls.<a href="./src/do_gradientai/resources/firewalls/firewalls.py">create</a>(\*\*<a href="src/do_gradientai/types/firewall_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/firewall_create_response.py">FirewallCreateResponse</a></code>
-- <code title="get /v2/firewalls/{firewall_id}">client.firewalls.<a href="./src/do_gradientai/resources/firewalls/firewalls.py">retrieve</a>(firewall_id) -> <a href="./src/do_gradientai/types/firewall_retrieve_response.py">FirewallRetrieveResponse</a></code>
-- <code title="put /v2/firewalls/{firewall_id}">client.firewalls.<a href="./src/do_gradientai/resources/firewalls/firewalls.py">update</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewall_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/firewall_update_response.py">FirewallUpdateResponse</a></code>
-- <code title="get /v2/firewalls">client.firewalls.<a href="./src/do_gradientai/resources/firewalls/firewalls.py">list</a>(\*\*<a href="src/do_gradientai/types/firewall_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/firewall_list_response.py">FirewallListResponse</a></code>
-- <code title="delete /v2/firewalls/{firewall_id}">client.firewalls.<a href="./src/do_gradientai/resources/firewalls/firewalls.py">delete</a>(firewall_id) -> None</code>
+- <code title="post /v2/firewalls">client.gpu_droplets.firewalls.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/firewalls.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/firewall_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/firewall_create_response.py">FirewallCreateResponse</a></code>
+- <code title="get /v2/firewalls/{firewall_id}">client.gpu_droplets.firewalls.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/firewalls.py">retrieve</a>(firewall_id) -> <a href="./src/do_gradientai/types/gpu_droplets/firewall_retrieve_response.py">FirewallRetrieveResponse</a></code>
+- <code title="put /v2/firewalls/{firewall_id}">client.gpu_droplets.firewalls.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/firewalls.py">update</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewall_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/firewall_update_response.py">FirewallUpdateResponse</a></code>
+- <code title="get /v2/firewalls">client.gpu_droplets.firewalls.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/firewalls.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/firewall_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/firewall_list_response.py">FirewallListResponse</a></code>
+- <code title="delete /v2/firewalls/{firewall_id}">client.gpu_droplets.firewalls.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/firewalls.py">delete</a>(firewall_id) -> None</code>
 
-## Droplets
-
-Methods:
-
-- <code title="post /v2/firewalls/{firewall_id}/droplets">client.firewalls.droplets.<a href="./src/do_gradientai/resources/firewalls/droplets.py">add</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewalls/droplet_add_params.py">params</a>) -> None</code>
-- <code title="delete /v2/firewalls/{firewall_id}/droplets">client.firewalls.droplets.<a href="./src/do_gradientai/resources/firewalls/droplets.py">remove</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewalls/droplet_remove_params.py">params</a>) -> None</code>
-
-## Tags
+### Droplets
 
 Methods:
 
-- <code title="post /v2/firewalls/{firewall_id}/tags">client.firewalls.tags.<a href="./src/do_gradientai/resources/firewalls/tags.py">add</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewalls/tag_add_params.py">params</a>) -> None</code>
-- <code title="delete /v2/firewalls/{firewall_id}/tags">client.firewalls.tags.<a href="./src/do_gradientai/resources/firewalls/tags.py">remove</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewalls/tag_remove_params.py">params</a>) -> None</code>
+- <code title="post /v2/firewalls/{firewall_id}/droplets">client.gpu_droplets.firewalls.droplets.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/droplets.py">add</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewalls/droplet_add_params.py">params</a>) -> None</code>
+- <code title="delete /v2/firewalls/{firewall_id}/droplets">client.gpu_droplets.firewalls.droplets.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/droplets.py">remove</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewalls/droplet_remove_params.py">params</a>) -> None</code>
 
-## Rules
+### Tags
 
 Methods:
 
-- <code title="post /v2/firewalls/{firewall_id}/rules">client.firewalls.rules.<a href="./src/do_gradientai/resources/firewalls/rules.py">add</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewalls/rule_add_params.py">params</a>) -> None</code>
-- <code title="delete /v2/firewalls/{firewall_id}/rules">client.firewalls.rules.<a href="./src/do_gradientai/resources/firewalls/rules.py">remove</a>(firewall_id, \*\*<a href="src/do_gradientai/types/firewalls/rule_remove_params.py">params</a>) -> None</code>
+- <code title="post /v2/firewalls/{firewall_id}/tags">client.gpu_droplets.firewalls.tags.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/tags.py">add</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewalls/tag_add_params.py">params</a>) -> None</code>
+- <code title="delete /v2/firewalls/{firewall_id}/tags">client.gpu_droplets.firewalls.tags.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/tags.py">remove</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewalls/tag_remove_params.py">params</a>) -> None</code>
 
-# FloatingIPs
+### Rules
+
+Methods:
+
+- <code title="post /v2/firewalls/{firewall_id}/rules">client.gpu_droplets.firewalls.rules.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/rules.py">add</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewalls/rule_add_params.py">params</a>) -> None</code>
+- <code title="delete /v2/firewalls/{firewall_id}/rules">client.gpu_droplets.firewalls.rules.<a href="./src/do_gradientai/resources/gpu_droplets/firewalls/rules.py">remove</a>(firewall_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/firewalls/rule_remove_params.py">params</a>) -> None</code>
+
+## FloatingIPs
 
 Types:
 
 ```python
-from do_gradientai.types import (
+from do_gradientai.types.gpu_droplets import (
     FloatingIP,
     FloatingIPCreateResponse,
     FloatingIPRetrieveResponse,
@@ -669,17 +666,17 @@ from do_gradientai.types import (
 
 Methods:
 
-- <code title="post /v2/floating_ips">client.floating_ips.<a href="./src/do_gradientai/resources/floating_ips/floating_ips.py">create</a>(\*\*<a href="src/do_gradientai/types/floating_ip_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/floating_ip_create_response.py">FloatingIPCreateResponse</a></code>
-- <code title="get /v2/floating_ips/{floating_ip}">client.floating_ips.<a href="./src/do_gradientai/resources/floating_ips/floating_ips.py">retrieve</a>(floating_ip) -> <a href="./src/do_gradientai/types/floating_ip_retrieve_response.py">FloatingIPRetrieveResponse</a></code>
-- <code title="get /v2/floating_ips">client.floating_ips.<a href="./src/do_gradientai/resources/floating_ips/floating_ips.py">list</a>(\*\*<a href="src/do_gradientai/types/floating_ip_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/floating_ip_list_response.py">FloatingIPListResponse</a></code>
-- <code title="delete /v2/floating_ips/{floating_ip}">client.floating_ips.<a href="./src/do_gradientai/resources/floating_ips/floating_ips.py">delete</a>(floating_ip) -> None</code>
+- <code title="post /v2/floating_ips">client.gpu_droplets.floating_ips.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/floating_ips.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/floating_ip_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/floating_ip_create_response.py">FloatingIPCreateResponse</a></code>
+- <code title="get /v2/floating_ips/{floating_ip}">client.gpu_droplets.floating_ips.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/floating_ips.py">retrieve</a>(floating_ip) -> <a href="./src/do_gradientai/types/gpu_droplets/floating_ip_retrieve_response.py">FloatingIPRetrieveResponse</a></code>
+- <code title="get /v2/floating_ips">client.gpu_droplets.floating_ips.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/floating_ips.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/floating_ip_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/floating_ip_list_response.py">FloatingIPListResponse</a></code>
+- <code title="delete /v2/floating_ips/{floating_ip}">client.gpu_droplets.floating_ips.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/floating_ips.py">delete</a>(floating_ip) -> None</code>
 
-## Actions
+### Actions
 
 Types:
 
 ```python
-from do_gradientai.types.floating_ips import (
+from do_gradientai.types.gpu_droplets.floating_ips import (
     ActionCreateResponse,
     ActionRetrieveResponse,
     ActionListResponse,
@@ -688,16 +685,16 @@ from do_gradientai.types.floating_ips import (
 
 Methods:
 
-- <code title="post /v2/floating_ips/{floating_ip}/actions">client.floating_ips.actions.<a href="./src/do_gradientai/resources/floating_ips/actions.py">create</a>(floating_ip, \*\*<a href="src/do_gradientai/types/floating_ips/action_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/floating_ips/action_create_response.py">ActionCreateResponse</a></code>
-- <code title="get /v2/floating_ips/{floating_ip}/actions/{action_id}">client.floating_ips.actions.<a href="./src/do_gradientai/resources/floating_ips/actions.py">retrieve</a>(action_id, \*, floating_ip) -> <a href="./src/do_gradientai/types/floating_ips/action_retrieve_response.py">ActionRetrieveResponse</a></code>
-- <code title="get /v2/floating_ips/{floating_ip}/actions">client.floating_ips.actions.<a href="./src/do_gradientai/resources/floating_ips/actions.py">list</a>(floating_ip) -> <a href="./src/do_gradientai/types/floating_ips/action_list_response.py">ActionListResponse</a></code>
+- <code title="post /v2/floating_ips/{floating_ip}/actions">client.gpu_droplets.floating_ips.actions.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/actions.py">create</a>(floating_ip, \*\*<a href="src/do_gradientai/types/gpu_droplets/floating_ips/action_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/floating_ips/action_create_response.py">ActionCreateResponse</a></code>
+- <code title="get /v2/floating_ips/{floating_ip}/actions/{action_id}">client.gpu_droplets.floating_ips.actions.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/actions.py">retrieve</a>(action_id, \*, floating_ip) -> <a href="./src/do_gradientai/types/gpu_droplets/floating_ips/action_retrieve_response.py">ActionRetrieveResponse</a></code>
+- <code title="get /v2/floating_ips/{floating_ip}/actions">client.gpu_droplets.floating_ips.actions.<a href="./src/do_gradientai/resources/gpu_droplets/floating_ips/actions.py">list</a>(floating_ip) -> <a href="./src/do_gradientai/types/gpu_droplets/floating_ips/action_list_response.py">ActionListResponse</a></code>
 
-# Images
+## Images
 
 Types:
 
 ```python
-from do_gradientai.types import (
+from do_gradientai.types.gpu_droplets import (
     ImageCreateResponse,
     ImageRetrieveResponse,
     ImageUpdateResponse,
@@ -707,32 +704,32 @@ from do_gradientai.types import (
 
 Methods:
 
-- <code title="post /v2/images">client.images.<a href="./src/do_gradientai/resources/images/images.py">create</a>(\*\*<a href="src/do_gradientai/types/image_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/image_create_response.py">ImageCreateResponse</a></code>
-- <code title="get /v2/images/{image_id}">client.images.<a href="./src/do_gradientai/resources/images/images.py">retrieve</a>(image_id) -> <a href="./src/do_gradientai/types/image_retrieve_response.py">ImageRetrieveResponse</a></code>
-- <code title="put /v2/images/{image_id}">client.images.<a href="./src/do_gradientai/resources/images/images.py">update</a>(image_id, \*\*<a href="src/do_gradientai/types/image_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/image_update_response.py">ImageUpdateResponse</a></code>
-- <code title="get /v2/images">client.images.<a href="./src/do_gradientai/resources/images/images.py">list</a>(\*\*<a href="src/do_gradientai/types/image_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/image_list_response.py">ImageListResponse</a></code>
-- <code title="delete /v2/images/{image_id}">client.images.<a href="./src/do_gradientai/resources/images/images.py">delete</a>(image_id) -> None</code>
+- <code title="post /v2/images">client.gpu_droplets.images.<a href="./src/do_gradientai/resources/gpu_droplets/images/images.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/image_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/image_create_response.py">ImageCreateResponse</a></code>
+- <code title="get /v2/images/{image_id}">client.gpu_droplets.images.<a href="./src/do_gradientai/resources/gpu_droplets/images/images.py">retrieve</a>(image_id) -> <a href="./src/do_gradientai/types/gpu_droplets/image_retrieve_response.py">ImageRetrieveResponse</a></code>
+- <code title="put /v2/images/{image_id}">client.gpu_droplets.images.<a href="./src/do_gradientai/resources/gpu_droplets/images/images.py">update</a>(image_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/image_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/image_update_response.py">ImageUpdateResponse</a></code>
+- <code title="get /v2/images">client.gpu_droplets.images.<a href="./src/do_gradientai/resources/gpu_droplets/images/images.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/image_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/image_list_response.py">ImageListResponse</a></code>
+- <code title="delete /v2/images/{image_id}">client.gpu_droplets.images.<a href="./src/do_gradientai/resources/gpu_droplets/images/images.py">delete</a>(image_id) -> None</code>
 
-## Actions
+### Actions
 
 Types:
 
 ```python
-from do_gradientai.types.images import ActionListResponse
+from do_gradientai.types.gpu_droplets.images import ActionListResponse
 ```
 
 Methods:
 
-- <code title="post /v2/images/{image_id}/actions">client.images.actions.<a href="./src/do_gradientai/resources/images/actions.py">create</a>(image_id, \*\*<a href="src/do_gradientai/types/images/action_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/shared/action.py">Action</a></code>
-- <code title="get /v2/images/{image_id}/actions/{action_id}">client.images.actions.<a href="./src/do_gradientai/resources/images/actions.py">retrieve</a>(action_id, \*, image_id) -> <a href="./src/do_gradientai/types/shared/action.py">Action</a></code>
-- <code title="get /v2/images/{image_id}/actions">client.images.actions.<a href="./src/do_gradientai/resources/images/actions.py">list</a>(image_id) -> <a href="./src/do_gradientai/types/images/action_list_response.py">ActionListResponse</a></code>
+- <code title="post /v2/images/{image_id}/actions">client.gpu_droplets.images.actions.<a href="./src/do_gradientai/resources/gpu_droplets/images/actions.py">create</a>(image_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/images/action_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/shared/action.py">Action</a></code>
+- <code title="get /v2/images/{image_id}/actions/{action_id}">client.gpu_droplets.images.actions.<a href="./src/do_gradientai/resources/gpu_droplets/images/actions.py">retrieve</a>(action_id, \*, image_id) -> <a href="./src/do_gradientai/types/shared/action.py">Action</a></code>
+- <code title="get /v2/images/{image_id}/actions">client.gpu_droplets.images.actions.<a href="./src/do_gradientai/resources/gpu_droplets/images/actions.py">list</a>(image_id) -> <a href="./src/do_gradientai/types/gpu_droplets/images/action_list_response.py">ActionListResponse</a></code>
 
-# LoadBalancers
+## LoadBalancers
 
 Types:
 
 ```python
-from do_gradientai.types import (
+from do_gradientai.types.gpu_droplets import (
     Domains,
     ForwardingRule,
     GlbSettings,
@@ -749,75 +746,79 @@ from do_gradientai.types import (
 
 Methods:
 
-- <code title="post /v2/load_balancers">client.load_balancers.<a href="./src/do_gradientai/resources/load_balancers/load_balancers.py">create</a>(\*\*<a href="src/do_gradientai/types/load_balancer_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/load_balancer_create_response.py">LoadBalancerCreateResponse</a></code>
-- <code title="get /v2/load_balancers/{lb_id}">client.load_balancers.<a href="./src/do_gradientai/resources/load_balancers/load_balancers.py">retrieve</a>(lb_id) -> <a href="./src/do_gradientai/types/load_balancer_retrieve_response.py">LoadBalancerRetrieveResponse</a></code>
-- <code title="put /v2/load_balancers/{lb_id}">client.load_balancers.<a href="./src/do_gradientai/resources/load_balancers/load_balancers.py">update</a>(lb_id, \*\*<a href="src/do_gradientai/types/load_balancer_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/load_balancer_update_response.py">LoadBalancerUpdateResponse</a></code>
-- <code title="get /v2/load_balancers">client.load_balancers.<a href="./src/do_gradientai/resources/load_balancers/load_balancers.py">list</a>(\*\*<a href="src/do_gradientai/types/load_balancer_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/load_balancer_list_response.py">LoadBalancerListResponse</a></code>
-- <code title="delete /v2/load_balancers/{lb_id}">client.load_balancers.<a href="./src/do_gradientai/resources/load_balancers/load_balancers.py">delete</a>(lb_id) -> None</code>
-- <code title="delete /v2/load_balancers/{lb_id}/cache">client.load_balancers.<a href="./src/do_gradientai/resources/load_balancers/load_balancers.py">delete_cache</a>(lb_id) -> None</code>
+- <code title="post /v2/load_balancers">client.gpu_droplets.load_balancers.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/load_balancers.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancer_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/load_balancer_create_response.py">LoadBalancerCreateResponse</a></code>
+- <code title="get /v2/load_balancers/{lb_id}">client.gpu_droplets.load_balancers.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/load_balancers.py">retrieve</a>(lb_id) -> <a href="./src/do_gradientai/types/gpu_droplets/load_balancer_retrieve_response.py">LoadBalancerRetrieveResponse</a></code>
+- <code title="put /v2/load_balancers/{lb_id}">client.gpu_droplets.load_balancers.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/load_balancers.py">update</a>(lb_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancer_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/load_balancer_update_response.py">LoadBalancerUpdateResponse</a></code>
+- <code title="get /v2/load_balancers">client.gpu_droplets.load_balancers.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/load_balancers.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancer_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/load_balancer_list_response.py">LoadBalancerListResponse</a></code>
+- <code title="delete /v2/load_balancers/{lb_id}">client.gpu_droplets.load_balancers.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/load_balancers.py">delete</a>(lb_id) -> None</code>
+- <code title="delete /v2/load_balancers/{lb_id}/cache">client.gpu_droplets.load_balancers.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/load_balancers.py">delete_cache</a>(lb_id) -> None</code>
 
-## Droplets
-
-Methods:
-
-- <code title="post /v2/load_balancers/{lb_id}/droplets">client.load_balancers.droplets.<a href="./src/do_gradientai/resources/load_balancers/droplets.py">add</a>(lb_id, \*\*<a href="src/do_gradientai/types/load_balancers/droplet_add_params.py">params</a>) -> None</code>
-- <code title="delete /v2/load_balancers/{lb_id}/droplets">client.load_balancers.droplets.<a href="./src/do_gradientai/resources/load_balancers/droplets.py">remove</a>(lb_id, \*\*<a href="src/do_gradientai/types/load_balancers/droplet_remove_params.py">params</a>) -> None</code>
-
-## ForwardingRules
+### Droplets
 
 Methods:
 
-- <code title="post /v2/load_balancers/{lb_id}/forwarding_rules">client.load_balancers.forwarding_rules.<a href="./src/do_gradientai/resources/load_balancers/forwarding_rules.py">add</a>(lb_id, \*\*<a href="src/do_gradientai/types/load_balancers/forwarding_rule_add_params.py">params</a>) -> None</code>
-- <code title="delete /v2/load_balancers/{lb_id}/forwarding_rules">client.load_balancers.forwarding_rules.<a href="./src/do_gradientai/resources/load_balancers/forwarding_rules.py">remove</a>(lb_id, \*\*<a href="src/do_gradientai/types/load_balancers/forwarding_rule_remove_params.py">params</a>) -> None</code>
+- <code title="post /v2/load_balancers/{lb_id}/droplets">client.gpu_droplets.load_balancers.droplets.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/droplets.py">add</a>(lb_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancers/droplet_add_params.py">params</a>) -> None</code>
+- <code title="delete /v2/load_balancers/{lb_id}/droplets">client.gpu_droplets.load_balancers.droplets.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/droplets.py">remove</a>(lb_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancers/droplet_remove_params.py">params</a>) -> None</code>
 
-# Sizes
+### ForwardingRules
+
+Methods:
+
+- <code title="post /v2/load_balancers/{lb_id}/forwarding_rules">client.gpu_droplets.load_balancers.forwarding_rules.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/forwarding_rules.py">add</a>(lb_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancers/forwarding_rule_add_params.py">params</a>) -> None</code>
+- <code title="delete /v2/load_balancers/{lb_id}/forwarding_rules">client.gpu_droplets.load_balancers.forwarding_rules.<a href="./src/do_gradientai/resources/gpu_droplets/load_balancers/forwarding_rules.py">remove</a>(lb_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/load_balancers/forwarding_rule_remove_params.py">params</a>) -> None</code>
+
+## Sizes
 
 Types:
 
 ```python
-from do_gradientai.types import SizeListResponse
+from do_gradientai.types.gpu_droplets import SizeListResponse
 ```
 
 Methods:
 
-- <code title="get /v2/sizes">client.sizes.<a href="./src/do_gradientai/resources/sizes.py">list</a>(\*\*<a href="src/do_gradientai/types/size_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/size_list_response.py">SizeListResponse</a></code>
+- <code title="get /v2/sizes">client.gpu_droplets.sizes.<a href="./src/do_gradientai/resources/gpu_droplets/sizes.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/size_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/size_list_response.py">SizeListResponse</a></code>
 
-# Snapshots
+## Snapshots
 
 Types:
 
 ```python
-from do_gradientai.types import SnapshotRetrieveResponse, SnapshotListResponse
+from do_gradientai.types.gpu_droplets import SnapshotRetrieveResponse, SnapshotListResponse
 ```
 
 Methods:
 
-- <code title="get /v2/snapshots/{snapshot_id}">client.snapshots.<a href="./src/do_gradientai/resources/snapshots.py">retrieve</a>(snapshot_id) -> <a href="./src/do_gradientai/types/snapshot_retrieve_response.py">SnapshotRetrieveResponse</a></code>
-- <code title="get /v2/snapshots">client.snapshots.<a href="./src/do_gradientai/resources/snapshots.py">list</a>(\*\*<a href="src/do_gradientai/types/snapshot_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/snapshot_list_response.py">SnapshotListResponse</a></code>
-- <code title="delete /v2/snapshots/{snapshot_id}">client.snapshots.<a href="./src/do_gradientai/resources/snapshots.py">delete</a>(snapshot_id) -> None</code>
+- <code title="get /v2/snapshots/{snapshot_id}">client.gpu_droplets.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/snapshots.py">retrieve</a>(snapshot_id) -> <a href="./src/do_gradientai/types/gpu_droplets/snapshot_retrieve_response.py">SnapshotRetrieveResponse</a></code>
+- <code title="get /v2/snapshots">client.gpu_droplets.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/snapshots.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/snapshot_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/snapshot_list_response.py">SnapshotListResponse</a></code>
+- <code title="delete /v2/snapshots/{snapshot_id}">client.gpu_droplets.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/snapshots.py">delete</a>(snapshot_id) -> None</code>
 
-# Volumes
+## Volumes
 
 Types:
 
 ```python
-from do_gradientai.types import VolumeCreateResponse, VolumeRetrieveResponse, VolumeListResponse
+from do_gradientai.types.gpu_droplets import (
+    VolumeCreateResponse,
+    VolumeRetrieveResponse,
+    VolumeListResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /v2/volumes">client.volumes.<a href="./src/do_gradientai/resources/volumes/volumes.py">create</a>(\*\*<a href="src/do_gradientai/types/volume_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/volume_create_response.py">VolumeCreateResponse</a></code>
-- <code title="get /v2/volumes/{volume_id}">client.volumes.<a href="./src/do_gradientai/resources/volumes/volumes.py">retrieve</a>(volume_id) -> <a href="./src/do_gradientai/types/volume_retrieve_response.py">VolumeRetrieveResponse</a></code>
-- <code title="get /v2/volumes">client.volumes.<a href="./src/do_gradientai/resources/volumes/volumes.py">list</a>(\*\*<a href="src/do_gradientai/types/volume_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/volume_list_response.py">VolumeListResponse</a></code>
-- <code title="delete /v2/volumes/{volume_id}">client.volumes.<a href="./src/do_gradientai/resources/volumes/volumes.py">delete</a>(volume_id) -> None</code>
-- <code title="delete /v2/volumes">client.volumes.<a href="./src/do_gradientai/resources/volumes/volumes.py">delete_by_name</a>(\*\*<a href="src/do_gradientai/types/volume_delete_by_name_params.py">params</a>) -> None</code>
+- <code title="post /v2/volumes">client.gpu_droplets.volumes.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/volumes.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/volume_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volume_create_response.py">VolumeCreateResponse</a></code>
+- <code title="get /v2/volumes/{volume_id}">client.gpu_droplets.volumes.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/volumes.py">retrieve</a>(volume_id) -> <a href="./src/do_gradientai/types/gpu_droplets/volume_retrieve_response.py">VolumeRetrieveResponse</a></code>
+- <code title="get /v2/volumes">client.gpu_droplets.volumes.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/volumes.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/volume_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volume_list_response.py">VolumeListResponse</a></code>
+- <code title="delete /v2/volumes/{volume_id}">client.gpu_droplets.volumes.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/volumes.py">delete</a>(volume_id) -> None</code>
+- <code title="delete /v2/volumes">client.gpu_droplets.volumes.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/volumes.py">delete_by_name</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/volume_delete_by_name_params.py">params</a>) -> None</code>
 
-## Actions
+### Actions
 
 Types:
 
 ```python
-from do_gradientai.types.volumes import (
+from do_gradientai.types.gpu_droplets.volumes import (
     VolumeAction,
     ActionRetrieveResponse,
     ActionListResponse,
@@ -828,17 +829,17 @@ from do_gradientai.types.volumes import (
 
 Methods:
 
-- <code title="get /v2/volumes/{volume_id}/actions/{action_id}">client.volumes.actions.<a href="./src/do_gradientai/resources/volumes/actions.py">retrieve</a>(action_id, \*, volume_id, \*\*<a href="src/do_gradientai/types/volumes/action_retrieve_params.py">params</a>) -> <a href="./src/do_gradientai/types/volumes/action_retrieve_response.py">ActionRetrieveResponse</a></code>
-- <code title="get /v2/volumes/{volume_id}/actions">client.volumes.actions.<a href="./src/do_gradientai/resources/volumes/actions.py">list</a>(volume_id, \*\*<a href="src/do_gradientai/types/volumes/action_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/volumes/action_list_response.py">ActionListResponse</a></code>
-- <code title="post /v2/volumes/{volume_id}/actions">client.volumes.actions.<a href="./src/do_gradientai/resources/volumes/actions.py">initiate_by_id</a>(volume_id, \*\*<a href="src/do_gradientai/types/volumes/action_initiate_by_id_params.py">params</a>) -> <a href="./src/do_gradientai/types/volumes/action_initiate_by_id_response.py">ActionInitiateByIDResponse</a></code>
-- <code title="post /v2/volumes/actions">client.volumes.actions.<a href="./src/do_gradientai/resources/volumes/actions.py">initiate_by_name</a>(\*\*<a href="src/do_gradientai/types/volumes/action_initiate_by_name_params.py">params</a>) -> <a href="./src/do_gradientai/types/volumes/action_initiate_by_name_response.py">ActionInitiateByNameResponse</a></code>
+- <code title="get /v2/volumes/{volume_id}/actions/{action_id}">client.gpu_droplets.volumes.actions.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/actions.py">retrieve</a>(action_id, \*, volume_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/volumes/action_retrieve_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/action_retrieve_response.py">ActionRetrieveResponse</a></code>
+- <code title="get /v2/volumes/{volume_id}/actions">client.gpu_droplets.volumes.actions.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/actions.py">list</a>(volume_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/volumes/action_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/action_list_response.py">ActionListResponse</a></code>
+- <code title="post /v2/volumes/{volume_id}/actions">client.gpu_droplets.volumes.actions.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/actions.py">initiate_by_id</a>(volume_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/volumes/action_initiate_by_id_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/action_initiate_by_id_response.py">ActionInitiateByIDResponse</a></code>
+- <code title="post /v2/volumes/actions">client.gpu_droplets.volumes.actions.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/actions.py">initiate_by_name</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/volumes/action_initiate_by_name_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/action_initiate_by_name_response.py">ActionInitiateByNameResponse</a></code>
 
-## Snapshots
+### Snapshots
 
 Types:
 
 ```python
-from do_gradientai.types.volumes import (
+from do_gradientai.types.gpu_droplets.volumes import (
     SnapshotCreateResponse,
     SnapshotRetrieveResponse,
     SnapshotListResponse,
@@ -847,29 +848,19 @@ from do_gradientai.types.volumes import (
 
 Methods:
 
-- <code title="post /v2/volumes/{volume_id}/snapshots">client.volumes.snapshots.<a href="./src/do_gradientai/resources/volumes/snapshots.py">create</a>(volume_id, \*\*<a href="src/do_gradientai/types/volumes/snapshot_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/volumes/snapshot_create_response.py">SnapshotCreateResponse</a></code>
-- <code title="get /v2/volumes/snapshots/{snapshot_id}">client.volumes.snapshots.<a href="./src/do_gradientai/resources/volumes/snapshots.py">retrieve</a>(snapshot_id) -> <a href="./src/do_gradientai/types/volumes/snapshot_retrieve_response.py">SnapshotRetrieveResponse</a></code>
-- <code title="get /v2/volumes/{volume_id}/snapshots">client.volumes.snapshots.<a href="./src/do_gradientai/resources/volumes/snapshots.py">list</a>(volume_id, \*\*<a href="src/do_gradientai/types/volumes/snapshot_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/volumes/snapshot_list_response.py">SnapshotListResponse</a></code>
-- <code title="delete /v2/volumes/snapshots/{snapshot_id}">client.volumes.snapshots.<a href="./src/do_gradientai/resources/volumes/snapshots.py">delete</a>(snapshot_id) -> None</code>
+- <code title="post /v2/volumes/{volume_id}/snapshots">client.gpu_droplets.volumes.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/snapshots.py">create</a>(volume_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/volumes/snapshot_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/snapshot_create_response.py">SnapshotCreateResponse</a></code>
+- <code title="get /v2/volumes/snapshots/{snapshot_id}">client.gpu_droplets.volumes.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/snapshots.py">retrieve</a>(snapshot_id) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/snapshot_retrieve_response.py">SnapshotRetrieveResponse</a></code>
+- <code title="get /v2/volumes/{volume_id}/snapshots">client.gpu_droplets.volumes.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/snapshots.py">list</a>(volume_id, \*\*<a href="src/do_gradientai/types/gpu_droplets/volumes/snapshot_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/volumes/snapshot_list_response.py">SnapshotListResponse</a></code>
+- <code title="delete /v2/volumes/snapshots/{snapshot_id}">client.gpu_droplets.volumes.snapshots.<a href="./src/do_gradientai/resources/gpu_droplets/volumes/snapshots.py">delete</a>(snapshot_id) -> None</code>
 
-# Account
+## Account
 
-Types:
-
-```python
-from do_gradientai.types import AccountRetrieveResponse
-```
-
-Methods:
-
-- <code title="get /v2/account">client.account.<a href="./src/do_gradientai/resources/account/account.py">retrieve</a>() -> <a href="./src/do_gradientai/types/account_retrieve_response.py">AccountRetrieveResponse</a></code>
-
-## Keys
+### Keys
 
 Types:
 
 ```python
-from do_gradientai.types.account import (
+from do_gradientai.types.gpu_droplets.account import (
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,
@@ -879,8 +870,8 @@ from do_gradientai.types.account import (
 
 Methods:
 
-- <code title="post /v2/account/keys">client.account.keys.<a href="./src/do_gradientai/resources/account/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/account/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/account/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="get /v2/account/keys/{ssh_key_identifier}">client.account.keys.<a href="./src/do_gradientai/resources/account/keys.py">retrieve</a>(ssh_key_identifier) -> <a href="./src/do_gradientai/types/account/key_retrieve_response.py">KeyRetrieveResponse</a></code>
-- <code title="put /v2/account/keys/{ssh_key_identifier}">client.account.keys.<a href="./src/do_gradientai/resources/account/keys.py">update</a>(ssh_key_identifier, \*\*<a href="src/do_gradientai/types/account/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/account/key_update_response.py">KeyUpdateResponse</a></code>
-- <code title="get /v2/account/keys">client.account.keys.<a href="./src/do_gradientai/resources/account/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/account/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/account/key_list_response.py">KeyListResponse</a></code>
-- <code title="delete /v2/account/keys/{ssh_key_identifier}">client.account.keys.<a href="./src/do_gradientai/resources/account/keys.py">delete</a>(ssh_key_identifier) -> None</code>
+- <code title="post /v2/account/keys">client.gpu_droplets.account.keys.<a href="./src/do_gradientai/resources/gpu_droplets/account/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/account/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/account/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/account/keys/{ssh_key_identifier}">client.gpu_droplets.account.keys.<a href="./src/do_gradientai/resources/gpu_droplets/account/keys.py">retrieve</a>(ssh_key_identifier) -> <a href="./src/do_gradientai/types/gpu_droplets/account/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/account/keys/{ssh_key_identifier}">client.gpu_droplets.account.keys.<a href="./src/do_gradientai/resources/gpu_droplets/account/keys.py">update</a>(ssh_key_identifier, \*\*<a href="src/do_gradientai/types/gpu_droplets/account/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/account/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/account/keys">client.gpu_droplets.account.keys.<a href="./src/do_gradientai/resources/gpu_droplets/account/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/gpu_droplets/account/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/gpu_droplets/account/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/account/keys/{ssh_key_identifier}">client.gpu_droplets.account.keys.<a href="./src/do_gradientai/resources/gpu_droplets/account/keys.py">delete</a>(ssh_key_identifier) -> None</code>
