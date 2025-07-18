@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-07-18)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Chores
+
+* **internal:** version bump ([02f1f68](https://github.com/digitalocean/gradientai-python/commit/02f1f686505028155ee2a4cf670794117ce7981a))
+
 ## 0.1.0-alpha.15 (2025-07-18)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
