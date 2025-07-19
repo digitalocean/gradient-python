@@ -955,18 +955,8 @@ class GradientAIWithStreamedResponse:
         return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
-    def regions(self) -> regions.RegionsResourceWithStreamingResponse:
-        from .resources.regions import RegionsResourceWithStreamingResponse
-
-        return RegionsResourceWithStreamingResponse(self._client.regions)
-
-    @cached_property
-    def knowledge_bases(
-        self,
-    ) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
-        from .resources.knowledge_bases import (
-            KnowledgeBasesResourceWithStreamingResponse,
-        )
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
 
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
@@ -989,8 +979,8 @@ class GradientAIWithStreamedResponse:
         return ModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
-    def droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
-        from .resources.gpu_droplets import GPUDropletsResourceWithStreamingResponse
+    def regions(self) -> regions.RegionsResourceWithStreamingResponse:
+        from .resources.regions import RegionsResourceWithStreamingResponse
 
         return RegionsResourceWithStreamingResponse(self._client.regions)
 
@@ -1072,18 +1062,8 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
-    def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
-        from .resources.regions import AsyncRegionsResourceWithStreamingResponse
-
-        return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
-
-    @cached_property
-    def knowledge_bases(
-        self,
-    ) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
-        from .resources.knowledge_bases import (
-            AsyncKnowledgeBasesResourceWithStreamingResponse,
-        )
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
 
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
@@ -1106,12 +1086,8 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
-    def gpu_droplets(
-        self,
-    ) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
-        from .resources.gpu_droplets import (
-            AsyncGPUDropletsResourceWithStreamingResponse,
-        )
+    def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
+        from .resources.regions import AsyncRegionsResourceWithStreamingResponse
 
         return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
 
