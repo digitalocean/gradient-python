@@ -43,12 +43,18 @@ inference_client = GradientAI(
 )
 agent_client = GradientAI(
     agent_key=os.environ.get("GRADIENTAI_AGENT_KEY"),  # This is the default and can be omitted
-    agent_endpoint="https://my-cool-agent.agents.do-ai.run",
+    agent_endpoint="https://my-agent.agents.do-ai.run",
 )
 
-print(api_client.agents.list())
+## API
+api_response = api_client.agents.list()
+print("--- API")
+if api_response.agents:
+    print(api_response.agents[0].name)
 
-completion = inference_client.chat.completions.create(
+
+## Serverless Inference
+inference_response = inference_client.chat.completions.create(
     messages=[
         {
             "role": "user",
@@ -58,7 +64,22 @@ completion = inference_client.chat.completions.create(
     model="llama3.3-70b-instruct",
 )
 
-print(completion.choices[0].message)
+print("--- Serverless Inference")
+print(inference_response.choices[0].message.content)
+
+## Agent Inference
+agent_response = agent_client.agents.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "What is the capital of Portugal?",
+        }
+    ],
+    model="llama3.3-70b-instruct",
+)
+
+print("--- Agent Inference")
+print(agent_response.choices[0].message.content)
 ```
 
 While you can provide an `api_key`, `inference_key` keyword argument,
