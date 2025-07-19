@@ -139,12 +139,6 @@ class GradientAI(SyncAPIClient):
         return ChatResource(self)
 
     @cached_property
-    def knowledge_bases(self) -> KnowledgeBasesResource:
-        from .resources.knowledge_bases import KnowledgeBasesResource
-
-        return KnowledgeBasesResource(self)
-
-    @cached_property
     def gpu_droplets(self) -> GPUDropletsResource:
         from .resources.gpu_droplets import GPUDropletsResource
 
@@ -155,6 +149,12 @@ class GradientAI(SyncAPIClient):
         from .resources.inference import InferenceResource
 
         return InferenceResource(self)
+
+    @cached_property
+    def knowledge_bases(self) -> KnowledgeBasesResource:
+        from .resources.knowledge_bases import KnowledgeBasesResource
+
+        return KnowledgeBasesResource(self)
 
     @cached_property
     def models(self) -> ModelsResource:
@@ -388,12 +388,6 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncChatResource(self)
 
     @cached_property
-    def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
-        from .resources.knowledge_bases import AsyncKnowledgeBasesResource
-
-        return AsyncKnowledgeBasesResource(self)
-
-    @cached_property
     def gpu_droplets(self) -> AsyncGPUDropletsResource:
         from .resources.gpu_droplets import AsyncGPUDropletsResource
 
@@ -404,6 +398,12 @@ class AsyncGradientAI(AsyncAPIClient):
         from .resources.inference import AsyncInferenceResource
 
         return AsyncInferenceResource(self)
+
+    @cached_property
+    def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResource
+
+        return AsyncKnowledgeBasesResource(self)
 
     @cached_property
     def models(self) -> AsyncModelsResource:
@@ -570,12 +570,6 @@ class GradientAIWithRawResponse:
         return ChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
-        from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
-
-        return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
-
-    @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
         from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
 
@@ -586,6 +580,12 @@ class GradientAIWithRawResponse:
         from .resources.inference import InferenceResourceWithRawResponse
 
         return InferenceResourceWithRawResponse(self._client.inference)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
+
+        return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithRawResponse:
@@ -619,12 +619,6 @@ class AsyncGradientAIWithRawResponse:
         return AsyncChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
-        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
-
-        return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
-
-    @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
         from .resources.gpu_droplets import AsyncGPUDropletsResourceWithRawResponse
 
@@ -635,6 +629,12 @@ class AsyncGradientAIWithRawResponse:
         from .resources.inference import AsyncInferenceResourceWithRawResponse
 
         return AsyncInferenceResourceWithRawResponse(self._client.inference)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
+
+        return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithRawResponse:
@@ -668,12 +668,6 @@ class GradientAIWithStreamedResponse:
         return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
-        from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
-
-        return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
-
-    @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
         from .resources.gpu_droplets import GPUDropletsResourceWithStreamingResponse
 
@@ -684,6 +678,12 @@ class GradientAIWithStreamedResponse:
         from .resources.inference import InferenceResourceWithStreamingResponse
 
         return InferenceResourceWithStreamingResponse(self._client.inference)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
+
+        return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithStreamingResponse:
@@ -717,12 +717,6 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
-    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
-        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
-
-        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
-
-    @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
         from .resources.gpu_droplets import AsyncGPUDropletsResourceWithStreamingResponse
 
@@ -733,6 +727,12 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.inference import AsyncInferenceResourceWithStreamingResponse
 
         return AsyncInferenceResourceWithStreamingResponse(self._client.inference)
+
+    @cached_property
+    def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
+        from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
+
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
