@@ -1,7 +1,7 @@
 # GradientAI Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python.svg?label=pypi%20(stable))](https://pypi.org/project/c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python/)
+[![PyPI version](https://img.shields.io/pypi/v/do_gradientai.svg?label=pypi%20(stable))](https://pypi.org/project/do_gradientai/)
 
 The GradientAI Python library provides convenient access to the GradientAI REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -17,7 +17,7 @@ The REST API documentation can be found on [developers.digitalocean.com](https:/
 
 ```sh
 # install from PyPI
-pip install --pre c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python
+pip install --pre do_gradientai
 ```
 
 ## Usage
@@ -127,7 +127,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python[aiohttp]
+pip install --pre do_gradientai[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
