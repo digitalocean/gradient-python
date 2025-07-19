@@ -139,16 +139,16 @@ class GradientAI(SyncAPIClient):
         return ChatResource(self)
 
     @cached_property
-    def regions(self) -> RegionsResource:
-        from .resources.regions import RegionsResource
-
-        return RegionsResource(self)
-
-    @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResource:
         from .resources.knowledge_bases import KnowledgeBasesResource
 
         return KnowledgeBasesResource(self)
+
+    @cached_property
+    def gpu_droplets(self) -> GPUDropletsResource:
+        from .resources.gpu_droplets import GPUDropletsResource
+
+        return GPUDropletsResource(self)
 
     @cached_property
     def inference(self) -> InferenceResource:
@@ -163,10 +163,10 @@ class GradientAI(SyncAPIClient):
         return ModelsResource(self)
 
     @cached_property
-    def gpu_droplets(self) -> GPUDropletsResource:
-        from .resources.gpu_droplets import GPUDropletsResource
+    def regions(self) -> RegionsResource:
+        from .resources.regions import RegionsResource
 
-        return GPUDropletsResource(self)
+        return RegionsResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientAIWithRawResponse:
@@ -388,16 +388,16 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncChatResource(self)
 
     @cached_property
-    def regions(self) -> AsyncRegionsResource:
-        from .resources.regions import AsyncRegionsResource
-
-        return AsyncRegionsResource(self)
-
-    @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResource
 
         return AsyncKnowledgeBasesResource(self)
+
+    @cached_property
+    def gpu_droplets(self) -> AsyncGPUDropletsResource:
+        from .resources.gpu_droplets import AsyncGPUDropletsResource
+
+        return AsyncGPUDropletsResource(self)
 
     @cached_property
     def inference(self) -> AsyncInferenceResource:
@@ -412,10 +412,10 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncModelsResource(self)
 
     @cached_property
-    def gpu_droplets(self) -> AsyncGPUDropletsResource:
-        from .resources.gpu_droplets import AsyncGPUDropletsResource
+    def regions(self) -> AsyncRegionsResource:
+        from .resources.regions import AsyncRegionsResource
 
-        return AsyncGPUDropletsResource(self)
+        return AsyncRegionsResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncGradientAIWithRawResponse:
@@ -570,16 +570,16 @@ class GradientAIWithRawResponse:
         return ChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
-    def regions(self) -> regions.RegionsResourceWithRawResponse:
-        from .resources.regions import RegionsResourceWithRawResponse
-
-        return RegionsResourceWithRawResponse(self._client.regions)
-
-    @cached_property
     def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
         from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
 
         return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
+        from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
+
+        return GPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
 
     @cached_property
     def inference(self) -> inference.InferenceResourceWithRawResponse:
@@ -594,10 +594,10 @@ class GradientAIWithRawResponse:
         return ModelsResourceWithRawResponse(self._client.models)
 
     @cached_property
-    def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
-        from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
+    def regions(self) -> regions.RegionsResourceWithRawResponse:
+        from .resources.regions import RegionsResourceWithRawResponse
 
-        return GPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
+        return RegionsResourceWithRawResponse(self._client.regions)
 
 
 class AsyncGradientAIWithRawResponse:
@@ -619,16 +619,16 @@ class AsyncGradientAIWithRawResponse:
         return AsyncChatResourceWithRawResponse(self._client.chat)
 
     @cached_property
-    def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
-        from .resources.regions import AsyncRegionsResourceWithRawResponse
-
-        return AsyncRegionsResourceWithRawResponse(self._client.regions)
-
-    @cached_property
     def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
 
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
+        from .resources.gpu_droplets import AsyncGPUDropletsResourceWithRawResponse
+
+        return AsyncGPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
 
     @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithRawResponse:
@@ -643,10 +643,10 @@ class AsyncGradientAIWithRawResponse:
         return AsyncModelsResourceWithRawResponse(self._client.models)
 
     @cached_property
-    def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
-        from .resources.gpu_droplets import AsyncGPUDropletsResourceWithRawResponse
+    def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
+        from .resources.regions import AsyncRegionsResourceWithRawResponse
 
-        return AsyncGPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
+        return AsyncRegionsResourceWithRawResponse(self._client.regions)
 
 
 class GradientAIWithStreamedResponse:
@@ -668,16 +668,16 @@ class GradientAIWithStreamedResponse:
         return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
-    def regions(self) -> regions.RegionsResourceWithStreamingResponse:
-        from .resources.regions import RegionsResourceWithStreamingResponse
-
-        return RegionsResourceWithStreamingResponse(self._client.regions)
-
-    @cached_property
     def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
         from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
 
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
+        from .resources.gpu_droplets import GPUDropletsResourceWithStreamingResponse
+
+        return GPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
 
     @cached_property
     def inference(self) -> inference.InferenceResourceWithStreamingResponse:
@@ -692,10 +692,10 @@ class GradientAIWithStreamedResponse:
         return ModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
-    def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
-        from .resources.gpu_droplets import GPUDropletsResourceWithStreamingResponse
+    def regions(self) -> regions.RegionsResourceWithStreamingResponse:
+        from .resources.regions import RegionsResourceWithStreamingResponse
 
-        return GPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
+        return RegionsResourceWithStreamingResponse(self._client.regions)
 
 
 class AsyncGradientAIWithStreamedResponse:
@@ -717,16 +717,16 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
-    def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
-        from .resources.regions import AsyncRegionsResourceWithStreamingResponse
-
-        return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
-
-    @cached_property
     def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
 
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
+        from .resources.gpu_droplets import AsyncGPUDropletsResourceWithStreamingResponse
+
+        return AsyncGPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
 
     @cached_property
     def inference(self) -> inference.AsyncInferenceResourceWithStreamingResponse:
@@ -741,10 +741,10 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
-    def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
-        from .resources.gpu_droplets import AsyncGPUDropletsResourceWithStreamingResponse
+    def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
+        from .resources.regions import AsyncRegionsResourceWithStreamingResponse
 
-        return AsyncGPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
+        return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
 
 
 Client = GradientAI
