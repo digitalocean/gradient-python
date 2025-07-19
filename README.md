@@ -22,7 +22,7 @@ pip install --pre c63a5cfe-b235-4fbe-8bbb-82a9e02a482a-python
 
 ## Usage
 
-The GradientAI SDK provides client for:
+The GradientAI SDK provides clients for:
 * DigitalOcean API
 * GradientAI Serverless Inference
 * GradientAI Agent Inference
