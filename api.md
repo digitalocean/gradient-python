@@ -311,76 +311,6 @@ Methods:
 
 - <code title="post /chat/completions">client.chat.completions.<a href="./src/do_gradientai/resources/chat/completions.py">create</a>(\*\*<a href="src/do_gradientai/types/chat/completion_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
-# KnowledgeBases
-
-Types:
-
-```python
-from do_gradientai.types import (
-    APIKnowledgeBase,
-    KnowledgeBaseCreateResponse,
-    KnowledgeBaseRetrieveResponse,
-    KnowledgeBaseUpdateResponse,
-    KnowledgeBaseListResponse,
-    KnowledgeBaseDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/knowledge_bases">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">create</a>(\*\*<a href="src/do_gradientai/types/knowledge_base_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_base_create_response.py">KnowledgeBaseCreateResponse</a></code>
-- <code title="get /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">retrieve</a>(uuid) -> <a href="./src/do_gradientai/types/knowledge_base_retrieve_response.py">KnowledgeBaseRetrieveResponse</a></code>
-- <code title="put /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">update</a>(path_uuid, \*\*<a href="src/do_gradientai/types/knowledge_base_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_base_update_response.py">KnowledgeBaseUpdateResponse</a></code>
-- <code title="get /v2/gen-ai/knowledge_bases">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">list</a>(\*\*<a href="src/do_gradientai/types/knowledge_base_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_base_list_response.py">KnowledgeBaseListResponse</a></code>
-- <code title="delete /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">delete</a>(uuid) -> <a href="./src/do_gradientai/types/knowledge_base_delete_response.py">KnowledgeBaseDeleteResponse</a></code>
-
-## DataSources
-
-Types:
-
-```python
-from do_gradientai.types.knowledge_bases import (
-    APIFileUploadDataSource,
-    APIKnowledgeBaseDataSource,
-    APISpacesDataSource,
-    APIWebCrawlerDataSource,
-    AwsDataSource,
-    DataSourceCreateResponse,
-    DataSourceListResponse,
-    DataSourceDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/do_gradientai/resources/knowledge_bases/data_sources.py">create</a>(path_knowledge_base_uuid, \*\*<a href="src/do_gradientai/types/knowledge_bases/data_source_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/data_source_create_response.py">DataSourceCreateResponse</a></code>
-- <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/do_gradientai/resources/knowledge_bases/data_sources.py">list</a>(knowledge_base_uuid, \*\*<a href="src/do_gradientai/types/knowledge_bases/data_source_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/data_source_list_response.py">DataSourceListResponse</a></code>
-- <code title="delete /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/do_gradientai/resources/knowledge_bases/data_sources.py">delete</a>(data_source_uuid, \*, knowledge_base_uuid) -> <a href="./src/do_gradientai/types/knowledge_bases/data_source_delete_response.py">DataSourceDeleteResponse</a></code>
-
-## IndexingJobs
-
-Types:
-
-```python
-from do_gradientai.types.knowledge_bases import (
-    APIIndexedDataSource,
-    APIIndexingJob,
-    IndexingJobCreateResponse,
-    IndexingJobRetrieveResponse,
-    IndexingJobListResponse,
-    IndexingJobRetrieveDataSourcesResponse,
-    IndexingJobUpdateCancelResponse,
-)
-```
-
-Methods:
-
-- <code title="post /v2/gen-ai/indexing_jobs">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">create</a>(\*\*<a href="src/do_gradientai/types/knowledge_bases/indexing_job_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_create_response.py">IndexingJobCreateResponse</a></code>
-- <code title="get /v2/gen-ai/indexing_jobs/{uuid}">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">retrieve</a>(uuid) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_retrieve_response.py">IndexingJobRetrieveResponse</a></code>
-- <code title="get /v2/gen-ai/indexing_jobs">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">list</a>(\*\*<a href="src/do_gradientai/types/knowledge_bases/indexing_job_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_list_response.py">IndexingJobListResponse</a></code>
-- <code title="get /v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">retrieve_data_sources</a>(indexing_job_uuid) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_retrieve_data_sources_response.py">IndexingJobRetrieveDataSourcesResponse</a></code>
-- <code title="put /v2/gen-ai/indexing_jobs/{uuid}/cancel">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">update_cancel</a>(path_uuid, \*\*<a href="src/do_gradientai/types/knowledge_bases/indexing_job_update_cancel_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_update_cancel_response.py">IndexingJobUpdateCancelResponse</a></code>
-
 # GPUDroplets
 
 Types:
@@ -794,6 +724,76 @@ Methods:
 - <code title="get /v2/gen-ai/models/api_keys">client.inference.api_keys.<a href="./src/do_gradientai/resources/inference/api_keys.py">list</a>(\*\*<a href="src/do_gradientai/types/inference/api_key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/inference/api_key_list_response.py">APIKeyListResponse</a></code>
 - <code title="delete /v2/gen-ai/models/api_keys/{api_key_uuid}">client.inference.api_keys.<a href="./src/do_gradientai/resources/inference/api_keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/inference/api_key_delete_response.py">APIKeyDeleteResponse</a></code>
 - <code title="put /v2/gen-ai/models/api_keys/{api_key_uuid}/regenerate">client.inference.api_keys.<a href="./src/do_gradientai/resources/inference/api_keys.py">update_regenerate</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/inference/api_key_update_regenerate_response.py">APIKeyUpdateRegenerateResponse</a></code>
+
+# KnowledgeBases
+
+Types:
+
+```python
+from do_gradientai.types import (
+    APIKnowledgeBase,
+    KnowledgeBaseCreateResponse,
+    KnowledgeBaseRetrieveResponse,
+    KnowledgeBaseUpdateResponse,
+    KnowledgeBaseListResponse,
+    KnowledgeBaseDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/knowledge_bases">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">create</a>(\*\*<a href="src/do_gradientai/types/knowledge_base_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_base_create_response.py">KnowledgeBaseCreateResponse</a></code>
+- <code title="get /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">retrieve</a>(uuid) -> <a href="./src/do_gradientai/types/knowledge_base_retrieve_response.py">KnowledgeBaseRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">update</a>(path_uuid, \*\*<a href="src/do_gradientai/types/knowledge_base_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_base_update_response.py">KnowledgeBaseUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/knowledge_bases">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">list</a>(\*\*<a href="src/do_gradientai/types/knowledge_base_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_base_list_response.py">KnowledgeBaseListResponse</a></code>
+- <code title="delete /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/do_gradientai/resources/knowledge_bases/knowledge_bases.py">delete</a>(uuid) -> <a href="./src/do_gradientai/types/knowledge_base_delete_response.py">KnowledgeBaseDeleteResponse</a></code>
+
+## DataSources
+
+Types:
+
+```python
+from do_gradientai.types.knowledge_bases import (
+    APIFileUploadDataSource,
+    APIKnowledgeBaseDataSource,
+    APISpacesDataSource,
+    APIWebCrawlerDataSource,
+    AwsDataSource,
+    DataSourceCreateResponse,
+    DataSourceListResponse,
+    DataSourceDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/do_gradientai/resources/knowledge_bases/data_sources.py">create</a>(path_knowledge_base_uuid, \*\*<a href="src/do_gradientai/types/knowledge_bases/data_source_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/data_source_create_response.py">DataSourceCreateResponse</a></code>
+- <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/do_gradientai/resources/knowledge_bases/data_sources.py">list</a>(knowledge_base_uuid, \*\*<a href="src/do_gradientai/types/knowledge_bases/data_source_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/data_source_list_response.py">DataSourceListResponse</a></code>
+- <code title="delete /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/do_gradientai/resources/knowledge_bases/data_sources.py">delete</a>(data_source_uuid, \*, knowledge_base_uuid) -> <a href="./src/do_gradientai/types/knowledge_bases/data_source_delete_response.py">DataSourceDeleteResponse</a></code>
+
+## IndexingJobs
+
+Types:
+
+```python
+from do_gradientai.types.knowledge_bases import (
+    APIIndexedDataSource,
+    APIIndexingJob,
+    IndexingJobCreateResponse,
+    IndexingJobRetrieveResponse,
+    IndexingJobListResponse,
+    IndexingJobRetrieveDataSourcesResponse,
+    IndexingJobUpdateCancelResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/indexing_jobs">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">create</a>(\*\*<a href="src/do_gradientai/types/knowledge_bases/indexing_job_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_create_response.py">IndexingJobCreateResponse</a></code>
+- <code title="get /v2/gen-ai/indexing_jobs/{uuid}">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">retrieve</a>(uuid) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_retrieve_response.py">IndexingJobRetrieveResponse</a></code>
+- <code title="get /v2/gen-ai/indexing_jobs">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">list</a>(\*\*<a href="src/do_gradientai/types/knowledge_bases/indexing_job_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_list_response.py">IndexingJobListResponse</a></code>
+- <code title="get /v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">retrieve_data_sources</a>(indexing_job_uuid) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_retrieve_data_sources_response.py">IndexingJobRetrieveDataSourcesResponse</a></code>
+- <code title="put /v2/gen-ai/indexing_jobs/{uuid}/cancel">client.knowledge_bases.indexing_jobs.<a href="./src/do_gradientai/resources/knowledge_bases/indexing_jobs.py">update_cancel</a>(path_uuid, \*\*<a href="src/do_gradientai/types/knowledge_bases/indexing_job_update_cancel_params.py">params</a>) -> <a href="./src/do_gradientai/types/knowledge_bases/indexing_job_update_cancel_response.py">IndexingJobUpdateCancelResponse</a></code>
 
 # Models
 
