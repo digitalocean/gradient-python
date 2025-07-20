@@ -1,8 +1,8 @@
 # GradientAI Python API library
 
-### 🚧 Beta Status
+### 🚧 Preview Status
 
-> GradientAI SDK is currently in **beta**. It is reasonably stable and suitable for use, but **some features and APIs may still change** as development continues.  
+> GradientAI SDK is currently in **preview**. It is reasonably stable and suitable for use, but **some features and APIs may still change** as development continues.  
 > Use with care in production environments and keep an eye on releases for updates or breaking changes.
 
 <!-- prettier-ignore -->
