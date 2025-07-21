@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-beta.1 (2025-07-21)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-beta.1](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.19...v0.1.0-beta.1)
+
+### Features
+
+* **api:** manual updates ([fda6270](https://github.com/digitalocean/gradientai-python/commit/fda62708a8f4d4fd66187edd54b39336b88a7e1c))
+* **api:** manual updates ([7548648](https://github.com/digitalocean/gradientai-python/commit/75486489df49297376fe0bcff70f1e527764b64d))
+
+
+### Chores
+
+* **internal:** version bump ([be22c3d](https://github.com/digitalocean/gradientai-python/commit/be22c3d8c9835b45643d5e91db093108cb03f893))
+* **internal:** version bump ([2774d54](https://github.com/digitalocean/gradientai-python/commit/2774d540184f8ca7d401c77eaa69a52f62e8514b))
+* **internal:** version bump ([44abb37](https://github.com/digitalocean/gradientai-python/commit/44abb37d897dc77c1fda511b195cc9297fd324ac))
+* **internal:** version bump ([981ba17](https://github.com/digitalocean/gradientai-python/commit/981ba17925e46a9f87a141a481645711fbb6bb6e))
+
 ## 0.1.0-alpha.19 (2025-07-19)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
