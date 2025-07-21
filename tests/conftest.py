@@ -10,15 +10,15 @@ import httpx
 import pytest
 from pytest_asyncio import is_async_test
 
-from do_gradientai import GradientAI, AsyncGradientAI, DefaultAioHttpClient
-from do_gradientai._utils import is_dict
+from gradientai import GradientAI, AsyncGradientAI, DefaultAioHttpClient
+from gradientai._utils import is_dict
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("do_gradientai").setLevel(logging.DEBUG)
+logging.getLogger("gradientai").setLevel(logging.DEBUG)
 
 
 # automatically add `pytest.mark.asyncio()` to all of our async tests

@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.knowledge_bases import (
+from gradientai.types.knowledge_bases import (
     DataSourceListResponse,
     DataSourceCreateResponse,
     DataSourceDeleteResponse,

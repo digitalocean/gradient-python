@@ -6,8 +6,8 @@ import httpx
 import pytest
 import pydantic
 
-from do_gradientai import BaseModel, GradientAI, AsyncGradientAI
-from do_gradientai._response import (
+from gradientai import BaseModel, GradientAI, AsyncGradientAI
+from gradientai._response import (
     APIResponse,
     BaseAPIResponse,
     AsyncAPIResponse,
@@ -15,8 +15,8 @@ from do_gradientai._response import (
     AsyncBinaryAPIResponse,
     extract_response_type,
 )
-from do_gradientai._streaming import Stream
-from do_gradientai._base_client import FinalRequestOptions
+from gradientai._streaming import Stream
+from gradientai._base_client import FinalRequestOptions
 
 
 class ConcreteBaseAPIResponse(APIResponse[bytes]): ...
@@ -37,7 +37,7 @@ def test_extract_response_type_direct_classes() -> None:
 def test_extract_response_type_direct_class_missing_type_arg() -> None:
     with pytest.raises(
         RuntimeError,
-        match="Expected type <class 'do_gradientai._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
+        match="Expected type <class 'gradientai._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
     ):
         extract_response_type(AsyncAPIResponse)
 
@@ -68,7 +68,7 @@ def test_response_parse_mismatched_basemodel(client: GradientAI) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from do_gradientai import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from gradientai import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 
@@ -86,7 +86,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncGrad
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from do_gradientai import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from gradientai import BaseModel`",
     ):
         await response.parse(to=PydanticModel)
 
