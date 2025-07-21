@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from do_gradientai._qs import Querystring, stringify
+from gradientai._qs import Querystring, stringify
 
 
 def test_empty() -> None:
