@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from gradientai import GradientAI, AsyncGradientAI
 from tests.utils import assert_matches_type
-from gradientai.types.gpu_droplets.floating_ips import (
+from do_gradientai import GradientAI, AsyncGradientAI
+from do_gradientai.types.gpu_droplets.floating_ips import (
     ActionListResponse,
     ActionCreateResponse,
     ActionRetrieveResponse,

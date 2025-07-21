@@ -218,7 +218,7 @@ class BaseAPIResponse(Generic[R]):
             and issubclass(origin, pydantic.BaseModel)
         ):
             raise TypeError(
-                "Pydantic models must subclass our base model type, e.g. `from gradientai import BaseModel`"
+                "Pydantic models must subclass our base model type, e.g. `from do_gradientai import BaseModel`"
             )
 
         if (
@@ -285,7 +285,7 @@ class APIResponse(BaseAPIResponse[R]):
         the `to` argument, e.g.
 
         ```py
-        from gradientai import BaseModel
+        from do_gradientai import BaseModel
 
 
         class MyModel(BaseModel):
@@ -387,7 +387,7 @@ class AsyncAPIResponse(BaseAPIResponse[R]):
         the `to` argument, e.g.
 
         ```py
-        from gradientai import BaseModel
+        from do_gradientai import BaseModel
 
 
         class MyModel(BaseModel):
@@ -558,7 +558,7 @@ class AsyncStreamedBinaryAPIResponse(AsyncAPIResponse[bytes]):
 class MissingStreamClassError(TypeError):
     def __init__(self) -> None:
         super().__init__(
-            "The `stream` argument was set to `True` but the `stream_cls` argument was not given. See `gradientai._streaming` for reference",
+            "The `stream` argument was set to `True` but the `stream_cls` argument was not given. See `do_gradientai._streaming` for reference",
         )
 
 
