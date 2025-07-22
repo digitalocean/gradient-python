@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-beta.2 (2025-07-22)
+
+Full Changelog: [v0.1.0-beta.1...v0.1.0-beta.2](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-beta.1...v0.1.0-beta.2)
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([cee9728](https://github.com/digitalocean/gradientai-python/commit/cee9728fd727cd600d2ac47ead9206ca937f7757))
+
+
+### Chores
+
+* **internal:** version bump ([e13ccb0](https://github.com/digitalocean/gradientai-python/commit/e13ccb069743fc6ebc56e0bb0463ff11864ad944))
+* **internal:** version bump ([00ee94d](https://github.com/digitalocean/gradientai-python/commit/00ee94d848ae5c5fc4604160c822e4757c4e6de8))
+* **types:** rebuild Pydantic models after all types are defined ([db7d61c](https://github.com/digitalocean/gradientai-python/commit/db7d61c02df9f86af9170d38539257e9cbf3eff9))
+
 ## 0.1.0-beta.1 (2025-07-21)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-beta.1](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-alpha.19...v0.1.0-beta.1)
