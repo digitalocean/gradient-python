@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from . import workspaces # type: ignore
+from . import workspaces  # noqa: F401
 from .model_list_params import ModelListParams as ModelListParams
 from .model_list_response import ModelListResponse as ModelListResponse
 from .workspace_create_params import WorkspaceCreateParams as WorkspaceCreateParams
