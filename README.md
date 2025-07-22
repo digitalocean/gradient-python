@@ -7,6 +7,7 @@
 
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/do_gradientai.svg?label=pypi%20(stable))](https://pypi.org/project/do_gradientai/)
+[![Docs](https://img.shields.io/badge/Docs-8A2BE2)](https://gradientai-sdk.digitalocean.com/getting-started/overview/)
 
 The GradientAI Python library provides convenient access to the GradientAI REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -16,7 +17,9 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [developers.digitalocean.com](https://developers.digitalocean.com/documentation/v2/). The full API of this library can be found in [api.md](api.md).
+The getting started guide can be found on [gradientai-sdk.digitalocean.com](https://gradientai-sdk.digitalocean.com/getting-started/overview).
+The REST API documentation can be found on [developers.digitalocean.com](https://developers.digitalocean.com/documentation/v2/).
+The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
