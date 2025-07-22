@@ -14,8 +14,8 @@ from . import (
     agent_update_status_response,
 )
 from .. import _compat
-from .agents import evaluation_metrics  # noqa: F401
-from .models import providers  # noqa: F401
+from .agents import evaluation_metrics  # type: ignore  # noqa: F401
+from .models import providers  # type: ignore  # noqa: F401
 from .shared import (
     Size as Size,
     Image as Image,
@@ -69,7 +69,7 @@ from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveRespo
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
 from .model_retrieve_response import ModelRetrieveResponse as ModelRetrieveResponse
-from .agents.evaluation_metrics import workspaces  # noqa: F401
+from .agents.evaluation_metrics import workspaces  # type: ignore  # noqa: F401
 from .api_deployment_visibility import (
     APIDeploymentVisibility as APIDeploymentVisibility,
 )
@@ -140,8 +140,8 @@ from .gpu_droplet_list_snapshots_response import (
     GPUDropletListSnapshotsResponse as GPUDropletListSnapshotsResponse,
 )
 from .agents.evaluation_metrics.workspaces import (
-    agent_list_response,  # noqa: F401
-    agent_move_response,  # noqa: F401
+    agent_list_response,  # type: ignore  # noqa: F401
+    agent_move_response,  # type: ignore  # noqa: F401
 )
 
 # Rebuild cyclical models only after all modules are imported.
