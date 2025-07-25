@@ -1,15 +1,15 @@
-# GradientAI Python API library
+# Gradient Python API library
 
 ### 🚧 Preview Status
 
-> GradientAI SDK is currently in **preview**. It is reasonably stable and suitable for use, but **some features and APIs may still change** as development continues.  
+> Gradient SDK is currently in **preview**. It is reasonably stable and suitable for use, but **some features and APIs may still change** as development continues.  
 > Use with care in production environments and keep an eye on releases for updates or breaking changes.
 
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/do_gradientai.svg?label=pypi%20(stable))](https://pypi.org/project/do_gradientai/)
-[![Docs](https://img.shields.io/badge/Docs-8A2BE2)](https://gradientai-sdk.digitalocean.com/getting-started/overview/)
+[![Docs](https://img.shields.io/badge/Docs-8A2BE2)](https://gradientai.digitalocean.com/getting-started/overview/)
 
-The GradientAI Python library provides convenient access to the GradientAI REST API from any Python 3.8+
+The Gradient Python library provides convenient access to the Gradient REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -17,7 +17,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
-The getting started guide can be found on [gradientai-sdk.digitalocean.com](https://gradientai-sdk.digitalocean.com/getting-started/overview).
+The getting started guide can be found on [gradient-sdk.digitalocean.com](https://gradient-sdk.digitalocean.com/getting-started/overview).
 The REST API documentation can be found on [developers.digitalocean.com](https://developers.digitalocean.com/documentation/v2/).
 The full API of this library can be found in [api.md](api.md).
 
@@ -30,10 +30,10 @@ pip install --pre do_gradientai
 
 ## Usage
 
-The GradientAI SDK provides clients for:
+The Gradient SDK provides clients for:
 * DigitalOcean API
-* GradientAI Serverless Inference
-* GradientAI Agent Inference
+* Gradient Serverless Inference
+* Gradient Agent Inference
 
 The full API of this library can be found in [api.md](api.md).
 
