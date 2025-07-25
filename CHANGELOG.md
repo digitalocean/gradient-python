@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.3 (2025-07-25)
+
+Full Changelog: [v0.1.0-beta.2...v0.1.0-beta.3](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-beta.2...v0.1.0-beta.3)
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([93bea71](https://github.com/digitalocean/gradientai-python/commit/93bea71735195fa3f32de6b64bbc0aaac60a6d6c))
+
+
+### Chores
+
+* **project:** add settings file for vscode ([3b597aa](https://github.com/digitalocean/gradientai-python/commit/3b597aa96e1f588506de47d782444992383f5522))
+* update README with new gradient name ([03157fb](https://github.com/digitalocean/gradientai-python/commit/03157fb38616c68568024ab7e426b45d414bf432))
+
 ## 0.1.0-beta.2 (2025-07-22)
 
 Full Changelog: [v0.1.0-beta.1...v0.1.0-beta.2](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-beta.1...v0.1.0-beta.2)
