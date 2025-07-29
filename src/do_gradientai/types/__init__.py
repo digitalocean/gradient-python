@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from . import (
     agents,
+    models,
     api_agent,
     api_workspace,
     agent_create_response,
@@ -45,14 +46,19 @@ from .shared import (
     ChatCompletionTokenLogprob as ChatCompletionTokenLogprob,
 )
 from .api_agent import APIAgent as APIAgent
+from .api_model import APIModel as APIModel
+from .api_agreement import APIAgreement as APIAgreement
 from .api_workspace import APIWorkspace as APIWorkspace
 from .api_agent_model import APIAgentModel as APIAgentModel
 from .agent_list_params import AgentListParams as AgentListParams
+from .api_model_version import APIModelVersion as APIModelVersion
+from .model_list_params import ModelListParams as ModelListParams
 from .api_knowledge_base import APIKnowledgeBase as APIKnowledgeBase
 from .region_list_params import RegionListParams as RegionListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
 from .agent_list_response import AgentListResponse as AgentListResponse
 from .agent_update_params import AgentUpdateParams as AgentUpdateParams
+from .model_list_response import ModelListResponse as ModelListResponse
 from .api_retrieval_method import APIRetrievalMethod as APIRetrievalMethod
 from .region_list_response import RegionListResponse as RegionListResponse
 from .agent_create_response import AgentCreateResponse as AgentCreateResponse
@@ -193,6 +199,10 @@ if _compat.PYDANTIC_V2:
     agents.route_view_response.RouteViewResponse.model_rebuild(
         _parent_namespace_depth=0
     )
+    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.model_rebuild(_parent_namespace_depth=0)
+    models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
 else:
     api_agent.APIAgent.update_forward_refs()  # type: ignore
     api_workspace.APIWorkspace.update_forward_refs()  # type: ignore
@@ -215,3 +225,5 @@ else:
     agents.api_link_knowledge_base_output.APILinkKnowledgeBaseOutput.update_forward_refs()  # type: ignore
     agents.knowledge_base_detach_response.KnowledgeBaseDetachResponse.update_forward_refs()  # type: ignore
     agents.route_view_response.RouteViewResponse.update_forward_refs()  # type: ignore
+    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.update_forward_refs()  # type: ignore
+    models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.update_forward_refs()  # type: ignore

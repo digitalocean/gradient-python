@@ -3,19 +3,19 @@
 from typing import List, Optional
 
 from ...._models import BaseModel
-from ...api_model import APIModel
 from ...shared.api_meta import APIMeta
 from ...shared.api_links import APILinks
+from ...api_openai_api_key_info import APIOpenAIAPIKeyInfo
 
-__all__ = ["ModelListResponse"]
+__all__ = ["OpenAIListResponse"]
 
 
-class ModelListResponse(BaseModel):
+class OpenAIListResponse(BaseModel):
+    api_key_infos: Optional[List[APIOpenAIAPIKeyInfo]] = None
+    """Api key infos"""
+
     links: Optional[APILinks] = None
     """Links to other pages"""
 
     meta: Optional[APIMeta] = None
     """Meta information about the data set"""
-
-    models: Optional[List[APIModel]] = None
-    """The models"""

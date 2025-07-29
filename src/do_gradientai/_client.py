@@ -32,7 +32,7 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, regions, databases, inference, gpu_droplets, knowledge_bases
+    from .resources import chat, agents, models, regions, databases, inference, gpu_droplets, knowledge_bases
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -48,6 +48,7 @@ if TYPE_CHECKING:
         load_balancers,
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
+    from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.gpu_droplets.snapshots import (
@@ -210,6 +211,12 @@ class GradientAI(SyncAPIClient):
         from .resources.knowledge_bases import KnowledgeBasesResource
 
         return KnowledgeBasesResource(self)
+
+    @cached_property
+    def models(self) -> ModelsResource:
+        from .resources.models import ModelsResource
+
+        return ModelsResource(self)
 
     @cached_property
     def regions(self) -> RegionsResource:
@@ -522,6 +529,12 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncKnowledgeBasesResource(self)
 
     @cached_property
+    def models(self) -> AsyncModelsResource:
+        from .resources.models import AsyncModelsResource
+
+        return AsyncModelsResource(self)
+
+    @cached_property
     def regions(self) -> AsyncRegionsResource:
         from .resources.regions import AsyncRegionsResource
 
@@ -704,6 +717,12 @@ class GradientAIWithRawResponse:
         return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
+    def models(self) -> models.ModelsResourceWithRawResponse:
+        from .resources.models import ModelsResourceWithRawResponse
+
+        return ModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
     def regions(self) -> regions.RegionsResourceWithRawResponse:
         from .resources.regions import RegionsResourceWithRawResponse
 
@@ -750,6 +769,12 @@ class AsyncGradientAIWithRawResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
 
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        from .resources.models import AsyncModelsResourceWithRawResponse
+
+        return AsyncModelsResourceWithRawResponse(self._client.models)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
@@ -800,6 +825,12 @@ class GradientAIWithStreamedResponse:
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
+    def models(self) -> models.ModelsResourceWithStreamingResponse:
+        from .resources.models import ModelsResourceWithStreamingResponse
+
+        return ModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
     def regions(self) -> regions.RegionsResourceWithStreamingResponse:
         from .resources.regions import RegionsResourceWithStreamingResponse
 
@@ -846,6 +877,12 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
 
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        from .resources.models import AsyncModelsResourceWithStreamingResponse
+
+        return AsyncModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
