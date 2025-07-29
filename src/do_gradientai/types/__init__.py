@@ -52,6 +52,7 @@ from .api_workspace import APIWorkspace as APIWorkspace
 from .api_agent_model import APIAgentModel as APIAgentModel
 from .agent_list_params import AgentListParams as AgentListParams
 from .api_model_version import APIModelVersion as APIModelVersion
+from .model_list_params import ModelListParams as ModelListParams
 from .api_knowledge_base import APIKnowledgeBase as APIKnowledgeBase
 from .region_list_params import RegionListParams as RegionListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
@@ -68,8 +69,10 @@ from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
-from .model_retrieve_response import ModelRetrieveResponse as ModelRetrieveResponse
-from .agents.evaluation_metrics import workspaces  # type: ignore  # noqa: F401
+from .agents.evaluation_metrics import (
+    openai,  # type: ignore  # noqa: F401
+    anthropic,  # type: ignore  # noqa: F401
+)
 from .api_deployment_visibility import (
     APIDeploymentVisibility as APIDeploymentVisibility,
 )
@@ -115,6 +118,9 @@ from .knowledge_base_update_response import (
 from .gpu_droplet_list_kernels_params import (
     GPUDropletListKernelsParams as GPUDropletListKernelsParams,
 )
+from .agents.evaluation_metrics.openai import (
+    key_list_agents_response,  # type: ignore  # noqa: F401
+)
 from .gpu_droplet_delete_by_tag_params import (
     GPUDropletDeleteByTagParams as GPUDropletDeleteByTagParams,
 )
@@ -129,6 +135,9 @@ from .gpu_droplet_list_kernels_response import (
 )
 from .gpu_droplet_list_snapshots_params import (
     GPUDropletListSnapshotsParams as GPUDropletListSnapshotsParams,
+)
+from .agents.evaluation_metrics.anthropic import (
+    key_list_response,  # type: ignore  # noqa: F401
 )
 from .gpu_droplet_list_firewalls_response import (
     GPUDropletListFirewallsResponse as GPUDropletListFirewallsResponse,
@@ -178,6 +187,12 @@ if _compat.PYDANTIC_V2:
     agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.model_rebuild(
         _parent_namespace_depth=0
     )
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
     agents.function_create_response.FunctionCreateResponse.model_rebuild(
         _parent_namespace_depth=0
     )
@@ -216,6 +231,8 @@ else:
     agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.update_forward_refs()  # type: ignore
     agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.update_forward_refs()  # type: ignore
     agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
     agents.function_create_response.FunctionCreateResponse.update_forward_refs()  # type: ignore
     agents.function_update_response.FunctionUpdateResponse.update_forward_refs()  # type: ignore
     agents.function_delete_response.FunctionDeleteResponse.update_forward_refs()  # type: ignore

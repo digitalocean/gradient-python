@@ -32,6 +32,14 @@ from .regions import (
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
 )
+from .databases import (
+    DatabasesResource,
+    AsyncDatabasesResource,
+    DatabasesResourceWithRawResponse,
+    AsyncDatabasesResourceWithRawResponse,
+    DatabasesResourceWithStreamingResponse,
+    AsyncDatabasesResourceWithStreamingResponse,
+)
 from .inference import (
     InferenceResource,
     AsyncInferenceResource,
@@ -100,4 +108,10 @@ __all__ = [
     "AsyncRegionsResourceWithRawResponse",
     "RegionsResourceWithStreamingResponse",
     "AsyncRegionsResourceWithStreamingResponse",
+    "DatabasesResource",
+    "AsyncDatabasesResource",
+    "DatabasesResourceWithRawResponse",
+    "AsyncDatabasesResourceWithRawResponse",
+    "DatabasesResourceWithStreamingResponse",
+    "AsyncDatabasesResourceWithStreamingResponse",
 ]

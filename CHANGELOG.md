@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-beta.4 (2025-07-29)
+
+Full Changelog: [v0.1.0-beta.3...v0.1.0-beta.4](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-beta.3...v0.1.0-beta.4)
+
+### Features
+
+* **api:** update via SDK Studio ([3018b4c](https://github.com/digitalocean/gradientai-python/commit/3018b4cc758839eda46617170a24f181d9a0b70b))
+* **api:** update via SDK Studio ([4292abf](https://github.com/digitalocean/gradientai-python/commit/4292abf5ba2e89dedf7f7660f6e274e42a163ae0))
+* **api:** update via SDK Studio ([2252d77](https://github.com/digitalocean/gradientai-python/commit/2252d77e753a1407a1b851e01f4dcdbf1d4e0697))
+* **api:** update via SDK Studio ([7d7d879](https://github.com/digitalocean/gradientai-python/commit/7d7d879480a1d85ac8329cb98fa8da8afd8fee12))
+
 ## 0.1.0-beta.3 (2025-07-25)
 
 Full Changelog: [v0.1.0-beta.2...v0.1.0-beta.3](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-beta.2...v0.1.0-beta.3)
