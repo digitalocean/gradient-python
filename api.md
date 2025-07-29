@@ -168,6 +168,58 @@ Methods:
 
 - <code title="get /v2/gen-ai/models">client.agents.evaluation_metrics.models.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/models.py">list</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/model_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/model_list_response.py">ModelListResponse</a></code>
 
+### Anthropic
+
+#### Keys
+
+Types:
+
+```python
+from do_gradientai.types.agents.evaluation_metrics.anthropic import (
+    KeyCreateResponse,
+    KeyRetrieveResponse,
+    KeyUpdateResponse,
+    KeyListResponse,
+    KeyDeleteResponse,
+    KeyListAgentsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/anthropic/keys">client.agents.evaluation_metrics.anthropic.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/anthropic/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.agents.evaluation_metrics.anthropic.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/anthropic/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.agents.evaluation_metrics.anthropic.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/anthropic/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys">client.agents.evaluation_metrics.anthropic.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/anthropic/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/anthropic/keys/{api_key_uuid}">client.agents.evaluation_metrics.anthropic.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/anthropic/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_delete_response.py">KeyDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/anthropic/keys/{uuid}/agents">client.agents.evaluation_metrics.anthropic.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/anthropic/keys.py">list_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_list_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/anthropic/key_list_agents_response.py">KeyListAgentsResponse</a></code>
+
+### OpenAI
+
+#### Keys
+
+Types:
+
+```python
+from do_gradientai.types.agents.evaluation_metrics.openai import (
+    KeyCreateResponse,
+    KeyRetrieveResponse,
+    KeyUpdateResponse,
+    KeyListResponse,
+    KeyDeleteResponse,
+    KeyListAgentsResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/openai/keys">client.agents.evaluation_metrics.openai.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/openai/keys.py">create</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/openai/key_create_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/openai/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{api_key_uuid}">client.agents.evaluation_metrics.openai.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/openai/keys.py">retrieve</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/openai/key_retrieve_response.py">KeyRetrieveResponse</a></code>
+- <code title="put /v2/gen-ai/openai/keys/{api_key_uuid}">client.agents.evaluation_metrics.openai.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/openai/keys.py">update</a>(path_api_key_uuid, \*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/openai/key_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/openai/key_update_response.py">KeyUpdateResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys">client.agents.evaluation_metrics.openai.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/openai/keys.py">list</a>(\*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/openai/key_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/openai/key_list_response.py">KeyListResponse</a></code>
+- <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.agents.evaluation_metrics.openai.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/openai/key_delete_response.py">KeyDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.agents.evaluation_metrics.openai.keys.<a href="./src/do_gradientai/resources/agents/evaluation_metrics/openai/keys.py">list_agents</a>(uuid, \*\*<a href="src/do_gradientai/types/agents/evaluation_metrics/openai/key_list_agents_params.py">params</a>) -> <a href="./src/do_gradientai/types/agents/evaluation_metrics/openai/key_list_agents_response.py">KeyListAgentsResponse</a></code>
+
 ## EvaluationRuns
 
 Types:
@@ -806,3 +858,27 @@ from do_gradientai.types import RegionListResponse
 Methods:
 
 - <code title="get /v2/regions">client.regions.<a href="./src/do_gradientai/resources/regions.py">list</a>(\*\*<a href="src/do_gradientai/types/region_list_params.py">params</a>) -> <a href="./src/do_gradientai/types/region_list_response.py">RegionListResponse</a></code>
+
+# Databases
+
+## SchemaRegistry
+
+### Config
+
+Types:
+
+```python
+from do_gradientai.types.databases.schema_registry import (
+    ConfigRetrieveResponse,
+    ConfigUpdateResponse,
+    ConfigRetrieveSubjectResponse,
+    ConfigUpdateSubjectResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v2/databases/{database_cluster_uuid}/schema-registry/config">client.databases.schema_registry.config.<a href="./src/do_gradientai/resources/databases/schema_registry/config.py">retrieve</a>(database_cluster_uuid) -> <a href="./src/do_gradientai/types/databases/schema_registry/config_retrieve_response.py">ConfigRetrieveResponse</a></code>
+- <code title="put /v2/databases/{database_cluster_uuid}/schema-registry/config">client.databases.schema_registry.config.<a href="./src/do_gradientai/resources/databases/schema_registry/config.py">update</a>(database_cluster_uuid, \*\*<a href="src/do_gradientai/types/databases/schema_registry/config_update_params.py">params</a>) -> <a href="./src/do_gradientai/types/databases/schema_registry/config_update_response.py">ConfigUpdateResponse</a></code>
+- <code title="get /v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}">client.databases.schema_registry.config.<a href="./src/do_gradientai/resources/databases/schema_registry/config.py">retrieve_subject</a>(subject_name, \*, database_cluster_uuid) -> <a href="./src/do_gradientai/types/databases/schema_registry/config_retrieve_subject_response.py">ConfigRetrieveSubjectResponse</a></code>
+- <code title="put /v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}">client.databases.schema_registry.config.<a href="./src/do_gradientai/resources/databases/schema_registry/config.py">update_subject</a>(subject_name, \*, database_cluster_uuid, \*\*<a href="src/do_gradientai/types/databases/schema_registry/config_update_subject_params.py">params</a>) -> <a href="./src/do_gradientai/types/databases/schema_registry/config_update_subject_response.py">ConfigUpdateSubjectResponse</a></code>

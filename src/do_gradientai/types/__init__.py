@@ -169,6 +169,12 @@ if _compat.PYDANTIC_V2:
     agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.model_rebuild(
         _parent_namespace_depth=0
     )
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
     agents.function_create_response.FunctionCreateResponse.model_rebuild(
         _parent_namespace_depth=0
     )
@@ -201,6 +207,8 @@ else:
     agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.update_forward_refs()  # type: ignore
     agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.update_forward_refs()  # type: ignore
     agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
     agents.function_create_response.FunctionCreateResponse.update_forward_refs()  # type: ignore
     agents.function_update_response.FunctionUpdateResponse.update_forward_refs()  # type: ignore
     agents.function_delete_response.FunctionDeleteResponse.update_forward_refs()  # type: ignore

@@ -32,7 +32,7 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, regions, inference, gpu_droplets, knowledge_bases
+    from .resources import chat, agents, regions, databases, inference, gpu_droplets, knowledge_bases
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -48,6 +48,7 @@ if TYPE_CHECKING:
         load_balancers,
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
+    from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.gpu_droplets.snapshots import (
         SnapshotsResource,
@@ -215,6 +216,12 @@ class GradientAI(SyncAPIClient):
         from .resources.regions import RegionsResource
 
         return RegionsResource(self)
+
+    @cached_property
+    def databases(self) -> DatabasesResource:
+        from .resources.databases import DatabasesResource
+
+        return DatabasesResource(self)
 
     @cached_property
     def firewalls(self) -> FirewallsResource:
@@ -521,52 +528,10 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncRegionsResource(self)
 
     @cached_property
-    def firewalls(self) -> AsyncFirewallsResource:
-        from .resources.gpu_droplets.firewalls import AsyncFirewallsResource
+    def databases(self) -> AsyncDatabasesResource:
+        from .resources.databases import AsyncDatabasesResource
 
-        return AsyncFirewallsResource(self)
-
-    @cached_property
-    def floating_ips(self) -> AsyncFloatingIPsResource:
-        from .resources.gpu_droplets.floating_ips import AsyncFloatingIPsResource
-
-        return AsyncFloatingIPsResource(self)
-
-    @cached_property
-    def images(self) -> AsyncImagesResource:
-        from .resources.gpu_droplets.images import AsyncImagesResource
-
-        return AsyncImagesResource(self)
-
-    @cached_property
-    def load_balancers(self) -> AsyncLoadBalancersResource:
-        from .resources.gpu_droplets.load_balancers import AsyncLoadBalancersResource
-
-        return AsyncLoadBalancersResource(self)
-
-    @cached_property
-    def sizes(self) -> AsyncSizesResource:
-        from .resources.gpu_droplets.sizes import AsyncSizesResource
-
-        return AsyncSizesResource(self)
-
-    @cached_property
-    def snapshots(self) -> AsyncSnapshotsResource:
-        from .resources.gpu_droplets.snapshots import AsyncSnapshotsResource
-
-        return AsyncSnapshotsResource(self)
-
-    @cached_property
-    def volumes(self) -> AsyncVolumesResource:
-        from .resources.gpu_droplets.volumes import AsyncVolumesResource
-
-        return AsyncVolumesResource(self)
-
-    @cached_property
-    def account(self) -> AsyncAccountResource:
-        from .resources.gpu_droplets.account import AsyncAccountResource
-
-        return AsyncAccountResource(self)
+        return AsyncDatabasesResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncGradientAIWithRawResponse:
@@ -745,57 +710,10 @@ class GradientAIWithRawResponse:
         return RegionsResourceWithRawResponse(self._client.regions)
 
     @cached_property
-    def firewalls(self) -> firewalls.FirewallsResourceWithRawResponse:
-        from .resources.gpu_droplets.firewalls import FirewallsResourceWithRawResponse
+    def databases(self) -> databases.DatabasesResourceWithRawResponse:
+        from .resources.databases import DatabasesResourceWithRawResponse
 
-        return FirewallsResourceWithRawResponse(self._client.firewalls)
-
-    @cached_property
-    def floating_ips(self) -> floating_ips.FloatingIPsResourceWithRawResponse:
-        from .resources.gpu_droplets.floating_ips import (
-            FloatingIPsResourceWithRawResponse,
-        )
-
-        return FloatingIPsResourceWithRawResponse(self._client.floating_ips)
-
-    @cached_property
-    def images(self) -> images.ImagesResourceWithRawResponse:
-        from .resources.gpu_droplets.images import ImagesResourceWithRawResponse
-
-        return ImagesResourceWithRawResponse(self._client.images)
-
-    @cached_property
-    def load_balancers(self) -> load_balancers.LoadBalancersResourceWithRawResponse:
-        from .resources.gpu_droplets.load_balancers import (
-            LoadBalancersResourceWithRawResponse,
-        )
-
-        return LoadBalancersResourceWithRawResponse(self._client.load_balancers)
-
-    @cached_property
-    def sizes(self) -> sizes.SizesResourceWithRawResponse:
-        from .resources.gpu_droplets.sizes import SizesResourceWithRawResponse
-
-        return SizesResourceWithRawResponse(self._client.sizes)
-
-    @cached_property
-    def snapshots(self) -> snapshots.SnapshotsResourceWithRawResponse:
-        from .resources.gpu_droplets.snapshots import SnapshotsResourceWithRawResponse
-
-        return SnapshotsResourceWithRawResponse(self._client.snapshots)
-
-    @cached_property
-    def volumes(self) -> volumes.VolumesResourceWithRawResponse:
-        from .resources.gpu_droplets.volumes import VolumesResourceWithRawResponse
-
-        return VolumesResourceWithRawResponse(self._client.volumes)
-
-    @cached_property
-    def account(self) -> account.AccountResourceWithRawResponse:
-        from .resources.gpu_droplets.account import AccountResourceWithRawResponse
-
-        return AccountResourceWithRawResponse(self._client.account)
-
+        return DatabasesResourceWithRawResponse(self._client.databases)
 
 class AsyncGradientAIWithRawResponse:
     _client: AsyncGradientAI
@@ -840,63 +758,10 @@ class AsyncGradientAIWithRawResponse:
         return AsyncRegionsResourceWithRawResponse(self._client.regions)
 
     @cached_property
-    def firewalls(self) -> firewalls.AsyncFirewallsResourceWithRawResponse:
-        from .resources.gpu_droplets.firewalls import (
-            AsyncFirewallsResourceWithRawResponse,
-        )
+    def databases(self) -> databases.AsyncDatabasesResourceWithRawResponse:
+        from .resources.databases import AsyncDatabasesResourceWithRawResponse
 
-        return AsyncFirewallsResourceWithRawResponse(self._client.firewalls)
-
-    @cached_property
-    def floating_ips(self) -> floating_ips.AsyncFloatingIPsResourceWithRawResponse:
-        from .resources.gpu_droplets.floating_ips import (
-            AsyncFloatingIPsResourceWithRawResponse,
-        )
-
-        return AsyncFloatingIPsResourceWithRawResponse(self._client.floating_ips)
-
-    @cached_property
-    def images(self) -> images.AsyncImagesResourceWithRawResponse:
-        from .resources.gpu_droplets.images import AsyncImagesResourceWithRawResponse
-
-        return AsyncImagesResourceWithRawResponse(self._client.images)
-
-    @cached_property
-    def load_balancers(
-        self,
-    ) -> load_balancers.AsyncLoadBalancersResourceWithRawResponse:
-        from .resources.gpu_droplets.load_balancers import (
-            AsyncLoadBalancersResourceWithRawResponse,
-        )
-
-        return AsyncLoadBalancersResourceWithRawResponse(self._client.load_balancers)
-
-    @cached_property
-    def sizes(self) -> sizes.AsyncSizesResourceWithRawResponse:
-        from .resources.gpu_droplets.sizes import AsyncSizesResourceWithRawResponse
-
-        return AsyncSizesResourceWithRawResponse(self._client.sizes)
-
-    @cached_property
-    def snapshots(self) -> snapshots.AsyncSnapshotsResourceWithRawResponse:
-        from .resources.gpu_droplets.snapshots import (
-            AsyncSnapshotsResourceWithRawResponse,
-        )
-
-        return AsyncSnapshotsResourceWithRawResponse(self._client.snapshots)
-
-    @cached_property
-    def volumes(self) -> volumes.AsyncVolumesResourceWithRawResponse:
-        from .resources.gpu_droplets.volumes import AsyncVolumesResourceWithRawResponse
-
-        return AsyncVolumesResourceWithRawResponse(self._client.volumes)
-
-    @cached_property
-    def account(self) -> account.AsyncAccountResourceWithRawResponse:
-        from .resources.gpu_droplets.account import AsyncAccountResourceWithRawResponse
-
-        return AsyncAccountResourceWithRawResponse(self._client.account)
-
+        return AsyncDatabasesResourceWithRawResponse(self._client.databases)
 
 class GradientAIWithStreamedResponse:
     _client: GradientAI
@@ -941,63 +806,10 @@ class GradientAIWithStreamedResponse:
         return RegionsResourceWithStreamingResponse(self._client.regions)
 
     @cached_property
-    def firewalls(self) -> firewalls.FirewallsResourceWithStreamingResponse:
-        from .resources.gpu_droplets.firewalls import (
-            FirewallsResourceWithStreamingResponse,
-        )
+    def databases(self) -> databases.DatabasesResourceWithStreamingResponse:
+        from .resources.databases import DatabasesResourceWithStreamingResponse
 
-        return FirewallsResourceWithStreamingResponse(self._client.firewalls)
-
-    @cached_property
-    def floating_ips(self) -> floating_ips.FloatingIPsResourceWithStreamingResponse:
-        from .resources.gpu_droplets.floating_ips import (
-            FloatingIPsResourceWithStreamingResponse,
-        )
-
-        return FloatingIPsResourceWithStreamingResponse(self._client.floating_ips)
-
-    @cached_property
-    def images(self) -> images.ImagesResourceWithStreamingResponse:
-        from .resources.gpu_droplets.images import ImagesResourceWithStreamingResponse
-
-        return ImagesResourceWithStreamingResponse(self._client.images)
-
-    @cached_property
-    def load_balancers(
-        self,
-    ) -> load_balancers.LoadBalancersResourceWithStreamingResponse:
-        from .resources.gpu_droplets.load_balancers import (
-            LoadBalancersResourceWithStreamingResponse,
-        )
-
-        return LoadBalancersResourceWithStreamingResponse(self._client.load_balancers)
-
-    @cached_property
-    def sizes(self) -> sizes.SizesResourceWithStreamingResponse:
-        from .resources.gpu_droplets.sizes import SizesResourceWithStreamingResponse
-
-        return SizesResourceWithStreamingResponse(self._client.sizes)
-
-    @cached_property
-    def snapshots(self) -> snapshots.SnapshotsResourceWithStreamingResponse:
-        from .resources.gpu_droplets.snapshots import (
-            SnapshotsResourceWithStreamingResponse,
-        )
-
-        return SnapshotsResourceWithStreamingResponse(self._client.snapshots)
-
-    @cached_property
-    def volumes(self) -> volumes.VolumesResourceWithStreamingResponse:
-        from .resources.gpu_droplets.volumes import VolumesResourceWithStreamingResponse
-
-        return VolumesResourceWithStreamingResponse(self._client.volumes)
-
-    @cached_property
-    def account(self) -> account.AccountResourceWithStreamingResponse:
-        from .resources.gpu_droplets.account import AccountResourceWithStreamingResponse
-
-        return AccountResourceWithStreamingResponse(self._client.account)
-
+        return DatabasesResourceWithStreamingResponse(self._client.databases)
 
 class AsyncGradientAIWithStreamedResponse:
     _client: AsyncGradientAI
@@ -1042,72 +854,10 @@ class AsyncGradientAIWithStreamedResponse:
         return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
 
     @cached_property
-    def firewalls(self) -> firewalls.AsyncFirewallsResourceWithStreamingResponse:
-        from .resources.gpu_droplets.firewalls import (
-            AsyncFirewallsResourceWithStreamingResponse,
-        )
+    def databases(self) -> databases.AsyncDatabasesResourceWithStreamingResponse:
+        from .resources.databases import AsyncDatabasesResourceWithStreamingResponse
 
-        return AsyncFirewallsResourceWithStreamingResponse(self._client.firewalls)
-
-    @cached_property
-    def floating_ips(
-        self,
-    ) -> floating_ips.AsyncFloatingIPsResourceWithStreamingResponse:
-        from .resources.gpu_droplets.floating_ips import (
-            AsyncFloatingIPsResourceWithStreamingResponse,
-        )
-
-        return AsyncFloatingIPsResourceWithStreamingResponse(self._client.floating_ips)
-
-    @cached_property
-    def images(self) -> images.AsyncImagesResourceWithStreamingResponse:
-        from .resources.gpu_droplets.images import (
-            AsyncImagesResourceWithStreamingResponse,
-        )
-
-        return AsyncImagesResourceWithStreamingResponse(self._client.images)
-
-    @cached_property
-    def load_balancers(
-        self,
-    ) -> load_balancers.AsyncLoadBalancersResourceWithStreamingResponse:
-        from .resources.gpu_droplets.load_balancers import (
-            AsyncLoadBalancersResourceWithStreamingResponse,
-        )
-
-        return AsyncLoadBalancersResourceWithStreamingResponse(self._client.load_balancers)
-
-    @cached_property
-    def sizes(self) -> sizes.AsyncSizesResourceWithStreamingResponse:
-        from .resources.gpu_droplets.sizes import (
-            AsyncSizesResourceWithStreamingResponse,
-        )
-
-        return AsyncSizesResourceWithStreamingResponse(self._client.sizes)
-
-    @cached_property
-    def snapshots(self) -> snapshots.AsyncSnapshotsResourceWithStreamingResponse:
-        from .resources.gpu_droplets.snapshots import (
-            AsyncSnapshotsResourceWithStreamingResponse,
-        )
-
-        return AsyncSnapshotsResourceWithStreamingResponse(self._client.snapshots)
-
-    @cached_property
-    def volumes(self) -> volumes.AsyncVolumesResourceWithStreamingResponse:
-        from .resources.gpu_droplets.volumes import (
-            AsyncVolumesResourceWithStreamingResponse,
-        )
-
-        return AsyncVolumesResourceWithStreamingResponse(self._client.volumes)
-
-    @cached_property
-    def account(self) -> account.AsyncAccountResourceWithStreamingResponse:
-        from .resources.gpu_droplets.account import (
-            AsyncAccountResourceWithStreamingResponse,
-        )
-
-        return AsyncAccountResourceWithStreamingResponse(self._client.account)
+        return AsyncDatabasesResourceWithStreamingResponse(self._client.databases)
 
 
 Client = GradientAI
