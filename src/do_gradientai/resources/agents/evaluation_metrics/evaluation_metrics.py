@@ -22,8 +22,24 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .openai.openai import (
+    OpenAIResource,
+    AsyncOpenAIResource,
+    OpenAIResourceWithRawResponse,
+    AsyncOpenAIResourceWithRawResponse,
+    OpenAIResourceWithStreamingResponse,
+    AsyncOpenAIResourceWithStreamingResponse,
+)
 from ...._base_client import make_request_options
 from ....types.agents import evaluation_metric_list_regions_params
+from .anthropic.anthropic import (
+    AnthropicResource,
+    AsyncAnthropicResource,
+    AnthropicResourceWithRawResponse,
+    AsyncAnthropicResourceWithRawResponse,
+    AnthropicResourceWithStreamingResponse,
+    AsyncAnthropicResourceWithStreamingResponse,
+)
 from .workspaces.workspaces import (
     WorkspacesResource,
     AsyncWorkspacesResource,
@@ -46,6 +62,14 @@ class EvaluationMetricsResource(SyncAPIResource):
     @cached_property
     def models(self) -> ModelsResource:
         return ModelsResource(self._client)
+
+    @cached_property
+    def anthropic(self) -> AnthropicResource:
+        return AnthropicResource(self._client)
+
+    @cached_property
+    def openai(self) -> OpenAIResource:
+        return OpenAIResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EvaluationMetricsResourceWithRawResponse:
@@ -147,6 +171,14 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
     @cached_property
     def models(self) -> AsyncModelsResource:
         return AsyncModelsResource(self._client)
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResource:
+        return AsyncAnthropicResource(self._client)
+
+    @cached_property
+    def openai(self) -> AsyncOpenAIResource:
+        return AsyncOpenAIResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
@@ -259,6 +291,14 @@ class EvaluationMetricsResourceWithRawResponse:
     def models(self) -> ModelsResourceWithRawResponse:
         return ModelsResourceWithRawResponse(self._evaluation_metrics.models)
 
+    @cached_property
+    def anthropic(self) -> AnthropicResourceWithRawResponse:
+        return AnthropicResourceWithRawResponse(self._evaluation_metrics.anthropic)
+
+    @cached_property
+    def openai(self) -> OpenAIResourceWithRawResponse:
+        return OpenAIResourceWithRawResponse(self._evaluation_metrics.openai)
+
 
 class AsyncEvaluationMetricsResourceWithRawResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -278,6 +318,14 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithRawResponse:
         return AsyncModelsResourceWithRawResponse(self._evaluation_metrics.models)
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResourceWithRawResponse:
+        return AsyncAnthropicResourceWithRawResponse(self._evaluation_metrics.anthropic)
+
+    @cached_property
+    def openai(self) -> AsyncOpenAIResourceWithRawResponse:
+        return AsyncOpenAIResourceWithRawResponse(self._evaluation_metrics.openai)
 
 
 class EvaluationMetricsResourceWithStreamingResponse:
@@ -299,6 +347,14 @@ class EvaluationMetricsResourceWithStreamingResponse:
     def models(self) -> ModelsResourceWithStreamingResponse:
         return ModelsResourceWithStreamingResponse(self._evaluation_metrics.models)
 
+    @cached_property
+    def anthropic(self) -> AnthropicResourceWithStreamingResponse:
+        return AnthropicResourceWithStreamingResponse(self._evaluation_metrics.anthropic)
+
+    @cached_property
+    def openai(self) -> OpenAIResourceWithStreamingResponse:
+        return OpenAIResourceWithStreamingResponse(self._evaluation_metrics.openai)
+
 
 class AsyncEvaluationMetricsResourceWithStreamingResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -318,3 +374,11 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
     @cached_property
     def models(self) -> AsyncModelsResourceWithStreamingResponse:
         return AsyncModelsResourceWithStreamingResponse(self._evaluation_metrics.models)
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResourceWithStreamingResponse:
+        return AsyncAnthropicResourceWithStreamingResponse(self._evaluation_metrics.anthropic)
+
+    @cached_property
+    def openai(self) -> AsyncOpenAIResourceWithStreamingResponse:
+        return AsyncOpenAIResourceWithStreamingResponse(self._evaluation_metrics.openai)
