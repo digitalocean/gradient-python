@@ -5,14 +5,33 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .api_agreement import APIAgreement
-from .api_model_version import APIModelVersion
 
-__all__ = ["APIAgentModel"]
+__all__ = ["APIAgentModel", "Agreement", "Version"]
+
+
+class Agreement(BaseModel):
+    description: Optional[str] = None
+
+    name: Optional[str] = None
+
+    url: Optional[str] = None
+
+    uuid: Optional[str] = None
+
+
+class Version(BaseModel):
+    major: Optional[int] = None
+    """Major version number"""
+
+    minor: Optional[int] = None
+    """Minor version number"""
+
+    patch: Optional[int] = None
+    """Patch version number"""
 
 
 class APIAgentModel(BaseModel):
-    agreement: Optional[APIAgreement] = None
+    agreement: Optional[Agreement] = None
     """Agreement Description"""
 
     created_at: Optional[datetime] = None
@@ -67,5 +86,5 @@ class APIAgentModel(BaseModel):
     uuid: Optional[str] = None
     """Unique id"""
 
-    version: Optional[APIModelVersion] = None
+    version: Optional[Version] = None
     """Version Information about a Model"""
