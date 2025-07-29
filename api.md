@@ -800,19 +800,8 @@ Methods:
 Types:
 
 ```python
-from do_gradientai.types import (
-    APIAgreement,
-    APIModel,
-    APIModelVersion,
-    ModelRetrieveResponse,
-    ModelListResponse,
-)
+from do_gradientai.types import APIAgreement, APIModel, APIModelVersion
 ```
-
-Methods:
-
-- <code title="get /models/{model}">client.models.<a href="./src/do_gradientai/resources/models/models.py">retrieve</a>(model) -> <a href="./src/do_gradientai/types/model_retrieve_response.py">ModelRetrieveResponse</a></code>
-- <code title="get /models">client.models.<a href="./src/do_gradientai/resources/models/models.py">list</a>() -> <a href="./src/do_gradientai/types/model_list_response.py">ModelListResponse</a></code>
 
 ## Providers
 

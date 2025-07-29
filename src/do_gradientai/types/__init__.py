@@ -57,7 +57,6 @@ from .region_list_params import RegionListParams as RegionListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
 from .agent_list_response import AgentListResponse as AgentListResponse
 from .agent_update_params import AgentUpdateParams as AgentUpdateParams
-from .model_list_response import ModelListResponse as ModelListResponse
 from .api_retrieval_method import APIRetrievalMethod as APIRetrievalMethod
 from .region_list_response import RegionListResponse as RegionListResponse
 from .agent_create_response import AgentCreateResponse as AgentCreateResponse
@@ -68,11 +67,7 @@ from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
-from .model_retrieve_response import ModelRetrieveResponse as ModelRetrieveResponse
-from .agents.evaluation_metrics import workspaces  # type: ignore  # noqa: F401
-from .api_deployment_visibility import (
-    APIDeploymentVisibility as APIDeploymentVisibility,
-)
+from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
 from .agent_update_status_params import (
