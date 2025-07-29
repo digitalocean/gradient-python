@@ -50,6 +50,9 @@ if TYPE_CHECKING:
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
+    from .resources.gpu_droplets.sizes import (
+        SizesResource,
+    )
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.gpu_droplets.snapshots import (

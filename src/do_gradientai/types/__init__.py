@@ -69,7 +69,13 @@ from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
-from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
+from .agents.evaluation_metrics import (
+    openai,  # type: ignore  # noqa: F401
+    anthropic,  # type: ignore  # noqa: F401
+)
+from .api_deployment_visibility import (
+    APIDeploymentVisibility as APIDeploymentVisibility,
+)
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
 from .agent_update_status_params import (
@@ -112,6 +118,9 @@ from .knowledge_base_update_response import (
 from .gpu_droplet_list_kernels_params import (
     GPUDropletListKernelsParams as GPUDropletListKernelsParams,
 )
+from .agents.evaluation_metrics.openai import (
+    key_list_agents_response,  # type: ignore  # noqa: F401
+)
 from .gpu_droplet_delete_by_tag_params import (
     GPUDropletDeleteByTagParams as GPUDropletDeleteByTagParams,
 )
@@ -126,6 +135,9 @@ from .gpu_droplet_list_kernels_response import (
 )
 from .gpu_droplet_list_snapshots_params import (
     GPUDropletListSnapshotsParams as GPUDropletListSnapshotsParams,
+)
+from .agents.evaluation_metrics.anthropic import (
+    key_list_agents_response,  # type: ignore  # noqa: F401
 )
 from .gpu_droplet_list_firewalls_response import (
     GPUDropletListFirewallsResponse as GPUDropletListFirewallsResponse,
@@ -199,7 +211,9 @@ if _compat.PYDANTIC_V2:
     agents.route_view_response.RouteViewResponse.model_rebuild(
         _parent_namespace_depth=0
     )
-    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.model_rebuild(_parent_namespace_depth=0)
+    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
     models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.model_rebuild(
         _parent_namespace_depth=0
     )
