@@ -137,7 +137,7 @@ from .gpu_droplet_list_snapshots_params import (
     GPUDropletListSnapshotsParams as GPUDropletListSnapshotsParams,
 )
 from .agents.evaluation_metrics.anthropic import (
-    key_list_agents_response,  # type: ignore  # noqa: F401
+    key_list_response,  # type: ignore  # noqa: F401
 )
 from .gpu_droplet_list_firewalls_response import (
     GPUDropletListFirewallsResponse as GPUDropletListFirewallsResponse,
