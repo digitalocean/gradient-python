@@ -90,20 +90,20 @@ class Gradient(SyncAPIClient):
         """Construct a new synchronous Gradient client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `GRADIENTAI_API_KEY`
-        - `inference_key` from `GRADIENTAI_INFERENCE_KEY`
-        - `agent_key` from `GRADIENTAI_AGENT_KEY`
+        - `api_key` from `GRADIENT_API_KEY`
+        - `inference_key` from `GRADIENT_INFERENCE_KEY`
+        - `agent_key` from `GRADIENT_AGENT_KEY`
         """
         if api_key is None:
-            api_key = os.environ.get("GRADIENTAI_API_KEY")
+            api_key = os.environ.get("GRADIENT_API_KEY")
         self.api_key = api_key
 
         if inference_key is None:
-            inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
+            inference_key = os.environ.get("GRADIENT_INFERENCE_KEY")
         self.inference_key = inference_key
 
         if agent_key is None:
-            agent_key = os.environ.get("GRADIENTAI_AGENT_KEY")
+            agent_key = os.environ.get("GRADIENT_AGENT_KEY")
         self.agent_key = agent_key
 
         self.agent_domain = agent_domain
@@ -345,20 +345,20 @@ class AsyncGradient(AsyncAPIClient):
         """Construct a new async AsyncGradient client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `GRADIENTAI_API_KEY`
-        - `inference_key` from `GRADIENTAI_INFERENCE_KEY`
-        - `agent_key` from `GRADIENTAI_AGENT_KEY`
+        - `api_key` from `GRADIENT_API_KEY`
+        - `inference_key` from `GRADIENT_INFERENCE_KEY`
+        - `agent_key` from `GRADIENT_AGENT_KEY`
         """
         if api_key is None:
-            api_key = os.environ.get("GRADIENTAI_API_KEY")
+            api_key = os.environ.get("GRADIENT_API_KEY")
         self.api_key = api_key
 
         if inference_key is None:
-            inference_key = os.environ.get("GRADIENTAI_INFERENCE_KEY")
+            inference_key = os.environ.get("GRADIENT_INFERENCE_KEY")
         self.inference_key = inference_key
 
         if agent_key is None:
-            agent_key = os.environ.get("GRADIENTAI_AGENT_KEY")
+            agent_key = os.environ.get("GRADIENT_AGENT_KEY")
         self.agent_key = agent_key
 
         self.agent_domain = agent_domain
