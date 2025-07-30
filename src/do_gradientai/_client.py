@@ -216,6 +216,12 @@ class GradientAI(SyncAPIClient):
         return DatabasesResource(self)
 
     @cached_property
+    def databases(self) -> DatabasesResource:
+        from .resources.databases import DatabasesResource
+
+        return DatabasesResource(self)
+
+    @cached_property
     def firewalls(self) -> FirewallsResource:
         from .resources.gpu_droplets.firewalls import FirewallsResource
 
@@ -824,6 +830,12 @@ class GradientAIWithStreamedResponse:
         from .resources.regions import RegionsResourceWithStreamingResponse
 
         return RegionsResourceWithStreamingResponse(self._client.regions)
+
+    @cached_property
+    def databases(self) -> databases.DatabasesResourceWithStreamingResponse:
+        from .resources.databases import DatabasesResourceWithStreamingResponse
+
+        return DatabasesResourceWithStreamingResponse(self._client.databases)
 
     @cached_property
     def databases(self) -> databases.DatabasesResourceWithStreamingResponse:
