@@ -32,16 +32,7 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import (
-        chat,
-        agents,
-        models,
-        regions,
-        databases,
-        inference,
-        gpu_droplets,
-        knowledge_bases,
-    )
+    from .resources import chat, agents, models, regions, databases, inference, gpu_droplets, knowledge_bases
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -50,9 +41,6 @@ if TYPE_CHECKING:
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
-    from .resources.gpu_droplets.sizes import (
-        SizesResource,
-    )
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.gpu_droplets.snapshots import (
@@ -250,12 +238,6 @@ class GradientAI(SyncAPIClient):
         from .resources.gpu_droplets.load_balancers import LoadBalancersResource
 
         return LoadBalancersResource(self)
-
-    @cached_property
-    def sizes(self) -> SizesResource:
-        from .resources.gpu_droplets.sizes import SizesResource
-
-        return SizesResource(self)
 
     @cached_property
     def snapshots(self) -> SnapshotsResource:

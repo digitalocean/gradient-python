@@ -69,13 +69,7 @@ from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
-from .agents.evaluation_metrics import (
-    openai,  # type: ignore  # noqa: F401
-    anthropic,  # type: ignore  # noqa: F401
-)
-from .api_deployment_visibility import (
-    APIDeploymentVisibility as APIDeploymentVisibility,
-)
+from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
 from .agent_update_status_params import (
