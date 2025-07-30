@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.agents.evaluation_metrics import (
+from gradient.types.agents.evaluation_metrics import (
     WorkspaceListResponse,
     WorkspaceCreateResponse,
     WorkspaceDeleteResponse,
@@ -26,13 +26,13 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.create()
         assert_matches_type(WorkspaceCreateResponse, workspace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.create(
             agent_uuids=["example string"],
             description='"example string"',
@@ -42,7 +42,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.create()
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.retrieve(
             "workspace_uuid",
         )
@@ -72,7 +72,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.retrieve(
             "workspace_uuid",
         )
@@ -84,7 +84,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.retrieve(
             "workspace_uuid",
         ) as response:
@@ -98,7 +98,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workspace_uuid` but received ''"):
             client.agents.evaluation_metrics.workspaces.with_raw_response.retrieve(
                 "",
@@ -106,7 +106,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: GradientAI) -> None:
+    def test_method_update(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -114,7 +114,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: GradientAI) -> None:
+    def test_method_update_with_all_params(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             description='"example string"',
@@ -125,7 +125,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: GradientAI) -> None:
+    def test_raw_response_update(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -137,7 +137,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: GradientAI) -> None:
+    def test_streaming_response_update(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -151,7 +151,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: GradientAI) -> None:
+    def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_workspace_uuid` but received ''"):
             client.agents.evaluation_metrics.workspaces.with_raw_response.update(
                 path_workspace_uuid="",
@@ -159,13 +159,13 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.list()
         assert_matches_type(WorkspaceListResponse, workspace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.list()
 
         assert response.is_closed is True
@@ -175,7 +175,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -187,7 +187,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.delete(
             "workspace_uuid",
         )
@@ -195,7 +195,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.delete(
             "workspace_uuid",
         )
@@ -207,7 +207,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.delete(
             "workspace_uuid",
         ) as response:
@@ -221,7 +221,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: GradientAI) -> None:
+    def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workspace_uuid` but received ''"):
             client.agents.evaluation_metrics.workspaces.with_raw_response.delete(
                 "",
@@ -229,7 +229,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_evaluation_test_cases(self, client: GradientAI) -> None:
+    def test_method_list_evaluation_test_cases(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.list_evaluation_test_cases(
             "workspace_uuid",
         )
@@ -237,7 +237,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_evaluation_test_cases(self, client: GradientAI) -> None:
+    def test_raw_response_list_evaluation_test_cases(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.list_evaluation_test_cases(
             "workspace_uuid",
         )
@@ -249,7 +249,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_evaluation_test_cases(self, client: GradientAI) -> None:
+    def test_streaming_response_list_evaluation_test_cases(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.list_evaluation_test_cases(
             "workspace_uuid",
         ) as response:
@@ -263,7 +263,7 @@ class TestWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list_evaluation_test_cases(self, client: GradientAI) -> None:
+    def test_path_params_list_evaluation_test_cases(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workspace_uuid` but received ''"):
             client.agents.evaluation_metrics.workspaces.with_raw_response.list_evaluation_test_cases(
                 "",
@@ -277,13 +277,13 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.create()
         assert_matches_type(WorkspaceCreateResponse, workspace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.create(
             agent_uuids=["example string"],
             description='"example string"',
@@ -293,7 +293,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.create()
 
         assert response.is_closed is True
@@ -303,7 +303,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -315,7 +315,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.retrieve(
             "workspace_uuid",
         )
@@ -323,7 +323,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.retrieve(
             "workspace_uuid",
         )
@@ -335,7 +335,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.retrieve(
             "workspace_uuid",
         ) as response:
@@ -349,7 +349,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workspace_uuid` but received ''"):
             await async_client.agents.evaluation_metrics.workspaces.with_raw_response.retrieve(
                 "",
@@ -357,7 +357,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -365,7 +365,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             description='"example string"',
@@ -376,7 +376,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -388,7 +388,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -402,7 +402,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_workspace_uuid` but received ''"):
             await async_client.agents.evaluation_metrics.workspaces.with_raw_response.update(
                 path_workspace_uuid="",
@@ -410,13 +410,13 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.list()
         assert_matches_type(WorkspaceListResponse, workspace, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.list()
 
         assert response.is_closed is True
@@ -426,7 +426,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -438,7 +438,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.delete(
             "workspace_uuid",
         )
@@ -446,7 +446,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.delete(
             "workspace_uuid",
         )
@@ -458,7 +458,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.delete(
             "workspace_uuid",
         ) as response:
@@ -472,7 +472,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workspace_uuid` but received ''"):
             await async_client.agents.evaluation_metrics.workspaces.with_raw_response.delete(
                 "",
@@ -480,7 +480,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_evaluation_test_cases(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.list_evaluation_test_cases(
             "workspace_uuid",
         )
@@ -488,7 +488,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_evaluation_test_cases(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.list_evaluation_test_cases(
             "workspace_uuid",
         )
@@ -500,7 +500,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_evaluation_test_cases(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.list_evaluation_test_cases(
             "workspace_uuid",
         ) as response:
@@ -514,7 +514,7 @@ class TestAsyncWorkspaces:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list_evaluation_test_cases(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workspace_uuid` but received ''"):
             await async_client.agents.evaluation_metrics.workspaces.with_raw_response.list_evaluation_test_cases(
                 "",

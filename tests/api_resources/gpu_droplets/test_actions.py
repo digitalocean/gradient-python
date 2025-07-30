@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets import (
+from gradient.types.gpu_droplets import (
     ActionListResponse,
     ActionInitiateResponse,
     ActionRetrieveResponse,
@@ -24,7 +24,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.retrieve(
             action_id=36804636,
             droplet_id=3164444,
@@ -33,7 +33,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.retrieve(
             action_id=36804636,
             droplet_id=3164444,
@@ -46,7 +46,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.retrieve(
             action_id=36804636,
             droplet_id=3164444,
@@ -61,7 +61,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.list(
             droplet_id=3164444,
         )
@@ -69,7 +69,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.list(
             droplet_id=3164444,
             page=1,
@@ -79,7 +79,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.list(
             droplet_id=3164444,
         )
@@ -91,7 +91,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.list(
             droplet_id=3164444,
         ) as response:
@@ -105,7 +105,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_bulk_initiate_overload_1(self, client: GradientAI) -> None:
+    def test_method_bulk_initiate_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
         )
@@ -113,7 +113,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_bulk_initiate_with_all_params_overload_1(self, client: GradientAI) -> None:
+    def test_method_bulk_initiate_with_all_params_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
             tag_name="tag_name",
@@ -122,7 +122,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_bulk_initiate_overload_1(self, client: GradientAI) -> None:
+    def test_raw_response_bulk_initiate_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.bulk_initiate(
             type="reboot",
         )
@@ -134,7 +134,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_bulk_initiate_overload_1(self, client: GradientAI) -> None:
+    def test_streaming_response_bulk_initiate_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.bulk_initiate(
             type="reboot",
         ) as response:
@@ -148,7 +148,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_bulk_initiate_overload_2(self, client: GradientAI) -> None:
+    def test_method_bulk_initiate_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
         )
@@ -156,7 +156,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_bulk_initiate_with_all_params_overload_2(self, client: GradientAI) -> None:
+    def test_method_bulk_initiate_with_all_params_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
             tag_name="tag_name",
@@ -166,7 +166,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_bulk_initiate_overload_2(self, client: GradientAI) -> None:
+    def test_raw_response_bulk_initiate_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.bulk_initiate(
             type="reboot",
         )
@@ -178,7 +178,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_bulk_initiate_overload_2(self, client: GradientAI) -> None:
+    def test_streaming_response_bulk_initiate_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.bulk_initiate(
             type="reboot",
         ) as response:
@@ -192,7 +192,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_1(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -201,7 +201,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_1(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -214,7 +214,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_1(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -229,7 +229,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_2(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -238,7 +238,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_2(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -252,7 +252,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_2(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -265,7 +265,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_2(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -280,7 +280,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_3(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_3(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -289,7 +289,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_3(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_3(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -303,7 +303,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_3(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_3(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -316,7 +316,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_3(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_3(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -331,7 +331,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_4(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_4(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -340,7 +340,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_4(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_4(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -350,7 +350,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_4(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_4(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -363,7 +363,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_4(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_4(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -378,7 +378,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_5(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_5(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -387,7 +387,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_5(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_5(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -398,7 +398,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_5(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_5(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -411,7 +411,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_5(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_5(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -426,7 +426,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_6(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_6(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -435,7 +435,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_6(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_6(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -445,7 +445,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_6(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_6(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -458,7 +458,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_6(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_6(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -473,7 +473,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_7(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_7(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -482,7 +482,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_7(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_7(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -492,7 +492,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_7(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_7(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -505,7 +505,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_7(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_7(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -520,7 +520,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_8(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_8(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -529,7 +529,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_8(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_8(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -539,7 +539,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_8(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_8(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -552,7 +552,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_8(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_8(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -567,7 +567,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_overload_9(self, client: GradientAI) -> None:
+    def test_method_initiate_overload_9(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -576,7 +576,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_initiate_with_all_params_overload_9(self, client: GradientAI) -> None:
+    def test_method_initiate_with_all_params_overload_9(self, client: Gradient) -> None:
         action = client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -586,7 +586,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_initiate_overload_9(self, client: GradientAI) -> None:
+    def test_raw_response_initiate_overload_9(self, client: Gradient) -> None:
         response = client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -599,7 +599,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_initiate_overload_9(self, client: GradientAI) -> None:
+    def test_streaming_response_initiate_overload_9(self, client: Gradient) -> None:
         with client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -620,7 +620,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.retrieve(
             action_id=36804636,
             droplet_id=3164444,
@@ -629,7 +629,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.retrieve(
             action_id=36804636,
             droplet_id=3164444,
@@ -642,7 +642,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.retrieve(
             action_id=36804636,
             droplet_id=3164444,
@@ -657,7 +657,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.list(
             droplet_id=3164444,
         )
@@ -665,7 +665,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.list(
             droplet_id=3164444,
             page=1,
@@ -675,7 +675,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.list(
             droplet_id=3164444,
         )
@@ -687,7 +687,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.list(
             droplet_id=3164444,
         ) as response:
@@ -701,7 +701,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_bulk_initiate_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_bulk_initiate_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
         )
@@ -709,7 +709,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_bulk_initiate_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_bulk_initiate_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
             tag_name="tag_name",
@@ -718,7 +718,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_bulk_initiate_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_bulk_initiate_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.bulk_initiate(
             type="reboot",
         )
@@ -730,7 +730,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_bulk_initiate_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_bulk_initiate_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.bulk_initiate(
             type="reboot",
         ) as response:
@@ -744,7 +744,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_bulk_initiate_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_bulk_initiate_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
         )
@@ -752,7 +752,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_bulk_initiate_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_bulk_initiate_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.bulk_initiate(
             type="reboot",
             tag_name="tag_name",
@@ -762,7 +762,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_bulk_initiate_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_bulk_initiate_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.bulk_initiate(
             type="reboot",
         )
@@ -774,7 +774,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_bulk_initiate_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_bulk_initiate_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.bulk_initiate(
             type="reboot",
         ) as response:
@@ -788,7 +788,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -797,7 +797,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -810,7 +810,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -825,7 +825,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -834,7 +834,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -848,7 +848,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -861,7 +861,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -876,7 +876,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_3(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_3(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -885,7 +885,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_3(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_3(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -899,7 +899,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_3(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_3(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -912,7 +912,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_3(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_3(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="enable_backups",
@@ -927,7 +927,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_4(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_4(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -936,7 +936,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_4(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_4(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -946,7 +946,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_4(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_4(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -959,7 +959,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_4(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_4(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -974,7 +974,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_5(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_5(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -983,7 +983,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_5(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_5(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -994,7 +994,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_5(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_5(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1007,7 +1007,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_5(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_5(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1022,7 +1022,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_6(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_6(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1031,7 +1031,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_6(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_6(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1041,7 +1041,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_6(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_6(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1054,7 +1054,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_6(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_6(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1069,7 +1069,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_7(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_7(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1078,7 +1078,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_7(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_7(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1088,7 +1088,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_7(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_7(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1101,7 +1101,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_7(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_7(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1116,7 +1116,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_8(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_8(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1125,7 +1125,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_8(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_8(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1135,7 +1135,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_8(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_8(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1148,7 +1148,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_8(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_8(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1163,7 +1163,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_overload_9(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_overload_9(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1172,7 +1172,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_initiate_with_all_params_overload_9(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_initiate_with_all_params_overload_9(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.actions.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1182,7 +1182,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_initiate_overload_9(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_initiate_overload_9(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.actions.with_raw_response.initiate(
             droplet_id=3164444,
             type="reboot",
@@ -1195,7 +1195,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_initiate_overload_9(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_initiate_overload_9(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.actions.with_streaming_response.initiate(
             droplet_id=3164444,
             type="reboot",

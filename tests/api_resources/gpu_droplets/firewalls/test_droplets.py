@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from do_gradientai import GradientAI, AsyncGradientAI
+from gradient import Gradient, AsyncGradient
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_add(self, client: GradientAI) -> None:
+    def test_method_add(self, client: Gradient) -> None:
         droplet = client.gpu_droplets.firewalls.droplets.add(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -26,7 +26,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_add(self, client: GradientAI) -> None:
+    def test_raw_response_add(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.droplets.with_raw_response.add(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -39,7 +39,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_add(self, client: GradientAI) -> None:
+    def test_streaming_response_add(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.droplets.with_streaming_response.add(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -54,7 +54,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_add(self, client: GradientAI) -> None:
+    def test_path_params_add(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
             client.gpu_droplets.firewalls.droplets.with_raw_response.add(
                 firewall_id="",
@@ -63,7 +63,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_remove(self, client: GradientAI) -> None:
+    def test_method_remove(self, client: Gradient) -> None:
         droplet = client.gpu_droplets.firewalls.droplets.remove(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -72,7 +72,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_remove(self, client: GradientAI) -> None:
+    def test_raw_response_remove(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.droplets.with_raw_response.remove(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -85,7 +85,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_remove(self, client: GradientAI) -> None:
+    def test_streaming_response_remove(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.droplets.with_streaming_response.remove(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -100,7 +100,7 @@ class TestDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_remove(self, client: GradientAI) -> None:
+    def test_path_params_remove(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
             client.gpu_droplets.firewalls.droplets.with_raw_response.remove(
                 firewall_id="",
@@ -115,7 +115,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_add(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_add(self, async_client: AsyncGradient) -> None:
         droplet = await async_client.gpu_droplets.firewalls.droplets.add(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -124,7 +124,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_add(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_add(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.droplets.with_raw_response.add(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -137,7 +137,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_add(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_add(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.droplets.with_streaming_response.add(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -152,7 +152,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_add(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_add(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
             await async_client.gpu_droplets.firewalls.droplets.with_raw_response.add(
                 firewall_id="",
@@ -161,7 +161,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_remove(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_remove(self, async_client: AsyncGradient) -> None:
         droplet = await async_client.gpu_droplets.firewalls.droplets.remove(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -170,7 +170,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_remove(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_remove(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.droplets.with_raw_response.remove(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -183,7 +183,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_remove(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_remove(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.droplets.with_streaming_response.remove(
             firewall_id="bb4b2611-3d72-467b-8602-280330ecd65c",
             droplet_ids=[49696269],
@@ -198,7 +198,7 @@ class TestAsyncDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_remove(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_remove(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
             await async_client.gpu_droplets.firewalls.droplets.with_raw_response.remove(
                 firewall_id="",

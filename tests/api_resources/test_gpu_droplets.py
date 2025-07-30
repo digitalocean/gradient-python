@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types import (
+from gradient.types import (
     GPUDropletListResponse,
     GPUDropletCreateResponse,
     GPUDropletRetrieveResponse,
@@ -27,7 +27,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_1(self, client: GradientAI) -> None:
+    def test_method_create_overload_1(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -37,7 +37,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params_overload_1(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -63,7 +63,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -77,7 +77,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -93,7 +93,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_overload_2(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -103,7 +103,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params_overload_2(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -129,7 +129,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -143,7 +143,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -159,7 +159,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.retrieve(
             1,
         )
@@ -167,7 +167,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.retrieve(
             1,
         )
@@ -179,7 +179,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.retrieve(
             1,
         ) as response:
@@ -193,13 +193,13 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list()
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list(
             name="name",
             page=1,
@@ -211,7 +211,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list()
 
         assert response.is_closed is True
@@ -221,7 +221,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,7 +233,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.delete(
             1,
         )
@@ -241,7 +241,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.delete(
             1,
         )
@@ -253,7 +253,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.delete(
             1,
         ) as response:
@@ -267,7 +267,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_by_tag(self, client: GradientAI) -> None:
+    def test_method_delete_by_tag(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.delete_by_tag(
             tag_name="tag_name",
         )
@@ -275,7 +275,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete_by_tag(self, client: GradientAI) -> None:
+    def test_raw_response_delete_by_tag(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.delete_by_tag(
             tag_name="tag_name",
         )
@@ -287,7 +287,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete_by_tag(self, client: GradientAI) -> None:
+    def test_streaming_response_delete_by_tag(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.delete_by_tag(
             tag_name="tag_name",
         ) as response:
@@ -301,7 +301,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_firewalls(self, client: GradientAI) -> None:
+    def test_method_list_firewalls(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_firewalls(
             droplet_id=3164444,
         )
@@ -309,7 +309,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_firewalls_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_firewalls_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_firewalls(
             droplet_id=3164444,
             page=1,
@@ -319,7 +319,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_firewalls(self, client: GradientAI) -> None:
+    def test_raw_response_list_firewalls(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_firewalls(
             droplet_id=3164444,
         )
@@ -331,7 +331,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_firewalls(self, client: GradientAI) -> None:
+    def test_streaming_response_list_firewalls(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_firewalls(
             droplet_id=3164444,
         ) as response:
@@ -345,7 +345,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_kernels(self, client: GradientAI) -> None:
+    def test_method_list_kernels(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_kernels(
             droplet_id=3164444,
         )
@@ -353,7 +353,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_kernels_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_kernels_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_kernels(
             droplet_id=3164444,
             page=1,
@@ -363,7 +363,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_kernels(self, client: GradientAI) -> None:
+    def test_raw_response_list_kernels(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_kernels(
             droplet_id=3164444,
         )
@@ -375,7 +375,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_kernels(self, client: GradientAI) -> None:
+    def test_streaming_response_list_kernels(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_kernels(
             droplet_id=3164444,
         ) as response:
@@ -389,7 +389,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_neighbors(self, client: GradientAI) -> None:
+    def test_method_list_neighbors(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_neighbors(
             1,
         )
@@ -397,7 +397,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_neighbors(self, client: GradientAI) -> None:
+    def test_raw_response_list_neighbors(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_neighbors(
             1,
         )
@@ -409,7 +409,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_neighbors(self, client: GradientAI) -> None:
+    def test_streaming_response_list_neighbors(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_neighbors(
             1,
         ) as response:
@@ -423,7 +423,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_snapshots(self, client: GradientAI) -> None:
+    def test_method_list_snapshots(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_snapshots(
             droplet_id=3164444,
         )
@@ -431,7 +431,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_snapshots_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_snapshots_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_snapshots(
             droplet_id=3164444,
             page=1,
@@ -441,7 +441,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_snapshots(self, client: GradientAI) -> None:
+    def test_raw_response_list_snapshots(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_snapshots(
             droplet_id=3164444,
         )
@@ -453,7 +453,7 @@ class TestGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_snapshots(self, client: GradientAI) -> None:
+    def test_streaming_response_list_snapshots(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_snapshots(
             droplet_id=3164444,
         ) as response:
@@ -473,7 +473,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -483,7 +483,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -509,7 +509,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -523,7 +523,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.create(
             image="ubuntu-20-04-x64",
             name="example.com",
@@ -539,7 +539,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -549,7 +549,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -575,7 +575,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -589,7 +589,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.create(
             image="ubuntu-20-04-x64",
             names=["sub-01.example.com", "sub-02.example.com"],
@@ -605,7 +605,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.retrieve(
             1,
         )
@@ -613,7 +613,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.retrieve(
             1,
         )
@@ -625,7 +625,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.retrieve(
             1,
         ) as response:
@@ -639,13 +639,13 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list()
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list(
             name="name",
             page=1,
@@ -657,7 +657,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list()
 
         assert response.is_closed is True
@@ -667,7 +667,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -679,7 +679,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.delete(
             1,
         )
@@ -687,7 +687,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.delete(
             1,
         )
@@ -699,7 +699,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.delete(
             1,
         ) as response:
@@ -713,7 +713,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_by_tag(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_by_tag(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.delete_by_tag(
             tag_name="tag_name",
         )
@@ -721,7 +721,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete_by_tag(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete_by_tag(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.delete_by_tag(
             tag_name="tag_name",
         )
@@ -733,7 +733,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete_by_tag(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete_by_tag(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.delete_by_tag(
             tag_name="tag_name",
         ) as response:
@@ -747,7 +747,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_firewalls(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_firewalls(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_firewalls(
             droplet_id=3164444,
         )
@@ -755,7 +755,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_firewalls_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_firewalls_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_firewalls(
             droplet_id=3164444,
             page=1,
@@ -765,7 +765,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_firewalls(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_firewalls(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_firewalls(
             droplet_id=3164444,
         )
@@ -777,7 +777,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_firewalls(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_firewalls(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_firewalls(
             droplet_id=3164444,
         ) as response:
@@ -791,7 +791,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_kernels(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_kernels(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_kernels(
             droplet_id=3164444,
         )
@@ -799,7 +799,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_kernels_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_kernels_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_kernels(
             droplet_id=3164444,
             page=1,
@@ -809,7 +809,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_kernels(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_kernels(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_kernels(
             droplet_id=3164444,
         )
@@ -821,7 +821,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_kernels(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_kernels(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_kernels(
             droplet_id=3164444,
         ) as response:
@@ -835,7 +835,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_neighbors(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_neighbors(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_neighbors(
             1,
         )
@@ -843,7 +843,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_neighbors(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_neighbors(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_neighbors(
             1,
         )
@@ -855,7 +855,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_neighbors(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_neighbors(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_neighbors(
             1,
         ) as response:
@@ -869,7 +869,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_snapshots(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_snapshots(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_snapshots(
             droplet_id=3164444,
         )
@@ -877,7 +877,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_snapshots_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_snapshots_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_snapshots(
             droplet_id=3164444,
             page=1,
@@ -887,7 +887,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_snapshots(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_snapshots(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_snapshots(
             droplet_id=3164444,
         )
@@ -899,7 +899,7 @@ class TestAsyncGPUDroplets:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_snapshots(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_snapshots(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_snapshots(
             droplet_id=3164444,
         ) as response:

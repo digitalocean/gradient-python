@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets.volumes import (
+from gradient.types.gpu_droplets.volumes import (
     SnapshotListResponse,
     SnapshotCreateResponse,
     SnapshotRetrieveResponse,
@@ -23,7 +23,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -32,7 +32,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -42,7 +42,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.snapshots.with_raw_response.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -55,7 +55,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.snapshots.with_streaming_response.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -70,7 +70,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: GradientAI) -> None:
+    def test_path_params_create(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             client.gpu_droplets.volumes.snapshots.with_raw_response.create(
                 volume_id="",
@@ -79,7 +79,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.retrieve(
             "snapshot_id",
         )
@@ -87,7 +87,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.snapshots.with_raw_response.retrieve(
             "snapshot_id",
         )
@@ -99,7 +99,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.snapshots.with_streaming_response.retrieve(
             "snapshot_id",
         ) as response:
@@ -113,7 +113,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snapshot_id` but received ''"):
             client.gpu_droplets.volumes.snapshots.with_raw_response.retrieve(
                 "",
@@ -121,7 +121,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
         )
@@ -129,7 +129,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             page=1,
@@ -139,7 +139,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.snapshots.with_raw_response.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
         )
@@ -151,7 +151,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.snapshots.with_streaming_response.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
         ) as response:
@@ -165,7 +165,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: GradientAI) -> None:
+    def test_path_params_list(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             client.gpu_droplets.volumes.snapshots.with_raw_response.list(
                 volume_id="",
@@ -173,7 +173,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.delete(
             "snapshot_id",
         )
@@ -181,7 +181,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.snapshots.with_raw_response.delete(
             "snapshot_id",
         )
@@ -193,7 +193,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.snapshots.with_streaming_response.delete(
             "snapshot_id",
         ) as response:
@@ -207,7 +207,7 @@ class TestSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: GradientAI) -> None:
+    def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snapshot_id` but received ''"):
             client.gpu_droplets.volumes.snapshots.with_raw_response.delete(
                 "",
@@ -221,7 +221,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -230,7 +230,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -240,7 +240,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.snapshots.with_raw_response.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -253,7 +253,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.snapshots.with_streaming_response.create(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             name="big-data-snapshot1475261774",
@@ -268,7 +268,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_create(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             await async_client.gpu_droplets.volumes.snapshots.with_raw_response.create(
                 volume_id="",
@@ -277,7 +277,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.retrieve(
             "snapshot_id",
         )
@@ -285,7 +285,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.snapshots.with_raw_response.retrieve(
             "snapshot_id",
         )
@@ -297,7 +297,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.snapshots.with_streaming_response.retrieve(
             "snapshot_id",
         ) as response:
@@ -311,7 +311,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snapshot_id` but received ''"):
             await async_client.gpu_droplets.volumes.snapshots.with_raw_response.retrieve(
                 "",
@@ -319,7 +319,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
         )
@@ -327,7 +327,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
             page=1,
@@ -337,7 +337,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.snapshots.with_raw_response.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
         )
@@ -349,7 +349,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.snapshots.with_streaming_response.list(
             volume_id="7724db7c-e098-11e5-b522-000f53304e51",
         ) as response:
@@ -363,7 +363,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             await async_client.gpu_droplets.volumes.snapshots.with_raw_response.list(
                 volume_id="",
@@ -371,7 +371,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.delete(
             "snapshot_id",
         )
@@ -379,7 +379,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.snapshots.with_raw_response.delete(
             "snapshot_id",
         )
@@ -391,7 +391,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.snapshots.with_streaming_response.delete(
             "snapshot_id",
         ) as response:
@@ -405,7 +405,7 @@ class TestAsyncSnapshots:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snapshot_id` but received ''"):
             await async_client.gpu_droplets.volumes.snapshots.with_raw_response.delete(
                 "",

@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from do_gradientai._types import FileTypes
-from do_gradientai._utils import extract_files
+from gradient._types import FileTypes
+from gradient._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:
