@@ -69,13 +69,7 @@ from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
-from .agents.evaluation_metrics import (
-    openai,  # type: ignore  # noqa: F401
-    anthropic,  # type: ignore  # noqa: F401
-)
-from .api_deployment_visibility import (
-    APIDeploymentVisibility as APIDeploymentVisibility,
-)
+from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
 from .agent_update_status_params import (
@@ -175,45 +169,23 @@ if _compat.PYDANTIC_V2:
     agents.evaluation_metrics.workspace_retrieve_response.WorkspaceRetrieveResponse.model_rebuild(
         _parent_namespace_depth=0
     )
-    agents.evaluation_metrics.workspace_update_response.WorkspaceUpdateResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
+    agents.evaluation_metrics.workspace_update_response.WorkspaceUpdateResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.model_rebuild(_parent_namespace_depth=0)
     agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
         _parent_namespace_depth=0
     )
     agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
         _parent_namespace_depth=0
     )
-    agents.function_create_response.FunctionCreateResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.function_update_response.FunctionUpdateResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.function_delete_response.FunctionDeleteResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.api_link_knowledge_base_output.APILinkKnowledgeBaseOutput.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.knowledge_base_detach_response.KnowledgeBaseDetachResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.route_view_response.RouteViewResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
+    agents.function_create_response.FunctionCreateResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.function_update_response.FunctionUpdateResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.function_delete_response.FunctionDeleteResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.api_link_knowledge_base_output.APILinkKnowledgeBaseOutput.model_rebuild(_parent_namespace_depth=0)
+    agents.knowledge_base_detach_response.KnowledgeBaseDetachResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.route_view_response.RouteViewResponse.model_rebuild(_parent_namespace_depth=0)
+    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.model_rebuild(_parent_namespace_depth=0)
     models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.model_rebuild(
         _parent_namespace_depth=0
     )
