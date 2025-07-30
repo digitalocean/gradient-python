@@ -50,6 +50,7 @@ from .api_workspace import APIWorkspace as APIWorkspace
 from .api_agent_model import APIAgentModel as APIAgentModel
 from .agent_list_params import AgentListParams as AgentListParams
 from .api_model_version import APIModelVersion as APIModelVersion
+from .model_list_params import ModelListParams as ModelListParams
 from .api_knowledge_base import APIKnowledgeBase as APIKnowledgeBase
 from .region_list_params import RegionListParams as RegionListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
@@ -66,7 +67,6 @@ from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
-from .model_retrieve_response import ModelRetrieveResponse as ModelRetrieveResponse
 from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
@@ -113,6 +113,12 @@ if _compat.PYDANTIC_V2:
     agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.model_rebuild(_parent_namespace_depth=0)
     agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.model_rebuild(_parent_namespace_depth=0)
     agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.model_rebuild(
+        _parent_namespace_depth=0
+    )
     agents.function_create_response.FunctionCreateResponse.model_rebuild(_parent_namespace_depth=0)
     agents.function_update_response.FunctionUpdateResponse.model_rebuild(_parent_namespace_depth=0)
     agents.function_delete_response.FunctionDeleteResponse.model_rebuild(_parent_namespace_depth=0)
@@ -137,6 +143,8 @@ else:
     agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.update_forward_refs()  # type: ignore
     agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.update_forward_refs()  # type: ignore
     agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
     agents.function_create_response.FunctionCreateResponse.update_forward_refs()  # type: ignore
     agents.function_update_response.FunctionUpdateResponse.update_forward_refs()  # type: ignore
     agents.function_delete_response.FunctionDeleteResponse.update_forward_refs()  # type: ignore

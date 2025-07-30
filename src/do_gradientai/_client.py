@@ -32,11 +32,12 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, inference, gpu_droplets, knowledge_bases
+    from .resources import chat, agents, models, regions, databases, inference, gpu_droplets, knowledge_bases
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
+    from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
     from .resources.gpu_droplets.gpu_droplets import GPUDropletsResource, AsyncGPUDropletsResource
     from .resources.knowledge_bases.knowledge_bases import KnowledgeBasesResource, AsyncKnowledgeBasesResource
@@ -167,6 +168,12 @@ class GradientAI(SyncAPIClient):
         from .resources.regions import RegionsResource
 
         return RegionsResource(self)
+
+    @cached_property
+    def databases(self) -> DatabasesResource:
+        from .resources.databases import DatabasesResource
+
+        return DatabasesResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientAIWithRawResponse:
@@ -418,6 +425,12 @@ class AsyncGradientAI(AsyncAPIClient):
         return AsyncRegionsResource(self)
 
     @cached_property
+    def databases(self) -> AsyncDatabasesResource:
+        from .resources.databases import AsyncDatabasesResource
+
+        return AsyncDatabasesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientAIWithRawResponse:
         return AsyncGradientAIWithRawResponse(self)
 
@@ -599,6 +612,12 @@ class GradientAIWithRawResponse:
 
         return RegionsResourceWithRawResponse(self._client.regions)
 
+    @cached_property
+    def databases(self) -> databases.DatabasesResourceWithRawResponse:
+        from .resources.databases import DatabasesResourceWithRawResponse
+
+        return DatabasesResourceWithRawResponse(self._client.databases)
+
 
 class AsyncGradientAIWithRawResponse:
     _client: AsyncGradientAI
@@ -647,6 +666,12 @@ class AsyncGradientAIWithRawResponse:
         from .resources.regions import AsyncRegionsResourceWithRawResponse
 
         return AsyncRegionsResourceWithRawResponse(self._client.regions)
+
+    @cached_property
+    def databases(self) -> databases.AsyncDatabasesResourceWithRawResponse:
+        from .resources.databases import AsyncDatabasesResourceWithRawResponse
+
+        return AsyncDatabasesResourceWithRawResponse(self._client.databases)
 
 
 class GradientAIWithStreamedResponse:
@@ -697,6 +722,12 @@ class GradientAIWithStreamedResponse:
 
         return RegionsResourceWithStreamingResponse(self._client.regions)
 
+    @cached_property
+    def databases(self) -> databases.DatabasesResourceWithStreamingResponse:
+        from .resources.databases import DatabasesResourceWithStreamingResponse
+
+        return DatabasesResourceWithStreamingResponse(self._client.databases)
+
 
 class AsyncGradientAIWithStreamedResponse:
     _client: AsyncGradientAI
@@ -745,6 +776,12 @@ class AsyncGradientAIWithStreamedResponse:
         from .resources.regions import AsyncRegionsResourceWithStreamingResponse
 
         return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
+
+    @cached_property
+    def databases(self) -> databases.AsyncDatabasesResourceWithStreamingResponse:
+        from .resources.databases import AsyncDatabasesResourceWithStreamingResponse
+
+        return AsyncDatabasesResourceWithStreamingResponse(self._client.databases)
 
 
 Client = GradientAI

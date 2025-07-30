@@ -1,5 +1,5 @@
 [project]
-name = "do_gradientai"
+name = "gradient"
 version = "0.1.0-beta.3"
 description = "The official Python library for the GradientAI API"
 dynamic = ["readme"]

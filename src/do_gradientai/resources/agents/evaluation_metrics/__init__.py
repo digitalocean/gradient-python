@@ -8,6 +8,22 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
+from .openai import (
+    OpenAIResource,
+    AsyncOpenAIResource,
+    OpenAIResourceWithRawResponse,
+    AsyncOpenAIResourceWithRawResponse,
+    OpenAIResourceWithStreamingResponse,
+    AsyncOpenAIResourceWithStreamingResponse,
+)
+from .anthropic import (
+    AnthropicResource,
+    AsyncAnthropicResource,
+    AnthropicResourceWithRawResponse,
+    AsyncAnthropicResourceWithRawResponse,
+    AnthropicResourceWithStreamingResponse,
+    AsyncAnthropicResourceWithStreamingResponse,
+)
 from .workspaces import (
     WorkspacesResource,
     AsyncWorkspacesResource,
@@ -38,6 +54,18 @@ __all__ = [
     "AsyncModelsResourceWithRawResponse",
     "ModelsResourceWithStreamingResponse",
     "AsyncModelsResourceWithStreamingResponse",
+    "AnthropicResource",
+    "AsyncAnthropicResource",
+    "AnthropicResourceWithRawResponse",
+    "AsyncAnthropicResourceWithRawResponse",
+    "AnthropicResourceWithStreamingResponse",
+    "AsyncAnthropicResourceWithStreamingResponse",
+    "OpenAIResource",
+    "AsyncOpenAIResource",
+    "OpenAIResourceWithRawResponse",
+    "AsyncOpenAIResourceWithRawResponse",
+    "OpenAIResourceWithStreamingResponse",
+    "AsyncOpenAIResourceWithStreamingResponse",
     "EvaluationMetricsResource",
     "AsyncEvaluationMetricsResource",
     "EvaluationMetricsResourceWithRawResponse",
