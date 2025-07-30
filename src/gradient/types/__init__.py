@@ -155,17 +155,11 @@ if _compat.PYDANTIC_V2:
     api_agent.APIAgent.model_rebuild(_parent_namespace_depth=0)
     api_workspace.APIWorkspace.model_rebuild(_parent_namespace_depth=0)
     agent_create_response.AgentCreateResponse.model_rebuild(_parent_namespace_depth=0)
-    agent_retrieve_response.AgentRetrieveResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
+    agent_retrieve_response.AgentRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
     agent_update_response.AgentUpdateResponse.model_rebuild(_parent_namespace_depth=0)
     agent_delete_response.AgentDeleteResponse.model_rebuild(_parent_namespace_depth=0)
-    agent_update_status_response.AgentUpdateStatusResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    agents.evaluation_metrics.workspace_create_response.WorkspaceCreateResponse.model_rebuild(
-        _parent_namespace_depth=0
-    )
+    agent_update_status_response.AgentUpdateStatusResponse.model_rebuild(_parent_namespace_depth=0)
+    agents.evaluation_metrics.workspace_create_response.WorkspaceCreateResponse.model_rebuild(_parent_namespace_depth=0)
     agents.evaluation_metrics.workspace_retrieve_response.WorkspaceRetrieveResponse.model_rebuild(
         _parent_namespace_depth=0
     )
