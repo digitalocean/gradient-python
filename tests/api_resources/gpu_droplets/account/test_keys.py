@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets.account import (
+from gradient.types.gpu_droplets.account import (
     KeyListResponse,
     KeyCreateResponse,
     KeyUpdateResponse,
@@ -24,7 +24,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.create(
             name="My SSH Public Key",
             public_key="ssh-rsa AEXAMPLEaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
@@ -33,7 +33,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.create(
             name="My SSH Public Key",
             public_key="ssh-rsa AEXAMPLEaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
@@ -46,7 +46,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.create(
             name="My SSH Public Key",
             public_key="ssh-rsa AEXAMPLEaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
@@ -61,7 +61,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.retrieve(
             512189,
         )
@@ -69,7 +69,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.retrieve(
             512189,
         )
@@ -81,7 +81,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.retrieve(
             512189,
         ) as response:
@@ -95,7 +95,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: GradientAI) -> None:
+    def test_method_update(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.update(
             ssh_key_identifier=512189,
         )
@@ -103,7 +103,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: GradientAI) -> None:
+    def test_method_update_with_all_params(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.update(
             ssh_key_identifier=512189,
             name="My SSH Public Key",
@@ -112,7 +112,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: GradientAI) -> None:
+    def test_raw_response_update(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.update(
             ssh_key_identifier=512189,
         )
@@ -124,7 +124,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: GradientAI) -> None:
+    def test_streaming_response_update(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.update(
             ssh_key_identifier=512189,
         ) as response:
@@ -138,13 +138,13 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.list()
         assert_matches_type(KeyListResponse, key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.list(
             page=1,
             per_page=1,
@@ -153,7 +153,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.list()
 
         assert response.is_closed is True
@@ -163,7 +163,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,7 +175,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.delete(
             512189,
         )
@@ -183,7 +183,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.delete(
             512189,
         )
@@ -195,7 +195,7 @@ class TestKeys:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.delete(
             512189,
         ) as response:
@@ -215,7 +215,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.create(
             name="My SSH Public Key",
             public_key="ssh-rsa AEXAMPLEaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
@@ -224,7 +224,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.create(
             name="My SSH Public Key",
             public_key="ssh-rsa AEXAMPLEaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
@@ -237,7 +237,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.create(
             name="My SSH Public Key",
             public_key="ssh-rsa AEXAMPLEaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
@@ -252,7 +252,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.retrieve(
             512189,
         )
@@ -260,7 +260,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.retrieve(
             512189,
         )
@@ -272,7 +272,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.retrieve(
             512189,
         ) as response:
@@ -286,7 +286,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.update(
             ssh_key_identifier=512189,
         )
@@ -294,7 +294,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.update(
             ssh_key_identifier=512189,
             name="My SSH Public Key",
@@ -303,7 +303,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.update(
             ssh_key_identifier=512189,
         )
@@ -315,7 +315,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.update(
             ssh_key_identifier=512189,
         ) as response:
@@ -329,13 +329,13 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.list()
         assert_matches_type(KeyListResponse, key, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.list(
             page=1,
             per_page=1,
@@ -344,7 +344,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.list()
 
         assert response.is_closed is True
@@ -354,7 +354,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -366,7 +366,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.delete(
             512189,
         )
@@ -374,7 +374,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.delete(
             512189,
         )
@@ -386,7 +386,7 @@ class TestAsyncKeys:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.delete(
             512189,
         ) as response:

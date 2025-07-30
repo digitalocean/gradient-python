@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.agents import (
+from gradient.types.agents import (
     EvaluationRunCreateResponse,
     EvaluationRunRetrieveResponse,
     EvaluationRunListResultsResponse,
@@ -24,13 +24,13 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.create()
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.create(
             agent_uuids=["example string"],
             run_name="Evaluation Run Name",
@@ -40,7 +40,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.create()
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -62,7 +62,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.retrieve(
             "evaluation_run_uuid",
         )
@@ -70,7 +70,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.retrieve(
             "evaluation_run_uuid",
         )
@@ -82,7 +82,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.retrieve(
             "evaluation_run_uuid",
         ) as response:
@@ -96,7 +96,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             client.agents.evaluation_runs.with_raw_response.retrieve(
                 "",
@@ -104,7 +104,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_results(self, client: GradientAI) -> None:
+    def test_method_list_results(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -112,7 +112,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_results_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_results_with_all_params(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
@@ -122,7 +122,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_results(self, client: GradientAI) -> None:
+    def test_raw_response_list_results(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -134,7 +134,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_results(self, client: GradientAI) -> None:
+    def test_streaming_response_list_results(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -148,7 +148,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list_results(self, client: GradientAI) -> None:
+    def test_path_params_list_results(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             client.agents.evaluation_runs.with_raw_response.list_results(
                 evaluation_run_uuid="",
@@ -156,7 +156,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_results(self, client: GradientAI) -> None:
+    def test_method_retrieve_results(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.retrieve_results(
             prompt_id=1,
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -165,7 +165,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve_results(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve_results(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.retrieve_results(
             prompt_id=1,
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -178,7 +178,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve_results(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve_results(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.retrieve_results(
             prompt_id=1,
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -193,7 +193,7 @@ class TestEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve_results(self, client: GradientAI) -> None:
+    def test_path_params_retrieve_results(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             client.agents.evaluation_runs.with_raw_response.retrieve_results(
                 prompt_id=1,
@@ -208,13 +208,13 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.create()
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.create(
             agent_uuids=["example string"],
             run_name="Evaluation Run Name",
@@ -224,7 +224,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.create()
 
         assert response.is_closed is True
@@ -234,7 +234,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -246,7 +246,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.retrieve(
             "evaluation_run_uuid",
         )
@@ -254,7 +254,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.retrieve(
             "evaluation_run_uuid",
         )
@@ -266,7 +266,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.retrieve(
             "evaluation_run_uuid",
         ) as response:
@@ -280,7 +280,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             await async_client.agents.evaluation_runs.with_raw_response.retrieve(
                 "",
@@ -288,7 +288,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_results(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -296,7 +296,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_results_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_results_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
@@ -306,7 +306,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_results(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -318,7 +318,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_results(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.list_results(
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -332,7 +332,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list_results(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             await async_client.agents.evaluation_runs.with_raw_response.list_results(
                 evaluation_run_uuid="",
@@ -340,7 +340,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve_results(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.retrieve_results(
             prompt_id=1,
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -349,7 +349,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve_results(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.retrieve_results(
             prompt_id=1,
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -362,7 +362,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve_results(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.retrieve_results(
             prompt_id=1,
             evaluation_run_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -377,7 +377,7 @@ class TestAsyncEvaluationRuns:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve_results(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve_results(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
             await async_client.agents.evaluation_runs.with_raw_response.retrieve_results(
                 prompt_id=1,

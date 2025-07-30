@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.knowledge_bases import (
+from gradient.types.knowledge_bases import (
     DataSourceListResponse,
     DataSourceCreateResponse,
     DataSourceDeleteResponse,
@@ -23,7 +23,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create(self, client: Gradient) -> None:
         data_source = client.knowledge_bases.data_sources.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -31,7 +31,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params(self, client: Gradient) -> None:
         data_source = client.knowledge_bases.data_sources.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             aws_data_source={
@@ -57,7 +57,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create(self, client: Gradient) -> None:
         response = client.knowledge_bases.data_sources.with_raw_response.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -69,7 +69,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create(self, client: Gradient) -> None:
         with client.knowledge_bases.data_sources.with_streaming_response.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -83,7 +83,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create(self, client: GradientAI) -> None:
+    def test_path_params_create(self, client: Gradient) -> None:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_knowledge_base_uuid` but received ''"
         ):
@@ -93,7 +93,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         data_source = client.knowledge_bases.data_sources.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -101,7 +101,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         data_source = client.knowledge_bases.data_sources.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
@@ -111,7 +111,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.knowledge_bases.data_sources.with_raw_response.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -123,7 +123,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.knowledge_bases.data_sources.with_streaming_response.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -137,7 +137,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: GradientAI) -> None:
+    def test_path_params_list(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
             client.knowledge_bases.data_sources.with_raw_response.list(
                 knowledge_base_uuid="",
@@ -145,7 +145,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         data_source = client.knowledge_bases.data_sources.delete(
             data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -154,7 +154,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.knowledge_bases.data_sources.with_raw_response.delete(
             data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -167,7 +167,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.knowledge_bases.data_sources.with_streaming_response.delete(
             data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -182,7 +182,7 @@ class TestDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: GradientAI) -> None:
+    def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
             client.knowledge_bases.data_sources.with_raw_response.delete(
                 data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -203,7 +203,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create(self, async_client: AsyncGradient) -> None:
         data_source = await async_client.knowledge_bases.data_sources.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -211,7 +211,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         data_source = await async_client.knowledge_bases.data_sources.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             aws_data_source={
@@ -237,7 +237,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.data_sources.with_raw_response.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -249,7 +249,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.data_sources.with_streaming_response.create(
             path_knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -263,7 +263,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_create(self, async_client: AsyncGradient) -> None:
         with pytest.raises(
             ValueError, match=r"Expected a non-empty value for `path_knowledge_base_uuid` but received ''"
         ):
@@ -273,7 +273,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         data_source = await async_client.knowledge_bases.data_sources.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -281,7 +281,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         data_source = await async_client.knowledge_bases.data_sources.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             page=0,
@@ -291,7 +291,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.data_sources.with_raw_response.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         )
@@ -303,7 +303,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.data_sources.with_streaming_response.list(
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
@@ -317,7 +317,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
             await async_client.knowledge_bases.data_sources.with_raw_response.list(
                 knowledge_base_uuid="",
@@ -325,7 +325,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         data_source = await async_client.knowledge_bases.data_sources.delete(
             data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -334,7 +334,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.data_sources.with_raw_response.delete(
             data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -347,7 +347,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.data_sources.with_streaming_response.delete(
             data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
@@ -362,7 +362,7 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
             await async_client.knowledge_bases.data_sources.with_raw_response.delete(
                 data_source_uuid='"123e4567-e89b-12d3-a456-426614174000"',

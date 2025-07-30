@@ -1,11 +1,11 @@
 [project]
 name = "gradient"
 version = "0.1.0-beta.3"
-description = "The official Python library for the GradientAI API"
+description = "The official Python library for the Gradient API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Gradient AI", email = "" },
+{ name = "Gradient", email = "" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -35,8 +35,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/digitalocean/gradientai-python"
-Repository = "https://github.com/digitalocean/gradientai-python"
+Homepage = "https://github.com/digitalocean/gradient-python"
+Repository = "https://github.com/digitalocean/gradient-python"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.8"]
@@ -79,14 +79,14 @@ format = { chain = [
 "check:ruff" = "ruff check ."
 "fix:ruff" = "ruff check --fix ."
 
-"check:importable" = "python -c 'import do_gradientai'"
+"check:importable" = "python -c 'import gradient'"
 
 typecheck = { chain = [
   "typecheck:pyright",
   "typecheck:mypy"
 ]}
 "typecheck:pyright" = "pyright"
-"typecheck:verify-types" = "pyright --verifytypes do_gradientai --ignoreexternal"
+"typecheck:verify-types" = "pyright --verifytypes gradient --ignoreexternal"
 "typecheck:mypy" = "mypy ."
 
 [build-system]
@@ -99,7 +99,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/do_gradientai"]
+packages = ["src/gradient"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -125,7 +125,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/digitalocean/gradientai-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/digitalocean/gradient-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -202,7 +202,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["do_gradientai", "tests"]
+known-first-party = ["gradient", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]

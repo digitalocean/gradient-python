@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets import (
+from gradient.types.gpu_droplets import (
     AutoscaleListResponse,
     AutoscaleCreateResponse,
     AutoscaleUpdateResponse,
@@ -26,7 +26,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create(self, client: GradientAI) -> None:
+    def test_method_create(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.create(
             config={
                 "max_instances": 5,
@@ -44,7 +44,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.create(
             config={
                 "max_instances": 5,
@@ -72,7 +72,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create(self, client: GradientAI) -> None:
+    def test_raw_response_create(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.create(
             config={
                 "max_instances": 5,
@@ -94,7 +94,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create(self, client: GradientAI) -> None:
+    def test_streaming_response_create(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.create(
             config={
                 "max_instances": 5,
@@ -118,7 +118,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.retrieve(
             "autoscale_pool_id",
         )
@@ -126,7 +126,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.retrieve(
             "autoscale_pool_id",
         )
@@ -138,7 +138,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.retrieve(
             "autoscale_pool_id",
         ) as response:
@@ -152,7 +152,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             client.gpu_droplets.autoscale.with_raw_response.retrieve(
                 "",
@@ -160,7 +160,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: GradientAI) -> None:
+    def test_method_update(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -176,7 +176,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_with_all_params(self, client: GradientAI) -> None:
+    def test_method_update_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -199,7 +199,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: GradientAI) -> None:
+    def test_raw_response_update(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -219,7 +219,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: GradientAI) -> None:
+    def test_streaming_response_update(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -241,7 +241,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: GradientAI) -> None:
+    def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             client.gpu_droplets.autoscale.with_raw_response.update(
                 autoscale_pool_id="",
@@ -257,13 +257,13 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list()
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list(
             name="name",
             page=1,
@@ -273,7 +273,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.list()
 
         assert response.is_closed is True
@@ -283,7 +283,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,7 +295,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.delete(
             "autoscale_pool_id",
         )
@@ -303,7 +303,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.delete(
             "autoscale_pool_id",
         )
@@ -315,7 +315,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.delete(
             "autoscale_pool_id",
         ) as response:
@@ -329,7 +329,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: GradientAI) -> None:
+    def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             client.gpu_droplets.autoscale.with_raw_response.delete(
                 "",
@@ -337,7 +337,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_dangerous(self, client: GradientAI) -> None:
+    def test_method_delete_dangerous(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.delete_dangerous(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             x_dangerous=True,
@@ -346,7 +346,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete_dangerous(self, client: GradientAI) -> None:
+    def test_raw_response_delete_dangerous(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.delete_dangerous(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             x_dangerous=True,
@@ -359,7 +359,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete_dangerous(self, client: GradientAI) -> None:
+    def test_streaming_response_delete_dangerous(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.delete_dangerous(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             x_dangerous=True,
@@ -374,7 +374,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete_dangerous(self, client: GradientAI) -> None:
+    def test_path_params_delete_dangerous(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             client.gpu_droplets.autoscale.with_raw_response.delete_dangerous(
                 autoscale_pool_id="",
@@ -383,7 +383,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_history(self, client: GradientAI) -> None:
+    def test_method_list_history(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -391,7 +391,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_history_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_history_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             page=1,
@@ -401,7 +401,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_history(self, client: GradientAI) -> None:
+    def test_raw_response_list_history(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -413,7 +413,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_history(self, client: GradientAI) -> None:
+    def test_streaming_response_list_history(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
@@ -427,7 +427,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list_history(self, client: GradientAI) -> None:
+    def test_path_params_list_history(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             client.gpu_droplets.autoscale.with_raw_response.list_history(
                 autoscale_pool_id="",
@@ -435,7 +435,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_members(self, client: GradientAI) -> None:
+    def test_method_list_members(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -443,7 +443,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_members_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_members_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             page=1,
@@ -453,7 +453,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_members(self, client: GradientAI) -> None:
+    def test_raw_response_list_members(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -465,7 +465,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_members(self, client: GradientAI) -> None:
+    def test_streaming_response_list_members(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
@@ -479,7 +479,7 @@ class TestAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list_members(self, client: GradientAI) -> None:
+    def test_path_params_list_members(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             client.gpu_droplets.autoscale.with_raw_response.list_members(
                 autoscale_pool_id="",
@@ -493,7 +493,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.create(
             config={
                 "max_instances": 5,
@@ -511,7 +511,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.create(
             config={
                 "max_instances": 5,
@@ -539,7 +539,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.create(
             config={
                 "max_instances": 5,
@@ -561,7 +561,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.create(
             config={
                 "max_instances": 5,
@@ -585,7 +585,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.retrieve(
             "autoscale_pool_id",
         )
@@ -593,7 +593,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.retrieve(
             "autoscale_pool_id",
         )
@@ -605,7 +605,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.retrieve(
             "autoscale_pool_id",
         ) as response:
@@ -619,7 +619,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             await async_client.gpu_droplets.autoscale.with_raw_response.retrieve(
                 "",
@@ -627,7 +627,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -643,7 +643,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -666,7 +666,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -686,7 +686,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.update(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             config={"target_number_instances": 2},
@@ -708,7 +708,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             await async_client.gpu_droplets.autoscale.with_raw_response.update(
                 autoscale_pool_id="",
@@ -724,13 +724,13 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list()
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list(
             name="name",
             page=1,
@@ -740,7 +740,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.list()
 
         assert response.is_closed is True
@@ -750,7 +750,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -762,7 +762,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.delete(
             "autoscale_pool_id",
         )
@@ -770,7 +770,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.delete(
             "autoscale_pool_id",
         )
@@ -782,7 +782,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.delete(
             "autoscale_pool_id",
         ) as response:
@@ -796,7 +796,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             await async_client.gpu_droplets.autoscale.with_raw_response.delete(
                 "",
@@ -804,7 +804,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_dangerous(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.delete_dangerous(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             x_dangerous=True,
@@ -813,7 +813,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.delete_dangerous(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             x_dangerous=True,
@@ -826,7 +826,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.delete_dangerous(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             x_dangerous=True,
@@ -841,7 +841,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete_dangerous(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             await async_client.gpu_droplets.autoscale.with_raw_response.delete_dangerous(
                 autoscale_pool_id="",
@@ -850,7 +850,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_history(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_history(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -858,7 +858,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_history_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_history_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             page=1,
@@ -868,7 +868,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_history(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_history(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -880,7 +880,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_history(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_history(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.list_history(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
@@ -894,7 +894,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list_history(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list_history(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             await async_client.gpu_droplets.autoscale.with_raw_response.list_history(
                 autoscale_pool_id="",
@@ -902,7 +902,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_members(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_members(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -910,7 +910,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_members_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_members_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
             page=1,
@@ -920,7 +920,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_members(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_members(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
@@ -932,7 +932,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_members(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_members(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.list_members(
             autoscale_pool_id="0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
@@ -946,7 +946,7 @@ class TestAsyncAutoscale:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list_members(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list_members(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
             await async_client.gpu_droplets.autoscale.with_raw_response.list_members(
                 autoscale_pool_id="",

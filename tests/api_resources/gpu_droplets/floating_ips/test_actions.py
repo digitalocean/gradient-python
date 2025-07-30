@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets.floating_ips import (
+from gradient.types.gpu_droplets.floating_ips import (
     ActionListResponse,
     ActionCreateResponse,
     ActionRetrieveResponse,
@@ -23,7 +23,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_1(self, client: GradientAI) -> None:
+    def test_method_create_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.floating_ips.actions.create(
             floating_ip="45.55.96.47",
             type="assign",
@@ -32,7 +32,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.actions.with_raw_response.create(
             floating_ip="45.55.96.47",
             type="assign",
@@ -45,7 +45,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.actions.with_streaming_response.create(
             floating_ip="45.55.96.47",
             type="assign",
@@ -60,7 +60,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create_overload_1(self, client: GradientAI) -> None:
+    def test_path_params_create_overload_1(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             client.gpu_droplets.floating_ips.actions.with_raw_response.create(
                 floating_ip="",
@@ -69,7 +69,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.floating_ips.actions.create(
             floating_ip="45.55.96.47",
             droplet_id=758604968,
@@ -79,7 +79,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.actions.with_raw_response.create(
             floating_ip="45.55.96.47",
             droplet_id=758604968,
@@ -93,7 +93,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.actions.with_streaming_response.create(
             floating_ip="45.55.96.47",
             droplet_id=758604968,
@@ -109,7 +109,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_create_overload_2(self, client: GradientAI) -> None:
+    def test_path_params_create_overload_2(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             client.gpu_droplets.floating_ips.actions.with_raw_response.create(
                 floating_ip="",
@@ -119,7 +119,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         action = client.gpu_droplets.floating_ips.actions.retrieve(
             action_id=36804636,
             floating_ip="45.55.96.47",
@@ -128,7 +128,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.actions.with_raw_response.retrieve(
             action_id=36804636,
             floating_ip="45.55.96.47",
@@ -141,7 +141,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.actions.with_streaming_response.retrieve(
             action_id=36804636,
             floating_ip="45.55.96.47",
@@ -156,7 +156,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             client.gpu_droplets.floating_ips.actions.with_raw_response.retrieve(
                 action_id=36804636,
@@ -165,7 +165,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         action = client.gpu_droplets.floating_ips.actions.list(
             "192.168.1.1",
         )
@@ -173,7 +173,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.actions.with_raw_response.list(
             "192.168.1.1",
         )
@@ -185,7 +185,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.actions.with_streaming_response.list(
             "192.168.1.1",
         ) as response:
@@ -199,7 +199,7 @@ class TestActions:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_list(self, client: GradientAI) -> None:
+    def test_path_params_list(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             client.gpu_droplets.floating_ips.actions.with_raw_response.list(
                 "",
@@ -213,7 +213,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.floating_ips.actions.create(
             floating_ip="45.55.96.47",
             type="assign",
@@ -222,7 +222,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.actions.with_raw_response.create(
             floating_ip="45.55.96.47",
             type="assign",
@@ -235,7 +235,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.actions.with_streaming_response.create(
             floating_ip="45.55.96.47",
             type="assign",
@@ -250,7 +250,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_create_overload_1(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             await async_client.gpu_droplets.floating_ips.actions.with_raw_response.create(
                 floating_ip="",
@@ -259,7 +259,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.floating_ips.actions.create(
             floating_ip="45.55.96.47",
             droplet_id=758604968,
@@ -269,7 +269,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.actions.with_raw_response.create(
             floating_ip="45.55.96.47",
             droplet_id=758604968,
@@ -283,7 +283,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.actions.with_streaming_response.create(
             floating_ip="45.55.96.47",
             droplet_id=758604968,
@@ -299,7 +299,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_create_overload_2(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             await async_client.gpu_droplets.floating_ips.actions.with_raw_response.create(
                 floating_ip="",
@@ -309,7 +309,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.floating_ips.actions.retrieve(
             action_id=36804636,
             floating_ip="45.55.96.47",
@@ -318,7 +318,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.actions.with_raw_response.retrieve(
             action_id=36804636,
             floating_ip="45.55.96.47",
@@ -331,7 +331,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.actions.with_streaming_response.retrieve(
             action_id=36804636,
             floating_ip="45.55.96.47",
@@ -346,7 +346,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             await async_client.gpu_droplets.floating_ips.actions.with_raw_response.retrieve(
                 action_id=36804636,
@@ -355,7 +355,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.floating_ips.actions.list(
             "192.168.1.1",
         )
@@ -363,7 +363,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.actions.with_raw_response.list(
             "192.168.1.1",
         )
@@ -375,7 +375,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.actions.with_streaming_response.list(
             "192.168.1.1",
         ) as response:
@@ -389,7 +389,7 @@ class TestAsyncActions:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_list(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             await async_client.gpu_droplets.floating_ips.actions.with_raw_response.list(
                 "",

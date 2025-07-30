@@ -21,12 +21,12 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from do_gradientai import GradientAI, AsyncGradientAI, APIResponseValidationError
-from do_gradientai._types import Omit
-from do_gradientai._models import BaseModel, FinalRequestOptions
-from do_gradientai._streaming import Stream, AsyncStream
-from do_gradientai._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
-from do_gradientai._base_client import (
+from gradient import Gradient, AsyncGradient, APIResponseValidationError
+from gradient._types import Omit
+from gradient._models import BaseModel, FinalRequestOptions
+from gradient._streaming import Stream, AsyncStream
+from gradient._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from gradient._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
@@ -53,7 +53,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: GradientAI | AsyncGradientAI) -> int:
+def _get_open_connections(client: Gradient | AsyncGradient) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -61,8 +61,8 @@ def _get_open_connections(client: GradientAI | AsyncGradientAI) -> int:
     return len(pool._requests)
 
 
-class TestGradientAI:
-    client = GradientAI(
+class TestGradient:
+    client = Gradient(
         base_url=base_url,
         api_key=api_key,
         inference_key=inference_key,
@@ -123,7 +123,7 @@ class TestGradientAI:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -162,7 +162,7 @@ class TestGradientAI:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -259,10 +259,10 @@ class TestGradientAI:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "do_gradientai/_legacy_response.py",
-                        "do_gradientai/_response.py",
+                        "gradient/_legacy_response.py",
+                        "gradient/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "do_gradientai/_compat.py",
+                        "gradient/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -293,7 +293,7 @@ class TestGradientAI:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -309,7 +309,7 @@ class TestGradientAI:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = GradientAI(
+            client = Gradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -324,7 +324,7 @@ class TestGradientAI:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = GradientAI(
+            client = Gradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -339,7 +339,7 @@ class TestGradientAI:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = GradientAI(
+            client = Gradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -355,7 +355,7 @@ class TestGradientAI:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                GradientAI(
+                Gradient(
                     base_url=base_url,
                     api_key=api_key,
                     inference_key=inference_key,
@@ -365,7 +365,7 @@ class TestGradientAI:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -377,7 +377,7 @@ class TestGradientAI:
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = GradientAI(
+        client2 = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -393,7 +393,7 @@ class TestGradientAI:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -404,7 +404,7 @@ class TestGradientAI:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with update_env(**{"GRADIENTAI_API_KEY": Omit()}):
-            client2 = GradientAI(
+            client2 = Gradient(
                 base_url=base_url,
                 api_key=None,
                 inference_key=inference_key,
@@ -424,7 +424,7 @@ class TestGradientAI:
         assert request2.headers.get("Authorization") is None
 
     def test_default_query_option(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -543,7 +543,7 @@ class TestGradientAI:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: GradientAI) -> None:
+    def test_multipart_repeating_array(self, client: Gradient) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="post",
@@ -630,7 +630,7 @@ class TestGradientAI:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url="https://example.com/from_init",
             api_key=api_key,
             inference_key=inference_key,
@@ -644,8 +644,8 @@ class TestGradientAI:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(GRADIENT_AI_BASE_URL="http://localhost:5000/from/env"):
-            client = GradientAI(
+        with update_env(GRADIENT_BASE_URL="http://localhost:5000/from/env"):
+            client = Gradient(
                 api_key=api_key, inference_key=inference_key, agent_key=agent_key, _strict_response_validation=True
             )
             assert client.base_url == "http://localhost:5000/from/env/"
@@ -653,14 +653,14 @@ class TestGradientAI:
     @pytest.mark.parametrize(
         "client",
         [
-            GradientAI(
+            Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
                 agent_key=agent_key,
                 _strict_response_validation=True,
             ),
-            GradientAI(
+            Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
@@ -671,7 +671,7 @@ class TestGradientAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: GradientAI) -> None:
+    def test_base_url_trailing_slash(self, client: Gradient) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -684,14 +684,14 @@ class TestGradientAI:
     @pytest.mark.parametrize(
         "client",
         [
-            GradientAI(
+            Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
                 agent_key=agent_key,
                 _strict_response_validation=True,
             ),
-            GradientAI(
+            Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
@@ -702,7 +702,7 @@ class TestGradientAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: GradientAI) -> None:
+    def test_base_url_no_trailing_slash(self, client: Gradient) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -715,14 +715,14 @@ class TestGradientAI:
     @pytest.mark.parametrize(
         "client",
         [
-            GradientAI(
+            Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
                 agent_key=agent_key,
                 _strict_response_validation=True,
             ),
-            GradientAI(
+            Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
@@ -733,7 +733,7 @@ class TestGradientAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: GradientAI) -> None:
+    def test_absolute_request_url(self, client: Gradient) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -744,7 +744,7 @@ class TestGradientAI:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -761,7 +761,7 @@ class TestGradientAI:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -788,7 +788,7 @@ class TestGradientAI:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            GradientAI(
+            Gradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -815,7 +815,7 @@ class TestGradientAI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = GradientAI(
+        strict_client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -826,7 +826,7 @@ class TestGradientAI:
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -860,7 +860,7 @@ class TestGradientAI:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = GradientAI(
+        client = Gradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -873,9 +873,9 @@ class TestGradientAI:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: GradientAI) -> None:
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Gradient) -> None:
         respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
@@ -891,9 +891,9 @@ class TestGradientAI:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: GradientAI) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Gradient) -> None:
         respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
@@ -909,12 +909,12 @@ class TestGradientAI:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
         self,
-        client: GradientAI,
+        client: Gradient,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -948,10 +948,10 @@ class TestGradientAI:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
-        self, client: GradientAI, failures_before_success: int, respx_mock: MockRouter
+        self, client: Gradient, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -980,10 +980,10 @@ class TestGradientAI:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
-        self, client: GradientAI, failures_before_success: int, respx_mock: MockRouter
+        self, client: Gradient, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = client.with_options(max_retries=4)
 
@@ -1061,8 +1061,8 @@ class TestGradientAI:
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
 
 
-class TestAsyncGradientAI:
-    client = AsyncGradientAI(
+class TestAsyncGradient:
+    client = AsyncGradient(
         base_url=base_url,
         api_key=api_key,
         inference_key=inference_key,
@@ -1125,7 +1125,7 @@ class TestAsyncGradientAI:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1164,7 +1164,7 @@ class TestAsyncGradientAI:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1261,10 +1261,10 @@ class TestAsyncGradientAI:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "do_gradientai/_legacy_response.py",
-                        "do_gradientai/_response.py",
+                        "gradient/_legacy_response.py",
+                        "gradient/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "do_gradientai/_compat.py",
+                        "gradient/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1295,7 +1295,7 @@ class TestAsyncGradientAI:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1311,7 +1311,7 @@ class TestAsyncGradientAI:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncGradientAI(
+            client = AsyncGradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1326,7 +1326,7 @@ class TestAsyncGradientAI:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncGradientAI(
+            client = AsyncGradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1341,7 +1341,7 @@ class TestAsyncGradientAI:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncGradientAI(
+            client = AsyncGradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1357,7 +1357,7 @@ class TestAsyncGradientAI:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncGradientAI(
+                AsyncGradient(
                     base_url=base_url,
                     api_key=api_key,
                     inference_key=inference_key,
@@ -1367,7 +1367,7 @@ class TestAsyncGradientAI:
                 )
 
     def test_default_headers_option(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1379,7 +1379,7 @@ class TestAsyncGradientAI:
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncGradientAI(
+        client2 = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1395,7 +1395,7 @@ class TestAsyncGradientAI:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1406,7 +1406,7 @@ class TestAsyncGradientAI:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with update_env(**{"GRADIENTAI_API_KEY": Omit()}):
-            client2 = AsyncGradientAI(
+            client2 = AsyncGradient(
                 base_url=base_url,
                 api_key=None,
                 inference_key=inference_key,
@@ -1426,7 +1426,7 @@ class TestAsyncGradientAI:
         assert request2.headers.get("Authorization") is None
 
     def test_default_query_option(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1545,7 +1545,7 @@ class TestAsyncGradientAI:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncGradientAI) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncGradient) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="post",
@@ -1632,7 +1632,7 @@ class TestAsyncGradientAI:
         assert response.foo == 2
 
     def test_base_url_setter(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url="https://example.com/from_init",
             api_key=api_key,
             inference_key=inference_key,
@@ -1646,8 +1646,8 @@ class TestAsyncGradientAI:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(GRADIENT_AI_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncGradientAI(
+        with update_env(GRADIENT_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncGradient(
                 api_key=api_key, inference_key=inference_key, agent_key=agent_key, _strict_response_validation=True
             )
             assert client.base_url == "http://localhost:5000/from/env/"
@@ -1655,14 +1655,14 @@ class TestAsyncGradientAI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
                 agent_key=agent_key,
                 _strict_response_validation=True,
             ),
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1673,7 +1673,7 @@ class TestAsyncGradientAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncGradientAI) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncGradient) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1686,14 +1686,14 @@ class TestAsyncGradientAI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
                 agent_key=agent_key,
                 _strict_response_validation=True,
             ),
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1704,7 +1704,7 @@ class TestAsyncGradientAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncGradientAI) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncGradient) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1717,14 +1717,14 @@ class TestAsyncGradientAI:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
                 agent_key=agent_key,
                 _strict_response_validation=True,
             ),
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1735,7 +1735,7 @@ class TestAsyncGradientAI:
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncGradientAI) -> None:
+    def test_absolute_request_url(self, client: AsyncGradient) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1746,7 +1746,7 @@ class TestAsyncGradientAI:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1764,7 +1764,7 @@ class TestAsyncGradientAI:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1792,7 +1792,7 @@ class TestAsyncGradientAI:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncGradientAI(
+            AsyncGradient(
                 base_url=base_url,
                 api_key=api_key,
                 inference_key=inference_key,
@@ -1821,7 +1821,7 @@ class TestAsyncGradientAI:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncGradientAI(
+        strict_client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1832,7 +1832,7 @@ class TestAsyncGradientAI:
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1867,7 +1867,7 @@ class TestAsyncGradientAI:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncGradientAI(
+        client = AsyncGradient(
             base_url=base_url,
             api_key=api_key,
             inference_key=inference_key,
@@ -1880,10 +1880,10 @@ class TestAsyncGradientAI:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncGradientAI
+        self, respx_mock: MockRouter, async_client: AsyncGradient
     ) -> None:
         respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
@@ -1900,10 +1900,10 @@ class TestAsyncGradientAI:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(
-        self, respx_mock: MockRouter, async_client: AsyncGradientAI
+        self, respx_mock: MockRouter, async_client: AsyncGradient
     ) -> None:
         respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
@@ -1920,13 +1920,13 @@ class TestAsyncGradientAI:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     async def test_retries_taken(
         self,
-        async_client: AsyncGradientAI,
+        async_client: AsyncGradient,
         failures_before_success: int,
         failure_mode: Literal["status", "exception"],
         respx_mock: MockRouter,
@@ -1960,11 +1960,11 @@ class TestAsyncGradientAI:
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
-        self, async_client: AsyncGradientAI, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGradient, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -1993,11 +1993,11 @@ class TestAsyncGradientAI:
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch("do_gradientai._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
-        self, async_client: AsyncGradientAI, failures_before_success: int, respx_mock: MockRouter
+        self, async_client: AsyncGradient, failures_before_success: int, respx_mock: MockRouter
     ) -> None:
         client = async_client.with_options(max_retries=4)
 
@@ -2036,8 +2036,8 @@ class TestAsyncGradientAI:
         import nest_asyncio
         import threading
 
-        from do_gradientai._utils import asyncify
-        from do_gradientai._base_client import get_platform
+        from gradient._utils import asyncify
+        from gradient._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
