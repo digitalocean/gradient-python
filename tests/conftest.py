@@ -10,15 +10,15 @@ import httpx
 import pytest
 from pytest_asyncio import is_async_test
 
-from do_gradientai import GradientAI, AsyncGradientAI, DefaultAioHttpClient
-from do_gradientai._utils import is_dict
+from gradient import Gradient, AsyncGradient, DefaultAioHttpClient
+from gradient._utils import is_dict
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("do_gradientai").setLevel(logging.DEBUG)
+logging.getLogger("gradient").setLevel(logging.DEBUG)
 
 
 # automatically add `pytest.mark.asyncio()` to all of our async tests
@@ -52,12 +52,12 @@ agent_endpoint = "https://inference.do-ai.run"
 
 
 @pytest.fixture(scope="session")
-def client(request: FixtureRequest) -> Iterator[GradientAI]:
+def client(request: FixtureRequest) -> Iterator[Gradient]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with GradientAI(
+    with Gradient(
         base_url=base_url,
         api_key=api_key,
         inference_key=inference_key,
@@ -69,7 +69,7 @@ def client(request: FixtureRequest) -> Iterator[GradientAI]:
 
 
 @pytest.fixture(scope="session")
-async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGradientAI]:
+async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGradient]:
     param = getattr(request, "param", True)
 
     # defaults
@@ -88,7 +88,7 @@ async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGradientAI
     else:
         raise TypeError(f"Unexpected fixture parameter type {type(param)}, expected bool or dict")
 
-    async with AsyncGradientAI(
+    async with AsyncGradient(
         base_url=base_url,
         api_key=api_key,
         inference_key=inference_key,

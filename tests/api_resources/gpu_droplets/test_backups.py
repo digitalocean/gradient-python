@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets import (
+from gradient.types.gpu_droplets import (
     BackupListResponse,
     BackupListPoliciesResponse,
     BackupRetrievePolicyResponse,
@@ -24,7 +24,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list(
             droplet_id=3164444,
         )
@@ -32,7 +32,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list(
             droplet_id=3164444,
             page=1,
@@ -42,7 +42,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.list(
             droplet_id=3164444,
         )
@@ -54,7 +54,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.list(
             droplet_id=3164444,
         ) as response:
@@ -68,13 +68,13 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_policies(self, client: GradientAI) -> None:
+    def test_method_list_policies(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list_policies()
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_policies_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_policies_with_all_params(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list_policies(
             page=1,
             per_page=1,
@@ -83,7 +83,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_policies(self, client: GradientAI) -> None:
+    def test_raw_response_list_policies(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.list_policies()
 
         assert response.is_closed is True
@@ -93,7 +93,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_policies(self, client: GradientAI) -> None:
+    def test_streaming_response_list_policies(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.list_policies() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,13 +105,13 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_supported_policies(self, client: GradientAI) -> None:
+    def test_method_list_supported_policies(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list_supported_policies()
         assert_matches_type(BackupListSupportedPoliciesResponse, backup, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list_supported_policies(self, client: GradientAI) -> None:
+    def test_raw_response_list_supported_policies(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.list_supported_policies()
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list_supported_policies(self, client: GradientAI) -> None:
+    def test_streaming_response_list_supported_policies(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.list_supported_policies() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -133,7 +133,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_policy(self, client: GradientAI) -> None:
+    def test_method_retrieve_policy(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.retrieve_policy(
             1,
         )
@@ -141,7 +141,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve_policy(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve_policy(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.retrieve_policy(
             1,
         )
@@ -153,7 +153,7 @@ class TestBackups:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve_policy(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve_policy(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.retrieve_policy(
             1,
         ) as response:
@@ -173,7 +173,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list(
             droplet_id=3164444,
         )
@@ -181,7 +181,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list(
             droplet_id=3164444,
             page=1,
@@ -191,7 +191,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.list(
             droplet_id=3164444,
         )
@@ -203,7 +203,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.list(
             droplet_id=3164444,
         ) as response:
@@ -217,13 +217,13 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_policies(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_policies(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list_policies()
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_policies_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_policies_with_all_params(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list_policies(
             page=1,
             per_page=1,
@@ -232,7 +232,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_policies(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_policies(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.list_policies()
 
         assert response.is_closed is True
@@ -242,7 +242,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_policies(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_policies(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.list_policies() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -254,13 +254,13 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_supported_policies(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_supported_policies(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list_supported_policies()
         assert_matches_type(BackupListSupportedPoliciesResponse, backup, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list_supported_policies(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list_supported_policies(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.list_supported_policies()
 
         assert response.is_closed is True
@@ -270,7 +270,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list_supported_policies(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list_supported_policies(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.list_supported_policies() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -282,7 +282,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve_policy(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve_policy(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.retrieve_policy(
             1,
         )
@@ -290,7 +290,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve_policy(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve_policy(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.retrieve_policy(
             1,
         )
@@ -302,7 +302,7 @@ class TestAsyncBackups:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve_policy(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve_policy(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.retrieve_policy(
             1,
         ) as response:

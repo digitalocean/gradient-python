@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from do_gradientai._types import NOT_GIVEN, Base64FileInput
-from do_gradientai._utils import (
+from gradient._types import NOT_GIVEN, Base64FileInput
+from gradient._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from do_gradientai._compat import PYDANTIC_V2
-from do_gradientai._models import BaseModel
+from gradient._compat import PYDANTIC_V2
+from gradient._models import BaseModel
 
 _T = TypeVar("_T")
 

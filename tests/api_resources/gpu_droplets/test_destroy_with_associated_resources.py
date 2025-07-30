@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets import (
+from gradient.types.gpu_droplets import (
     DestroyWithAssociatedResourceListResponse,
     DestroyWithAssociatedResourceCheckStatusResponse,
 )
@@ -22,7 +22,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.list(
             1,
         )
@@ -32,7 +32,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.list(
             1,
         )
@@ -46,7 +46,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.list(
             1,
         ) as response:
@@ -62,7 +62,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_check_status(self, client: GradientAI) -> None:
+    def test_method_check_status(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.check_status(
             1,
         )
@@ -72,7 +72,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_check_status(self, client: GradientAI) -> None:
+    def test_raw_response_check_status(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.check_status(
             1,
         )
@@ -86,7 +86,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_check_status(self, client: GradientAI) -> None:
+    def test_streaming_response_check_status(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.check_status(
             1,
         ) as response:
@@ -102,7 +102,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_dangerous(self, client: GradientAI) -> None:
+    def test_method_delete_dangerous(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.delete_dangerous(
             droplet_id=3164444,
             x_dangerous=True,
@@ -111,7 +111,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete_dangerous(self, client: GradientAI) -> None:
+    def test_raw_response_delete_dangerous(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_dangerous(
             droplet_id=3164444,
             x_dangerous=True,
@@ -124,7 +124,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete_dangerous(self, client: GradientAI) -> None:
+    def test_streaming_response_delete_dangerous(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_dangerous(
             droplet_id=3164444,
             x_dangerous=True,
@@ -139,7 +139,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_selective(self, client: GradientAI) -> None:
+    def test_method_delete_selective(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.delete_selective(
             droplet_id=3164444,
         )
@@ -147,7 +147,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_selective_with_all_params(self, client: GradientAI) -> None:
+    def test_method_delete_selective_with_all_params(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.delete_selective(
             droplet_id=3164444,
             floating_ips=["6186916"],
@@ -160,7 +160,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete_selective(self, client: GradientAI) -> None:
+    def test_raw_response_delete_selective(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_selective(
             droplet_id=3164444,
         )
@@ -172,7 +172,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete_selective(self, client: GradientAI) -> None:
+    def test_streaming_response_delete_selective(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_selective(
             droplet_id=3164444,
         ) as response:
@@ -186,7 +186,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retry(self, client: GradientAI) -> None:
+    def test_method_retry(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.retry(
             1,
         )
@@ -194,7 +194,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retry(self, client: GradientAI) -> None:
+    def test_raw_response_retry(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.retry(
             1,
         )
@@ -206,7 +206,7 @@ class TestDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retry(self, client: GradientAI) -> None:
+    def test_streaming_response_retry(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.retry(
             1,
         ) as response:
@@ -226,7 +226,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = await async_client.gpu_droplets.destroy_with_associated_resources.list(
             1,
         )
@@ -236,7 +236,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.list(
             1,
         )
@@ -250,7 +250,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.list(
             1,
         ) as response:
@@ -266,7 +266,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_check_status(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_check_status(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
             await async_client.gpu_droplets.destroy_with_associated_resources.check_status(
                 1,
@@ -278,7 +278,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_check_status(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_check_status(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.check_status(
             1,
         )
@@ -292,7 +292,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_check_status(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_check_status(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.check_status(
             1,
         ) as response:
@@ -308,7 +308,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_dangerous(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
             await async_client.gpu_droplets.destroy_with_associated_resources.delete_dangerous(
                 droplet_id=3164444,
@@ -319,7 +319,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_dangerous(
             droplet_id=3164444,
             x_dangerous=True,
@@ -332,7 +332,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete_dangerous(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_dangerous(
             droplet_id=3164444,
             x_dangerous=True,
@@ -347,7 +347,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_selective(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_selective(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
             await async_client.gpu_droplets.destroy_with_associated_resources.delete_selective(
                 droplet_id=3164444,
@@ -357,7 +357,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_selective_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_selective_with_all_params(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
             await async_client.gpu_droplets.destroy_with_associated_resources.delete_selective(
                 droplet_id=3164444,
@@ -372,7 +372,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete_selective(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete_selective(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_selective(
             droplet_id=3164444,
         )
@@ -384,7 +384,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete_selective(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete_selective(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_selective(
             droplet_id=3164444,
         ) as response:
@@ -398,7 +398,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retry(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retry(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = await async_client.gpu_droplets.destroy_with_associated_resources.retry(
             1,
         )
@@ -406,7 +406,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retry(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retry(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.retry(
             1,
         )
@@ -418,7 +418,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retry(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retry(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.retry(
             1,
         ) as response:

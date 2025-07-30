@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets import (
+from gradient.types.gpu_droplets import (
     FloatingIPListResponse,
     FloatingIPCreateResponse,
     FloatingIPRetrieveResponse,
@@ -23,7 +23,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_1(self, client: GradientAI) -> None:
+    def test_method_create_overload_1(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.create(
             droplet_id=2457247,
         )
@@ -31,7 +31,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.create(
             droplet_id=2457247,
         )
@@ -43,7 +43,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.create(
             droplet_id=2457247,
         ) as response:
@@ -57,7 +57,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_overload_2(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.create(
             region="nyc3",
         )
@@ -65,7 +65,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params_overload_2(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.create(
             region="nyc3",
             project_id="746c6152-2fa2-11ed-92d3-27aaa54e4988",
@@ -74,7 +74,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.create(
             region="nyc3",
         )
@@ -86,7 +86,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.create(
             region="nyc3",
         ) as response:
@@ -100,7 +100,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.retrieve(
             "192.168.1.1",
         )
@@ -108,7 +108,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.retrieve(
             "192.168.1.1",
         )
@@ -120,7 +120,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.retrieve(
             "192.168.1.1",
         ) as response:
@@ -134,7 +134,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             client.gpu_droplets.floating_ips.with_raw_response.retrieve(
                 "",
@@ -142,13 +142,13 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.list()
         assert_matches_type(FloatingIPListResponse, floating_ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.list(
             page=1,
             per_page=1,
@@ -157,7 +157,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.list()
 
         assert response.is_closed is True
@@ -167,7 +167,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,7 +179,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.delete(
             "192.168.1.1",
         )
@@ -187,7 +187,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.delete(
             "192.168.1.1",
         )
@@ -199,7 +199,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.delete(
             "192.168.1.1",
         ) as response:
@@ -213,7 +213,7 @@ class TestFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: GradientAI) -> None:
+    def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             client.gpu_droplets.floating_ips.with_raw_response.delete(
                 "",
@@ -227,7 +227,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.create(
             droplet_id=2457247,
         )
@@ -235,7 +235,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.create(
             droplet_id=2457247,
         )
@@ -247,7 +247,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.create(
             droplet_id=2457247,
         ) as response:
@@ -261,7 +261,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.create(
             region="nyc3",
         )
@@ -269,7 +269,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.create(
             region="nyc3",
             project_id="746c6152-2fa2-11ed-92d3-27aaa54e4988",
@@ -278,7 +278,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.create(
             region="nyc3",
         )
@@ -290,7 +290,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.create(
             region="nyc3",
         ) as response:
@@ -304,7 +304,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.retrieve(
             "192.168.1.1",
         )
@@ -312,7 +312,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.retrieve(
             "192.168.1.1",
         )
@@ -324,7 +324,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.retrieve(
             "192.168.1.1",
         ) as response:
@@ -338,7 +338,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             await async_client.gpu_droplets.floating_ips.with_raw_response.retrieve(
                 "",
@@ -346,13 +346,13 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.list()
         assert_matches_type(FloatingIPListResponse, floating_ip, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.list(
             page=1,
             per_page=1,
@@ -361,7 +361,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.list()
 
         assert response.is_closed is True
@@ -371,7 +371,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -383,7 +383,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.delete(
             "192.168.1.1",
         )
@@ -391,7 +391,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.delete(
             "192.168.1.1",
         )
@@ -403,7 +403,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.delete(
             "192.168.1.1",
         ) as response:
@@ -417,7 +417,7 @@ class TestAsyncFloatingIPs:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `floating_ip` but received ''"):
             await async_client.gpu_droplets.floating_ips.with_raw_response.delete(
                 "",

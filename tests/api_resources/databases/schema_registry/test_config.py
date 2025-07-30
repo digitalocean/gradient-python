@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.databases.schema_registry import (
+from gradient.types.databases.schema_registry import (
     ConfigUpdateResponse,
     ConfigRetrieveResponse,
     ConfigUpdateSubjectResponse,
@@ -24,7 +24,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         config = client.databases.schema_registry.config.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -32,7 +32,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.databases.schema_registry.config.with_raw_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -44,7 +44,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.databases.schema_registry.config.with_streaming_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -58,7 +58,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             client.databases.schema_registry.config.with_raw_response.retrieve(
                 "",
@@ -66,7 +66,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update(self, client: GradientAI) -> None:
+    def test_method_update(self, client: Gradient) -> None:
         config = client.databases.schema_registry.config.update(
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
             compatibility_level="BACKWARD",
@@ -75,7 +75,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update(self, client: GradientAI) -> None:
+    def test_raw_response_update(self, client: Gradient) -> None:
         response = client.databases.schema_registry.config.with_raw_response.update(
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
             compatibility_level="BACKWARD",
@@ -88,7 +88,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update(self, client: GradientAI) -> None:
+    def test_streaming_response_update(self, client: Gradient) -> None:
         with client.databases.schema_registry.config.with_streaming_response.update(
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
             compatibility_level="BACKWARD",
@@ -103,7 +103,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update(self, client: GradientAI) -> None:
+    def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             client.databases.schema_registry.config.with_raw_response.update(
                 database_cluster_uuid="",
@@ -112,7 +112,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve_subject(self, client: GradientAI) -> None:
+    def test_method_retrieve_subject(self, client: Gradient) -> None:
         config = client.databases.schema_registry.config.retrieve_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -121,7 +121,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve_subject(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve_subject(self, client: Gradient) -> None:
         response = client.databases.schema_registry.config.with_raw_response.retrieve_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -134,7 +134,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve_subject(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve_subject(self, client: Gradient) -> None:
         with client.databases.schema_registry.config.with_streaming_response.retrieve_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -149,7 +149,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve_subject(self, client: GradientAI) -> None:
+    def test_path_params_retrieve_subject(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             client.databases.schema_registry.config.with_raw_response.retrieve_subject(
                 subject_name="customer-schema",
@@ -164,7 +164,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_update_subject(self, client: GradientAI) -> None:
+    def test_method_update_subject(self, client: Gradient) -> None:
         config = client.databases.schema_registry.config.update_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -174,7 +174,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_update_subject(self, client: GradientAI) -> None:
+    def test_raw_response_update_subject(self, client: Gradient) -> None:
         response = client.databases.schema_registry.config.with_raw_response.update_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -188,7 +188,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_update_subject(self, client: GradientAI) -> None:
+    def test_streaming_response_update_subject(self, client: Gradient) -> None:
         with client.databases.schema_registry.config.with_streaming_response.update_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -204,7 +204,7 @@ class TestConfig:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_update_subject(self, client: GradientAI) -> None:
+    def test_path_params_update_subject(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             client.databases.schema_registry.config.with_raw_response.update_subject(
                 subject_name="customer-schema",
@@ -227,7 +227,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         config = await async_client.databases.schema_registry.config.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -235,7 +235,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.databases.schema_registry.config.with_raw_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -247,7 +247,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.databases.schema_registry.config.with_streaming_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -261,7 +261,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             await async_client.databases.schema_registry.config.with_raw_response.retrieve(
                 "",
@@ -269,7 +269,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update(self, async_client: AsyncGradient) -> None:
         config = await async_client.databases.schema_registry.config.update(
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
             compatibility_level="BACKWARD",
@@ -278,7 +278,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.databases.schema_registry.config.with_raw_response.update(
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
             compatibility_level="BACKWARD",
@@ -291,7 +291,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.databases.schema_registry.config.with_streaming_response.update(
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
             compatibility_level="BACKWARD",
@@ -306,7 +306,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             await async_client.databases.schema_registry.config.with_raw_response.update(
                 database_cluster_uuid="",
@@ -315,7 +315,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve_subject(self, async_client: AsyncGradient) -> None:
         config = await async_client.databases.schema_registry.config.retrieve_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -324,7 +324,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve_subject(self, async_client: AsyncGradient) -> None:
         response = await async_client.databases.schema_registry.config.with_raw_response.retrieve_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -337,7 +337,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve_subject(self, async_client: AsyncGradient) -> None:
         async with async_client.databases.schema_registry.config.with_streaming_response.retrieve_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -352,7 +352,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve_subject(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             await async_client.databases.schema_registry.config.with_raw_response.retrieve_subject(
                 subject_name="customer-schema",
@@ -367,7 +367,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_update_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_update_subject(self, async_client: AsyncGradient) -> None:
         config = await async_client.databases.schema_registry.config.update_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -377,7 +377,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_update_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_update_subject(self, async_client: AsyncGradient) -> None:
         response = await async_client.databases.schema_registry.config.with_raw_response.update_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -391,7 +391,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_update_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_update_subject(self, async_client: AsyncGradient) -> None:
         async with async_client.databases.schema_registry.config.with_streaming_response.update_subject(
             subject_name="customer-schema",
             database_cluster_uuid="9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
@@ -407,7 +407,7 @@ class TestAsyncConfig:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_update_subject(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_update_subject(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_cluster_uuid` but received ''"):
             await async_client.databases.schema_registry.config.with_raw_response.update_subject(
                 subject_name="customer-schema",

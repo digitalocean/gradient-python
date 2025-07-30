@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from do_gradientai import GradientAI, AsyncGradientAI
-from do_gradientai.types.gpu_droplets import (
+from gradient.types.gpu_droplets import (
     VolumeListResponse,
     VolumeCreateResponse,
     VolumeRetrieveResponse,
@@ -23,7 +23,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_1(self, client: GradientAI) -> None:
+    def test_method_create_overload_1(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -33,7 +33,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params_overload_1(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -48,7 +48,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.create(
             name="example",
             region="nyc3",
@@ -62,7 +62,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.create(
             name="example",
             region="nyc3",
@@ -78,7 +78,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_overload_2(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -88,7 +88,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_create_with_all_params_overload_2(self, client: GradientAI) -> None:
+    def test_method_create_with_all_params_overload_2(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -103,7 +103,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_raw_response_create_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.create(
             name="example",
             region="nyc3",
@@ -117,7 +117,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_create_overload_2(self, client: GradientAI) -> None:
+    def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.create(
             name="example",
             region="nyc3",
@@ -133,7 +133,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_retrieve(self, client: GradientAI) -> None:
+    def test_method_retrieve(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -141,7 +141,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_retrieve(self, client: GradientAI) -> None:
+    def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -153,7 +153,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_retrieve(self, client: GradientAI) -> None:
+    def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -167,7 +167,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_retrieve(self, client: GradientAI) -> None:
+    def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             client.gpu_droplets.volumes.with_raw_response.retrieve(
                 "",
@@ -175,13 +175,13 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list(self, client: GradientAI) -> None:
+    def test_method_list(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.list()
         assert_matches_type(VolumeListResponse, volume, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_list_with_all_params(self, client: GradientAI) -> None:
+    def test_method_list_with_all_params(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.list(
             name="name",
             page=1,
@@ -192,7 +192,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_list(self, client: GradientAI) -> None:
+    def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.list()
 
         assert response.is_closed is True
@@ -202,7 +202,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_list(self, client: GradientAI) -> None:
+    def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -214,7 +214,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete(self, client: GradientAI) -> None:
+    def test_method_delete(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -222,7 +222,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete(self, client: GradientAI) -> None:
+    def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -234,7 +234,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete(self, client: GradientAI) -> None:
+    def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -248,7 +248,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_path_params_delete(self, client: GradientAI) -> None:
+    def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             client.gpu_droplets.volumes.with_raw_response.delete(
                 "",
@@ -256,13 +256,13 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_by_name(self, client: GradientAI) -> None:
+    def test_method_delete_by_name(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.delete_by_name()
         assert volume is None
 
     @pytest.mark.skip()
     @parametrize
-    def test_method_delete_by_name_with_all_params(self, client: GradientAI) -> None:
+    def test_method_delete_by_name_with_all_params(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.delete_by_name(
             name="name",
             region="nyc3",
@@ -271,7 +271,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_raw_response_delete_by_name(self, client: GradientAI) -> None:
+    def test_raw_response_delete_by_name(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.delete_by_name()
 
         assert response.is_closed is True
@@ -281,7 +281,7 @@ class TestVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    def test_streaming_response_delete_by_name(self, client: GradientAI) -> None:
+    def test_streaming_response_delete_by_name(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.delete_by_name() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -299,7 +299,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -309,7 +309,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -324,7 +324,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.create(
             name="example",
             region="nyc3",
@@ -338,7 +338,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.create(
             name="example",
             region="nyc3",
@@ -354,7 +354,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -364,7 +364,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.create(
             name="example",
             region="nyc3",
@@ -379,7 +379,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.create(
             name="example",
             region="nyc3",
@@ -393,7 +393,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.create(
             name="example",
             region="nyc3",
@@ -409,7 +409,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -417,7 +417,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -429,7 +429,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.retrieve(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -443,7 +443,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             await async_client.gpu_droplets.volumes.with_raw_response.retrieve(
                 "",
@@ -451,13 +451,13 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.list()
         assert_matches_type(VolumeListResponse, volume, path=["response"])
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.list(
             name="name",
             page=1,
@@ -468,7 +468,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.list()
 
         assert response.is_closed is True
@@ -478,7 +478,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -490,7 +490,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -498,7 +498,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -510,7 +510,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.delete(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -524,7 +524,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncGradientAI) -> None:
+    async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
             await async_client.gpu_droplets.volumes.with_raw_response.delete(
                 "",
@@ -532,13 +532,13 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_by_name(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_by_name(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.delete_by_name()
         assert volume is None
 
     @pytest.mark.skip()
     @parametrize
-    async def test_method_delete_by_name_with_all_params(self, async_client: AsyncGradientAI) -> None:
+    async def test_method_delete_by_name_with_all_params(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.delete_by_name(
             name="name",
             region="nyc3",
@@ -547,7 +547,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_raw_response_delete_by_name(self, async_client: AsyncGradientAI) -> None:
+    async def test_raw_response_delete_by_name(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.delete_by_name()
 
         assert response.is_closed is True
@@ -557,7 +557,7 @@ class TestAsyncVolumes:
 
     @pytest.mark.skip()
     @parametrize
-    async def test_streaming_response_delete_by_name(self, async_client: AsyncGradientAI) -> None:
+    async def test_streaming_response_delete_by_name(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.delete_by_name() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
