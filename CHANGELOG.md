@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.0.0-beta.1 (2025-07-31)
+
+Full Changelog: [v0.1.0-beta.4...v3.0.0-beta.1](https://github.com/digitalocean/gradient-python/compare/v0.1.0-beta.4...v3.0.0-beta.1)
+
+### Features
+
+* **api:** remove GRADIENTAI env vars ([43d5c5a](https://github.com/digitalocean/gradient-python/commit/43d5c5a6f22e108e1727e6abae9199c1ba2481da))
+* **api:** update to package gradient ([9dcd1d6](https://github.com/digitalocean/gradient-python/commit/9dcd1d6c53d31e7da58a7828a0864fc7f633b22c))
+* **api:** update to package gradient ([3099c15](https://github.com/digitalocean/gradient-python/commit/3099c154ab5fc3fd104349ce9069cdd18485104d))
+* **client:** support file upload requests ([90a77c9](https://github.com/digitalocean/gradient-python/commit/90a77c93c1a0b4a565fbb78f37e69ed6709df223))
+
+
+### Chores
+
+* update SDK settings ([b7d59f7](https://github.com/digitalocean/gradient-python/commit/b7d59f71d0d511e2ec9bdbf5e548d5e5bf946832))
+* update SDK settings ([3b18c48](https://github.com/digitalocean/gradient-python/commit/3b18c48f0c5dbb3f70e73b9a2654d820c8f6a882))
+* update SDK settings ([df18f3a](https://github.com/digitalocean/gradient-python/commit/df18f3a44bdc859e78130aa229e7fd0bfc0af906))
+* update SDK settings ([33893b0](https://github.com/digitalocean/gradient-python/commit/33893b0a60acc7746e7a60b5066e332547210c38))
+* whitespace cleanup ([dd13d32](https://github.com/digitalocean/gradient-python/commit/dd13d321f46cf779fcb841c12068216875f551e0))
+
 ## 0.1.0-beta.4 (2025-07-29)
 
 Full Changelog: [v0.1.0-beta.3...v0.1.0-beta.4](https://github.com/digitalocean/gradientai-python/compare/v0.1.0-beta.3...v0.1.0-beta.4)
