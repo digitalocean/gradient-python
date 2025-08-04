@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.0-beta.2 (2025-08-04)
+
+Full Changelog: [v3.0.0-beta.1...v3.0.0-beta.2](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.1...v3.0.0-beta.2)
+
+### Features
+
+* **api:** collected updates 8/4 ([90ff9f2](https://github.com/digitalocean/gradient-python/commit/90ff9f227aa00805deb270e8e1de0ea9b56e3b4e))
+
 ## 3.0.0-beta.1 (2025-07-31)
 
 Full Changelog: [v0.1.0-beta.4...v3.0.0-beta.1](https://github.com/digitalocean/gradient-python/compare/v0.1.0-beta.4...v3.0.0-beta.1)
