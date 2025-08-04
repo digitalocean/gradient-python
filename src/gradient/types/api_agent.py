@@ -173,6 +173,12 @@ class LoggingConfig(BaseModel):
     galileo_project_name: Optional[str] = None
     """Name of the Galileo project"""
 
+    insights_enabled: Optional[bool] = None
+    """Whether insights are enabled"""
+
+    insights_enabled_at: Optional[datetime] = None
+    """Timestamp when insights were enabled"""
+
     log_stream_id: Optional[str] = None
     """Identifier for the log stream"""
 

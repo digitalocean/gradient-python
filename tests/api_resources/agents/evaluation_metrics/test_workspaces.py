@@ -35,8 +35,8 @@ class TestWorkspaces:
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.create(
             agent_uuids=["example string"],
-            description='"example string"',
-            name='"example name"',
+            description="example string",
+            name="example name",
         )
         assert_matches_type(WorkspaceCreateResponse, workspace, path=["response"])
 
@@ -117,9 +117,9 @@ class TestWorkspaces:
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            description='"example string"',
-            name='"example name"',
-            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            description="example string",
+            name="example name",
+            body_workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(WorkspaceUpdateResponse, workspace, path=["response"])
 
@@ -286,8 +286,8 @@ class TestAsyncWorkspaces:
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.create(
             agent_uuids=["example string"],
-            description='"example string"',
-            name='"example name"',
+            description="example string",
+            name="example name",
         )
         assert_matches_type(WorkspaceCreateResponse, workspace, path=["response"])
 
@@ -368,9 +368,9 @@ class TestAsyncWorkspaces:
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.update(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            description='"example string"',
-            name='"example name"',
-            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            description="example string",
+            name="example name",
+            body_workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(WorkspaceUpdateResponse, workspace, path=["response"])
 

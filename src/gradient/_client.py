@@ -112,7 +112,7 @@ class Gradient(SyncAPIClient):
             base_url = os.environ.get("GRADIENT_BASE_URL")
         self._base_url_overridden = base_url is not None
         if base_url is None:
-            base_url = f"https://api.digitalocean.com/"
+            base_url = f"https://api.digitalocean.com"
 
         super().__init__(
             version=__version__,
@@ -367,7 +367,7 @@ class AsyncGradient(AsyncAPIClient):
             base_url = os.environ.get("GRADIENT_BASE_URL")
         self._base_url_overridden = base_url is not None
         if base_url is None:
-            base_url = f"https://api.digitalocean.com/"
+            base_url = f"https://api.digitalocean.com"
 
         super().__init__(
             version=__version__,
