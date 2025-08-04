@@ -12,6 +12,8 @@ __all__ = ["AgentUpdateParams"]
 
 
 class AgentUpdateParams(TypedDict, total=False):
+    agent_log_insights_enabled: bool
+
     anthropic_key_uuid: str
     """Optional anthropic key uuid for use with anthropic models"""
 
