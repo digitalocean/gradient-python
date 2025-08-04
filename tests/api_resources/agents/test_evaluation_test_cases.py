@@ -33,17 +33,17 @@ class TestEvaluationTestCases:
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         evaluation_test_case = client.agents.evaluation_test_cases.create(
-            dataset_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            description='"example string"',
+            dataset_uuid="123e4567-e89b-12d3-a456-426614174000",
+            description="example string",
             metrics=["example string"],
-            name='"example name"',
+            name="example name",
             star_metric={
-                "metric_uuid": '"123e4567-e89b-12d3-a456-426614174000"',
-                "name": '"example name"',
+                "metric_uuid": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "example name",
                 "success_threshold": 123,
                 "success_threshold_pct": 123,
             },
-            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(EvaluationTestCaseCreateResponse, evaluation_test_case, path=["response"])
 
@@ -133,17 +133,17 @@ class TestEvaluationTestCases:
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         evaluation_test_case = client.agents.evaluation_test_cases.update(
             path_test_case_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            dataset_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            description='"example string"',
+            dataset_uuid="123e4567-e89b-12d3-a456-426614174000",
+            description="example string",
             metrics={"metric_uuids": ["example string"]},
-            name='"example name"',
+            name="example name",
             star_metric={
-                "metric_uuid": '"123e4567-e89b-12d3-a456-426614174000"',
-                "name": '"example name"',
+                "metric_uuid": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "example name",
                 "success_threshold": 123,
                 "success_threshold_pct": 123,
             },
-            body_test_case_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_test_case_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(EvaluationTestCaseUpdateResponse, evaluation_test_case, path=["response"])
 
@@ -278,17 +278,17 @@ class TestAsyncEvaluationTestCases:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_test_case = await async_client.agents.evaluation_test_cases.create(
-            dataset_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            description='"example string"',
+            dataset_uuid="123e4567-e89b-12d3-a456-426614174000",
+            description="example string",
             metrics=["example string"],
-            name='"example name"',
+            name="example name",
             star_metric={
-                "metric_uuid": '"123e4567-e89b-12d3-a456-426614174000"',
-                "name": '"example name"',
+                "metric_uuid": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "example name",
                 "success_threshold": 123,
                 "success_threshold_pct": 123,
             },
-            workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(EvaluationTestCaseCreateResponse, evaluation_test_case, path=["response"])
 
@@ -378,17 +378,17 @@ class TestAsyncEvaluationTestCases:
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_test_case = await async_client.agents.evaluation_test_cases.update(
             path_test_case_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            dataset_uuid='"123e4567-e89b-12d3-a456-426614174000"',
-            description='"example string"',
+            dataset_uuid="123e4567-e89b-12d3-a456-426614174000",
+            description="example string",
             metrics={"metric_uuids": ["example string"]},
-            name='"example name"',
+            name="example name",
             star_metric={
-                "metric_uuid": '"123e4567-e89b-12d3-a456-426614174000"',
-                "name": '"example name"',
+                "metric_uuid": "123e4567-e89b-12d3-a456-426614174000",
+                "name": "example name",
                 "success_threshold": 123,
                 "success_threshold_pct": 123,
             },
-            body_test_case_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_test_case_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(EvaluationTestCaseUpdateResponse, evaluation_test_case, path=["response"])
 

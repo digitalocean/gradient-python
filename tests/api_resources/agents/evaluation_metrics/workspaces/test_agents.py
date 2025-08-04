@@ -87,7 +87,7 @@ class TestAgents:
         agent = client.agents.evaluation_metrics.workspaces.agents.move(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             agent_uuids=["example string"],
-            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(AgentMoveResponse, agent, path=["response"])
 
@@ -198,7 +198,7 @@ class TestAsyncAgents:
         agent = await async_client.agents.evaluation_metrics.workspaces.agents.move(
             path_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             agent_uuids=["example string"],
-            body_workspace_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            body_workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(AgentMoveResponse, agent, path=["response"])
 

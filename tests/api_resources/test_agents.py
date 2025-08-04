@@ -124,6 +124,7 @@ class TestAgents:
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         agent = client.agents.update(
             path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_log_insights_enabled=True,
             anthropic_key_uuid='"12345678-1234-1234-1234-123456789012"',
             conversation_logs_enabled=True,
             description='"My Agent Description"',
@@ -415,6 +416,7 @@ class TestAsyncAgents:
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         agent = await async_client.agents.update(
             path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            agent_log_insights_enabled=True,
             anthropic_key_uuid='"12345678-1234-1234-1234-123456789012"',
             conversation_logs_enabled=True,
             description='"My Agent Description"',

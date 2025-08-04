@@ -10,7 +10,7 @@ from .api_indexed_data_source import APIIndexedDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
 from .api_web_crawler_data_source import APIWebCrawlerDataSource
 
-__all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource"]
+__all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource", "DropboxDataSource"]
 
 
 class AwsDataSource(BaseModel):
@@ -23,6 +23,10 @@ class AwsDataSource(BaseModel):
     """Region of bucket"""
 
 
+class DropboxDataSource(BaseModel):
+    folder: Optional[str] = None
+
+
 class APIKnowledgeBaseDataSource(BaseModel):
     aws_data_source: Optional[AwsDataSource] = None
     """AWS S3 Data Source for Display"""
@@ -32,6 +36,9 @@ class APIKnowledgeBaseDataSource(BaseModel):
 
     created_at: Optional[datetime] = None
     """Creation date / time"""
+
+    dropbox_data_source: Optional[DropboxDataSource] = None
+    """Dropbox Data Source for Display"""
 
     file_upload_data_source: Optional[APIFileUploadDataSource] = None
     """File to upload as data source for knowledge base."""

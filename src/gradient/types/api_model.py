@@ -11,6 +11,9 @@ __all__ = ["APIModel"]
 
 
 class APIModel(BaseModel):
+    id: Optional[str] = None
+    """Human-readable model identifier"""
+
     agreement: Optional[APIAgreement] = None
     """Agreement Description"""
 
@@ -21,7 +24,7 @@ class APIModel(BaseModel):
     """True if it is a foundational model provided by do"""
 
     name: Optional[str] = None
-    """Name of the model"""
+    """Display name of the model"""
 
     parent_uuid: Optional[str] = None
     """Unique id of the model, this model is based on"""

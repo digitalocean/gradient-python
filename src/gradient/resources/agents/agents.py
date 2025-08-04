@@ -300,6 +300,7 @@ class AgentsResource(SyncAPIResource):
         self,
         path_uuid: str,
         *,
+        agent_log_insights_enabled: bool | NotGiven = NOT_GIVEN,
         anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
         conversation_logs_enabled: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -388,6 +389,7 @@ class AgentsResource(SyncAPIResource):
             else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}",
             body=maybe_transform(
                 {
+                    "agent_log_insights_enabled": agent_log_insights_enabled,
                     "anthropic_key_uuid": anthropic_key_uuid,
                     "conversation_logs_enabled": conversation_logs_enabled,
                     "description": description,
@@ -741,6 +743,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         self,
         path_uuid: str,
         *,
+        agent_log_insights_enabled: bool | NotGiven = NOT_GIVEN,
         anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
         conversation_logs_enabled: bool | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -829,6 +832,7 @@ class AsyncAgentsResource(AsyncAPIResource):
             else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}",
             body=await async_maybe_transform(
                 {
+                    "agent_log_insights_enabled": agent_log_insights_enabled,
                     "anthropic_key_uuid": anthropic_key_uuid,
                     "conversation_logs_enabled": conversation_logs_enabled,
                     "description": description,
