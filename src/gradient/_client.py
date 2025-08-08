@@ -71,18 +71,23 @@ __all__ = [
 
 class Gradient(SyncAPIClient):
     # client options
-    api_key: str | None
-    inference_key: str | None
-    agent_key: str | None
+    access_token: str | None
+    model_access_key: str | None
+    agent_access_key: str | None
     _agent_endpoint: str | None
+    inference_endpoint: str | None
 
     def __init__(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None, # deprecated, use `access_token` instead
+        inference_key: str | None = None, # deprecated, use `model_access_key` instead
+        agent_key: str | None = None, # deprecated, use `agent_access_key` instead
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -105,33 +110,44 @@ class Gradient(SyncAPIClient):
         """Construct a new synchronous Gradient client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `DIGITALOCEAN_ACCESS_TOKEN`
-        - `inference_key` from `GRADIENT_MODEL_ACCESS_KEY`
-        - `agent_key` from `GRADIENT_AGENT_ACCESS_KEY`
+        - `access_token` from `DIGITALOCEAN_ACCESS_TOKEN`
+        - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
+        - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         """
-        if api_key is None:
-            api_key = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
-            # support for legacy environment variable
-            if api_key is None:
-                api_key = os.environ.get("GRADIENT_API_KEY")
-        self.api_key = api_key
+        if access_token is None:
+            if api_key is not None:
+                access_token = api_key
+            else:
+                access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
+                # support for legacy environment variable
+                if access_token is None:
+                    access_token = os.environ.get("GRADIENT_API_KEY")
+        self.access_token = access_token
 
-        if inference_key is None:
-            inference_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
-            # support for legacy environment variable
-            if inference_key is None:
-                inference_key = os.environ.get("GRADIENT_INFERENCE_KEY")
 
-        self.inference_key = inference_key
+        if model_access_key is None:
+            if inference_key is not None:
+                model_access_key = inference_key
+            else:
+                model_access_key = os.environ.get("GRADIENT_INFERENCE_KEY")
+                # support for legacy environment variable
+                if model_access_key is None:
+                    model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+        self.model_access_key = model_access_key
 
-        if agent_key is None:
-            agent_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
-            # support for legacy environment variable
-            if agent_key is None:
-                agent_key = os.environ.get("GRADIENT_AGENT_KEY")
-        self.agent_key = agent_key
+        if agent_access_key is None:
+            if agent_key is not None:
+                agent_access_key = agent_key
+            else:
+                agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
+                # support for legacy environment variable
+                if agent_access_key is None:
+                    agent_access_key = os.environ.get("GRADIENT_AGENT_KEY")
+        self.agent_access_key = agent_access_key
 
         self._agent_endpoint = agent_endpoint
+
+        self.inference_endpoint = inference_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -229,10 +245,10 @@ class Gradient(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        if api_key is None:
+        access_token = self.access_token
+        if access_token is None:
             return {}
-        return {"Authorization": f"Bearer {api_key}"}
+        return {"Authorization": f"Bearer {access_token}"}
 
     @property
     @override
@@ -245,24 +261,28 @@ class Gradient(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.api_key or self.agent_key or self.inference_key) and headers.get(
-            "Authorization"
-        ):
+        if (
+            self.access_token or self.agent_access_key or self.model_access_key
+        ) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
-            '"Could not resolve authentication method. Expected api_key, agent_key, or inference_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None, # deprecated, use `access_token` instead
+        inference_key: str | None = None, # deprecated, use `model_access_key` instead
+        agent_key: str | None = None, # deprecated, use `agent_access_key` instead
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -300,10 +320,11 @@ class Gradient(SyncAPIClient):
 
         http_client = http_client or self._client
         client = self.__class__(
-            api_key=api_key or self.api_key,
-            inference_key=inference_key or self.inference_key,
-            agent_key=agent_key or self.agent_key,
-            agent_endpoint=agent_endpoint or self._agent_endpoint,
+            access_token=access_token or api_key or self.access_token,
+            model_access_key=model_access_key or inference_key or self.model_access_key,
+            agent_access_key=agent_access_key or agent_key or self.agent_access_key,
+            agent_endpoint=agent_endpoint or self.agent_endpoint,
+            inference_endpoint=inference_endpoint or self.inference_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -363,18 +384,23 @@ class Gradient(SyncAPIClient):
 
 class AsyncGradient(AsyncAPIClient):
     # client options
-    api_key: str | None
-    inference_key: str | None
-    agent_key: str | None
+    access_token: str | None
+    model_access_key: str | None
+    agent_access_key: str | None
     _agent_endpoint: str | None
+    inference_endpoint: str | None
 
     def __init__(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None, # deprecated, use `access_token` instead
+        inference_key: str | None = None, # deprecated, use `model_access_key` instead
+        agent_key: str | None = None, # deprecated, use `agent_access_key` instead
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -397,33 +423,44 @@ class AsyncGradient(AsyncAPIClient):
         """Construct a new async AsyncGradient client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `DIGITALOCEAN_ACCESS_TOKEN`
-        - `inference_key` from `GRADIENT_MODEL_ACCESS_KEY`
-        - `agent_key` from `GRADIENT_AGENT_ACCESS_KEY`
+        - `access_token` from `DIGITALOCEAN_ACCESS_TOKEN`
+        - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
+        - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         """
-        if api_key is None:
-            api_key = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
-            # support for legacy environment variable
-            if api_key is None:
-                api_key = os.environ.get("GRADIENT_API_KEY")
-        self.api_key = api_key
+        if access_token is None:
+            if api_key is not None:
+                access_token = api_key
+            else:
+                access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
+                # support for legacy environment variable
+                if access_token is None:
+                    access_token = os.environ.get("GRADIENT_API_KEY")
+        self.access_token = access_token
 
-        if inference_key is None:
-            inference_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
-            # support for legacy environment variable
-            if inference_key is None:
-                inference_key = os.environ.get("GRADIENT_INFERENCE_KEY")
-        self.api_key = api_key
-        self.inference_key = inference_key
 
-        if agent_key is None:
-            agent_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
-            # support for legacy environment variable
-            if agent_key is None:
-                agent_key = os.environ.get("GRADIENT_AGENT_KEY")
-        self.agent_key = agent_key
+        if model_access_key is None:
+            if inference_key is not None:
+                model_access_key = inference_key
+            else:
+                model_access_key = os.environ.get("GRADIENT_INFERENCE_KEY")
+                # support for legacy environment variable
+                if model_access_key is None:
+                    model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+        self.model_access_key = model_access_key
+
+        if agent_access_key is None:
+            if agent_key is not None:
+                agent_access_key = agent_key
+            else:
+                agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
+                # support for legacy environment variable
+                if agent_access_key is None:
+                    agent_access_key = os.environ.get("GRADIENT_AGENT_KEY")
+        self.agent_access_key = agent_access_key
 
         self._agent_endpoint = agent_endpoint
+
+        self.inference_endpoint = inference_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -521,10 +558,10 @@ class AsyncGradient(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        if api_key is None:
+        access_token = self.access_token
+        if access_token is None:
             return {}
-        return {"Authorization": f"Bearer {api_key}"}
+        return {"Authorization": f"Bearer {access_token}"}
 
     @property
     @override
@@ -537,24 +574,28 @@ class AsyncGradient(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.api_key or self.agent_key or self.inference_key) and headers.get(
-            "Authorization"
-        ):
+        if (
+            self.access_token or self.agent_access_key or self.model_access_key
+        ) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
-            '"Could not resolve authentication method. Expected api_key, agent_key, or inference_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None, # deprecated, use `access_token` instead
+        inference_key: str | None = None, # deprecated, use `model_access_key` instead
+        agent_key: str | None = None, # deprecated, use `agent_access_key` instead
         agent_endpoint: str | None = None,
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -592,10 +633,23 @@ class AsyncGradient(AsyncAPIClient):
 
         http_client = http_client or self._client
         client = self.__class__(
+<<<<<<< HEAD
             api_key=api_key or self.api_key,
             inference_key=inference_key or self.inference_key,
             agent_key=agent_key or self.agent_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
+||||||| eb1dcf7
+            api_key=api_key or self.api_key,
+            inference_key=inference_key or self.inference_key,
+            agent_key=agent_key or self.agent_key,
+            agent_domain=agent_domain or self.agent_domain,
+=======
+            access_token=access_token or self.access_token,
+            model_access_key=model_access_key or self.model_access_key,
+            agent_access_key=agent_access_key or self.agent_access_key,
+            agent_endpoint=agent_endpoint or self.agent_endpoint,
+            inference_endpoint=inference_endpoint or self.inference_endpoint,
+>>>>>>> origin/generated--merge-conflict
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,

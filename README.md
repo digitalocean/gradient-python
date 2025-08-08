@@ -42,7 +42,9 @@ import os
 from gradient import Gradient
 
 client = Gradient(
-    api_key=os.environ.get("DIGITALOCEAN_ACCESS_TOKEN"),  # This is the default and can be omitted
+    access_token=os.environ.get(
+        "DIGITALOCEAN_ACCESS_TOKEN"
+    ),  # This is the default and can be omitted
 )
 inference_client = Gradient(
     inference_key=os.environ.get(
@@ -90,7 +92,7 @@ print("--- Agent Inference")
 print(agent_response.choices[0].message.content)
 ```
 
-While you can provide an `api_key`, `inference_key` keyword argument,
+While you can provide an `access_token`, `model_access_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
 to add `DIGITALOCEAN_ACCESS_TOKEN="My API Key"`, `GRADIENT_MODEL_ACCESS_KEY="My INFERENCE Key"` to your `.env` file
 so that your keys are not stored in source control.
@@ -105,7 +107,9 @@ import asyncio
 from gradient import AsyncGradient
 
 client = AsyncGradient(
-    api_key=os.environ.get("DIGITALOCEAN_ACCESS_TOKEN"),  # This is the default and can be omitted
+    access_token=os.environ.get(
+        "DIGITALOCEAN_ACCESS_TOKEN"
+    ),  # This is the default and can be omitted
 )
 
 
@@ -148,7 +152,7 @@ from gradient import AsyncGradient
 
 async def main() -> None:
     async with AsyncGradient(
-        api_key="My API Key",
+        access_token="My Access Token",
         http_client=DefaultAioHttpClient(),
     ) as client:
         completion = await client.chat.completions.create(

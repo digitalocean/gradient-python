@@ -42,9 +42,9 @@ from gradient._base_client import (
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
-inference_key = "My Inference Key"
-agent_key = "My Agent Key"
+access_token = "My Access Token"
+model_access_key = "My Model Access Key"
+agent_access_key = "My Agent Access Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -70,9 +70,9 @@ def _get_open_connections(client: Gradient | AsyncGradient) -> int:
 class TestGradient:
     client = Gradient(
         base_url=base_url,
-        api_key=api_key,
-        inference_key=inference_key,
-        agent_key=agent_key,
+        access_token=access_token,
+        model_access_key=model_access_key,
+        agent_access_key=agent_access_key,
         _strict_response_validation=True,
     )
 
@@ -106,17 +106,17 @@ class TestGradient:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(api_key="another My API Key")
-        assert copied.api_key == "another My API Key"
-        assert self.client.api_key == "My API Key"
+        copied = self.client.copy(access_token="another My Access Token")
+        assert copied.access_token == "another My Access Token"
+        assert self.client.access_token == "My Access Token"
 
-        copied = self.client.copy(inference_key="another My Inference Key")
-        assert copied.inference_key == "another My Inference Key"
-        assert self.client.inference_key == "My Inference Key"
+        copied = self.client.copy(model_access_key="another My Model Access Key")
+        assert copied.model_access_key == "another My Model Access Key"
+        assert self.client.model_access_key == "My Model Access Key"
 
-        copied = self.client.copy(agent_key="another My Agent Key")
-        assert copied.agent_key == "another My Agent Key"
-        assert self.client.agent_key == "My Agent Key"
+        copied = self.client.copy(agent_access_key="another My Agent Access Key")
+        assert copied.agent_access_key == "another My Agent Access Key"
+        assert self.client.agent_access_key == "My Agent Access Key"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -137,9 +137,9 @@ class TestGradient:
     def test_copy_default_headers(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -176,9 +176,9 @@ class TestGradient:
     def test_copy_default_query(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_query={"foo": "bar"},
         )
@@ -316,9 +316,9 @@ class TestGradient:
     def test_client_timeout_option(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             timeout=httpx.Timeout(0),
         )
@@ -332,9 +332,9 @@ class TestGradient:
         with httpx.Client(timeout=None) as http_client:
             client = Gradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -349,9 +349,9 @@ class TestGradient:
         with httpx.Client() as http_client:
             client = Gradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -366,9 +366,9 @@ class TestGradient:
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = Gradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -384,9 +384,9 @@ class TestGradient:
             async with httpx.AsyncClient() as http_client:
                 Gradient(
                     base_url=base_url,
-                    api_key=api_key,
-                    inference_key=inference_key,
-                    agent_key=agent_key,
+                    access_token=access_token,
+                    model_access_key=model_access_key,
+                    agent_access_key=agent_access_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -394,9 +394,9 @@ class TestGradient:
     def test_default_headers_option(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -406,9 +406,9 @@ class TestGradient:
 
         client2 = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -422,26 +422,26 @@ class TestGradient:
     def test_validate_headers(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+        assert request.headers.get("Authorization") == f"Bearer {access_token}"
 
         with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
             client2 = Gradient(
                 base_url=base_url,
-                api_key=None,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=None,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             )
 
         with pytest.raises(
             TypeError,
-            match="Could not resolve authentication method. Expected api_key, agent_key, or inference_key to be set. Or for the `Authorization` headers to be explicitly omitted",
+            match="Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted",
         ):
             client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
@@ -455,9 +455,9 @@ class TestGradient:
     def test_default_query_option(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -671,9 +671,9 @@ class TestGradient:
     def test_base_url_setter(self) -> None:
         client = Gradient(
             base_url="https://example.com/from_init",
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -685,9 +685,9 @@ class TestGradient:
     def test_base_url_env(self) -> None:
         with update_env(GRADIENT_BASE_URL="http://localhost:5000/from/env"):
             client = Gradient(
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             )
             assert client.base_url == "http://localhost:5000/from/env/"
@@ -697,16 +697,16 @@ class TestGradient:
         [
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -728,16 +728,16 @@ class TestGradient:
         [
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -759,16 +759,16 @@ class TestGradient:
         [
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -788,9 +788,9 @@ class TestGradient:
     def test_copied_client_does_not_close_http(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         assert not client.is_closed()
@@ -805,9 +805,9 @@ class TestGradient:
     def test_client_context_manager(self) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         with client as c2:
@@ -834,9 +834,9 @@ class TestGradient:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             Gradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -867,9 +867,9 @@ class TestGradient:
 
         strict_client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
 
@@ -878,9 +878,9 @@ class TestGradient:
 
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=False,
         )
 
@@ -914,9 +914,9 @@ class TestGradient:
     ) -> None:
         client = Gradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
 
@@ -1150,9 +1150,9 @@ class TestGradient:
 class TestAsyncGradient:
     client = AsyncGradient(
         base_url=base_url,
-        api_key=api_key,
-        inference_key=inference_key,
-        agent_key=agent_key,
+        access_token=access_token,
+        model_access_key=model_access_key,
+        agent_access_key=agent_access_key,
         _strict_response_validation=True,
     )
 
@@ -1188,17 +1188,17 @@ class TestAsyncGradient:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(api_key="another My API Key")
-        assert copied.api_key == "another My API Key"
-        assert self.client.api_key == "My API Key"
+        copied = self.client.copy(access_token="another My Access Token")
+        assert copied.access_token == "another My Access Token"
+        assert self.client.access_token == "My Access Token"
 
-        copied = self.client.copy(inference_key="another My Inference Key")
-        assert copied.inference_key == "another My Inference Key"
-        assert self.client.inference_key == "My Inference Key"
+        copied = self.client.copy(model_access_key="another My Model Access Key")
+        assert copied.model_access_key == "another My Model Access Key"
+        assert self.client.model_access_key == "My Model Access Key"
 
-        copied = self.client.copy(agent_key="another My Agent Key")
-        assert copied.agent_key == "another My Agent Key"
-        assert self.client.agent_key == "My Agent Key"
+        copied = self.client.copy(agent_access_key="another My Agent Access Key")
+        assert copied.agent_access_key == "another My Agent Access Key"
+        assert self.client.agent_access_key == "My Agent Access Key"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -1219,9 +1219,9 @@ class TestAsyncGradient:
     def test_copy_default_headers(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1258,9 +1258,9 @@ class TestAsyncGradient:
     def test_copy_default_query(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_query={"foo": "bar"},
         )
@@ -1398,9 +1398,9 @@ class TestAsyncGradient:
     async def test_client_timeout_option(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             timeout=httpx.Timeout(0),
         )
@@ -1414,9 +1414,9 @@ class TestAsyncGradient:
         async with httpx.AsyncClient(timeout=None) as http_client:
             client = AsyncGradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -1431,9 +1431,9 @@ class TestAsyncGradient:
         async with httpx.AsyncClient() as http_client:
             client = AsyncGradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -1448,9 +1448,9 @@ class TestAsyncGradient:
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = AsyncGradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=http_client,
             )
@@ -1466,9 +1466,9 @@ class TestAsyncGradient:
             with httpx.Client() as http_client:
                 AsyncGradient(
                     base_url=base_url,
-                    api_key=api_key,
-                    inference_key=inference_key,
-                    agent_key=agent_key,
+                    access_token=access_token,
+                    model_access_key=model_access_key,
+                    agent_access_key=agent_access_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -1476,9 +1476,9 @@ class TestAsyncGradient:
     def test_default_headers_option(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1488,9 +1488,9 @@ class TestAsyncGradient:
 
         client2 = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1504,26 +1504,26 @@ class TestAsyncGradient:
     def test_validate_headers(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
+        assert request.headers.get("Authorization") == f"Bearer {access_token}"
 
         with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
             client2 = AsyncGradient(
                 base_url=base_url,
-                api_key=None,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=None,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             )
 
         with pytest.raises(
             TypeError,
-            match="Could not resolve authentication method. Expected api_key, agent_key, or inference_key to be set. Or for the `Authorization` headers to be explicitly omitted",
+            match="Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted",
         ):
             client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
@@ -1537,9 +1537,9 @@ class TestAsyncGradient:
     def test_default_query_option(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -1759,9 +1759,9 @@ class TestAsyncGradient:
     def test_base_url_setter(self) -> None:
         client = AsyncGradient(
             base_url="https://example.com/from_init",
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         assert client.base_url == "https://example.com/from_init/"
@@ -1773,9 +1773,9 @@ class TestAsyncGradient:
     def test_base_url_env(self) -> None:
         with update_env(GRADIENT_BASE_URL="http://localhost:5000/from/env"):
             client = AsyncGradient(
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             )
             assert client.base_url == "http://localhost:5000/from/env/"
@@ -1785,16 +1785,16 @@ class TestAsyncGradient:
         [
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1816,16 +1816,16 @@ class TestAsyncGradient:
         [
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1847,16 +1847,16 @@ class TestAsyncGradient:
         [
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1876,9 +1876,9 @@ class TestAsyncGradient:
     async def test_copied_client_does_not_close_http(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         assert not client.is_closed()
@@ -1894,9 +1894,9 @@ class TestAsyncGradient:
     async def test_client_context_manager(self) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
         async with client as c2:
@@ -1926,9 +1926,9 @@ class TestAsyncGradient:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             AsyncGradient(
                 base_url=base_url,
-                api_key=api_key,
-                inference_key=inference_key,
-                agent_key=agent_key,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -1963,9 +1963,9 @@ class TestAsyncGradient:
 
         strict_client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
 
@@ -1974,9 +1974,9 @@ class TestAsyncGradient:
 
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=False,
         )
 
@@ -2011,9 +2011,9 @@ class TestAsyncGradient:
     ) -> None:
         client = AsyncGradient(
             base_url=base_url,
-            api_key=api_key,
-            inference_key=inference_key,
-            agent_key=agent_key,
+            access_token=access_token,
+            model_access_key=model_access_key,
+            agent_access_key=agent_access_key,
             _strict_response_validation=True,
         )
 
