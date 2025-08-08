@@ -463,13 +463,13 @@ class CompletionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | Stream[ChatCompletionChunk]:
-        # This method requires an agent_key to be set via client argument or environment variable
-        if not self._client.agent_key:
+        # This method requires an agent_access_key to be set via client argument or environment variable
+        if not self._client.agent_access_key:
             raise TypeError(
-                "Could not resolve authentication method. Expected agent_key to be set for chat completions."
+                "Could not resolve authentication method. Expected agent_access_key to be set for chat completions."
             )
         headers = extra_headers or {}
-        headers = {"Authorization": f"Bearer {self._client.agent_key}", **headers}
+        headers = {"Authorization": f"Bearer {self._client.agent_access_key}", **headers}
 
         return self._post(
             (
@@ -951,13 +951,13 @@ class AsyncCompletionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | AsyncStream[ChatCompletionChunk]:
-        # This method requires an agent_key to be set via client argument or environment variable
-        if not self._client.agent_key:
+        # This method requires an agent_access_key to be set via client argument or environment variable
+        if not self._client.agent_access_key:
             raise TypeError(
-                "Could not resolve authentication method. Expected agent_key to be set for chat completions."
+                "Could not resolve authentication method. Expected agent_access_key to be set for chat completions."
             )
         headers = extra_headers or {}
-        headers = {"Authorization": f"Bearer {self._client.agent_key}", **headers}
+        headers = {"Authorization": f"Bearer {self._client.agent_access_key}", **headers}
 
         return await self._post(
             (

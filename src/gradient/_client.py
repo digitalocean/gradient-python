@@ -32,7 +32,16 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, models, regions, databases, inference, gpu_droplets, knowledge_bases
+    from .resources import (
+        chat,
+        agents,
+        models,
+        regions,
+        databases,
+        inference,
+        gpu_droplets,
+        knowledge_bases,
+    )
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -62,18 +71,23 @@ __all__ = [
 
 class Gradient(SyncAPIClient):
     # client options
-    api_key: str | None
-    inference_key: str | None
-    agent_key: str | None
+    access_token: str | None
+    model_access_key: str | None
+    agent_access_key: str | None
     _agent_endpoint: str | None
+    inference_endpoint: str | None
 
     def __init__(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None,  # deprecated, use `access_token` instead
+        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
+        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -96,23 +110,50 @@ class Gradient(SyncAPIClient):
         """Construct a new synchronous Gradient client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `GRADIENT_API_KEY`
-        - `inference_key` from `GRADIENT_INFERENCE_KEY`
-        - `agent_key` from `GRADIENT_AGENT_KEY`
+        - `access_token` from `DIGITALOCEAN_ACCESS_TOKEN`
+        - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
+        - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         """
-        if api_key is None:
-            api_key = os.environ.get("GRADIENT_API_KEY")
-        self.api_key = api_key
+        if access_token is None:
+            if api_key is not None:
+                access_token = api_key
+            else:
+                access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
+                # support for legacy environment variable
+                if access_token is None:
+                    access_token = os.environ.get("GRADIENT_API_KEY")
+        self.access_token = access_token
 
-        if inference_key is None:
-            inference_key = os.environ.get("GRADIENT_INFERENCE_KEY")
-        self.inference_key = inference_key
+        if model_access_key is None:
+            if inference_key is not None:
+                model_access_key = inference_key
+            else:
+                model_access_key = os.environ.get("GRADIENT_INFERENCE_KEY")
+                # support for legacy environment variable
+                if model_access_key is None:
+                    model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+        self.model_access_key = model_access_key
 
-        if agent_key is None:
-            agent_key = os.environ.get("GRADIENT_AGENT_KEY")
-        self.agent_key = agent_key
+        if agent_access_key is None:
+            if agent_key is not None:
+                agent_access_key = agent_key
+            else:
+                agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
+                # support for legacy environment variable
+                if agent_access_key is None:
+                    agent_access_key = os.environ.get("GRADIENT_AGENT_KEY")
+        self.agent_access_key = agent_access_key
 
+        if agent_endpoint is None:
+            agent_endpoint = os.environ.get("GRADIENT_AGENT_ENDPOINT")
         self._agent_endpoint = agent_endpoint
+
+        if inference_endpoint is None:
+            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT")
+            if inference_endpoint is None:
+                inference_endpoint = "https://inference.do-ai.run"
+
+        self.inference_endpoint = inference_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -210,10 +251,10 @@ class Gradient(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        if api_key is None:
+        access_token = self.access_token
+        if access_token is None:
             return {}
-        return {"Authorization": f"Bearer {api_key}"}
+        return {"Authorization": f"Bearer {access_token}"}
 
     @property
     @override
@@ -226,22 +267,28 @@ class Gradient(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.api_key or self.agent_key or self.inference_key) and headers.get("Authorization"):
+        if (
+            self.access_token or self.agent_access_key or self.model_access_key
+        ) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
-            '"Could not resolve authentication method. Expected api_key, agent_key, or inference_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None,  # deprecated, use `access_token` instead
+        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
+        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -256,10 +303,14 @@ class Gradient(SyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
+            )
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_query` and `set_default_query` arguments are mutually exclusive"
+            )
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -275,10 +326,11 @@ class Gradient(SyncAPIClient):
 
         http_client = http_client or self._client
         client = self.__class__(
-            api_key=api_key or self.api_key,
-            inference_key=inference_key or self.inference_key,
-            agent_key=agent_key or self.agent_key,
+            access_token=access_token or api_key or self.access_token,
+            model_access_key=model_access_key or inference_key or self.model_access_key,
+            agent_access_key=agent_access_key or agent_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
+            inference_endpoint=inference_endpoint or self.inference_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -306,10 +358,14 @@ class Gradient(SyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
+            return _exceptions.AuthenticationError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
+            return _exceptions.PermissionDeniedError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -318,30 +374,39 @@ class Gradient(SyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
+            return _exceptions.UnprocessableEntityError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(err_msg, response=response, body=body)
+            return _exceptions.InternalServerError(
+                err_msg, response=response, body=body
+            )
         return APIStatusError(err_msg, response=response, body=body)
 
 
 class AsyncGradient(AsyncAPIClient):
     # client options
-    api_key: str | None
-    inference_key: str | None
-    agent_key: str | None
+    access_token: str | None
+    model_access_key: str | None
+    agent_access_key: str | None
     _agent_endpoint: str | None
+    inference_endpoint: str | None
 
     def __init__(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None,  # deprecated, use `access_token` instead
+        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
+        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -364,23 +429,43 @@ class AsyncGradient(AsyncAPIClient):
         """Construct a new async AsyncGradient client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `api_key` from `GRADIENT_API_KEY`
-        - `inference_key` from `GRADIENT_INFERENCE_KEY`
-        - `agent_key` from `GRADIENT_AGENT_KEY`
+        - `access_token` from `DIGITALOCEAN_ACCESS_TOKEN`
+        - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
+        - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         """
-        if api_key is None:
-            api_key = os.environ.get("GRADIENT_API_KEY")
-        self.api_key = api_key
+        if access_token is None:
+            if api_key is not None:
+                access_token = api_key
+            else:
+                access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
+                # support for legacy environment variable
+                if access_token is None:
+                    access_token = os.environ.get("GRADIENT_API_KEY")
+        self.access_token = access_token
 
-        if inference_key is None:
-            inference_key = os.environ.get("GRADIENT_INFERENCE_KEY")
-        self.inference_key = inference_key
+        if model_access_key is None:
+            if inference_key is not None:
+                model_access_key = inference_key
+            else:
+                model_access_key = os.environ.get("GRADIENT_INFERENCE_KEY")
+                # support for legacy environment variable
+                if model_access_key is None:
+                    model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+        self.model_access_key = model_access_key
 
-        if agent_key is None:
-            agent_key = os.environ.get("GRADIENT_AGENT_KEY")
-        self.agent_key = agent_key
+        if agent_access_key is None:
+            if agent_key is not None:
+                agent_access_key = agent_key
+            else:
+                agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
+                # support for legacy environment variable
+                if agent_access_key is None:
+                    agent_access_key = os.environ.get("GRADIENT_AGENT_KEY")
+        self.agent_access_key = agent_access_key
 
         self._agent_endpoint = agent_endpoint
+
+        self.inference_endpoint = inference_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -478,10 +563,10 @@ class AsyncGradient(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        if api_key is None:
+        access_token = self.access_token
+        if access_token is None:
             return {}
-        return {"Authorization": f"Bearer {api_key}"}
+        return {"Authorization": f"Bearer {access_token}"}
 
     @property
     @override
@@ -494,22 +579,28 @@ class AsyncGradient(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.api_key or self.agent_key or self.inference_key) and headers.get("Authorization"):
+        if (
+            self.access_token or self.agent_access_key or self.model_access_key
+        ) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
         raise TypeError(
-            '"Could not resolve authentication method. Expected api_key, agent_key, or inference_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
         self,
         *,
-        api_key: str | None = None,
-        inference_key: str | None = None,
-        agent_key: str | None = None,
+        api_key: str | None = None,  # deprecated, use `access_token` instead
+        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
+        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
         agent_endpoint: str | None = None,
+        access_token: str | None = None,
+        model_access_key: str | None = None,
+        agent_access_key: str | None = None,
+        inference_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -524,10 +615,14 @@ class AsyncGradient(AsyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
+            )
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_query` and `set_default_query` arguments are mutually exclusive"
+            )
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -543,10 +638,11 @@ class AsyncGradient(AsyncAPIClient):
 
         http_client = http_client or self._client
         client = self.__class__(
-            api_key=api_key or self.api_key,
-            inference_key=inference_key or self.inference_key,
-            agent_key=agent_key or self.agent_key,
+            access_token=access_token or api_key or self.access_token,
+            model_access_key=model_access_key or inference_key or self.model_access_key,
+            agent_access_key=agent_access_key or agent_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
+            inference_endpoint=inference_endpoint or self.inference_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -574,10 +670,14 @@ class AsyncGradient(AsyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
+            return _exceptions.AuthenticationError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
+            return _exceptions.PermissionDeniedError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -586,13 +686,17 @@ class AsyncGradient(AsyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
+            return _exceptions.UnprocessableEntityError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(err_msg, response=response, body=body)
+            return _exceptions.InternalServerError(
+                err_msg, response=response, body=body
+            )
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -811,7 +915,9 @@ class AsyncGradientWithStreamedResponse:
             AsyncKnowledgeBasesResourceWithStreamingResponse,
         )
 
-        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(
+            self._client.knowledge_bases
+        )
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
