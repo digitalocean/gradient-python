@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.0.0-beta.3 (2025-08-08)
+
+Full Changelog: [v3.0.0-beta.2...v3.0.0-beta.3](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.2...v3.0.0-beta.3)
+
+### Features
+
+* **api:** make kwargs match the env vars ([b74952e](https://github.com/digitalocean/gradient-python/commit/b74952e665a92a50937f475ef68331d85d96e018))
+* **api:** rename environment variables ([ed70ab7](https://github.com/digitalocean/gradient-python/commit/ed70ab72ce3faecd7fb5070f429275518b7aa6f2))
+
+
+### Bug Fixes
+
+* actually read env vars ([68daceb](https://github.com/digitalocean/gradient-python/commit/68daceb4cf89b76fbf04e5111cea7541a989afed))
+* **config:** align environment variables with other DO tools and console ([#40](https://github.com/digitalocean/gradient-python/issues/40)) ([#41](https://github.com/digitalocean/gradient-python/issues/41)) ([6853d05](https://github.com/digitalocean/gradient-python/commit/6853d0542055a29a70685cab67414e5612890c7d))
+* use of cached variable in internals ([4bd6ace](https://github.com/digitalocean/gradient-python/commit/4bd6ace92d2dbfe1364c5f5aa8e0bf5899e8fc16))
+
+
+### Chores
+
+* **internal:** fix ruff target version ([b370349](https://github.com/digitalocean/gradient-python/commit/b370349a68d24b00854e3f54df50c86f2c29651b))
+
 ## 3.0.0-beta.2 (2025-08-04)
 
 Full Changelog: [v3.0.0-beta.1...v3.0.0-beta.2](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.1...v3.0.0-beta.2)
