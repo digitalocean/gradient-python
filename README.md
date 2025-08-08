@@ -29,7 +29,7 @@ import os
 from gradient import Gradient
 
 client = Gradient(
-    api_key=os.environ.get("GRADIENT_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("DIGITALOCEAN_ACCESS_TOKEN"),  # This is the default and can be omitted
 )
 
 completion = client.chat.completions.create(
@@ -46,7 +46,7 @@ print(completion.choices)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `GRADIENT_API_KEY="My API Key"` to your `.env` file
+to add `DIGITALOCEAN_ACCESS_TOKEN="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -59,7 +59,7 @@ import asyncio
 from gradient import AsyncGradient
 
 client = AsyncGradient(
-    api_key=os.environ.get("GRADIENT_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("DIGITALOCEAN_ACCESS_TOKEN"),  # This is the default and can be omitted
 )
 
 
