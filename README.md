@@ -42,7 +42,7 @@ import os
 from gradient import Gradient
 
 client = Gradient(
-    api_key=os.environ.get("GRADIENT_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("DIGITALOCEAN_ACCESS_TOKEN"),  # This is the default and can be omitted
 )
 inference_client = Gradient(
     inference_key=os.environ.get(
@@ -105,7 +105,7 @@ import asyncio
 from gradient import AsyncGradient
 
 client = AsyncGradient(
-    api_key=os.environ.get("GRADIENT_API_KEY"),  # This is the default and can be omitted
+    api_key=os.environ.get("DIGITALOCEAN_ACCESS_TOKEN"),  # This is the default and can be omitted
 )
 
 

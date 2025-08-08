@@ -403,7 +403,7 @@ class TestGradient:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with update_env(**{"GRADIENT_API_KEY": Omit()}):
+        with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
             client2 = Gradient(
                 base_url=base_url,
                 api_key=None,
@@ -1405,7 +1405,7 @@ class TestAsyncGradient:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
-        with update_env(**{"GRADIENT_API_KEY": Omit()}):
+        with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
             client2 = AsyncGradient(
                 base_url=base_url,
                 api_key=None,
