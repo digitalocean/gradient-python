@@ -21,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFunctions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         function = client.agents.functions.create(
@@ -29,7 +29,7 @@ class TestFunctions:
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         function = client.agents.functions.create(
@@ -44,7 +44,7 @@ class TestFunctions:
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.agents.functions.with_raw_response.create(
@@ -56,7 +56,7 @@ class TestFunctions:
         function = response.parse()
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.agents.functions.with_streaming_response.create(
@@ -70,7 +70,7 @@ class TestFunctions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_create(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
@@ -78,7 +78,7 @@ class TestFunctions:
                 path_agent_uuid="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Gradient) -> None:
         function = client.agents.functions.update(
@@ -87,7 +87,7 @@ class TestFunctions:
         )
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         function = client.agents.functions.update(
@@ -104,7 +104,7 @@ class TestFunctions:
         )
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Gradient) -> None:
         response = client.agents.functions.with_raw_response.update(
@@ -117,7 +117,7 @@ class TestFunctions:
         function = response.parse()
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Gradient) -> None:
         with client.agents.functions.with_streaming_response.update(
@@ -132,7 +132,7 @@ class TestFunctions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
@@ -147,7 +147,7 @@ class TestFunctions:
                 path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         function = client.agents.functions.delete(
@@ -156,7 +156,7 @@ class TestFunctions:
         )
         assert_matches_type(FunctionDeleteResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.agents.functions.with_raw_response.delete(
@@ -169,7 +169,7 @@ class TestFunctions:
         function = response.parse()
         assert_matches_type(FunctionDeleteResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.agents.functions.with_streaming_response.delete(
@@ -184,7 +184,7 @@ class TestFunctions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
@@ -205,7 +205,7 @@ class TestAsyncFunctions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         function = await async_client.agents.functions.create(
@@ -213,7 +213,7 @@ class TestAsyncFunctions:
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         function = await async_client.agents.functions.create(
@@ -228,7 +228,7 @@ class TestAsyncFunctions:
         )
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.functions.with_raw_response.create(
@@ -240,7 +240,7 @@ class TestAsyncFunctions:
         function = await response.parse()
         assert_matches_type(FunctionCreateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.functions.with_streaming_response.create(
@@ -254,7 +254,7 @@ class TestAsyncFunctions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
@@ -262,7 +262,7 @@ class TestAsyncFunctions:
                 path_agent_uuid="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncGradient) -> None:
         function = await async_client.agents.functions.update(
@@ -271,7 +271,7 @@ class TestAsyncFunctions:
         )
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         function = await async_client.agents.functions.update(
@@ -288,7 +288,7 @@ class TestAsyncFunctions:
         )
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.functions.with_raw_response.update(
@@ -301,7 +301,7 @@ class TestAsyncFunctions:
         function = await response.parse()
         assert_matches_type(FunctionUpdateResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.functions.with_streaming_response.update(
@@ -316,7 +316,7 @@ class TestAsyncFunctions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_agent_uuid` but received ''"):
@@ -331,7 +331,7 @@ class TestAsyncFunctions:
                 path_agent_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         function = await async_client.agents.functions.delete(
@@ -340,7 +340,7 @@ class TestAsyncFunctions:
         )
         assert_matches_type(FunctionDeleteResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.functions.with_raw_response.delete(
@@ -353,7 +353,7 @@ class TestAsyncFunctions:
         function = await response.parse()
         assert_matches_type(FunctionDeleteResponse, function, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.functions.with_streaming_response.delete(
@@ -368,7 +368,7 @@ class TestAsyncFunctions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `agent_uuid` but received ''"):
