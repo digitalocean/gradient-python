@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.0-beta.4 (2025-08-12)
+
+Full Changelog: [v3.0.0-beta.3...v3.0.0-beta.4](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.3...v3.0.0-beta.4)
+
+### Chores
+
+* **internal:** codegen related update ([4757cc5](https://github.com/digitalocean/gradient-python/commit/4757cc594565cf8500b4087205e6eb5fd8c5d5c5))
+* **internal:** update comment in script ([c324412](https://github.com/digitalocean/gradient-python/commit/c32441201c3156cc4fe5b400a4f396eaf19ecaad))
+* update @stainless-api/prism-cli to v5.15.0 ([835aa7c](https://github.com/digitalocean/gradient-python/commit/835aa7c204f5def64cdcd8b863581fd6a1ea37b6))
+
 ## 3.0.0-beta.3 (2025-08-08)
 
 Full Changelog: [v3.0.0-beta.2...v3.0.0-beta.3](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.2...v3.0.0-beta.3)
