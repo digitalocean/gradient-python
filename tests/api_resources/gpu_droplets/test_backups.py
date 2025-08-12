@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBackups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list(
@@ -30,7 +30,7 @@ class TestBackups:
         )
         assert_matches_type(BackupListResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list(
@@ -40,7 +40,7 @@ class TestBackups:
         )
         assert_matches_type(BackupListResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.list(
@@ -52,7 +52,7 @@ class TestBackups:
         backup = response.parse()
         assert_matches_type(BackupListResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.list(
@@ -66,13 +66,13 @@ class TestBackups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_policies(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list_policies()
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_policies_with_all_params(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list_policies(
@@ -81,7 +81,7 @@ class TestBackups:
         )
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_policies(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.list_policies()
@@ -91,7 +91,7 @@ class TestBackups:
         backup = response.parse()
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_policies(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.list_policies() as response:
@@ -103,13 +103,13 @@ class TestBackups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_supported_policies(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.list_supported_policies()
         assert_matches_type(BackupListSupportedPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_supported_policies(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.list_supported_policies()
@@ -119,7 +119,7 @@ class TestBackups:
         backup = response.parse()
         assert_matches_type(BackupListSupportedPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_supported_policies(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.list_supported_policies() as response:
@@ -131,7 +131,7 @@ class TestBackups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_policy(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.retrieve_policy(
@@ -139,7 +139,7 @@ class TestBackups:
         )
         assert_matches_type(BackupRetrievePolicyResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_policy(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.retrieve_policy(
@@ -151,7 +151,7 @@ class TestBackups:
         backup = response.parse()
         assert_matches_type(BackupRetrievePolicyResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_policy(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.retrieve_policy(
@@ -171,7 +171,7 @@ class TestAsyncBackups:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list(
@@ -179,7 +179,7 @@ class TestAsyncBackups:
         )
         assert_matches_type(BackupListResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list(
@@ -189,7 +189,7 @@ class TestAsyncBackups:
         )
         assert_matches_type(BackupListResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.list(
@@ -201,7 +201,7 @@ class TestAsyncBackups:
         backup = await response.parse()
         assert_matches_type(BackupListResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.list(
@@ -215,13 +215,13 @@ class TestAsyncBackups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_policies(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list_policies()
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_policies_with_all_params(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list_policies(
@@ -230,7 +230,7 @@ class TestAsyncBackups:
         )
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_policies(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.list_policies()
@@ -240,7 +240,7 @@ class TestAsyncBackups:
         backup = await response.parse()
         assert_matches_type(BackupListPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_policies(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.list_policies() as response:
@@ -252,13 +252,13 @@ class TestAsyncBackups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_supported_policies(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.list_supported_policies()
         assert_matches_type(BackupListSupportedPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_supported_policies(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.list_supported_policies()
@@ -268,7 +268,7 @@ class TestAsyncBackups:
         backup = await response.parse()
         assert_matches_type(BackupListSupportedPoliciesResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_supported_policies(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.list_supported_policies() as response:
@@ -280,7 +280,7 @@ class TestAsyncBackups:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_policy(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.retrieve_policy(
@@ -288,7 +288,7 @@ class TestAsyncBackups:
         )
         assert_matches_type(BackupRetrievePolicyResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_policy(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.retrieve_policy(
@@ -300,7 +300,7 @@ class TestAsyncBackups:
         backup = await response.parse()
         assert_matches_type(BackupRetrievePolicyResponse, backup, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_policy(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.retrieve_policy(

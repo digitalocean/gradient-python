@@ -22,13 +22,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFirewalls:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.create()
         assert_matches_type(FirewallCreateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.create(
@@ -77,7 +77,7 @@ class TestFirewalls:
         )
         assert_matches_type(FirewallCreateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.create()
@@ -87,7 +87,7 @@ class TestFirewalls:
         firewall = response.parse()
         assert_matches_type(FirewallCreateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.create() as response:
@@ -99,7 +99,7 @@ class TestFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.retrieve(
@@ -107,7 +107,7 @@ class TestFirewalls:
         )
         assert_matches_type(FirewallRetrieveResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.retrieve(
@@ -119,7 +119,7 @@ class TestFirewalls:
         firewall = response.parse()
         assert_matches_type(FirewallRetrieveResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.retrieve(
@@ -133,7 +133,7 @@ class TestFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
@@ -141,7 +141,7 @@ class TestFirewalls:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.update(
@@ -150,7 +150,7 @@ class TestFirewalls:
         )
         assert_matches_type(FirewallUpdateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.update(
@@ -200,7 +200,7 @@ class TestFirewalls:
         )
         assert_matches_type(FirewallUpdateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.update(
@@ -213,7 +213,7 @@ class TestFirewalls:
         firewall = response.parse()
         assert_matches_type(FirewallUpdateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.update(
@@ -228,7 +228,7 @@ class TestFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
@@ -237,13 +237,13 @@ class TestFirewalls:
                 firewall={"name": "frontend-firewall"},
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.list()
         assert_matches_type(FirewallListResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.list(
@@ -252,7 +252,7 @@ class TestFirewalls:
         )
         assert_matches_type(FirewallListResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.list()
@@ -262,7 +262,7 @@ class TestFirewalls:
         firewall = response.parse()
         assert_matches_type(FirewallListResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.list() as response:
@@ -274,7 +274,7 @@ class TestFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.delete(
@@ -282,7 +282,7 @@ class TestFirewalls:
         )
         assert firewall is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.delete(
@@ -294,7 +294,7 @@ class TestFirewalls:
         firewall = response.parse()
         assert firewall is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.delete(
@@ -308,7 +308,7 @@ class TestFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
@@ -322,13 +322,13 @@ class TestAsyncFirewalls:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.create()
         assert_matches_type(FirewallCreateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.create(
@@ -377,7 +377,7 @@ class TestAsyncFirewalls:
         )
         assert_matches_type(FirewallCreateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.create()
@@ -387,7 +387,7 @@ class TestAsyncFirewalls:
         firewall = await response.parse()
         assert_matches_type(FirewallCreateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.create() as response:
@@ -399,7 +399,7 @@ class TestAsyncFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.retrieve(
@@ -407,7 +407,7 @@ class TestAsyncFirewalls:
         )
         assert_matches_type(FirewallRetrieveResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.retrieve(
@@ -419,7 +419,7 @@ class TestAsyncFirewalls:
         firewall = await response.parse()
         assert_matches_type(FirewallRetrieveResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.retrieve(
@@ -433,7 +433,7 @@ class TestAsyncFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
@@ -441,7 +441,7 @@ class TestAsyncFirewalls:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.update(
@@ -450,7 +450,7 @@ class TestAsyncFirewalls:
         )
         assert_matches_type(FirewallUpdateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.update(
@@ -500,7 +500,7 @@ class TestAsyncFirewalls:
         )
         assert_matches_type(FirewallUpdateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.update(
@@ -513,7 +513,7 @@ class TestAsyncFirewalls:
         firewall = await response.parse()
         assert_matches_type(FirewallUpdateResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.update(
@@ -528,7 +528,7 @@ class TestAsyncFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):
@@ -537,13 +537,13 @@ class TestAsyncFirewalls:
                 firewall={"name": "frontend-firewall"},
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.list()
         assert_matches_type(FirewallListResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.list(
@@ -552,7 +552,7 @@ class TestAsyncFirewalls:
         )
         assert_matches_type(FirewallListResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.list()
@@ -562,7 +562,7 @@ class TestAsyncFirewalls:
         firewall = await response.parse()
         assert_matches_type(FirewallListResponse, firewall, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.list() as response:
@@ -574,7 +574,7 @@ class TestAsyncFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.delete(
@@ -582,7 +582,7 @@ class TestAsyncFirewalls:
         )
         assert firewall is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.delete(
@@ -594,7 +594,7 @@ class TestAsyncFirewalls:
         firewall = await response.parse()
         assert firewall is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.delete(
@@ -608,7 +608,7 @@ class TestAsyncFirewalls:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `firewall_id` but received ''"):

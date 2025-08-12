@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDestroyWithAssociatedResources:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.list(
@@ -30,7 +30,7 @@ class TestDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceListResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.list(
@@ -44,7 +44,7 @@ class TestDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceListResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.list(
@@ -60,7 +60,7 @@ class TestDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_check_status(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.check_status(
@@ -70,7 +70,7 @@ class TestDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceCheckStatusResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_check_status(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.check_status(
@@ -84,7 +84,7 @@ class TestDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceCheckStatusResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_check_status(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.check_status(
@@ -100,7 +100,7 @@ class TestDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_dangerous(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.delete_dangerous(
@@ -109,7 +109,7 @@ class TestDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_dangerous(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_dangerous(
@@ -122,7 +122,7 @@ class TestDestroyWithAssociatedResources:
         destroy_with_associated_resource = response.parse()
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_dangerous(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_dangerous(
@@ -137,7 +137,7 @@ class TestDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_selective(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.delete_selective(
@@ -145,7 +145,7 @@ class TestDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_selective_with_all_params(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.delete_selective(
@@ -158,7 +158,7 @@ class TestDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_selective(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_selective(
@@ -170,7 +170,7 @@ class TestDestroyWithAssociatedResources:
         destroy_with_associated_resource = response.parse()
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_selective(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_selective(
@@ -184,7 +184,7 @@ class TestDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retry(self, client: Gradient) -> None:
         destroy_with_associated_resource = client.gpu_droplets.destroy_with_associated_resources.retry(
@@ -192,7 +192,7 @@ class TestDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retry(self, client: Gradient) -> None:
         response = client.gpu_droplets.destroy_with_associated_resources.with_raw_response.retry(
@@ -204,7 +204,7 @@ class TestDestroyWithAssociatedResources:
         destroy_with_associated_resource = response.parse()
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retry(self, client: Gradient) -> None:
         with client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.retry(
@@ -224,7 +224,7 @@ class TestAsyncDestroyWithAssociatedResources:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = await async_client.gpu_droplets.destroy_with_associated_resources.list(
@@ -234,7 +234,7 @@ class TestAsyncDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceListResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.list(
@@ -248,7 +248,7 @@ class TestAsyncDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceListResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.list(
@@ -264,7 +264,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_check_status(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
@@ -276,7 +276,7 @@ class TestAsyncDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceCheckStatusResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_check_status(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.check_status(
@@ -290,7 +290,7 @@ class TestAsyncDestroyWithAssociatedResources:
             DestroyWithAssociatedResourceCheckStatusResponse, destroy_with_associated_resource, path=["response"]
         )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_check_status(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.check_status(
@@ -306,7 +306,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_dangerous(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
@@ -317,7 +317,7 @@ class TestAsyncDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_dangerous(
@@ -330,7 +330,7 @@ class TestAsyncDestroyWithAssociatedResources:
         destroy_with_associated_resource = await response.parse()
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_dangerous(
@@ -345,7 +345,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_selective(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
@@ -355,7 +355,7 @@ class TestAsyncDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_selective_with_all_params(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = (
@@ -370,7 +370,7 @@ class TestAsyncDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_selective(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.delete_selective(
@@ -382,7 +382,7 @@ class TestAsyncDestroyWithAssociatedResources:
         destroy_with_associated_resource = await response.parse()
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_selective(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.delete_selective(
@@ -396,7 +396,7 @@ class TestAsyncDestroyWithAssociatedResources:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retry(self, async_client: AsyncGradient) -> None:
         destroy_with_associated_resource = await async_client.gpu_droplets.destroy_with_associated_resources.retry(
@@ -404,7 +404,7 @@ class TestAsyncDestroyWithAssociatedResources:
         )
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retry(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.destroy_with_associated_resources.with_raw_response.retry(
@@ -416,7 +416,7 @@ class TestAsyncDestroyWithAssociatedResources:
         destroy_with_associated_resource = await response.parse()
         assert destroy_with_associated_resource is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retry(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.destroy_with_associated_resources.with_streaming_response.retry(

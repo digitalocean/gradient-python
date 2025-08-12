@@ -24,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAutoscale:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.create(
@@ -42,7 +42,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleCreateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.create(
@@ -70,7 +70,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleCreateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.create(
@@ -92,7 +92,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert_matches_type(AutoscaleCreateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.create(
@@ -116,7 +116,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.retrieve(
@@ -124,7 +124,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleRetrieveResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.retrieve(
@@ -136,7 +136,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert_matches_type(AutoscaleRetrieveResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.retrieve(
@@ -150,7 +150,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -158,7 +158,7 @@ class TestAutoscale:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.update(
@@ -174,7 +174,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleUpdateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.update(
@@ -197,7 +197,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleUpdateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.update(
@@ -217,7 +217,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert_matches_type(AutoscaleUpdateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.update(
@@ -239,7 +239,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -255,13 +255,13 @@ class TestAutoscale:
                 name="my-autoscale-pool",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list()
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list(
@@ -271,7 +271,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.list()
@@ -281,7 +281,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.list() as response:
@@ -293,7 +293,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.delete(
@@ -301,7 +301,7 @@ class TestAutoscale:
         )
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.delete(
@@ -313,7 +313,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.delete(
@@ -327,7 +327,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -335,7 +335,7 @@ class TestAutoscale:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_dangerous(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.delete_dangerous(
@@ -344,7 +344,7 @@ class TestAutoscale:
         )
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_dangerous(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.delete_dangerous(
@@ -357,7 +357,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_dangerous(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.delete_dangerous(
@@ -372,7 +372,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete_dangerous(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -381,7 +381,7 @@ class TestAutoscale:
                 x_dangerous=True,
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_history(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_history(
@@ -389,7 +389,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleListHistoryResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_history_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_history(
@@ -399,7 +399,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleListHistoryResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_history(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.list_history(
@@ -411,7 +411,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert_matches_type(AutoscaleListHistoryResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_history(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.list_history(
@@ -425,7 +425,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_history(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -433,7 +433,7 @@ class TestAutoscale:
                 autoscale_pool_id="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_members(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_members(
@@ -441,7 +441,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleListMembersResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_members_with_all_params(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.list_members(
@@ -451,7 +451,7 @@ class TestAutoscale:
         )
         assert_matches_type(AutoscaleListMembersResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_members(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.list_members(
@@ -463,7 +463,7 @@ class TestAutoscale:
         autoscale = response.parse()
         assert_matches_type(AutoscaleListMembersResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_members(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.list_members(
@@ -477,7 +477,7 @@ class TestAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_members(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -491,7 +491,7 @@ class TestAsyncAutoscale:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.create(
@@ -509,7 +509,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleCreateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.create(
@@ -537,7 +537,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleCreateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.create(
@@ -559,7 +559,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert_matches_type(AutoscaleCreateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.create(
@@ -583,7 +583,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.retrieve(
@@ -591,7 +591,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleRetrieveResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.retrieve(
@@ -603,7 +603,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert_matches_type(AutoscaleRetrieveResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.retrieve(
@@ -617,7 +617,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -625,7 +625,7 @@ class TestAsyncAutoscale:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.update(
@@ -641,7 +641,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleUpdateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.update(
@@ -664,7 +664,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleUpdateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.update(
@@ -684,7 +684,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert_matches_type(AutoscaleUpdateResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.update(
@@ -706,7 +706,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -722,13 +722,13 @@ class TestAsyncAutoscale:
                 name="my-autoscale-pool",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list()
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list(
@@ -738,7 +738,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.list()
@@ -748,7 +748,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert_matches_type(AutoscaleListResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.list() as response:
@@ -760,7 +760,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.delete(
@@ -768,7 +768,7 @@ class TestAsyncAutoscale:
         )
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.delete(
@@ -780,7 +780,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.delete(
@@ -794,7 +794,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -802,7 +802,7 @@ class TestAsyncAutoscale:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_dangerous(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.delete_dangerous(
@@ -811,7 +811,7 @@ class TestAsyncAutoscale:
         )
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.delete_dangerous(
@@ -824,7 +824,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert autoscale is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_dangerous(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.delete_dangerous(
@@ -839,7 +839,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete_dangerous(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -848,7 +848,7 @@ class TestAsyncAutoscale:
                 x_dangerous=True,
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_history(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_history(
@@ -856,7 +856,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleListHistoryResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_history_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_history(
@@ -866,7 +866,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleListHistoryResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_history(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.list_history(
@@ -878,7 +878,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert_matches_type(AutoscaleListHistoryResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_history(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.list_history(
@@ -892,7 +892,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_history(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):
@@ -900,7 +900,7 @@ class TestAsyncAutoscale:
                 autoscale_pool_id="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_members(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_members(
@@ -908,7 +908,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleListMembersResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_members_with_all_params(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.list_members(
@@ -918,7 +918,7 @@ class TestAsyncAutoscale:
         )
         assert_matches_type(AutoscaleListMembersResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_members(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.list_members(
@@ -930,7 +930,7 @@ class TestAsyncAutoscale:
         autoscale = await response.parse()
         assert_matches_type(AutoscaleListMembersResponse, autoscale, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_members(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.list_members(
@@ -944,7 +944,7 @@ class TestAsyncAutoscale:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_members(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `autoscale_pool_id` but received ''"):

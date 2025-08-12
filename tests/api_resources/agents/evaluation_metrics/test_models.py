@@ -17,13 +17,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestModels:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         model = client.agents.evaluation_metrics.models.list()
         assert_matches_type(ModelListResponse, model, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         model = client.agents.evaluation_metrics.models.list(
@@ -34,7 +34,7 @@ class TestModels:
         )
         assert_matches_type(ModelListResponse, model, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.models.with_raw_response.list()
@@ -44,7 +44,7 @@ class TestModels:
         model = response.parse()
         assert_matches_type(ModelListResponse, model, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.models.with_streaming_response.list() as response:
@@ -62,13 +62,13 @@ class TestAsyncModels:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         model = await async_client.agents.evaluation_metrics.models.list()
         assert_matches_type(ModelListResponse, model, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         model = await async_client.agents.evaluation_metrics.models.list(
@@ -79,7 +79,7 @@ class TestAsyncModels:
         )
         assert_matches_type(ModelListResponse, model, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.models.with_raw_response.list()
@@ -89,7 +89,7 @@ class TestAsyncModels:
         model = await response.parse()
         assert_matches_type(ModelListResponse, model, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.models.with_streaming_response.list() as response:
