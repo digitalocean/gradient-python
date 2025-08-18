@@ -24,13 +24,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAnthropic:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.create()
         assert_matches_type(AnthropicCreateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.create(
@@ -39,7 +39,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicCreateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.models.providers.anthropic.with_raw_response.create()
@@ -49,7 +49,7 @@ class TestAnthropic:
         anthropic = response.parse()
         assert_matches_type(AnthropicCreateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.models.providers.anthropic.with_streaming_response.create() as response:
@@ -61,7 +61,7 @@ class TestAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.retrieve(
@@ -69,7 +69,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicRetrieveResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.models.providers.anthropic.with_raw_response.retrieve(
@@ -81,7 +81,7 @@ class TestAnthropic:
         anthropic = response.parse()
         assert_matches_type(AnthropicRetrieveResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.models.providers.anthropic.with_streaming_response.retrieve(
@@ -95,7 +95,7 @@ class TestAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
@@ -103,7 +103,7 @@ class TestAnthropic:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.update(
@@ -111,7 +111,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicUpdateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.update(
@@ -122,7 +122,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicUpdateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Gradient) -> None:
         response = client.models.providers.anthropic.with_raw_response.update(
@@ -134,7 +134,7 @@ class TestAnthropic:
         anthropic = response.parse()
         assert_matches_type(AnthropicUpdateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Gradient) -> None:
         with client.models.providers.anthropic.with_streaming_response.update(
@@ -148,7 +148,7 @@ class TestAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_api_key_uuid` but received ''"):
@@ -156,13 +156,13 @@ class TestAnthropic:
                 path_api_key_uuid="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.list()
         assert_matches_type(AnthropicListResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.list(
@@ -171,7 +171,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicListResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.models.providers.anthropic.with_raw_response.list()
@@ -181,7 +181,7 @@ class TestAnthropic:
         anthropic = response.parse()
         assert_matches_type(AnthropicListResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.models.providers.anthropic.with_streaming_response.list() as response:
@@ -193,7 +193,7 @@ class TestAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.delete(
@@ -201,7 +201,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicDeleteResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.models.providers.anthropic.with_raw_response.delete(
@@ -213,7 +213,7 @@ class TestAnthropic:
         anthropic = response.parse()
         assert_matches_type(AnthropicDeleteResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.models.providers.anthropic.with_streaming_response.delete(
@@ -227,7 +227,7 @@ class TestAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
@@ -235,7 +235,7 @@ class TestAnthropic:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_agents(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.list_agents(
@@ -243,7 +243,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicListAgentsResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_agents_with_all_params(self, client: Gradient) -> None:
         anthropic = client.models.providers.anthropic.list_agents(
@@ -253,7 +253,7 @@ class TestAnthropic:
         )
         assert_matches_type(AnthropicListAgentsResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_agents(self, client: Gradient) -> None:
         response = client.models.providers.anthropic.with_raw_response.list_agents(
@@ -265,7 +265,7 @@ class TestAnthropic:
         anthropic = response.parse()
         assert_matches_type(AnthropicListAgentsResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_agents(self, client: Gradient) -> None:
         with client.models.providers.anthropic.with_streaming_response.list_agents(
@@ -279,7 +279,7 @@ class TestAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list_agents(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -293,13 +293,13 @@ class TestAsyncAnthropic:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.create()
         assert_matches_type(AnthropicCreateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.create(
@@ -308,7 +308,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicCreateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.anthropic.with_raw_response.create()
@@ -318,7 +318,7 @@ class TestAsyncAnthropic:
         anthropic = await response.parse()
         assert_matches_type(AnthropicCreateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.anthropic.with_streaming_response.create() as response:
@@ -330,7 +330,7 @@ class TestAsyncAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.retrieve(
@@ -338,7 +338,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicRetrieveResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.anthropic.with_raw_response.retrieve(
@@ -350,7 +350,7 @@ class TestAsyncAnthropic:
         anthropic = await response.parse()
         assert_matches_type(AnthropicRetrieveResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.anthropic.with_streaming_response.retrieve(
@@ -364,7 +364,7 @@ class TestAsyncAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
@@ -372,7 +372,7 @@ class TestAsyncAnthropic:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.update(
@@ -380,7 +380,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicUpdateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.update(
@@ -391,7 +391,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicUpdateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.anthropic.with_raw_response.update(
@@ -403,7 +403,7 @@ class TestAsyncAnthropic:
         anthropic = await response.parse()
         assert_matches_type(AnthropicUpdateResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.anthropic.with_streaming_response.update(
@@ -417,7 +417,7 @@ class TestAsyncAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_api_key_uuid` but received ''"):
@@ -425,13 +425,13 @@ class TestAsyncAnthropic:
                 path_api_key_uuid="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.list()
         assert_matches_type(AnthropicListResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.list(
@@ -440,7 +440,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicListResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.anthropic.with_raw_response.list()
@@ -450,7 +450,7 @@ class TestAsyncAnthropic:
         anthropic = await response.parse()
         assert_matches_type(AnthropicListResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.anthropic.with_streaming_response.list() as response:
@@ -462,7 +462,7 @@ class TestAsyncAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.delete(
@@ -470,7 +470,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicDeleteResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.anthropic.with_raw_response.delete(
@@ -482,7 +482,7 @@ class TestAsyncAnthropic:
         anthropic = await response.parse()
         assert_matches_type(AnthropicDeleteResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.anthropic.with_streaming_response.delete(
@@ -496,7 +496,7 @@ class TestAsyncAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `api_key_uuid` but received ''"):
@@ -504,7 +504,7 @@ class TestAsyncAnthropic:
                 "",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_agents(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.list_agents(
@@ -512,7 +512,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicListAgentsResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_agents_with_all_params(self, async_client: AsyncGradient) -> None:
         anthropic = await async_client.models.providers.anthropic.list_agents(
@@ -522,7 +522,7 @@ class TestAsyncAnthropic:
         )
         assert_matches_type(AnthropicListAgentsResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_agents(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.anthropic.with_raw_response.list_agents(
@@ -534,7 +534,7 @@ class TestAsyncAnthropic:
         anthropic = await response.parse()
         assert_matches_type(AnthropicListAgentsResponse, anthropic, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_agents(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.anthropic.with_streaming_response.list_agents(
@@ -548,7 +548,7 @@ class TestAsyncAnthropic:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list_agents(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):

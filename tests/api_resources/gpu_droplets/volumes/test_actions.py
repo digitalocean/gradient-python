@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestActions:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.retrieve(
@@ -31,7 +31,7 @@ class TestActions:
         )
         assert_matches_type(ActionRetrieveResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.retrieve(
@@ -42,7 +42,7 @@ class TestActions:
         )
         assert_matches_type(ActionRetrieveResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.retrieve(
@@ -55,7 +55,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionRetrieveResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.retrieve(
@@ -70,7 +70,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -79,7 +79,7 @@ class TestActions:
                 volume_id="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.list(
@@ -87,7 +87,7 @@ class TestActions:
         )
         assert_matches_type(ActionListResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.list(
@@ -97,7 +97,7 @@ class TestActions:
         )
         assert_matches_type(ActionListResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.list(
@@ -109,7 +109,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionListResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.list(
@@ -123,7 +123,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -131,7 +131,7 @@ class TestActions:
                 volume_id="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_id_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -141,7 +141,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_id_with_all_params_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -155,7 +155,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_initiate_by_id_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_id(
@@ -169,7 +169,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_initiate_by_id_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_id(
@@ -185,7 +185,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_initiate_by_id_overload_1(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -195,7 +195,7 @@ class TestActions:
                 type="attach",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_id_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -205,7 +205,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_id_with_all_params_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -218,7 +218,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_initiate_by_id_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_id(
@@ -232,7 +232,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_initiate_by_id_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_id(
@@ -248,7 +248,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_initiate_by_id_overload_2(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -258,7 +258,7 @@ class TestActions:
                 type="attach",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_id_overload_3(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -268,7 +268,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_id_with_all_params_overload_3(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -281,7 +281,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_initiate_by_id_overload_3(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_id(
@@ -295,7 +295,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_initiate_by_id_overload_3(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_id(
@@ -311,7 +311,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_initiate_by_id_overload_3(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -321,7 +321,7 @@ class TestActions:
                 type="attach",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_name_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -330,7 +330,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_name_with_all_params_overload_1(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -343,7 +343,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_initiate_by_name_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_name(
@@ -356,7 +356,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_initiate_by_name_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_name(
@@ -371,7 +371,7 @@ class TestActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_name_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -380,7 +380,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_initiate_by_name_with_all_params_overload_2(self, client: Gradient) -> None:
         action = client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -392,7 +392,7 @@ class TestActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_initiate_by_name_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_name(
@@ -405,7 +405,7 @@ class TestActions:
         action = response.parse()
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_initiate_by_name_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_name(
@@ -426,7 +426,7 @@ class TestAsyncActions:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.retrieve(
@@ -435,7 +435,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionRetrieveResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.retrieve(
@@ -446,7 +446,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionRetrieveResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.retrieve(
@@ -459,7 +459,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionRetrieveResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.retrieve(
@@ -474,7 +474,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -483,7 +483,7 @@ class TestAsyncActions:
                 volume_id="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.list(
@@ -491,7 +491,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionListResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.list(
@@ -501,7 +501,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionListResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.list(
@@ -513,7 +513,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionListResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.list(
@@ -527,7 +527,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -535,7 +535,7 @@ class TestAsyncActions:
                 volume_id="",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_id_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -545,7 +545,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_id_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -559,7 +559,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_initiate_by_id_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_id(
@@ -573,7 +573,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_by_id_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_id(
@@ -589,7 +589,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_initiate_by_id_overload_1(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -599,7 +599,7 @@ class TestAsyncActions:
                 type="attach",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_id_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -609,7 +609,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_id_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -622,7 +622,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_initiate_by_id_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_id(
@@ -636,7 +636,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_by_id_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_id(
@@ -652,7 +652,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_initiate_by_id_overload_2(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -662,7 +662,7 @@ class TestAsyncActions:
                 type="attach",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_id_overload_3(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -672,7 +672,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_id_with_all_params_overload_3(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_id(
@@ -685,7 +685,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_initiate_by_id_overload_3(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_id(
@@ -699,7 +699,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionInitiateByIDResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_by_id_overload_3(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_id(
@@ -715,7 +715,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_initiate_by_id_overload_3(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `volume_id` but received ''"):
@@ -725,7 +725,7 @@ class TestAsyncActions:
                 type="attach",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_name_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -734,7 +734,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_name_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -747,7 +747,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_initiate_by_name_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_name(
@@ -760,7 +760,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_by_name_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_name(
@@ -775,7 +775,7 @@ class TestAsyncActions:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_name_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -784,7 +784,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_initiate_by_name_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.volumes.actions.initiate_by_name(
@@ -796,7 +796,7 @@ class TestAsyncActions:
         )
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_initiate_by_name_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.actions.with_raw_response.initiate_by_name(
@@ -809,7 +809,7 @@ class TestAsyncActions:
         action = await response.parse()
         assert_matches_type(ActionInitiateByNameResponse, action, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_by_name_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.actions.with_streaming_response.initiate_by_name(

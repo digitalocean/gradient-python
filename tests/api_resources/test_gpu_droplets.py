@@ -25,7 +25,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestGPUDroplets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_overload_1(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
@@ -35,7 +35,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
@@ -61,7 +61,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.create(
@@ -75,7 +75,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.create(
@@ -91,7 +91,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_overload_2(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
@@ -101,7 +101,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.create(
@@ -127,7 +127,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.create(
@@ -141,7 +141,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.create(
@@ -157,7 +157,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.retrieve(
@@ -165,7 +165,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletRetrieveResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.retrieve(
@@ -177,7 +177,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletRetrieveResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.retrieve(
@@ -191,13 +191,13 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list()
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list(
@@ -209,7 +209,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list()
@@ -219,7 +219,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list() as response:
@@ -231,7 +231,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.delete(
@@ -239,7 +239,7 @@ class TestGPUDroplets:
         )
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.delete(
@@ -251,7 +251,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.delete(
@@ -265,7 +265,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete_by_tag(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.delete_by_tag(
@@ -273,7 +273,7 @@ class TestGPUDroplets:
         )
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete_by_tag(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.delete_by_tag(
@@ -285,7 +285,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete_by_tag(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.delete_by_tag(
@@ -299,7 +299,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_firewalls(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_firewalls(
@@ -307,7 +307,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListFirewallsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_firewalls_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_firewalls(
@@ -317,7 +317,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListFirewallsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_firewalls(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_firewalls(
@@ -329,7 +329,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletListFirewallsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_firewalls(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_firewalls(
@@ -343,7 +343,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_kernels(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_kernels(
@@ -351,7 +351,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListKernelsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_kernels_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_kernels(
@@ -361,7 +361,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListKernelsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_kernels(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_kernels(
@@ -373,7 +373,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletListKernelsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_kernels(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_kernels(
@@ -387,7 +387,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_neighbors(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_neighbors(
@@ -395,7 +395,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListNeighborsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_neighbors(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_neighbors(
@@ -407,7 +407,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletListNeighborsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_neighbors(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_neighbors(
@@ -421,7 +421,7 @@ class TestGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_snapshots(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_snapshots(
@@ -429,7 +429,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListSnapshotsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_snapshots_with_all_params(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_snapshots(
@@ -439,7 +439,7 @@ class TestGPUDroplets:
         )
         assert_matches_type(GPUDropletListSnapshotsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list_snapshots(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_snapshots(
@@ -451,7 +451,7 @@ class TestGPUDroplets:
         gpu_droplet = response.parse()
         assert_matches_type(GPUDropletListSnapshotsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list_snapshots(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_snapshots(
@@ -471,7 +471,7 @@ class TestAsyncGPUDroplets:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
@@ -481,7 +481,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
@@ -507,7 +507,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.create(
@@ -521,7 +521,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.create(
@@ -537,7 +537,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
@@ -547,7 +547,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.create(
@@ -573,7 +573,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.create(
@@ -587,7 +587,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletCreateResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.create(
@@ -603,7 +603,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.retrieve(
@@ -611,7 +611,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletRetrieveResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.retrieve(
@@ -623,7 +623,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletRetrieveResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.retrieve(
@@ -637,13 +637,13 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list()
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list(
@@ -655,7 +655,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list()
@@ -665,7 +665,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletListResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list() as response:
@@ -677,7 +677,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.delete(
@@ -685,7 +685,7 @@ class TestAsyncGPUDroplets:
         )
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.delete(
@@ -697,7 +697,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.delete(
@@ -711,7 +711,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete_by_tag(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.delete_by_tag(
@@ -719,7 +719,7 @@ class TestAsyncGPUDroplets:
         )
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete_by_tag(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.delete_by_tag(
@@ -731,7 +731,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert gpu_droplet is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete_by_tag(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.delete_by_tag(
@@ -745,7 +745,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_firewalls(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_firewalls(
@@ -753,7 +753,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListFirewallsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_firewalls_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_firewalls(
@@ -763,7 +763,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListFirewallsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_firewalls(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_firewalls(
@@ -775,7 +775,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletListFirewallsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_firewalls(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_firewalls(
@@ -789,7 +789,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_kernels(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_kernels(
@@ -797,7 +797,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListKernelsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_kernels_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_kernels(
@@ -807,7 +807,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListKernelsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_kernels(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_kernels(
@@ -819,7 +819,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletListKernelsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_kernels(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_kernels(
@@ -833,7 +833,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_neighbors(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_neighbors(
@@ -841,7 +841,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListNeighborsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_neighbors(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_neighbors(
@@ -853,7 +853,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletListNeighborsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_neighbors(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_neighbors(
@@ -867,7 +867,7 @@ class TestAsyncGPUDroplets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_snapshots(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_snapshots(
@@ -875,7 +875,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListSnapshotsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_snapshots_with_all_params(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_snapshots(
@@ -885,7 +885,7 @@ class TestAsyncGPUDroplets:
         )
         assert_matches_type(GPUDropletListSnapshotsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list_snapshots(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_snapshots(
@@ -897,7 +897,7 @@ class TestAsyncGPUDroplets:
         gpu_droplet = await response.parse()
         assert_matches_type(GPUDropletListSnapshotsResponse, gpu_droplet, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list_snapshots(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_snapshots(

@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestKeys:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.create(
@@ -31,7 +31,7 @@ class TestKeys:
         )
         assert_matches_type(KeyCreateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.create(
@@ -44,7 +44,7 @@ class TestKeys:
         key = response.parse()
         assert_matches_type(KeyCreateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.create(
@@ -59,7 +59,7 @@ class TestKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.retrieve(
@@ -67,7 +67,7 @@ class TestKeys:
         )
         assert_matches_type(KeyRetrieveResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.retrieve(
@@ -79,7 +79,7 @@ class TestKeys:
         key = response.parse()
         assert_matches_type(KeyRetrieveResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.retrieve(
@@ -93,7 +93,7 @@ class TestKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.update(
@@ -101,7 +101,7 @@ class TestKeys:
         )
         assert_matches_type(KeyUpdateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.update(
@@ -110,7 +110,7 @@ class TestKeys:
         )
         assert_matches_type(KeyUpdateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.update(
@@ -122,7 +122,7 @@ class TestKeys:
         key = response.parse()
         assert_matches_type(KeyUpdateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.update(
@@ -136,13 +136,13 @@ class TestKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.list()
         assert_matches_type(KeyListResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.list(
@@ -151,7 +151,7 @@ class TestKeys:
         )
         assert_matches_type(KeyListResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.list()
@@ -161,7 +161,7 @@ class TestKeys:
         key = response.parse()
         assert_matches_type(KeyListResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.list() as response:
@@ -173,7 +173,7 @@ class TestKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         key = client.gpu_droplets.account.keys.delete(
@@ -181,7 +181,7 @@ class TestKeys:
         )
         assert key is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.account.keys.with_raw_response.delete(
@@ -193,7 +193,7 @@ class TestKeys:
         key = response.parse()
         assert key is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.account.keys.with_streaming_response.delete(
@@ -213,7 +213,7 @@ class TestAsyncKeys:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.create(
@@ -222,7 +222,7 @@ class TestAsyncKeys:
         )
         assert_matches_type(KeyCreateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.create(
@@ -235,7 +235,7 @@ class TestAsyncKeys:
         key = await response.parse()
         assert_matches_type(KeyCreateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.create(
@@ -250,7 +250,7 @@ class TestAsyncKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.retrieve(
@@ -258,7 +258,7 @@ class TestAsyncKeys:
         )
         assert_matches_type(KeyRetrieveResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.retrieve(
@@ -270,7 +270,7 @@ class TestAsyncKeys:
         key = await response.parse()
         assert_matches_type(KeyRetrieveResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.retrieve(
@@ -284,7 +284,7 @@ class TestAsyncKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.update(
@@ -292,7 +292,7 @@ class TestAsyncKeys:
         )
         assert_matches_type(KeyUpdateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.update(
@@ -301,7 +301,7 @@ class TestAsyncKeys:
         )
         assert_matches_type(KeyUpdateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.update(
@@ -313,7 +313,7 @@ class TestAsyncKeys:
         key = await response.parse()
         assert_matches_type(KeyUpdateResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.update(
@@ -327,13 +327,13 @@ class TestAsyncKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.list()
         assert_matches_type(KeyListResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.list(
@@ -342,7 +342,7 @@ class TestAsyncKeys:
         )
         assert_matches_type(KeyListResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.list()
@@ -352,7 +352,7 @@ class TestAsyncKeys:
         key = await response.parse()
         assert_matches_type(KeyListResponse, key, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.list() as response:
@@ -364,7 +364,7 @@ class TestAsyncKeys:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         key = await async_client.gpu_droplets.account.keys.delete(
@@ -372,7 +372,7 @@ class TestAsyncKeys:
         )
         assert key is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.account.keys.with_raw_response.delete(
@@ -384,7 +384,7 @@ class TestAsyncKeys:
         key = await response.parse()
         assert key is None
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.account.keys.with_streaming_response.delete(
