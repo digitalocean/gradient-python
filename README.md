@@ -1,3 +1,5 @@
+![Header image for the DigitalOcean Gradient AI Agentic Cloud](https://doimages.nyc3.cdn.digitaloceanspaces.com/do_gradient_ai_agentic_cloud.svg)
+
 # Gradient Python API library
 
 ### 🚧 Preview Status
