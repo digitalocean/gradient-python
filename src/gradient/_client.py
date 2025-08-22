@@ -114,6 +114,7 @@ class Gradient(SyncAPIClient):
         - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
+        - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
         """
         if access_token is None:
             if api_key is not None:
@@ -150,10 +151,7 @@ class Gradient(SyncAPIClient):
         self._agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT")
-            if inference_endpoint is None:
-                inference_endpoint = "https://inference.do-ai.run"
-
+            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if base_url is None:
@@ -420,6 +418,7 @@ class AsyncGradient(AsyncAPIClient):
         - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
+        - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
         """
         if access_token is None:
             if api_key is not None:
@@ -455,6 +454,8 @@ class AsyncGradient(AsyncAPIClient):
             agent_endpoint = os.environ.get("GRADIENT_AGENT_ENDPOINT")
         self._agent_endpoint = agent_endpoint
 
+        if inference_endpoint is None:
+            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if base_url is None:
