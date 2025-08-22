@@ -95,6 +95,7 @@ class Gradient(SyncAPIClient):
         - `access_token` from `DIGITALOCEAN_ACCESS_TOKEN`
         - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
+        - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -108,6 +109,8 @@ class Gradient(SyncAPIClient):
             agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
         self.agent_access_key = agent_access_key
 
+        if agent_endpoint is None:
+            agent_endpoint = os.environ.get("GRADIENT_AGENT_ENDPOINT")
         self.agent_endpoint = agent_endpoint
 
         self.inference_endpoint = inference_endpoint
@@ -356,6 +359,7 @@ class AsyncGradient(AsyncAPIClient):
         - `access_token` from `DIGITALOCEAN_ACCESS_TOKEN`
         - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
+        - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -369,6 +373,8 @@ class AsyncGradient(AsyncAPIClient):
             agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
         self.agent_access_key = agent_access_key
 
+        if agent_endpoint is None:
+            agent_endpoint = os.environ.get("GRADIENT_AGENT_ENDPOINT")
         self.agent_endpoint = agent_endpoint
 
         self.inference_endpoint = inference_endpoint
