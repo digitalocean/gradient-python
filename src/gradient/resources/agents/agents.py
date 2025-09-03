@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
-
 import httpx
 
 from .routes import (
@@ -22,7 +20,7 @@ from ...types import (
     agent_update_params,
     agent_update_status_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from .api_keys import (
     APIKeysResource,
@@ -183,13 +181,13 @@ class AgentsResource(SyncAPIResource):
         anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         instruction: str | NotGiven = NOT_GIVEN,
-        knowledge_base_uuid: List[str] | NotGiven = NOT_GIVEN,
+        knowledge_base_uuid: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         model_uuid: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         openai_key_uuid: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -313,7 +311,7 @@ class AgentsResource(SyncAPIResource):
         project_id: str | NotGiven = NOT_GIVEN,
         provide_citations: bool | NotGiven = NOT_GIVEN,
         retrieval_method: APIRetrievalMethod | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         body_uuid: str | NotGiven = NOT_GIVEN,
@@ -626,13 +624,13 @@ class AsyncAgentsResource(AsyncAPIResource):
         anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         instruction: str | NotGiven = NOT_GIVEN,
-        knowledge_base_uuid: List[str] | NotGiven = NOT_GIVEN,
+        knowledge_base_uuid: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         model_uuid: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         openai_key_uuid: str | NotGiven = NOT_GIVEN,
         project_id: str | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -756,7 +754,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         project_id: str | NotGiven = NOT_GIVEN,
         provide_citations: bool | NotGiven = NOT_GIVEN,
         retrieval_method: APIRetrievalMethod | NotGiven = NOT_GIVEN,
-        tags: List[str] | NotGiven = NOT_GIVEN,
+        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         body_uuid: str | NotGiven = NOT_GIVEN,

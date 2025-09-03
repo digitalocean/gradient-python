@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["VolumeCreateParams", "VolumesExt4", "VolumesXfs"]
 
@@ -70,7 +72,7 @@ class VolumesExt4(TypedDict, total=False):
     snapshot_id: str
     """The unique identifier for the volume snapshot from which to create the volume."""
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to be applied to the resource.
 
     Tag names may be for either existing or new tags.
@@ -141,7 +143,7 @@ class VolumesXfs(TypedDict, total=False):
     snapshot_id: str
     """The unique identifier for the volume snapshot from which to create the volume."""
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to be applied to the resource.
 
     Tag names may be for either existing or new tags.

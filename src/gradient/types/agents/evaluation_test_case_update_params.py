@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 from .api_star_metric_param import APIStarMetricParam
 
@@ -30,4 +30,4 @@ class EvaluationTestCaseUpdateParams(TypedDict, total=False):
 
 
 class Metrics(TypedDict, total=False):
-    metric_uuids: List[str]
+    metric_uuids: SequenceNotStr[str]

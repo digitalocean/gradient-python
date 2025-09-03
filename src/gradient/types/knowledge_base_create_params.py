@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import TypedDict
 
+from .._types import SequenceNotStr
 from .knowledge_bases.aws_data_source_param import AwsDataSourceParam
 from .knowledge_bases.api_spaces_data_source_param import APISpacesDataSourceParam
 from .knowledge_bases.api_file_upload_data_source_param import APIFileUploadDataSourceParam
@@ -44,7 +45,7 @@ class KnowledgeBaseCreateParams(TypedDict, total=False):
     region: str
     """The datacenter region to deploy the knowledge base in."""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags to organize your knowledge base."""
 
     vpc_uuid: str

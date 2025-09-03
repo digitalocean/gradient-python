@@ -2,33 +2,34 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["DestroyWithAssociatedResourceDeleteSelectiveParams"]
 
 
 class DestroyWithAssociatedResourceDeleteSelectiveParams(TypedDict, total=False):
-    floating_ips: List[str]
+    floating_ips: SequenceNotStr[str]
     """
     An array of unique identifiers for the floating IPs to be scheduled for
     deletion.
     """
 
-    reserved_ips: List[str]
+    reserved_ips: SequenceNotStr[str]
     """
     An array of unique identifiers for the reserved IPs to be scheduled for
     deletion.
     """
 
-    snapshots: List[str]
+    snapshots: SequenceNotStr[str]
     """An array of unique identifiers for the snapshots to be scheduled for deletion."""
 
-    volume_snapshots: List[str]
+    volume_snapshots: SequenceNotStr[str]
     """
     An array of unique identifiers for the volume snapshots to be scheduled for
     deletion.
     """
 
-    volumes: List[str]
+    volumes: SequenceNotStr[str]
     """An array of unique identifiers for the volumes to be scheduled for deletion."""

@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Literal, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["ImageCreateParams"]
 
@@ -64,7 +66,7 @@ class ImageCreateParams(TypedDict, total=False):
     available.
     """
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to be applied to the resource.
 
     Tag names may be for either existing or new tags.
