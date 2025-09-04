@@ -131,7 +131,12 @@ filterwarnings = ["error"]
 typeCheckingMode = "strict"
 pythonVersion = "3.8"
 
-exclude = ["_dev", ".venv", ".nox"]
+exclude = [
+    "_dev",
+    ".venv",
+    ".nox",
+    ".git",
+]
 
 reportImplicitOverride = true
 reportOverlappingOverload = false
