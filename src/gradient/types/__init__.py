@@ -151,7 +151,31 @@ from .agents.evaluation_metrics.workspaces import (
 # This ensures that, when building the deferred (due to cyclical references) model schema,
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
-if _compat.PYDANTIC_V2:
+if _compat.PYDANTIC_V1:
+    api_agent.APIAgent.update_forward_refs()  # type: ignore
+    api_workspace.APIWorkspace.update_forward_refs()  # type: ignore
+    agent_create_response.AgentCreateResponse.update_forward_refs()  # type: ignore
+    agent_retrieve_response.AgentRetrieveResponse.update_forward_refs()  # type: ignore
+    agent_update_response.AgentUpdateResponse.update_forward_refs()  # type: ignore
+    agent_delete_response.AgentDeleteResponse.update_forward_refs()  # type: ignore
+    agent_update_status_response.AgentUpdateStatusResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.workspace_create_response.WorkspaceCreateResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.workspace_retrieve_response.WorkspaceRetrieveResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.workspace_update_response.WorkspaceUpdateResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
+    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
+    agents.function_create_response.FunctionCreateResponse.update_forward_refs()  # type: ignore
+    agents.function_update_response.FunctionUpdateResponse.update_forward_refs()  # type: ignore
+    agents.function_delete_response.FunctionDeleteResponse.update_forward_refs()  # type: ignore
+    agents.api_link_knowledge_base_output.APILinkKnowledgeBaseOutput.update_forward_refs()  # type: ignore
+    agents.knowledge_base_detach_response.KnowledgeBaseDetachResponse.update_forward_refs()  # type: ignore
+    agents.route_view_response.RouteViewResponse.update_forward_refs()  # type: ignore
+    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.update_forward_refs()  # type: ignore
+    models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.update_forward_refs()  # type: ignore
+else:
     api_agent.APIAgent.model_rebuild(_parent_namespace_depth=0)
     api_workspace.APIWorkspace.model_rebuild(_parent_namespace_depth=0)
     agent_create_response.AgentCreateResponse.model_rebuild(_parent_namespace_depth=0)
@@ -183,27 +207,3 @@ if _compat.PYDANTIC_V2:
     models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.model_rebuild(
         _parent_namespace_depth=0
     )
-else:
-    api_agent.APIAgent.update_forward_refs()  # type: ignore
-    api_workspace.APIWorkspace.update_forward_refs()  # type: ignore
-    agent_create_response.AgentCreateResponse.update_forward_refs()  # type: ignore
-    agent_retrieve_response.AgentRetrieveResponse.update_forward_refs()  # type: ignore
-    agent_update_response.AgentUpdateResponse.update_forward_refs()  # type: ignore
-    agent_delete_response.AgentDeleteResponse.update_forward_refs()  # type: ignore
-    agent_update_status_response.AgentUpdateStatusResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.workspace_create_response.WorkspaceCreateResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.workspace_retrieve_response.WorkspaceRetrieveResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.workspace_update_response.WorkspaceUpdateResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.workspace_list_response.WorkspaceListResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.workspaces.agent_list_response.AgentListResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.workspaces.agent_move_response.AgentMoveResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.anthropic.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
-    agents.evaluation_metrics.openai.key_list_agents_response.KeyListAgentsResponse.update_forward_refs()  # type: ignore
-    agents.function_create_response.FunctionCreateResponse.update_forward_refs()  # type: ignore
-    agents.function_update_response.FunctionUpdateResponse.update_forward_refs()  # type: ignore
-    agents.function_delete_response.FunctionDeleteResponse.update_forward_refs()  # type: ignore
-    agents.api_link_knowledge_base_output.APILinkKnowledgeBaseOutput.update_forward_refs()  # type: ignore
-    agents.knowledge_base_detach_response.KnowledgeBaseDetachResponse.update_forward_refs()  # type: ignore
-    agents.route_view_response.RouteViewResponse.update_forward_refs()  # type: ignore
-    models.providers.anthropic_list_agents_response.AnthropicListAgentsResponse.update_forward_refs()  # type: ignore
-    models.providers.openai_retrieve_agents_response.OpenAIRetrieveAgentsResponse.update_forward_refs()  # type: ignore
