@@ -671,7 +671,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
 
     @property
     def user_agent(self) -> str:
-        return f"{self.__class__.__name__}/Python {self._version}"
+        return f"{self.__class__.__name__}/Python/{self._version}"
 
     @property
     def base_url(self) -> URL:
