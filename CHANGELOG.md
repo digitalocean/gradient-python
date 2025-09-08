@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.0-beta.6 (2025-09-08)
+
+Full Changelog: [v3.0.0-beta.5...v3.0.0-beta.6](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.5...v3.0.0-beta.6)
+
+### Features
+
+* improve future compat with pydantic v3 ([9632b89](https://github.com/digitalocean/gradient-python/commit/9632b892575f89d6f76a764cbf5c51f902dd05b4))
+* **types:** replace List[str] with SequenceNotStr in params ([456bd36](https://github.com/digitalocean/gradient-python/commit/456bd36ad4468639e77aadd18d90f34c6d3839fa))
+
+
+### Chores
+
+* **internal:** move mypy configurations to `pyproject.toml` file ([c274b76](https://github.com/digitalocean/gradient-python/commit/c274b766f30830d3992934d83b54bc8b1a7a66a0))
+* **tests:** simplify `get_platform` test ([7ee2e88](https://github.com/digitalocean/gradient-python/commit/7ee2e882d95c6de785fcd951054a5b88a8877116))
+
 ## 3.0.0-beta.5 (2025-09-08)
 
 Full Changelog: [v3.0.0-beta.4...v3.0.0-beta.5](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.4...v3.0.0-beta.5)
