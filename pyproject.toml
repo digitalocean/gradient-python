@@ -1,6 +1,6 @@
 [project]
 name = "gradient"
-version = "3.0.0-beta.4"
+version = "3.0.0-beta.5"
 description = "The official Python library for the Gradient API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -131,7 +131,12 @@ filterwarnings = ["error"]
 typeCheckingMode = "strict"
 pythonVersion = "3.8"
 
-exclude = ["_dev", ".venv", ".nox"]
+exclude = [
+    "_dev",
+    ".venv",
+    ".nox",
+    ".git",
+]
 
 reportImplicitOverride = true
 reportOverlappingOverload = false

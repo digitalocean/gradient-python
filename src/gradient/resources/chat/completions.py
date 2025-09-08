@@ -62,9 +62,7 @@ class CompletionsResource(SyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -193,9 +191,7 @@ class CompletionsResource(SyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -323,9 +319,7 @@ class CompletionsResource(SyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -453,9 +447,7 @@ class CompletionsResource(SyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -481,11 +473,9 @@ class CompletionsResource(SyncAPIResource):
         }
 
         return self._post(
-            (
-                "/chat/completions"
-                if self._client._base_url_overridden
-                else f"{self._client.inference_endpoint}/v1/chat/completions"
-            ),
+            "/chat/completions"
+            if self._client._base_url_overridden
+            else f"{self._client.inference_endpoint}/v1/chat/completions",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -562,9 +552,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -693,9 +681,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -823,9 +809,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         n: Optional[int] | NotGiven = NOT_GIVEN,
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -953,9 +937,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         presence_penalty: Optional[float] | NotGiven = NOT_GIVEN,
         stop: Union[Optional[str], List[str], None] | NotGiven = NOT_GIVEN,
         stream: Optional[Literal[False]] | Literal[True] | NotGiven = NOT_GIVEN,
-        stream_options: (
-            Optional[completion_create_params.StreamOptions] | NotGiven
-        ) = NOT_GIVEN,
+        stream_options: (Optional[completion_create_params.StreamOptions] | NotGiven) = NOT_GIVEN,
         temperature: Optional[float] | NotGiven = NOT_GIVEN,
         tool_choice: completion_create_params.ToolChoice | NotGiven = NOT_GIVEN,
         tools: Iterable[completion_create_params.Tool] | NotGiven = NOT_GIVEN,
@@ -970,10 +952,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CompletionCreateResponse | AsyncStream[ChatCompletionChunk]:
         # This method requires an model_access_key to be set via client argument or environment variable
-        if (
-            not hasattr(self._client, "model_access_key")
-            or not self._client.model_access_key
-        ):
+        if not hasattr(self._client, "model_access_key") or not self._client.model_access_key:
             raise TypeError(
                 "Could not resolve authentication method. Expected model_access_key to be set for chat completions."
             )
@@ -984,11 +963,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         }
 
         return await self._post(
-            (
-                "/chat/completions"
-                if self._client._base_url_overridden
-                else f"{self._client.inference_endpoint}/chat/completions"
-            ),
+            "/chat/completions"
+            if self._client._base_url_overridden
+            else f"{self._client.inference_endpoint}/v1/chat/completions",
             body=await async_maybe_transform(
                 {
                     "messages": messages,

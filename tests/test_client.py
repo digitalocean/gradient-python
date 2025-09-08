@@ -59,9 +59,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
 
 def _get_open_connections(client: Gradient | AsyncGradient) -> int:
     transport = client._client._transport
-    assert isinstance(transport, httpx.HTTPTransport) or isinstance(
-        transport, httpx.AsyncHTTPTransport
-    )
+    assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
     pool = transport._pool
     return len(pool._requests)
@@ -78,9 +76,7 @@ class TestGradient:
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         response = self.client.post("/foo", cast_to=httpx.Response)
         assert response.status_code == 200
@@ -228,9 +224,7 @@ class TestGradient:
                 continue
 
             copy_param = copy_signature.parameters.get(name)
-            assert (
-                copy_param is not None
-            ), f"copy() signature is missing the {name} param"
+            assert copy_param is not None, f"copy() signature is missing the {name} param"
 
     @pytest.mark.skipif(
         sys.version_info >= (3, 10),
@@ -260,9 +254,7 @@ class TestGradient:
 
         tracemalloc.stop()
 
-        def add_leak(
-            leaks: list[tracemalloc.StatisticDiff], diff: tracemalloc.StatisticDiff
-        ) -> None:
+        def add_leak(leaks: list[tracemalloc.StatisticDiff], diff: tracemalloc.StatisticDiff) -> None:
             if diff.count == 0:
                 # Avoid false positives by considering only leaks (i.e. allocations that persist).
                 return
@@ -301,9 +293,7 @@ class TestGradient:
             raise AssertionError()
 
     def test_request_timeout(self) -> None:
-        request = self.client._build_request(
-            FinalRequestOptions(method="get", url="/foo")
-        )
+        request = self.client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
         assert timeout == DEFAULT_TIMEOUT
 
@@ -339,9 +329,7 @@ class TestGradient:
                 http_client=http_client,
             )
 
-            request = client._build_request(
-                FinalRequestOptions(method="get", url="/foo")
-            )
+            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == httpx.Timeout(None)
 
@@ -356,9 +344,7 @@ class TestGradient:
                 http_client=http_client,
             )
 
-            request = client._build_request(
-                FinalRequestOptions(method="get", url="/foo")
-            )
+            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == DEFAULT_TIMEOUT
 
@@ -373,9 +359,7 @@ class TestGradient:
                 http_client=http_client,
             )
 
-            request = client._build_request(
-                FinalRequestOptions(method="get", url="/foo")
-            )
+            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == DEFAULT_TIMEOUT  # our default
 
@@ -446,9 +430,7 @@ class TestGradient:
             client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
         request2 = client2._build_request(
-            FinalRequestOptions(
-                method="get", url="/foo", headers={"Authorization": Omit()}
-            )
+            FinalRequestOptions(method="get", url="/foo", headers={"Authorization": Omit()})
         )
         assert request2.headers.get("Authorization") is None
 
@@ -520,9 +502,7 @@ class TestGradient:
         assert request.headers.get("X-Foo") == "Foo"
 
         # `extra_headers` takes priority over `default_headers` when keys clash
-        request = self.client.with_options(
-            default_headers={"X-Bar": "true"}
-        )._build_request(
+        request = self.client.with_options(default_headers={"X-Bar": "true"})._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -579,9 +559,7 @@ class TestGradient:
             FinalRequestOptions.construct(
                 method="post",
                 url="/foo",
-                headers={
-                    "Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"
-                },
+                headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
                 json_data={"array": ["foo", "bar"]},
                 files=[("foo.txt", b"hello world")],
             )
@@ -613,9 +591,7 @@ class TestGradient:
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         response = self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
@@ -631,9 +607,7 @@ class TestGradient:
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         response = self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
@@ -646,9 +620,7 @@ class TestGradient:
         assert response.foo == 1
 
     @pytest.mark.respx(base_url=base_url)
-    def test_non_application_json_content_type_for_json_data(
-        self, respx_mock: MockRouter
-    ) -> None:
+    def test_non_application_json_content_type_for_json_data(self, respx_mock: MockRouter) -> None:
         """
         Response that sets Content-Type to something other than application/json but returns json data
         """
@@ -821,9 +793,7 @@ class TestGradient:
         class Model(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": {"invalid": True}})
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": {"invalid": True}}))
 
         with pytest.raises(APIResponseValidationError) as exc:
             self.client.get("/foo", cast_to=Model)
@@ -846,13 +816,9 @@ class TestGradient:
         class Model(BaseModel):
             name: str
 
-        respx_mock.post("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
-        stream = self.client.post(
-            "/foo", cast_to=Model, stream=True, stream_cls=Stream[Model]
-        )
+        stream = self.client.post("/foo", cast_to=Model, stream=True, stream_cls=Stream[Model])
         assert isinstance(stream, Stream)
         stream.response.close()
 
@@ -861,9 +827,7 @@ class TestGradient:
         class Model(BaseModel):
             name: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, text="my-custom-format")
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
         strict_client = Gradient(
             base_url=base_url,
@@ -909,9 +873,7 @@ class TestGradient:
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
-    def test_parse_retry_after_header(
-        self, remaining_retries: int, retry_after: str, timeout: float
-    ) -> None:
+    def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = Gradient(
             base_url=base_url,
             access_token=access_token,
@@ -922,21 +884,13 @@ class TestGradient:
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
-        calculated = client._calculate_retry_timeout(
-            remaining_retries, options, headers
-        )
+        calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_timeout_errors_doesnt_leak(
-        self, respx_mock: MockRouter, client: Gradient
-    ) -> None:
-        respx_mock.post("/chat/completions").mock(
-            side_effect=httpx.TimeoutException("Test timeout error")
-        )
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Gradient) -> None:
+        respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             client.chat.completions.with_streaming_response.create(
@@ -951,13 +905,9 @@ class TestGradient:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
-    def test_retrying_status_errors_doesnt_leak(
-        self, respx_mock: MockRouter, client: Gradient
-    ) -> None:
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Gradient) -> None:
         respx_mock.post("/chat/completions").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
@@ -973,9 +923,7 @@ class TestGradient:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
     def test_retries_taken(
@@ -1011,15 +959,10 @@ class TestGradient:
         )
 
         assert response.retries_taken == failures_before_success
-        assert (
-            int(response.http_request.headers.get("x-stainless-retry-count"))
-            == failures_before_success
-        )
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_omit_retry_count_header(
         self, client: Gradient, failures_before_success: int, respx_mock: MockRouter
@@ -1048,14 +991,10 @@ class TestGradient:
             extra_headers={"x-stainless-retry-count": Omit()},
         )
 
-        assert (
-            len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
-        )
+        assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_overwrite_retry_count_header(
         self, client: Gradient, failures_before_success: int, respx_mock: MockRouter
@@ -1112,17 +1051,11 @@ class TestGradient:
     def test_follow_redirects(self, respx_mock: MockRouter) -> None:
         # Test that the default follow_redirects=True allows following redirects
         respx_mock.post("/redirect").mock(
-            return_value=httpx.Response(
-                302, headers={"Location": f"{base_url}/redirected"}
-            )
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
         )
-        respx_mock.get("/redirected").mock(
-            return_value=httpx.Response(200, json={"status": "ok"})
-        )
+        respx_mock.get("/redirected").mock(return_value=httpx.Response(200, json={"status": "ok"}))
 
-        response = self.client.post(
-            "/redirect", body={"key": "value"}, cast_to=httpx.Response
-        )
+        response = self.client.post("/redirect", body={"key": "value"}, cast_to=httpx.Response)
         assert response.status_code == 200
         assert response.json() == {"status": "ok"}
 
@@ -1130,9 +1063,7 @@ class TestGradient:
     def test_follow_redirects_disabled(self, respx_mock: MockRouter) -> None:
         # Test that follow_redirects=False prevents following redirects
         respx_mock.post("/redirect").mock(
-            return_value=httpx.Response(
-                302, headers={"Location": f"{base_url}/redirected"}
-            )
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
         )
 
         with pytest.raises(APIStatusError) as exc_info:
@@ -1159,9 +1090,7 @@ class TestAsyncGradient:
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_raw_response(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         response = await self.client.post("/foo", cast_to=httpx.Response)
         assert response.status_code == 200
@@ -1310,9 +1239,7 @@ class TestAsyncGradient:
                 continue
 
             copy_param = copy_signature.parameters.get(name)
-            assert (
-                copy_param is not None
-            ), f"copy() signature is missing the {name} param"
+            assert copy_param is not None, f"copy() signature is missing the {name} param"
 
     @pytest.mark.skipif(
         sys.version_info >= (3, 10),
@@ -1342,9 +1269,7 @@ class TestAsyncGradient:
 
         tracemalloc.stop()
 
-        def add_leak(
-            leaks: list[tracemalloc.StatisticDiff], diff: tracemalloc.StatisticDiff
-        ) -> None:
+        def add_leak(leaks: list[tracemalloc.StatisticDiff], diff: tracemalloc.StatisticDiff) -> None:
             if diff.count == 0:
                 # Avoid false positives by considering only leaks (i.e. allocations that persist).
                 return
@@ -1383,9 +1308,7 @@ class TestAsyncGradient:
             raise AssertionError()
 
     async def test_request_timeout(self) -> None:
-        request = self.client._build_request(
-            FinalRequestOptions(method="get", url="/foo")
-        )
+        request = self.client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
         assert timeout == DEFAULT_TIMEOUT
 
@@ -1421,9 +1344,7 @@ class TestAsyncGradient:
                 http_client=http_client,
             )
 
-            request = client._build_request(
-                FinalRequestOptions(method="get", url="/foo")
-            )
+            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == httpx.Timeout(None)
 
@@ -1438,9 +1359,7 @@ class TestAsyncGradient:
                 http_client=http_client,
             )
 
-            request = client._build_request(
-                FinalRequestOptions(method="get", url="/foo")
-            )
+            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == DEFAULT_TIMEOUT
 
@@ -1455,9 +1374,7 @@ class TestAsyncGradient:
                 http_client=http_client,
             )
 
-            request = client._build_request(
-                FinalRequestOptions(method="get", url="/foo")
-            )
+            request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
             assert timeout == DEFAULT_TIMEOUT  # our default
 
@@ -1528,9 +1445,7 @@ class TestAsyncGradient:
             client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
         request2 = client2._build_request(
-            FinalRequestOptions(
-                method="get", url="/foo", headers={"Authorization": Omit()}
-            )
+            FinalRequestOptions(method="get", url="/foo", headers={"Authorization": Omit()})
         )
         assert request2.headers.get("Authorization") is None
 
@@ -1602,9 +1517,7 @@ class TestAsyncGradient:
         assert request.headers.get("X-Foo") == "Foo"
 
         # `extra_headers` takes priority over `default_headers` when keys clash
-        request = self.client.with_options(
-            default_headers={"X-Bar": "true"}
-        )._build_request(
+        request = self.client.with_options(default_headers={"X-Bar": "true"})._build_request(
             FinalRequestOptions(
                 method="post",
                 url="/foo",
@@ -1661,9 +1574,7 @@ class TestAsyncGradient:
             FinalRequestOptions.construct(
                 method="post",
                 url="/foo",
-                headers={
-                    "Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"
-                },
+                headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
                 json_data={"array": ["foo", "bar"]},
                 files=[("foo.txt", b"hello world")],
             )
@@ -1695,13 +1606,9 @@ class TestAsyncGradient:
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
-        response = await self.client.get(
-            "/foo", cast_to=cast(Any, Union[Model1, Model2])
-        )
+        response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
         assert response.foo == "bar"
 
@@ -1715,28 +1622,20 @@ class TestAsyncGradient:
         class Model2(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
-        response = await self.client.get(
-            "/foo", cast_to=cast(Any, Union[Model1, Model2])
-        )
+        response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model2)
         assert response.foo == "bar"
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": 1}))
 
-        response = await self.client.get(
-            "/foo", cast_to=cast(Any, Union[Model1, Model2])
-        )
+        response = await self.client.get("/foo", cast_to=cast(Any, Union[Model1, Model2]))
         assert isinstance(response, Model1)
         assert response.foo == 1
 
     @pytest.mark.respx(base_url=base_url)
-    async def test_non_application_json_content_type_for_json_data(
-        self, respx_mock: MockRouter
-    ) -> None:
+    async def test_non_application_json_content_type_for_json_data(self, respx_mock: MockRouter) -> None:
         """
         Response that sets Content-Type to something other than application/json but returns json data
         """
@@ -1907,15 +1806,11 @@ class TestAsyncGradient:
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
-    async def test_client_response_validation_error(
-        self, respx_mock: MockRouter
-    ) -> None:
+    async def test_client_response_validation_error(self, respx_mock: MockRouter) -> None:
         class Model(BaseModel):
             foo: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": {"invalid": True}})
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, json={"foo": {"invalid": True}}))
 
         with pytest.raises(APIResponseValidationError) as exc:
             await self.client.get("/foo", cast_to=Model)
@@ -1939,27 +1834,19 @@ class TestAsyncGradient:
         class Model(BaseModel):
             name: str
 
-        respx_mock.post("/foo").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
-        stream = await self.client.post(
-            "/foo", cast_to=Model, stream=True, stream_cls=AsyncStream[Model]
-        )
+        stream = await self.client.post("/foo", cast_to=Model, stream=True, stream_cls=AsyncStream[Model])
         assert isinstance(stream, AsyncStream)
         await stream.response.aclose()
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
-    async def test_received_text_for_expected_json(
-        self, respx_mock: MockRouter
-    ) -> None:
+    async def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
         class Model(BaseModel):
             name: str
 
-        respx_mock.get("/foo").mock(
-            return_value=httpx.Response(200, text="my-custom-format")
-        )
+        respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
         strict_client = AsyncGradient(
             base_url=base_url,
@@ -2006,9 +1893,7 @@ class TestAsyncGradient:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
-    async def test_parse_retry_after_header(
-        self, remaining_retries: int, retry_after: str, timeout: float
-    ) -> None:
+    async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
@@ -2019,21 +1904,15 @@ class TestAsyncGradient:
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
-        calculated = client._calculate_retry_timeout(
-            remaining_retries, options, headers
-        )
+        calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncGradient
     ) -> None:
-        respx_mock.post("/chat/completions").mock(
-            side_effect=httpx.TimeoutException("Test timeout error")
-        )
+        respx_mock.post("/chat/completions").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await async_client.chat.completions.with_streaming_response.create(
@@ -2048,9 +1927,7 @@ class TestAsyncGradient:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncGradient
@@ -2070,9 +1947,7 @@ class TestAsyncGradient:
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     @pytest.mark.parametrize("failure_mode", ["status", "exception"])
@@ -2109,15 +1984,10 @@ class TestAsyncGradient:
         )
 
         assert response.retries_taken == failures_before_success
-        assert (
-            int(response.http_request.headers.get("x-stainless-retry-count"))
-            == failures_before_success
-        )
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_omit_retry_count_header(
@@ -2150,14 +2020,10 @@ class TestAsyncGradient:
             extra_headers={"x-stainless-retry-count": Omit()},
         )
 
-        assert (
-            len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
-        )
+        assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
-    @mock.patch(
-        "gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout
-    )
+    @mock.patch("gradient._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
     async def test_overwrite_retry_count_header(
@@ -2228,24 +2094,18 @@ class TestAsyncGradient:
                 return_code = process.poll()
                 if return_code is not None:
                     if return_code != 0:
-                        raise AssertionError(
-                            "calling get_platform using asyncify resulted in a non-zero exit code"
-                        )
+                        raise AssertionError("calling get_platform using asyncify resulted in a non-zero exit code")
 
                     # success
                     break
 
                 if time.monotonic() - start_time > timeout:
                     process.kill()
-                    raise AssertionError(
-                        "calling get_platform using asyncify resulted in a hung process"
-                    )
+                    raise AssertionError("calling get_platform using asyncify resulted in a hung process")
 
                 time.sleep(0.1)
 
-    async def test_proxy_environment_variables(
-        self, monkeypatch: pytest.MonkeyPatch
-    ) -> None:
+    async def test_proxy_environment_variables(self, monkeypatch: pytest.MonkeyPatch) -> None:
         # Test that the proxy environment variables are set correctly
         monkeypatch.setenv("HTTPS_PROXY", "https://example.org")
 
@@ -2271,17 +2131,11 @@ class TestAsyncGradient:
     async def test_follow_redirects(self, respx_mock: MockRouter) -> None:
         # Test that the default follow_redirects=True allows following redirects
         respx_mock.post("/redirect").mock(
-            return_value=httpx.Response(
-                302, headers={"Location": f"{base_url}/redirected"}
-            )
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
         )
-        respx_mock.get("/redirected").mock(
-            return_value=httpx.Response(200, json={"status": "ok"})
-        )
+        respx_mock.get("/redirected").mock(return_value=httpx.Response(200, json={"status": "ok"}))
 
-        response = await self.client.post(
-            "/redirect", body={"key": "value"}, cast_to=httpx.Response
-        )
+        response = await self.client.post("/redirect", body={"key": "value"}, cast_to=httpx.Response)
         assert response.status_code == 200
         assert response.json() == {"status": "ok"}
 
@@ -2289,9 +2143,7 @@ class TestAsyncGradient:
     async def test_follow_redirects_disabled(self, respx_mock: MockRouter) -> None:
         # Test that follow_redirects=False prevents following redirects
         respx_mock.post("/redirect").mock(
-            return_value=httpx.Response(
-                302, headers={"Location": f"{base_url}/redirected"}
-            )
+            return_value=httpx.Response(302, headers={"Location": f"{base_url}/redirected"})
         )
 
         with pytest.raises(APIStatusError) as exc_info:
