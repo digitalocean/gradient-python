@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
 
+from ..._types import SequenceNotStr
 from .api_star_metric_param import APIStarMetricParam
 
 __all__ = ["EvaluationTestCaseCreateParams"]
@@ -17,7 +17,7 @@ class EvaluationTestCaseCreateParams(TypedDict, total=False):
     description: str
     """Description of the test case."""
 
-    metrics: List[str]
+    metrics: SequenceNotStr[str]
     """Full metric list to use for evaluation test case."""
 
     name: str

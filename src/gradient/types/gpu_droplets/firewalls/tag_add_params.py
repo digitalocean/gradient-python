@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["TagAddParams"]
 
 
 class TagAddParams(TypedDict, total=False):
-    tags: Required[Optional[List[str]]]
+    tags: Required[Optional[SequenceNotStr[str]]]
     """A flat array of tag names as strings to be applied to the resource.
 
     Tag names must exist in order to be referenced in a request.

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Optional, cast
+from typing import Any, Union, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -39,7 +39,7 @@ from .backups import (
     BackupsResourceWithStreamingResponse,
     AsyncBackupsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .autoscale import (
@@ -215,10 +215,10 @@ class GPUDropletsResource(SyncAPIResource):
         monitoring: bool | NotGiven = NOT_GIVEN,
         private_networking: bool | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: List[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
+        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
-        volumes: List[str] | NotGiven = NOT_GIVEN,
+        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
         with_droplet_agent: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -328,7 +328,7 @@ class GPUDropletsResource(SyncAPIResource):
         self,
         *,
         image: Union[str, int],
-        names: List[str],
+        names: SequenceNotStr[str],
         size: str,
         backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
         backups: bool | NotGiven = NOT_GIVEN,
@@ -336,10 +336,10 @@ class GPUDropletsResource(SyncAPIResource):
         monitoring: bool | NotGiven = NOT_GIVEN,
         private_networking: bool | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: List[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
+        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
-        volumes: List[str] | NotGiven = NOT_GIVEN,
+        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
         with_droplet_agent: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -458,13 +458,13 @@ class GPUDropletsResource(SyncAPIResource):
         monitoring: bool | NotGiven = NOT_GIVEN,
         private_networking: bool | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: List[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
+        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
-        volumes: List[str] | NotGiven = NOT_GIVEN,
+        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
         with_droplet_agent: bool | NotGiven = NOT_GIVEN,
-        names: List[str] | NotGiven = NOT_GIVEN,
+        names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -986,10 +986,10 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         monitoring: bool | NotGiven = NOT_GIVEN,
         private_networking: bool | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: List[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
+        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
-        volumes: List[str] | NotGiven = NOT_GIVEN,
+        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
         with_droplet_agent: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1099,7 +1099,7 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         self,
         *,
         image: Union[str, int],
-        names: List[str],
+        names: SequenceNotStr[str],
         size: str,
         backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
         backups: bool | NotGiven = NOT_GIVEN,
@@ -1107,10 +1107,10 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         monitoring: bool | NotGiven = NOT_GIVEN,
         private_networking: bool | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: List[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
+        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
-        volumes: List[str] | NotGiven = NOT_GIVEN,
+        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
         with_droplet_agent: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1229,13 +1229,13 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         monitoring: bool | NotGiven = NOT_GIVEN,
         private_networking: bool | NotGiven = NOT_GIVEN,
         region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: List[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[List[str]] | NotGiven = NOT_GIVEN,
+        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
+        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
         user_data: str | NotGiven = NOT_GIVEN,
-        volumes: List[str] | NotGiven = NOT_GIVEN,
+        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
         with_droplet_agent: bool | NotGiven = NOT_GIVEN,
-        names: List[str] | NotGiven = NOT_GIVEN,
+        names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

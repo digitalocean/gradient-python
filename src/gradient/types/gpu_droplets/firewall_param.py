@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable, Optional
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ..._types import SequenceNotStr
 from ..shared_params.firewall_rule_target import FirewallRuleTarget
 
 __all__ = ["FirewallParam", "InboundRule", "OutboundRule"]
@@ -58,7 +59,7 @@ class FirewallParam(TypedDict, total=False):
 
     outbound_rules: Optional[Iterable[OutboundRule]]
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to be applied to the resource.
 
     Tag names must exist in order to be referenced in a request.

@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -60,7 +58,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
         *,
         dataset_uuid: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        metrics: List[str] | NotGiven = NOT_GIVEN,
+        metrics: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         star_metric: APIStarMetricParam | NotGiven = NOT_GIVEN,
         workspace_uuid: str | NotGiven = NOT_GIVEN,
@@ -322,7 +320,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         *,
         dataset_uuid: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        metrics: List[str] | NotGiven = NOT_GIVEN,
+        metrics: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         star_metric: APIStarMetricParam | NotGiven = NOT_GIVEN,
         workspace_uuid: str | NotGiven = NOT_GIVEN,
