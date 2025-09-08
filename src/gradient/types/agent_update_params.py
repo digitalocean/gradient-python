@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .api_retrieval_method import APIRetrievalMethod
 
@@ -64,7 +64,7 @@ class AgentUpdateParams(TypedDict, total=False):
     - RETRIEVAL_METHOD_NONE: The retrieval method is none
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """A set of abitrary tags to organize your agent"""
 
     temperature: float

@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["IndexingJobCreateParams"]
 
 
 class IndexingJobCreateParams(TypedDict, total=False):
-    data_source_uuids: List[str]
+    data_source_uuids: SequenceNotStr[str]
     """
     List of data source ids to index, if none are provided, all data sources will be
     indexed

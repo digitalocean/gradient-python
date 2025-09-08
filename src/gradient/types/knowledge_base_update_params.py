@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["KnowledgeBaseUpdateParams"]
@@ -23,7 +23,7 @@ class KnowledgeBaseUpdateParams(TypedDict, total=False):
     project_id: str
     """The id of the DigitalOcean project this knowledge base will belong to"""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Tags to organize your knowledge base."""
 
     body_uuid: Annotated[str, PropertyInfo(alias="uuid")]
