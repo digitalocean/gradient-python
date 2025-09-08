@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.0.0-beta.5 (2025-09-08)
+
+Full Changelog: [v3.0.0-beta.4...v3.0.0-beta.5](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.4...v3.0.0-beta.5)
+
+### Features
+
+* **api:** manual updates ([044a233](https://github.com/digitalocean/gradient-python/commit/044a2339f9ae89facbed403d8240d1e4cf3e9c1f))
+* **api:** manual updates ([0e8fd1b](https://github.com/digitalocean/gradient-python/commit/0e8fd1b364751ec933cadf02be693afa63a67029))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([3d5c35c](https://github.com/digitalocean/gradient-python/commit/3d5c35ca11b4c7344308f7fbd7cd98ec44dd65a0))
+
+
+### Chores
+
+* **internal:** add Sequence related utils ([2997cfc](https://github.com/digitalocean/gradient-python/commit/2997cfc25bf46b4cc9faf9f0f22cb4680cadca8b))
+* **internal:** change ci workflow machines ([5f41b3d](https://github.com/digitalocean/gradient-python/commit/5f41b3d956bf1ae25f90b862d5057c16b06e78a3))
+* **internal:** update pyright exclude list ([2a0d1a2](https://github.com/digitalocean/gradient-python/commit/2a0d1a2b174990d6b081ff764b13949b4dfa107f))
+* update github action ([369c5d9](https://github.com/digitalocean/gradient-python/commit/369c5d982cfadfaaaeda9481b2c9249e3f87423d))
+
 ## 3.0.0-beta.4 (2025-08-12)
 
 Full Changelog: [v3.0.0-beta.3...v3.0.0-beta.4](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.3...v3.0.0-beta.4)
