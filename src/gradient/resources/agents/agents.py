@@ -19,6 +19,7 @@ from ...types import (
     agent_create_params,
     agent_update_params,
     agent_update_status_params,
+    agent_retrieve_usage_params,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
@@ -103,6 +104,7 @@ from ...types.agent_update_response import AgentUpdateResponse
 from ...types.agent_retrieve_response import AgentRetrieveResponse
 from ...types.api_deployment_visibility import APIDeploymentVisibility
 from ...types.agent_update_status_response import AgentUpdateStatusResponse
+from ...types.agent_retrieve_usage_response import AgentRetrieveUsageResponse
 from .evaluation_metrics.evaluation_metrics import (
     EvaluationMetricsResource,
     AsyncEvaluationMetricsResource,
@@ -498,6 +500,59 @@ class AgentsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=AgentDeleteResponse,
+        )
+
+    def retrieve_usage(
+        self,
+        uuid: str,
+        *,
+        start: str | NotGiven = NOT_GIVEN,
+        stop: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AgentRetrieveUsageResponse:
+        """
+        To get agent usage, send a GET request to `/v2/gen-ai/agents/{uuid}/usage`.
+        Returns usage metrics for the specified agent within the provided time range.
+
+        Args:
+          start: Return all usage data from this date.
+
+          stop: Return all usage data up to this date, if omitted, will return up to the current
+              date.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        return self._get(
+            f"/v2/gen-ai/agents/{uuid}/usage"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/usage",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "start": start,
+                        "stop": stop,
+                    },
+                    agent_retrieve_usage_params.AgentRetrieveUsageParams,
+                ),
+            ),
+            cast_to=AgentRetrieveUsageResponse,
         )
 
     def update_status(
@@ -943,6 +998,59 @@ class AsyncAgentsResource(AsyncAPIResource):
             cast_to=AgentDeleteResponse,
         )
 
+    async def retrieve_usage(
+        self,
+        uuid: str,
+        *,
+        start: str | NotGiven = NOT_GIVEN,
+        stop: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AgentRetrieveUsageResponse:
+        """
+        To get agent usage, send a GET request to `/v2/gen-ai/agents/{uuid}/usage`.
+        Returns usage metrics for the specified agent within the provided time range.
+
+        Args:
+          start: Return all usage data from this date.
+
+          stop: Return all usage data up to this date, if omitted, will return up to the current
+              date.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        return await self._get(
+            f"/v2/gen-ai/agents/{uuid}/usage"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/usage",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "start": start,
+                        "stop": stop,
+                    },
+                    agent_retrieve_usage_params.AgentRetrieveUsageParams,
+                ),
+            ),
+            cast_to=AgentRetrieveUsageResponse,
+        )
+
     async def update_status(
         self,
         path_uuid: str,
@@ -1020,6 +1128,9 @@ class AgentsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             agents.delete,
         )
+        self.retrieve_usage = to_raw_response_wrapper(
+            agents.retrieve_usage,
+        )
         self.update_status = to_raw_response_wrapper(
             agents.update_status,
         )
@@ -1083,6 +1194,9 @@ class AsyncAgentsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             agents.delete,
+        )
+        self.retrieve_usage = async_to_raw_response_wrapper(
+            agents.retrieve_usage,
         )
         self.update_status = async_to_raw_response_wrapper(
             agents.update_status,
@@ -1148,6 +1262,9 @@ class AgentsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             agents.delete,
         )
+        self.retrieve_usage = to_streamed_response_wrapper(
+            agents.retrieve_usage,
+        )
         self.update_status = to_streamed_response_wrapper(
             agents.update_status,
         )
@@ -1211,6 +1328,9 @@ class AsyncAgentsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             agents.delete,
+        )
+        self.retrieve_usage = async_to_streamed_response_wrapper(
+            agents.retrieve_usage,
         )
         self.update_status = async_to_streamed_response_wrapper(
             agents.update_status,

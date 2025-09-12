@@ -51,6 +51,7 @@ from gradient.types import (
     AgentUpdateResponse,
     AgentListResponse,
     AgentDeleteResponse,
+    AgentRetrieveUsageResponse,
     AgentUpdateStatusResponse,
 )
 ```
@@ -62,6 +63,7 @@ Methods:
 - <code title="put /v2/gen-ai/agents/{uuid}">client.agents.<a href="./src/gradient/resources/agents/agents.py">update</a>(path_uuid, \*\*<a href="src/gradient/types/agent_update_params.py">params</a>) -> <a href="./src/gradient/types/agent_update_response.py">AgentUpdateResponse</a></code>
 - <code title="get /v2/gen-ai/agents">client.agents.<a href="./src/gradient/resources/agents/agents.py">list</a>(\*\*<a href="src/gradient/types/agent_list_params.py">params</a>) -> <a href="./src/gradient/types/agent_list_response.py">AgentListResponse</a></code>
 - <code title="delete /v2/gen-ai/agents/{uuid}">client.agents.<a href="./src/gradient/resources/agents/agents.py">delete</a>(uuid) -> <a href="./src/gradient/types/agent_delete_response.py">AgentDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/agents/{uuid}/usage">client.agents.<a href="./src/gradient/resources/agents/agents.py">retrieve_usage</a>(uuid, \*\*<a href="src/gradient/types/agent_retrieve_usage_params.py">params</a>) -> <a href="./src/gradient/types/agent_retrieve_usage_response.py">AgentRetrieveUsageResponse</a></code>
 - <code title="put /v2/gen-ai/agents/{uuid}/deployment_visibility">client.agents.<a href="./src/gradient/resources/agents/agents.py">update_status</a>(path_uuid, \*\*<a href="src/gradient/types/agent_update_status_params.py">params</a>) -> <a href="./src/gradient/types/agent_update_status_response.py">AgentUpdateStatusResponse</a></code>
 
 ## APIKeys
@@ -213,6 +215,30 @@ Methods:
 - <code title="get /v2/gen-ai/openai/keys">client.agents.evaluation_metrics.openai.keys.<a href="./src/gradient/resources/agents/evaluation_metrics/openai/keys.py">list</a>(\*\*<a href="src/gradient/types/agents/evaluation_metrics/openai/key_list_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/openai/key_list_response.py">KeyListResponse</a></code>
 - <code title="delete /v2/gen-ai/openai/keys/{api_key_uuid}">client.agents.evaluation_metrics.openai.keys.<a href="./src/gradient/resources/agents/evaluation_metrics/openai/keys.py">delete</a>(api_key_uuid) -> <a href="./src/gradient/types/agents/evaluation_metrics/openai/key_delete_response.py">KeyDeleteResponse</a></code>
 - <code title="get /v2/gen-ai/openai/keys/{uuid}/agents">client.agents.evaluation_metrics.openai.keys.<a href="./src/gradient/resources/agents/evaluation_metrics/openai/keys.py">list_agents</a>(uuid, \*\*<a href="src/gradient/types/agents/evaluation_metrics/openai/key_list_agents_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/openai/key_list_agents_response.py">KeyListAgentsResponse</a></code>
+
+### Oauth2
+
+Types:
+
+```python
+from gradient.types.agents.evaluation_metrics import Oauth2GenerateURLResponse
+```
+
+Methods:
+
+- <code title="get /v2/gen-ai/oauth2/url">client.agents.evaluation_metrics.oauth2.<a href="./src/gradient/resources/agents/evaluation_metrics/oauth2/oauth2.py">generate_url</a>(\*\*<a href="src/gradient/types/agents/evaluation_metrics/oauth2_generate_url_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/oauth2_generate_url_response.py">Oauth2GenerateURLResponse</a></code>
+
+#### Dropbox
+
+Types:
+
+```python
+from gradient.types.agents.evaluation_metrics.oauth2 import DropboxCreateTokensResponse
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/oauth2/dropbox/tokens">client.agents.evaluation_metrics.oauth2.dropbox.<a href="./src/gradient/resources/agents/evaluation_metrics/oauth2/dropbox.py">create_tokens</a>(\*\*<a href="src/gradient/types/agents/evaluation_metrics/oauth2/dropbox_create_tokens_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/oauth2/dropbox_create_tokens_response.py">DropboxCreateTokensResponse</a></code>
 
 ## EvaluationRuns
 

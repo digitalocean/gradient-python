@@ -79,6 +79,7 @@ from .api_anthropic_api_key_info import APIAnthropicAPIKeyInfo as APIAnthropicAP
 from .knowledge_base_list_params import (
     KnowledgeBaseListParams as KnowledgeBaseListParams,
 )
+from .agent_retrieve_usage_params import AgentRetrieveUsageParams as AgentRetrieveUsageParams
 from .droplet_backup_policy_param import (
     DropletBackupPolicyParam as DropletBackupPolicyParam,
 )
@@ -97,6 +98,7 @@ from .knowledge_base_list_response import (
 from .knowledge_base_update_params import (
     KnowledgeBaseUpdateParams as KnowledgeBaseUpdateParams,
 )
+from .agent_retrieve_usage_response import AgentRetrieveUsageResponse as AgentRetrieveUsageResponse
 from .gpu_droplet_retrieve_response import (
     GPUDropletRetrieveResponse as GPUDropletRetrieveResponse,
 )
