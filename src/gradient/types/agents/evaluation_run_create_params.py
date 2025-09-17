@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["EvaluationRunCreateParams"]
 
 
 class EvaluationRunCreateParams(TypedDict, total=False):
-    agent_uuids: List[str]
+    agent_uuids: SequenceNotStr[str]
     """Agent UUIDs to run the test case against."""
 
     run_name: str

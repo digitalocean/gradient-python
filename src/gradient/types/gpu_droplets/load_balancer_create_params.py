@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..._types import SequenceNotStr
 from .domains_param import DomainsParam
 from .lb_firewall_param import LbFirewallParam
 from .glb_settings_param import GlbSettingsParam
@@ -148,7 +149,7 @@ class AssignDropletsByID(TypedDict, total=False):
     sticky_sessions: StickySessionsParam
     """An object specifying sticky sessions settings for the load balancer."""
 
-    target_load_balancer_ids: List[str]
+    target_load_balancer_ids: SequenceNotStr[str]
     """
     An array containing the UUIDs of the Regional load balancers to be used as
     target backends for a Global load balancer.
@@ -308,7 +309,7 @@ class AssignDropletsByTag(TypedDict, total=False):
     balancer.
     """
 
-    target_load_balancer_ids: List[str]
+    target_load_balancer_ids: SequenceNotStr[str]
     """
     An array containing the UUIDs of the Regional load balancers to be used as
     target backends for a Global load balancer.

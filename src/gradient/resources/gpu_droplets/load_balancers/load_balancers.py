@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Literal, overload
 
 import httpx
@@ -15,7 +15,7 @@ from .droplets import (
     DropletsResourceWithStreamingResponse,
     AsyncDropletsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -122,7 +122,7 @@ class LoadBalancersResource(SyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -281,7 +281,7 @@ class LoadBalancersResource(SyncAPIResource):
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
         tag: str | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -441,7 +441,7 @@ class LoadBalancersResource(SyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -571,7 +571,7 @@ class LoadBalancersResource(SyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -725,7 +725,7 @@ class LoadBalancersResource(SyncAPIResource):
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
         tag: str | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -880,7 +880,7 @@ class LoadBalancersResource(SyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -1134,7 +1134,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -1293,7 +1293,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
         tag: str | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -1453,7 +1453,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -1583,7 +1583,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -1737,7 +1737,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
         tag: str | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,
@@ -1892,7 +1892,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         size: Literal["lb-small", "lb-medium", "lb-large"] | NotGiven = NOT_GIVEN,
         size_unit: int | NotGiven = NOT_GIVEN,
         sticky_sessions: StickySessionsParam | NotGiven = NOT_GIVEN,
-        target_load_balancer_ids: List[str] | NotGiven = NOT_GIVEN,
+        target_load_balancer_ids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         tls_cipher_policy: Literal["DEFAULT", "STRONG"] | NotGiven = NOT_GIVEN,
         type: Literal["REGIONAL", "REGIONAL_NETWORK", "GLOBAL"] | NotGiven = NOT_GIVEN,
         vpc_uuid: str | NotGiven = NOT_GIVEN,

@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Literal, Required, TypedDict
+
+from ..._types import SequenceNotStr
 
 __all__ = ["AutoscalePoolDropletTemplateParam"]
 
@@ -38,7 +39,7 @@ class AutoscalePoolDropletTemplateParam(TypedDict, total=False):
     size: Required[str]
     """The Droplet size to be used for all Droplets in the autoscale pool."""
 
-    ssh_keys: Required[List[str]]
+    ssh_keys: Required[SequenceNotStr[str]]
     """The SSH keys to be installed on the Droplets in the autoscale pool.
 
     You can either specify the key ID or the fingerprint. Requires `ssh_key:read`
@@ -57,7 +58,7 @@ class AutoscalePoolDropletTemplateParam(TypedDict, total=False):
     `project:read` scope.
     """
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """
     The tags to apply to each of the Droplets in the autoscale pool. Requires
     `tag:read` scope.

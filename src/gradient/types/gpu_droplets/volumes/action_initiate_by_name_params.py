@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = ["ActionInitiateByNameParams", "VolumeActionPostAttach", "VolumeActionPostDetach"]
 
@@ -46,7 +48,7 @@ class VolumeActionPostAttach(TypedDict, total=False):
     available.
     """
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to be applied to the resource.
 
     Tag names may be for either existing or new tags.

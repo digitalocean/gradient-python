@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ...._types import SequenceNotStr
 
 __all__ = [
     "CompletionCreateParamsBase",
@@ -96,7 +98,7 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     far, increasing the model's likelihood to talk about new topics.
     """
 
-    stop: Union[Optional[str], List[str], None]
+    stop: Union[Optional[str], SequenceNotStr[str], None]
     """Up to 4 sequences where the API will stop generating further tokens.
 
     The returned text will not contain the stop sequence.
@@ -156,7 +158,7 @@ class CompletionCreateParamsBase(TypedDict, total=False):
 
 
 class MessageChatCompletionRequestSystemMessage(TypedDict, total=False):
-    content: Required[Union[str, List[str]]]
+    content: Required[Union[str, SequenceNotStr[str]]]
     """The contents of the system message."""
 
     role: Required[Literal["system"]]
@@ -164,7 +166,7 @@ class MessageChatCompletionRequestSystemMessage(TypedDict, total=False):
 
 
 class MessageChatCompletionRequestDeveloperMessage(TypedDict, total=False):
-    content: Required[Union[str, List[str]]]
+    content: Required[Union[str, SequenceNotStr[str]]]
     """The contents of the developer message."""
 
     role: Required[Literal["developer"]]
@@ -172,7 +174,7 @@ class MessageChatCompletionRequestDeveloperMessage(TypedDict, total=False):
 
 
 class MessageChatCompletionRequestUserMessage(TypedDict, total=False):
-    content: Required[Union[str, List[str]]]
+    content: Required[Union[str, SequenceNotStr[str]]]
     """The contents of the user message."""
 
     role: Required[Literal["user"]]
@@ -207,7 +209,7 @@ class MessageChatCompletionRequestAssistantMessage(TypedDict, total=False):
     role: Required[Literal["assistant"]]
     """The role of the messages author, in this case `assistant`."""
 
-    content: Union[str, List[str], None]
+    content: Union[str, SequenceNotStr[str], None]
     """The contents of the assistant message."""
 
     tool_calls: Iterable[MessageChatCompletionRequestAssistantMessageToolCall]
