@@ -541,3 +541,8 @@ Python 3.8 or higher.
 ## Contributing
 
 See [the contributing documentation](./CONTRIBUTING.md).
+
+
+## License
+
+Licensed under the Apache License 2.0. See [LICENSE](./LICENSE)
