@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.0.0-beta.6 (2025-09-17)
+
+Full Changelog: [v3.0.0-beta.5...v3.0.0-beta.6](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.5...v3.0.0-beta.6)
+
+### Features
+
+* **api:** enable typescript ([c17086a](https://github.com/digitalocean/gradient-python/commit/c17086aaed18fbb8ba85f050556a193cdc4a233f))
+* improve future compat with pydantic v3 ([300eac0](https://github.com/digitalocean/gradient-python/commit/300eac0417f8f17a65bb871b15de1254f4677558))
+* normalize user agent with other do clients ([85bc8eb](https://github.com/digitalocean/gradient-python/commit/85bc8eb26afdfd7deb28ce2198eb3ef02181b95f))
+* **types:** replace List[str] with SequenceNotStr in params ([5a6aa92](https://github.com/digitalocean/gradient-python/commit/5a6aa9241b5e7c2f4319caa14d62f41c0c824f9e))
+
+
+### Chores
+
+* clean up LICENSING after legal review ([#49](https://github.com/digitalocean/gradient-python/issues/49)) ([7212f62](https://github.com/digitalocean/gradient-python/commit/7212f62b6d3a5bbc7c8422a7fd8f336d22792049))
+* **internal:** move mypy configurations to `pyproject.toml` file ([25c0448](https://github.com/digitalocean/gradient-python/commit/25c044818b636e3307af2fefd2add15a6e650e8d))
+* **internal:** update pydantic dependency ([55255fb](https://github.com/digitalocean/gradient-python/commit/55255fb5d51bca4204f5e741024f4184da465d78))
+* **tests:** simplify `get_platform` test ([b839e4b](https://github.com/digitalocean/gradient-python/commit/b839e4b31c1262157544bd69536051a10d6b098d))
+
 ## 3.0.0-beta.5 (2025-09-08)
 
 Full Changelog: [v3.0.0-beta.4...v3.0.0-beta.5](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.4...v3.0.0-beta.5)
