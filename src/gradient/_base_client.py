@@ -837,7 +837,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         custom_headers: Mapping[str, str] | None = None,
         custom_query: Mapping[str, object] | None = None,
         _strict_response_validation: bool,
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
     ) -> None:
         if not is_given(timeout):
@@ -1371,7 +1371,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         http_client: httpx.AsyncClient | None = None,
         custom_headers: Mapping[str, str] | None = None,
         custom_query: Mapping[str, object] | None = None,
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
     ) -> None:
         if not is_given(timeout):

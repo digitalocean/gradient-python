@@ -299,7 +299,7 @@ class Gradient(SyncAPIClient):
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
         set_default_query: Mapping[str, object] | None = None,
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
         _extra_kwargs: Mapping[str, Any] = {},
     ) -> Self:
@@ -337,7 +337,7 @@ class Gradient(SyncAPIClient):
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
             default_headers=headers,
             default_query=params,
-            user_agent=user_agent or self._user_agent_name,
+            user_agent_package=user_agent_package or self._user_agent_package,
             user_agent_version=user_agent_version or self._user_agent_version,
             **_extra_kwargs,
         )
@@ -612,7 +612,7 @@ class AsyncGradient(AsyncAPIClient):
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
         set_default_query: Mapping[str, object] | None = None,
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
         _extra_kwargs: Mapping[str, Any] = {},
     ) -> Self:
@@ -650,7 +650,7 @@ class AsyncGradient(AsyncAPIClient):
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
             default_headers=headers,
             default_query=params,
-            user_agent=user_agent or self._user_agent_name,
+            user_agent_package=user_agent_package or self._user_agent_package,
             user_agent_version=user_agent_version or self._user_agent_version,
             **_extra_kwargs,
         )
