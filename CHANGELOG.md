@@ -1,5 +1,21 @@
 # Changelog
 
+## 3.0.0 (2025-09-18)
+
+Full Changelog: [v3.0.0-beta.6...v3.0.0](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.6...v3.0.0)
+
+### Chores
+
+* remove deprecated env vars ([#50](https://github.com/digitalocean/gradient-python/issues/50)) ([32292f5](https://github.com/digitalocean/gradient-python/commit/32292f5d7cab21cfaa68577a6f838d134842e3fc))
+* remove old folders ([60545d7](https://github.com/digitalocean/gradient-python/commit/60545d7857d8c78c23fba888cc5eae29330eb521))
+* update author ([695cc57](https://github.com/digitalocean/gradient-python/commit/695cc572e7f506617b1a37ed600f4e485dbe26c0))
+
+
+### Refactors
+
+* **api:** consistently rename user_agent parameter to user_agent_package in Gradient and AsyncGradient classes for clarity ([af7420c](https://github.com/digitalocean/gradient-python/commit/af7420c654bd30af4e30a939e31960ba6414adb7))
+* **api:** rename user_agent parameter to user_agent_package in BaseClient, SyncAPIClient, and AsyncAPIClient for better clarity ([dba36f7](https://github.com/digitalocean/gradient-python/commit/dba36f7bae0b3d28a0013f5d23c482b7be5e238a))
+
 ## 3.0.0-beta.6 (2025-09-17)
 
 Full Changelog: [v3.0.0-beta.5...v3.0.0-beta.6](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.5...v3.0.0-beta.6)
