@@ -376,7 +376,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         timeout: float | Timeout | None = DEFAULT_TIMEOUT,
         custom_headers: Mapping[str, str] | None = None,
         custom_query: Mapping[str, object] | None = None,
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
     ) -> None:
         self._version = version
@@ -388,7 +388,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         self._strict_response_validation = _strict_response_validation
         self._idempotency_header = None
         self._platform: Platform | None = None
-        self._user_agent_name = user_agent
+        self._user_agent_package = user_agent_package
         self._user_agent_version = user_agent_version
 
         if max_retries is None:  # pyright: ignore[reportUnnecessaryComparison]
@@ -676,8 +676,8 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     @property
     def user_agent(self) -> str:
         # Format: "Gradient/package/version"
-        package = self._user_agent_name or "Python"
-        version = self._user_agent_version if self._user_agent_name and self._user_agent_version else self._version
+        package = self._user_agent_package or "Python"
+        version = self._user_agent_version if self._user_agent_package and self._user_agent_version else self._version
         return f"Gradient/{package}/{version}"
 
     @property
@@ -867,7 +867,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             custom_query=custom_query,
             custom_headers=custom_headers,
             _strict_response_validation=_strict_response_validation,
-            user_agent=user_agent,
+            user_agent_package=user_agent_package,
             user_agent_version=user_agent_version,
         )
         self._client = http_client or SyncHttpxClientWrapper(
@@ -1401,7 +1401,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
             custom_query=custom_query,
             custom_headers=custom_headers,
             _strict_response_validation=_strict_response_validation,
-            user_agent=user_agent,
+            user_agent_package=user_agent_package,
             user_agent_version=user_agent_version,
         )
         self._client = http_client or AsyncHttpxClientWrapper(

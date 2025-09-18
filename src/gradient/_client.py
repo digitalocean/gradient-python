@@ -107,7 +107,7 @@ class Gradient(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
         # User agent tracking parameters
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
     ) -> None:
         """Construct a new synchronous Gradient client instance.
@@ -172,7 +172,7 @@ class Gradient(SyncAPIClient):
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
-            user_agent=user_agent,
+            user_agent_package=user_agent_package,
             user_agent_version=user_agent_version,
         )
 
@@ -420,7 +420,7 @@ class AsyncGradient(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
         # User agent tracking parameters
-        user_agent: str | None = None,
+        user_agent_package: str | None = None,
         user_agent_version: str | None = None,
     ) -> None:
         """Construct a new async AsyncGradient client instance.
@@ -485,7 +485,7 @@ class AsyncGradient(AsyncAPIClient):
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
-            user_agent=user_agent,
+            user_agent_package=user_agent_package,
             user_agent_version=user_agent_version,
         )
 
