@@ -106,6 +106,9 @@ class Gradient(SyncAPIClient):
         # outlining your use-case to help us decide if it should be
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
+        # User agent tracking parameters
+        user_agent_package: str | None = None,
+        user_agent_version: str | None = None,
     ) -> None:
         """Construct a new synchronous Gradient client instance.
 
@@ -169,6 +172,8 @@ class Gradient(SyncAPIClient):
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
+            user_agent_package=user_agent_package,
+            user_agent_version=user_agent_version,
         )
 
         self._default_stream_cls = Stream
@@ -294,6 +299,8 @@ class Gradient(SyncAPIClient):
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
         set_default_query: Mapping[str, object] | None = None,
+        user_agent_package: str | None = None,
+        user_agent_version: str | None = None,
         _extra_kwargs: Mapping[str, Any] = {},
     ) -> Self:
         """
@@ -330,6 +337,8 @@ class Gradient(SyncAPIClient):
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
             default_headers=headers,
             default_query=params,
+            user_agent_package=user_agent_package or self._user_agent_package,
+            user_agent_version=user_agent_version or self._user_agent_version,
             **_extra_kwargs,
         )
         client._base_url_overridden = self._base_url_overridden or base_url is not None
@@ -410,6 +419,9 @@ class AsyncGradient(AsyncAPIClient):
         # outlining your use-case to help us decide if it should be
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
+        # User agent tracking parameters
+        user_agent_package: str | None = None,
+        user_agent_version: str | None = None,
     ) -> None:
         """Construct a new async AsyncGradient client instance.
 
@@ -473,6 +485,8 @@ class AsyncGradient(AsyncAPIClient):
             custom_headers=default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
+            user_agent_package=user_agent_package,
+            user_agent_version=user_agent_version,
         )
 
         self._default_stream_cls = AsyncStream
@@ -598,6 +612,8 @@ class AsyncGradient(AsyncAPIClient):
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
         set_default_query: Mapping[str, object] | None = None,
+        user_agent_package: str | None = None,
+        user_agent_version: str | None = None,
         _extra_kwargs: Mapping[str, Any] = {},
     ) -> Self:
         """
@@ -634,6 +650,8 @@ class AsyncGradient(AsyncAPIClient):
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
             default_headers=headers,
             default_query=params,
+            user_agent_package=user_agent_package or self._user_agent_package,
+            user_agent_version=user_agent_version or self._user_agent_version,
             **_extra_kwargs,
         )
         client._base_url_overridden = self._base_url_overridden or base_url is not None
