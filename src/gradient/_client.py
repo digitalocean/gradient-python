@@ -80,9 +80,6 @@ class Gradient(SyncAPIClient):
     def __init__(
         self,
         *,
-        api_key: str | None = None,  # deprecated, use `access_token` instead
-        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
-        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
         access_token: str | None = None,
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
@@ -120,33 +117,15 @@ class Gradient(SyncAPIClient):
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
         """
         if access_token is None:
-            if api_key is not None:
-                access_token = api_key
-            else:
-                access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
-                # support for legacy environment variable
-                if access_token is None:
-                    access_token = os.environ.get("GRADIENT_API_KEY")
+            access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
         self.access_token = access_token
 
         if model_access_key is None:
-            if inference_key is not None:
-                model_access_key = inference_key
-            else:
-                model_access_key = os.environ.get("GRADIENT_INFERENCE_KEY")
-                # support for legacy environment variable
-                if model_access_key is None:
-                    model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+            model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
         self.model_access_key = model_access_key
 
         if agent_access_key is None:
-            if agent_key is not None:
-                agent_access_key = agent_key
-            else:
-                agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
-                # support for legacy environment variable
-                if agent_access_key is None:
-                    agent_access_key = os.environ.get("GRADIENT_AGENT_KEY")
+            agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
         self.agent_access_key = agent_access_key
 
         if agent_endpoint is None:
@@ -283,9 +262,6 @@ class Gradient(SyncAPIClient):
     def copy(
         self,
         *,
-        api_key: str | None = None,  # deprecated, use `access_token` instead
-        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
-        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
         access_token: str | None = None,
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
@@ -326,9 +302,9 @@ class Gradient(SyncAPIClient):
 
         http_client = http_client or self._client
         client = self.__class__(
-            access_token=access_token or api_key or self.access_token,
-            model_access_key=model_access_key or inference_key or self.model_access_key,
-            agent_access_key=agent_access_key or agent_key or self.agent_access_key,
+            access_token=access_token or self.access_token,
+            model_access_key=model_access_key or self.model_access_key,
+            agent_access_key=agent_access_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
             inference_endpoint=inference_endpoint or self.inference_endpoint,
             base_url=base_url or self.base_url,
@@ -393,9 +369,6 @@ class AsyncGradient(AsyncAPIClient):
     def __init__(
         self,
         *,
-        api_key: str | None = None,  # deprecated, use `access_token` instead
-        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
-        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
         access_token: str | None = None,
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
@@ -433,33 +406,15 @@ class AsyncGradient(AsyncAPIClient):
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
         """
         if access_token is None:
-            if api_key is not None:
-                access_token = api_key
-            else:
-                access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
-                # support for legacy environment variable
-                if access_token is None:
-                    access_token = os.environ.get("GRADIENT_API_KEY")
+            access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
         self.access_token = access_token
 
         if model_access_key is None:
-            if inference_key is not None:
-                model_access_key = inference_key
-            else:
-                model_access_key = os.environ.get("GRADIENT_INFERENCE_KEY")
-                # support for legacy environment variable
-                if model_access_key is None:
-                    model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+            model_access_key = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
         self.model_access_key = model_access_key
 
         if agent_access_key is None:
-            if agent_key is not None:
-                agent_access_key = agent_key
-            else:
-                agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
-                # support for legacy environment variable
-                if agent_access_key is None:
-                    agent_access_key = os.environ.get("GRADIENT_AGENT_KEY")
+            agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
         self.agent_access_key = agent_access_key
 
         if agent_endpoint is None:
@@ -596,9 +551,6 @@ class AsyncGradient(AsyncAPIClient):
     def copy(
         self,
         *,
-        api_key: str | None = None,  # deprecated, use `access_token` instead
-        inference_key: str | None = None,  # deprecated, use `model_access_key` instead
-        agent_key: str | None = None,  # deprecated, use `agent_access_key` instead
         agent_endpoint: str | None = None,
         access_token: str | None = None,
         model_access_key: str | None = None,
@@ -639,9 +591,9 @@ class AsyncGradient(AsyncAPIClient):
 
         http_client = http_client or self._client
         client = self.__class__(
-            access_token=access_token or api_key or self.access_token,
-            model_access_key=model_access_key or inference_key or self.model_access_key,
-            agent_access_key=agent_access_key or agent_key or self.agent_access_key,
+            access_token=access_token or self.access_token,
+            model_access_key=model_access_key or self.model_access_key,
+            agent_access_key=agent_access_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
             inference_endpoint=inference_endpoint or self.inference_endpoint,
             base_url=base_url or self.base_url,
