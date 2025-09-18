@@ -17,7 +17,7 @@ The REST API documentation can be found on [developers.digitalocean.com](https:/
 
 ```sh
 # install from PyPI
-pip install --pre gradient
+pip install gradient
 ```
 
 ## Usage
@@ -93,7 +93,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre gradient[aiohttp]
+pip install gradient[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
