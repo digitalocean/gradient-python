@@ -22,6 +22,14 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from .oauth2.oauth2 import (
+    Oauth2Resource,
+    AsyncOauth2Resource,
+    Oauth2ResourceWithRawResponse,
+    AsyncOauth2ResourceWithRawResponse,
+    Oauth2ResourceWithStreamingResponse,
+    AsyncOauth2ResourceWithStreamingResponse,
+)
 from .openai.openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -70,6 +78,10 @@ class EvaluationMetricsResource(SyncAPIResource):
     @cached_property
     def openai(self) -> OpenAIResource:
         return OpenAIResource(self._client)
+
+    @cached_property
+    def oauth2(self) -> Oauth2Resource:
+        return Oauth2Resource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EvaluationMetricsResourceWithRawResponse:
@@ -179,6 +191,10 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
     @cached_property
     def openai(self) -> AsyncOpenAIResource:
         return AsyncOpenAIResource(self._client)
+
+    @cached_property
+    def oauth2(self) -> AsyncOauth2Resource:
+        return AsyncOauth2Resource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
@@ -299,6 +315,10 @@ class EvaluationMetricsResourceWithRawResponse:
     def openai(self) -> OpenAIResourceWithRawResponse:
         return OpenAIResourceWithRawResponse(self._evaluation_metrics.openai)
 
+    @cached_property
+    def oauth2(self) -> Oauth2ResourceWithRawResponse:
+        return Oauth2ResourceWithRawResponse(self._evaluation_metrics.oauth2)
+
 
 class AsyncEvaluationMetricsResourceWithRawResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -326,6 +346,10 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithRawResponse:
         return AsyncOpenAIResourceWithRawResponse(self._evaluation_metrics.openai)
+
+    @cached_property
+    def oauth2(self) -> AsyncOauth2ResourceWithRawResponse:
+        return AsyncOauth2ResourceWithRawResponse(self._evaluation_metrics.oauth2)
 
 
 class EvaluationMetricsResourceWithStreamingResponse:
@@ -355,6 +379,10 @@ class EvaluationMetricsResourceWithStreamingResponse:
     def openai(self) -> OpenAIResourceWithStreamingResponse:
         return OpenAIResourceWithStreamingResponse(self._evaluation_metrics.openai)
 
+    @cached_property
+    def oauth2(self) -> Oauth2ResourceWithStreamingResponse:
+        return Oauth2ResourceWithStreamingResponse(self._evaluation_metrics.oauth2)
+
 
 class AsyncEvaluationMetricsResourceWithStreamingResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -382,3 +410,7 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithStreamingResponse:
         return AsyncOpenAIResourceWithStreamingResponse(self._evaluation_metrics.openai)
+
+    @cached_property
+    def oauth2(self) -> AsyncOauth2ResourceWithStreamingResponse:
+        return AsyncOauth2ResourceWithStreamingResponse(self._evaluation_metrics.oauth2)

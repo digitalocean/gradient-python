@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["AgentCreateParams"]
@@ -25,7 +25,7 @@ class AgentCreateParams(TypedDict, total=False):
     for best practices.
     """
 
-    knowledge_base_uuid: List[str]
+    knowledge_base_uuid: SequenceNotStr[str]
     """Ids of the knowledge base(s) to attach to the agent"""
 
     model_uuid: str
@@ -43,5 +43,5 @@ class AgentCreateParams(TypedDict, total=False):
     region: str
     """The DigitalOcean region to deploy your agent in"""
 
-    tags: List[str]
+    tags: SequenceNotStr[str]
     """Agent tag to organize related resources"""

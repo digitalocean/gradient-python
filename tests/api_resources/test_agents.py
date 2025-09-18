@@ -16,6 +16,7 @@ from gradient.types import (
     AgentUpdateResponse,
     AgentRetrieveResponse,
     AgentUpdateStatusResponse,
+    AgentRetrieveUsageResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -256,6 +257,58 @@ class TestAgents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             client.agents.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_retrieve_usage(self, client: Gradient) -> None:
+        agent = client.agents.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+        )
+        assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_retrieve_usage_with_all_params(self, client: Gradient) -> None:
+        agent = client.agents.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            start="start",
+            stop="stop",
+        )
+        assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_usage(self, client: Gradient) -> None:
+        response = client.agents.with_raw_response.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        agent = response.parse()
+        assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_usage(self, client: Gradient) -> None:
+        with client.agents.with_streaming_response.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            agent = response.parse()
+            assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_usage(self, client: Gradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.agents.with_raw_response.retrieve_usage(
+                uuid="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -548,6 +601,58 @@ class TestAsyncAgents:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.agents.with_raw_response.delete(
                 "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_retrieve_usage(self, async_client: AsyncGradient) -> None:
+        agent = await async_client.agents.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+        )
+        assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_retrieve_usage_with_all_params(self, async_client: AsyncGradient) -> None:
+        agent = await async_client.agents.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+            start="start",
+            stop="stop",
+        )
+        assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_usage(self, async_client: AsyncGradient) -> None:
+        response = await async_client.agents.with_raw_response.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        agent = await response.parse()
+        assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_usage(self, async_client: AsyncGradient) -> None:
+        async with async_client.agents.with_streaming_response.retrieve_usage(
+            uuid='"123e4567-e89b-12d3-a456-426614174000"',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            agent = await response.parse()
+            assert_matches_type(AgentRetrieveUsageResponse, agent, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_usage(self, async_client: AsyncGradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.agents.with_raw_response.retrieve_usage(
+                uuid="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")

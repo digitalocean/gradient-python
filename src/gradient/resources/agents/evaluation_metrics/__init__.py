@@ -8,6 +8,14 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
+from .oauth2 import (
+    Oauth2Resource,
+    AsyncOauth2Resource,
+    Oauth2ResourceWithRawResponse,
+    AsyncOauth2ResourceWithRawResponse,
+    Oauth2ResourceWithStreamingResponse,
+    AsyncOauth2ResourceWithStreamingResponse,
+)
 from .openai import (
     OpenAIResource,
     AsyncOpenAIResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncOpenAIResourceWithRawResponse",
     "OpenAIResourceWithStreamingResponse",
     "AsyncOpenAIResourceWithStreamingResponse",
+    "Oauth2Resource",
+    "AsyncOauth2Resource",
+    "Oauth2ResourceWithRawResponse",
+    "AsyncOauth2ResourceWithRawResponse",
+    "Oauth2ResourceWithStreamingResponse",
+    "AsyncOauth2ResourceWithStreamingResponse",
     "EvaluationMetricsResource",
     "AsyncEvaluationMetricsResource",
     "EvaluationMetricsResourceWithRawResponse",

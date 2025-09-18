@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .droplet_backup_policy_param import DropletBackupPolicyParam
 
 __all__ = ["GPUDropletCreateParams", "DropletSingleCreate", "DropletMultiCreate"]
@@ -65,14 +66,14 @@ class DropletSingleCreate(TypedDict, total=False):
     the Droplet may deploy in any region.
     """
 
-    ssh_keys: List[Union[str, int]]
+    ssh_keys: SequenceNotStr[Union[str, int]]
     """
     An array containing the IDs or fingerprints of the SSH keys that you wish to
     embed in the Droplet's root account upon creation. You must add the keys to your
     team before they can be embedded on a Droplet. Requires `ssh_key:read` scope.
     """
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to apply to the Droplet after it is
     created.
 
@@ -86,7 +87,7 @@ class DropletSingleCreate(TypedDict, total=False):
     and may not exceed 64 KiB in size.
     """
 
-    volumes: List[str]
+    volumes: SequenceNotStr[str]
     """
     An array of IDs for block storage volumes that will be attached to the Droplet
     once created. The volumes must not already be attached to an existing Droplet.
@@ -118,7 +119,7 @@ class DropletMultiCreate(TypedDict, total=False):
     scope.
     """
 
-    names: Required[List[str]]
+    names: Required[SequenceNotStr[str]]
     """
     An array of human human-readable strings you wish to use when displaying the
     Droplet name. Each name, if set to a domain name managed in the DigitalOcean DNS
@@ -165,14 +166,14 @@ class DropletMultiCreate(TypedDict, total=False):
     the Droplet may deploy in any region.
     """
 
-    ssh_keys: List[Union[str, int]]
+    ssh_keys: SequenceNotStr[Union[str, int]]
     """
     An array containing the IDs or fingerprints of the SSH keys that you wish to
     embed in the Droplet's root account upon creation. You must add the keys to your
     team before they can be embedded on a Droplet. Requires `ssh_key:read` scope.
     """
 
-    tags: Optional[List[str]]
+    tags: Optional[SequenceNotStr[str]]
     """A flat array of tag names as strings to apply to the Droplet after it is
     created.
 
@@ -186,7 +187,7 @@ class DropletMultiCreate(TypedDict, total=False):
     and may not exceed 64 KiB in size.
     """
 
-    volumes: List[str]
+    volumes: SequenceNotStr[str]
     """
     An array of IDs for block storage volumes that will be attached to the Droplet
     once created. The volumes must not already be attached to an existing Droplet.
