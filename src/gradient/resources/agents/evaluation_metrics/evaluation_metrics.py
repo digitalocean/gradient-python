@@ -12,7 +12,7 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -110,7 +110,7 @@ class EvaluationMetricsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationMetricListResponse:
         """
         To list all evaluation metrics, send a GET request to
@@ -129,14 +129,14 @@ class EvaluationMetricsResource(SyncAPIResource):
     def list_regions(
         self,
         *,
-        serves_batch: bool | NotGiven = NOT_GIVEN,
-        serves_inference: bool | NotGiven = NOT_GIVEN,
+        serves_batch: bool | Omit = omit,
+        serves_inference: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationMetricListRegionsResponse:
         """
         To list all datacenter regions, send a GET request to `/v2/gen-ai/regions`.
@@ -223,7 +223,7 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationMetricListResponse:
         """
         To list all evaluation metrics, send a GET request to
@@ -242,14 +242,14 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
     async def list_regions(
         self,
         *,
-        serves_batch: bool | NotGiven = NOT_GIVEN,
-        serves_inference: bool | NotGiven = NOT_GIVEN,
+        serves_batch: bool | Omit = omit,
+        serves_inference: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationMetricListRegionsResponse:
         """
         To list all datacenter regions, send a GET request to `/v2/gen-ai/regions`.

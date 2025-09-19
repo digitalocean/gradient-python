@@ -15,7 +15,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from .snapshots import (
     SnapshotsResource,
@@ -93,17 +93,17 @@ class VolumesResource(SyncAPIResource):
             "syd1",
         ],
         size_gigabytes: int,
-        description: str | NotGiven = NOT_GIVEN,
-        filesystem_label: str | NotGiven = NOT_GIVEN,
-        filesystem_type: str | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        filesystem_label: str | Omit = omit,
+        filesystem_type: str | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeCreateResponse:
         """To create a new volume, send a POST request to `/v2/volumes`.
 
@@ -178,17 +178,17 @@ class VolumesResource(SyncAPIResource):
             "syd1",
         ],
         size_gigabytes: int,
-        description: str | NotGiven = NOT_GIVEN,
-        filesystem_label: str | NotGiven = NOT_GIVEN,
-        filesystem_type: str | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        filesystem_label: str | Omit = omit,
+        filesystem_type: str | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeCreateResponse:
         """To create a new volume, send a POST request to `/v2/volumes`.
 
@@ -263,17 +263,17 @@ class VolumesResource(SyncAPIResource):
             "syd1",
         ],
         size_gigabytes: int,
-        description: str | NotGiven = NOT_GIVEN,
-        filesystem_label: str | NotGiven = NOT_GIVEN,
-        filesystem_type: str | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        filesystem_label: str | Omit = omit,
+        filesystem_type: str | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeCreateResponse:
         return self._post(
             "/v2/volumes" if self._client._base_url_overridden else "https://api.digitalocean.com/v2/volumes",
@@ -305,7 +305,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeRetrieveResponse:
         """
         To show information about a block storage volume, send a GET request to
@@ -335,9 +335,9 @@ class VolumesResource(SyncAPIResource):
     def list(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -355,13 +355,13 @@ class VolumesResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeListResponse:
         """
         To list all of the block storage volumes available on your account, send a GET
@@ -434,7 +434,7 @@ class VolumesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a block storage volume, destroying all data and removing it from your
@@ -468,7 +468,7 @@ class VolumesResource(SyncAPIResource):
     def delete_by_name(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -486,13 +486,13 @@ class VolumesResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Block storage volumes may also be deleted by name by sending a DELETE request
@@ -586,17 +586,17 @@ class AsyncVolumesResource(AsyncAPIResource):
             "syd1",
         ],
         size_gigabytes: int,
-        description: str | NotGiven = NOT_GIVEN,
-        filesystem_label: str | NotGiven = NOT_GIVEN,
-        filesystem_type: str | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        filesystem_label: str | Omit = omit,
+        filesystem_type: str | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeCreateResponse:
         """To create a new volume, send a POST request to `/v2/volumes`.
 
@@ -671,17 +671,17 @@ class AsyncVolumesResource(AsyncAPIResource):
             "syd1",
         ],
         size_gigabytes: int,
-        description: str | NotGiven = NOT_GIVEN,
-        filesystem_label: str | NotGiven = NOT_GIVEN,
-        filesystem_type: str | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        filesystem_label: str | Omit = omit,
+        filesystem_type: str | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeCreateResponse:
         """To create a new volume, send a POST request to `/v2/volumes`.
 
@@ -756,17 +756,17 @@ class AsyncVolumesResource(AsyncAPIResource):
             "syd1",
         ],
         size_gigabytes: int,
-        description: str | NotGiven = NOT_GIVEN,
-        filesystem_label: str | NotGiven = NOT_GIVEN,
-        filesystem_type: str | NotGiven = NOT_GIVEN,
-        snapshot_id: str | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        filesystem_label: str | Omit = omit,
+        filesystem_type: str | Omit = omit,
+        snapshot_id: str | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeCreateResponse:
         return await self._post(
             "/v2/volumes" if self._client._base_url_overridden else "https://api.digitalocean.com/v2/volumes",
@@ -798,7 +798,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeRetrieveResponse:
         """
         To show information about a block storage volume, send a GET request to
@@ -828,9 +828,9 @@ class AsyncVolumesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -848,13 +848,13 @@ class AsyncVolumesResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VolumeListResponse:
         """
         To list all of the block storage volumes available on your account, send a GET
@@ -927,7 +927,7 @@ class AsyncVolumesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a block storage volume, destroying all data and removing it from your
@@ -961,7 +961,7 @@ class AsyncVolumesResource(AsyncAPIResource):
     async def delete_by_name(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -979,13 +979,13 @@ class AsyncVolumesResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Block storage volumes may also be deleted by name by sending a DELETE request

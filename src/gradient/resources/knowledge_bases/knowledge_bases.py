@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...types import knowledge_base_list_params, knowledge_base_create_params, knowledge_base_update_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -74,20 +74,20 @@ class KnowledgeBasesResource(SyncAPIResource):
     def create(
         self,
         *,
-        database_id: str | NotGiven = NOT_GIVEN,
-        datasources: Iterable[knowledge_base_create_params.Datasource] | NotGiven = NOT_GIVEN,
-        embedding_model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
+        database_id: str | Omit = omit,
+        datasources: Iterable[knowledge_base_create_params.Datasource] | Omit = omit,
+        embedding_model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        project_id: str | Omit = omit,
+        region: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseCreateResponse:
         """
         To create a knowledge base, send a POST request to `/v2/gen-ai/knowledge_bases`.
@@ -154,7 +154,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseRetrieveResponse:
         """
         To retrive information about an existing knowledge base, send a GET request to
@@ -185,18 +185,18 @@ class KnowledgeBasesResource(SyncAPIResource):
         self,
         path_uuid: str,
         *,
-        database_id: str | NotGiven = NOT_GIVEN,
-        embedding_model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        body_uuid: str | NotGiven = NOT_GIVEN,
+        database_id: str | Omit = omit,
+        embedding_model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        project_id: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        body_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseUpdateResponse:
         """
         To update a knowledge base, send a PUT request to
@@ -249,14 +249,14 @@ class KnowledgeBasesResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseListResponse:
         """
         To list all knowledge bases, send a GET request to `/v2/gen-ai/knowledge_bases`.
@@ -303,7 +303,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseDeleteResponse:
         """
         To delete a knowledge base, send a DELETE request to
@@ -362,20 +362,20 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        database_id: str | NotGiven = NOT_GIVEN,
-        datasources: Iterable[knowledge_base_create_params.Datasource] | NotGiven = NOT_GIVEN,
-        embedding_model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
+        database_id: str | Omit = omit,
+        datasources: Iterable[knowledge_base_create_params.Datasource] | Omit = omit,
+        embedding_model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        project_id: str | Omit = omit,
+        region: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseCreateResponse:
         """
         To create a knowledge base, send a POST request to `/v2/gen-ai/knowledge_bases`.
@@ -442,7 +442,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseRetrieveResponse:
         """
         To retrive information about an existing knowledge base, send a GET request to
@@ -473,18 +473,18 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         self,
         path_uuid: str,
         *,
-        database_id: str | NotGiven = NOT_GIVEN,
-        embedding_model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        body_uuid: str | NotGiven = NOT_GIVEN,
+        database_id: str | Omit = omit,
+        embedding_model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        project_id: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        body_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseUpdateResponse:
         """
         To update a knowledge base, send a PUT request to
@@ -537,14 +537,14 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseListResponse:
         """
         To list all knowledge bases, send a GET request to `/v2/gen-ai/knowledge_bases`.
@@ -591,7 +591,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseDeleteResponse:
         """
         To delete a knowledge base, send a DELETE request to
