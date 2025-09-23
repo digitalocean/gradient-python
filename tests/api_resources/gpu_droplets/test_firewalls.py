@@ -103,7 +103,7 @@ class TestFirewalls:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
         assert_matches_type(FirewallRetrieveResponse, firewall, path=["response"])
 
@@ -111,7 +111,7 @@ class TestFirewalls:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
 
         assert response.is_closed is True
@@ -123,7 +123,7 @@ class TestFirewalls:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -278,7 +278,7 @@ class TestFirewalls:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         firewall = client.gpu_droplets.firewalls.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
         assert firewall is None
 
@@ -286,7 +286,7 @@ class TestFirewalls:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.firewalls.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
 
         assert response.is_closed is True
@@ -298,7 +298,7 @@ class TestFirewalls:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.firewalls.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -403,7 +403,7 @@ class TestAsyncFirewalls:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
         assert_matches_type(FirewallRetrieveResponse, firewall, path=["response"])
 
@@ -411,7 +411,7 @@ class TestAsyncFirewalls:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
 
         assert response.is_closed is True
@@ -423,7 +423,7 @@ class TestAsyncFirewalls:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -578,7 +578,7 @@ class TestAsyncFirewalls:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         firewall = await async_client.gpu_droplets.firewalls.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
         assert firewall is None
 
@@ -586,7 +586,7 @@ class TestAsyncFirewalls:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.firewalls.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         )
 
         assert response.is_closed is True
@@ -598,7 +598,7 @@ class TestAsyncFirewalls:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.firewalls.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "bb4b2611-3d72-467b-8602-280330ecd65c",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

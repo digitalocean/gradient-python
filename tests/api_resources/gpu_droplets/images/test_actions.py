@@ -136,7 +136,7 @@ class TestActions:
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         action = client.gpu_droplets.images.actions.list(
-            0,
+            62137902,
         )
         assert_matches_type(ActionListResponse, action, path=["response"])
 
@@ -144,7 +144,7 @@ class TestActions:
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.gpu_droplets.images.actions.with_raw_response.list(
-            0,
+            62137902,
         )
 
         assert response.is_closed is True
@@ -156,7 +156,7 @@ class TestActions:
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.gpu_droplets.images.actions.with_streaming_response.list(
-            0,
+            62137902,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -290,7 +290,7 @@ class TestAsyncActions:
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         action = await async_client.gpu_droplets.images.actions.list(
-            0,
+            62137902,
         )
         assert_matches_type(ActionListResponse, action, path=["response"])
 
@@ -298,7 +298,7 @@ class TestAsyncActions:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.images.actions.with_raw_response.list(
-            0,
+            62137902,
         )
 
         assert response.is_closed is True
@@ -310,7 +310,7 @@ class TestAsyncActions:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.images.actions.with_streaming_response.list(
-            0,
+            62137902,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

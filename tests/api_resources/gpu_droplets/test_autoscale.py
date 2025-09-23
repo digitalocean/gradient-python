@@ -120,7 +120,7 @@ class TestAutoscale:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.retrieve(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
         assert_matches_type(AutoscaleRetrieveResponse, autoscale, path=["response"])
 
@@ -128,7 +128,7 @@ class TestAutoscale:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.retrieve(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
 
         assert response.is_closed is True
@@ -140,7 +140,7 @@ class TestAutoscale:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.retrieve(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,7 +297,7 @@ class TestAutoscale:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         autoscale = client.gpu_droplets.autoscale.delete(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
         assert autoscale is None
 
@@ -305,7 +305,7 @@ class TestAutoscale:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.autoscale.with_raw_response.delete(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
 
         assert response.is_closed is True
@@ -317,7 +317,7 @@ class TestAutoscale:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.autoscale.with_streaming_response.delete(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -587,7 +587,7 @@ class TestAsyncAutoscale:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.retrieve(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
         assert_matches_type(AutoscaleRetrieveResponse, autoscale, path=["response"])
 
@@ -595,7 +595,7 @@ class TestAsyncAutoscale:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.retrieve(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
 
         assert response.is_closed is True
@@ -607,7 +607,7 @@ class TestAsyncAutoscale:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.retrieve(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -764,7 +764,7 @@ class TestAsyncAutoscale:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         autoscale = await async_client.gpu_droplets.autoscale.delete(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
         assert autoscale is None
 
@@ -772,7 +772,7 @@ class TestAsyncAutoscale:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.autoscale.with_raw_response.delete(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         )
 
         assert response.is_closed is True
@@ -784,7 +784,7 @@ class TestAsyncAutoscale:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.autoscale.with_streaming_response.delete(
-            "autoscale_pool_id",
+            "0d3db13e-a604-4944-9827-7ec2642d32ac",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

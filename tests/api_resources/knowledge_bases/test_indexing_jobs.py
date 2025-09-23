@@ -64,7 +64,7 @@ class TestIndexingJobs:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(IndexingJobRetrieveResponse, indexing_job, path=["response"])
 
@@ -72,7 +72,7 @@ class TestIndexingJobs:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -84,7 +84,7 @@ class TestIndexingJobs:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,7 +143,7 @@ class TestIndexingJobs:
     @parametrize
     def test_method_retrieve_data_sources(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.retrieve_data_sources(
-            "indexing_job_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(IndexingJobRetrieveDataSourcesResponse, indexing_job, path=["response"])
 
@@ -151,7 +151,7 @@ class TestIndexingJobs:
     @parametrize
     def test_raw_response_retrieve_data_sources(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_data_sources(
-            "indexing_job_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -163,7 +163,7 @@ class TestIndexingJobs:
     @parametrize
     def test_streaming_response_retrieve_data_sources(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_data_sources(
-            "indexing_job_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -279,7 +279,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(IndexingJobRetrieveResponse, indexing_job, path=["response"])
 
@@ -287,7 +287,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -299,7 +299,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -358,7 +358,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_method_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.retrieve_data_sources(
-            "indexing_job_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(IndexingJobRetrieveDataSourcesResponse, indexing_job, path=["response"])
 
@@ -366,7 +366,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_raw_response_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_data_sources(
-            "indexing_job_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -378,7 +378,7 @@ class TestAsyncIndexingJobs:
     @parametrize
     async def test_streaming_response_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_data_sources(
-            "indexing_job_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

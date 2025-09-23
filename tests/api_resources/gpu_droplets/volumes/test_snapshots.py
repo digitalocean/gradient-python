@@ -81,7 +81,7 @@ class TestSnapshots:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.retrieve(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
         assert_matches_type(SnapshotRetrieveResponse, snapshot, path=["response"])
 
@@ -89,7 +89,7 @@ class TestSnapshots:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.snapshots.with_raw_response.retrieve(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
 
         assert response.is_closed is True
@@ -101,7 +101,7 @@ class TestSnapshots:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.snapshots.with_streaming_response.retrieve(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,7 +175,7 @@ class TestSnapshots:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         snapshot = client.gpu_droplets.volumes.snapshots.delete(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
         assert snapshot is None
 
@@ -183,7 +183,7 @@ class TestSnapshots:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.snapshots.with_raw_response.delete(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
 
         assert response.is_closed is True
@@ -195,7 +195,7 @@ class TestSnapshots:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.snapshots.with_streaming_response.delete(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -279,7 +279,7 @@ class TestAsyncSnapshots:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.retrieve(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
         assert_matches_type(SnapshotRetrieveResponse, snapshot, path=["response"])
 
@@ -287,7 +287,7 @@ class TestAsyncSnapshots:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.snapshots.with_raw_response.retrieve(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
 
         assert response.is_closed is True
@@ -299,7 +299,7 @@ class TestAsyncSnapshots:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.snapshots.with_streaming_response.retrieve(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -373,7 +373,7 @@ class TestAsyncSnapshots:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         snapshot = await async_client.gpu_droplets.volumes.snapshots.delete(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
         assert snapshot is None
 
@@ -381,7 +381,7 @@ class TestAsyncSnapshots:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.snapshots.with_raw_response.delete(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         )
 
         assert response.is_closed is True
@@ -393,7 +393,7 @@ class TestAsyncSnapshots:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.snapshots.with_streaming_response.delete(
-            "snapshot_id",
+            "fbe805e8-866b-11e6-96bf-000f53315a41",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
