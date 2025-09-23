@@ -278,7 +278,7 @@ class TestLoadBalancers:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         load_balancer = client.gpu_droplets.load_balancers.retrieve(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
         assert_matches_type(LoadBalancerRetrieveResponse, load_balancer, path=["response"])
 
@@ -286,7 +286,7 @@ class TestLoadBalancers:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.load_balancers.with_raw_response.retrieve(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
 
         assert response.is_closed is True
@@ -298,7 +298,7 @@ class TestLoadBalancers:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.load_balancers.with_streaming_response.retrieve(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -649,7 +649,7 @@ class TestLoadBalancers:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         load_balancer = client.gpu_droplets.load_balancers.delete(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
         assert load_balancer is None
 
@@ -657,7 +657,7 @@ class TestLoadBalancers:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.load_balancers.with_raw_response.delete(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
 
         assert response.is_closed is True
@@ -669,7 +669,7 @@ class TestLoadBalancers:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.load_balancers.with_streaming_response.delete(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -691,7 +691,7 @@ class TestLoadBalancers:
     @parametrize
     def test_method_delete_cache(self, client: Gradient) -> None:
         load_balancer = client.gpu_droplets.load_balancers.delete_cache(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
         assert load_balancer is None
 
@@ -699,7 +699,7 @@ class TestLoadBalancers:
     @parametrize
     def test_raw_response_delete_cache(self, client: Gradient) -> None:
         response = client.gpu_droplets.load_balancers.with_raw_response.delete_cache(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
 
         assert response.is_closed is True
@@ -711,7 +711,7 @@ class TestLoadBalancers:
     @parametrize
     def test_streaming_response_delete_cache(self, client: Gradient) -> None:
         with client.gpu_droplets.load_balancers.with_streaming_response.delete_cache(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -991,7 +991,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         load_balancer = await async_client.gpu_droplets.load_balancers.retrieve(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
         assert_matches_type(LoadBalancerRetrieveResponse, load_balancer, path=["response"])
 
@@ -999,7 +999,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.load_balancers.with_raw_response.retrieve(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
 
         assert response.is_closed is True
@@ -1011,7 +1011,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.load_balancers.with_streaming_response.retrieve(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1362,7 +1362,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         load_balancer = await async_client.gpu_droplets.load_balancers.delete(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
         assert load_balancer is None
 
@@ -1370,7 +1370,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.load_balancers.with_raw_response.delete(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
 
         assert response.is_closed is True
@@ -1382,7 +1382,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.load_balancers.with_streaming_response.delete(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1404,7 +1404,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_method_delete_cache(self, async_client: AsyncGradient) -> None:
         load_balancer = await async_client.gpu_droplets.load_balancers.delete_cache(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
         assert load_balancer is None
 
@@ -1412,7 +1412,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_raw_response_delete_cache(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.load_balancers.with_raw_response.delete_cache(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         )
 
         assert response.is_closed is True
@@ -1424,7 +1424,7 @@ class TestAsyncLoadBalancers:
     @parametrize
     async def test_streaming_response_delete_cache(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.load_balancers.with_streaming_response.delete_cache(
-            "lb_id",
+            "4de7ac8b-495b-4884-9a69-1050c6793cd6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

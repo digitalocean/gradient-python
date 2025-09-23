@@ -135,7 +135,7 @@ class TestVolumes:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
         assert_matches_type(VolumeRetrieveResponse, volume, path=["response"])
 
@@ -143,7 +143,7 @@ class TestVolumes:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
 
         assert response.is_closed is True
@@ -155,7 +155,7 @@ class TestVolumes:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -216,7 +216,7 @@ class TestVolumes:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         volume = client.gpu_droplets.volumes.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
         assert volume is None
 
@@ -224,7 +224,7 @@ class TestVolumes:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.volumes.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
 
         assert response.is_closed is True
@@ -236,7 +236,7 @@ class TestVolumes:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.volumes.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,7 +411,7 @@ class TestAsyncVolumes:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
         assert_matches_type(VolumeRetrieveResponse, volume, path=["response"])
 
@@ -419,7 +419,7 @@ class TestAsyncVolumes:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
 
         assert response.is_closed is True
@@ -431,7 +431,7 @@ class TestAsyncVolumes:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -492,7 +492,7 @@ class TestAsyncVolumes:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         volume = await async_client.gpu_droplets.volumes.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
         assert volume is None
 
@@ -500,7 +500,7 @@ class TestAsyncVolumes:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.volumes.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         )
 
         assert response.is_closed is True
@@ -512,7 +512,7 @@ class TestAsyncVolumes:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.volumes.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "7724db7c-e098-11e5-b522-000f53304e51",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

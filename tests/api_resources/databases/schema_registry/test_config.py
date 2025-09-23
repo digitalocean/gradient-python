@@ -26,7 +26,7 @@ class TestConfig:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         config = client.databases.schema_registry.config.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
         )
         assert_matches_type(ConfigRetrieveResponse, config, path=["response"])
 
@@ -34,7 +34,7 @@ class TestConfig:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.databases.schema_registry.config.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
         )
 
         assert response.is_closed is True
@@ -46,7 +46,7 @@ class TestConfig:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.databases.schema_registry.config.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,7 +229,7 @@ class TestAsyncConfig:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         config = await async_client.databases.schema_registry.config.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
         )
         assert_matches_type(ConfigRetrieveResponse, config, path=["response"])
 
@@ -237,7 +237,7 @@ class TestAsyncConfig:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.databases.schema_registry.config.with_raw_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
         )
 
         assert response.is_closed is True
@@ -249,7 +249,7 @@ class TestAsyncConfig:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.databases.schema_registry.config.with_streaming_response.retrieve(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            "9cc10173-e9ea-4176-9dbc-a4cee4c4ff30",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

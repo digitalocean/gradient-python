@@ -102,7 +102,7 @@ class TestFloatingIPs:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.retrieve(
-            "192.168.1.1",
+            "45.55.96.47",
         )
         assert_matches_type(FloatingIPRetrieveResponse, floating_ip, path=["response"])
 
@@ -110,7 +110,7 @@ class TestFloatingIPs:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.retrieve(
-            "192.168.1.1",
+            "45.55.96.47",
         )
 
         assert response.is_closed is True
@@ -122,7 +122,7 @@ class TestFloatingIPs:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.retrieve(
-            "192.168.1.1",
+            "45.55.96.47",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,7 +181,7 @@ class TestFloatingIPs:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         floating_ip = client.gpu_droplets.floating_ips.delete(
-            "192.168.1.1",
+            "45.55.96.47",
         )
         assert floating_ip is None
 
@@ -189,7 +189,7 @@ class TestFloatingIPs:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.floating_ips.with_raw_response.delete(
-            "192.168.1.1",
+            "45.55.96.47",
         )
 
         assert response.is_closed is True
@@ -201,7 +201,7 @@ class TestFloatingIPs:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.floating_ips.with_streaming_response.delete(
-            "192.168.1.1",
+            "45.55.96.47",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -306,7 +306,7 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.retrieve(
-            "192.168.1.1",
+            "45.55.96.47",
         )
         assert_matches_type(FloatingIPRetrieveResponse, floating_ip, path=["response"])
 
@@ -314,7 +314,7 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.retrieve(
-            "192.168.1.1",
+            "45.55.96.47",
         )
 
         assert response.is_closed is True
@@ -326,7 +326,7 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.retrieve(
-            "192.168.1.1",
+            "45.55.96.47",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -385,7 +385,7 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         floating_ip = await async_client.gpu_droplets.floating_ips.delete(
-            "192.168.1.1",
+            "45.55.96.47",
         )
         assert floating_ip is None
 
@@ -393,7 +393,7 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.floating_ips.with_raw_response.delete(
-            "192.168.1.1",
+            "45.55.96.47",
         )
 
         assert response.is_closed is True
@@ -405,7 +405,7 @@ class TestAsyncFloatingIPs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.floating_ips.with_streaming_response.delete(
-            "192.168.1.1",
+            "45.55.96.47",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
