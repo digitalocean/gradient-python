@@ -542,6 +542,63 @@ Python 3.8 or higher.
 
 See [the contributing documentation](./CONTRIBUTING.md).
 
+## Smoke tests
+
+The repository includes a small set of "smoke" tests that exercise live Gradient API / Inference / Agent endpoints to catch integration regressions early. These tests are intentionally excluded from the standard test run (they are marked with the `smoke` pytest marker) and only run in CI via the dedicated `smoke` job, or when you explicitly target them locally.
+
+### Required environment variables
+
+All of the following environment variables must be set for the smoke tests (both sync & async) to run. If any are missing the smoke tests will fail fast:
+
+| Variable | Purpose |
+|----------|---------|
+| `DIGITALOCEAN_ACCESS_TOKEN` | Access token for core DigitalOcean Gradient API operations (e.g. listing agents). |
+| `GRADIENT_MODEL_ACCESS_KEY` | Key used for serverless inference (chat completions, etc.). |
+| `GRADIENT_AGENT_ACCESS_KEY` | Key used for agent-scoped inference requests. |
+| `GRADIENT_AGENT_ENDPOINT` | Fully-qualified HTTPS endpoint for your deployed agent (e.g. `https://my-agent.agents.do-ai.run`). |
+
+> Optional override: `GRADIENT_INFERENCE_ENDPOINT` can be provided to point inference to a non-default endpoint (defaults to `https://inference.do-ai.run`).
+
+### Running smoke tests locally
+
+1. Export the required environment variables (or place them in a `.env` file and use a tool like `direnv` or `python-dotenv`).
+2. Run only the smoke tests:
+
+```bash
+rye run pytest -m smoke -q
+```
+
+To include them alongside the regular suite:
+
+```bash
+./scripts/test -m smoke
+```
+
+Convenience wrapper (auto-loads a local `.env` if present):
+
+```bash
+./scripts/smoke
+```
+
+See `.env.example` for a template of required variables you can copy into a `.env` file (do not commit secrets).
+
+### Async variants
+
+Each smoke test has an async counterpart in `tests/test_smoke_sdk_async.py`. Both sets are covered automatically by the `-m smoke` selection.
+
+### CI behavior
+
+The default `test` job excludes smoke tests (`-m 'not smoke'`). A separate `smoke` job runs on pushes to the main repository with the required secrets injected. This keeps contributors from inadvertently hitting live services while still providing integration coverage in controlled environments.
+
+### Adding new smoke tests
+
+1. Add a new test function to `tests/test_smoke_sdk.py` and/or `tests/test_smoke_sdk_async.py`.
+2. Mark it with `@pytest.mark.smoke`.
+3. Avoid duplicating environment or client property assertions—those live in the central environment/client state test (sync & async).
+4. Keep assertions minimal—verify only surface contract / structure; deeper behavior belongs in unit tests with mocks.
+
+If a new credential is required, update this README section, the `REQUIRED_ENV_VARS` list in both smoke test files, and the CI workflow's `smoke` job environment.
+
 
 ## License
 

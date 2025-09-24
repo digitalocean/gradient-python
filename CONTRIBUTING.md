@@ -96,6 +96,41 @@ $ npx prism mock path/to/your/openapi.yml
 $ ./scripts/test
 ```
 
+## Smoke tests & environment variables
+
+The repository includes a small set of live "smoke" tests (see the `smoke` pytest marker) that exercise real Gradient API endpoints. These are excluded from the default test run and only executed when you explicitly target them (`pytest -m smoke`) or in CI via the dedicated `smoke` job.
+
+Required environment variables for smoke tests (all must be set):
+
+| Variable | Purpose |
+|----------|---------|
+| `DIGITALOCEAN_ACCESS_TOKEN` | Access token for core DigitalOcean Gradient API operations (e.g. listing agents). |
+| `GRADIENT_MODEL_ACCESS_KEY` | Key used for serverless inference (chat completions, etc.). |
+| `GRADIENT_AGENT_ACCESS_KEY` | Key used for agent-scoped inference requests. |
+| `GRADIENT_AGENT_ENDPOINT` | Fully-qualified HTTPS endpoint for your deployed agent (e.g. `https://my-agent.agents.do-ai.run`). |
+
+Optional override:
+
+| Variable | Purpose |
+|----------|---------|
+| `GRADIENT_INFERENCE_ENDPOINT` | Override default inference endpoint (`https://inference.do-ai.run`). |
+
+Create a local `.env` file (never commit real secrets). A template is provided at `.env.example`.
+
+Key design notes:
+* Sync & async suites each have a single central test that asserts environment presence and client auto-loaded properties.
+* Other smoke tests intentionally avoid repeating environment / property assertions to keep noise low.
+* Add new credentials by updating the `REQUIRED_ENV_VARS` tuple in both smoke test files and documenting them here and in the README.
+
+Run smoke tests locally:
+
+```bash
+./scripts/smoke            # convenience wrapper
+pytest -m smoke -q         # direct invocation
+```
+
+Do NOT run smoke tests against production credentials unless you understand the API calls performed—they make real network requests.
+
 ## Linting and formatting
 
 This repository uses [ruff](https://github.com/astral-sh/ruff) and
