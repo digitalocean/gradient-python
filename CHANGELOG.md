@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.3 (2025-09-24)
+
+Full Changelog: [v3.0.2...v3.0.3](https://github.com/digitalocean/gradient-python/compare/v3.0.2...v3.0.3)
+
+### Chores
+
+* remove preview warning ([e4cf6a8](https://github.com/digitalocean/gradient-python/commit/e4cf6a8b5b37acf483be7301aa0a661a5db43a05))
+
 ## 3.0.2 (2025-09-24)
 
 Full Changelog: [v3.0.1...v3.0.2](https://github.com/digitalocean/gradient-python/compare/v3.0.1...v3.0.2)
