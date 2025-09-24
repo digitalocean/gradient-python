@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -47,19 +47,19 @@ class FunctionsResource(SyncAPIResource):
         self,
         path_agent_uuid: str,
         *,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        faas_name: str | NotGiven = NOT_GIVEN,
-        faas_namespace: str | NotGiven = NOT_GIVEN,
-        function_name: str | NotGiven = NOT_GIVEN,
-        input_schema: object | NotGiven = NOT_GIVEN,
-        output_schema: object | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        faas_name: str | Omit = omit,
+        faas_namespace: str | Omit = omit,
+        function_name: str | Omit = omit,
+        input_schema: object | Omit = omit,
+        output_schema: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FunctionCreateResponse:
         """
         To create a function route for an agent, send a POST request to
@@ -117,20 +117,20 @@ class FunctionsResource(SyncAPIResource):
         path_function_uuid: str,
         *,
         path_agent_uuid: str,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        faas_name: str | NotGiven = NOT_GIVEN,
-        faas_namespace: str | NotGiven = NOT_GIVEN,
-        function_name: str | NotGiven = NOT_GIVEN,
-        body_function_uuid: str | NotGiven = NOT_GIVEN,
-        input_schema: object | NotGiven = NOT_GIVEN,
-        output_schema: object | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        faas_name: str | Omit = omit,
+        faas_namespace: str | Omit = omit,
+        function_name: str | Omit = omit,
+        body_function_uuid: str | Omit = omit,
+        input_schema: object | Omit = omit,
+        output_schema: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FunctionUpdateResponse:
         """
         To update the function route, send a PUT request to
@@ -198,7 +198,7 @@ class FunctionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FunctionDeleteResponse:
         """
         To delete a function route from an agent, send a DELETE request to
@@ -252,19 +252,19 @@ class AsyncFunctionsResource(AsyncAPIResource):
         self,
         path_agent_uuid: str,
         *,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        faas_name: str | NotGiven = NOT_GIVEN,
-        faas_namespace: str | NotGiven = NOT_GIVEN,
-        function_name: str | NotGiven = NOT_GIVEN,
-        input_schema: object | NotGiven = NOT_GIVEN,
-        output_schema: object | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        faas_name: str | Omit = omit,
+        faas_namespace: str | Omit = omit,
+        function_name: str | Omit = omit,
+        input_schema: object | Omit = omit,
+        output_schema: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FunctionCreateResponse:
         """
         To create a function route for an agent, send a POST request to
@@ -322,20 +322,20 @@ class AsyncFunctionsResource(AsyncAPIResource):
         path_function_uuid: str,
         *,
         path_agent_uuid: str,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        faas_name: str | NotGiven = NOT_GIVEN,
-        faas_namespace: str | NotGiven = NOT_GIVEN,
-        function_name: str | NotGiven = NOT_GIVEN,
-        body_function_uuid: str | NotGiven = NOT_GIVEN,
-        input_schema: object | NotGiven = NOT_GIVEN,
-        output_schema: object | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        faas_name: str | Omit = omit,
+        faas_namespace: str | Omit = omit,
+        function_name: str | Omit = omit,
+        body_function_uuid: str | Omit = omit,
+        input_schema: object | Omit = omit,
+        output_schema: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FunctionUpdateResponse:
         """
         To update the function route, send a PUT request to
@@ -403,7 +403,7 @@ class AsyncFunctionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FunctionDeleteResponse:
         """
         To delete a function route from an agent, send a DELETE request to

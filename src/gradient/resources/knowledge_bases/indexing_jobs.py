@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -52,14 +52,14 @@ class IndexingJobsResource(SyncAPIResource):
     def create(
         self,
         *,
-        data_source_uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        knowledge_base_uuid: str | NotGiven = NOT_GIVEN,
+        data_source_uuids: SequenceNotStr[str] | Omit = omit,
+        knowledge_base_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobCreateResponse:
         """
         To start an indexing job for a knowledge base, send a POST request to
@@ -105,7 +105,7 @@ class IndexingJobsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobRetrieveResponse:
         """
         To get status of an indexing Job for a knowledge base, send a GET request to
@@ -135,14 +135,14 @@ class IndexingJobsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobListResponse:
         """
         To list all indexing jobs for a knowledge base, send a GET request to
@@ -190,7 +190,7 @@ class IndexingJobsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobRetrieveDataSourcesResponse:
         """
         To list all datasources for an indexing job, send a GET request to
@@ -221,13 +221,13 @@ class IndexingJobsResource(SyncAPIResource):
         self,
         path_uuid: str,
         *,
-        body_uuid: str | NotGiven = NOT_GIVEN,
+        body_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobUpdateCancelResponse:
         """
         To cancel an indexing job for a knowledge base, send a PUT request to
@@ -283,14 +283,14 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        data_source_uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        knowledge_base_uuid: str | NotGiven = NOT_GIVEN,
+        data_source_uuids: SequenceNotStr[str] | Omit = omit,
+        knowledge_base_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobCreateResponse:
         """
         To start an indexing job for a knowledge base, send a POST request to
@@ -336,7 +336,7 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobRetrieveResponse:
         """
         To get status of an indexing Job for a knowledge base, send a GET request to
@@ -366,14 +366,14 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobListResponse:
         """
         To list all indexing jobs for a knowledge base, send a GET request to
@@ -421,7 +421,7 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobRetrieveDataSourcesResponse:
         """
         To list all datasources for an indexing job, send a GET request to
@@ -452,13 +452,13 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
         self,
         path_uuid: str,
         *,
-        body_uuid: str | NotGiven = NOT_GIVEN,
+        body_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> IndexingJobUpdateCancelResponse:
         """
         To cancel an indexing job for a knowledge base, send a PUT request to

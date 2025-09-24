@@ -15,7 +15,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -62,7 +62,7 @@ class ImagesResource(SyncAPIResource):
     def create(
         self,
         *,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         distribution: Literal[
             "Arch Linux",
             "CentOS",
@@ -78,8 +78,8 @@ class ImagesResource(SyncAPIResource):
             "Ubuntu",
             "Unknown",
         ]
-        | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: str | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -97,15 +97,15 @@ class ImagesResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageCreateResponse:
         """To create a new custom image, send a POST request to /v2/images.
 
@@ -176,7 +176,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageRetrieveResponse:
         """
         To retrieve information about an image, send a `GET` request to
@@ -205,7 +205,7 @@ class ImagesResource(SyncAPIResource):
         self,
         image_id: int,
         *,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         distribution: Literal[
             "Arch Linux",
             "CentOS",
@@ -221,14 +221,14 @@ class ImagesResource(SyncAPIResource):
             "Ubuntu",
             "Unknown",
         ]
-        | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageUpdateResponse:
         """To update an image, send a `PUT` request to `/v2/images/$IMAGE_ID`.
 
@@ -277,17 +277,17 @@ class ImagesResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        private: bool | NotGiven = NOT_GIVEN,
-        tag_name: str | NotGiven = NOT_GIVEN,
-        type: Literal["application", "distribution"] | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        private: bool | Omit = omit,
+        tag_name: str | Omit = omit,
+        type: Literal["application", "distribution"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageListResponse:
         """
         To list all of the images available on your account, send a GET request to
@@ -374,7 +374,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a snapshot or custom image, send a `DELETE` request to
@@ -428,7 +428,7 @@ class AsyncImagesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         distribution: Literal[
             "Arch Linux",
             "CentOS",
@@ -444,8 +444,8 @@ class AsyncImagesResource(AsyncAPIResource):
             "Ubuntu",
             "Unknown",
         ]
-        | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: str | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -463,15 +463,15 @@ class AsyncImagesResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageCreateResponse:
         """To create a new custom image, send a POST request to /v2/images.
 
@@ -542,7 +542,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageRetrieveResponse:
         """
         To retrieve information about an image, send a `GET` request to
@@ -571,7 +571,7 @@ class AsyncImagesResource(AsyncAPIResource):
         self,
         image_id: int,
         *,
-        description: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
         distribution: Literal[
             "Arch Linux",
             "CentOS",
@@ -587,14 +587,14 @@ class AsyncImagesResource(AsyncAPIResource):
             "Ubuntu",
             "Unknown",
         ]
-        | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageUpdateResponse:
         """To update an image, send a `PUT` request to `/v2/images/$IMAGE_ID`.
 
@@ -643,17 +643,17 @@ class AsyncImagesResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        private: bool | NotGiven = NOT_GIVEN,
-        tag_name: str | NotGiven = NOT_GIVEN,
-        type: Literal["application", "distribution"] | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        private: bool | Omit = omit,
+        tag_name: str | Omit = omit,
+        type: Literal["application", "distribution"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageListResponse:
         """
         To list all of the images available on your account, send a GET request to
@@ -740,7 +740,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a snapshot or custom image, send a `DELETE` request to

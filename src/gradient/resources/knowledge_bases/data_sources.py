@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -53,16 +53,16 @@ class DataSourcesResource(SyncAPIResource):
         self,
         path_knowledge_base_uuid: str,
         *,
-        aws_data_source: AwsDataSourceParam | NotGiven = NOT_GIVEN,
-        body_knowledge_base_uuid: str | NotGiven = NOT_GIVEN,
-        spaces_data_source: APISpacesDataSourceParam | NotGiven = NOT_GIVEN,
-        web_crawler_data_source: APIWebCrawlerDataSourceParam | NotGiven = NOT_GIVEN,
+        aws_data_source: AwsDataSourceParam | Omit = omit,
+        body_knowledge_base_uuid: str | Omit = omit,
+        spaces_data_source: APISpacesDataSourceParam | Omit = omit,
+        web_crawler_data_source: APIWebCrawlerDataSourceParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DataSourceCreateResponse:
         """
         To add a data source to a knowledge base, send a POST request to
@@ -112,14 +112,14 @@ class DataSourcesResource(SyncAPIResource):
         self,
         knowledge_base_uuid: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DataSourceListResponse:
         """
         To list all data sources for a knowledge base, send a GET request to
@@ -172,7 +172,7 @@ class DataSourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DataSourceDeleteResponse:
         """
         To delete a data source from a knowledge base, send a DELETE request to
@@ -228,16 +228,16 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         path_knowledge_base_uuid: str,
         *,
-        aws_data_source: AwsDataSourceParam | NotGiven = NOT_GIVEN,
-        body_knowledge_base_uuid: str | NotGiven = NOT_GIVEN,
-        spaces_data_source: APISpacesDataSourceParam | NotGiven = NOT_GIVEN,
-        web_crawler_data_source: APIWebCrawlerDataSourceParam | NotGiven = NOT_GIVEN,
+        aws_data_source: AwsDataSourceParam | Omit = omit,
+        body_knowledge_base_uuid: str | Omit = omit,
+        spaces_data_source: APISpacesDataSourceParam | Omit = omit,
+        web_crawler_data_source: APIWebCrawlerDataSourceParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DataSourceCreateResponse:
         """
         To add a data source to a knowledge base, send a POST request to
@@ -287,14 +287,14 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         knowledge_base_uuid: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DataSourceListResponse:
         """
         To list all data sources for a knowledge base, send a GET request to
@@ -347,7 +347,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DataSourceDeleteResponse:
         """
         To delete a data source from a knowledge base, send a DELETE request to

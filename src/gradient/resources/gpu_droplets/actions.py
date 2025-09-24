@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -58,7 +58,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         To retrieve a Droplet action, send a GET request to
@@ -90,14 +90,14 @@ class ActionsResource(SyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """
         To retrieve a list of all actions that have been executed for a Droplet, send a
@@ -161,13 +161,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        tag_name: str | NotGiven = NOT_GIVEN,
+        tag_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkInitiateResponse:
         """Some actions can be performed in bulk on tagged Droplets.
 
@@ -223,14 +223,14 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        tag_name: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        tag_name: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkInitiateResponse:
         """Some actions can be performed in bulk on tagged Droplets.
 
@@ -288,14 +288,14 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        tag_name: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        tag_name: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkInitiateResponse:
         return self._post(
             "/v2/droplets/actions"
@@ -345,7 +345,7 @@ class ActionsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -406,13 +406,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -476,13 +476,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -545,13 +545,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        image: int | NotGiven = NOT_GIVEN,
+        image: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -614,14 +614,14 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        disk: bool | NotGiven = NOT_GIVEN,
-        size: str | NotGiven = NOT_GIVEN,
+        disk: bool | Omit = omit,
+        size: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -688,13 +688,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        image: Union[str, int] | NotGiven = NOT_GIVEN,
+        image: Union[str, int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -758,13 +758,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -827,13 +827,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        kernel: int | NotGiven = NOT_GIVEN,
+        kernel: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -896,13 +896,13 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -965,18 +965,18 @@ class ActionsResource(SyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        image: int | Union[str, int] | NotGiven = NOT_GIVEN,
-        disk: bool | NotGiven = NOT_GIVEN,
-        size: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        kernel: int | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        image: int | Union[str, int] | Omit = omit,
+        disk: bool | Omit = omit,
+        size: str | Omit = omit,
+        name: str | Omit = omit,
+        kernel: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         return self._post(
             f"/v2/droplets/{droplet_id}/actions"
@@ -1031,7 +1031,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         To retrieve a Droplet action, send a GET request to
@@ -1063,14 +1063,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """
         To retrieve a list of all actions that have been executed for a Droplet, send a
@@ -1134,13 +1134,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        tag_name: str | NotGiven = NOT_GIVEN,
+        tag_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkInitiateResponse:
         """Some actions can be performed in bulk on tagged Droplets.
 
@@ -1196,14 +1196,14 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        tag_name: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        tag_name: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkInitiateResponse:
         """Some actions can be performed in bulk on tagged Droplets.
 
@@ -1261,14 +1261,14 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        tag_name: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        tag_name: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionBulkInitiateResponse:
         return await self._post(
             "/v2/droplets/actions"
@@ -1320,7 +1320,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1381,13 +1381,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1451,13 +1451,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1520,13 +1520,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        image: int | NotGiven = NOT_GIVEN,
+        image: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1589,14 +1589,14 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        disk: bool | NotGiven = NOT_GIVEN,
-        size: str | NotGiven = NOT_GIVEN,
+        disk: bool | Omit = omit,
+        size: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1663,13 +1663,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        image: Union[str, int] | NotGiven = NOT_GIVEN,
+        image: Union[str, int] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1733,13 +1733,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1802,13 +1802,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        kernel: int | NotGiven = NOT_GIVEN,
+        kernel: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1871,13 +1871,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         """
         To initiate an action on a Droplet send a POST request to
@@ -1940,18 +1940,18 @@ class AsyncActionsResource(AsyncAPIResource):
             "enable_ipv6",
             "snapshot",
         ],
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        image: int | Union[str, int] | NotGiven = NOT_GIVEN,
-        disk: bool | NotGiven = NOT_GIVEN,
-        size: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        kernel: int | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        image: int | Union[str, int] | Omit = omit,
+        disk: bool | Omit = omit,
+        size: str | Omit = omit,
+        name: str | Omit = omit,
+        kernel: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         return await self._post(
             f"/v2/droplets/{droplet_id}/actions"

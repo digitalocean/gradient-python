@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Query, Headers, NotGiven, not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -49,7 +49,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APILinkKnowledgeBaseOutput:
         """
         To attach knowledge bases to an agent, send a POST request to
@@ -86,7 +86,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APILinkKnowledgeBaseOutput:
         """
         To attach a knowledge base to an agent, send a POST request to
@@ -127,7 +127,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseDetachResponse:
         """
         To detach a knowledge base from an agent, send a DELETE request to
@@ -188,7 +188,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APILinkKnowledgeBaseOutput:
         """
         To attach knowledge bases to an agent, send a POST request to
@@ -225,7 +225,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APILinkKnowledgeBaseOutput:
         """
         To attach a knowledge base to an agent, send a POST request to
@@ -266,7 +266,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> KnowledgeBaseDetachResponse:
         """
         To detach a knowledge base from an agent, send a DELETE request to

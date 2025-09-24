@@ -7,7 +7,7 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -57,14 +57,14 @@ class ActionsResource(SyncAPIResource):
         action_id: int,
         *,
         volume_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         To retrieve the status of a volume action, send a GET request to
@@ -109,14 +109,14 @@ class ActionsResource(SyncAPIResource):
         self,
         volume_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """
         To retrieve all actions that have been executed on a volume, send a GET request
@@ -164,8 +164,8 @@ class ActionsResource(SyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -183,14 +183,14 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         """
         To initiate an action on a block storage volume by Id, send a POST request to
@@ -265,8 +265,8 @@ class ActionsResource(SyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -284,13 +284,13 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         """
         To initiate an action on a block storage volume by Id, send a POST request to
@@ -360,8 +360,8 @@ class ActionsResource(SyncAPIResource):
         *,
         size_gigabytes: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -379,13 +379,13 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         """
         To initiate an action on a block storage volume by Id, send a POST request to
@@ -452,10 +452,10 @@ class ActionsResource(SyncAPIResource):
         self,
         volume_id: str,
         *,
-        droplet_id: int | NotGiven = NOT_GIVEN,
+        droplet_id: int | Omit = omit,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -473,15 +473,15 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        size_gigabytes: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        size_gigabytes: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
@@ -521,8 +521,8 @@ class ActionsResource(SyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -540,14 +540,14 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByNameResponse:
         """
         To initiate an action on a block storage volume by Name, send a POST request to
@@ -613,8 +613,8 @@ class ActionsResource(SyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -632,13 +632,13 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByNameResponse:
         """
         To initiate an action on a block storage volume by Name, send a POST request to
@@ -699,8 +699,8 @@ class ActionsResource(SyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -718,14 +718,14 @@ class ActionsResource(SyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByNameResponse:
         return self._post(
             "/v2/volumes/actions"
@@ -782,14 +782,14 @@ class AsyncActionsResource(AsyncAPIResource):
         action_id: int,
         *,
         volume_id: str,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionRetrieveResponse:
         """
         To retrieve the status of a volume action, send a GET request to
@@ -834,14 +834,14 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         volume_id: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionListResponse:
         """
         To retrieve all actions that have been executed on a volume, send a GET request
@@ -889,8 +889,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -908,14 +908,14 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         """
         To initiate an action on a block storage volume by Id, send a POST request to
@@ -990,8 +990,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -1009,13 +1009,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         """
         To initiate an action on a block storage volume by Id, send a POST request to
@@ -1085,8 +1085,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         size_gigabytes: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -1104,13 +1104,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         """
         To initiate an action on a block storage volume by Id, send a POST request to
@@ -1177,10 +1177,10 @@ class AsyncActionsResource(AsyncAPIResource):
         self,
         volume_id: str,
         *,
-        droplet_id: int | NotGiven = NOT_GIVEN,
+        droplet_id: int | Omit = omit,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -1198,15 +1198,15 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        size_gigabytes: int | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        size_gigabytes: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByIDResponse:
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
@@ -1246,8 +1246,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -1265,14 +1265,14 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByNameResponse:
         """
         To initiate an action on a block storage volume by Name, send a POST request to
@@ -1338,8 +1338,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -1357,13 +1357,13 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByNameResponse:
         """
         To initiate an action on a block storage volume by Name, send a POST request to
@@ -1424,8 +1424,8 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         droplet_id: int,
         type: Literal["attach", "detach", "resize"],
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         region: Literal[
             "ams1",
             "ams2",
@@ -1443,14 +1443,14 @@ class AsyncActionsResource(AsyncAPIResource):
             "tor1",
             "syd1",
         ]
-        | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateByNameResponse:
         return await self._post(
             "/v2/volumes/actions"

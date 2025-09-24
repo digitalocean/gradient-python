@@ -96,7 +96,7 @@ print(agent_response.choices[0].message.content)
 
 While you can provide an `access_token`, `model_access_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `DIGITALOCEAN_ACCESS_TOKEN="My API Key"`, `GRADIENT_MODEL_ACCESS_KEY="My INFERENCE Key"` to your `.env` file
+to add `DIGITALOCEAN_ACCESS_TOKEN="My Access Token"`, `GRADIENT_MODEL_ACCESS_KEY="My Model Access Key"` to your `.env` file
 so that your keys are not stored in source control.
 
 ## Async usage

@@ -39,7 +39,7 @@ from .backups import (
     BackupsResourceWithStreamingResponse,
     AsyncBackupsResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .autoscale import (
@@ -209,24 +209,24 @@ class GPUDropletsResource(SyncAPIResource):
         image: Union[str, int],
         name: str,
         size: str,
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        backups: bool | NotGiven = NOT_GIVEN,
-        ipv6: bool | NotGiven = NOT_GIVEN,
-        monitoring: bool | NotGiven = NOT_GIVEN,
-        private_networking: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
-        with_droplet_agent: bool | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        backups: bool | Omit = omit,
+        ipv6: bool | Omit = omit,
+        monitoring: bool | Omit = omit,
+        private_networking: bool | Omit = omit,
+        region: str | Omit = omit,
+        ssh_keys: SequenceNotStr[Union[str, int]] | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        user_data: str | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
+        with_droplet_agent: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletCreateResponse:
         """
         To create a new Droplet, send a POST request to `/v2/droplets` setting the
@@ -330,24 +330,24 @@ class GPUDropletsResource(SyncAPIResource):
         image: Union[str, int],
         names: SequenceNotStr[str],
         size: str,
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        backups: bool | NotGiven = NOT_GIVEN,
-        ipv6: bool | NotGiven = NOT_GIVEN,
-        monitoring: bool | NotGiven = NOT_GIVEN,
-        private_networking: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
-        with_droplet_agent: bool | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        backups: bool | Omit = omit,
+        ipv6: bool | Omit = omit,
+        monitoring: bool | Omit = omit,
+        private_networking: bool | Omit = omit,
+        region: str | Omit = omit,
+        ssh_keys: SequenceNotStr[Union[str, int]] | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        user_data: str | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
+        with_droplet_agent: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletCreateResponse:
         """
         To create a new Droplet, send a POST request to `/v2/droplets` setting the
@@ -450,27 +450,27 @@ class GPUDropletsResource(SyncAPIResource):
         self,
         *,
         image: Union[str, int],
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         size: str,
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        backups: bool | NotGiven = NOT_GIVEN,
-        ipv6: bool | NotGiven = NOT_GIVEN,
-        monitoring: bool | NotGiven = NOT_GIVEN,
-        private_networking: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
-        with_droplet_agent: bool | NotGiven = NOT_GIVEN,
-        names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        backups: bool | Omit = omit,
+        ipv6: bool | Omit = omit,
+        monitoring: bool | Omit = omit,
+        private_networking: bool | Omit = omit,
+        region: str | Omit = omit,
+        ssh_keys: SequenceNotStr[Union[str, int]] | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        user_data: str | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
+        with_droplet_agent: bool | Omit = omit,
+        names: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletCreateResponse:
         return cast(
             GPUDropletCreateResponse,
@@ -515,7 +515,7 @@ class GPUDropletsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletRetrieveResponse:
         """
         To show information about an individual Droplet, send a GET request to
@@ -543,17 +543,17 @@ class GPUDropletsResource(SyncAPIResource):
     def list(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        tag_name: str | NotGiven = NOT_GIVEN,
-        type: Literal["droplets", "gpus"] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        tag_name: str | Omit = omit,
+        type: Literal["droplets", "gpus"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListResponse:
         """
         To list all Droplets in your account, send a GET request to `/v2/droplets`.
@@ -626,7 +626,7 @@ class GPUDropletsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a Droplet, send a DELETE request to `/v2/droplets/$DROPLET_ID`.
@@ -663,7 +663,7 @@ class GPUDropletsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete **all** Droplets assigned to a specific tag, include the `tag_name`
@@ -705,14 +705,14 @@ class GPUDropletsResource(SyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListFirewallsResponse:
         """
         To retrieve a list of all firewalls available to a Droplet, send a GET request
@@ -759,14 +759,14 @@ class GPUDropletsResource(SyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListKernelsResponse:
         """
         To retrieve a list of all kernels available to a Droplet, send a GET request to
@@ -818,7 +818,7 @@ class GPUDropletsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListNeighborsResponse:
         """To retrieve a list of any "neighbors" (i.e.
 
@@ -854,14 +854,14 @@ class GPUDropletsResource(SyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListSnapshotsResponse:
         """
         To retrieve the snapshots that have been created from a Droplet, send a GET
@@ -980,24 +980,24 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         image: Union[str, int],
         name: str,
         size: str,
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        backups: bool | NotGiven = NOT_GIVEN,
-        ipv6: bool | NotGiven = NOT_GIVEN,
-        monitoring: bool | NotGiven = NOT_GIVEN,
-        private_networking: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
-        with_droplet_agent: bool | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        backups: bool | Omit = omit,
+        ipv6: bool | Omit = omit,
+        monitoring: bool | Omit = omit,
+        private_networking: bool | Omit = omit,
+        region: str | Omit = omit,
+        ssh_keys: SequenceNotStr[Union[str, int]] | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        user_data: str | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
+        with_droplet_agent: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletCreateResponse:
         """
         To create a new Droplet, send a POST request to `/v2/droplets` setting the
@@ -1101,24 +1101,24 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         image: Union[str, int],
         names: SequenceNotStr[str],
         size: str,
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        backups: bool | NotGiven = NOT_GIVEN,
-        ipv6: bool | NotGiven = NOT_GIVEN,
-        monitoring: bool | NotGiven = NOT_GIVEN,
-        private_networking: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
-        with_droplet_agent: bool | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        backups: bool | Omit = omit,
+        ipv6: bool | Omit = omit,
+        monitoring: bool | Omit = omit,
+        private_networking: bool | Omit = omit,
+        region: str | Omit = omit,
+        ssh_keys: SequenceNotStr[Union[str, int]] | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        user_data: str | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
+        with_droplet_agent: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletCreateResponse:
         """
         To create a new Droplet, send a POST request to `/v2/droplets` setting the
@@ -1221,27 +1221,27 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         self,
         *,
         image: Union[str, int],
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         size: str,
-        backup_policy: DropletBackupPolicyParam | NotGiven = NOT_GIVEN,
-        backups: bool | NotGiven = NOT_GIVEN,
-        ipv6: bool | NotGiven = NOT_GIVEN,
-        monitoring: bool | NotGiven = NOT_GIVEN,
-        private_networking: bool | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        ssh_keys: SequenceNotStr[Union[str, int]] | NotGiven = NOT_GIVEN,
-        tags: Optional[SequenceNotStr[str]] | NotGiven = NOT_GIVEN,
-        user_data: str | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        vpc_uuid: str | NotGiven = NOT_GIVEN,
-        with_droplet_agent: bool | NotGiven = NOT_GIVEN,
-        names: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        backup_policy: DropletBackupPolicyParam | Omit = omit,
+        backups: bool | Omit = omit,
+        ipv6: bool | Omit = omit,
+        monitoring: bool | Omit = omit,
+        private_networking: bool | Omit = omit,
+        region: str | Omit = omit,
+        ssh_keys: SequenceNotStr[Union[str, int]] | Omit = omit,
+        tags: Optional[SequenceNotStr[str]] | Omit = omit,
+        user_data: str | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
+        vpc_uuid: str | Omit = omit,
+        with_droplet_agent: bool | Omit = omit,
+        names: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletCreateResponse:
         return cast(
             GPUDropletCreateResponse,
@@ -1286,7 +1286,7 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletRetrieveResponse:
         """
         To show information about an individual Droplet, send a GET request to
@@ -1314,17 +1314,17 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        tag_name: str | NotGiven = NOT_GIVEN,
-        type: Literal["droplets", "gpus"] | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        tag_name: str | Omit = omit,
+        type: Literal["droplets", "gpus"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListResponse:
         """
         To list all Droplets in your account, send a GET request to `/v2/droplets`.
@@ -1397,7 +1397,7 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a Droplet, send a DELETE request to `/v2/droplets/$DROPLET_ID`.
@@ -1434,7 +1434,7 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete **all** Droplets assigned to a specific tag, include the `tag_name`
@@ -1476,14 +1476,14 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListFirewallsResponse:
         """
         To retrieve a list of all firewalls available to a Droplet, send a GET request
@@ -1530,14 +1530,14 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListKernelsResponse:
         """
         To retrieve a list of all kernels available to a Droplet, send a GET request to
@@ -1589,7 +1589,7 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListNeighborsResponse:
         """To retrieve a list of any "neighbors" (i.e.
 
@@ -1625,14 +1625,14 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         self,
         droplet_id: int,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GPUDropletListSnapshotsResponse:
         """
         To retrieve the snapshots that have been created from a Droplet, send a GET

@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...types import model_list_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -59,9 +59,9 @@ class ModelsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        public_only: bool | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        public_only: bool | Omit = omit,
         usecases: List[
             Literal[
                 "MODEL_USECASE_UNKNOWN",
@@ -73,13 +73,13 @@ class ModelsResource(SyncAPIResource):
                 "MODEL_USECASE_SERVERLESS",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ModelListResponse:
         """
         To list all models, send a GET request to `/v2/gen-ai/models`.
@@ -160,9 +160,9 @@ class AsyncModelsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        public_only: bool | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
+        public_only: bool | Omit = omit,
         usecases: List[
             Literal[
                 "MODEL_USECASE_UNKNOWN",
@@ -174,13 +174,13 @@ class AsyncModelsResource(AsyncAPIResource):
                 "MODEL_USECASE_SERVERLESS",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ModelListResponse:
         """
         To list all models, send a GET request to `/v2/gen-ai/models`.
