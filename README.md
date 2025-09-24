@@ -2,11 +2,6 @@
 
 # Gradient Python API library
 
-### 🚧 Preview Status
-
-> Gradient SDK is currently in **preview**. It is reasonably stable and suitable for use, but **some features and APIs may still change** as development continues.  
-> Use with care in production environments and keep an eye on releases for updates or breaking changes.
-
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/gradient.svg?label=pypi%20(stable))](https://pypi.org/project/gradient/)
 [![Docs](https://img.shields.io/badge/Docs-8A2BE2)](https://gradientai.digitalocean.com/getting-started/overview/)
