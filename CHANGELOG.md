@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.1 (2025-09-24)
+
+Full Changelog: [v3.0.0...v3.0.1](https://github.com/digitalocean/gradient-python/compare/v3.0.0...v3.0.1)
+
+### Bug Fixes
+
+* add proto to default inference url ([#52](https://github.com/digitalocean/gradient-python/issues/52)) ([108d7cb](https://github.com/digitalocean/gradient-python/commit/108d7cb79f4d9046136cbc03cf92056575d04f7a))
+
 ## 3.0.0 (2025-09-18)
 
 Full Changelog: [v3.0.0-beta.6...v3.0.0](https://github.com/digitalocean/gradient-python/compare/v3.0.0-beta.6...v3.0.0)
