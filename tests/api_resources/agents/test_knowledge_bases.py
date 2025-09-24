@@ -21,7 +21,7 @@ class TestKnowledgeBases:
     @parametrize
     def test_method_attach(self, client: Gradient) -> None:
         knowledge_base = client.agents.knowledge_bases.attach(
-            "agent_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APILinkKnowledgeBaseOutput, knowledge_base, path=["response"])
 
@@ -29,7 +29,7 @@ class TestKnowledgeBases:
     @parametrize
     def test_raw_response_attach(self, client: Gradient) -> None:
         response = client.agents.knowledge_bases.with_raw_response.attach(
-            "agent_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestKnowledgeBases:
     @parametrize
     def test_streaming_response_attach(self, client: Gradient) -> None:
         with client.agents.knowledge_bases.with_streaming_response.attach(
-            "agent_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,7 +173,7 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_method_attach(self, async_client: AsyncGradient) -> None:
         knowledge_base = await async_client.agents.knowledge_bases.attach(
-            "agent_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APILinkKnowledgeBaseOutput, knowledge_base, path=["response"])
 
@@ -181,7 +181,7 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_raw_response_attach(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.knowledge_bases.with_raw_response.attach(
-            "agent_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -193,7 +193,7 @@ class TestAsyncKnowledgeBases:
     @parametrize
     async def test_streaming_response_attach(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.knowledge_bases.with_streaming_response.attach(
-            "agent_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

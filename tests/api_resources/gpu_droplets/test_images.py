@@ -186,7 +186,7 @@ class TestImages:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         image = client.gpu_droplets.images.delete(
-            0,
+            62137902,
         )
         assert image is None
 
@@ -194,7 +194,7 @@ class TestImages:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.images.with_raw_response.delete(
-            0,
+            62137902,
         )
 
         assert response.is_closed is True
@@ -206,7 +206,7 @@ class TestImages:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.images.with_streaming_response.delete(
-            0,
+            62137902,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -386,7 +386,7 @@ class TestAsyncImages:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         image = await async_client.gpu_droplets.images.delete(
-            0,
+            62137902,
         )
         assert image is None
 
@@ -394,7 +394,7 @@ class TestAsyncImages:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.images.with_raw_response.delete(
-            0,
+            62137902,
         )
 
         assert response.is_closed is True
@@ -406,7 +406,7 @@ class TestAsyncImages:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.images.with_streaming_response.delete(
-            0,
+            62137902,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

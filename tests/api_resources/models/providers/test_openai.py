@@ -65,7 +65,7 @@ class TestOpenAI:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         openai = client.models.providers.openai.retrieve(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIRetrieveResponse, openai, path=["response"])
 
@@ -73,7 +73,7 @@ class TestOpenAI:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.models.providers.openai.with_raw_response.retrieve(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -85,7 +85,7 @@ class TestOpenAI:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.models.providers.openai.with_streaming_response.retrieve(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,7 +197,7 @@ class TestOpenAI:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         openai = client.models.providers.openai.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIDeleteResponse, openai, path=["response"])
 
@@ -205,7 +205,7 @@ class TestOpenAI:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.models.providers.openai.with_raw_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -217,7 +217,7 @@ class TestOpenAI:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.models.providers.openai.with_streaming_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -334,7 +334,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         openai = await async_client.models.providers.openai.retrieve(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIRetrieveResponse, openai, path=["response"])
 
@@ -342,7 +342,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.openai.with_raw_response.retrieve(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -354,7 +354,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.openai.with_streaming_response.retrieve(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -466,7 +466,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         openai = await async_client.models.providers.openai.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(OpenAIDeleteResponse, openai, path=["response"])
 
@@ -474,7 +474,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.models.providers.openai.with_raw_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -486,7 +486,7 @@ class TestAsyncOpenAI:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.models.providers.openai.with_streaming_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

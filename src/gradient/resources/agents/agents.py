@@ -21,7 +21,7 @@ from ...types import (
     agent_update_status_params,
     agent_retrieve_usage_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from .api_keys import (
     APIKeysResource,
@@ -180,22 +180,22 @@ class AgentsResource(SyncAPIResource):
     def create(
         self,
         *,
-        anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        instruction: str | NotGiven = NOT_GIVEN,
-        knowledge_base_uuid: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        openai_key_uuid: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        anthropic_key_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        instruction: str | Omit = omit,
+        knowledge_base_uuid: SequenceNotStr[str] | Omit = omit,
+        model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        openai_key_uuid: str | Omit = omit,
+        project_id: str | Omit = omit,
+        region: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentCreateResponse:
         """To create a new agent, send a POST request to `/v2/gen-ai/agents`.
 
@@ -268,7 +268,7 @@ class AgentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentRetrieveResponse:
         """To retrieve details of an agent, GET request to `/v2/gen-ai/agents/{uuid}`.
 
@@ -300,29 +300,29 @@ class AgentsResource(SyncAPIResource):
         self,
         path_uuid: str,
         *,
-        agent_log_insights_enabled: bool | NotGiven = NOT_GIVEN,
-        anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
-        conversation_logs_enabled: bool | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        instruction: str | NotGiven = NOT_GIVEN,
-        k: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        openai_key_uuid: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        provide_citations: bool | NotGiven = NOT_GIVEN,
-        retrieval_method: APIRetrievalMethod | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        body_uuid: str | NotGiven = NOT_GIVEN,
+        agent_log_insights_enabled: bool | Omit = omit,
+        anthropic_key_uuid: str | Omit = omit,
+        conversation_logs_enabled: bool | Omit = omit,
+        description: str | Omit = omit,
+        instruction: str | Omit = omit,
+        k: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        openai_key_uuid: str | Omit = omit,
+        project_id: str | Omit = omit,
+        provide_citations: bool | Omit = omit,
+        retrieval_method: APIRetrievalMethod | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
+        body_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentUpdateResponse:
         """To update an agent, send a PUT request to `/v2/gen-ai/agents/{uuid}`.
 
@@ -418,15 +418,15 @@ class AgentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        only_deployed: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        only_deployed: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentListResponse:
         """
         To list all agents, send a GET request to `/v2/gen-ai/agents`.
@@ -476,7 +476,7 @@ class AgentsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentDeleteResponse:
         """
         To delete an agent, send a DELETE request to `/v2/gen-ai/agents/{uuid}`.
@@ -506,14 +506,14 @@ class AgentsResource(SyncAPIResource):
         self,
         uuid: str,
         *,
-        start: str | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
+        start: str | Omit = omit,
+        stop: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentRetrieveUsageResponse:
         """
         To get agent usage, send a GET request to `/v2/gen-ai/agents/{uuid}/usage`.
@@ -559,14 +559,14 @@ class AgentsResource(SyncAPIResource):
         self,
         path_uuid: str,
         *,
-        body_uuid: str | NotGiven = NOT_GIVEN,
-        visibility: APIDeploymentVisibility | NotGiven = NOT_GIVEN,
+        body_uuid: str | Omit = omit,
+        visibility: APIDeploymentVisibility | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentUpdateStatusResponse:
         """Check whether an agent is public or private.
 
@@ -676,22 +676,22 @@ class AsyncAgentsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        instruction: str | NotGiven = NOT_GIVEN,
-        knowledge_base_uuid: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        openai_key_uuid: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        anthropic_key_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        instruction: str | Omit = omit,
+        knowledge_base_uuid: SequenceNotStr[str] | Omit = omit,
+        model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        openai_key_uuid: str | Omit = omit,
+        project_id: str | Omit = omit,
+        region: str | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentCreateResponse:
         """To create a new agent, send a POST request to `/v2/gen-ai/agents`.
 
@@ -764,7 +764,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentRetrieveResponse:
         """To retrieve details of an agent, GET request to `/v2/gen-ai/agents/{uuid}`.
 
@@ -796,29 +796,29 @@ class AsyncAgentsResource(AsyncAPIResource):
         self,
         path_uuid: str,
         *,
-        agent_log_insights_enabled: bool | NotGiven = NOT_GIVEN,
-        anthropic_key_uuid: str | NotGiven = NOT_GIVEN,
-        conversation_logs_enabled: bool | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        instruction: str | NotGiven = NOT_GIVEN,
-        k: int | NotGiven = NOT_GIVEN,
-        max_tokens: int | NotGiven = NOT_GIVEN,
-        model_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        openai_key_uuid: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
-        provide_citations: bool | NotGiven = NOT_GIVEN,
-        retrieval_method: APIRetrievalMethod | NotGiven = NOT_GIVEN,
-        tags: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        body_uuid: str | NotGiven = NOT_GIVEN,
+        agent_log_insights_enabled: bool | Omit = omit,
+        anthropic_key_uuid: str | Omit = omit,
+        conversation_logs_enabled: bool | Omit = omit,
+        description: str | Omit = omit,
+        instruction: str | Omit = omit,
+        k: int | Omit = omit,
+        max_tokens: int | Omit = omit,
+        model_uuid: str | Omit = omit,
+        name: str | Omit = omit,
+        openai_key_uuid: str | Omit = omit,
+        project_id: str | Omit = omit,
+        provide_citations: bool | Omit = omit,
+        retrieval_method: APIRetrievalMethod | Omit = omit,
+        tags: SequenceNotStr[str] | Omit = omit,
+        temperature: float | Omit = omit,
+        top_p: float | Omit = omit,
+        body_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentUpdateResponse:
         """To update an agent, send a PUT request to `/v2/gen-ai/agents/{uuid}`.
 
@@ -914,15 +914,15 @@ class AsyncAgentsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        only_deployed: bool | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        only_deployed: bool | Omit = omit,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentListResponse:
         """
         To list all agents, send a GET request to `/v2/gen-ai/agents`.
@@ -972,7 +972,7 @@ class AsyncAgentsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentDeleteResponse:
         """
         To delete an agent, send a DELETE request to `/v2/gen-ai/agents/{uuid}`.
@@ -1002,14 +1002,14 @@ class AsyncAgentsResource(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        start: str | NotGiven = NOT_GIVEN,
-        stop: str | NotGiven = NOT_GIVEN,
+        start: str | Omit = omit,
+        stop: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentRetrieveUsageResponse:
         """
         To get agent usage, send a GET request to `/v2/gen-ai/agents/{uuid}/usage`.
@@ -1055,14 +1055,14 @@ class AsyncAgentsResource(AsyncAPIResource):
         self,
         path_uuid: str,
         *,
-        body_uuid: str | NotGiven = NOT_GIVEN,
-        visibility: APIDeploymentVisibility | NotGiven = NOT_GIVEN,
+        body_uuid: str | Omit = omit,
+        visibility: APIDeploymentVisibility | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AgentUpdateStatusResponse:
         """Check whether an agent is public or private.
 

@@ -66,7 +66,7 @@ class TestWorkspaces:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.retrieve(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceRetrieveResponse, workspace, path=["response"])
 
@@ -74,7 +74,7 @@ class TestWorkspaces:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.retrieve(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -86,7 +86,7 @@ class TestWorkspaces:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.retrieve(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -189,7 +189,7 @@ class TestWorkspaces:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.delete(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceDeleteResponse, workspace, path=["response"])
 
@@ -197,7 +197,7 @@ class TestWorkspaces:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.delete(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -209,7 +209,7 @@ class TestWorkspaces:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.delete(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -231,7 +231,7 @@ class TestWorkspaces:
     @parametrize
     def test_method_list_evaluation_test_cases(self, client: Gradient) -> None:
         workspace = client.agents.evaluation_metrics.workspaces.list_evaluation_test_cases(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceListEvaluationTestCasesResponse, workspace, path=["response"])
 
@@ -239,7 +239,7 @@ class TestWorkspaces:
     @parametrize
     def test_raw_response_list_evaluation_test_cases(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.workspaces.with_raw_response.list_evaluation_test_cases(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -251,7 +251,7 @@ class TestWorkspaces:
     @parametrize
     def test_streaming_response_list_evaluation_test_cases(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.workspaces.with_streaming_response.list_evaluation_test_cases(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -317,7 +317,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.retrieve(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceRetrieveResponse, workspace, path=["response"])
 
@@ -325,7 +325,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.retrieve(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -337,7 +337,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.retrieve(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -440,7 +440,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.delete(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceDeleteResponse, workspace, path=["response"])
 
@@ -448,7 +448,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.delete(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -460,7 +460,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.delete(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -482,7 +482,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_method_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         workspace = await async_client.agents.evaluation_metrics.workspaces.list_evaluation_test_cases(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(WorkspaceListEvaluationTestCasesResponse, workspace, path=["response"])
 
@@ -490,7 +490,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_raw_response_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.workspaces.with_raw_response.list_evaluation_test_cases(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -502,7 +502,7 @@ class TestAsyncWorkspaces:
     @parametrize
     async def test_streaming_response_list_evaluation_test_cases(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.workspaces.with_streaming_response.list_evaluation_test_cases(
-            "workspace_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -12,7 +12,7 @@ from .agents import (
     AgentsResourceWithStreamingResponse,
     AsyncAgentsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
@@ -63,15 +63,15 @@ class WorkspacesResource(SyncAPIResource):
     def create(
         self,
         *,
-        agent_uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        agent_uuids: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceCreateResponse:
         """To create a new workspace, send a POST request to `/v2/gen-ai/workspaces`.
 
@@ -120,7 +120,7 @@ class WorkspacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceRetrieveResponse:
         """
         To retrieve details of a workspace, GET request to
@@ -152,15 +152,15 @@ class WorkspacesResource(SyncAPIResource):
         self,
         path_workspace_uuid: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        body_workspace_uuid: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        body_workspace_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceUpdateResponse:
         """
         To update a workspace, send a PUT request to
@@ -212,7 +212,7 @@ class WorkspacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceListResponse:
         """To list all workspaces, send a GET request to `/v2/gen-ai/workspaces`."""
         return self._get(
@@ -234,7 +234,7 @@ class WorkspacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceDeleteResponse:
         """
         To delete a workspace, send a DELETE request to
@@ -270,7 +270,7 @@ class WorkspacesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceListEvaluationTestCasesResponse:
         """
         To list all evaluation test cases by a workspace, send a GET request to
@@ -325,15 +325,15 @@ class AsyncWorkspacesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        agent_uuids: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        agent_uuids: SequenceNotStr[str] | Omit = omit,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceCreateResponse:
         """To create a new workspace, send a POST request to `/v2/gen-ai/workspaces`.
 
@@ -382,7 +382,7 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceRetrieveResponse:
         """
         To retrieve details of a workspace, GET request to
@@ -414,15 +414,15 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         self,
         path_workspace_uuid: str,
         *,
-        description: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        body_workspace_uuid: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        name: str | Omit = omit,
+        body_workspace_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceUpdateResponse:
         """
         To update a workspace, send a PUT request to
@@ -474,7 +474,7 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceListResponse:
         """To list all workspaces, send a GET request to `/v2/gen-ai/workspaces`."""
         return await self._get(
@@ -496,7 +496,7 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceDeleteResponse:
         """
         To delete a workspace, send a DELETE request to
@@ -532,7 +532,7 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkspaceListEvaluationTestCasesResponse:
         """
         To list all evaluation test cases by a workspace, send a GET request to

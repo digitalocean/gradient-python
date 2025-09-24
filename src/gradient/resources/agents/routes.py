@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,17 +49,17 @@ class RoutesResource(SyncAPIResource):
         path_child_agent_uuid: str,
         *,
         path_parent_agent_uuid: str,
-        body_child_agent_uuid: str | NotGiven = NOT_GIVEN,
-        if_case: str | NotGiven = NOT_GIVEN,
-        body_parent_agent_uuid: str | NotGiven = NOT_GIVEN,
-        route_name: str | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
+        body_child_agent_uuid: str | Omit = omit,
+        if_case: str | Omit = omit,
+        body_parent_agent_uuid: str | Omit = omit,
+        route_name: str | Omit = omit,
+        uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteUpdateResponse:
         """
         To update an agent route for an agent, send a PUT request to
@@ -122,7 +122,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteDeleteResponse:
         """
         To delete an agent route from a parent agent, send a DELETE request to
@@ -156,16 +156,16 @@ class RoutesResource(SyncAPIResource):
         path_child_agent_uuid: str,
         *,
         path_parent_agent_uuid: str,
-        body_child_agent_uuid: str | NotGiven = NOT_GIVEN,
-        if_case: str | NotGiven = NOT_GIVEN,
-        body_parent_agent_uuid: str | NotGiven = NOT_GIVEN,
-        route_name: str | NotGiven = NOT_GIVEN,
+        body_child_agent_uuid: str | Omit = omit,
+        if_case: str | Omit = omit,
+        body_parent_agent_uuid: str | Omit = omit,
+        route_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteAddResponse:
         """
         To add an agent route to an agent, send a POST request to
@@ -222,7 +222,7 @@ class RoutesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteViewResponse:
         """
         To view agent routes for an agent, send a GET requtest to
@@ -275,17 +275,17 @@ class AsyncRoutesResource(AsyncAPIResource):
         path_child_agent_uuid: str,
         *,
         path_parent_agent_uuid: str,
-        body_child_agent_uuid: str | NotGiven = NOT_GIVEN,
-        if_case: str | NotGiven = NOT_GIVEN,
-        body_parent_agent_uuid: str | NotGiven = NOT_GIVEN,
-        route_name: str | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
+        body_child_agent_uuid: str | Omit = omit,
+        if_case: str | Omit = omit,
+        body_parent_agent_uuid: str | Omit = omit,
+        route_name: str | Omit = omit,
+        uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteUpdateResponse:
         """
         To update an agent route for an agent, send a PUT request to
@@ -348,7 +348,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteDeleteResponse:
         """
         To delete an agent route from a parent agent, send a DELETE request to
@@ -382,16 +382,16 @@ class AsyncRoutesResource(AsyncAPIResource):
         path_child_agent_uuid: str,
         *,
         path_parent_agent_uuid: str,
-        body_child_agent_uuid: str | NotGiven = NOT_GIVEN,
-        if_case: str | NotGiven = NOT_GIVEN,
-        body_parent_agent_uuid: str | NotGiven = NOT_GIVEN,
-        route_name: str | NotGiven = NOT_GIVEN,
+        body_child_agent_uuid: str | Omit = omit,
+        if_case: str | Omit = omit,
+        body_parent_agent_uuid: str | Omit = omit,
+        route_name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteAddResponse:
         """
         To add an agent route to an agent, send a POST request to
@@ -448,7 +448,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RouteViewResponse:
         """
         To view agent routes for an agent, send a GET requtest to

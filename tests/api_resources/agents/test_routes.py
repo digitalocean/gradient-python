@@ -213,7 +213,7 @@ class TestRoutes:
     @parametrize
     def test_method_view(self, client: Gradient) -> None:
         route = client.agents.routes.view(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteViewResponse, route, path=["response"])
 
@@ -221,7 +221,7 @@ class TestRoutes:
     @parametrize
     def test_raw_response_view(self, client: Gradient) -> None:
         response = client.agents.routes.with_raw_response.view(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -233,7 +233,7 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_view(self, client: Gradient) -> None:
         with client.agents.routes.with_streaming_response.view(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -448,7 +448,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_view(self, async_client: AsyncGradient) -> None:
         route = await async_client.agents.routes.view(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(RouteViewResponse, route, path=["response"])
 
@@ -456,7 +456,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_view(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.routes.with_raw_response.view(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -468,7 +468,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_view(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.routes.with_streaming_response.view(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

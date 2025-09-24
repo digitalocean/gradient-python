@@ -161,7 +161,7 @@ class TestGPUDroplets:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.retrieve(
-            1,
+            3164444,
         )
         assert_matches_type(GPUDropletRetrieveResponse, gpu_droplet, path=["response"])
 
@@ -169,7 +169,7 @@ class TestGPUDroplets:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.retrieve(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -181,7 +181,7 @@ class TestGPUDroplets:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.retrieve(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -235,7 +235,7 @@ class TestGPUDroplets:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.delete(
-            1,
+            3164444,
         )
         assert gpu_droplet is None
 
@@ -243,7 +243,7 @@ class TestGPUDroplets:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.delete(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -255,7 +255,7 @@ class TestGPUDroplets:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.delete(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -391,7 +391,7 @@ class TestGPUDroplets:
     @parametrize
     def test_method_list_neighbors(self, client: Gradient) -> None:
         gpu_droplet = client.gpu_droplets.list_neighbors(
-            1,
+            3164444,
         )
         assert_matches_type(GPUDropletListNeighborsResponse, gpu_droplet, path=["response"])
 
@@ -399,7 +399,7 @@ class TestGPUDroplets:
     @parametrize
     def test_raw_response_list_neighbors(self, client: Gradient) -> None:
         response = client.gpu_droplets.with_raw_response.list_neighbors(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -411,7 +411,7 @@ class TestGPUDroplets:
     @parametrize
     def test_streaming_response_list_neighbors(self, client: Gradient) -> None:
         with client.gpu_droplets.with_streaming_response.list_neighbors(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -607,7 +607,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.retrieve(
-            1,
+            3164444,
         )
         assert_matches_type(GPUDropletRetrieveResponse, gpu_droplet, path=["response"])
 
@@ -615,7 +615,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.retrieve(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -627,7 +627,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.retrieve(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -681,7 +681,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.delete(
-            1,
+            3164444,
         )
         assert gpu_droplet is None
 
@@ -689,7 +689,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.delete(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -701,7 +701,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.delete(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -837,7 +837,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_method_list_neighbors(self, async_client: AsyncGradient) -> None:
         gpu_droplet = await async_client.gpu_droplets.list_neighbors(
-            1,
+            3164444,
         )
         assert_matches_type(GPUDropletListNeighborsResponse, gpu_droplet, path=["response"])
 
@@ -845,7 +845,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_raw_response_list_neighbors(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.with_raw_response.list_neighbors(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -857,7 +857,7 @@ class TestAsyncGPUDroplets:
     @parametrize
     async def test_streaming_response_list_neighbors(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.with_streaming_response.list_neighbors(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

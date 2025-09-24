@@ -14,7 +14,7 @@ from .actions import (
     ActionsResourceWithStreamingResponse,
     AsyncActionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -67,7 +67,7 @@ class FloatingIPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPCreateResponse:
         """
         On creation, a floating IP must be either assigned to a Droplet or reserved to a
@@ -100,13 +100,13 @@ class FloatingIPsResource(SyncAPIResource):
         self,
         *,
         region: str,
-        project_id: str | NotGiven = NOT_GIVEN,
+        project_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPCreateResponse:
         """
         On creation, a floating IP must be either assigned to a Droplet or reserved to a
@@ -140,15 +140,15 @@ class FloatingIPsResource(SyncAPIResource):
     def create(
         self,
         *,
-        droplet_id: int | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
+        droplet_id: int | Omit = omit,
+        region: str | Omit = omit,
+        project_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPCreateResponse:
         return self._post(
             "/v2/floating_ips" if self._client._base_url_overridden else "https://api.digitalocean.com/v2/floating_ips",
@@ -175,7 +175,7 @@ class FloatingIPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPRetrieveResponse:
         """
         To show information about a floating IP, send a GET request to
@@ -205,14 +205,14 @@ class FloatingIPsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPListResponse:
         """
         To list all of the floating IPs available on your account, send a GET request to
@@ -258,7 +258,7 @@ class FloatingIPsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a floating IP and remove it from your account, send a DELETE request
@@ -324,7 +324,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPCreateResponse:
         """
         On creation, a floating IP must be either assigned to a Droplet or reserved to a
@@ -357,13 +357,13 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         self,
         *,
         region: str,
-        project_id: str | NotGiven = NOT_GIVEN,
+        project_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPCreateResponse:
         """
         On creation, a floating IP must be either assigned to a Droplet or reserved to a
@@ -397,15 +397,15 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        droplet_id: int | NotGiven = NOT_GIVEN,
-        region: str | NotGiven = NOT_GIVEN,
-        project_id: str | NotGiven = NOT_GIVEN,
+        droplet_id: int | Omit = omit,
+        region: str | Omit = omit,
+        project_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPCreateResponse:
         return await self._post(
             "/v2/floating_ips" if self._client._base_url_overridden else "https://api.digitalocean.com/v2/floating_ips",
@@ -432,7 +432,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPRetrieveResponse:
         """
         To show information about a floating IP, send a GET request to
@@ -462,14 +462,14 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FloatingIPListResponse:
         """
         To list all of the floating IPs available on your account, send a GET request to
@@ -515,7 +515,7 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a floating IP and remove it from your account, send a DELETE request

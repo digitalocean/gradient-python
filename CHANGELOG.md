@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.2 (2025-09-24)
+
+Full Changelog: [v3.0.1...v3.0.2](https://github.com/digitalocean/gradient-python/compare/v3.0.1...v3.0.2)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([d83b77a](https://github.com/digitalocean/gradient-python/commit/d83b77a943d7beb3373eebc543cdc787371753a5))
+* improve example values ([8f3a107](https://github.com/digitalocean/gradient-python/commit/8f3a107935a7ef0aa7e0e93161a24c7ecf24a272))
+* **types:** change optional parameter type from NotGiven to Omit ([78eb019](https://github.com/digitalocean/gradient-python/commit/78eb019c87cc55186abffd92f1d710d0c6ef0895))
+
 ## 3.0.1 (2025-09-24)
 
 Full Changelog: [v3.0.0...v3.0.1](https://github.com/digitalocean/gradient-python/compare/v3.0.0...v3.0.1)

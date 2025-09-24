@@ -152,7 +152,7 @@ class TestAPIKeys:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         api_key = client.inference.api_keys.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APIKeyDeleteResponse, api_key, path=["response"])
 
@@ -160,7 +160,7 @@ class TestAPIKeys:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.inference.api_keys.with_raw_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -172,7 +172,7 @@ class TestAPIKeys:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.inference.api_keys.with_streaming_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -194,7 +194,7 @@ class TestAPIKeys:
     @parametrize
     def test_method_update_regenerate(self, client: Gradient) -> None:
         api_key = client.inference.api_keys.update_regenerate(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APIKeyUpdateRegenerateResponse, api_key, path=["response"])
 
@@ -202,7 +202,7 @@ class TestAPIKeys:
     @parametrize
     def test_raw_response_update_regenerate(self, client: Gradient) -> None:
         response = client.inference.api_keys.with_raw_response.update_regenerate(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -214,7 +214,7 @@ class TestAPIKeys:
     @parametrize
     def test_streaming_response_update_regenerate(self, client: Gradient) -> None:
         with client.inference.api_keys.with_streaming_response.update_regenerate(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -367,7 +367,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         api_key = await async_client.inference.api_keys.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APIKeyDeleteResponse, api_key, path=["response"])
 
@@ -375,7 +375,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.inference.api_keys.with_raw_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -387,7 +387,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.inference.api_keys.with_streaming_response.delete(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -409,7 +409,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_method_update_regenerate(self, async_client: AsyncGradient) -> None:
         api_key = await async_client.inference.api_keys.update_regenerate(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(APIKeyUpdateRegenerateResponse, api_key, path=["response"])
 
@@ -417,7 +417,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_raw_response_update_regenerate(self, async_client: AsyncGradient) -> None:
         response = await async_client.inference.api_keys.with_raw_response.update_regenerate(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -429,7 +429,7 @@ class TestAsyncAPIKeys:
     @parametrize
     async def test_streaming_response_update_regenerate(self, async_client: AsyncGradient) -> None:
         async with async_client.inference.api_keys.with_streaming_response.update_regenerate(
-            "api_key_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -135,7 +135,7 @@ class TestBackups:
     @parametrize
     def test_method_retrieve_policy(self, client: Gradient) -> None:
         backup = client.gpu_droplets.backups.retrieve_policy(
-            1,
+            3164444,
         )
         assert_matches_type(BackupRetrievePolicyResponse, backup, path=["response"])
 
@@ -143,7 +143,7 @@ class TestBackups:
     @parametrize
     def test_raw_response_retrieve_policy(self, client: Gradient) -> None:
         response = client.gpu_droplets.backups.with_raw_response.retrieve_policy(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -155,7 +155,7 @@ class TestBackups:
     @parametrize
     def test_streaming_response_retrieve_policy(self, client: Gradient) -> None:
         with client.gpu_droplets.backups.with_streaming_response.retrieve_policy(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -284,7 +284,7 @@ class TestAsyncBackups:
     @parametrize
     async def test_method_retrieve_policy(self, async_client: AsyncGradient) -> None:
         backup = await async_client.gpu_droplets.backups.retrieve_policy(
-            1,
+            3164444,
         )
         assert_matches_type(BackupRetrievePolicyResponse, backup, path=["response"])
 
@@ -292,7 +292,7 @@ class TestAsyncBackups:
     @parametrize
     async def test_raw_response_retrieve_policy(self, async_client: AsyncGradient) -> None:
         response = await async_client.gpu_droplets.backups.with_raw_response.retrieve_policy(
-            1,
+            3164444,
         )
 
         assert response.is_closed is True
@@ -304,7 +304,7 @@ class TestAsyncBackups:
     @parametrize
     async def test_streaming_response_retrieve_policy(self, async_client: AsyncGradient) -> None:
         async with async_client.gpu_droplets.backups.with_streaming_response.retrieve_policy(
-            1,
+            3164444,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

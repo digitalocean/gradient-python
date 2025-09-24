@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,14 +49,14 @@ class APIKeysResource(SyncAPIResource):
         self,
         path_agent_uuid: str,
         *,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         To create an agent API key, send a POST request to
@@ -99,15 +99,15 @@ class APIKeysResource(SyncAPIResource):
         path_api_key_uuid: str,
         *,
         path_agent_uuid: str,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        body_api_key_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        body_api_key_uuid: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyUpdateResponse:
         """
         To update an agent API key, send a PUT request to
@@ -154,14 +154,14 @@ class APIKeysResource(SyncAPIResource):
         self,
         agent_uuid: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         To list all agent API keys, send a GET request to
@@ -212,7 +212,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyDeleteResponse:
         """
         To delete an API key for an agent, send a DELETE request to
@@ -251,7 +251,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyRegenerateResponse:
         """
         To regenerate an agent API key, send a PUT request to
@@ -305,14 +305,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         path_agent_uuid: str,
         *,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         To create an agent API key, send a POST request to
@@ -355,15 +355,15 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         path_api_key_uuid: str,
         *,
         path_agent_uuid: str,
-        body_agent_uuid: str | NotGiven = NOT_GIVEN,
-        body_api_key_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        body_agent_uuid: str | Omit = omit,
+        body_api_key_uuid: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyUpdateResponse:
         """
         To update an agent API key, send a PUT request to
@@ -410,14 +410,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         agent_uuid: str,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         To list all agent API keys, send a GET request to
@@ -468,7 +468,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyDeleteResponse:
         """
         To delete an API key for an agent, send a DELETE request to
@@ -507,7 +507,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyRegenerateResponse:
         """
         To regenerate an agent API key, send a PUT request to

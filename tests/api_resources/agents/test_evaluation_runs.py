@@ -64,7 +64,7 @@ class TestEvaluationRuns:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.retrieve(
-            "evaluation_run_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(EvaluationRunRetrieveResponse, evaluation_run, path=["response"])
 
@@ -72,7 +72,7 @@ class TestEvaluationRuns:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.retrieve(
-            "evaluation_run_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -84,7 +84,7 @@ class TestEvaluationRuns:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.retrieve(
-            "evaluation_run_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,7 +248,7 @@ class TestAsyncEvaluationRuns:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.retrieve(
-            "evaluation_run_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(EvaluationRunRetrieveResponse, evaluation_run, path=["response"])
 
@@ -256,7 +256,7 @@ class TestAsyncEvaluationRuns:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.retrieve(
-            "evaluation_run_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -268,7 +268,7 @@ class TestAsyncEvaluationRuns:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.retrieve(
-            "evaluation_run_uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

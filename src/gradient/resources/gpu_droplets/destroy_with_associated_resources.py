@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DestroyWithAssociatedResourceListResponse:
         """
         To list the associated billable resources that can be destroyed along with a
@@ -97,7 +97,7 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DestroyWithAssociatedResourceCheckStatusResponse:
         """
         To check on the status of a request to destroy a Droplet with its associated
@@ -133,7 +133,7 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To destroy a Droplet along with all of its associated resources, send a DELETE
@@ -172,17 +172,17 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         self,
         droplet_id: int,
         *,
-        floating_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        reserved_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        snapshots: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        volume_snapshots: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        floating_ips: SequenceNotStr[str] | Omit = omit,
+        reserved_ips: SequenceNotStr[str] | Omit = omit,
+        snapshots: SequenceNotStr[str] | Omit = omit,
+        volume_snapshots: SequenceNotStr[str] | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To destroy a Droplet along with a sub-set of its associated resources, send a
@@ -250,7 +250,7 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         If the status of a request to destroy a Droplet with its associated resources
@@ -311,7 +311,7 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DestroyWithAssociatedResourceListResponse:
         """
         To list the associated billable resources that can be destroyed along with a
@@ -353,7 +353,7 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DestroyWithAssociatedResourceCheckStatusResponse:
         """
         To check on the status of a request to destroy a Droplet with its associated
@@ -389,7 +389,7 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To destroy a Droplet along with all of its associated resources, send a DELETE
@@ -428,17 +428,17 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         self,
         droplet_id: int,
         *,
-        floating_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        reserved_ips: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        snapshots: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        volume_snapshots: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        volumes: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
+        floating_ips: SequenceNotStr[str] | Omit = omit,
+        reserved_ips: SequenceNotStr[str] | Omit = omit,
+        snapshots: SequenceNotStr[str] | Omit = omit,
+        volume_snapshots: SequenceNotStr[str] | Omit = omit,
+        volumes: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To destroy a Droplet along with a sub-set of its associated resources, send a
@@ -506,7 +506,7 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         If the status of a request to destroy a Droplet with its associated resources

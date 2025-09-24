@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Query, Headers, NotGiven, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -55,7 +55,7 @@ class ConfigResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigRetrieveResponse:
         """
         To retrieve the Schema Registry configuration for a Kafka cluster, send a GET
@@ -98,7 +98,7 @@ class ConfigResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigUpdateResponse:
         """
         To update the Schema Registry configuration for a Kafka cluster, send a PUT
@@ -142,7 +142,7 @@ class ConfigResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigRetrieveSubjectResponse:
         """
         To retrieve the Schema Registry configuration for a Subject of a Kafka cluster,
@@ -189,7 +189,7 @@ class ConfigResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigUpdateSubjectResponse:
         """
         To update the Schema Registry configuration for a Subject of a Kafka cluster,
@@ -258,7 +258,7 @@ class AsyncConfigResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigRetrieveResponse:
         """
         To retrieve the Schema Registry configuration for a Kafka cluster, send a GET
@@ -301,7 +301,7 @@ class AsyncConfigResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigUpdateResponse:
         """
         To update the Schema Registry configuration for a Kafka cluster, send a PUT
@@ -347,7 +347,7 @@ class AsyncConfigResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigRetrieveSubjectResponse:
         """
         To retrieve the Schema Registry configuration for a Subject of a Kafka cluster,
@@ -394,7 +394,7 @@ class AsyncConfigResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ConfigUpdateSubjectResponse:
         """
         To update the Schema Registry configuration for a Subject of a Kafka cluster,

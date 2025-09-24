@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,13 +48,13 @@ class APIKeysResource(SyncAPIResource):
     def create(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         To create a model API key, send a POST request to `/v2/gen-ai/models/api_keys`.
@@ -85,14 +85,14 @@ class APIKeysResource(SyncAPIResource):
         self,
         path_api_key_uuid: str,
         *,
-        body_api_key_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        body_api_key_uuid: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyUpdateResponse:
         """
         To update a model API key, send a PUT request to
@@ -133,14 +133,14 @@ class APIKeysResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         To list all model API keys, send a GET request to `/v2/gen-ai/models/api_keys`.
@@ -187,7 +187,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyDeleteResponse:
         """
         To delete an API key for a model, send a DELETE request to
@@ -223,7 +223,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyUpdateRegenerateResponse:
         """
         To regenerate a model API key, send a PUT request to
@@ -274,13 +274,13 @@ class AsyncAPIKeysResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        name: str | NotGiven = NOT_GIVEN,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyCreateResponse:
         """
         To create a model API key, send a POST request to `/v2/gen-ai/models/api_keys`.
@@ -311,14 +311,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         path_api_key_uuid: str,
         *,
-        body_api_key_uuid: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        body_api_key_uuid: str | Omit = omit,
+        name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyUpdateResponse:
         """
         To update a model API key, send a PUT request to
@@ -359,14 +359,14 @@ class AsyncAPIKeysResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyListResponse:
         """
         To list all model API keys, send a GET request to `/v2/gen-ai/models/api_keys`.
@@ -413,7 +413,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyDeleteResponse:
         """
         To delete an API key for a model, send a DELETE request to
@@ -449,7 +449,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyUpdateRegenerateResponse:
         """
         To regenerate a model API key, send a PUT request to

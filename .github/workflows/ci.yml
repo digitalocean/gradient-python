@@ -2,15 +2,15 @@ name: CI
 on:
   push:
     branches-ignore:
-      - 'generated'
-      - 'codegen/**'
-      - 'integrated/**'
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
+      - "generated"
+      - "codegen/**"
+      - "integrated/**"
+      - "stl-preview-head/**"
+      - "stl-preview-base/**"
   pull_request:
     branches-ignore:
-      - 'stl-preview-head/**'
-      - 'stl-preview-base/**'
+      - "stl-preview-head/**"
+      - "stl-preview-base/**"
 
 jobs:
   lint:
@@ -26,8 +26,8 @@ jobs:
           curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
-          RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+          RYE_VERSION: "0.44.0"
+          RYE_INSTALL_OPTION: "--yes"
 
       - name: Install dependencies
         run: rye sync --all-features
@@ -51,8 +51,8 @@ jobs:
           curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
-          RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+          RYE_VERSION: "0.44.0"
+          RYE_INSTALL_OPTION: "--yes"
 
       - name: Install dependencies
         run: rye sync --all-features
@@ -88,11 +88,39 @@ jobs:
           curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
-          RYE_VERSION: '0.44.0'
-          RYE_INSTALL_OPTION: '--yes'
+          RYE_VERSION: "0.44.0"
+          RYE_INSTALL_OPTION: "--yes"
 
       - name: Bootstrap
         run: ./scripts/bootstrap
 
       - name: Run tests
         run: ./scripts/test
+
+  smoke:
+    name: smoke
+    # Only run smoke tests on pushes to main repo (not forks) so that secrets can be accessed
+    if: github.repository == 'stainless-sdks/gradient-python' && github.event_name == 'push'
+    runs-on: ${{ github.repository == 'stainless-sdks/gradient-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rye
+        run: |
+          curl -sSf https://rye.astral.sh/get | bash
+          echo "$HOME/.rye/shims" >> $GITHUB_PATH
+        env:
+          RYE_VERSION: "0.44.0"
+          RYE_INSTALL_OPTION: "--yes"
+
+      - name: Bootstrap
+        run: ./scripts/bootstrap
+
+      - name: Run smoke tests
+        env:
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          GRADIENT_MODEL_ACCESS_KEY: ${{ secrets.GRADIENT_MODEL_ACCESS_KEY }}
+          GRADIENT_AGENT_ACCESS_KEY: ${{ secrets.GRADIENT_AGENT_ACCESS_KEY }}
+          GRADIENT_AGENT_ENDPOINT: ${{ secrets.GRADIENT_AGENT_ENDPOINT }}
+        run: ./scripts/smoke

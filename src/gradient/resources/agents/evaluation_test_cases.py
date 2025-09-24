@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,18 +56,18 @@ class EvaluationTestCasesResource(SyncAPIResource):
     def create(
         self,
         *,
-        dataset_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        metrics: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        star_metric: APIStarMetricParam | NotGiven = NOT_GIVEN,
-        workspace_uuid: str | NotGiven = NOT_GIVEN,
+        dataset_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        metrics: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
+        star_metric: APIStarMetricParam | Omit = omit,
+        workspace_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseCreateResponse:
         """
         To create an evaluation test-case send a POST request to
@@ -117,13 +117,13 @@ class EvaluationTestCasesResource(SyncAPIResource):
         self,
         test_case_uuid: str,
         *,
-        evaluation_test_case_version: int | NotGiven = NOT_GIVEN,
+        evaluation_test_case_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseRetrieveResponse:
         """
         To retrive information about an existing evaluation test case, send a GET
@@ -163,18 +163,18 @@ class EvaluationTestCasesResource(SyncAPIResource):
         self,
         path_test_case_uuid: str,
         *,
-        dataset_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        metrics: evaluation_test_case_update_params.Metrics | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        star_metric: APIStarMetricParam | NotGiven = NOT_GIVEN,
-        body_test_case_uuid: str | NotGiven = NOT_GIVEN,
+        dataset_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        metrics: evaluation_test_case_update_params.Metrics | Omit = omit,
+        name: str | Omit = omit,
+        star_metric: APIStarMetricParam | Omit = omit,
+        body_test_case_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseUpdateResponse:
         """
         To update an evaluation test-case send a PUT request to
@@ -230,7 +230,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseListResponse:
         """
         To list all evaluation test cases, send a GET request to
@@ -250,13 +250,13 @@ class EvaluationTestCasesResource(SyncAPIResource):
         self,
         evaluation_test_case_uuid: str,
         *,
-        evaluation_test_case_version: int | NotGiven = NOT_GIVEN,
+        evaluation_test_case_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseListEvaluationRunsResponse:
         """
         To list all evaluation runs by test case, send a GET request to
@@ -318,18 +318,18 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        dataset_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        metrics: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        star_metric: APIStarMetricParam | NotGiven = NOT_GIVEN,
-        workspace_uuid: str | NotGiven = NOT_GIVEN,
+        dataset_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        metrics: SequenceNotStr[str] | Omit = omit,
+        name: str | Omit = omit,
+        star_metric: APIStarMetricParam | Omit = omit,
+        workspace_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseCreateResponse:
         """
         To create an evaluation test-case send a POST request to
@@ -379,13 +379,13 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         self,
         test_case_uuid: str,
         *,
-        evaluation_test_case_version: int | NotGiven = NOT_GIVEN,
+        evaluation_test_case_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseRetrieveResponse:
         """
         To retrive information about an existing evaluation test case, send a GET
@@ -425,18 +425,18 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         self,
         path_test_case_uuid: str,
         *,
-        dataset_uuid: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        metrics: evaluation_test_case_update_params.Metrics | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        star_metric: APIStarMetricParam | NotGiven = NOT_GIVEN,
-        body_test_case_uuid: str | NotGiven = NOT_GIVEN,
+        dataset_uuid: str | Omit = omit,
+        description: str | Omit = omit,
+        metrics: evaluation_test_case_update_params.Metrics | Omit = omit,
+        name: str | Omit = omit,
+        star_metric: APIStarMetricParam | Omit = omit,
+        body_test_case_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseUpdateResponse:
         """
         To update an evaluation test-case send a PUT request to
@@ -492,7 +492,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseListResponse:
         """
         To list all evaluation test cases, send a GET request to
@@ -512,13 +512,13 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         self,
         evaluation_test_case_uuid: str,
         *,
-        evaluation_test_case_version: int | NotGiven = NOT_GIVEN,
+        evaluation_test_case_version: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EvaluationTestCaseListEvaluationRunsResponse:
         """
         To list all evaluation runs by test case, send a GET request to

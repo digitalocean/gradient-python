@@ -74,7 +74,7 @@ class TestAgents:
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         agent = client.agents.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
 
@@ -82,7 +82,7 @@ class TestAgents:
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.with_raw_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -94,7 +94,7 @@ class TestAgents:
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.with_streaming_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -221,7 +221,7 @@ class TestAgents:
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         agent = client.agents.delete(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentDeleteResponse, agent, path=["response"])
 
@@ -229,7 +229,7 @@ class TestAgents:
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.agents.with_raw_response.delete(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -241,7 +241,7 @@ class TestAgents:
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.agents.with_streaming_response.delete(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -418,7 +418,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         agent = await async_client.agents.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
 
@@ -426,7 +426,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.with_raw_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -438,7 +438,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.with_streaming_response.retrieve(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -565,7 +565,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         agent = await async_client.agents.delete(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
         assert_matches_type(AgentDeleteResponse, agent, path=["response"])
 
@@ -573,7 +573,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.with_raw_response.delete(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         )
 
         assert response.is_closed is True
@@ -585,7 +585,7 @@ class TestAsyncAgents:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.with_streaming_response.delete(
-            "uuid",
+            '"123e4567-e89b-12d3-a456-426614174000"',
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

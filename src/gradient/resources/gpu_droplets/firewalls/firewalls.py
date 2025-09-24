@@ -28,7 +28,7 @@ from .droplets import (
     DropletsResourceWithStreamingResponse,
     AsyncDropletsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -84,13 +84,13 @@ class FirewallsResource(SyncAPIResource):
     def create(
         self,
         *,
-        body: firewall_create_params.Body | NotGiven = NOT_GIVEN,
+        body: firewall_create_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallCreateResponse:
         """To create a new firewall, send a POST request to `/v2/firewalls`.
 
@@ -124,7 +124,7 @@ class FirewallsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallRetrieveResponse:
         """
         To show information about an existing firewall, send a GET request to
@@ -161,7 +161,7 @@ class FirewallsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallUpdateResponse:
         """
         To update the configuration of an existing firewall, send a PUT request to
@@ -197,14 +197,14 @@ class FirewallsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallListResponse:
         """
         To list all of the firewalls available on your account, send a GET request to
@@ -250,7 +250,7 @@ class FirewallsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a firewall send a DELETE request to `/v2/firewalls/$FIREWALL_ID`.
@@ -317,13 +317,13 @@ class AsyncFirewallsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        body: firewall_create_params.Body | NotGiven = NOT_GIVEN,
+        body: firewall_create_params.Body | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallCreateResponse:
         """To create a new firewall, send a POST request to `/v2/firewalls`.
 
@@ -357,7 +357,7 @@ class AsyncFirewallsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallRetrieveResponse:
         """
         To show information about an existing firewall, send a GET request to
@@ -394,7 +394,7 @@ class AsyncFirewallsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallUpdateResponse:
         """
         To update the configuration of an existing firewall, send a PUT request to
@@ -430,14 +430,14 @@ class AsyncFirewallsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        page: int | Omit = omit,
+        per_page: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FirewallListResponse:
         """
         To list all of the firewalls available on your account, send a GET request to
@@ -483,7 +483,7 @@ class AsyncFirewallsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         To delete a firewall send a DELETE request to `/v2/firewalls/$FIREWALL_ID`.

@@ -54,8 +54,23 @@ fi
 
 export DEFER_PYDANTIC_BUILD=false
 
-echo "==> Running tests"
-rye run pytest "$@"
+# Clear out any existing API keys to ensure tests run in a clean environment
+unset DIGITALOCEAN_ACCESS_TOKEN
+unset GRADIENT_MODEL_ACCESS_KEY
+unset GRADIENT_AGENT_ACCESS_KEY
+unset GRADIENT_AGENT_ENDPOINT
 
-echo "==> Running Pydantic v1 tests"
-rye run nox -s test-pydantic-v1 -- "$@"
+echo "==> Running tests (excluding smoke tests by default)"
+if [ $# -eq 0 ]; then
+  # No explicit args provided; exclude smoke tests by default
+  rye run pytest -m 'not smoke'
+else
+  rye run pytest "$@"
+fi
+
+echo "==> Running Pydantic v1 tests (excluding smoke tests by default)"
+if [ $# -eq 0 ]; then
+  rye run nox -s test-pydantic-v1 -- -m 'not smoke'
+else
+  rye run nox -s test-pydantic-v1 -- "$@"
+fi

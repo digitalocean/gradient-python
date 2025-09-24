@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Purpose: Run live smoke tests (sync + async) against real Gradient services.
+# These tests require valid credentials and are excluded from the normal test run.
+# Usage:
+#   ./scripts/smoke                # run all smoke tests
+#   ./scripts/smoke -k agents      # pass through extra pytest args
+#
+# If a .env file exists in the repo root it will be sourced automatically.
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if [ -f .env ]; then
+  echo "==> Loading .env"
+  # export variables declared in .env
+  set -a
+  # shellcheck disable=SC1091
+  source .env
+  set +a
+fi
+
+required=(
+  DIGITALOCEAN_ACCESS_TOKEN
+  GRADIENT_MODEL_ACCESS_KEY
+  GRADIENT_AGENT_ACCESS_KEY
+  GRADIENT_AGENT_ENDPOINT
+)
+
+missing=()
+for var in "${required[@]}"; do
+  if [ -z "${!var:-}" ]; then
+    missing+=("$var")
+  fi
+done
+
+if [ ${#missing[@]} -ne 0 ]; then
+  echo "ERROR: Missing required environment variables for smoke tests:" >&2
+  printf '  %s\n' "${missing[@]}" >&2
+  echo >&2
+  echo "Provide them via your shell environment or a .env file (see .env.example)." >&2
+  exit 1
+fi
+
+echo "==> Running smoke tests (marker: smoke)"
+rye run pytest -m smoke "$@"
