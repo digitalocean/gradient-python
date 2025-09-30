@@ -151,7 +151,7 @@ class GenerationsResource(SyncAPIResource):
                 generation_create_params.GenerationCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=GenerationCreateResponse,
         )
@@ -253,6 +253,16 @@ class AsyncGenerationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not self._client.model_access_key:
+            raise TypeError(
+                "Could not resolve authentication method. Expected model_access_key to be set for chat completions."
+            )
+        headers = extra_headers or {}
+        headers = {
+            "Authorization": f"Bearer {self._client.model_access_key}",
+            **headers,
+        }
+
         return await self._post(
             "/images/generations"
             if self._client._base_url_overridden
@@ -275,7 +285,7 @@ class AsyncGenerationsResource(AsyncAPIResource):
                 generation_create_params.GenerationCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=GenerationCreateResponse,
         )
