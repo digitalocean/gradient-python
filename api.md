@@ -383,6 +383,20 @@ Methods:
 
 - <code title="post /chat/completions">client.chat.completions.<a href="./src/gradient/resources/chat/completions.py">create</a>(\*\*<a href="src/gradient/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradient/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
 
+# Images
+
+## Generations
+
+Types:
+
+```python
+from gradient.types.images import GenerationCreateResponse
+```
+
+Methods:
+
+- <code title="post /images/generations">client.images.generations.<a href="./src/gradient/resources/images/generations.py">create</a>(\*\*<a href="src/gradient/types/images/generation_create_params.py">params</a>) -> <a href="./src/gradient/types/images/generation_create_response.py">GenerationCreateResponse</a></code>
+
 # GPUDroplets
 
 Types:
