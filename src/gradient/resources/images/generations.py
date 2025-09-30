@@ -119,6 +119,16 @@ class GenerationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not self._client.model_access_key:
+            raise TypeError(
+                "Could not resolve authentication method. Expected model_access_key to be set for chat completions."
+            )
+        headers = extra_headers or {}
+        headers = {
+            "Authorization": f"Bearer {self._client.model_access_key}",
+            **headers,
+        }
+
         return self._post(
             "/images/generations"
             if self._client._base_url_overridden
