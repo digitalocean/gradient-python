@@ -771,6 +771,7 @@ Types:
 
 ```python
 from gradient.types.gpu_droplets.account import (
+    SSHKeys,
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,
