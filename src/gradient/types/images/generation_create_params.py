@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing import Union, Optional
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["GenerationCreateParams"]
+__all__ = ["GenerationCreateParamsBase", "GenerationCreateParamsNonStreaming", "GenerationCreateParamsStreaming"]
 
 
-class GenerationCreateParams(TypedDict, total=False):
+class GenerationCreateParamsBase(TypedDict, total=False):
     prompt: Required[str]
     """A text description of the desired image(s).
 
@@ -70,7 +70,15 @@ class GenerationCreateParams(TypedDict, total=False):
     (landscape), 1024x1536 (portrait).
     """
 
-    stream: Optional[bool]
+    user: Optional[str]
+    """
+    A unique identifier representing your end-user, which can help DigitalOcean to
+    monitor and detect abuse.
+    """
+
+
+class GenerationCreateParamsNonStreaming(GenerationCreateParamsBase, total=False):
+    stream: Optional[Literal[False]]
     """
     If set to true, partial image data will be streamed as the image is being
     generated. When streaming, the response will be sent as server-sent events with
@@ -78,8 +86,15 @@ class GenerationCreateParams(TypedDict, total=False):
     than 0.
     """
 
-    user: Optional[str]
+
+class GenerationCreateParamsStreaming(GenerationCreateParamsBase):
+    stream: Required[Literal[True]]
     """
-    A unique identifier representing your end-user, which can help DigitalOcean to
-    monitor and detect abuse.
+    If set to true, partial image data will be streamed as the image is being
+    generated. When streaming, the response will be sent as server-sent events with
+    partial image chunks. When stream is true, partial_images must be greater
+    than 0.
     """
+
+
+GenerationCreateParams = Union[GenerationCreateParamsNonStreaming, GenerationCreateParamsStreaming]

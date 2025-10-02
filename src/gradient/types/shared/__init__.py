@@ -24,6 +24,9 @@ from .completion_usage import CompletionUsage as CompletionUsage
 from .garbage_collection import GarbageCollection as GarbageCollection
 from .firewall_rule_target import FirewallRuleTarget as FirewallRuleTarget
 from .chat_completion_chunk import ChatCompletionChunk as ChatCompletionChunk
+from .image_gen_stream_event import ImageGenStreamEvent as ImageGenStreamEvent
 from .subscription_tier_base import SubscriptionTierBase as SubscriptionTierBase
+from .image_gen_completed_event import ImageGenCompletedEvent as ImageGenCompletedEvent
 from .droplet_next_backup_window import DropletNextBackupWindow as DropletNextBackupWindow
 from .chat_completion_token_logprob import ChatCompletionTokenLogprob as ChatCompletionTokenLogprob
+from .image_gen_partial_image_event import ImageGenPartialImageEvent as ImageGenPartialImageEvent

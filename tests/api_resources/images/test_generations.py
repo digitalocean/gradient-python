@@ -19,7 +19,7 @@ class TestGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create(self, client: Gradient) -> None:
+    def test_method_create_overload_1(self, client: Gradient) -> None:
         generation = client.images.generations.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
         )
@@ -27,7 +27,7 @@ class TestGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: Gradient) -> None:
+    def test_method_create_with_all_params_overload_1(self, client: Gradient) -> None:
         generation = client.images.generations.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
             background="auto",
@@ -46,7 +46,7 @@ class TestGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: Gradient) -> None:
+    def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         response = client.images.generations.with_raw_response.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
         )
@@ -58,7 +58,7 @@ class TestGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: Gradient) -> None:
+    def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.images.generations.with_streaming_response.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
         ) as response:
@@ -70,6 +70,61 @@ class TestGenerations:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_create_overload_2(self, client: Gradient) -> None:
+        generation_stream = client.images.generations.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+        )
+        generation_stream.response.close()
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_create_with_all_params_overload_2(self, client: Gradient) -> None:
+        generation_stream = client.images.generations.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+            background="auto",
+            model="openai-gpt-image-1",
+            moderation="auto",
+            n=1,
+            output_compression=100,
+            output_format="png",
+            partial_images=1,
+            quality="auto",
+            size="auto",
+            user="user-1234",
+        )
+        generation_stream.response.close()
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Gradient) -> None:
+        response = client.images.generations.with_raw_response.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = response.parse()
+        stream.close()
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
+        with client.images.generations.with_streaming_response.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            stream = response.parse()
+            stream.close()
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncGenerations:
     parametrize = pytest.mark.parametrize(
@@ -78,7 +133,7 @@ class TestAsyncGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncGradient) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         generation = await async_client.images.generations.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
         )
@@ -86,7 +141,7 @@ class TestAsyncGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
+    async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         generation = await async_client.images.generations.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
             background="auto",
@@ -105,7 +160,7 @@ class TestAsyncGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.images.generations.with_raw_response.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
         )
@@ -117,7 +172,7 @@ class TestAsyncGenerations:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.images.generations.with_streaming_response.create(
             prompt="A cute baby sea otter floating on its back in calm blue water",
         ) as response:
@@ -126,5 +181,60 @@ class TestAsyncGenerations:
 
             generation = await response.parse()
             assert_matches_type(GenerationCreateResponse, generation, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
+        generation_stream = await async_client.images.generations.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+        )
+        await generation_stream.response.aclose()
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
+        generation_stream = await async_client.images.generations.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+            background="auto",
+            model="openai-gpt-image-1",
+            moderation="auto",
+            n=1,
+            output_compression=100,
+            output_format="png",
+            partial_images=1,
+            quality="auto",
+            size="auto",
+            user="user-1234",
+        )
+        await generation_stream.response.aclose()
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
+        response = await async_client.images.generations.with_raw_response.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+        )
+
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        stream = await response.parse()
+        await stream.close()
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
+        async with async_client.images.generations.with_streaming_response.create(
+            prompt="A cute baby sea otter floating on its back in calm blue water",
+            stream=True,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            stream = await response.parse()
+            await stream.close()
 
         assert cast(Any, response.is_closed) is True
