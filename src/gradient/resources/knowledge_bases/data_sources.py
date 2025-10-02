@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -18,6 +20,7 @@ from ..._base_client import make_request_options
 from ...types.knowledge_bases import (
     data_source_list_params,
     data_source_create_params,
+    data_source_create_presigned_urls_params,
 )
 from ...types.knowledge_bases.aws_data_source_param import AwsDataSourceParam
 from ...types.knowledge_bases.data_source_list_response import DataSourceListResponse
@@ -25,6 +28,7 @@ from ...types.knowledge_bases.data_source_create_response import DataSourceCreat
 from ...types.knowledge_bases.data_source_delete_response import DataSourceDeleteResponse
 from ...types.knowledge_bases.api_spaces_data_source_param import APISpacesDataSourceParam
 from ...types.knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
+from ...types.knowledge_bases.data_source_create_presigned_urls_response import DataSourceCreatePresignedURLsResponse
 
 __all__ = ["DataSourcesResource", "AsyncDataSourcesResource"]
 
@@ -203,6 +207,45 @@ class DataSourcesResource(SyncAPIResource):
             cast_to=DataSourceDeleteResponse,
         )
 
+    def create_presigned_urls(
+        self,
+        *,
+        files: Iterable[data_source_create_presigned_urls_params.File] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DataSourceCreatePresignedURLsResponse:
+        """
+        To create presigned URLs for knowledge base data source file upload, send a POST
+        request to `/v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls`.
+
+        Args:
+          files: A list of files to generate presigned URLs for.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls",
+            body=maybe_transform(
+                {"files": files}, data_source_create_presigned_urls_params.DataSourceCreatePresignedURLsParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataSourceCreatePresignedURLsResponse,
+        )
+
 
 class AsyncDataSourcesResource(AsyncAPIResource):
     @cached_property
@@ -378,6 +421,45 @@ class AsyncDataSourcesResource(AsyncAPIResource):
             cast_to=DataSourceDeleteResponse,
         )
 
+    async def create_presigned_urls(
+        self,
+        *,
+        files: Iterable[data_source_create_presigned_urls_params.File] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DataSourceCreatePresignedURLsResponse:
+        """
+        To create presigned URLs for knowledge base data source file upload, send a POST
+        request to `/v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls`.
+
+        Args:
+          files: A list of files to generate presigned URLs for.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls"
+            if self._client._base_url_overridden
+            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls",
+            body=await async_maybe_transform(
+                {"files": files}, data_source_create_presigned_urls_params.DataSourceCreatePresignedURLsParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataSourceCreatePresignedURLsResponse,
+        )
+
 
 class DataSourcesResourceWithRawResponse:
     def __init__(self, data_sources: DataSourcesResource) -> None:
@@ -391,6 +473,9 @@ class DataSourcesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             data_sources.delete,
+        )
+        self.create_presigned_urls = to_raw_response_wrapper(
+            data_sources.create_presigned_urls,
         )
 
 
@@ -407,6 +492,9 @@ class AsyncDataSourcesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             data_sources.delete,
         )
+        self.create_presigned_urls = async_to_raw_response_wrapper(
+            data_sources.create_presigned_urls,
+        )
 
 
 class DataSourcesResourceWithStreamingResponse:
@@ -422,6 +510,9 @@ class DataSourcesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             data_sources.delete,
         )
+        self.create_presigned_urls = to_streamed_response_wrapper(
+            data_sources.create_presigned_urls,
+        )
 
 
 class AsyncDataSourcesResourceWithStreamingResponse:
@@ -436,4 +527,7 @@ class AsyncDataSourcesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             data_sources.delete,
+        )
+        self.create_presigned_urls = async_to_streamed_response_wrapper(
+            data_sources.create_presigned_urls,
         )

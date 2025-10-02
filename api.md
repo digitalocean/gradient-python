@@ -852,6 +852,7 @@ from gradient.types.knowledge_bases import (
     DataSourceCreateResponse,
     DataSourceListResponse,
     DataSourceDeleteResponse,
+    DataSourceCreatePresignedURLsResponse,
 )
 ```
 
@@ -860,6 +861,7 @@ Methods:
 - <code title="post /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">create</a>(path_knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_create_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_create_response.py">DataSourceCreateResponse</a></code>
 - <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">list</a>(knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_list_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_list_response.py">DataSourceListResponse</a></code>
 - <code title="delete /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">delete</a>(data_source_uuid, \*, knowledge_base_uuid) -> <a href="./src/gradient/types/knowledge_bases/data_source_delete_response.py">DataSourceDeleteResponse</a></code>
+- <code title="post /v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">create_presigned_urls</a>(\*\*<a href="src/gradient/types/knowledge_bases/data_source_create_presigned_urls_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_create_presigned_urls_response.py">DataSourceCreatePresignedURLsResponse</a></code>
 
 ## IndexingJobs
 
