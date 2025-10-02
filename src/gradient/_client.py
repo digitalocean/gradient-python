@@ -34,7 +34,8 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         chat,
-        agents, images,
+        agents,
+        images,
         models,
         regions,
         databases,
