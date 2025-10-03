@@ -24,6 +24,12 @@ from .api_file_upload_data_source_param import APIFileUploadDataSourceParam as A
 from .api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam as APIWebCrawlerDataSourceParam
 from .indexing_job_update_cancel_params import IndexingJobUpdateCancelParams as IndexingJobUpdateCancelParams
 from .indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse as IndexingJobUpdateCancelResponse
+from .data_source_create_presigned_urls_params import (
+    DataSourceCreatePresignedURLsParams as DataSourceCreatePresignedURLsParams,
+)
+from .data_source_create_presigned_urls_response import (
+    DataSourceCreatePresignedURLsResponse as DataSourceCreatePresignedURLsResponse,
+)
 from .indexing_job_retrieve_data_sources_response import (
     IndexingJobRetrieveDataSourcesResponse as IndexingJobRetrieveDataSourcesResponse,
 )

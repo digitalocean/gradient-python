@@ -13,6 +13,7 @@ from gradient.types.knowledge_bases import (
     DataSourceListResponse,
     DataSourceCreateResponse,
     DataSourceDeleteResponse,
+    DataSourceCreatePresignedURLsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -195,6 +196,47 @@ class TestDataSources:
                 knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_create_presigned_urls(self, client: Gradient) -> None:
+        data_source = client.knowledge_bases.data_sources.create_presigned_urls()
+        assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_create_presigned_urls_with_all_params(self, client: Gradient) -> None:
+        data_source = client.knowledge_bases.data_sources.create_presigned_urls(
+            files=[
+                {
+                    "file_name": "example name",
+                    "file_size": "file_size",
+                }
+            ],
+        )
+        assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_create_presigned_urls(self, client: Gradient) -> None:
+        response = client.knowledge_bases.data_sources.with_raw_response.create_presigned_urls()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        data_source = response.parse()
+        assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_create_presigned_urls(self, client: Gradient) -> None:
+        with client.knowledge_bases.data_sources.with_streaming_response.create_presigned_urls() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            data_source = response.parse()
+            assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncDataSources:
     parametrize = pytest.mark.parametrize(
@@ -374,3 +416,46 @@ class TestAsyncDataSources:
                 data_source_uuid="",
                 knowledge_base_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create_presigned_urls(self, async_client: AsyncGradient) -> None:
+        data_source = await async_client.knowledge_bases.data_sources.create_presigned_urls()
+        assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create_presigned_urls_with_all_params(self, async_client: AsyncGradient) -> None:
+        data_source = await async_client.knowledge_bases.data_sources.create_presigned_urls(
+            files=[
+                {
+                    "file_name": "example name",
+                    "file_size": "file_size",
+                }
+            ],
+        )
+        assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_create_presigned_urls(self, async_client: AsyncGradient) -> None:
+        response = await async_client.knowledge_bases.data_sources.with_raw_response.create_presigned_urls()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        data_source = await response.parse()
+        assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_create_presigned_urls(self, async_client: AsyncGradient) -> None:
+        async with (
+            async_client.knowledge_bases.data_sources.with_streaming_response.create_presigned_urls()
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            data_source = await response.parse()
+            assert_matches_type(DataSourceCreatePresignedURLsResponse, data_source, path=["response"])
+
+        assert cast(Any, response.is_closed) is True

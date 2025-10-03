@@ -50,7 +50,7 @@ class Size(BaseModel):
     regions: List[str]
     """
     An array containing the region slugs where this size is available for Droplet
-    creates. regions:read is required to view.
+    creates.
     """
 
     slug: str

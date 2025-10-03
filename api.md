@@ -18,6 +18,9 @@ from gradient.types import (
     GarbageCollection,
     GPUInfo,
     Image,
+    ImageGenCompletedEvent,
+    ImageGenPartialImageEvent,
+    ImageGenStreamEvent,
     Kernel,
     MetaProperties,
     NetworkV4,
@@ -382,6 +385,20 @@ from gradient.types.chat import CompletionCreateResponse
 Methods:
 
 - <code title="post /chat/completions">client.chat.completions.<a href="./src/gradient/resources/chat/completions.py">create</a>(\*\*<a href="src/gradient/types/chat/completion_create_params.py">params</a>) -> <a href="./src/gradient/types/chat/completion_create_response.py">CompletionCreateResponse</a></code>
+
+# Images
+
+## Generations
+
+Types:
+
+```python
+from gradient.types.images import GenerationCreateResponse
+```
+
+Methods:
+
+- <code title="post /images/generations">client.images.generations.<a href="./src/gradient/resources/images/generations.py">create</a>(\*\*<a href="src/gradient/types/images/generation_create_params.py">params</a>) -> <a href="./src/gradient/types/images/generation_create_response.py">GenerationCreateResponse</a></code>
 
 # GPUDroplets
 
@@ -757,6 +774,7 @@ Types:
 
 ```python
 from gradient.types.gpu_droplets.account import (
+    SSHKeys,
     KeyCreateResponse,
     KeyRetrieveResponse,
     KeyUpdateResponse,
@@ -834,6 +852,7 @@ from gradient.types.knowledge_bases import (
     DataSourceCreateResponse,
     DataSourceListResponse,
     DataSourceDeleteResponse,
+    DataSourceCreatePresignedURLsResponse,
 )
 ```
 
@@ -842,6 +861,7 @@ Methods:
 - <code title="post /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">create</a>(path_knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_create_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_create_response.py">DataSourceCreateResponse</a></code>
 - <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">list</a>(knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_list_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_list_response.py">DataSourceListResponse</a></code>
 - <code title="delete /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">delete</a>(data_source_uuid, \*, knowledge_base_uuid) -> <a href="./src/gradient/types/knowledge_bases/data_source_delete_response.py">DataSourceDeleteResponse</a></code>
+- <code title="post /v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">create_presigned_urls</a>(\*\*<a href="src/gradient/types/knowledge_bases/data_source_create_presigned_urls_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_create_presigned_urls_response.py">DataSourceCreatePresignedURLsResponse</a></code>
 
 ## IndexingJobs
 
