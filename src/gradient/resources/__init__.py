@@ -16,6 +16,14 @@ from .agents import (
     AgentsResourceWithStreamingResponse,
     AsyncAgentsResourceWithStreamingResponse,
 )
+from .images import (
+    ImagesResource,
+    AsyncImagesResource,
+    ImagesResourceWithRawResponse,
+    AsyncImagesResourceWithRawResponse,
+    ImagesResourceWithStreamingResponse,
+    AsyncImagesResourceWithStreamingResponse,
+)
 from .models import (
     ModelsResource,
     AsyncModelsResource,
@@ -78,6 +86,12 @@ __all__ = [
     "AsyncChatResourceWithRawResponse",
     "ChatResourceWithStreamingResponse",
     "AsyncChatResourceWithStreamingResponse",
+    "ImagesResource",
+    "AsyncImagesResource",
+    "ImagesResourceWithRawResponse",
+    "AsyncImagesResourceWithRawResponse",
+    "ImagesResourceWithStreamingResponse",
+    "AsyncImagesResourceWithStreamingResponse",
     "GPUDropletsResource",
     "AsyncGPUDropletsResource",
     "GPUDropletsResourceWithRawResponse",

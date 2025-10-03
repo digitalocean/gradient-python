@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.1.0 (2025-10-03)
+
+Full Changelog: [v3.0.2...v3.1.0](https://github.com/digitalocean/gradient-python/compare/v3.0.2...v3.1.0)
+
+### Features
+
+* **api:** update via SDK Studio ([20f2512](https://github.com/digitalocean/gradient-python/commit/20f251223fbe35fbe170b07be41fa6fd2656eed7))
+* **api:** update via SDK Studio ([09bf61b](https://github.com/digitalocean/gradient-python/commit/09bf61b5c24b1299a84ea6e8d4df3b88118d9fc3))
+* **api:** update via SDK Studio ([76d29b6](https://github.com/digitalocean/gradient-python/commit/76d29b61ce039f3f270715135ab4d0f444a52b3c))
+* **api:** update via SDK Studio ([fa68fb4](https://github.com/digitalocean/gradient-python/commit/fa68fb43e3e175b3dacd62d459b5d8c38b07e367))
+* **api:** update via SDK Studio ([e23ac14](https://github.com/digitalocean/gradient-python/commit/e23ac14538e17e8d33c33335285389cf13eefe04))
+* **api:** update via SDK Studio ([a5f6aa6](https://github.com/digitalocean/gradient-python/commit/a5f6aa656021a9aaa6a2e82dfa251f87f0096de0))
+* **api:** update via SDK Studio ([b900d76](https://github.com/digitalocean/gradient-python/commit/b900d769ba4a290523f17d2d69de850366c961b6))
+
+
+### Chores
+
+* **client:** support model_access_key in image generations ([4b81c5c](https://github.com/digitalocean/gradient-python/commit/4b81c5cf4998707ca2b4eff25845f687e2002602))
+* **client:** support model_access_key in image generations for real ([c202e81](https://github.com/digitalocean/gradient-python/commit/c202e81d81732217a839a0c7c5e56178252362a1))
+* fix bash quoting ([d92383d](https://github.com/digitalocean/gradient-python/commit/d92383da134a32cb0ae6f5a1c3044ec4947deacc))
+* quote bash variables ([6673263](https://github.com/digitalocean/gradient-python/commit/6673263dbdee2ae77eabd2f6d88cf61921f9e63c))
+* remove preview warning ([e4cf6a8](https://github.com/digitalocean/gradient-python/commit/e4cf6a8b5b37acf483be7301aa0a661a5db43a05))
+* update actions versions ([7056460](https://github.com/digitalocean/gradient-python/commit/7056460cef8093329da4ed24f2e7bd286213e90d))
+
 ## 3.0.2 (2025-09-24)
 
 Full Changelog: [v3.0.1...v3.0.2](https://github.com/digitalocean/gradient-python/compare/v3.0.1...v3.0.2)

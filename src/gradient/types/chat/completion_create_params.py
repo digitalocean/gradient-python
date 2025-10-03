@@ -11,9 +11,17 @@ __all__ = [
     "CompletionCreateParamsBase",
     "Message",
     "MessageChatCompletionRequestSystemMessage",
+    "MessageChatCompletionRequestSystemMessageContentArrayOfContentPart",
+    "MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMember1",
     "MessageChatCompletionRequestDeveloperMessage",
+    "MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart",
+    "MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnionMember1",
     "MessageChatCompletionRequestUserMessage",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPart",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMember1",
     "MessageChatCompletionRequestAssistantMessage",
+    "MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart",
+    "MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnionMember1",
     "MessageChatCompletionRequestAssistantMessageToolCall",
     "MessageChatCompletionRequestAssistantMessageToolCallFunction",
     "MessageChatCompletionRequestToolMessage",
@@ -157,28 +165,80 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     """
 
 
+class MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+
+MessageChatCompletionRequestSystemMessageContentArrayOfContentPart: TypeAlias = Union[
+    str, MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMember1
+]
+
+
 class MessageChatCompletionRequestSystemMessage(TypedDict, total=False):
-    content: Required[Union[str, SequenceNotStr[str]]]
+    content: Required[Union[str, SequenceNotStr[MessageChatCompletionRequestSystemMessageContentArrayOfContentPart]]]
     """The contents of the system message."""
 
     role: Required[Literal["system"]]
     """The role of the messages author, in this case `system`."""
 
 
+class MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+
+MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart: TypeAlias = Union[
+    str, MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnionMember1
+]
+
+
 class MessageChatCompletionRequestDeveloperMessage(TypedDict, total=False):
-    content: Required[Union[str, SequenceNotStr[str]]]
+    content: Required[Union[str, SequenceNotStr[MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart]]]
     """The contents of the developer message."""
 
     role: Required[Literal["developer"]]
     """The role of the messages author, in this case `developer`."""
 
 
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+
+MessageChatCompletionRequestUserMessageContentArrayOfContentPart: TypeAlias = Union[
+    str, MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMember1
+]
+
+
 class MessageChatCompletionRequestUserMessage(TypedDict, total=False):
-    content: Required[Union[str, SequenceNotStr[str]]]
+    content: Required[Union[str, SequenceNotStr[MessageChatCompletionRequestUserMessageContentArrayOfContentPart]]]
     """The contents of the user message."""
 
     role: Required[Literal["user"]]
     """The role of the messages author, in this case `user`."""
+
+
+class MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+
+MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart: TypeAlias = Union[
+    str, MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnionMember1
+]
 
 
 class MessageChatCompletionRequestAssistantMessageToolCallFunction(TypedDict, total=False):
@@ -209,7 +269,7 @@ class MessageChatCompletionRequestAssistantMessage(TypedDict, total=False):
     role: Required[Literal["assistant"]]
     """The role of the messages author, in this case `assistant`."""
 
-    content: Union[str, SequenceNotStr[str], None]
+    content: Union[str, SequenceNotStr[MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart], None]
     """The contents of the assistant message."""
 
     tool_calls: Iterable[MessageChatCompletionRequestAssistantMessageToolCall]
