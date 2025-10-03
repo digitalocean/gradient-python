@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .ssh_keys import SSHKeys as SSHKeys
 from .key_list_params import KeyListParams as KeyListParams
 from .key_create_params import KeyCreateParams as KeyCreateParams
 from .key_list_response import KeyListResponse as KeyListResponse

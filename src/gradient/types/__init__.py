@@ -39,8 +39,11 @@ from .shared import (
     GarbageCollection as GarbageCollection,
     FirewallRuleTarget as FirewallRuleTarget,
     ChatCompletionChunk as ChatCompletionChunk,
+    ImageGenStreamEvent as ImageGenStreamEvent,
     SubscriptionTierBase as SubscriptionTierBase,
+    ImageGenCompletedEvent as ImageGenCompletedEvent,
     DropletNextBackupWindow as DropletNextBackupWindow,
+    ImageGenPartialImageEvent as ImageGenPartialImageEvent,
     ChatCompletionTokenLogprob as ChatCompletionTokenLogprob,
 )
 from .api_agent import APIAgent as APIAgent
