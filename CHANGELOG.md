@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.0 (2025-10-06)
+
+Full Changelog: [v3.1.0...v3.2.0](https://github.com/digitalocean/gradient-python/compare/v3.1.0...v3.2.0)
+
+### Features
+
+* **api:** Images generations ([37bf67a](https://github.com/digitalocean/gradient-python/commit/37bf67af6097a6396e8f96a64d9224312355ff0f))
+
 ## 3.1.0 (2025-10-03)
 
 Full Changelog: [v3.0.2...v3.1.0](https://github.com/digitalocean/gradient-python/compare/v3.0.2...v3.1.0)
