@@ -33,10 +33,10 @@ from ._base_client import (
 
 if TYPE_CHECKING:
     from .resources import chat, agents, images, models, regions, databases, inference, gpu_droplets, knowledge_bases
+    from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
-    from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource

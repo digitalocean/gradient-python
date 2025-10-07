@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Union, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["GenerationCreateParamsBase", "GenerationCreateParamsNonStreaming", "GenerationCreateParamsStreaming"]
+__all__ = ["ImageGenerateParamsBase", "ImageGenerateParamsNonStreaming", "ImageGenerateParamsStreaming"]
 
 
-class GenerationCreateParamsBase(TypedDict, total=False):
+class ImageGenerateParamsBase(TypedDict, total=False):
     prompt: Required[str]
     """A text description of the desired image(s).
 
@@ -77,7 +77,7 @@ class GenerationCreateParamsBase(TypedDict, total=False):
     """
 
 
-class GenerationCreateParamsNonStreaming(GenerationCreateParamsBase, total=False):
+class ImageGenerateParamsNonStreaming(ImageGenerateParamsBase, total=False):
     stream: Optional[Literal[False]]
     """
     If set to true, partial image data will be streamed as the image is being
@@ -87,7 +87,7 @@ class GenerationCreateParamsNonStreaming(GenerationCreateParamsBase, total=False
     """
 
 
-class GenerationCreateParamsStreaming(GenerationCreateParamsBase):
+class ImageGenerateParamsStreaming(ImageGenerateParamsBase):
     stream: Required[Literal[True]]
     """
     If set to true, partial image data will be streamed as the image is being
@@ -97,4 +97,4 @@ class GenerationCreateParamsStreaming(GenerationCreateParamsBase):
     """
 
 
-GenerationCreateParams = Union[GenerationCreateParamsNonStreaming, GenerationCreateParamsStreaming]
+ImageGenerateParams = Union[ImageGenerateParamsNonStreaming, ImageGenerateParamsStreaming]

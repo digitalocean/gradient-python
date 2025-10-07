@@ -66,10 +66,12 @@ from .agent_create_response import AgentCreateResponse as AgentCreateResponse
 from .agent_delete_response import AgentDeleteResponse as AgentDeleteResponse
 from .agent_update_response import AgentUpdateResponse as AgentUpdateResponse
 from .droplet_backup_policy import DropletBackupPolicy as DropletBackupPolicy
+from .image_generate_params import ImageGenerateParams as ImageGenerateParams
 from .api_agent_api_key_info import APIAgentAPIKeyInfo as APIAgentAPIKeyInfo
 from .agent_retrieve_response import AgentRetrieveResponse as AgentRetrieveResponse
 from .api_openai_api_key_info import APIOpenAIAPIKeyInfo as APIOpenAIAPIKeyInfo
 from .gpu_droplet_list_params import GPUDropletListParams as GPUDropletListParams
+from .image_generate_response import ImageGenerateResponse as ImageGenerateResponse
 from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
