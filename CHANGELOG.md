@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.3.0 (2025-10-07)
+
+Full Changelog: [v3.2.0...v3.3.0](https://github.com/digitalocean/gradient-python/compare/v3.2.0...v3.3.0)
+
+### Features
+
+* **api:** Images generations - openai ([e5a309e](https://github.com/digitalocean/gradient-python/commit/e5a309e46bf05846c580f425e6fa23f323138a4d))
+* **api:** update via SDK Studio ([c2bf693](https://github.com/digitalocean/gradient-python/commit/c2bf693d233830dafdfc2aa7f74e2ced2e8d81a0))
+
 ## 3.2.0 (2025-10-06)
 
 Full Changelog: [v3.1.0...v3.2.0](https://github.com/digitalocean/gradient-python/compare/v3.1.0...v3.2.0)

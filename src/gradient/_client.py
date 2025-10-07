@@ -43,6 +43,7 @@ if TYPE_CHECKING:
         gpu_droplets,
         knowledge_bases,
     )
+    from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -50,7 +51,6 @@ if TYPE_CHECKING:
         AsyncGPUDropletsResource,
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
-    from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
