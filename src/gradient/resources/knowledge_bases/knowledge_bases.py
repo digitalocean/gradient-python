@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import time
+import asyncio
 from typing import Iterable
 
 import httpx
@@ -25,6 +27,7 @@ from .data_sources import (
     DataSourcesResourceWithStreamingResponse,
     AsyncDataSourcesResourceWithStreamingResponse,
 )
+from ..._exceptions import APITimeoutError
 from .indexing_jobs import (
     IndexingJobsResource,
     AsyncIndexingJobsResource,
@@ -40,7 +43,13 @@ from ...types.knowledge_base_delete_response import KnowledgeBaseDeleteResponse
 from ...types.knowledge_base_update_response import KnowledgeBaseUpdateResponse
 from ...types.knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse
 
-__all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource"]
+__all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource", "KnowledgeBaseDatabaseError"]
+
+
+class KnowledgeBaseDatabaseError(Exception):
+    """Raised when a knowledge base database enters a failed state."""
+
+    pass
 
 
 class KnowledgeBasesResource(SyncAPIResource):
@@ -330,6 +339,85 @@ class KnowledgeBasesResource(SyncAPIResource):
             cast_to=KnowledgeBaseDeleteResponse,
         )
 
+    def wait_for_database(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 600.0,
+        poll_interval: float = 5.0,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> KnowledgeBaseRetrieveResponse:
+        """
+        Poll the knowledge base until the database status is ONLINE or a failed state is reached.
+
+        This helper function repeatedly calls retrieve() to check the database_status field.
+        It will wait for the database to become ONLINE, or raise an exception if it enters
+        a failed state (DECOMMISSIONED or UNHEALTHY) or if the timeout is exceeded.
+
+        Args:
+          uuid: The knowledge base UUID to poll
+
+          timeout: Maximum time to wait in seconds (default: 600 seconds / 10 minutes)
+
+          poll_interval: Time to wait between polls in seconds (default: 5 seconds)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+        Returns:
+          The final KnowledgeBaseRetrieveResponse when the database status is ONLINE
+
+        Raises:
+          KnowledgeBaseDatabaseError: If the database enters a failed state (DECOMMISSIONED, UNHEALTHY)
+
+          APITimeoutError: If the timeout is exceeded before the database becomes ONLINE
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+        failed_states = {"DECOMMISSIONED", "UNHEALTHY"}
+
+        while True:
+            elapsed = time.time() - start_time
+            if elapsed >= timeout:
+                raise APITimeoutError(
+                    request=httpx.Request(
+                        method="GET",
+                        url=f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
+                    )
+                )
+
+            response = self.retrieve(
+                uuid,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
+
+            status = response.database_status
+
+            if status == "ONLINE":
+                return response
+
+            if status in failed_states:
+                raise KnowledgeBaseDatabaseError(
+                    f"Knowledge base database entered failed state: {status}"
+                )
+
+            # Sleep before next poll, but don't exceed timeout
+            remaining_time = timeout - elapsed
+            sleep_time = min(poll_interval, remaining_time)
+            if sleep_time > 0:
+                time.sleep(sleep_time)
+
 
 class AsyncKnowledgeBasesResource(AsyncAPIResource):
     @cached_property
@@ -618,6 +706,85 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
             cast_to=KnowledgeBaseDeleteResponse,
         )
 
+    async def wait_for_database(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 600.0,
+        poll_interval: float = 5.0,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> KnowledgeBaseRetrieveResponse:
+        """
+        Poll the knowledge base until the database status is ONLINE or a failed state is reached.
+
+        This helper function repeatedly calls retrieve() to check the database_status field.
+        It will wait for the database to become ONLINE, or raise an exception if it enters
+        a failed state (DECOMMISSIONED or UNHEALTHY) or if the timeout is exceeded.
+
+        Args:
+          uuid: The knowledge base UUID to poll
+
+          timeout: Maximum time to wait in seconds (default: 600 seconds / 10 minutes)
+
+          poll_interval: Time to wait between polls in seconds (default: 5 seconds)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+        Returns:
+          The final KnowledgeBaseRetrieveResponse when the database status is ONLINE
+
+        Raises:
+          KnowledgeBaseDatabaseError: If the database enters a failed state (DECOMMISSIONED, UNHEALTHY)
+
+          APITimeoutError: If the timeout is exceeded before the database becomes ONLINE
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+        failed_states = {"DECOMMISSIONED", "UNHEALTHY"}
+
+        while True:
+            elapsed = time.time() - start_time
+            if elapsed >= timeout:
+                raise APITimeoutError(
+                    request=httpx.Request(
+                        method="GET",
+                        url=f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
+                    )
+                )
+
+            response = await self.retrieve(
+                uuid,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
+
+            status = response.database_status
+
+            if status == "ONLINE":
+                return response
+
+            if status in failed_states:
+                raise KnowledgeBaseDatabaseError(
+                    f"Knowledge base database entered failed state: {status}"
+                )
+
+            # Sleep before next poll, but don't exceed timeout
+            remaining_time = timeout - elapsed
+            sleep_time = min(poll_interval, remaining_time)
+            if sleep_time > 0:
+                await asyncio.sleep(sleep_time)
+
 
 class KnowledgeBasesResourceWithRawResponse:
     def __init__(self, knowledge_bases: KnowledgeBasesResource) -> None:
@@ -637,6 +804,9 @@ class KnowledgeBasesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             knowledge_bases.delete,
+        )
+        self.wait_for_database = to_raw_response_wrapper(
+            knowledge_bases.wait_for_database,
         )
 
     @cached_property
@@ -667,6 +837,9 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             knowledge_bases.delete,
         )
+        self.wait_for_database = async_to_raw_response_wrapper(
+            knowledge_bases.wait_for_database,
+        )
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
@@ -696,6 +869,9 @@ class KnowledgeBasesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             knowledge_bases.delete,
         )
+        self.wait_for_database = to_streamed_response_wrapper(
+            knowledge_bases.wait_for_database,
+        )
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
@@ -724,6 +900,9 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             knowledge_bases.delete,
+        )
+        self.wait_for_database = async_to_streamed_response_wrapper(
+            knowledge_bases.wait_for_database,
         )
 
     @cached_property
