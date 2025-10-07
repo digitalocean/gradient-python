@@ -305,7 +305,7 @@ class ImagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GenerationCreateResponse | Stream[ImageGenStreamEvent]:
+    ) -> ImageGenerateResponse | Stream[ImageGenStreamEvent]:
         if not self._client.model_access_key:
             raise TypeError(
                 "Could not resolve authentication method. Expected model_access_key to be set for chat completions."
@@ -627,7 +627,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GenerationCreateResponse | AsyncStream[ImageGenStreamEvent]:
+    ) -> ImageGenerateResponse | AsyncStream[ImageGenStreamEvent]:
         if not self._client.model_access_key:
             raise TypeError(
                 "Could not resolve authentication method. Expected model_access_key to be set for chat completions."
