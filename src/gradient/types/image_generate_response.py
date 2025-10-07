@@ -2,9 +2,9 @@
 
 from typing import List, Optional
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["GenerationCreateResponse", "Data", "Usage", "UsageInputTokensDetails"]
+__all__ = ["ImageGenerateResponse", "Data", "Usage", "UsageInputTokensDetails"]
 
 
 class Data(BaseModel):
@@ -40,7 +40,7 @@ class Usage(BaseModel):
     """Number of tokens in the generated output"""
 
 
-class GenerationCreateResponse(BaseModel):
+class ImageGenerateResponse(BaseModel):
     created: int
     """The Unix timestamp (in seconds) of when the images were created"""
 
