@@ -7,47 +7,47 @@ from typing_extensions import Literal, overload
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ..types import image_generate_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._streaming import Stream, AsyncStream
-from ..._base_client import make_request_options
-from ...types.images import generation_create_params
-from ...types.shared.image_gen_stream_event import ImageGenStreamEvent
-from ...types.images.generation_create_response import GenerationCreateResponse
+from .._streaming import Stream, AsyncStream
+from .._base_client import make_request_options
+from ..types.image_generate_response import ImageGenerateResponse
+from ..types.shared.image_gen_stream_event import ImageGenStreamEvent
 
-__all__ = ["GenerationsResource", "AsyncGenerationsResource"]
+__all__ = ["ImagesResource", "AsyncImagesResource"]
 
 
-class GenerationsResource(SyncAPIResource):
+class ImagesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> GenerationsResourceWithRawResponse:
+    def with_raw_response(self) -> ImagesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/digitalocean/gradient-python#accessing-raw-response-data-eg-headers
         """
-        return GenerationsResourceWithRawResponse(self)
+        return ImagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GenerationsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ImagesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/digitalocean/gradient-python#with_streaming_response
         """
-        return GenerationsResourceWithStreamingResponse(self)
+        return ImagesResourceWithStreamingResponse(self)
 
     @overload
-    def create(
+    def generate(
         self,
         *,
         prompt: str,
@@ -68,7 +68,7 @@ class GenerationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GenerationCreateResponse:
+    ) -> ImageGenerateResponse:
         """
         Creates a high-quality image from a text prompt using GPT-IMAGE-1, the latest
         image generation model with automatic prompt optimization and enhanced visual
@@ -126,7 +126,7 @@ class GenerationsResource(SyncAPIResource):
         ...
 
     @overload
-    def create(
+    def generate(
         self,
         *,
         prompt: str,
@@ -205,7 +205,7 @@ class GenerationsResource(SyncAPIResource):
         ...
 
     @overload
-    def create(
+    def generate(
         self,
         *,
         prompt: str,
@@ -226,7 +226,7 @@ class GenerationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GenerationCreateResponse | Stream[ImageGenStreamEvent]:
+    ) -> ImageGenerateResponse | Stream[ImageGenStreamEvent]:
         """
         Creates a high-quality image from a text prompt using GPT-IMAGE-1, the latest
         image generation model with automatic prompt optimization and enhanced visual
@@ -284,7 +284,7 @@ class GenerationsResource(SyncAPIResource):
         ...
 
     @required_args(["prompt"], ["prompt", "stream"])
-    def create(
+    def generate(
         self,
         *,
         prompt: str,
@@ -335,41 +335,41 @@ class GenerationsResource(SyncAPIResource):
                     "stream": stream,
                     "user": user,
                 },
-                generation_create_params.GenerationCreateParamsStreaming
+                image_generate_params.ImageGenerateParamsStreaming
                 if stream
-                else generation_create_params.GenerationCreateParamsNonStreaming,
+                else image_generate_params.ImageGenerateParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GenerationCreateResponse,
+            cast_to=ImageGenerateResponse,
             stream=stream or False,
             stream_cls=Stream[ImageGenStreamEvent],
         )
 
 
-class AsyncGenerationsResource(AsyncAPIResource):
+class AsyncImagesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncGenerationsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncImagesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/digitalocean/gradient-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncGenerationsResourceWithRawResponse(self)
+        return AsyncImagesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGenerationsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncImagesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/digitalocean/gradient-python#with_streaming_response
         """
-        return AsyncGenerationsResourceWithStreamingResponse(self)
+        return AsyncImagesResourceWithStreamingResponse(self)
 
     @overload
-    async def create(
+    async def generate(
         self,
         *,
         prompt: str,
@@ -390,7 +390,7 @@ class AsyncGenerationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GenerationCreateResponse:
+    ) -> ImageGenerateResponse:
         """
         Creates a high-quality image from a text prompt using GPT-IMAGE-1, the latest
         image generation model with automatic prompt optimization and enhanced visual
@@ -448,7 +448,7 @@ class AsyncGenerationsResource(AsyncAPIResource):
         ...
 
     @overload
-    async def create(
+    async def generate(
         self,
         *,
         prompt: str,
@@ -527,7 +527,7 @@ class AsyncGenerationsResource(AsyncAPIResource):
         ...
 
     @overload
-    async def create(
+    async def generate(
         self,
         *,
         prompt: str,
@@ -548,7 +548,7 @@ class AsyncGenerationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> GenerationCreateResponse | AsyncStream[ImageGenStreamEvent]:
+    ) -> ImageGenerateResponse | AsyncStream[ImageGenStreamEvent]:
         """
         Creates a high-quality image from a text prompt using GPT-IMAGE-1, the latest
         image generation model with automatic prompt optimization and enhanced visual
@@ -606,7 +606,7 @@ class AsyncGenerationsResource(AsyncAPIResource):
         ...
 
     @required_args(["prompt"], ["prompt", "stream"])
-    async def create(
+    async def generate(
         self,
         *,
         prompt: str,
@@ -637,7 +637,6 @@ class AsyncGenerationsResource(AsyncAPIResource):
             "Authorization": f"Bearer {self._client.model_access_key}",
             **headers,
         }
-
         return await self._post(
             "/images/generations"
             if self._client._base_url_overridden
@@ -657,50 +656,50 @@ class AsyncGenerationsResource(AsyncAPIResource):
                     "stream": stream,
                     "user": user,
                 },
-                generation_create_params.GenerationCreateParamsStreaming
+                image_generate_params.ImageGenerateParamsStreaming
                 if stream
-                else generation_create_params.GenerationCreateParamsNonStreaming,
+                else image_generate_params.ImageGenerateParamsNonStreaming,
             ),
             options=make_request_options(
                 extra_headers=headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=GenerationCreateResponse,
+            cast_to=ImageGenerateResponse,
             stream=stream or False,
             stream_cls=AsyncStream[ImageGenStreamEvent],
         )
 
 
-class GenerationsResourceWithRawResponse:
-    def __init__(self, generations: GenerationsResource) -> None:
-        self._generations = generations
+class ImagesResourceWithRawResponse:
+    def __init__(self, images: ImagesResource) -> None:
+        self._images = images
 
-        self.create = to_raw_response_wrapper(
-            generations.create,
+        self.generate = to_raw_response_wrapper(
+            images.generate,
         )
 
 
-class AsyncGenerationsResourceWithRawResponse:
-    def __init__(self, generations: AsyncGenerationsResource) -> None:
-        self._generations = generations
+class AsyncImagesResourceWithRawResponse:
+    def __init__(self, images: AsyncImagesResource) -> None:
+        self._images = images
 
-        self.create = async_to_raw_response_wrapper(
-            generations.create,
+        self.generate = async_to_raw_response_wrapper(
+            images.generate,
         )
 
 
-class GenerationsResourceWithStreamingResponse:
-    def __init__(self, generations: GenerationsResource) -> None:
-        self._generations = generations
+class ImagesResourceWithStreamingResponse:
+    def __init__(self, images: ImagesResource) -> None:
+        self._images = images
 
-        self.create = to_streamed_response_wrapper(
-            generations.create,
+        self.generate = to_streamed_response_wrapper(
+            images.generate,
         )
 
 
-class AsyncGenerationsResourceWithStreamingResponse:
-    def __init__(self, generations: AsyncGenerationsResource) -> None:
-        self._generations = generations
+class AsyncImagesResourceWithStreamingResponse:
+    def __init__(self, images: AsyncImagesResource) -> None:
+        self._images = images
 
-        self.create = async_to_streamed_response_wrapper(
-            generations.create,
+        self.generate = async_to_streamed_response_wrapper(
+            images.generate,
         )
