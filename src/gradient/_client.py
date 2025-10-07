@@ -32,8 +32,6 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, images, models, regions, databases, inference, gpu_droplets, knowledge_bases
-    from .resources.images import ImagesResource, AsyncImagesResource
     from .resources import (
         chat,
         agents,
@@ -45,6 +43,7 @@ if TYPE_CHECKING:
         gpu_droplets,
         knowledge_bases,
     )
+    from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
