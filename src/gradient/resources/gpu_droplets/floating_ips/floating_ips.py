@@ -79,9 +79,6 @@ class FloatingIPsResource(SyncAPIResource):
         - To create a new floating IP reserved to a region, send a POST request to
           `/v2/floating_ips` with the `region` attribute.
 
-        **Note**: In addition to the standard rate limiting, only 12 floating IPs may be
-        created per 60 seconds.
-
         Args:
           droplet_id: The ID of the Droplet that the floating IP will be assigned to.
 
@@ -117,9 +114,6 @@ class FloatingIPsResource(SyncAPIResource):
 
         - To create a new floating IP reserved to a region, send a POST request to
           `/v2/floating_ips` with the `region` attribute.
-
-        **Note**: In addition to the standard rate limiting, only 12 floating IPs may be
-        created per 60 seconds.
 
         Args:
           region: The slug identifier for the region the floating IP will be reserved to.
@@ -336,9 +330,6 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         - To create a new floating IP reserved to a region, send a POST request to
           `/v2/floating_ips` with the `region` attribute.
 
-        **Note**: In addition to the standard rate limiting, only 12 floating IPs may be
-        created per 60 seconds.
-
         Args:
           droplet_id: The ID of the Droplet that the floating IP will be assigned to.
 
@@ -374,9 +365,6 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
 
         - To create a new floating IP reserved to a region, send a POST request to
           `/v2/floating_ips` with the `region` attribute.
-
-        **Note**: In addition to the standard rate limiting, only 12 floating IPs may be
-        created per 60 seconds.
 
         Args:
           region: The slug identifier for the region the floating IP will be reserved to.
