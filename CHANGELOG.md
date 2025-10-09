@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.0 (2025-10-09)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/digitalocean/gradient-python/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** manual updates ([bbd7ddc](https://github.com/digitalocean/gradient-python/commit/bbd7ddccfb3d98f39e61948365b92202b3cc9e33))
+
 ## 3.3.0 (2025-10-07)
 
 Full Changelog: [v3.2.0...v3.3.0](https://github.com/digitalocean/gradient-python/compare/v3.2.0...v3.3.0)
