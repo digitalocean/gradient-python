@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
 
 from gradient import Gradient, AsyncGradient
@@ -363,6 +364,104 @@ class TestAgents:
                 path_uuid="",
             )
 
+    @parametrize
+    def test_method_wait_until_ready(self, client: Gradient, respx_mock: Any) -> None:
+        """Test successful wait_until_ready when agent becomes ready."""
+        agent_uuid = "test-agent-id"
+        
+        # Create side effect that returns different responses
+        call_count = [0]
+        def get_response(request: httpx.Request) -> httpx.Response:
+            call_count[0] += 1
+            if call_count[0] == 1:
+                # First call: deploying
+                return httpx.Response(
+                    200,
+                    json={
+                        "agent": {
+                            "uuid": agent_uuid,
+                            "deployment": {"status": "STATUS_DEPLOYING"},
+                        }
+                    },
+                )
+            else:
+                # Subsequent calls: running
+                return httpx.Response(
+                    200,
+                    json={
+                        "agent": {
+                            "uuid": agent_uuid,
+                            "deployment": {"status": "STATUS_RUNNING"},
+                        }
+                    },
+                )
+        
+        respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(side_effect=get_response)
+        
+        agent = client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
+        assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+        assert agent.agent is not None
+        assert agent.agent.deployment is not None
+        assert agent.agent.deployment.status == "STATUS_RUNNING"
+
+    @parametrize
+    def test_wait_until_ready_timeout(self, client: Gradient, respx_mock: Any) -> None:
+        """Test that wait_until_ready raises timeout error."""
+        from gradient._exceptions import AgentDeploymentTimeoutError
+        
+        agent_uuid = "test-agent-id"
+        
+        # Mock always returns deploying
+        respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
+            return_value=httpx.Response(
+                200,
+                json={
+                    "agent": {
+                        "uuid": agent_uuid,
+                        "deployment": {"status": "STATUS_DEPLOYING"},
+                    }
+                },
+            )
+        )
+        
+        with pytest.raises(AgentDeploymentTimeoutError) as exc_info:
+            client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=0.5)
+        
+        assert "did not reach STATUS_RUNNING within" in str(exc_info.value)
+        assert exc_info.value.agent_id == agent_uuid
+
+    @parametrize
+    def test_wait_until_ready_deployment_failed(self, client: Gradient, respx_mock: Any) -> None:
+        """Test that wait_until_ready raises error on deployment failure."""
+        from gradient._exceptions import AgentDeploymentError
+        
+        agent_uuid = "test-agent-id"
+        
+        # Mock returns failed status
+        respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
+            return_value=httpx.Response(
+                200,
+                json={
+                    "agent": {
+                        "uuid": agent_uuid,
+                        "deployment": {"status": "STATUS_FAILED"},
+                    }
+                },
+            )
+        )
+        
+        with pytest.raises(AgentDeploymentError) as exc_info:
+            client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
+        
+        assert "deployment failed with status: STATUS_FAILED" in str(exc_info.value)
+        assert exc_info.value.status == "STATUS_FAILED"
+
+    @parametrize
+    def test_wait_until_ready_empty_uuid(self, client: Gradient) -> None:
+        """Test that wait_until_ready validates empty uuid."""
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid`"):
+            client.agents.wait_until_ready("")
+
 
 class TestAsyncAgents:
     parametrize = pytest.mark.parametrize(
@@ -706,3 +805,95 @@ class TestAsyncAgents:
             await async_client.agents.with_raw_response.update_status(
                 path_uuid="",
             )
+
+    @parametrize
+    async def test_method_wait_until_ready(self, async_client: AsyncGradient, respx_mock: Any) -> None:
+        """Test successful async wait_until_ready when agent becomes ready."""
+        agent_uuid = "test-agent-id"
+        
+        # Create side effect that returns different responses
+        call_count = [0]
+        def get_response(request: httpx.Request) -> httpx.Response:
+            call_count[0] += 1
+            if call_count[0] == 1:
+                # First call: deploying
+                return httpx.Response(
+                    200,
+                    json={
+                        "agent": {
+                            "uuid": agent_uuid,
+                            "deployment": {"status": "STATUS_DEPLOYING"},
+                        }
+                    },
+                )
+            else:
+                # Subsequent calls: running
+                return httpx.Response(
+                    200,
+                    json={
+                        "agent": {
+                            "uuid": agent_uuid,
+                            "deployment": {"status": "STATUS_RUNNING"},
+                        }
+                    },
+                )
+        
+        respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(side_effect=get_response)
+        
+        agent = await async_client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
+        assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
+        assert agent.agent is not None
+        assert agent.agent.deployment is not None
+        assert agent.agent.deployment.status == "STATUS_RUNNING"
+
+    @parametrize
+    async def test_wait_until_ready_timeout(self, async_client: AsyncGradient, respx_mock: Any) -> None:
+        """Test that async wait_until_ready raises timeout error."""
+        from gradient._exceptions import AgentDeploymentTimeoutError
+        
+        agent_uuid = "test-agent-id"
+        
+        # Mock always returns deploying
+        respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
+            return_value=httpx.Response(
+                200,
+                json={
+                    "agent": {
+                        "uuid": agent_uuid,
+                        "deployment": {"status": "STATUS_DEPLOYING"},
+                    }
+                },
+            )
+        )
+        
+        with pytest.raises(AgentDeploymentTimeoutError) as exc_info:
+            await async_client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=0.5)
+        
+        assert "did not reach STATUS_RUNNING within" in str(exc_info.value)
+        assert exc_info.value.agent_id == agent_uuid
+
+    @parametrize
+    async def test_wait_until_ready_deployment_failed(self, async_client: AsyncGradient, respx_mock: Any) -> None:
+        """Test that async wait_until_ready raises error on deployment failure."""
+        from gradient._exceptions import AgentDeploymentError
+        
+        agent_uuid = "test-agent-id"
+        
+        # Mock returns failed status
+        respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
+            return_value=httpx.Response(
+                200,
+                json={
+                    "agent": {
+                        "uuid": agent_uuid,
+                        "deployment": {"status": "STATUS_FAILED"},
+                    }
+                },
+            )
+        )
+        
+        with pytest.raises(AgentDeploymentError) as exc_info:
+            await async_client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
+        
+        assert "deployment failed with status: STATUS_FAILED" in str(exc_info.value)
+        assert exc_info.value.status == "STATUS_FAILED"
