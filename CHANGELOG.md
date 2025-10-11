@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.1 (2025-10-11)
+
+Full Changelog: [v3.4.0...v3.4.1](https://github.com/digitalocean/gradient-python/compare/v3.4.0...v3.4.1)
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([0fb9f92](https://github.com/digitalocean/gradient-python/commit/0fb9f9254a0f72a721fa73823399e58eec723f1a))
+
 ## 3.4.0 (2025-10-09)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/digitalocean/gradient-python/compare/v3.3.0...v3.4.0)
