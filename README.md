@@ -44,7 +44,7 @@ client = Gradient(
     ),  # This is the default and can be omitted
 )
 inference_client = Gradient(
-    inference_key=os.environ.get(
+    model_access_key=os.environ.get(
         "GRADIENT_MODEL_ACCESS_KEY"
     ),  # This is the default and can be omitted
 )
@@ -505,6 +505,88 @@ with Gradient() as client:
 
 # HTTP client is now closed
 ```
+
+## Enhanced Features
+
+The Gradient Python SDK includes advanced features for production use, including performance optimization, security enhancements, debugging tools, and reliability improvements.
+
+### Enhanced Client
+
+Use `EnhancedGradient` for additional features:
+
+```python
+from gradient import EnhancedGradient
+
+client = EnhancedGradient(
+    model_access_key=os.environ.get("GRADIENT_MODEL_ACCESS_KEY"),
+    # Performance features
+    enable_caching=True,
+    enable_performance_tracking=True,
+    # Security features
+    enable_request_signing=True,
+    signing_secret="your-secret-key",
+    enable_rate_limiting=True,
+    # Debugging
+    enable_debug=False,
+)
+
+response = client.chat.completions.create(
+    messages=[{"role": "user", "content": "Hello!"}],
+    model="llama3.3-70b-instruct",
+)
+
+# Get performance metrics
+metrics = client.get_performance_metrics()
+print(f"Cache hit rate: {metrics.get('cache_hit_rate', 0):.2%}")
+```
+
+### Key Enhanced Features
+
+- **Request Caching**: Automatic caching of GET requests with configurable TTL
+- **Performance Tracking**: Detailed metrics on request duration, cache hits, and error rates
+- **Advanced Retry Logic**: Exponential backoff with jitter and circuit breaker pattern
+- **Request Signing**: HMAC-based request signing for additional security
+- **Rate Limiting**: Client-side rate limiting to prevent API abuse
+- **Enhanced Debugging**: Detailed request/response logging and cURL command generation
+- **Connection Pooling**: Optimized HTTP connection management
+
+### Advanced Retry Configuration
+
+```python
+from gradient import EnhancedGradient, RetryConfig, CircuitBreakerConfig
+
+retry_config = RetryConfig(
+    max_attempts=5,
+    base_delay=1.0,
+    max_delay=60.0,
+    exponential_base=2.0,
+    jitter=True,
+)
+
+circuit_breaker_config = CircuitBreakerConfig(
+    failure_threshold=5,
+    recovery_timeout=60.0,
+    success_threshold=3,
+)
+
+client = EnhancedGradient(
+    model_access_key=os.environ.get("GRADIENT_MODEL_ACCESS_KEY"),
+    retry_config=retry_config,
+    circuit_breaker_config=circuit_breaker_config,
+)
+```
+
+### Debug Logging
+
+Enable detailed logging for troubleshooting:
+
+```python
+from gradient import enable_debug_logging
+
+enable_debug_logging()  # Shows request/response details, timing, etc.
+```
+
+For complete documentation of enhanced features, see [ENHANCED_FEATURES.md](ENHANCED_FEATURES.md).
 
 ## Versioning
 
