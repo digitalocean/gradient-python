@@ -1,4 +1,4 @@
-## Table of Contents
+# Table of Contents
 - [Shared Types](#shared-types)
 - [Agents](#agents)
   - [API Keys](#apikeys)
