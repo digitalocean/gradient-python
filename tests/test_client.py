@@ -414,12 +414,14 @@ class TestGradient:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {access_token}"
 
-        with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
+        with update_env(
+            **{"DIGITALOCEAN_ACCESS_TOKEN": Omit(), "MODEL_ACCESS_KEY": Omit(), "AGENT_ACCESS_KEY": Omit()}
+        ):
             client2 = Gradient(
                 base_url=base_url,
                 access_token=None,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
+                model_access_key=None,
+                agent_access_key=None,
                 _strict_response_validation=True,
             )
 
@@ -1429,12 +1431,14 @@ class TestAsyncGradient:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {access_token}"
 
-        with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
+        with update_env(
+            **{"DIGITALOCEAN_ACCESS_TOKEN": Omit(), "MODEL_ACCESS_KEY": Omit(), "AGENT_ACCESS_KEY": Omit()}
+        ):
             client2 = AsyncGradient(
                 base_url=base_url,
                 access_token=None,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
+                model_access_key=None,
+                agent_access_key=None,
                 _strict_response_validation=True,
             )
 
