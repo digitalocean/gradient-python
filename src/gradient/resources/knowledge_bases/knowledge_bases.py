@@ -39,6 +39,7 @@ from ...types.knowledge_base_create_response import KnowledgeBaseCreateResponse
 from ...types.knowledge_base_delete_response import KnowledgeBaseDeleteResponse
 from ...types.knowledge_base_update_response import KnowledgeBaseUpdateResponse
 from ...types.knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse
+import time
 
 __all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource"]
 
@@ -180,6 +181,45 @@ class KnowledgeBasesResource(SyncAPIResource):
             ),
             cast_to=KnowledgeBaseRetrieveResponse,
         )
+
+    def wait_for_database_online(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 600.0,
+        interval: float = 5.0,
+        raise_on_failed: bool = True,
+    ) -> KnowledgeBaseRetrieveResponse:
+        """
+        Polls the knowledge base retrieve endpoint until the underlying database is ONLINE.
+
+        Args:
+          uuid: Knowledge base id
+          timeout: Maximum seconds to wait before raising TimeoutError (default 600s).
+          interval: Seconds between polls (default 5s).
+          raise_on_failed: If True, raise a RuntimeError when the database reaches a terminal failed state.
+
+        Returns:
+          The final `KnowledgeBaseRetrieveResponse` object when the database is ONLINE (or the terminal failed
+          response if `raise_on_failed` is False).
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        terminal_failed = {"UNHEALTHY", "DECOMMISSIONED"}
+        start = time.time()
+        while True:
+            resp = self.retrieve(uuid)
+            status = getattr(resp, "database_status", None)
+            if status == "ONLINE":
+                return resp
+            if status in terminal_failed:
+                if raise_on_failed:
+                    raise RuntimeError(f"knowledge base {uuid} reached failed state: {status}")
+                return resp
+            if time.time() - start >= float(timeout):
+                raise TimeoutError(f"Timed out waiting for knowledge base {uuid} to become ONLINE")
+            self._sleep(float(interval))
 
     def update(
         self,
@@ -468,6 +508,35 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
             ),
             cast_to=KnowledgeBaseRetrieveResponse,
         )
+
+    async def wait_for_database_online(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 600.0,
+        interval: float = 5.0,
+        raise_on_failed: bool = True,
+    ) -> KnowledgeBaseRetrieveResponse:
+        """
+        Async version of wait_for_database_online: polls until database is ONLINE.
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        terminal_failed = {"UNHEALTHY", "DECOMMISSIONED"}
+        start = time.time()
+        while True:
+            resp = await self.retrieve(uuid)
+            status = getattr(resp, "database_status", None)
+            if status == "ONLINE":
+                return resp
+            if status in terminal_failed:
+                if raise_on_failed:
+                    raise RuntimeError(f"knowledge base {uuid} reached failed state: {status}")
+                return resp
+            if time.time() - start >= float(timeout):
+                raise TimeoutError(f"Timed out waiting for knowledge base {uuid} to become ONLINE")
+            await self._sleep(float(interval))
 
     async def update(
         self,
