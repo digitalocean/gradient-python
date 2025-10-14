@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.5.0 (2025-10-14)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/digitalocean/gradient-python/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#74](https://github.com/digitalocean/gradient-python/issues/74)) ([e1ab040](https://github.com/digitalocean/gradient-python/commit/e1ab0407e88f5394f5c299940a4b2fe72dbbf70e))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([0fb9f92](https://github.com/digitalocean/gradient-python/commit/0fb9f9254a0f72a721fa73823399e58eec723f1a))
+
 ## 3.4.0 (2025-10-09)
 
 Full Changelog: [v3.3.0...v3.4.0](https://github.com/digitalocean/gradient-python/compare/v3.3.0...v3.4.0)
