@@ -38,6 +38,11 @@ from ._exceptions import (
 )
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
+from ._enhanced_client import EnhancedGradient, EnhancedAsyncGradient
+from ._performance import get_request_cache, get_performance_tracker, get_connection_pool
+from ._retry import RetryConfig, CircuitBreakerConfig, create_retry_handler
+from ._debug import get_debugger, enable_debug_logging, disable_debug_logging
+from ._security import RequestSigner, TokenValidator, get_rate_limiter
 
 __all__ = [
     "types",
@@ -78,6 +83,21 @@ __all__ = [
     "DEFAULT_TIMEOUT",
     "DEFAULT_MAX_RETRIES",
     "DEFAULT_CONNECTION_LIMITS",
+    # Enhanced features
+    "EnhancedGradient",
+    "EnhancedAsyncGradient",
+    "RetryConfig",
+    "CircuitBreakerConfig",
+    "RequestSigner",
+    "TokenValidator",
+    "get_request_cache",
+    "get_performance_tracker",
+    "get_connection_pool",
+    "get_debugger",
+    "get_rate_limiter",
+    "enable_debug_logging",
+    "disable_debug_logging",
+    "create_retry_handler",
     "DefaultHttpxClient",
     "DefaultAsyncHttpxClient",
     "DefaultAioHttpClient",
