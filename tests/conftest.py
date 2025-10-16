@@ -46,8 +46,6 @@ def pytest_collection_modifyitems(items: list[pytest.Function]) -> None:
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 access_token = "My Access Token"
-model_access_key = "My Model Access Key"
-agent_access_key = "My Agent Access Key"
 
 
 @pytest.fixture(scope="session")
@@ -56,13 +54,7 @@ def client(request: FixtureRequest) -> Iterator[Gradient]:
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with Gradient(
-        base_url=base_url,
-        access_token=access_token,
-        model_access_key=model_access_key,
-        agent_access_key=agent_access_key,
-        _strict_response_validation=strict,
-    ) as client:
+    with Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=strict) as client:
         yield client
 
 
@@ -87,11 +79,6 @@ async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncGradient]:
         raise TypeError(f"Unexpected fixture parameter type {type(param)}, expected bool or dict")
 
     async with AsyncGradient(
-        base_url=base_url,
-        access_token=access_token,
-        model_access_key=model_access_key,
-        agent_access_key=agent_access_key,
-        _strict_response_validation=strict,
-        http_client=http_client,
+        base_url=base_url, access_token=access_token, _strict_response_validation=strict, http_client=http_client
     ) as client:
         yield client

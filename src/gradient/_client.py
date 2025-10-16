@@ -291,6 +291,16 @@ class Gradient(SyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
         raise TypeError(
             '"Could not resolve authentication method. Expected access_token, agent_access_key, or model_access_key to be set. Or for the `Authorization` headers to be explicitly omitted"'
         )
@@ -600,6 +610,16 @@ class AsyncGradient(AsyncAPIClient):
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
         if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
