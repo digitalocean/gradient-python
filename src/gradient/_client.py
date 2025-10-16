@@ -208,10 +208,28 @@ class Gradient(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
+        return {**self._bearer_auth, **self._model_access_key, **self._agent_access_key}
+
+    @property
+    def _bearer_auth(self) -> dict[str, str]:
         access_token = self.access_token
         if access_token is None:
             return {}
         return {"Authorization": f"Bearer {access_token}"}
+
+    @property
+    def _model_access_key(self) -> dict[str, str]:
+        model_access_key = self.model_access_key
+        if model_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {model_access_key}"}
+
+    @property
+    def _agent_access_key(self) -> dict[str, str]:
+        agent_access_key = self.agent_access_key
+        if agent_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {agent_access_key}"}
 
     @property
     @override
@@ -229,8 +247,18 @@ class Gradient(SyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
         raise TypeError(
-            '"Could not resolve authentication method. Expected the access_token to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected one of access_token, model_access_key or agent_access_key to be set. Or for one of the `Authorization`, `Authorization` or `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(
@@ -481,10 +509,28 @@ class AsyncGradient(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
+        return {**self._bearer_auth, **self._model_access_key, **self._agent_access_key}
+
+    @property
+    def _bearer_auth(self) -> dict[str, str]:
         access_token = self.access_token
         if access_token is None:
             return {}
         return {"Authorization": f"Bearer {access_token}"}
+
+    @property
+    def _model_access_key(self) -> dict[str, str]:
+        model_access_key = self.model_access_key
+        if model_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {model_access_key}"}
+
+    @property
+    def _agent_access_key(self) -> dict[str, str]:
+        agent_access_key = self.agent_access_key
+        if agent_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {agent_access_key}"}
 
     @property
     @override
@@ -502,8 +548,18 @@ class AsyncGradient(AsyncAPIClient):
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
 
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
         raise TypeError(
-            '"Could not resolve authentication method. Expected the access_token to be set. Or for the `Authorization` headers to be explicitly omitted"'
+            '"Could not resolve authentication method. Expected one of access_token, model_access_key or agent_access_key to be set. Or for one of the `Authorization`, `Authorization` or `Authorization` headers to be explicitly omitted"'
         )
 
     def copy(

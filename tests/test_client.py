@@ -39,8 +39,6 @@ from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 access_token = "My Access Token"
-model_access_key = "My Model Access Key"
-agent_access_key = "My Agent Access Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -62,13 +60,7 @@ def _get_open_connections(client: Gradient | AsyncGradient) -> int:
 
 
 class TestGradient:
-    client = Gradient(
-        base_url=base_url,
-        access_token=access_token,
-        model_access_key=model_access_key,
-        agent_access_key=agent_access_key,
-        _strict_response_validation=True,
-    )
+    client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -98,14 +90,6 @@ class TestGradient:
         assert copied.access_token == "another My Access Token"
         assert self.client.access_token == "My Access Token"
 
-        copied = self.client.copy(model_access_key="another My Model Access Key")
-        assert copied.model_access_key == "another My Model Access Key"
-        assert self.client.model_access_key == "My Model Access Key"
-
-        copied = self.client.copy(agent_access_key="another My Agent Access Key")
-        assert copied.agent_access_key == "another My Agent Access Key"
-        assert self.client.agent_access_key == "My Agent Access Key"
-
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -126,8 +110,6 @@ class TestGradient:
         client = Gradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -163,12 +145,7 @@ class TestGradient:
 
     def test_copy_default_query(self) -> None:
         client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-            default_query={"foo": "bar"},
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -294,12 +271,7 @@ class TestGradient:
 
     def test_client_timeout_option(self) -> None:
         client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-            timeout=httpx.Timeout(0),
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -310,12 +282,7 @@ class TestGradient:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
             client = Gradient(
-                base_url=base_url,
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -325,12 +292,7 @@ class TestGradient:
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
             client = Gradient(
-                base_url=base_url,
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -340,12 +302,7 @@ class TestGradient:
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = Gradient(
-                base_url=base_url,
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -358,8 +315,6 @@ class TestGradient:
                 Gradient(
                     base_url=base_url,
                     access_token=access_token,
-                    model_access_key=model_access_key,
-                    agent_access_key=agent_access_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -368,8 +323,6 @@ class TestGradient:
         client = Gradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -380,8 +333,6 @@ class TestGradient:
         client2 = Gradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -393,28 +344,16 @@ class TestGradient:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {access_token}"
 
         with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
-            client2 = Gradient(
-                base_url=base_url,
-                access_token=None,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-            )
+            client2 = Gradient(base_url=base_url, access_token=None, _strict_response_validation=True)
 
         with pytest.raises(
             TypeError,
-            match="Could not resolve authentication method. Expected the access_token to be set. Or for the `Authorization` headers to be explicitly omitted",
+            match="Could not resolve authentication method. Expected one of access_token, model_access_key or agent_access_key to be set. Or for one of the `Authorization`, `Authorization` or `Authorization` headers to be explicitly omitted",
         ):
             client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
@@ -427,8 +366,6 @@ class TestGradient:
         client = Gradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -631,11 +568,7 @@ class TestGradient:
 
     def test_base_url_setter(self) -> None:
         client = Gradient(
-            base_url="https://example.com/from_init",
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
+            base_url="https://example.com/from_init", access_token=access_token, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -645,12 +578,7 @@ class TestGradient:
 
     def test_base_url_env(self) -> None:
         with update_env(GRADIENT_BASE_URL="http://localhost:5000/from/env"):
-            client = Gradient(
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-            )
+            client = Gradient(access_token=access_token, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
@@ -659,15 +587,11 @@ class TestGradient:
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -690,15 +614,11 @@ class TestGradient:
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -721,15 +641,11 @@ class TestGradient:
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             Gradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -747,13 +663,7 @@ class TestGradient:
         assert request.url == "https://myapi.com/foo"
 
     def test_copied_client_does_not_close_http(self) -> None:
-        client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -764,13 +674,7 @@ class TestGradient:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -794,8 +698,6 @@ class TestGradient:
             Gradient(
                 base_url=base_url,
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -818,24 +720,12 @@ class TestGradient:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        strict_client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=False,
-        )
+        client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -863,13 +753,7 @@ class TestGradient:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = Gradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = Gradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -1065,13 +949,7 @@ class TestGradient:
 
 
 class TestAsyncGradient:
-    client = AsyncGradient(
-        base_url=base_url,
-        access_token=access_token,
-        model_access_key=model_access_key,
-        agent_access_key=agent_access_key,
-        _strict_response_validation=True,
-    )
+    client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -1103,14 +981,6 @@ class TestAsyncGradient:
         assert copied.access_token == "another My Access Token"
         assert self.client.access_token == "My Access Token"
 
-        copied = self.client.copy(model_access_key="another My Model Access Key")
-        assert copied.model_access_key == "another My Model Access Key"
-        assert self.client.model_access_key == "My Model Access Key"
-
-        copied = self.client.copy(agent_access_key="another My Agent Access Key")
-        assert copied.agent_access_key == "another My Agent Access Key"
-        assert self.client.agent_access_key == "My Agent Access Key"
-
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -1131,8 +1001,6 @@ class TestAsyncGradient:
         client = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1168,12 +1036,7 @@ class TestAsyncGradient:
 
     def test_copy_default_query(self) -> None:
         client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-            default_query={"foo": "bar"},
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -1299,12 +1162,7 @@ class TestAsyncGradient:
 
     async def test_client_timeout_option(self) -> None:
         client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-            timeout=httpx.Timeout(0),
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1315,12 +1173,7 @@ class TestAsyncGradient:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
             client = AsyncGradient(
-                base_url=base_url,
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1330,12 +1183,7 @@ class TestAsyncGradient:
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
             client = AsyncGradient(
-                base_url=base_url,
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1345,12 +1193,7 @@ class TestAsyncGradient:
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = AsyncGradient(
-                base_url=base_url,
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1363,8 +1206,6 @@ class TestAsyncGradient:
                 AsyncGradient(
                     base_url=base_url,
                     access_token=access_token,
-                    model_access_key=model_access_key,
-                    agent_access_key=agent_access_key,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -1373,8 +1214,6 @@ class TestAsyncGradient:
         client = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1385,8 +1224,6 @@ class TestAsyncGradient:
         client2 = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1398,28 +1235,16 @@ class TestAsyncGradient:
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
     def test_validate_headers(self) -> None:
-        client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("Authorization") == f"Bearer {access_token}"
 
         with update_env(**{"DIGITALOCEAN_ACCESS_TOKEN": Omit()}):
-            client2 = AsyncGradient(
-                base_url=base_url,
-                access_token=None,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-            )
+            client2 = AsyncGradient(base_url=base_url, access_token=None, _strict_response_validation=True)
 
         with pytest.raises(
             TypeError,
-            match="Could not resolve authentication method. Expected the access_token to be set. Or for the `Authorization` headers to be explicitly omitted",
+            match="Could not resolve authentication method. Expected one of access_token, model_access_key or agent_access_key to be set. Or for one of the `Authorization`, `Authorization` or `Authorization` headers to be explicitly omitted",
         ):
             client2._build_request(FinalRequestOptions(method="get", url="/foo"))
 
@@ -1432,8 +1257,6 @@ class TestAsyncGradient:
         client = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -1636,11 +1459,7 @@ class TestAsyncGradient:
 
     def test_base_url_setter(self) -> None:
         client = AsyncGradient(
-            base_url="https://example.com/from_init",
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
+            base_url="https://example.com/from_init", access_token=access_token, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -1650,12 +1469,7 @@ class TestAsyncGradient:
 
     def test_base_url_env(self) -> None:
         with update_env(GRADIENT_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncGradient(
-                access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
-                _strict_response_validation=True,
-            )
+            client = AsyncGradient(access_token=access_token, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
@@ -1664,15 +1478,11 @@ class TestAsyncGradient:
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1695,15 +1505,11 @@ class TestAsyncGradient:
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1726,15 +1532,11 @@ class TestAsyncGradient:
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
             ),
             AsyncGradient(
                 base_url="http://localhost:5000/custom/path/",
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1752,13 +1554,7 @@ class TestAsyncGradient:
         assert request.url == "https://myapi.com/foo"
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1770,13 +1566,7 @@ class TestAsyncGradient:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1801,8 +1591,6 @@ class TestAsyncGradient:
             AsyncGradient(
                 base_url=base_url,
                 access_token=access_token,
-                model_access_key=model_access_key,
-                agent_access_key=agent_access_key,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -1827,24 +1615,12 @@ class TestAsyncGradient:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        strict_client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=False,
-        )
+        client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1873,13 +1649,7 @@ class TestAsyncGradient:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncGradient(
-            base_url=base_url,
-            access_token=access_token,
-            model_access_key=model_access_key,
-            agent_access_key=agent_access_key,
-            _strict_response_validation=True,
-        )
+        client = AsyncGradient(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)

@@ -29,8 +29,8 @@ import os
 from gradient import Gradient
 
 client = Gradient(
-    access_token=os.environ.get(
-        "DIGITALOCEAN_ACCESS_TOKEN"
+    model_access_key=os.environ.get(
+        "GRADIENT_MODEL_ACCESS_KEY"
     ),  # This is the default and can be omitted
 )
 
@@ -61,8 +61,8 @@ import asyncio
 from gradient import AsyncGradient
 
 client = AsyncGradient(
-    access_token=os.environ.get(
-        "DIGITALOCEAN_ACCESS_TOKEN"
+    model_access_key=os.environ.get(
+        "GRADIENT_MODEL_ACCESS_KEY"
     ),  # This is the default and can be omitted
 )
 
@@ -106,7 +106,7 @@ from gradient import AsyncGradient
 
 async def main() -> None:
     async with AsyncGradient(
-        access_token="My Access Token",
+        model_access_key="My Model Access Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         completion = await client.chat.completions.create(
