@@ -80,6 +80,7 @@ class ModelsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
+        cache_ttl: int | None = None,
     ) -> ModelListResponse:
         """
         To list all models, send a GET request to `/v2/gen-ai/models`.
@@ -110,27 +111,33 @@ class ModelsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
-            "/v2/gen-ai/models"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/models",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                        "public_only": public_only,
-                        "usecases": usecases,
-                    },
-                    model_list_params.ModelListParams,
+        from ..._utils import cached_response
+
+        @cached_response(ttl=cache_ttl)
+        def _cached_list():
+            return self._get(
+                "/v2/gen-ai/models"
+                if self._client._base_url_overridden
+                else "https://api.digitalocean.com/v2/gen-ai/models",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "page": page,
+                            "per_page": per_page,
+                            "public_only": public_only,
+                            "usecases": usecases,
+                        },
+                        model_list_params.ModelListParams,
+                    ),
                 ),
-            ),
-            cast_to=ModelListResponse,
-        )
+                cast_to=ModelListResponse,
+            )
+
+        return _cached_list()
 
 
 class AsyncModelsResource(AsyncAPIResource):
@@ -210,6 +217,8 @@ class AsyncModelsResource(AsyncAPIResource):
           extra_body: Add additional JSON properties to the request
 
           timeout: Override the client-level default timeout for this request, in seconds
+
+          cache_ttl: Time to live for caching this response in seconds
         """
         return await self._get(
             "/v2/gen-ai/models"

@@ -43,6 +43,7 @@ if TYPE_CHECKING:
         gpu_droplets,
         knowledge_bases,
     )
+    from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -50,7 +51,6 @@ if TYPE_CHECKING:
         AsyncGPUDropletsResource,
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
-    from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
@@ -92,6 +92,7 @@ class Gradient(SyncAPIClient):
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
+        custom_headers: Mapping[str, str] | None = None,
         # Configure a custom httpx client.
         # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
         # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
@@ -117,6 +118,9 @@ class Gradient(SyncAPIClient):
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
+
+        Args:
+            custom_headers: Additional headers to include in all requests. These will be merged with default_headers.
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -144,13 +148,20 @@ class Gradient(SyncAPIClient):
         if base_url is None:
             base_url = f"https://api.digitalocean.com"
 
+        # Merge default_headers and custom_headers
+        merged_headers = {}
+        if default_headers:
+            merged_headers.update(default_headers)
+        if custom_headers:
+            merged_headers.update(custom_headers)
+
         super().__init__(
             version=__version__,
             base_url=base_url,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=default_headers,
+            custom_headers=merged_headers or default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
             user_agent_package=user_agent_package,
@@ -281,6 +292,7 @@ class Gradient(SyncAPIClient):
         max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
+        custom_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
         set_default_query: Mapping[str, object] | None = None,
         user_agent_package: str | None = None,
@@ -387,6 +399,7 @@ class AsyncGradient(AsyncAPIClient):
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
+        custom_headers: Mapping[str, str] | None = None,
         # Configure a custom httpx client.
         # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
         # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
@@ -412,6 +425,9 @@ class AsyncGradient(AsyncAPIClient):
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
+
+        Args:
+            custom_headers: Additional headers to include in all requests. These will be merged with default_headers.
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -424,6 +440,14 @@ class AsyncGradient(AsyncAPIClient):
         if agent_access_key is None:
             agent_access_key = os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
         self.agent_access_key = agent_access_key
+
+        # Validate credentials
+        from ._utils import validate_client_credentials
+        validate_client_credentials(access_token, model_access_key, agent_access_key)
+
+        # Validate credentials
+        from ._utils import validate_client_credentials
+        validate_client_credentials(access_token, model_access_key, agent_access_key)
 
         if agent_endpoint is None:
             agent_endpoint = os.environ.get("GRADIENT_AGENT_ENDPOINT")
@@ -439,13 +463,20 @@ class AsyncGradient(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://api.digitalocean.com"
 
+        # Merge default_headers and custom_headers
+        merged_headers = {}
+        if default_headers:
+            merged_headers.update(default_headers)
+        if custom_headers:
+            merged_headers.update(custom_headers)
+
         super().__init__(
             version=__version__,
             base_url=base_url,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=default_headers,
+            custom_headers=merged_headers or default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
             user_agent_package=user_agent_package,
@@ -576,6 +607,7 @@ class AsyncGradient(AsyncAPIClient):
         max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
+        custom_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
         set_default_query: Mapping[str, object] | None = None,
         user_agent_package: str | None = None,
@@ -596,6 +628,14 @@ class AsyncGradient(AsyncAPIClient):
             headers = {**headers, **default_headers}
         elif set_default_headers is not None:
             headers = set_default_headers
+
+        # Merge custom_headers if provided
+        if custom_headers is not None:
+            headers = {**headers, **custom_headers}
+
+        # Merge custom_headers if provided
+        if custom_headers is not None:
+            headers = {**headers, **custom_headers}
 
         params = self._custom_query
         if default_query is not None:

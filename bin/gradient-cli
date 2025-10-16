@@ -1,0 +1,335 @@
+#!/usr/bin/env python3
+"""
+Gradient CLI Tool
+
+A command-line interface for basic Gradient operations.
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Optional
+
+try:
+    from gradient import Gradient
+    from gradient._utils import (
+        export_api_response,
+        collect_all_pages,
+        clear_response_cache,
+        get_global_rate_limiter
+    )
+except ImportError:
+    print("Error: gradient package not found. Please install it first.")
+    sys.exit(1)
+
+
+def create_client(args) -> Gradient:
+    """Create a Gradient client from command line arguments."""
+    return Gradient(
+        access_token=args.access_token,
+        model_access_key=args.model_access_key,
+        agent_access_key=args.agent_access_key,
+        agent_endpoint=args.agent_endpoint,
+        inference_endpoint=args.inference_endpoint,
+        base_url=args.base_url,
+    )
+
+
+def cmd_list_models(args):
+    """List available models."""
+    client = create_client(args)
+
+    try:
+        if args.all_pages:
+            # Collect all models from all pages
+            models = collect_all_pages(
+                client.models.list,
+                item_attr='models',
+                max_pages=args.max_pages
+            )
+            print(f"Found {len(models)} models total:")
+            for model in models:
+                print(f"  - {model.name} ({model.id})")
+        else:
+            # List models with pagination
+            response = client.models.list(
+                page=args.page,
+                per_page=args.per_page,
+                cache_ttl=args.cache_ttl
+            )
+
+            if hasattr(response, 'models') and response.models:
+                print(f"Page {args.page} - Found {len(response.models)} models:")
+                for model in response.models:
+                    print(f"  - {model.name} ({model.id})")
+            else:
+                print("No models found.")
+
+        # Export if requested
+        if args.export:
+            export_api_response(response, args.export, args.format)
+            print(f"Results exported to {args.export}")
+
+    except Exception as e:
+        print(f"Error listing models: {e}")
+        sys.exit(1)
+
+
+def cmd_list_agents(args):
+    """List agents."""
+    client = create_client(args)
+
+    try:
+        response = client.agents.list()
+
+        if hasattr(response, 'agents') and response.agents:
+            print(f"Found {len(response.agents)} agents:")
+            for agent in response.agents:
+                print(f"  - {agent.name} ({agent.id})")
+        else:
+            print("No agents found.")
+
+        # Export if requested
+        if args.export:
+            export_api_response(response, args.export, args.format)
+            print(f"Results exported to {args.export}")
+
+    except Exception as e:
+        print(f"Error listing agents: {e}")
+        sys.exit(1)
+
+
+def cmd_chat_completion(args):
+    """Perform a chat completion."""
+    client = create_client(args)
+
+    try:
+        messages = [{"role": "user", "content": args.prompt}]
+
+        if args.stream:
+            print("Streaming response:")
+            print("-" * 50)
+
+            stream = client.chat.completions.create(
+                messages=messages,
+                model=args.model,
+                stream=True,
+                temperature=args.temperature,
+                max_tokens=args.max_tokens,
+            )
+
+            for chunk in stream:
+                if chunk.choices and chunk.choices[0].delta and chunk.choices[0].delta.content:
+                    print(chunk.choices[0].delta.content, end="", flush=True)
+            print("\n" + "-" * 50)
+        else:
+            response = client.chat.completions.create(
+                messages=messages,
+                model=args.model,
+                temperature=args.temperature,
+                max_tokens=args.max_tokens,
+            )
+
+            if response.choices and response.choices[0].message:
+                print(response.choices[0].message.content)
+
+            # Export if requested
+            if args.export:
+                export_api_response(response, args.export, args.format)
+                print(f"Response exported to {args.export}")
+
+    except Exception as e:
+        print(f"Error in chat completion: {e}")
+        sys.exit(1)
+
+
+def cmd_generate_image(args):
+    """Generate an image."""
+    client = create_client(args)
+
+    try:
+        if args.stream:
+            print("Streaming image generation:")
+            print("-" * 50)
+
+            stream = client.images.generate(
+                prompt=args.prompt,
+                model=args.model,
+                stream=True,
+                partial_images=5,  # Enable partial images for streaming
+            )
+
+            for event in stream:
+                if hasattr(event, 'data') and event.data:
+                    print(f"Received {len(event.data)} bytes of image data")
+                elif hasattr(event, 'url') and event.url:
+                    print(f"Image URL: {event.url}")
+        else:
+            response = client.images.generate(
+                prompt=args.prompt,
+                model=args.model,
+                size=args.size,
+                quality=args.quality,
+            )
+
+            if hasattr(response, 'data') and response.data:
+                print(f"Generated image with {len(response.data)} bytes")
+                if hasattr(response, 'url') and response.url:
+                    print(f"Image URL: {response.url}")
+
+            # Export if requested
+            if args.export:
+                export_api_response(response, args.export, args.format)
+                print(f"Response exported to {args.export}")
+
+    except Exception as e:
+        print(f"Error generating image: {e}")
+        sys.exit(1)
+
+
+def cmd_cache_info(args):
+    """Show cache information."""
+    try:
+        limiter = get_global_rate_limiter()
+        print("Rate Limiter Status:")
+        print(f"  Rate: {limiter.rate} tokens/second")
+        print(f"  Capacity: {limiter.capacity}")
+        print(f"  Current tokens: {limiter.tokens}")
+
+        # Note: Cache info would require exposing internal cache state
+        print("\nCache management:")
+        print("  Use --clear-cache to clear response cache")
+
+    except Exception as e:
+        print(f"Error getting cache info: {e}")
+        sys.exit(1)
+
+
+def cmd_clear_cache(args):
+    """Clear response cache."""
+    try:
+        clear_response_cache()
+        print("Response cache cleared successfully.")
+    except Exception as e:
+        print(f"Error clearing cache: {e}")
+        sys.exit(1)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Gradient CLI - Command line interface for Gradient API",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # List models
+  %(prog)s models --access-token YOUR_TOKEN
+
+  # Chat completion
+  %(prog)s chat "Hello, how are you?" --model llama3.3-70b-instruct
+
+  # Generate image
+  %(prog)s image "A beautiful sunset" --model gpt-image-1
+
+  # List all models across pages
+  %(prog)s models --all-pages --max-pages 5
+
+  # Export results
+  %(prog)s models --export models.json --format json
+        """
+    )
+
+    # Global options
+    parser.add_argument(
+        "--access-token",
+        help="DigitalOcean access token"
+    )
+    parser.add_argument(
+        "--model-access-key",
+        help="Gradient model access key"
+    )
+    parser.add_argument(
+        "--agent-access-key",
+        help="Gradient agent access key"
+    )
+    parser.add_argument(
+        "--agent-endpoint",
+        help="Agent endpoint URL"
+    )
+    parser.add_argument(
+        "--inference-endpoint",
+        help="Inference endpoint URL"
+    )
+    parser.add_argument(
+        "--base-url",
+        help="Base API URL"
+    )
+
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    # Models command
+    models_parser = subparsers.add_parser("models", help="List available models")
+    models_parser.add_argument("--page", type=int, default=1, help="Page number")
+    models_parser.add_argument("--per-page", type=int, default=20, help="Items per page")
+    models_parser.add_argument("--all-pages", action="store_true", help="Collect all pages")
+    models_parser.add_argument("--max-pages", type=int, help="Maximum pages to fetch")
+    models_parser.add_argument("--cache-ttl", type=int, help="Cache TTL in seconds")
+    models_parser.add_argument("--export", help="Export results to file")
+    models_parser.add_argument("--format", choices=["json", "csv"], default="json", help="Export format")
+    models_parser.set_defaults(func=cmd_list_models)
+
+    # Agents command
+    agents_parser = subparsers.add_parser("agents", help="List agents")
+    agents_parser.add_argument("--export", help="Export results to file")
+    agents_parser.add_argument("--format", choices=["json", "csv"], default="json", help="Export format")
+    agents_parser.set_defaults(func=cmd_list_agents)
+
+    # Chat command
+    chat_parser = subparsers.add_parser("chat", help="Chat completion")
+    chat_parser.add_argument("prompt", help="Chat prompt")
+    chat_parser.add_argument("--model", default="llama3.3-70b-instruct", help="Model to use")
+    chat_parser.add_argument("--temperature", type=float, default=0.7, help="Temperature")
+    chat_parser.add_argument("--max-tokens", type=int, help="Maximum tokens")
+    chat_parser.add_argument("--stream", action="store_true", help="Stream response")
+    chat_parser.add_argument("--export", help="Export response to file")
+    chat_parser.add_argument("--format", choices=["json", "csv"], default="json", help="Export format")
+    chat_parser.set_defaults(func=cmd_chat_completion)
+
+    # Image command
+    image_parser = subparsers.add_parser("image", help="Generate image")
+    image_parser.add_argument("prompt", help="Image prompt")
+    image_parser.add_argument("--model", default="gpt-image-1", help="Model to use")
+    image_parser.add_argument("--size", help="Image size")
+    image_parser.add_argument("--quality", help="Image quality")
+    image_parser.add_argument("--stream", action="store_true", help="Stream generation")
+    image_parser.add_argument("--export", help="Export response to file")
+    image_parser.add_argument("--format", choices=["json", "csv"], default="json", help="Export format")
+    image_parser.set_defaults(func=cmd_generate_image)
+
+    # Cache commands
+    cache_parser = subparsers.add_parser("cache", help="Cache management")
+    cache_subparsers = cache_parser.add_subparsers(dest="cache_command")
+
+    info_parser = cache_subparsers.add_parser("info", help="Show cache information")
+    info_parser.set_defaults(func=cmd_cache_info)
+
+    clear_parser = cache_subparsers.add_parser("clear", help="Clear response cache")
+    clear_parser.set_defaults(func=cmd_clear_cache)
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        sys.exit(1)
+
+    # Handle cache subcommands
+    if args.command == "cache":
+        if not hasattr(args, 'cache_command') or not args.cache_command:
+            cache_parser.print_help()
+            sys.exit(1)
+
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

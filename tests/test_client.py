@@ -1220,8 +1220,7 @@ class TestAsyncGradient:
 
         with pytest.raises(
             ValueError,
-            # TODO: update
-            match="`default_query` and `set_default_query` arguments are mutually exclusive",
+            match="The `default_query` and `set_default_query` arguments are mutually exclusive",
         ):
             client.copy(set_default_query={}, default_query={"foo": "Bar"})
 
