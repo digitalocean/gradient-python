@@ -419,3 +419,58 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# API Key Validation Functions
+def validate_api_key(api_key: str) -> bool:
+    """Validate an API key format.
+
+    Args:
+        api_key: The API key to validate
+
+    Returns:
+        True if valid, False otherwise
+    """
+    if not isinstance(api_key, str):
+        return False
+    if not api_key or api_key.isspace():
+        return False
+    if len(api_key) < 10:
+        return False
+
+    # Check for common patterns
+    return (
+        api_key.startswith(('sk-', 'do_v1_')) or
+        'gradient' in api_key.lower() or
+        len(api_key) >= 20
+    )
+
+
+def validate_client_credentials(
+    access_token: Optional[str] = None,
+    model_access_key: Optional[str] = None,
+    agent_access_key: Optional[str] = None,
+    agent_endpoint: Optional[str] = None
+) -> None:
+    """Validate client credentials.
+
+    Args:
+        access_token: DigitalOcean access token
+        model_access_key: Gradient model access key
+        agent_access_key: Gradient agent access key
+        agent_endpoint: Agent endpoint URL
+
+    Raises:
+        ValueError: If credentials are invalid
+    """
+    if not any([access_token, model_access_key, agent_access_key]):
+        raise ValueError("At least one authentication method must be provided")
+
+    if access_token and not validate_api_key(access_token):
+        raise ValueError("Invalid access_token format")
+
+    if model_access_key and not validate_api_key(model_access_key):
+        raise ValueError("Invalid model_access_key format")
+
+    if agent_access_key and not validate_api_key(agent_access_key):
+        raise ValueError("Invalid agent_access_key format")

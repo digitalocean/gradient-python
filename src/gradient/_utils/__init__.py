@@ -29,6 +29,9 @@ from ._utils import (
     get_required_header as get_required_header,
     maybe_coerce_boolean as maybe_coerce_boolean,
     maybe_coerce_integer as maybe_coerce_integer,
+    # New utility functions
+    validate_api_key as validate_api_key,
+    validate_client_credentials as validate_client_credentials,
 )
 from ._compat import (
     get_args as get_args,
