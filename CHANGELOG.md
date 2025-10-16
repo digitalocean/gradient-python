@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.6.0 (2025-10-16)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/digitalocean/gradient-python/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **api:** manual updates ([da88e9e](https://github.com/digitalocean/gradient-python/commit/da88e9eee0adc6152d0d8212305397483be0d686))
+
+
+### Bug Fixes
+
+* lints ([a1b1fc6](https://github.com/digitalocean/gradient-python/commit/a1b1fc6b7747c00d9bfc2b86c6262e9c123416dc))
+* test setup needs all three access keys ([01ac735](https://github.com/digitalocean/gradient-python/commit/01ac735fb965686699df82ec8763b18ceb660972))
+
 ## 3.5.0 (2025-10-14)
 
 Full Changelog: [v3.4.0...v3.5.0](https://github.com/digitalocean/gradient-python/compare/v3.4.0...v3.5.0)
