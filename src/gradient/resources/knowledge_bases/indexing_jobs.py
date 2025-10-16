@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import time
+import asyncio
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
@@ -259,6 +261,97 @@ class IndexingJobsResource(SyncAPIResource):
             cast_to=IndexingJobUpdateCancelResponse,
         )
 
+    def wait_for_completion(
+        self,
+        uuid: str,
+        *,
+        poll_interval: int = 5,
+        timeout: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        request_timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IndexingJobRetrieveResponse:
+        """
+        Wait for an indexing job to complete by polling its status.
+
+        This method polls the indexing job status at regular intervals until it reaches
+        a terminal state (succeeded, failed, error, or cancelled). It raises an exception
+        if the job fails or times out.
+
+        Args:
+          uuid: The UUID of the indexing job to wait for.
+
+          poll_interval: Time in seconds between status checks (default: 5 seconds).
+
+          timeout: Maximum time in seconds to wait for completion. If None, waits indefinitely.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          request_timeout: Override the client-level default timeout for this request, in seconds
+
+        Returns:
+          The final IndexingJobRetrieveResponse when the job completes successfully.
+
+        Raises:
+          TimeoutError: If the job doesn't complete within the specified timeout.
+          RuntimeError: If the job fails, errors, or is cancelled.
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+        
+        while True:
+            response = self.retrieve(
+                uuid,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=request_timeout,
+            )
+
+            # Check if job is in a terminal state
+            if response.job and response.job.phase:
+                phase = response.job.phase
+                
+                # Success state
+                if phase == "BATCH_JOB_PHASE_SUCCEEDED":
+                    return response
+                
+                # Failure states
+                if phase == "BATCH_JOB_PHASE_FAILED":
+                    raise RuntimeError(
+                        f"Indexing job {uuid} failed. "
+                        f"Total items indexed: {response.job.total_items_indexed}, "
+                        f"Total items failed: {response.job.total_items_failed}"
+                    )
+                
+                if phase == "BATCH_JOB_PHASE_ERROR":
+                    raise RuntimeError(f"Indexing job {uuid} encountered an error")
+                
+                if phase == "BATCH_JOB_PHASE_CANCELLED":
+                    raise RuntimeError(f"Indexing job {uuid} was cancelled")
+                
+                # Still in progress (UNKNOWN, PENDING, or RUNNING)
+                # Check timeout
+                if timeout is not None:
+                    elapsed = time.time() - start_time
+                    if elapsed >= timeout:
+                        raise TimeoutError(
+                            f"Indexing job {uuid} did not complete within {timeout} seconds. "
+                            f"Current phase: {phase}"
+                        )
+            
+            # Wait before next poll
+            time.sleep(poll_interval)
+
 
 class AsyncIndexingJobsResource(AsyncAPIResource):
     @cached_property
@@ -490,6 +583,97 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
             cast_to=IndexingJobUpdateCancelResponse,
         )
 
+    async def wait_for_completion(
+        self,
+        uuid: str,
+        *,
+        poll_interval: int = 5,
+        timeout: int | None = None,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        request_timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IndexingJobRetrieveResponse:
+        """
+        Wait for an indexing job to complete by polling its status.
+
+        This method polls the indexing job status at regular intervals until it reaches
+        a terminal state (succeeded, failed, error, or cancelled). It raises an exception
+        if the job fails or times out.
+
+        Args:
+          uuid: The UUID of the indexing job to wait for.
+
+          poll_interval: Time in seconds between status checks (default: 5 seconds).
+
+          timeout: Maximum time in seconds to wait for completion. If None, waits indefinitely.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          request_timeout: Override the client-level default timeout for this request, in seconds
+
+        Returns:
+          The final IndexingJobRetrieveResponse when the job completes successfully.
+
+        Raises:
+          TimeoutError: If the job doesn't complete within the specified timeout.
+          RuntimeError: If the job fails, errors, or is cancelled.
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+        
+        while True:
+            response = await self.retrieve(
+                uuid,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=request_timeout,
+            )
+
+            # Check if job is in a terminal state
+            if response.job and response.job.phase:
+                phase = response.job.phase
+                
+                # Success state
+                if phase == "BATCH_JOB_PHASE_SUCCEEDED":
+                    return response
+                
+                # Failure states
+                if phase == "BATCH_JOB_PHASE_FAILED":
+                    raise RuntimeError(
+                        f"Indexing job {uuid} failed. "
+                        f"Total items indexed: {response.job.total_items_indexed}, "
+                        f"Total items failed: {response.job.total_items_failed}"
+                    )
+                
+                if phase == "BATCH_JOB_PHASE_ERROR":
+                    raise RuntimeError(f"Indexing job {uuid} encountered an error")
+                
+                if phase == "BATCH_JOB_PHASE_CANCELLED":
+                    raise RuntimeError(f"Indexing job {uuid} was cancelled")
+                
+                # Still in progress (UNKNOWN, PENDING, or RUNNING)
+                # Check timeout
+                if timeout is not None:
+                    elapsed = time.time() - start_time
+                    if elapsed >= timeout:
+                        raise TimeoutError(
+                            f"Indexing job {uuid} did not complete within {timeout} seconds. "
+                            f"Current phase: {phase}"
+                        )
+            
+            # Wait before next poll
+            await asyncio.sleep(poll_interval)
+
 
 class IndexingJobsResourceWithRawResponse:
     def __init__(self, indexing_jobs: IndexingJobsResource) -> None:
@@ -509,6 +693,9 @@ class IndexingJobsResourceWithRawResponse:
         )
         self.update_cancel = to_raw_response_wrapper(
             indexing_jobs.update_cancel,
+        )
+        self.wait_for_completion = to_raw_response_wrapper(
+            indexing_jobs.wait_for_completion,
         )
 
 
@@ -531,6 +718,9 @@ class AsyncIndexingJobsResourceWithRawResponse:
         self.update_cancel = async_to_raw_response_wrapper(
             indexing_jobs.update_cancel,
         )
+        self.wait_for_completion = async_to_raw_response_wrapper(
+            indexing_jobs.wait_for_completion,
+        )
 
 
 class IndexingJobsResourceWithStreamingResponse:
@@ -552,6 +742,9 @@ class IndexingJobsResourceWithStreamingResponse:
         self.update_cancel = to_streamed_response_wrapper(
             indexing_jobs.update_cancel,
         )
+        self.wait_for_completion = to_streamed_response_wrapper(
+            indexing_jobs.wait_for_completion,
+        )
 
 
 class AsyncIndexingJobsResourceWithStreamingResponse:
@@ -572,4 +765,7 @@ class AsyncIndexingJobsResourceWithStreamingResponse:
         )
         self.update_cancel = async_to_streamed_response_wrapper(
             indexing_jobs.update_cancel,
+        )
+        self.wait_for_completion = async_to_streamed_response_wrapper(
+            indexing_jobs.wait_for_completion,
         )
