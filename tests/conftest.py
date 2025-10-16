@@ -14,7 +14,9 @@ from gradient import Gradient, AsyncGradient, DefaultAioHttpClient
 from gradient._utils import is_dict
 
 if TYPE_CHECKING:
-    from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
+    from _pytest.fixtures import (
+        FixtureRequest,  # pyright: ignore[reportPrivateImportUsage]
+    )
 
 pytest.register_assert_rewrite("tests.utils")
 
