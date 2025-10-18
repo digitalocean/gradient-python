@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.6.1 (2025-10-18)
+
+Full Changelog: [v3.6.0...v3.6.1](https://github.com/digitalocean/gradient-python/compare/v3.6.0...v3.6.1)
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([ee63294](https://github.com/digitalocean/gradient-python/commit/ee63294bc11fee676bdd79a0b3e05230981cd6f2))
+
 ## 3.6.0 (2025-10-16)
 
 Full Changelog: [v3.5.0...v3.6.0](https://github.com/digitalocean/gradient-python/compare/v3.5.0...v3.6.0)
