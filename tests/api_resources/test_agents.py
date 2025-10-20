@@ -371,7 +371,7 @@ class TestAgents:
         
         # Create side effect that returns different responses
         call_count = [0]
-        def get_response(request: httpx.Request) -> httpx.Response:
+        def get_response(_: httpx.Request) -> httpx.Response:
             call_count[0] += 1
             if call_count[0] == 1:
                 # First call: deploying
@@ -813,7 +813,7 @@ class TestAsyncAgents:
         
         # Create side effect that returns different responses
         call_count = [0]
-        def get_response(request: httpx.Request) -> httpx.Response:
+        def get_response(_: httpx.Request) -> httpx.Response:
             call_count[0] += 1
             if call_count[0] == 1:
                 # First call: deploying
