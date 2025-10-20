@@ -680,7 +680,7 @@ class AgentsResource(SyncAPIResource):
                 if status in ("STATUS_FAILED", "STATUS_UNDEPLOYMENT_FAILED", "STATUS_DELETED"):
                     raise AgentDeploymentError(
                         f"Agent deployment failed with status: {status}",
-                        status=status or "UNKNOWN",
+                        status=status,
                     )
 
             # Check timeout
@@ -1264,7 +1264,7 @@ class AsyncAgentsResource(AsyncAPIResource):
                 if status in ("STATUS_FAILED", "STATUS_UNDEPLOYMENT_FAILED", "STATUS_DELETED"):
                     raise AgentDeploymentError(
                         f"Agent deployment failed with status: {status}",
-                        status=status or "UNKNOWN",
+                        status=status,
                     )
 
             # Check timeout
