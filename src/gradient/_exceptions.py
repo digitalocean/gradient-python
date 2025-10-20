@@ -17,6 +17,8 @@ __all__ = [
     "InternalServerError",
     "IndexingJobError",
     "IndexingJobTimeoutError",
+    "AgentDeploymentError",
+    "AgentDeploymentTimeoutError",
 ]
 
 
@@ -134,3 +136,19 @@ class IndexingJobTimeoutError(GradientError):
         self.uuid = uuid
         self.phase = phase
         self.timeout = timeout
+
+
+class AgentDeploymentError(GradientError):
+    """Raised when an agent deployment fails."""
+
+    def __init__(self, message: str, status: str) -> None:
+        super().__init__(message)
+        self.status = status
+
+
+class AgentDeploymentTimeoutError(GradientError):
+    """Raised when waiting for an agent deployment times out."""
+
+    def __init__(self, message: str, agent_id: str) -> None:
+        super().__init__(message)
+        self.agent_id = agent_id

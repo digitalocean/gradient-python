@@ -37,6 +37,8 @@ from ._exceptions import (
     APIResponseValidationError,
     IndexingJobError,
     IndexingJobTimeoutError,
+    AgentDeploymentError,
+    AgentDeploymentTimeoutError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
@@ -69,6 +71,8 @@ __all__ = [
     "InternalServerError",
     "IndexingJobError",
     "IndexingJobTimeoutError",
+    "AgentDeploymentError",
+    "AgentDeploymentTimeoutError",
     "Timeout",
     "RequestOptions",
     "Client",
