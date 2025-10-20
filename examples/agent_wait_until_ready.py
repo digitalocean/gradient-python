@@ -58,7 +58,7 @@ if agent_id:
 from gradient import AsyncGradient
 
 
-async def main():
+async def main() -> None:
     async_client = AsyncGradient()
     
     # Create a new agent
