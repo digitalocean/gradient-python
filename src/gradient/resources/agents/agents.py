@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
-
 from __future__ import annotations
+
+import time
 
 import httpx
 
@@ -612,6 +613,92 @@ class AgentsResource(SyncAPIResource):
             cast_to=AgentUpdateStatusResponse,
         )
 
+    def wait_until_ready(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 300.0,
+        poll_interval: float = 5.0,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> AgentRetrieveResponse:
+        """Wait for an agent to be ready (deployment status is STATUS_RUNNING).
+
+        This method polls the agent status until it reaches STATUS_RUNNING or a terminal
+        error state. It handles timeout and deployment failures automatically.
+
+        Args:
+          uuid: The unique identifier of the agent to wait for
+
+          timeout: Maximum time to wait in seconds (default: 300 seconds / 5 minutes)
+
+          poll_interval: Time to wait between status checks in seconds (default: 5 seconds)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+        Returns:
+          AgentRetrieveResponse: The agent response when it reaches STATUS_RUNNING
+
+        Raises:
+          AgentDeploymentError: If the agent deployment fails (STATUS_FAILED,
+              STATUS_UNDEPLOYMENT_FAILED, or STATUS_DELETED)
+          AgentDeploymentTimeoutError: If the agent doesn't reach STATUS_RUNNING
+              within the timeout period
+          ValueError: If uuid is empty
+        """
+        from ..._exceptions import AgentDeploymentError, AgentDeploymentTimeoutError
+
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+
+        while True:
+            agent_response = self.retrieve(
+                uuid,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
+
+            # Check if agent and deployment exist
+            if agent_response.agent and agent_response.agent.deployment:
+                status = agent_response.agent.deployment.status
+
+                # Success case
+                if status == "STATUS_RUNNING":
+                    return agent_response
+
+                # Failure cases
+                if status in ("STATUS_FAILED", "STATUS_UNDEPLOYMENT_FAILED", "STATUS_DELETED"):
+                    raise AgentDeploymentError(
+                        f"Agent deployment failed with status: {status}",
+                        status=status,
+                    )
+
+            # Check timeout
+            elapsed_time = time.time() - start_time
+            if elapsed_time >= timeout:
+                current_status = (
+                    agent_response.agent.deployment.status
+                    if agent_response.agent and agent_response.agent.deployment
+                    else "UNKNOWN"
+                )
+                raise AgentDeploymentTimeoutError(
+                    f"Agent did not reach STATUS_RUNNING within {timeout} seconds. Current status: {current_status}",
+                    agent_id=uuid,
+                )
+
+            # Wait before polling again
+            time.sleep(poll_interval)
+
 
 class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
@@ -1108,6 +1195,94 @@ class AsyncAgentsResource(AsyncAPIResource):
             cast_to=AgentUpdateStatusResponse,
         )
 
+    async def wait_until_ready(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 300.0,
+        poll_interval: float = 5.0,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> AgentRetrieveResponse:
+        """Wait for an agent to be ready (deployment status is STATUS_RUNNING).
+
+        This method polls the agent status until it reaches STATUS_RUNNING or a terminal
+        error state. It handles timeout and deployment failures automatically.
+
+        Args:
+          uuid: The unique identifier of the agent to wait for
+
+          timeout: Maximum time to wait in seconds (default: 300 seconds / 5 minutes)
+
+          poll_interval: Time to wait between status checks in seconds (default: 5 seconds)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+        Returns:
+          AgentRetrieveResponse: The agent response when it reaches STATUS_RUNNING
+
+        Raises:
+          AgentDeploymentError: If the agent deployment fails (STATUS_FAILED,
+              STATUS_UNDEPLOYMENT_FAILED, or STATUS_DELETED)
+          AgentDeploymentTimeoutError: If the agent doesn't reach STATUS_RUNNING
+              within the timeout period
+          ValueError: If uuid is empty
+        """
+        import asyncio
+
+        from ..._exceptions import AgentDeploymentError, AgentDeploymentTimeoutError
+
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+
+        while True:
+            agent_response = await self.retrieve(
+                uuid,
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+            )
+
+            # Check if agent and deployment exist
+            if agent_response.agent and agent_response.agent.deployment:
+                status = agent_response.agent.deployment.status
+
+                # Success case
+                if status == "STATUS_RUNNING":
+                    return agent_response
+
+                # Failure cases
+                if status in ("STATUS_FAILED", "STATUS_UNDEPLOYMENT_FAILED", "STATUS_DELETED"):
+                    raise AgentDeploymentError(
+                        f"Agent deployment failed with status: {status}",
+                        status=status,
+                    )
+
+            # Check timeout
+            elapsed_time = time.time() - start_time
+            if elapsed_time >= timeout:
+                current_status = (
+                    agent_response.agent.deployment.status
+                    if agent_response.agent and agent_response.agent.deployment
+                    else "UNKNOWN"
+                )
+                raise AgentDeploymentTimeoutError(
+                    f"Agent did not reach STATUS_RUNNING within {timeout} seconds. Current status: {current_status}",
+                    agent_id=uuid,
+                )
+
+            # Wait before polling again
+            await asyncio.sleep(poll_interval)
+
 
 class AgentsResourceWithRawResponse:
     def __init__(self, agents: AgentsResource) -> None:
@@ -1133,6 +1308,9 @@ class AgentsResourceWithRawResponse:
         )
         self.update_status = to_raw_response_wrapper(
             agents.update_status,
+        )
+        self.wait_until_ready = to_raw_response_wrapper(
+            agents.wait_until_ready,
         )
 
     @cached_property
@@ -1201,6 +1379,9 @@ class AsyncAgentsResourceWithRawResponse:
         self.update_status = async_to_raw_response_wrapper(
             agents.update_status,
         )
+        self.wait_until_ready = async_to_raw_response_wrapper(
+            agents.wait_until_ready,
+        )
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
@@ -1268,6 +1449,9 @@ class AgentsResourceWithStreamingResponse:
         self.update_status = to_streamed_response_wrapper(
             agents.update_status,
         )
+        self.wait_until_ready = to_streamed_response_wrapper(
+            agents.wait_until_ready,
+        )
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
@@ -1334,6 +1518,9 @@ class AsyncAgentsResourceWithStreamingResponse:
         )
         self.update_status = async_to_streamed_response_wrapper(
             agents.update_status,
+        )
+        self.wait_until_ready = async_to_streamed_response_wrapper(
+            agents.wait_until_ready,
         )
 
     @cached_property
