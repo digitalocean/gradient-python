@@ -127,9 +127,9 @@ class IndexingJobTimeoutError(GradientError):
 
     uuid: str
     phase: str
-    timeout: int
+    timeout: float
 
-    def __init__(self, message: str, *, uuid: str, phase: str, timeout: int) -> None:
+    def __init__(self, message: str, *, uuid: str, phase: str, timeout: float) -> None:
         super().__init__(message)
         self.uuid = uuid
         self.phase = phase
