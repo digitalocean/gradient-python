@@ -36,6 +36,7 @@ from ._exceptions import (
     UnprocessableEntityError,
     APIResponseValidationError,
     IndexingJobError,
+    IndexingJobTimeoutError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
@@ -67,6 +68,7 @@ __all__ = [
     "RateLimitError",
     "InternalServerError",
     "IndexingJobError",
+    "IndexingJobTimeoutError",
     "Timeout",
     "RequestOptions",
     "Client",

@@ -7,7 +7,7 @@ import asyncio
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._exceptions import IndexingJobError
+from ..._exceptions import IndexingJobError, IndexingJobTimeoutError
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -301,14 +301,14 @@ class IndexingJobsResource(SyncAPIResource):
           The final IndexingJobRetrieveResponse when the job completes successfully.
 
         Raises:
-          TimeoutError: If the job doesn't complete within the specified timeout.
+          IndexingJobTimeoutError: If the job doesn't complete within the specified timeout.
           IndexingJobError: If the job fails, errors, or is cancelled.
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
 
         start_time = time.time()
-        
+
         while True:
             response = self.retrieve(
                 uuid,
@@ -321,11 +321,11 @@ class IndexingJobsResource(SyncAPIResource):
             # Check if job is in a terminal state
             if response.job and response.job.phase:
                 phase = response.job.phase
-                
+
                 # Success state
                 if phase == "BATCH_JOB_PHASE_SUCCEEDED":
                     return response
-                
+
                 # Failure states
                 if phase == "BATCH_JOB_PHASE_FAILED":
                     raise IndexingJobError(
@@ -335,31 +335,34 @@ class IndexingJobsResource(SyncAPIResource):
                         uuid=uuid,
                         phase=phase,
                     )
-                
+
                 if phase == "BATCH_JOB_PHASE_ERROR":
                     raise IndexingJobError(
                         f"Indexing job {uuid} encountered an error",
                         uuid=uuid,
                         phase=phase,
                     )
-                
+
                 if phase == "BATCH_JOB_PHASE_CANCELLED":
                     raise IndexingJobError(
                         f"Indexing job {uuid} was cancelled",
                         uuid=uuid,
                         phase=phase,
                     )
-                
+
                 # Still in progress (UNKNOWN, PENDING, or RUNNING)
                 # Check timeout
                 if timeout is not None:
                     elapsed = time.time() - start_time
                     if elapsed >= timeout:
-                        raise TimeoutError(
+                        raise IndexingJobTimeoutError(
                             f"Indexing job {uuid} did not complete within {timeout} seconds. "
-                            f"Current phase: {phase}"
+                            f"Current phase: {phase}",
+                            uuid=uuid,
+                            phase=phase,
+                            timeout=timeout,
                         )
-            
+
             # Wait before next poll
             time.sleep(poll_interval)
 
@@ -633,14 +636,14 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
           The final IndexingJobRetrieveResponse when the job completes successfully.
 
         Raises:
-          TimeoutError: If the job doesn't complete within the specified timeout.
+          IndexingJobTimeoutError: If the job doesn't complete within the specified timeout.
           IndexingJobError: If the job fails, errors, or is cancelled.
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
 
         start_time = time.time()
-        
+
         while True:
             response = await self.retrieve(
                 uuid,
@@ -653,11 +656,11 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
             # Check if job is in a terminal state
             if response.job and response.job.phase:
                 phase = response.job.phase
-                
+
                 # Success state
                 if phase == "BATCH_JOB_PHASE_SUCCEEDED":
                     return response
-                
+
                 # Failure states
                 if phase == "BATCH_JOB_PHASE_FAILED":
                     raise IndexingJobError(
@@ -667,31 +670,34 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
                         uuid=uuid,
                         phase=phase,
                     )
-                
+
                 if phase == "BATCH_JOB_PHASE_ERROR":
                     raise IndexingJobError(
                         f"Indexing job {uuid} encountered an error",
                         uuid=uuid,
                         phase=phase,
                     )
-                
+
                 if phase == "BATCH_JOB_PHASE_CANCELLED":
                     raise IndexingJobError(
                         f"Indexing job {uuid} was cancelled",
                         uuid=uuid,
                         phase=phase,
                     )
-                
+
                 # Still in progress (UNKNOWN, PENDING, or RUNNING)
                 # Check timeout
                 if timeout is not None:
                     elapsed = time.time() - start_time
                     if elapsed >= timeout:
-                        raise TimeoutError(
+                        raise IndexingJobTimeoutError(
                             f"Indexing job {uuid} did not complete within {timeout} seconds. "
-                            f"Current phase: {phase}"
+                            f"Current phase: {phase}",
+                            uuid=uuid,
+                            phase=phase,
+                            timeout=timeout,
                         )
-            
+
             # Wait before next poll
             await asyncio.sleep(poll_interval)
 

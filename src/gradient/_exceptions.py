@@ -16,6 +16,7 @@ __all__ = [
     "RateLimitError",
     "InternalServerError",
     "IndexingJobError",
+    "IndexingJobTimeoutError",
 ]
 
 
@@ -111,11 +112,25 @@ class InternalServerError(APIStatusError):
 
 class IndexingJobError(GradientError):
     """Raised when an indexing job fails, encounters an error, or is cancelled."""
-    
+
     uuid: str
     phase: str
-    
+
     def __init__(self, message: str, *, uuid: str, phase: str) -> None:
         super().__init__(message)
         self.uuid = uuid
         self.phase = phase
+
+
+class IndexingJobTimeoutError(GradientError):
+    """Raised when polling for an indexing job times out."""
+
+    uuid: str
+    phase: str
+    timeout: int
+
+    def __init__(self, message: str, *, uuid: str, phase: str, timeout: int) -> None:
+        super().__init__(message)
+        self.uuid = uuid
+        self.phase = phase
+        self.timeout = timeout
