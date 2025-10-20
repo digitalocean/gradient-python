@@ -15,6 +15,7 @@ __all__ = [
     "UnprocessableEntityError",
     "RateLimitError",
     "InternalServerError",
+    "IndexingJobError",
 ]
 
 
@@ -106,3 +107,15 @@ class RateLimitError(APIStatusError):
 
 class InternalServerError(APIStatusError):
     pass
+
+
+class IndexingJobError(GradientError):
+    """Raised when an indexing job fails, encounters an error, or is cancelled."""
+    
+    uuid: str
+    phase: str
+    
+    def __init__(self, message: str, *, uuid: str, phase: str) -> None:
+        super().__init__(message)
+        self.uuid = uuid
+        self.phase = phase

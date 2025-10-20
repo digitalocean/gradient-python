@@ -7,6 +7,7 @@ import asyncio
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._exceptions import IndexingJobError
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -301,7 +302,7 @@ class IndexingJobsResource(SyncAPIResource):
 
         Raises:
           TimeoutError: If the job doesn't complete within the specified timeout.
-          RuntimeError: If the job fails, errors, or is cancelled.
+          IndexingJobError: If the job fails, errors, or is cancelled.
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
@@ -327,17 +328,27 @@ class IndexingJobsResource(SyncAPIResource):
                 
                 # Failure states
                 if phase == "BATCH_JOB_PHASE_FAILED":
-                    raise RuntimeError(
+                    raise IndexingJobError(
                         f"Indexing job {uuid} failed. "
                         f"Total items indexed: {response.job.total_items_indexed}, "
-                        f"Total items failed: {response.job.total_items_failed}"
+                        f"Total items failed: {response.job.total_items_failed}",
+                        uuid=uuid,
+                        phase=phase,
                     )
                 
                 if phase == "BATCH_JOB_PHASE_ERROR":
-                    raise RuntimeError(f"Indexing job {uuid} encountered an error")
+                    raise IndexingJobError(
+                        f"Indexing job {uuid} encountered an error",
+                        uuid=uuid,
+                        phase=phase,
+                    )
                 
                 if phase == "BATCH_JOB_PHASE_CANCELLED":
-                    raise RuntimeError(f"Indexing job {uuid} was cancelled")
+                    raise IndexingJobError(
+                        f"Indexing job {uuid} was cancelled",
+                        uuid=uuid,
+                        phase=phase,
+                    )
                 
                 # Still in progress (UNKNOWN, PENDING, or RUNNING)
                 # Check timeout
@@ -623,7 +634,7 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
 
         Raises:
           TimeoutError: If the job doesn't complete within the specified timeout.
-          RuntimeError: If the job fails, errors, or is cancelled.
+          IndexingJobError: If the job fails, errors, or is cancelled.
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
@@ -649,17 +660,27 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
                 
                 # Failure states
                 if phase == "BATCH_JOB_PHASE_FAILED":
-                    raise RuntimeError(
+                    raise IndexingJobError(
                         f"Indexing job {uuid} failed. "
                         f"Total items indexed: {response.job.total_items_indexed}, "
-                        f"Total items failed: {response.job.total_items_failed}"
+                        f"Total items failed: {response.job.total_items_failed}",
+                        uuid=uuid,
+                        phase=phase,
                     )
                 
                 if phase == "BATCH_JOB_PHASE_ERROR":
-                    raise RuntimeError(f"Indexing job {uuid} encountered an error")
+                    raise IndexingJobError(
+                        f"Indexing job {uuid} encountered an error",
+                        uuid=uuid,
+                        phase=phase,
+                    )
                 
                 if phase == "BATCH_JOB_PHASE_CANCELLED":
-                    raise RuntimeError(f"Indexing job {uuid} was cancelled")
+                    raise IndexingJobError(
+                        f"Indexing job {uuid} was cancelled",
+                        uuid=uuid,
+                        phase=phase,
+                    )
                 
                 # Still in progress (UNKNOWN, PENDING, or RUNNING)
                 # Check timeout
