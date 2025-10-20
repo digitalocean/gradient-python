@@ -117,11 +117,14 @@ replacement = '[\1](https://github.com/digitalocean/gradient-python/tree/main/\g
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--tb=short -n auto"
+addopts = "--tb=short -n auto -m 'not smoke'"
 xfail_strict = true
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
 filterwarnings = ["error"]
+markers = [
+    "smoke: lightweight external integration smoke tests hitting live Gradient services",
+]
 
 [tool.pyright]
 # this enables practically every flag given by pyright.
