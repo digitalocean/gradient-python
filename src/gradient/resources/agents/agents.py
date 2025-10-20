@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import time
 import httpx
+import time
 
 from .routes import (
     RoutesResource,
@@ -1237,6 +1237,7 @@ class AsyncAgentsResource(AsyncAPIResource):
           ValueError: If uuid is empty
         """
         import asyncio
+
         from ..._exceptions import AgentDeploymentError, AgentDeploymentTimeoutError
 
         if not uuid:
