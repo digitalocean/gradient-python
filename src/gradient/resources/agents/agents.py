@@ -1,8 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 from __future__ import annotations
 
-import httpx
 import time
+
+import httpx
 
 from .routes import (
     RoutesResource,
@@ -646,9 +647,9 @@ class AgentsResource(SyncAPIResource):
           AgentRetrieveResponse: The agent response when it reaches STATUS_RUNNING
 
         Raises:
-          AgentDeploymentError: If the agent deployment fails (STATUS_FAILED, 
+          AgentDeploymentError: If the agent deployment fails (STATUS_FAILED,
               STATUS_UNDEPLOYMENT_FAILED, or STATUS_DELETED)
-          AgentDeploymentTimeoutError: If the agent doesn't reach STATUS_RUNNING 
+          AgentDeploymentTimeoutError: If the agent doesn't reach STATUS_RUNNING
               within the timeout period
           ValueError: If uuid is empty
         """
@@ -658,7 +659,7 @@ class AgentsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
 
         start_time = time.time()
-        
+
         while True:
             agent_response = self.retrieve(
                 uuid,
@@ -691,8 +692,7 @@ class AgentsResource(SyncAPIResource):
                     else "UNKNOWN"
                 )
                 raise AgentDeploymentTimeoutError(
-                    f"Agent did not reach STATUS_RUNNING within {timeout} seconds. "
-                    f"Current status: {current_status}",
+                    f"Agent did not reach STATUS_RUNNING within {timeout} seconds. Current status: {current_status}",
                     agent_id=uuid,
                 )
 
@@ -1229,9 +1229,9 @@ class AsyncAgentsResource(AsyncAPIResource):
           AgentRetrieveResponse: The agent response when it reaches STATUS_RUNNING
 
         Raises:
-          AgentDeploymentError: If the agent deployment fails (STATUS_FAILED, 
+          AgentDeploymentError: If the agent deployment fails (STATUS_FAILED,
               STATUS_UNDEPLOYMENT_FAILED, or STATUS_DELETED)
-          AgentDeploymentTimeoutError: If the agent doesn't reach STATUS_RUNNING 
+          AgentDeploymentTimeoutError: If the agent doesn't reach STATUS_RUNNING
               within the timeout period
           ValueError: If uuid is empty
         """
@@ -1243,7 +1243,7 @@ class AsyncAgentsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
 
         start_time = time.time()
-        
+
         while True:
             agent_response = await self.retrieve(
                 uuid,
@@ -1276,8 +1276,7 @@ class AsyncAgentsResource(AsyncAPIResource):
                     else "UNKNOWN"
                 )
                 raise AgentDeploymentTimeoutError(
-                    f"Agent did not reach STATUS_RUNNING within {timeout} seconds. "
-                    f"Current status: {current_status}",
+                    f"Agent did not reach STATUS_RUNNING within {timeout} seconds. Current status: {current_status}",
                     agent_id=uuid,
                 )
 
