@@ -388,17 +388,15 @@ Methods:
 
 # Images
 
-## Generations
-
 Types:
 
 ```python
-from gradient.types.images import GenerationCreateResponse
+from gradient.types import ImageGenerateResponse
 ```
 
 Methods:
 
-- <code title="post /images/generations">client.images.generations.<a href="./src/gradient/resources/images/generations.py">create</a>(\*\*<a href="src/gradient/types/images/generation_create_params.py">params</a>) -> <a href="./src/gradient/types/images/generation_create_response.py">GenerationCreateResponse</a></code>
+- <code title="post /images/generations">client.images.<a href="./src/gradient/resources/images.py">generate</a>(\*\*<a href="src/gradient/types/image_generate_params.py">params</a>) -> <a href="./src/gradient/types/image_generate_response.py">ImageGenerateResponse</a></code>
 
 # GPUDroplets
 

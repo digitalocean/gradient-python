@@ -67,7 +67,7 @@ class ChoiceMessage(BaseModel):
 
 
 class Choice(BaseModel):
-    finish_reason: Literal["stop", "length", "tool_calls"]
+    finish_reason: Literal["stop", "length", "tool_calls", "content_filter"]
     """The reason the model stopped generating tokens.
 
     This will be `stop` if the model hit a natural stop point or a provided stop

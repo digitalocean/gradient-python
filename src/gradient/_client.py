@@ -43,6 +43,7 @@ if TYPE_CHECKING:
         gpu_droplets,
         knowledge_bases,
     )
+    from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -50,7 +51,6 @@ if TYPE_CHECKING:
         AsyncGPUDropletsResource,
     )
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
-    from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
@@ -242,10 +242,28 @@ class Gradient(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
+        return {**self._model_access_key, **self._agent_access_key, **self._bearer_auth}
+
+    @property
+    def _bearer_auth(self) -> dict[str, str]:
         access_token = self.access_token
         if access_token is None:
             return {}
         return {"Authorization": f"Bearer {access_token}"}
+
+    @property
+    def _model_access_key(self) -> dict[str, str]:
+        model_access_key = self.model_access_key
+        if model_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {model_access_key}"}
+
+    @property
+    def _agent_access_key(self) -> dict[str, str]:
+        agent_access_key = self.agent_access_key
+        if agent_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {agent_access_key}"}
 
     @property
     @override
@@ -259,6 +277,26 @@ class Gradient(SyncAPIClient):
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
         if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
@@ -537,10 +575,28 @@ class AsyncGradient(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
+        return {**self._model_access_key, **self._agent_access_key, **self._bearer_auth}
+
+    @property
+    def _bearer_auth(self) -> dict[str, str]:
         access_token = self.access_token
         if access_token is None:
             return {}
         return {"Authorization": f"Bearer {access_token}"}
+
+    @property
+    def _model_access_key(self) -> dict[str, str]:
+        model_access_key = self.model_access_key
+        if model_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {model_access_key}"}
+
+    @property
+    def _agent_access_key(self) -> dict[str, str]:
+        agent_access_key = self.agent_access_key
+        if agent_access_key is None:
+            return {}
+        return {"Authorization": f"Bearer {agent_access_key}"}
 
     @property
     @override
@@ -554,6 +610,26 @@ class AsyncGradient(AsyncAPIClient):
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
         if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.model_access_key and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        if self.agent_access_key and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return

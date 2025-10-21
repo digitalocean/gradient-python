@@ -548,14 +548,14 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         # TODO: report this error to httpx
         return self._client.build_request(  # pyright: ignore[reportUnknownMemberType]
             headers=headers,
-            timeout=self.timeout if isinstance(options.timeout, NotGiven) else options.timeout,
+            timeout=(self.timeout if isinstance(options.timeout, NotGiven) else options.timeout),
             method=options.method,
             url=prepared_url,
             # the `Query` type that we use is incompatible with qs'
             # `Params` type as it needs to be typed as `Mapping[str, object]`
             # so that passing a `TypedDict` doesn't cause an error.
             # https://github.com/microsoft/pyright/issues/3526#event-6715453066
-            params=self.qs.stringify(cast(Mapping[str, Any], params)) if params else None,
+            params=(self.qs.stringify(cast(Mapping[str, Any], params)) if params else None),
             **kwargs,
         )
 
@@ -1067,7 +1067,12 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         )
 
     def _sleep_for_retry(
-        self, *, retries_taken: int, max_retries: int, options: FinalRequestOptions, response: httpx.Response | None
+        self,
+        *,
+        retries_taken: int,
+        max_retries: int,
+        options: FinalRequestOptions,
+        response: httpx.Response | None,
     ) -> None:
         remaining_retries = max_retries - retries_taken
         if remaining_retries == 1:
@@ -1248,7 +1253,11 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         stream_cls: type[_StreamT] | None = None,
     ) -> ResponseT | _StreamT:
         opts = FinalRequestOptions.construct(
-            method="post", url=path, json_data=body, files=to_httpx_files(files), **options
+            method="post",
+            url=path,
+            json_data=body,
+            files=to_httpx_files(files),
+            **options,
         )
         return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
 
@@ -1273,7 +1282,11 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         options: RequestOptions = {},
     ) -> ResponseT:
         opts = FinalRequestOptions.construct(
-            method="put", url=path, json_data=body, files=to_httpx_files(files), **options
+            method="put",
+            url=path,
+            json_data=body,
+            files=to_httpx_files(files),
+            **options,
         )
         return self.request(cast_to, opts)
 
@@ -1317,6 +1330,7 @@ except ImportError:
     class _DefaultAioHttpClient(httpx.AsyncClient):
         def __init__(self, **_kwargs: Any) -> None:
             raise RuntimeError("To use the aiohttp client you must have installed the package with the `aiohttp` extra")
+
 else:
 
     class _DefaultAioHttpClient(httpx_aiohttp.HttpxAiohttpClient):  # type: ignore
@@ -1603,7 +1617,12 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         )
 
     async def _sleep_for_retry(
-        self, *, retries_taken: int, max_retries: int, options: FinalRequestOptions, response: httpx.Response | None
+        self,
+        *,
+        retries_taken: int,
+        max_retries: int,
+        options: FinalRequestOptions,
+        response: httpx.Response | None,
     ) -> None:
         remaining_retries = max_retries - retries_taken
         if remaining_retries == 1:
@@ -1772,7 +1791,11 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         stream_cls: type[_AsyncStreamT] | None = None,
     ) -> ResponseT | _AsyncStreamT:
         opts = FinalRequestOptions.construct(
-            method="post", url=path, json_data=body, files=await async_to_httpx_files(files), **options
+            method="post",
+            url=path,
+            json_data=body,
+            files=await async_to_httpx_files(files),
+            **options,
         )
         return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
 
@@ -1797,7 +1820,11 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         options: RequestOptions = {},
     ) -> ResponseT:
         opts = FinalRequestOptions.construct(
-            method="put", url=path, json_data=body, files=await async_to_httpx_files(files), **options
+            method="put",
+            url=path,
+            json_data=body,
+            files=await async_to_httpx_files(files),
+            **options,
         )
         return await self.request(cast_to, opts)
 

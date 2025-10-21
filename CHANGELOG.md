@@ -1,5 +1,49 @@
 # Changelog
 
+## 3.6.0 (2025-10-16)
+
+Full Changelog: [v3.5.0...v3.6.0](https://github.com/digitalocean/gradient-python/compare/v3.5.0...v3.6.0)
+
+### Features
+
+* **api:** manual updates ([da88e9e](https://github.com/digitalocean/gradient-python/commit/da88e9eee0adc6152d0d8212305397483be0d686))
+
+
+### Bug Fixes
+
+* lints ([a1b1fc6](https://github.com/digitalocean/gradient-python/commit/a1b1fc6b7747c00d9bfc2b86c6262e9c123416dc))
+* test setup needs all three access keys ([01ac735](https://github.com/digitalocean/gradient-python/commit/01ac735fb965686699df82ec8763b18ceb660972))
+
+## 3.5.0 (2025-10-14)
+
+Full Changelog: [v3.4.0...v3.5.0](https://github.com/digitalocean/gradient-python/compare/v3.4.0...v3.5.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#74](https://github.com/digitalocean/gradient-python/issues/74)) ([e1ab040](https://github.com/digitalocean/gradient-python/commit/e1ab0407e88f5394f5c299940a4b2fe72dbbf70e))
+
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([0fb9f92](https://github.com/digitalocean/gradient-python/commit/0fb9f9254a0f72a721fa73823399e58eec723f1a))
+
+## 3.4.0 (2025-10-09)
+
+Full Changelog: [v3.3.0...v3.4.0](https://github.com/digitalocean/gradient-python/compare/v3.3.0...v3.4.0)
+
+### Features
+
+* **api:** manual updates ([bbd7ddc](https://github.com/digitalocean/gradient-python/commit/bbd7ddccfb3d98f39e61948365b92202b3cc9e33))
+
+## 3.3.0 (2025-10-07)
+
+Full Changelog: [v3.2.0...v3.3.0](https://github.com/digitalocean/gradient-python/compare/v3.2.0...v3.3.0)
+
+### Features
+
+* **api:** Images generations - openai ([e5a309e](https://github.com/digitalocean/gradient-python/commit/e5a309e46bf05846c580f425e6fa23f323138a4d))
+* **api:** update via SDK Studio ([c2bf693](https://github.com/digitalocean/gradient-python/commit/c2bf693d233830dafdfc2aa7f74e2ced2e8d81a0))
+
 ## 3.2.0 (2025-10-06)
 
 Full Changelog: [v3.1.0...v3.2.0](https://github.com/digitalocean/gradient-python/compare/v3.1.0...v3.2.0)

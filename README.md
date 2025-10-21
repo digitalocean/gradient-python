@@ -44,12 +44,14 @@ client = Gradient(
     ),  # This is the default and can be omitted
 )
 inference_client = Gradient(
-    inference_key=os.environ.get(
+    model_access_key=os.environ.get(
         "GRADIENT_MODEL_ACCESS_KEY"
     ),  # This is the default and can be omitted
 )
 agent_client = Gradient(
-    agent_key=os.environ.get("GRADIENT_AGENT_ACCESS_KEY"),  # This is the default and can be omitted
+    agent_access_key=os.environ.get(
+        "GRADIENT_AGENT_ACCESS_KEY"
+    ),  # This is the default and can be omitted
     agent_endpoint="https://my-agent.agents.do-ai.run",
 )
 
@@ -146,11 +148,7 @@ import os
 import asyncio
 from gradient import AsyncGradient
 
-client = AsyncGradient(
-    access_token=os.environ.get(
-        "DIGITALOCEAN_ACCESS_TOKEN"
-    ),  # This is the default and can be omitted
-)
+client = AsyncGradient()
 
 
 async def main() -> None:
@@ -192,7 +190,6 @@ from gradient import AsyncGradient
 
 async def main() -> None:
     async with AsyncGradient(
-        access_token="My Access Token",
         http_client=DefaultAioHttpClient(),
     ) as client:
         completion = await client.chat.completions.create(
