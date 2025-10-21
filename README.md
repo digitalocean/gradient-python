@@ -96,49 +96,6 @@ we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
 to add `DIGITALOCEAN_ACCESS_TOKEN="My Access Token"`, `GRADIENT_MODEL_ACCESS_KEY="My Model Access Key"` to your `.env` file
 so that your keys are not stored in source control.
 
-## Knowledge Base Database Polling
-
-When creating a Knowledge Base, the database deployment can take several minutes. The `wait_for_database()` helper function simplifies polling for the database status:
-
-```python
-from gradient import Gradient
-from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
-from gradient._exceptions import APITimeoutError
-
-client = Gradient()
-
-# Create a knowledge base
-kb_response = client.knowledge_bases.create(
-    name="My Knowledge Base",
-    region="nyc1",
-    embedding_model_uuid="your-embedding-model-uuid",
-)
-
-kb_uuid = kb_response.knowledge_base.uuid
-
-try:
-    # Wait for the database to be ready (default: 10 minute timeout, 5 second poll interval)
-    result = client.knowledge_bases.wait_for_database(kb_uuid)
-    print(f"Database status: {result.database_status}")  # "ONLINE"
-    
-    # Custom timeout and poll interval
-    result = client.knowledge_bases.wait_for_database(
-        kb_uuid,
-        timeout=900.0,       # 15 minutes
-        poll_interval=10.0   # Check every 10 seconds
-    )
-    
-except KnowledgeBaseDatabaseError as e:
-    # Database entered a failed state (DECOMMISSIONED or UNHEALTHY)
-    print(f"Database failed: {e}")
-    
-except APITimeoutError:
-    # Database did not become ready within the timeout period
-    print("Timeout: Database did not become ready in time")
-```
-
-The helper handles all state transitions and will raise appropriate exceptions for failed states or timeouts.
-
 ## Async usage
 
 Simply import `AsyncGradient` instead of `Gradient` and use `await` with each API call:

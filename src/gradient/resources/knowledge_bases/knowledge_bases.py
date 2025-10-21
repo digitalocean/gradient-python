@@ -27,7 +27,6 @@ from .data_sources import (
     DataSourcesResourceWithStreamingResponse,
     AsyncDataSourcesResourceWithStreamingResponse,
 )
-from ..._exceptions import APITimeoutError
 from .indexing_jobs import (
     IndexingJobsResource,
     AsyncIndexingJobsResource,
@@ -43,11 +42,22 @@ from ...types.knowledge_base_delete_response import KnowledgeBaseDeleteResponse
 from ...types.knowledge_base_update_response import KnowledgeBaseUpdateResponse
 from ...types.knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse
 
-__all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource", "KnowledgeBaseDatabaseError"]
+__all__ = [
+    "KnowledgeBasesResource",
+    "AsyncKnowledgeBasesResource",
+    "KnowledgeBaseDatabaseError",
+    "KnowledgeBaseTimeoutError",
+]
 
 
 class KnowledgeBaseDatabaseError(Exception):
     """Raised when a knowledge base database enters a failed state."""
+
+    pass
+
+
+class KnowledgeBaseTimeoutError(Exception):
+    """Raised when waiting for a knowledge base database times out."""
 
     pass
 
@@ -377,7 +387,7 @@ class KnowledgeBasesResource(SyncAPIResource):
         Raises:
           KnowledgeBaseDatabaseError: If the database enters a failed state (DECOMMISSIONED, UNHEALTHY)
 
-          APITimeoutError: If the timeout is exceeded before the database becomes ONLINE
+          KnowledgeBaseTimeoutError: If the timeout is exceeded before the database becomes ONLINE
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
@@ -388,11 +398,9 @@ class KnowledgeBasesResource(SyncAPIResource):
         while True:
             elapsed = time.time() - start_time
             if elapsed >= timeout:
-                raise APITimeoutError(
-                    request=httpx.Request(
-                        method="GET",
-                        url=f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
-                    )
+                raise KnowledgeBaseTimeoutError(
+                    f"Timeout waiting for knowledge base database to become ready. "
+                    f"Database did not reach ONLINE status within {timeout} seconds."
                 )
 
             response = self.retrieve(
@@ -408,9 +416,7 @@ class KnowledgeBasesResource(SyncAPIResource):
                 return response
 
             if status in failed_states:
-                raise KnowledgeBaseDatabaseError(
-                    f"Knowledge base database entered failed state: {status}"
-                )
+                raise KnowledgeBaseDatabaseError(f"Knowledge base database entered failed state: {status}")
 
             # Sleep before next poll, but don't exceed timeout
             remaining_time = timeout - elapsed
@@ -744,7 +750,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         Raises:
           KnowledgeBaseDatabaseError: If the database enters a failed state (DECOMMISSIONED, UNHEALTHY)
 
-          APITimeoutError: If the timeout is exceeded before the database becomes ONLINE
+          KnowledgeBaseTimeoutError: If the timeout is exceeded before the database becomes ONLINE
         """
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
@@ -755,11 +761,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         while True:
             elapsed = time.time() - start_time
             if elapsed >= timeout:
-                raise APITimeoutError(
-                    request=httpx.Request(
-                        method="GET",
-                        url=f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
-                    )
+                raise KnowledgeBaseTimeoutError(
+                    f"Timeout waiting for knowledge base database to become ready. "
+                    f"Database did not reach ONLINE status within {timeout} seconds."
                 )
 
             response = await self.retrieve(
@@ -775,9 +779,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 return response
 
             if status in failed_states:
-                raise KnowledgeBaseDatabaseError(
-                    f"Knowledge base database entered failed state: {status}"
-                )
+                raise KnowledgeBaseDatabaseError(f"Knowledge base database entered failed state: {status}")
 
             # Sleep before next poll, but don't exceed timeout
             remaining_time = timeout - elapsed

@@ -279,24 +279,24 @@ class TestKnowledgeBases:
     def test_method_wait_for_database_success(self, client: Gradient) -> None:
         """Test wait_for_database with successful database status transition."""
         from unittest.mock import Mock
-        
+
         call_count = [0]
-        
+
         def mock_retrieve(uuid, **kwargs):
             call_count[0] += 1
             response = Mock()
             # Simulate CREATING -> ONLINE transition
             response.database_status = "CREATING" if call_count[0] == 1 else "ONLINE"
             return response
-        
+
         client.knowledge_bases.retrieve = mock_retrieve
-        
+
         result = client.knowledge_bases.wait_for_database(
             "test-uuid",
             timeout=10.0,
             poll_interval=0.1,
         )
-        
+
         assert result.database_status == "ONLINE"
         assert call_count[0] == 2
 
@@ -306,14 +306,14 @@ class TestKnowledgeBases:
         from unittest.mock import Mock
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
-        
+
         def mock_retrieve(uuid, **kwargs):
             response = Mock()
             response.database_status = "UNHEALTHY"
             return response
-        
+
         client.knowledge_bases.retrieve = mock_retrieve
-        
+
         with pytest.raises(KnowledgeBaseDatabaseError, match="UNHEALTHY"):
             client.knowledge_bases.wait_for_database(
                 "test-uuid",
@@ -326,16 +326,16 @@ class TestKnowledgeBases:
         """Test wait_for_database with timeout."""
         from unittest.mock import Mock
 
-        from gradient._exceptions import APITimeoutError
-        
+        from gradient.resources.knowledge_bases import KnowledgeBaseTimeoutError
+
         def mock_retrieve(uuid, **kwargs):
             response = Mock()
             response.database_status = "CREATING"
             return response
-        
+
         client.knowledge_bases.retrieve = mock_retrieve
-        
-        with pytest.raises(APITimeoutError):
+
+        with pytest.raises(KnowledgeBaseTimeoutError):
             client.knowledge_bases.wait_for_database(
                 "test-uuid",
                 timeout=0.3,
@@ -348,14 +348,14 @@ class TestKnowledgeBases:
         from unittest.mock import Mock
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
-        
+
         def mock_retrieve(uuid, **kwargs):
             response = Mock()
             response.database_status = "DECOMMISSIONED"
             return response
-        
+
         client.knowledge_bases.retrieve = mock_retrieve
-        
+
         with pytest.raises(KnowledgeBaseDatabaseError, match="DECOMMISSIONED"):
             client.knowledge_bases.wait_for_database(
                 "test-uuid",
@@ -633,24 +633,24 @@ class TestAsyncKnowledgeBases:
     async def test_method_wait_for_database_success(self, async_client: AsyncGradient) -> None:
         """Test async wait_for_database with successful database status transition."""
         from unittest.mock import Mock
-        
+
         call_count = [0]
-        
+
         async def mock_retrieve(uuid, **kwargs):
             call_count[0] += 1
             response = Mock()
             # Simulate CREATING -> ONLINE transition
             response.database_status = "CREATING" if call_count[0] == 1 else "ONLINE"
             return response
-        
+
         async_client.knowledge_bases.retrieve = mock_retrieve
-        
+
         result = await async_client.knowledge_bases.wait_for_database(
             "test-uuid",
             timeout=10.0,
             poll_interval=0.1,
         )
-        
+
         assert result.database_status == "ONLINE"
         assert call_count[0] == 2
 
@@ -660,14 +660,14 @@ class TestAsyncKnowledgeBases:
         from unittest.mock import Mock
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
-        
+
         async def mock_retrieve(uuid, **kwargs):
             response = Mock()
             response.database_status = "UNHEALTHY"
             return response
-        
+
         async_client.knowledge_bases.retrieve = mock_retrieve
-        
+
         with pytest.raises(KnowledgeBaseDatabaseError, match="UNHEALTHY"):
             await async_client.knowledge_bases.wait_for_database(
                 "test-uuid",
@@ -680,16 +680,16 @@ class TestAsyncKnowledgeBases:
         """Test async wait_for_database with timeout."""
         from unittest.mock import Mock
 
-        from gradient._exceptions import APITimeoutError
-        
+        from gradient.resources.knowledge_bases import KnowledgeBaseTimeoutError
+
         async def mock_retrieve(uuid, **kwargs):
             response = Mock()
             response.database_status = "CREATING"
             return response
-        
+
         async_client.knowledge_bases.retrieve = mock_retrieve
-        
-        with pytest.raises(APITimeoutError):
+
+        with pytest.raises(KnowledgeBaseTimeoutError):
             await async_client.knowledge_bases.wait_for_database(
                 "test-uuid",
                 timeout=0.3,
@@ -702,14 +702,14 @@ class TestAsyncKnowledgeBases:
         from unittest.mock import Mock
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
-        
+
         async def mock_retrieve(uuid, **kwargs):
             response = Mock()
             response.database_status = "DECOMMISSIONED"
             return response
-        
+
         async_client.knowledge_bases.retrieve = mock_retrieve
-        
+
         with pytest.raises(KnowledgeBaseDatabaseError, match="DECOMMISSIONED"):
             await async_client.knowledge_bases.wait_for_database(
                 "test-uuid",

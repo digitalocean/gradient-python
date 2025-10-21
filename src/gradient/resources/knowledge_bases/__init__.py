@@ -18,8 +18,9 @@ from .indexing_jobs import (
 )
 from .knowledge_bases import (
     KnowledgeBasesResource,
-    AsyncKnowledgeBasesResource,
+    KnowledgeBaseTimeoutError,
     KnowledgeBaseDatabaseError,
+    AsyncKnowledgeBasesResource,
     KnowledgeBasesResourceWithRawResponse,
     AsyncKnowledgeBasesResourceWithRawResponse,
     KnowledgeBasesResourceWithStreamingResponse,
@@ -42,6 +43,7 @@ __all__ = [
     "KnowledgeBasesResource",
     "AsyncKnowledgeBasesResource",
     "KnowledgeBaseDatabaseError",
+    "KnowledgeBaseTimeoutError",
     "KnowledgeBasesResourceWithRawResponse",
     "AsyncKnowledgeBasesResourceWithRawResponse",
     "KnowledgeBasesResourceWithStreamingResponse",
