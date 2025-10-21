@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from typing import Iterable
 
 import httpx
@@ -330,6 +331,56 @@ class KnowledgeBasesResource(SyncAPIResource):
             cast_to=KnowledgeBaseDeleteResponse,
         )
 
+    def wait_until_database_online(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 300.0,
+        poll_interval: float = 5.0,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> KnowledgeBaseRetrieveResponse:
+        """Wait for a knowledge base's associated database to reach ONLINE.
+
+        This polls `retrieve` until `database_status` equals "ONLINE", or raises
+        on terminal failure or timeout.
+        """
+        from ..._exceptions import KnowledgeBaseDatabaseError, KnowledgeBaseDatabaseTimeoutError
+
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+
+        while True:
+            kb_response = self.retrieve(
+                uuid, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body
+            )
+
+            status = kb_response.database_status if kb_response else None
+
+            # Success
+            if status == "ONLINE":
+                return kb_response
+
+            # Failure cases - treat some terminal statuses as failures
+            if status in ("DECOMMISSIONED", "UNHEALTHY"):
+                raise KnowledgeBaseDatabaseError(
+                    f"Knowledge base database creation failed with status: {status}", status=status
+                )
+
+            # Timeout
+            elapsed_time = time.time() - start_time
+            if elapsed_time >= timeout:
+                current_status = status or "UNKNOWN"
+                raise KnowledgeBaseDatabaseTimeoutError(
+                    f"Knowledge base database did not reach ONLINE within {timeout} seconds. Current status: {current_status}",
+                    knowledge_base_id=uuid,
+                )
+
+            time.sleep(poll_interval)
+
 
 class AsyncKnowledgeBasesResource(AsyncAPIResource):
     @cached_property
@@ -618,6 +669,51 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
             cast_to=KnowledgeBaseDeleteResponse,
         )
 
+    async def wait_until_database_online(
+        self,
+        uuid: str,
+        *,
+        timeout: float = 300.0,
+        poll_interval: float = 5.0,
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+    ) -> KnowledgeBaseRetrieveResponse:
+        """Async version of `wait_until_database_online`."""
+        import asyncio
+
+        from ..._exceptions import KnowledgeBaseDatabaseError, KnowledgeBaseDatabaseTimeoutError
+
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+
+        start_time = time.time()
+
+        while True:
+            kb_response = await self.retrieve(
+                uuid, extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body
+            )
+
+            status = kb_response.database_status if kb_response else None
+
+            if status == "ONLINE":
+                return kb_response
+
+            if status in ("DECOMMISSIONED", "UNHEALTHY"):
+                raise KnowledgeBaseDatabaseError(
+                    f"Knowledge base database creation failed with status: {status}", status=status
+                )
+
+            elapsed_time = time.time() - start_time
+            if elapsed_time >= timeout:
+                current_status = status or "UNKNOWN"
+                raise KnowledgeBaseDatabaseTimeoutError(
+                    f"Knowledge base database did not reach ONLINE within {timeout} seconds. Current status: {current_status}",
+                    knowledge_base_id=uuid,
+                )
+
+            await asyncio.sleep(poll_interval)
+
 
 class KnowledgeBasesResourceWithRawResponse:
     def __init__(self, knowledge_bases: KnowledgeBasesResource) -> None:
@@ -637,6 +733,9 @@ class KnowledgeBasesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             knowledge_bases.delete,
+        )
+        self.wait_until_database_online = to_raw_response_wrapper(
+            knowledge_bases.wait_until_database_online,
         )
 
     @cached_property
@@ -667,6 +766,9 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             knowledge_bases.delete,
         )
+        self.wait_until_database_online = async_to_raw_response_wrapper(
+            knowledge_bases.wait_until_database_online,
+        )
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
@@ -696,6 +798,9 @@ class KnowledgeBasesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             knowledge_bases.delete,
         )
+        self.wait_until_database_online = to_streamed_response_wrapper(
+            knowledge_bases.wait_until_database_online,
+        )
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
@@ -724,6 +829,9 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             knowledge_bases.delete,
+        )
+        self.wait_until_database_online = async_to_streamed_response_wrapper(
+            knowledge_bases.wait_until_database_online,
         )
 
     @cached_property

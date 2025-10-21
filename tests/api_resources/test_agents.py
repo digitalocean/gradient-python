@@ -368,9 +368,10 @@ class TestAgents:
     def test_method_wait_until_ready(self, client: Gradient, respx_mock: Any) -> None:
         """Test successful wait_until_ready when agent becomes ready."""
         agent_uuid = "test-agent-id"
-        
+
         # Create side effect that returns different responses
         call_count = [0]
+
         def get_response(_: httpx.Request) -> httpx.Response:
             call_count[0] += 1
             if call_count[0] == 1:
@@ -395,9 +396,9 @@ class TestAgents:
                         }
                     },
                 )
-        
+
         respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(side_effect=get_response)
-        
+
         agent = client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
         assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
         assert agent.agent is not None
@@ -408,9 +409,9 @@ class TestAgents:
     def test_wait_until_ready_timeout(self, client: Gradient, respx_mock: Any) -> None:
         """Test that wait_until_ready raises timeout error."""
         from gradient._exceptions import AgentDeploymentTimeoutError
-        
+
         agent_uuid = "test-agent-id"
-        
+
         # Mock always returns deploying
         respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
             return_value=httpx.Response(
@@ -423,10 +424,10 @@ class TestAgents:
                 },
             )
         )
-        
+
         with pytest.raises(AgentDeploymentTimeoutError) as exc_info:
             client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=0.5)
-        
+
         assert "did not reach STATUS_RUNNING within" in str(exc_info.value)
         assert exc_info.value.agent_id == agent_uuid
 
@@ -434,9 +435,9 @@ class TestAgents:
     def test_wait_until_ready_deployment_failed(self, client: Gradient, respx_mock: Any) -> None:
         """Test that wait_until_ready raises error on deployment failure."""
         from gradient._exceptions import AgentDeploymentError
-        
+
         agent_uuid = "test-agent-id"
-        
+
         # Mock returns failed status
         respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
             return_value=httpx.Response(
@@ -449,10 +450,10 @@ class TestAgents:
                 },
             )
         )
-        
+
         with pytest.raises(AgentDeploymentError) as exc_info:
             client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
-        
+
         assert "deployment failed with status: STATUS_FAILED" in str(exc_info.value)
         assert exc_info.value.status == "STATUS_FAILED"
 
@@ -810,9 +811,10 @@ class TestAsyncAgents:
     async def test_method_wait_until_ready(self, async_client: AsyncGradient, respx_mock: Any) -> None:
         """Test successful async wait_until_ready when agent becomes ready."""
         agent_uuid = "test-agent-id"
-        
+
         # Create side effect that returns different responses
         call_count = [0]
+
         def get_response(_: httpx.Request) -> httpx.Response:
             call_count[0] += 1
             if call_count[0] == 1:
@@ -837,9 +839,9 @@ class TestAsyncAgents:
                         }
                     },
                 )
-        
+
         respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(side_effect=get_response)
-        
+
         agent = await async_client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
         assert_matches_type(AgentRetrieveResponse, agent, path=["response"])
         assert agent.agent is not None
@@ -850,9 +852,9 @@ class TestAsyncAgents:
     async def test_wait_until_ready_timeout(self, async_client: AsyncGradient, respx_mock: Any) -> None:
         """Test that async wait_until_ready raises timeout error."""
         from gradient._exceptions import AgentDeploymentTimeoutError
-        
+
         agent_uuid = "test-agent-id"
-        
+
         # Mock always returns deploying
         respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
             return_value=httpx.Response(
@@ -865,10 +867,10 @@ class TestAsyncAgents:
                 },
             )
         )
-        
+
         with pytest.raises(AgentDeploymentTimeoutError) as exc_info:
             await async_client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=0.5)
-        
+
         assert "did not reach STATUS_RUNNING within" in str(exc_info.value)
         assert exc_info.value.agent_id == agent_uuid
 
@@ -876,9 +878,9 @@ class TestAsyncAgents:
     async def test_wait_until_ready_deployment_failed(self, async_client: AsyncGradient, respx_mock: Any) -> None:
         """Test that async wait_until_ready raises error on deployment failure."""
         from gradient._exceptions import AgentDeploymentError
-        
+
         agent_uuid = "test-agent-id"
-        
+
         # Mock returns failed status
         respx_mock.get(f"/v2/gen-ai/agents/{agent_uuid}").mock(
             return_value=httpx.Response(
@@ -891,9 +893,9 @@ class TestAsyncAgents:
                 },
             )
         )
-        
+
         with pytest.raises(AgentDeploymentError) as exc_info:
             await async_client.agents.wait_until_ready(agent_uuid, poll_interval=0.1, timeout=10.0)
-        
+
         assert "deployment failed with status: STATUS_FAILED" in str(exc_info.value)
         assert exc_info.value.status == "STATUS_FAILED"

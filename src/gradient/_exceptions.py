@@ -15,6 +15,8 @@ __all__ = [
     "UnprocessableEntityError",
     "RateLimitError",
     "InternalServerError",
+    "KnowledgeBaseDatabaseError",
+    "KnowledgeBaseDatabaseTimeoutError",
     "AgentDeploymentError",
     "AgentDeploymentTimeoutError",
 ]
@@ -124,3 +126,19 @@ class AgentDeploymentTimeoutError(GradientError):
     def __init__(self, message: str, agent_id: str) -> None:
         super().__init__(message)
         self.agent_id = agent_id
+
+
+class KnowledgeBaseDatabaseError(GradientError):
+    """Raised when a knowledge base database creation fails."""
+
+    def __init__(self, message: str, status: str) -> None:
+        super().__init__(message)
+        self.status = status
+
+
+class KnowledgeBaseDatabaseTimeoutError(GradientError):
+    """Raised when waiting for a knowledge base database creation times out."""
+
+    def __init__(self, message: str, knowledge_base_id: str) -> None:
+        super().__init__(message)
+        self.knowledge_base_id = knowledge_base_id
