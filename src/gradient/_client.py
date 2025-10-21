@@ -92,6 +92,7 @@ class Gradient(SyncAPIClient):
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
+        custom_headers: Mapping[str, str] | None = None,
         # Configure a custom httpx client.
         # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
         # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
@@ -144,13 +145,20 @@ class Gradient(SyncAPIClient):
         if base_url is None:
             base_url = f"https://api.digitalocean.com"
 
+        # Merge default_headers and custom_headers
+        merged_headers = {}
+        if default_headers:
+            merged_headers.update(default_headers)
+        if custom_headers:
+            merged_headers.update(custom_headers)
+
         super().__init__(
             version=__version__,
             base_url=base_url,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=default_headers,
+            custom_headers=merged_headers or default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
             user_agent_package=user_agent_package,
@@ -387,6 +395,7 @@ class AsyncGradient(AsyncAPIClient):
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
+        custom_headers: Mapping[str, str] | None = None,
         # Configure a custom httpx client.
         # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
         # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
@@ -439,13 +448,20 @@ class AsyncGradient(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://api.digitalocean.com"
 
+        # Merge default_headers and custom_headers
+        merged_headers = {}
+        if default_headers:
+            merged_headers.update(default_headers)
+        if custom_headers:
+            merged_headers.update(custom_headers)
+
         super().__init__(
             version=__version__,
             base_url=base_url,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
-            custom_headers=default_headers,
+            custom_headers=merged_headers or default_headers,
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
             user_agent_package=user_agent_package,

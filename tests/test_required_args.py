@@ -78,7 +78,6 @@ def test_multiple_variants() -> None:
     assert foo(a=None) is None
     assert foo(b=None) is None
 
-    # TODO: this error message could probably be improved
     with pytest.raises(
         TypeError,
         match=r"Missing required arguments; Expected either \('a'\) or \('b'\) arguments to be given",

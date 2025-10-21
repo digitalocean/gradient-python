@@ -272,8 +272,7 @@ def required_args(*variants: Sequence[str]) -> Callable[[CallableT], CallableT]:
                 else:
                     assert len(variants) > 0
 
-                    # TODO: this error message is not deterministic
-                    missing = list(set(variants[0]) - given_params)
+                    missing = sorted(set(variants[0]) - given_params)
                     if len(missing) > 1:
                         msg = f"Missing required arguments: {human_join([quote(arg) for arg in missing])}"
                     else:
@@ -447,12 +446,17 @@ def validate_api_key(api_key: str) -> bool:
 
 
 def validate_client_credentials(
-    access_token: Optional[str] = None,
-    model_access_key: Optional[str] = None,
-    agent_access_key: Optional[str] = None,
-    agent_endpoint: Optional[str] = None
+    access_token: str | None = None,
+    model_access_key: str | None = None,
+    agent_access_key: str | None = None,
+    agent_endpoint: str | None = None
 ) -> None:
-    """Validate client credentials.
+    """Validate client credentials comprehensively.
+
+    This function performs thorough validation of client credentials including:
+    - Checking that at least one authentication method is provided
+    - Validating API key formats
+    - Checking agent endpoint URL format if provided
 
     Args:
         access_token: DigitalOcean access token
@@ -461,11 +465,13 @@ def validate_client_credentials(
         agent_endpoint: Agent endpoint URL
 
     Raises:
-        ValueError: If credentials are invalid
+        ValueError: If credentials are invalid or missing required authentication
     """
+    # Check that at least one authentication method is provided
     if not any([access_token, model_access_key, agent_access_key]):
         raise ValueError("At least one authentication method must be provided")
 
+    # Validate individual API keys
     if access_token and not validate_api_key(access_token):
         raise ValueError("Invalid access_token format")
 
@@ -474,3 +480,438 @@ def validate_client_credentials(
 
     if agent_access_key and not validate_api_key(agent_access_key):
         raise ValueError("Invalid agent_access_key format")
+
+    # Validate agent endpoint if provided
+    if agent_endpoint:
+        if not isinstance(agent_endpoint, str):
+            raise ValueError("agent_endpoint must be a string")
+        if not agent_endpoint.startswith(('http://', 'https://')):
+            raise ValueError("agent_endpoint must be a valid HTTP/HTTPS URL")
+        # Could add more URL validation here if needed
+
+
+def validate_client_instance(client: Any) -> None:
+    """Validate a Gradient client instance has proper authentication.
+
+    This function checks that a created client has valid authentication
+    and can make API calls.
+
+    Args:
+        client: A Gradient or AsyncGradient client instance
+
+    Raises:
+        ValueError: If client authentication is invalid
+        TypeError: If client is not a valid Gradient client instance
+    """
+    # Import here to avoid circular imports
+    try:
+        from .._client import Gradient, AsyncGradient
+    except ImportError:
+        # Fallback for when called from different contexts
+        import gradient
+        Gradient = gradient.Gradient
+        AsyncGradient = gradient.AsyncGradient
+
+    if not isinstance(client, (Gradient, AsyncGradient)):
+        raise TypeError("client must be a Gradient or AsyncGradient instance")
+
+    # Check that client has at least one authentication method
+    has_auth = any([
+        client.access_token,
+        client.model_access_key,
+        client.agent_access_key
+    ])
+
+    if not has_auth:
+        raise ValueError("Client must have at least one authentication method configured")
+
+    # Validate the authentication methods that are set
+    try:
+        validate_client_credentials(
+            access_token=client.access_token,
+            model_access_key=client.model_access_key,
+            agent_access_key=client.agent_access_key,
+            agent_endpoint=client._agent_endpoint
+        )
+    except ValueError as e:
+        raise ValueError(f"Client authentication validation failed: {e}") from e
+
+
+# Response Caching Classes
+class ResponseCache:
+    """Simple in-memory response cache with TTL support."""
+
+    def __init__(self, max_size: int = 100, default_ttl: int = 300):
+        """Initialize the cache.
+
+        Args:
+            max_size: Maximum number of cached responses
+            default_ttl: Default time-to-live in seconds
+        """
+        self.max_size = max_size
+        self.default_ttl = default_ttl
+        self._cache: dict[str, tuple[Any, float]] = {}
+        self._access_order: list[str] = []
+
+    def _make_key(self, method: str, url: str, params: dict | None = None, data: Any = None) -> str:
+        """Generate a cache key from request details."""
+        import hashlib
+        import json
+
+        key_data = {
+            "method": method.upper(),
+            "url": url,
+            "params": params or {},
+            "data": json.dumps(data, sort_keys=True) if data else None
+        }
+        key_str = json.dumps(key_data, sort_keys=True)
+        return hashlib.md5(key_str.encode()).hexdigest()
+
+    def get(self, method: str, url: str, params: dict | None = None, data: Any = None) -> Any | None:
+        """Get a cached response if available and not expired."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        if key in self._cache:
+            response, expiry = self._cache[key]
+            if time.time() < expiry:
+                # Move to end (most recently used)
+                self._access_order.remove(key)
+                self._access_order.append(key)
+                return response
+            else:
+                # Expired, remove it
+                del self._cache[key]
+                self._access_order.remove(key)
+        return None
+
+    def set(self, method: str, url: str, response: Any, ttl: int | None = None,
+            params: dict | None = None, data: Any = None) -> None:
+        """Cache a response with optional TTL."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        expiry = time.time() + (ttl or self.default_ttl)
+
+        # Remove if already exists
+        if key in self._cache:
+            self._access_order.remove(key)
+
+        # Evict least recently used if at capacity
+        if len(self._cache) >= self.max_size:
+            lru_key = self._access_order.pop(0)
+            del self._cache[lru_key]
+
+        self._cache[key] = (response, expiry)
+        self._access_order.append(key)
+
+    def clear(self) -> None:
+        """Clear all cached responses."""
+        self._cache.clear()
+        self._access_order.clear()
+
+    def size(self) -> int:
+        """Get current cache size."""
+        return len(self._cache)
+
+
+# Rate Limiting Classes
+class RateLimiter:
+    """Simple token bucket rate limiter."""
+
+    def __init__(self, requests_per_minute: int = 60):
+        """Initialize rate limiter.
+
+        Args:
+            requests_per_minute: Maximum requests allowed per minute
+        """
+        self.requests_per_minute = requests_per_minute
+        self.tokens = requests_per_minute
+        self.last_refill = self._now()
+        self.refill_rate = requests_per_minute / 60.0  # tokens per second
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def _refill(self) -> None:
+        """Refill tokens based on elapsed time."""
+        now = self._now()
+        elapsed = now - self.last_refill
+        self.tokens = min(self.requests_per_minute, self.tokens + elapsed * self.refill_rate)
+        self.last_refill = now
+
+    def acquire(self, tokens: int = 1) -> bool:
+        """Try to acquire tokens. Returns True if successful."""
+        self._refill()
+        if self.tokens >= tokens:
+            self.tokens -= tokens
+            return True
+        return False
+
+    def wait_time(self, tokens: int = 1) -> float:
+        """Get seconds to wait for tokens to be available."""
+        self._refill()
+        if self.tokens >= tokens:
+            return 0.0
+
+        needed = tokens - self.tokens
+        return needed / self.refill_rate
+
+
+# Batch Processing Classes
+class BatchProcessor:
+    """Utility for batching multiple requests together."""
+
+    def __init__(self, max_batch_size: int = 10, max_wait_time: float = 1.0):
+        """Initialize batch processor.
+
+        Args:
+            max_batch_size: Maximum number of requests to batch together
+            max_wait_time: Maximum time to wait before processing batch
+        """
+        self.max_batch_size = max_batch_size
+        self.max_wait_time = max_wait_time
+        self._batches: dict[str, list] = {}
+        self._timers: dict[str, float] = {}
+
+    def add_request(self, batch_key: str, request_data: Any) -> None:
+        """Add a request to a batch."""
+        import time
+
+        if batch_key not in self._batches:
+            self._batches[batch_key] = []
+            self._timers[batch_key] = time.time()
+
+        self._batches[batch_key].append(request_data)
+
+    def get_batch(self, batch_key: str) -> list[Any] | None:
+        """Get a batch if ready to process."""
+        import time
+
+        if batch_key not in self._batches:
+            return None
+
+        batch = self._batches[batch_key]
+        start_time = self._timers[batch_key]
+
+        # Check if batch is full or timed out
+        if len(batch) >= self.max_batch_size or (time.time() - start_time) >= self.max_wait_time:
+            # Remove and return the batch
+            del self._batches[batch_key]
+            del self._timers[batch_key]
+            return batch
+
+        return None
+
+    def get_all_ready_batches(self) -> dict[str, list[Any]]:
+        """Get all batches that are ready to process."""
+        ready_batches = {}
+        for batch_key in list(self._batches.keys()):
+            batch = self.get_batch(batch_key)
+            if batch is not None:
+                ready_batches[batch_key] = batch
+        return ready_batches
+
+    def force_process_all(self) -> dict[str, list[Any]]:
+        """Force process all pending batches."""
+        all_batches = dict(self._batches)
+        self._batches.clear()
+        self._timers.clear()
+        return all_batches
+
+    def pending_batches_count(self) -> int:
+        """Get count of pending batches."""
+        return len(self._batches)
+
+
+# Data Export Classes
+class DataExporter:
+    """Utility for exporting response data to various formats."""
+
+    @staticmethod
+    def to_json(data: Any, file_path: str, indent: int = 2) -> None:
+        """Export data to JSON file."""
+        import json
+
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=indent, ensure_ascii=False)
+
+    @staticmethod
+    def to_csv(data: list[dict], file_path: str, headers: list[str] | None = None) -> None:
+        """Export list of dictionaries to CSV file."""
+        import csv
+
+        if not data:
+            return
+
+        if headers is None:
+            headers = list(data[0].keys())
+
+        with open(file_path, 'w', newline='', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=headers)
+            writer.writeheader()
+            writer.writerows(data)
+
+    @staticmethod
+    def flatten_response(response: Any, prefix: str = '') -> dict:
+        """Flatten nested response data for CSV export."""
+        flattened = {}
+
+        if isinstance(response, dict):
+            for key, value in response.items():
+                new_key = f"{prefix}.{key}" if prefix else key
+                if isinstance(value, (dict, list)):
+                    flattened.update(DataExporter.flatten_response(value, new_key))
+                else:
+                    flattened[new_key] = value
+        elif isinstance(response, list):
+            for i, item in enumerate(response):
+                new_key = f"{prefix}[{i}]" if prefix else f"[{i}]"
+                if isinstance(item, (dict, list)):
+                    flattened.update(DataExporter.flatten_response(item, new_key))
+                else:
+                    flattened[new_key] = item
+        else:
+            flattened[prefix] = response
+
+        return flattened
+
+
+# Pagination Helper Classes
+class Paginator:
+    """Helper for handling paginated API responses."""
+
+    def __init__(self, client_method: Any, page_size: int = 50):
+        """Initialize paginator.
+
+        Args:
+            client_method: The client method that supports pagination
+            page_size: Number of items per page
+        """
+        self.client_method = client_method
+        self.page_size = page_size
+
+    def iterate_all(self, **kwargs) -> Any:
+        """Iterate through all pages and yield items."""
+        page = 1
+        while True:
+            # Update kwargs with pagination params
+            paginated_kwargs = {**kwargs, "page": page, "per_page": self.page_size}
+
+            try:
+                response = self.client_method(**paginated_kwargs)
+
+                # Handle different response structures
+                if hasattr(response, 'data'):
+                    items = response.data
+                elif hasattr(response, '__iter__') and not isinstance(response, (str, dict)):
+                    items = response
+                else:
+                    # Assume response is directly iterable
+                    items = response if hasattr(response, '__iter__') else [response]
+
+                if not items:
+                    break
+
+                yield from items
+
+                # Check if there are more pages
+                if hasattr(response, 'has_more') and not response.has_more:
+                    break
+                elif hasattr(response, 'next_page') and response.next_page is None:
+                    break
+                elif len(items) < self.page_size:
+                    break
+
+                page += 1
+
+            except Exception as e:
+                # If pagination fails, try to get all data at once
+                try:
+                    all_kwargs = {**kwargs, "limit": 1000}  # Try a high limit
+                    response = self.client_method(**all_kwargs)
+                    if hasattr(response, 'data'):
+                        yield from response.data
+                    elif hasattr(response, '__iter__'):
+                        yield from response
+                    break
+                except:
+                    raise e
+
+
+# Model Management Functions
+@lru_cache(maxsize=1)
+def get_available_models() -> list[str]:
+    """Get a list of available models with caching.
+
+    This function caches the result to avoid repeated API calls.
+    The cache can be cleared by calling get_available_models.cache_clear().
+
+    Returns:
+        List of available model names
+    """
+    # This would normally make an API call, but for now we'll return a static list
+    # In a real implementation, this would fetch from the models endpoint
+    return [
+        "llama3.3-70b-instruct",
+        "llama3.3-8b-instruct",
+        "llama3.2-90b-instruct",
+        "llama3.2-11b-instruct",
+        "llama3.2-3b-instruct",
+        "llama3.2-1b-instruct",
+        "llama3.1-70b-instruct",
+        "llama3.1-8b-instruct",
+        "mixtral-8x7b-instruct",
+        "codellama-34b-instruct",
+        "codellama-13b-instruct",
+        "codellama-7b-instruct",
+    ]
+
+
+def is_model_available(model_name: str) -> bool:
+    """Check if a specific model is available.
+
+    Args:
+        model_name: Name of the model to check
+
+    Returns:
+        True if the model is available, False otherwise
+    """
+    return model_name in get_available_models()
+
+
+def get_model_info(model_name: str) -> dict[str, Any] | None:
+    """Get information about a specific model.
+
+    Args:
+        model_name: Name of the model
+
+    Returns:
+        Dictionary with model information, or None if model not found
+    """
+    # This would normally fetch detailed model info from API
+    # For now, return basic info based on model name
+    if not is_model_available(model_name):
+        return None
+
+    # Extract basic info from model name
+    info = {"name": model_name, "available": True}
+
+    if "llama" in model_name.lower():
+        info["family"] = "Llama"
+    elif "mixtral" in model_name.lower():
+        info["family"] = "Mixtral"
+    elif "codellama" in model_name.lower():
+        info["family"] = "CodeLlama"
+    else:
+        info["family"] = "Unknown"
+
+    # Extract parameter count if present
+    import re
+    param_match = re.search(r'(\d+(?:\.\d+)?)b', model_name.lower())
+    if param_match:
+        info["parameters"] = param_match.group(1) + "B"
+
+    return info

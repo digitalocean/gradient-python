@@ -32,6 +32,15 @@ from ._utils import (
     # New utility functions
     validate_api_key as validate_api_key,
     validate_client_credentials as validate_client_credentials,
+    validate_client_instance as validate_client_instance,
+    get_available_models as get_available_models,
+    is_model_available as is_model_available,
+    get_model_info as get_model_info,
+    ResponseCache as ResponseCache,
+    RateLimiter as RateLimiter,
+    BatchProcessor as BatchProcessor,
+    DataExporter as DataExporter,
+    Paginator as Paginator,
 )
 from ._compat import (
     get_args as get_args,
