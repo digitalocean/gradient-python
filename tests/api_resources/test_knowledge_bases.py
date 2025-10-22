@@ -282,7 +282,7 @@ class TestKnowledgeBases:
 
         call_count = [0]
 
-        def mock_retrieve(uuid, **kwargs):
+        def mock_retrieve(_uuid, **_kwargs):
             call_count[0] += 1
             response = Mock()
             # Simulate CREATING -> ONLINE transition
@@ -307,7 +307,7 @@ class TestKnowledgeBases:
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
 
-        def mock_retrieve(uuid, **kwargs):
+        def mock_retrieve(_uuid, **_kwargs):
             response = Mock()
             response.database_status = "UNHEALTHY"
             return response
@@ -328,7 +328,7 @@ class TestKnowledgeBases:
 
         from gradient.resources.knowledge_bases import KnowledgeBaseTimeoutError
 
-        def mock_retrieve(uuid, **kwargs):
+        def mock_retrieve(_uuid, **_kwargs):
             response = Mock()
             response.database_status = "CREATING"
             return response
@@ -349,7 +349,7 @@ class TestKnowledgeBases:
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
 
-        def mock_retrieve(uuid, **kwargs):
+        def mock_retrieve(_uuid, **_kwargs):
             response = Mock()
             response.database_status = "DECOMMISSIONED"
             return response
@@ -636,7 +636,7 @@ class TestAsyncKnowledgeBases:
 
         call_count = [0]
 
-        async def mock_retrieve(uuid, **kwargs):
+        async def mock_retrieve(_uuid, **_kwargs):
             call_count[0] += 1
             response = Mock()
             # Simulate CREATING -> ONLINE transition
@@ -661,7 +661,7 @@ class TestAsyncKnowledgeBases:
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
 
-        async def mock_retrieve(uuid, **kwargs):
+        async def mock_retrieve(_uuid, **_kwargs):
             response = Mock()
             response.database_status = "UNHEALTHY"
             return response
@@ -682,7 +682,7 @@ class TestAsyncKnowledgeBases:
 
         from gradient.resources.knowledge_bases import KnowledgeBaseTimeoutError
 
-        async def mock_retrieve(uuid, **kwargs):
+        async def mock_retrieve(_uuid, **_kwargs):
             response = Mock()
             response.database_status = "CREATING"
             return response
@@ -703,7 +703,7 @@ class TestAsyncKnowledgeBases:
 
         from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
 
-        async def mock_retrieve(uuid, **kwargs):
+        async def mock_retrieve(_uuid, **_kwargs):
             response = Mock()
             response.database_status = "DECOMMISSIONED"
             return response
