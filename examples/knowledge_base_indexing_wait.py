@@ -8,8 +8,8 @@ without needing to write manual polling loops.
 """
 
 import os
-from gradient import Gradient
-from gradient import IndexingJobError, IndexingJobTimeoutError
+
+from gradient import Gradient, IndexingJobError, IndexingJobTimeoutError
 
 
 def main():
