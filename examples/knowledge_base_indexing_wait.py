@@ -147,7 +147,7 @@ async def example_async():
     print("\n\nExample 4: Async usage")
     print("-" * 50)
     
-    from gradient import AsyncGradient, IndexingJobError, IndexingJobTimeoutError
+    from gradient import AsyncGradient
     
     client = AsyncGradient()
     knowledge_base_uuid = os.getenv("KNOWLEDGE_BASE_UUID", "your-kb-uuid-here")
