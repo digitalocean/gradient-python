@@ -29,15 +29,15 @@ from ._exceptions import (
     RateLimitError,
     APITimeoutError,
     BadRequestError,
+    IndexingJobError,
     APIConnectionError,
     AuthenticationError,
     InternalServerError,
+    AgentDeploymentError,
     PermissionDeniedError,
+    IndexingJobTimeoutError,
     UnprocessableEntityError,
     APIResponseValidationError,
-    IndexingJobError,
-    IndexingJobTimeoutError,
-    AgentDeploymentError,
     AgentDeploymentTimeoutError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import time
 import asyncio
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._exceptions import IndexingJobError, IndexingJobTimeoutError
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -17,6 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._exceptions import IndexingJobError, IndexingJobTimeoutError
 from ..._base_client import make_request_options
 from ...types.knowledge_bases import (
     indexing_job_list_params,

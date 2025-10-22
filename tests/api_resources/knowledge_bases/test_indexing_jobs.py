@@ -8,8 +8,7 @@ from typing import Any, cast
 import httpx
 import pytest
 
-from gradient import Gradient, AsyncGradient
-from gradient import IndexingJobError, IndexingJobTimeoutError
+from gradient import Gradient, AsyncGradient, IndexingJobError, IndexingJobTimeoutError
 from tests.utils import assert_matches_type
 from gradient.types.knowledge_bases import (
     IndexingJobListResponse,
