@@ -9,6 +9,7 @@ without needing to write manual polling loops.
 
 import os
 from gradient import Gradient
+from gradient import IndexingJobError, IndexingJobTimeoutError
 
 
 def main():
@@ -49,9 +50,9 @@ def main():
             print(f"Total datasources: {completed_job.job.total_datasources}")
             print(f"Completed datasources: {completed_job.job.completed_datasources}")
         
-    except TimeoutError as e:
+    except IndexingJobTimeoutError as e:
         print(f"\n⏱️ Timeout: {e}")
-    except RuntimeError as e:
+    except IndexingJobError as e:
         print(f"\n❌ Error: {e}")
     except Exception as e:
         print(f"\n❌ Unexpected error: {e}")
@@ -90,14 +91,14 @@ def example_with_custom_polling():
         if completed_job.job:
             print(f"Phase: {completed_job.job.phase}")
         
-    except TimeoutError:
+    except IndexingJobTimeoutError:
         print("\n⏱️ Job did not complete within 5 minutes")
         # You can still check the current status
         current_status = client.knowledge_bases.indexing_jobs.retrieve(job_uuid)
         if current_status.job:
             print(f"Current phase: {current_status.job.phase}")
             print(f"Completed datasources: {current_status.job.completed_datasources}/{current_status.job.total_datasources}")
-    except RuntimeError as e:
+    except IndexingJobError as e:
         print(f"\n❌ Job failed: {e}")
 
 
@@ -146,7 +147,7 @@ async def example_async():
     print("\n\nExample 4: Async usage")
     print("-" * 50)
     
-    from gradient import AsyncGradient
+    from gradient import AsyncGradient, IndexingJobError, IndexingJobTimeoutError
     
     client = AsyncGradient()
     knowledge_base_uuid = os.getenv("KNOWLEDGE_BASE_UUID", "your-kb-uuid-here")
@@ -175,9 +176,9 @@ async def example_async():
         if completed_job.job:
             print(f"Phase: {completed_job.job.phase}")
         
-    except TimeoutError as e:
+    except IndexingJobTimeoutError as e:
         print(f"\n⏱️ Timeout: {e}")
-    except RuntimeError as e:
+    except IndexingJobError as e:
         print(f"\n❌ Error: {e}")
     finally:
         await client.close()
