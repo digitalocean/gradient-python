@@ -245,8 +245,8 @@ class TestIndexingJobs:
                     "job": {
                         "uuid": job_uuid,
                         "phase": "BATCH_JOB_PHASE_FAILED",
-                        "total_items_indexed": 10,
-                        "total_items_failed": 5,
+                        "total_items_indexed": "10",
+                        "total_items_failed": "5",
                     }
                 },
             )
@@ -341,8 +341,8 @@ class TestIndexingJobs:
                     "job": {
                         "uuid": job_uuid,
                         "phase": "BATCH_JOB_PHASE_SUCCEEDED",
-                        "total_items_indexed": 100,
-                        "total_items_failed": 0,
+                        "total_items_indexed": "100",
+                        "total_items_failed": "0",
                     }
                 },
             )
@@ -578,8 +578,8 @@ class TestAsyncIndexingJobs:
                     "job": {
                         "uuid": job_uuid,
                         "phase": "BATCH_JOB_PHASE_FAILED",
-                        "total_items_indexed": 10,
-                        "total_items_failed": 5,
+                        "total_items_indexed": "10",
+                        "total_items_failed": "5",
                     }
                 },
             )
@@ -674,8 +674,8 @@ class TestAsyncIndexingJobs:
                     "job": {
                         "uuid": job_uuid,
                         "phase": "BATCH_JOB_PHASE_SUCCEEDED",
-                        "total_items_indexed": 100,
-                        "total_items_failed": 0,
+                        "total_items_indexed": "100",
+                        "total_items_failed": "0",
                     }
                 },
             )
