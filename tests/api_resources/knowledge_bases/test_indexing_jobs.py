@@ -282,7 +282,9 @@ class TestIndexingJobs:
         assert "error" in str(exc_info.value).lower()
 
     @parametrize
-    def test_wait_for_completion_raises_indexing_job_error_on_cancelled(self, client: Gradient, respx_mock: Any) -> None:
+    def test_wait_for_completion_raises_indexing_job_error_on_cancelled(
+        self, client: Gradient, respx_mock: Any
+    ) -> None:
         """Test that IndexingJobError is raised when job phase is CANCELLED"""
         job_uuid = "test-job-uuid"
         respx_mock.get(f"{base_url}/v2/gen-ai/indexing_jobs/{job_uuid}").mock(
@@ -321,9 +323,7 @@ class TestIndexingJobs:
         )
 
         with pytest.raises(IndexingJobTimeoutError) as exc_info:
-            client.knowledge_bases.indexing_jobs.wait_for_completion(
-                job_uuid, poll_interval=0.1, timeout=0.2
-            )
+            client.knowledge_bases.indexing_jobs.wait_for_completion(job_uuid, poll_interval=0.1, timeout=0.2)
 
         assert exc_info.value.uuid == job_uuid
         assert exc_info.value.phase == "BATCH_JOB_PHASE_RUNNING"
@@ -567,7 +567,9 @@ class TestAsyncIndexingJobs:
             )
 
     @parametrize
-    async def test_wait_for_completion_raises_indexing_job_error_on_failed(self, async_client: AsyncGradient, respx_mock: Any) -> None:
+    async def test_wait_for_completion_raises_indexing_job_error_on_failed(
+        self, async_client: AsyncGradient, respx_mock: Any
+    ) -> None:
         """Test that IndexingJobError is raised when job phase is FAILED"""
         job_uuid = "test-job-uuid"
         respx_mock.get(f"{base_url}/v2/gen-ai/indexing_jobs/{job_uuid}").mock(
@@ -592,7 +594,9 @@ class TestAsyncIndexingJobs:
         assert "failed" in str(exc_info.value).lower()
 
     @parametrize
-    async def test_wait_for_completion_raises_indexing_job_error_on_error(self, async_client: AsyncGradient, respx_mock: Any) -> None:
+    async def test_wait_for_completion_raises_indexing_job_error_on_error(
+        self, async_client: AsyncGradient, respx_mock: Any
+    ) -> None:
         """Test that IndexingJobError is raised when job phase is ERROR"""
         job_uuid = "test-job-uuid"
         respx_mock.get(f"{base_url}/v2/gen-ai/indexing_jobs/{job_uuid}").mock(
@@ -615,7 +619,9 @@ class TestAsyncIndexingJobs:
         assert "error" in str(exc_info.value).lower()
 
     @parametrize
-    async def test_wait_for_completion_raises_indexing_job_error_on_cancelled(self, async_client: AsyncGradient, respx_mock: Any) -> None:
+    async def test_wait_for_completion_raises_indexing_job_error_on_cancelled(
+        self, async_client: AsyncGradient, respx_mock: Any
+    ) -> None:
         """Test that IndexingJobError is raised when job phase is CANCELLED"""
         job_uuid = "test-job-uuid"
         respx_mock.get(f"{base_url}/v2/gen-ai/indexing_jobs/{job_uuid}").mock(
