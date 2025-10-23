@@ -287,9 +287,9 @@ class TestGradient:
             add_leak(leaks, diff)
         if leaks:
             for leak in leaks:
-                print("MEMORY LEAK:", leak)
+                print("MEMORY LEAK:", leak)  # noqa: T201
                 for frame in leak.traceback:
-                    print(frame)
+                    print(frame)  # noqa: T201
             raise AssertionError()
 
     def test_request_timeout(self) -> None:
@@ -1304,9 +1304,9 @@ class TestAsyncGradient:
             add_leak(leaks, diff)
         if leaks:
             for leak in leaks:
-                print("MEMORY LEAK:", leak)
+                print("MEMORY LEAK:", leak)  # noqa: T201
                 for frame in leak.traceback:
-                    print(frame)
+                    print(frame)  # noqa: T201
             raise AssertionError()
 
     async def test_request_timeout(self) -> None:

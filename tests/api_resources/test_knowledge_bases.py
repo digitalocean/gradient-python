@@ -275,6 +275,102 @@ class TestKnowledgeBases:
                 "",
             )
 
+    @parametrize
+    def test_method_wait_for_database_success(self, client: Gradient) -> None:
+        """Test wait_for_database with successful database status transition."""
+        from unittest.mock import Mock
+
+        call_count = [0]
+
+        def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            call_count[0] += 1
+            response = Mock()
+            # Simulate CREATING -> ONLINE transition
+            response.database_status = "CREATING" if call_count[0] == 1 else "ONLINE"
+            return response
+
+        client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        result = client.knowledge_bases.wait_for_database(
+            "test-uuid",
+            timeout=10.0,
+            poll_interval=0.1,
+        )
+
+        assert result.database_status == "ONLINE"
+        assert call_count[0] == 2
+
+    @parametrize
+    def test_method_wait_for_database_failed_state(self, client: Gradient) -> None:
+        """Test wait_for_database with failed database status."""
+        from unittest.mock import Mock
+
+        from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
+
+        def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            response = Mock()
+            response.database_status = "UNHEALTHY"
+            return response
+
+        client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        with pytest.raises(KnowledgeBaseDatabaseError, match="UNHEALTHY"):
+            client.knowledge_bases.wait_for_database(
+                "test-uuid",
+                timeout=10.0,
+                poll_interval=0.1,
+            )
+
+    @parametrize
+    def test_method_wait_for_database_timeout(self, client: Gradient) -> None:
+        """Test wait_for_database with timeout."""
+        from unittest.mock import Mock
+
+        from gradient.resources.knowledge_bases import KnowledgeBaseTimeoutError
+
+        def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            response = Mock()
+            response.database_status = "CREATING"
+            return response
+
+        client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        with pytest.raises(KnowledgeBaseTimeoutError):
+            client.knowledge_bases.wait_for_database(
+                "test-uuid",
+                timeout=0.3,
+                poll_interval=0.1,
+            )
+
+    @parametrize
+    def test_method_wait_for_database_decommissioned(self, client: Gradient) -> None:
+        """Test wait_for_database with DECOMMISSIONED status."""
+        from unittest.mock import Mock
+
+        from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
+
+        def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            response = Mock()
+            response.database_status = "DECOMMISSIONED"
+            return response
+
+        client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        with pytest.raises(KnowledgeBaseDatabaseError, match="DECOMMISSIONED"):
+            client.knowledge_bases.wait_for_database(
+                "test-uuid",
+                timeout=10.0,
+                poll_interval=0.1,
+            )
+
+    @parametrize
+    def test_path_params_wait_for_database(self, client: Gradient) -> None:
+        """Test wait_for_database validates uuid parameter."""
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            client.knowledge_bases.wait_for_database(
+                "",
+            )
+
 
 class TestAsyncKnowledgeBases:
     parametrize = pytest.mark.parametrize(
@@ -530,5 +626,101 @@ class TestAsyncKnowledgeBases:
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.knowledge_bases.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
+    async def test_method_wait_for_database_success(self, async_client: AsyncGradient) -> None:
+        """Test async wait_for_database with successful database status transition."""
+        from unittest.mock import Mock
+
+        call_count = [0]
+
+        async def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            call_count[0] += 1
+            response = Mock()
+            # Simulate CREATING -> ONLINE transition
+            response.database_status = "CREATING" if call_count[0] == 1 else "ONLINE"
+            return response
+
+        async_client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        result = await async_client.knowledge_bases.wait_for_database(
+            "test-uuid",
+            timeout=10.0,
+            poll_interval=0.1,
+        )
+
+        assert result.database_status == "ONLINE"
+        assert call_count[0] == 2
+
+    @parametrize
+    async def test_method_wait_for_database_failed_state(self, async_client: AsyncGradient) -> None:
+        """Test async wait_for_database with failed database status."""
+        from unittest.mock import Mock
+
+        from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
+
+        async def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            response = Mock()
+            response.database_status = "UNHEALTHY"
+            return response
+
+        async_client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        with pytest.raises(KnowledgeBaseDatabaseError, match="UNHEALTHY"):
+            await async_client.knowledge_bases.wait_for_database(
+                "test-uuid",
+                timeout=10.0,
+                poll_interval=0.1,
+            )
+
+    @parametrize
+    async def test_method_wait_for_database_timeout(self, async_client: AsyncGradient) -> None:
+        """Test async wait_for_database with timeout."""
+        from unittest.mock import Mock
+
+        from gradient.resources.knowledge_bases import KnowledgeBaseTimeoutError
+
+        async def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            response = Mock()
+            response.database_status = "CREATING"
+            return response
+
+        async_client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        with pytest.raises(KnowledgeBaseTimeoutError):
+            await async_client.knowledge_bases.wait_for_database(
+                "test-uuid",
+                timeout=0.3,
+                poll_interval=0.1,
+            )
+
+    @parametrize
+    async def test_method_wait_for_database_decommissioned(self, async_client: AsyncGradient) -> None:
+        """Test async wait_for_database with DECOMMISSIONED status."""
+        from unittest.mock import Mock
+
+        from gradient.resources.knowledge_bases import KnowledgeBaseDatabaseError
+
+        async def mock_retrieve(uuid: str, **kwargs: object) -> Mock:  # noqa: ARG001
+            response = Mock()
+            response.database_status = "DECOMMISSIONED"
+            return response
+
+        async_client.knowledge_bases.retrieve = mock_retrieve  # type: ignore[method-assign]
+
+        with pytest.raises(KnowledgeBaseDatabaseError, match="DECOMMISSIONED"):
+            await async_client.knowledge_bases.wait_for_database(
+                "test-uuid",
+                timeout=10.0,
+                poll_interval=0.1,
+            )
+
+    @parametrize
+    async def test_path_params_wait_for_database(self, async_client: AsyncGradient) -> None:
+        """Test async wait_for_database validates uuid parameter."""
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+            await async_client.knowledge_bases.wait_for_database(
                 "",
             )
