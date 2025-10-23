@@ -349,6 +349,7 @@ class TestIndexingJobs:
 
         result = client.knowledge_bases.indexing_jobs.wait_for_completion(job_uuid)
         assert_matches_type(IndexingJobRetrieveResponse, result, path=["response"])
+        assert result.job is not None
         assert result.job.phase == "BATCH_JOB_PHASE_SUCCEEDED"
 
 
@@ -688,4 +689,5 @@ class TestAsyncIndexingJobs:
 
         result = await async_client.knowledge_bases.indexing_jobs.wait_for_completion(job_uuid)
         assert_matches_type(IndexingJobRetrieveResponse, result, path=["response"])
+        assert result.job is not None
         assert result.job.phase == "BATCH_JOB_PHASE_SUCCEEDED"
