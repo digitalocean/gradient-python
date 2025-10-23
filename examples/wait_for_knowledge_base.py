@@ -29,6 +29,10 @@ def main() -> None:
         embedding_model_uuid="your-embedding-model-uuid",  # Use your embedding model UUID
     )
 
+    if not kb_response.knowledge_base or not kb_response.knowledge_base.uuid:
+        print("Failed to create knowledge base")
+        return
+
     kb_uuid = kb_response.knowledge_base.uuid
     print(f"Created knowledge base: {kb_uuid}")
 
