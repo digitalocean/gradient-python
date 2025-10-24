@@ -12,7 +12,7 @@ import os
 from gradient import Gradient, IndexingJobError, IndexingJobTimeoutError
 
 
-def main():
+def main() -> None:
     # Initialize the Gradient client
     client = Gradient()
 
@@ -56,7 +56,7 @@ def main():
         print(f"\n❌ Unexpected error: {e}")
 
 
-def example_with_custom_polling():
+def example_with_custom_polling() -> None:
     """Example with custom polling interval and timeout"""
     print("\n\nExample 2: Custom polling interval and timeout")
     print("-" * 50)
@@ -102,7 +102,7 @@ def example_with_custom_polling():
         print(f"\n❌ Job failed: {e}")
 
 
-def example_manual_polling():
+def example_manual_polling() -> None:
     """Example of the old manual polling approach (for comparison)"""
     print("\n\nExample 3: Manual polling (old approach)")
     print("-" * 50)
@@ -125,10 +125,10 @@ def example_manual_polling():
     import time
 
     while True:
-        indexing_job = client.knowledge_bases.indexing_jobs.retrieve(job_uuid)
+        indexing_job_status = client.knowledge_bases.indexing_jobs.retrieve(job_uuid)
 
-        if indexing_job.job and indexing_job.job.phase:
-            phase = indexing_job.job.phase
+        if indexing_job_status.job and indexing_job_status.job.phase:
+            phase = indexing_job_status.job.phase
             print(f"Current phase: {phase}")
 
             if phase in ["BATCH_JOB_PHASE_UNKNOWN", "BATCH_JOB_PHASE_PENDING", "BATCH_JOB_PHASE_RUNNING"]:
@@ -142,7 +142,7 @@ def example_manual_polling():
                 break
 
 
-async def example_async():
+async def example_async() -> None:
     """Example using async/await"""
     print("\n\nExample 4: Async usage")
     print("-" * 50)
