@@ -5,8 +5,7 @@ This example demonstrates how to use the wait_until_ready() method to wait for
 an agent to finish deploying before using it.
 """
 
-from gradient import Gradient
-from gradient._exceptions import AgentDeploymentError, AgentDeploymentTimeoutError
+from gradient import Gradient, AgentDeploymentError, AgentDeploymentTimeoutError
 
 # Initialize the Gradient client
 client = Gradient()
