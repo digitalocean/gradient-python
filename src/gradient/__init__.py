@@ -32,10 +32,10 @@ from ._exceptions import (
     APIConnectionError,
     AuthenticationError,
     InternalServerError,
+    AgentDeploymentError,
     PermissionDeniedError,
     UnprocessableEntityError,
     APIResponseValidationError,
-    AgentDeploymentError,
     AgentDeploymentTimeoutError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
