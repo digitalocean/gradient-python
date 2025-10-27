@@ -61,6 +61,8 @@ __all__ = [
     "APITimeoutError",
     "APIConnectionError",
     "APIResponseValidationError",
+    "AgentDeploymentError",
+    "AgentDeploymentTimeoutError",
     "BadRequestError",
     "AuthenticationError",
     "PermissionDeniedError",
