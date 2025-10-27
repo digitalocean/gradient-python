@@ -29,12 +29,16 @@ from ._exceptions import (
     RateLimitError,
     APITimeoutError,
     BadRequestError,
+    IndexingJobError,
     APIConnectionError,
     AuthenticationError,
     InternalServerError,
+    AgentDeploymentError,
     PermissionDeniedError,
+    IndexingJobTimeoutError,
     UnprocessableEntityError,
     APIResponseValidationError,
+    AgentDeploymentTimeoutError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAioHttpClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
@@ -65,6 +69,10 @@ __all__ = [
     "UnprocessableEntityError",
     "RateLimitError",
     "InternalServerError",
+    "IndexingJobError",
+    "IndexingJobTimeoutError",
+    "AgentDeploymentError",
+    "AgentDeploymentTimeoutError",
     "Timeout",
     "RequestOptions",
     "Client",
