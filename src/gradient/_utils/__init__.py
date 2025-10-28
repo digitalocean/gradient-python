@@ -32,6 +32,7 @@ from ._utils import (
     validate_api_key as validate_api_key,
     validate_client_credentials as validate_client_credentials,
     validate_client_instance as validate_client_instance,
+    ResponseCache as ResponseCache,
 )
 from ._compat import (
     get_args as get_args,
