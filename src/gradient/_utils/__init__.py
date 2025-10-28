@@ -33,6 +33,7 @@ from ._utils import (
     validate_client_credentials as validate_client_credentials,
     validate_client_instance as validate_client_instance,
     ResponseCache as ResponseCache,
+    RateLimiter as RateLimiter,
 )
 from ._compat import (
     get_args as get_args,
