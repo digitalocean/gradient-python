@@ -34,6 +34,7 @@ from ._utils import (
     validate_client_instance as validate_client_instance,
     ResponseCache as ResponseCache,
     RateLimiter as RateLimiter,
+    BatchProcessor as BatchProcessor,
 )
 from ._compat import (
     get_args as get_args,

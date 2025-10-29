@@ -544,6 +544,74 @@ class RateLimiter:
         return needed / self.refill_rate
 
 
+# Batch Processing Classes
+class BatchProcessor:
+    """Utility for batching multiple requests with timeout and size limits."""
+
+    def __init__(self, batch_size: int = 10, timeout_seconds: float = 5.0) -> None:
+        """Initialize batch processor.
+
+        Args:
+            batch_size: Maximum items per batch
+            timeout_seconds: Maximum time to wait before processing batch
+        """
+        self.batch_size: int = batch_size
+        self.timeout_seconds: float = timeout_seconds
+        self._batch: list[Any] = []
+        self._last_add_time: float = self._now()
+        self._callback: Callable[[list[Any]], Any] | None = None
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def add(self, item: Any) -> None:
+        """Add item to current batch."""
+        self._batch.append(item)
+        self._last_add_time = self._now()
+
+        # Auto-process if batch is full
+        if len(self._batch) >= self.batch_size:
+            self._process_batch()
+
+    def set_callback(self, callback: Callable[[list[Any]], Any]) -> None:
+        """Set callback function to process batches."""
+        self._callback = callback
+
+    def _process_batch(self) -> Any | None:
+        """Process current batch if not empty."""
+        if not self._batch or not self._callback:
+            return None
+
+        batch = self._batch.copy()
+        self._batch.clear()
+        return self._callback(batch)
+
+    def force_process(self) -> Any | None:
+        """Force process current batch regardless of size or timeout."""
+        return self._process_batch()
+
+    def check_timeout(self) -> Any | None:
+        """Check if batch has timed out and process if needed."""
+        if not self._batch:
+            return None
+
+        elapsed = self._now() - self._last_add_time
+        if elapsed >= self.timeout_seconds:
+            return self._process_batch()
+
+        return None
+
+    def size(self) -> int:
+        """Get current batch size."""
+        return len(self._batch)
+
+    def is_empty(self) -> bool:
+        """Check if batch is empty."""
+        return len(self._batch) == 0
+
+
 # API Key Validation Functions
 def validate_api_key(api_key: str | None) -> bool:
     """Validate an API key format.
