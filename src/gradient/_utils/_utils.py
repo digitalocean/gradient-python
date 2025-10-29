@@ -612,6 +612,109 @@ class BatchProcessor:
         return len(self._batch) == 0
 
 
+# Data Export Classes
+class DataExporter:
+    """Utility for exporting API response data to JSON/CSV formats."""
+
+    def __init__(self) -> None:
+        """Initialize data exporter."""
+        pass
+
+    def _flatten_response(self, data: Any, prefix: str = "") -> dict[str, Any]:
+        """Flatten nested response data for CSV export."""
+        flattened = {}
+
+        if isinstance(data, dict):
+            for key, value in data.items():
+                new_key = f"{prefix}.{key}" if prefix else key
+                if isinstance(value, (dict, list)):
+                    flattened.update(self._flatten_response(value, new_key))
+                else:
+                    flattened[new_key] = value
+        elif isinstance(data, list):
+            # For lists, create indexed keys
+            for i, item in enumerate(data):
+                new_key = f"{prefix}[{i}]" if prefix else f"[{i}]"
+                if isinstance(item, (dict, list)):
+                    flattened.update(self._flatten_response(item, new_key))
+                else:
+                    flattened[new_key] = item
+        else:
+            flattened[prefix] = data
+
+        return flattened
+
+    def export_json(self, data: Any, file_path: str | None = None, indent: int = 2) -> str | None:
+        """Export data to JSON format.
+
+        Args:
+            data: Data to export
+            file_path: Optional file path to save to
+            indent: JSON indentation level
+
+        Returns:
+            JSON string if no file_path provided, None otherwise
+        """
+        import json
+
+        json_str = json.dumps(data, indent=indent, default=str)
+
+        if file_path:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(json_str)
+            return None
+
+        return json_str
+
+    def export_csv(self, data: Any, file_path: str | None = None, headers: list[str] | None = None) -> str | None:
+        """Export data to CSV format.
+
+        Args:
+            data: Data to export (list of dicts or single dict)
+            file_path: Optional file path to save to
+            headers: Optional custom headers
+
+        Returns:
+            CSV string if no file_path provided, None otherwise
+        """
+        import csv
+        import io
+
+        # Ensure data is a list
+        if not isinstance(data, list):
+            data = [data]
+
+        # Flatten each item in the data
+        flattened_data = [self._flatten_response(item) for item in data]
+
+        # Determine headers
+        if not headers:
+            all_keys = set()
+            for item in flattened_data:
+                all_keys.update(item.keys())
+            headers = sorted(all_keys)
+
+        # Create CSV content
+        output = io.StringIO() if not file_path else open(file_path, 'w', newline='', encoding='utf-8')
+
+        try:
+            writer = csv.DictWriter(output, fieldnames=headers)
+            writer.writeheader()
+
+            for item in flattened_data:
+                # Fill missing keys with empty strings
+                row = {header: item.get(header, '') for header in headers}
+                writer.writerow(row)
+
+            if not file_path:
+                return output.getvalue()
+            return None
+
+        finally:
+            if file_path:
+                output.close()
+
+
 # API Key Validation Functions
 def validate_api_key(api_key: str | None) -> bool:
     """Validate an API key format.

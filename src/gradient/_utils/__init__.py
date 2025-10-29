@@ -35,6 +35,7 @@ from ._utils import (
     ResponseCache as ResponseCache,
     RateLimiter as RateLimiter,
     BatchProcessor as BatchProcessor,
+    DataExporter as DataExporter,
 )
 from ._compat import (
     get_args as get_args,
