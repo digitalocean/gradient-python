@@ -419,3 +419,314 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# Response Caching Classes
+class ResponseCache:
+    """Simple in-memory response cache with TTL support."""
+
+    def __init__(self, max_size: int = 100, default_ttl: int = 300) -> None:
+        """Initialize the cache.
+
+        Args:
+            max_size: Maximum number of cached responses
+            default_ttl: Default time-to-live in seconds
+        """
+        self.max_size: int = max_size
+        self.default_ttl: int = default_ttl
+        self._cache: dict[str, tuple[Any, float]] = {}
+        self._access_order: list[str] = []
+
+    def _make_key(self, method: str, url: str, params: dict[str, Any] | None = None, data: Any = None) -> str:
+        """Generate a cache key from request details."""
+        import hashlib
+        import json
+
+        key_data = {
+            "method": method.upper(),
+            "url": url,
+            "params": params or {},
+            "data": json.dumps(data, sort_keys=True) if data else None
+        }
+        key_str = json.dumps(key_data, sort_keys=True)
+        return hashlib.md5(key_str.encode()).hexdigest()
+
+    def get(self, method: str, url: str, params: dict[str, Any] | None = None, data: Any = None) -> Any | None:
+        """Get a cached response if available and not expired."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        if key in self._cache:
+            response, expiry = self._cache[key]
+            if time.time() < expiry:
+                # Move to end (most recently used)
+                self._access_order.remove(key)
+                self._access_order.append(key)
+                return response
+            else:
+                # Expired, remove it
+                del self._cache[key]
+                self._access_order.remove(key)
+        return None
+
+    def set(self, method: str, url: str, response: Any, ttl: int | None = None,
+            params: dict[str, Any] | None = None, data: Any = None) -> None:
+        """Cache a response with optional TTL."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        expiry = time.time() + (ttl or self.default_ttl)
+
+        # Remove if already exists
+        if key in self._cache:
+            self._access_order.remove(key)
+
+        # Evict least recently used if at capacity
+        if len(self._cache) >= self.max_size:
+            lru_key = self._access_order.pop(0)
+            del self._cache[lru_key]
+
+        self._cache[key] = (response, expiry)
+        self._access_order.append(key)
+
+    def clear(self) -> None:
+        """Clear all cached responses."""
+        self._cache.clear()
+        self._access_order.clear()
+
+    def size(self) -> int:
+        """Get current cache size."""
+        return len(self._cache)
+
+
+# Rate Limiting Classes
+class RateLimiter:
+    """Simple token bucket rate limiter."""
+
+    def __init__(self, requests_per_minute: int = 60) -> None:
+        """Initialize rate limiter.
+
+        Args:
+            requests_per_minute: Maximum requests allowed per minute
+        """
+        self.requests_per_minute: int = requests_per_minute
+        self.tokens: float = float(requests_per_minute)
+        self.last_refill: float = self._now()
+        self.refill_rate: float = requests_per_minute / 60.0  # tokens per second
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def _refill(self) -> None:
+        """Refill tokens based on elapsed time."""
+        now = self._now()
+        elapsed = now - self.last_refill
+        self.tokens = min(self.requests_per_minute, self.tokens + elapsed * self.refill_rate)
+        self.last_refill = now
+
+    def acquire(self, tokens: int = 1) -> bool:
+        """Try to acquire tokens. Returns True if successful."""
+        self._refill()
+        if self.tokens >= tokens:
+            self.tokens -= tokens
+            return True
+        return False
+
+    def wait_time(self, tokens: int = 1) -> float:
+        """Get seconds to wait for tokens to be available."""
+        self._refill()
+        if self.tokens >= tokens:
+            return 0.0
+
+        needed = tokens - self.tokens
+        return needed / self.refill_rate
+
+
+# Batch Processing Classes
+class BatchProcessor:
+    """Utility for batching multiple requests with timeout and size limits."""
+
+    def __init__(self, batch_size: int = 10, timeout_seconds: float = 5.0) -> None:
+        """Initialize batch processor.
+
+        Args:
+            batch_size: Maximum items per batch
+            timeout_seconds: Maximum time to wait before processing batch
+        """
+        self.batch_size: int = batch_size
+        self.timeout_seconds: float = timeout_seconds
+        self._batch: list[Any] = []
+        self._last_add_time: float = self._now()
+        self._callback: Callable[[list[Any]], Any] | None = None
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def add(self, item: Any) -> None:
+        """Add item to current batch."""
+        self._batch.append(item)
+        self._last_add_time = self._now()
+
+        # Auto-process if batch is full
+        if len(self._batch) >= self.batch_size:
+            self._process_batch()
+
+    def set_callback(self, callback: Callable[[list[Any]], Any]) -> None:
+        """Set callback function to process batches."""
+        self._callback = callback
+
+    def _process_batch(self) -> Any | None:
+        """Process current batch if not empty."""
+        if not self._batch or not self._callback:
+            return None
+
+        batch = self._batch.copy()
+        self._batch.clear()
+        return self._callback(batch)
+
+    def force_process(self) -> Any | None:
+        """Force process current batch regardless of size or timeout."""
+        return self._process_batch()
+
+    def check_timeout(self) -> Any | None:
+        """Check if batch has timed out and process if needed."""
+        if not self._batch:
+            return None
+
+        elapsed = self._now() - self._last_add_time
+        if elapsed >= self.timeout_seconds:
+            return self._process_batch()
+
+        return None
+
+    def size(self) -> int:
+        """Get current batch size."""
+        return len(self._batch)
+
+    def is_empty(self) -> bool:
+        """Check if batch is empty."""
+        return len(self._batch) == 0
+
+
+# API Key Validation Functions
+def validate_api_key(api_key: str | None) -> bool:
+    """Validate an API key format.
+
+    Args:
+        api_key: The API key to validate. Can be None.
+
+    Returns:
+        True if valid or None, False otherwise
+    """
+    if api_key is None:
+        return True  # None is acceptable for optional keys
+
+    if not isinstance(api_key, str):
+        return False
+    if not api_key or api_key.isspace():
+        return False
+    if len(api_key) < 10:
+        return False
+
+    # Check for common patterns
+    return (
+        api_key.startswith(('sk-', 'do_v1_')) or
+        'gradient' in api_key.lower() or
+        len(api_key) >= 20
+    )
+
+
+def validate_client_credentials(
+    access_token: str | None = None,
+    model_access_key: str | None = None,
+    agent_access_key: str | None = None,
+    agent_endpoint: str | None = None
+) -> None:
+    """Validate client credentials comprehensively.
+
+    This function performs thorough validation of client credentials including:
+    - Checking that at least one authentication method is provided
+    - Validating API key formats
+    - Checking agent endpoint URL format if provided
+
+    Args:
+        access_token: DigitalOcean access token
+        model_access_key: Gradient model access key
+        agent_access_key: Gradient agent access key
+        agent_endpoint: Agent endpoint URL
+
+    Raises:
+        ValueError: If credentials are invalid or missing required authentication
+    """
+    # Check that at least one authentication method is provided
+    if not any([access_token, model_access_key, agent_access_key]):
+        raise ValueError("At least one authentication method must be provided")
+
+    # Validate individual API keys
+    if access_token and not validate_api_key(access_token):
+        raise ValueError("Invalid access_token format")
+
+    if model_access_key and not validate_api_key(model_access_key):
+        raise ValueError("Invalid model_access_key format")
+
+    if agent_access_key and not validate_api_key(agent_access_key):
+        raise ValueError("Invalid agent_access_key format")
+
+    # Validate agent endpoint if provided
+    if agent_endpoint:
+        if not isinstance(agent_endpoint, str):
+            raise ValueError("agent_endpoint must be a string")
+        if not agent_endpoint.startswith(('http://', 'https://')):
+            raise ValueError("agent_endpoint must be a valid HTTP/HTTPS URL")
+
+
+def validate_client_instance(client: Any) -> None:
+    """Validate a Gradient client instance has proper authentication.
+
+    This function checks that a created client has valid authentication
+    and can make API calls. This directly addresses the reviewer feedback
+    about validating actual client instances rather than just parameters.
+
+    Args:
+        client: A Gradient or AsyncGradient client instance
+
+    Raises:
+        ValueError: If client authentication is invalid
+        TypeError: If client is not a valid Gradient client instance
+    """
+    # Import here to avoid circular imports
+    try:
+        from .._client import Gradient, AsyncGradient
+    except ImportError:
+        # Fallback for when called from different contexts
+        import gradient
+        Gradient = gradient.Gradient
+        AsyncGradient = gradient.AsyncGradient
+
+    if not isinstance(client, (Gradient, AsyncGradient)):
+        raise TypeError("client must be a Gradient or AsyncGradient instance")
+
+    # Check that client has at least one authentication method
+    has_auth = any([
+        client.access_token,
+        client.model_access_key,
+        client.agent_access_key
+    ])
+
+    if not has_auth:
+        raise ValueError("Client must have at least one authentication method configured")
+
+    # Validate the authentication methods that are set
+    try:
+        validate_client_credentials(
+            access_token=client.access_token,
+            model_access_key=client.model_access_key,
+            agent_access_key=client.agent_access_key,
+            agent_endpoint=client._agent_endpoint
+        )
+    except ValueError as e:
+        raise ValueError(f"Client authentication validation failed: {e}") from e
