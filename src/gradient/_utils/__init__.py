@@ -36,6 +36,7 @@ from ._utils import (
     RateLimiter as RateLimiter,
     BatchProcessor as BatchProcessor,
     DataExporter as DataExporter,
+    PaginationHelper as PaginationHelper,
 )
 from ._compat import (
     get_args as get_args,
