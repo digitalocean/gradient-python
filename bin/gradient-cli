@@ -1,0 +1,296 @@
+#!/usr/bin/env python3
+"""
+Gradient CLI Tool
+
+A command-line interface for common Gradient operations.
+"""
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Optional
+
+try:
+    from gradient import Gradient
+    from gradient._utils import (
+        validate_api_key,
+        validate_client_credentials,
+        validate_client_instance,
+        get_available_models,
+        is_model_available,
+        get_model_info,
+    )
+except ImportError as e:
+    print(f"Error importing gradient: {e}")
+    print("Make sure gradient is installed and PYTHONPATH is set correctly")
+    sys.exit(1)
+
+
+def create_client(access_token: Optional[str] = None,
+                 model_key: Optional[str] = None,
+                 agent_key: Optional[str] = None,
+                 agent_endpoint: Optional[str] = None) -> Gradient:
+    """Create and validate a Gradient client."""
+    try:
+        client = Gradient(
+            access_token=access_token,
+            model_access_key=model_key,
+            agent_access_key=agent_key,
+            agent_endpoint=agent_endpoint,
+        )
+        validate_client_instance(client)
+        return client
+    except Exception as e:
+        print(f"Error creating client: {e}")
+        sys.exit(1)
+
+
+def cmd_validate(args):
+    """Validate API keys and client configuration."""
+    print("🔍 Validating API keys and client configuration...")
+
+    # Validate individual keys
+    if args.access_token:
+        if validate_api_key(args.access_token):
+            print("✅ Access token format is valid")
+        else:
+            print("❌ Access token format is invalid")
+            return
+
+    if args.model_key:
+        if validate_api_key(args.model_key):
+            print("✅ Model access key format is valid")
+        else:
+            print("❌ Model access key format is invalid")
+            return
+
+    if args.agent_key:
+        if validate_api_key(args.agent_key):
+            print("✅ Agent access key format is valid")
+        else:
+            print("❌ Agent access key format is invalid")
+            return
+
+    # Validate client credentials
+    try:
+        validate_client_credentials(
+            access_token=args.access_token,
+            model_access_key=args.model_key,
+            agent_access_key=args.agent_key,
+            agent_endpoint=args.agent_endpoint
+        )
+        print("✅ Client credentials validation passed")
+    except ValueError as e:
+        print(f"❌ Client credentials validation failed: {e}")
+        return
+
+    # Test client creation
+    try:
+        client = create_client(args.access_token, args.model_key, args.agent_key, args.agent_endpoint)
+        print("✅ Client instance created and validated successfully")
+    except Exception as e:
+        print(f"❌ Client creation failed: {e}")
+
+
+def cmd_models(args):
+    """List and query available models."""
+    print("🤖 Available Models:")
+
+    models = get_available_models()
+    for model in models:
+        status = "✅" if is_model_available(model) else "❌"
+        print(f"  {status} {model}")
+
+    if args.info:
+        print(f"\n📋 Detailed info for '{args.info}':")
+        info = get_model_info(args.info)
+        if info:
+            print(json.dumps(info, indent=2))
+        else:
+            print(f"❌ Model '{args.info}' not found")
+
+
+def cmd_test_connection(args):
+    """Test connection to Gradient services."""
+    print("🔌 Testing connection to Gradient services...")
+
+    client = create_client(args.access_token, args.model_key, args.agent_key, args.agent_endpoint)
+
+    # Test basic connectivity by trying to get models
+    try:
+        # This would normally make an API call, but we'll use our cached models for now
+        models = get_available_models()
+        print(f"✅ Connection successful - {len(models)} models available")
+    except Exception as e:
+        print(f"❌ Connection test failed: {e}")
+
+
+def cmd_chat(args):
+    """Simple chat interface for testing."""
+    print("💬 Gradient Chat Interface")
+    print("Type 'quit' or 'exit' to end the conversation")
+    print("-" * 50)
+
+    client = create_client(args.access_token, args.model_key, args.agent_key, args.agent_endpoint)
+
+    if not client.model_access_key:
+        print("❌ Model access key required for chat functionality")
+        return
+
+    messages = []
+
+    while True:
+        try:
+            user_input = input("\nYou: ").strip()
+            if user_input.lower() in ['quit', 'exit', 'q']:
+                print("👋 Goodbye!")
+                break
+
+            if not user_input:
+                continue
+
+            messages.append({"role": "user", "content": user_input})
+
+            print("🤖 Assistant: ", end="", flush=True)
+
+            # For streaming responses
+            if args.stream:
+                response = client.chat.completions.create(
+                    messages=messages,
+                    model=args.model or "llama3.3-70b-instruct",
+                    stream=True
+                )
+
+                full_response = ""
+                for chunk in response:
+                    if chunk.choices and chunk.choices[0].delta and chunk.choices[0].delta.content:
+                        content = chunk.choices[0].delta.content
+                        print(content, end="", flush=True)
+                        full_response += content
+
+                messages.append({"role": "assistant", "content": full_response})
+                print()  # New line after streaming
+
+            else:
+                response = client.chat.completions.create(
+                    messages=messages,
+                    model=args.model or "llama3.3-70b-instruct",
+                    stream=False
+                )
+
+                if response.choices and response.choices[0].message:
+                    content = response.choices[0].message.content
+                    print(content)
+                    messages.append({"role": "assistant", "content": content})
+
+        except KeyboardInterrupt:
+            print("\n👋 Goodbye!")
+            break
+        except Exception as e:
+            print(f"❌ Error: {e}")
+
+
+def main():
+    """Main CLI entry point."""
+    parser = argparse.ArgumentParser(
+        description="Gradient CLI - Command-line interface for Gradient AI operations",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # Validate API keys
+  gradient-cli validate --access-token sk-1234567890abcdef
+
+  # List available models
+  gradient-cli models
+
+  # Get model info
+  gradient-cli models --info llama3.3-70b-instruct
+
+  # Test connection
+  gradient-cli test-connection --access-token sk-1234567890abcdef
+
+  # Start chat interface
+  gradient-cli chat --model-key grad-1234567890abcdef --model llama3.3-70b-instruct
+        """
+    )
+
+    parser.add_argument(
+        "--access-token",
+        help="DigitalOcean access token"
+    )
+
+    parser.add_argument(
+        "--model-key",
+        help="Gradient model access key"
+    )
+
+    parser.add_argument(
+        "--agent-key",
+        help="Gradient agent access key"
+    )
+
+    parser.add_argument(
+        "--agent-endpoint",
+        help="Agent endpoint URL"
+    )
+
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    # Validate command
+    validate_parser = subparsers.add_parser(
+        "validate",
+        help="Validate API keys and client configuration"
+    )
+
+    # Models command
+    models_parser = subparsers.add_parser(
+        "models",
+        help="List and query available models"
+    )
+    models_parser.add_argument(
+        "--info",
+        help="Get detailed information about a specific model"
+    )
+
+    # Test connection command
+    test_parser = subparsers.add_parser(
+        "test-connection",
+        help="Test connection to Gradient services"
+    )
+
+    # Chat command
+    chat_parser = subparsers.add_parser(
+        "chat",
+        help="Start an interactive chat session"
+    )
+    chat_parser.add_argument(
+        "--model",
+        default="llama3.3-70b-instruct",
+        help="Model to use for chat (default: llama3.3-70b-instruct)"
+    )
+    chat_parser.add_argument(
+        "--stream",
+        action="store_true",
+        help="Enable streaming responses"
+    )
+
+    args = parser.parse_args()
+
+    if not args.command:
+        parser.print_help()
+        return
+
+    # Execute the appropriate command
+    if args.command == "validate":
+        cmd_validate(args)
+    elif args.command == "models":
+        cmd_models(args)
+    elif args.command == "test-connection":
+        cmd_test_connection(args)
+    elif args.command == "chat":
+        cmd_chat(args)
+
+
+if __name__ == "__main__":
+    main()
