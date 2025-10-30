@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.7.0 (2025-10-30)
+
+Full Changelog: [v3.6.0...v3.7.0](https://github.com/digitalocean/gradient-python/compare/v3.6.0...v3.7.0)
+
+### Features
+
+* add wait_for_completion method to IndexingJobs resource with sy… ([#49](https://github.com/digitalocean/gradient-python/issues/49)) ([9edc2a6](https://github.com/digitalocean/gradient-python/commit/9edc2a60f5aa49749e151477615bbecb3a79e92b))
+* Add wait_until_ready() method for agent deployment polling ([#56](https://github.com/digitalocean/gradient-python/issues/56)) ([dcef3d5](https://github.com/digitalocean/gradient-python/commit/dcef3d5ebb4ef903c0c91aa4008853bb978f5544))
+* **api:** add inference errors ([d61d495](https://github.com/digitalocean/gradient-python/commit/d61d4955f596d9ac1bebc9387a6573989e823022))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([33fe04b](https://github.com/digitalocean/gradient-python/commit/33fe04b2e4ab71094ee13e7b83d4c04867e7d485))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([db39cc6](https://github.com/digitalocean/gradient-python/commit/db39cc63fb126ac81edfe2cb991493d10a2d0936))
+
 ## 3.6.0 (2025-10-16)
 
 Full Changelog: [v3.5.0...v3.6.0](https://github.com/digitalocean/gradient-python/compare/v3.5.0...v3.6.0)
