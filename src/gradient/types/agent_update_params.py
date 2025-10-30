@@ -14,6 +14,12 @@ __all__ = ["AgentUpdateParams"]
 class AgentUpdateParams(TypedDict, total=False):
     agent_log_insights_enabled: bool
 
+    allowed_domains: SequenceNotStr[str]
+    """
+    Optional list of allowed domains for the chatbot - Must use fully qualified
+    domain name (FQDN) such as https://example.com
+    """
+
     anthropic_key_uuid: str
     """Optional anthropic key uuid for use with anthropic models"""
 
@@ -40,6 +46,9 @@ class AgentUpdateParams(TypedDict, total=False):
     or output, set as a number between 1 and 512. This determines the length of each
     response.
     """
+
+    model_provider_key_uuid: str
+    """Optional Model Provider uuid for use with provider models"""
 
     model_uuid: str
     """Identifier for the foundation model."""

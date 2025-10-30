@@ -11,7 +11,7 @@ from .knowledge_bases.api_spaces_data_source_param import APISpacesDataSourcePar
 from .knowledge_bases.api_file_upload_data_source_param import APIFileUploadDataSourceParam
 from .knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 
-__all__ = ["KnowledgeBaseCreateParams", "Datasource", "DatasourceDropboxDataSource"]
+__all__ = ["KnowledgeBaseCreateParams", "Datasource", "DatasourceDropboxDataSource", "DatasourceGoogleDriveDataSource"]
 
 
 class KnowledgeBaseCreateParams(TypedDict, total=False):
@@ -63,6 +63,17 @@ class DatasourceDropboxDataSource(TypedDict, total=False):
     """
 
 
+class DatasourceGoogleDriveDataSource(TypedDict, total=False):
+    folder_id: str
+
+    refresh_token: str
+    """Refresh token.
+
+    you can obrain a refresh token by following the oauth2 flow. see
+    /v2/gen-ai/oauth2/google/tokens for reference.
+    """
+
+
 class Datasource(TypedDict, total=False):
     aws_data_source: AwsDataSourceParam
     """AWS S3 Data Source"""
@@ -78,6 +89,9 @@ class Datasource(TypedDict, total=False):
 
     file_upload_data_source: APIFileUploadDataSourceParam
     """File to upload as data source for knowledge base."""
+
+    google_drive_data_source: DatasourceGoogleDriveDataSource
+    """Google Drive Data Source"""
 
     item_path: str
 
