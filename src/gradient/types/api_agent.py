@@ -6,6 +6,8 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 from .api_agent_model import APIAgentModel
 from .api_knowledge_base import APIKnowledgeBase
@@ -24,6 +26,7 @@ __all__ = [
     "Function",
     "Guardrail",
     "LoggingConfig",
+    "ModelProviderKey",
     "Template",
     "TemplateGuardrail",
 ]
@@ -35,6 +38,8 @@ class APIKey(BaseModel):
 
 
 class Chatbot(BaseModel):
+    allowed_domains: Optional[List[str]] = None
+
     button_background_color: Optional[str] = None
 
     logo: Optional[str] = None
@@ -72,6 +77,7 @@ class Deployment(BaseModel):
             "STATUS_UNDEPLOYING",
             "STATUS_UNDEPLOYMENT_FAILED",
             "STATUS_DELETED",
+            "STATUS_BUILDING",
         ]
     ] = None
 
@@ -184,6 +190,33 @@ class LoggingConfig(BaseModel):
 
     log_stream_name: Optional[str] = None
     """Name of the log stream"""
+
+
+class ModelProviderKey(BaseModel):
+    api_key_uuid: Optional[str] = None
+    """API key ID"""
+
+    created_at: Optional[datetime] = None
+    """Key creation date"""
+
+    created_by: Optional[str] = None
+    """Created by user id from DO"""
+
+    deleted_at: Optional[datetime] = None
+    """Key deleted date"""
+
+    models: Optional[List[APIAgentModel]] = None
+    """Models supported by the openAI api key"""
+
+    name: Optional[str] = None
+    """Name of the key"""
+
+    provider: Optional[Literal["MODEL_PROVIDER_DIGITALOCEAN", "MODEL_PROVIDER_ANTHROPIC", "MODEL_PROVIDER_OPENAI"]] = (
+        None
+    )
+
+    updated_at: Optional[datetime] = None
+    """Key last updated date"""
 
 
 class TemplateGuardrail(BaseModel):
@@ -311,6 +344,8 @@ class APIAgent(BaseModel):
     model: Optional[APIAgentModel] = None
     """Description of a Model"""
 
+    api_model_provider_key: Optional[ModelProviderKey] = FieldInfo(alias="model_provider_key", default=None)
+
     name: Optional[str] = None
     """Agent name"""
 
@@ -371,6 +406,11 @@ class APIAgent(BaseModel):
 
     version_hash: Optional[str] = None
     """The latest version of the agent"""
+
+    vpc_egress_ips: Optional[List[str]] = None
+    """VPC Egress IPs"""
+
+    vpc_uuid: Optional[str] = None
 
     workspace: Optional["APIWorkspace"] = None
 

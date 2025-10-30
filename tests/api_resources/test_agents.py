@@ -40,12 +40,14 @@ class TestAgents:
             description='"My Agent Description"',
             instruction='"You are an agent who thinks deeply about the world"',
             knowledge_base_uuid=["example string"],
+            model_provider_key_uuid='"12345678-1234-1234-1234-123456789012"',
             model_uuid='"12345678-1234-1234-1234-123456789012"',
             name='"My Agent"',
             openai_key_uuid='"12345678-1234-1234-1234-123456789012"',
             project_id='"12345678-1234-1234-1234-123456789012"',
             region='"tor1"',
             tags=["example string"],
+            workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(AgentCreateResponse, agent, path=["response"])
 
@@ -127,12 +129,14 @@ class TestAgents:
         agent = client.agents.update(
             path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             agent_log_insights_enabled=True,
+            allowed_domains=["example string"],
             anthropic_key_uuid='"12345678-1234-1234-1234-123456789012"',
             conversation_logs_enabled=True,
             description='"My Agent Description"',
             instruction='"You are an agent who thinks deeply about the world"',
             k=5,
             max_tokens=100,
+            model_provider_key_uuid='"12345678-1234-1234-1234-123456789012"',
             model_uuid='"12345678-1234-1234-1234-123456789012"',
             name='"My New Agent Name"',
             openai_key_uuid='"12345678-1234-1234-1234-123456789012"',
@@ -483,12 +487,14 @@ class TestAsyncAgents:
             description='"My Agent Description"',
             instruction='"You are an agent who thinks deeply about the world"',
             knowledge_base_uuid=["example string"],
+            model_provider_key_uuid='"12345678-1234-1234-1234-123456789012"',
             model_uuid='"12345678-1234-1234-1234-123456789012"',
             name='"My Agent"',
             openai_key_uuid='"12345678-1234-1234-1234-123456789012"',
             project_id='"12345678-1234-1234-1234-123456789012"',
             region='"tor1"',
             tags=["example string"],
+            workspace_uuid="123e4567-e89b-12d3-a456-426614174000",
         )
         assert_matches_type(AgentCreateResponse, agent, path=["response"])
 
@@ -570,12 +576,14 @@ class TestAsyncAgents:
         agent = await async_client.agents.update(
             path_uuid='"123e4567-e89b-12d3-a456-426614174000"',
             agent_log_insights_enabled=True,
+            allowed_domains=["example string"],
             anthropic_key_uuid='"12345678-1234-1234-1234-123456789012"',
             conversation_logs_enabled=True,
             description='"My Agent Description"',
             instruction='"You are an agent who thinks deeply about the world"',
             k=5,
             max_tokens=100,
+            model_provider_key_uuid='"12345678-1234-1234-1234-123456789012"',
             model_uuid='"12345678-1234-1234-1234-123456789012"',
             name='"My New Agent Name"',
             openai_key_uuid='"12345678-1234-1234-1234-123456789012"',

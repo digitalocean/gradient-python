@@ -24,6 +24,8 @@ __all__ = [
 
 
 class AgentChatbot(BaseModel):
+    allowed_domains: Optional[List[str]] = None
+
     button_background_color: Optional[str] = None
 
     logo: Optional[str] = None
@@ -61,6 +63,7 @@ class AgentDeployment(BaseModel):
             "STATUS_UNDEPLOYING",
             "STATUS_UNDEPLOYMENT_FAILED",
             "STATUS_DELETED",
+            "STATUS_BUILDING",
         ]
     ] = None
 

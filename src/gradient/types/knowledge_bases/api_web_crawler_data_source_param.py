@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
+from ..._types import SequenceNotStr
+
 __all__ = ["APIWebCrawlerDataSourceParam"]
 
 
@@ -23,3 +25,6 @@ class APIWebCrawlerDataSourceParam(TypedDict, total=False):
 
     embed_media: bool
     """Whether to ingest and index media (images, etc.) on web pages."""
+
+    exclude_tags: SequenceNotStr[str]
+    """Declaring which tags to exclude in web pages while webcrawling"""

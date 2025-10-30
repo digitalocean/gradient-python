@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .api_indexed_data_source import APIIndexedDataSource
 
 __all__ = ["APIIndexingJob"]
 
@@ -16,9 +17,15 @@ class APIIndexingJob(BaseModel):
     created_at: Optional[datetime] = None
     """Creation date / time"""
 
+    data_source_jobs: Optional[List[APIIndexedDataSource]] = None
+    """Details on Data Sources included in the Indexing Job"""
+
     data_source_uuids: Optional[List[str]] = None
 
     finished_at: Optional[datetime] = None
+
+    is_report_available: Optional[bool] = None
+    """Boolean value to determine if the indexing job details are available"""
 
     knowledge_base_uuid: Optional[str] = None
     """Knowledge base id"""
@@ -50,7 +57,7 @@ class APIIndexingJob(BaseModel):
     ] = None
 
     tokens: Optional[int] = None
-    """Number of tokens"""
+    """Number of tokens [This field is deprecated]"""
 
     total_datasources: Optional[int] = None
     """Number of datasources being indexed"""
@@ -61,8 +68,14 @@ class APIIndexingJob(BaseModel):
     total_items_indexed: Optional[str] = None
     """Total Items Indexed"""
 
+    total_items_removed: Optional[str] = None
+    """Total Items Removed"""
+
     total_items_skipped: Optional[str] = None
     """Total Items Skipped"""
+
+    total_tokens: Optional[str] = None
+    """Total Tokens Consumed By the Indexing Job"""
 
     updated_at: Optional[datetime] = None
     """Last modified"""

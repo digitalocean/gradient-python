@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -24,3 +24,6 @@ class APIWebCrawlerDataSource(BaseModel):
 
     embed_media: Optional[bool] = None
     """Whether to ingest and index media (images, etc.) on web pages."""
+
+    exclude_tags: Optional[List[str]] = None
+    """Declaring which tags to exclude in web pages while webcrawling"""
