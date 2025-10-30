@@ -48,6 +48,7 @@ class APIIndexedDataSource(BaseModel):
             "DATA_SOURCE_STATUS_PARTIALLY_UPDATED",
             "DATA_SOURCE_STATUS_NOT_UPDATED",
             "DATA_SOURCE_STATUS_FAILED",
+            "DATA_SOURCE_STATUS_CANCELLED",
         ]
     ] = None
 

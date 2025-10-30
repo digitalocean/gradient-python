@@ -28,6 +28,8 @@ class AgentCreateParams(TypedDict, total=False):
     knowledge_base_uuid: SequenceNotStr[str]
     """Ids of the knowledge base(s) to attach to the agent"""
 
+    model_provider_key_uuid: str
+
     model_uuid: str
     """Identifier for the foundation model."""
 
@@ -45,3 +47,6 @@ class AgentCreateParams(TypedDict, total=False):
 
     tags: SequenceNotStr[str]
     """Agent tag to organize related resources"""
+
+    workspace_uuid: str
+    """Identifier for the workspace"""

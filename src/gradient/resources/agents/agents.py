@@ -184,12 +184,14 @@ class AgentsResource(SyncAPIResource):
         description: str | Omit = omit,
         instruction: str | Omit = omit,
         knowledge_base_uuid: SequenceNotStr[str] | Omit = omit,
+        model_provider_key_uuid: str | Omit = omit,
         model_uuid: str | Omit = omit,
         name: str | Omit = omit,
         openai_key_uuid: str | Omit = omit,
         project_id: str | Omit = omit,
         region: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        workspace_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,6 +228,8 @@ class AgentsResource(SyncAPIResource):
 
           tags: Agent tag to organize related resources
 
+          workspace_uuid: Identifier for the workspace
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -244,12 +248,14 @@ class AgentsResource(SyncAPIResource):
                     "description": description,
                     "instruction": instruction,
                     "knowledge_base_uuid": knowledge_base_uuid,
+                    "model_provider_key_uuid": model_provider_key_uuid,
                     "model_uuid": model_uuid,
                     "name": name,
                     "openai_key_uuid": openai_key_uuid,
                     "project_id": project_id,
                     "region": region,
                     "tags": tags,
+                    "workspace_uuid": workspace_uuid,
                 },
                 agent_create_params.AgentCreateParams,
             ),
@@ -301,12 +307,14 @@ class AgentsResource(SyncAPIResource):
         path_uuid: str,
         *,
         agent_log_insights_enabled: bool | Omit = omit,
+        allowed_domains: SequenceNotStr[str] | Omit = omit,
         anthropic_key_uuid: str | Omit = omit,
         conversation_logs_enabled: bool | Omit = omit,
         description: str | Omit = omit,
         instruction: str | Omit = omit,
         k: int | Omit = omit,
         max_tokens: int | Omit = omit,
+        model_provider_key_uuid: str | Omit = omit,
         model_uuid: str | Omit = omit,
         name: str | Omit = omit,
         openai_key_uuid: str | Omit = omit,
@@ -330,6 +338,9 @@ class AgentsResource(SyncAPIResource):
         response body is a JSON object containing the agent.
 
         Args:
+          allowed_domains: Optional list of allowed domains for the chatbot - Must use fully qualified
+              domain name (FQDN) such as https://example.com
+
           anthropic_key_uuid: Optional anthropic key uuid for use with anthropic models
 
           conversation_logs_enabled: Optional update of conversation logs enabled
@@ -346,6 +357,8 @@ class AgentsResource(SyncAPIResource):
           max_tokens: Specifies the maximum number of tokens the model can process in a single input
               or output, set as a number between 1 and 512. This determines the length of each
               response.
+
+          model_provider_key_uuid: Optional Model Provider uuid for use with provider models
 
           model_uuid: Identifier for the foundation model.
 
@@ -390,12 +403,14 @@ class AgentsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "agent_log_insights_enabled": agent_log_insights_enabled,
+                    "allowed_domains": allowed_domains,
                     "anthropic_key_uuid": anthropic_key_uuid,
                     "conversation_logs_enabled": conversation_logs_enabled,
                     "description": description,
                     "instruction": instruction,
                     "k": k,
                     "max_tokens": max_tokens,
+                    "model_provider_key_uuid": model_provider_key_uuid,
                     "model_uuid": model_uuid,
                     "name": name,
                     "openai_key_uuid": openai_key_uuid,
@@ -680,12 +695,14 @@ class AsyncAgentsResource(AsyncAPIResource):
         description: str | Omit = omit,
         instruction: str | Omit = omit,
         knowledge_base_uuid: SequenceNotStr[str] | Omit = omit,
+        model_provider_key_uuid: str | Omit = omit,
         model_uuid: str | Omit = omit,
         name: str | Omit = omit,
         openai_key_uuid: str | Omit = omit,
         project_id: str | Omit = omit,
         region: str | Omit = omit,
         tags: SequenceNotStr[str] | Omit = omit,
+        workspace_uuid: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -722,6 +739,8 @@ class AsyncAgentsResource(AsyncAPIResource):
 
           tags: Agent tag to organize related resources
 
+          workspace_uuid: Identifier for the workspace
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -740,12 +759,14 @@ class AsyncAgentsResource(AsyncAPIResource):
                     "description": description,
                     "instruction": instruction,
                     "knowledge_base_uuid": knowledge_base_uuid,
+                    "model_provider_key_uuid": model_provider_key_uuid,
                     "model_uuid": model_uuid,
                     "name": name,
                     "openai_key_uuid": openai_key_uuid,
                     "project_id": project_id,
                     "region": region,
                     "tags": tags,
+                    "workspace_uuid": workspace_uuid,
                 },
                 agent_create_params.AgentCreateParams,
             ),
@@ -797,12 +818,14 @@ class AsyncAgentsResource(AsyncAPIResource):
         path_uuid: str,
         *,
         agent_log_insights_enabled: bool | Omit = omit,
+        allowed_domains: SequenceNotStr[str] | Omit = omit,
         anthropic_key_uuid: str | Omit = omit,
         conversation_logs_enabled: bool | Omit = omit,
         description: str | Omit = omit,
         instruction: str | Omit = omit,
         k: int | Omit = omit,
         max_tokens: int | Omit = omit,
+        model_provider_key_uuid: str | Omit = omit,
         model_uuid: str | Omit = omit,
         name: str | Omit = omit,
         openai_key_uuid: str | Omit = omit,
@@ -826,6 +849,9 @@ class AsyncAgentsResource(AsyncAPIResource):
         response body is a JSON object containing the agent.
 
         Args:
+          allowed_domains: Optional list of allowed domains for the chatbot - Must use fully qualified
+              domain name (FQDN) such as https://example.com
+
           anthropic_key_uuid: Optional anthropic key uuid for use with anthropic models
 
           conversation_logs_enabled: Optional update of conversation logs enabled
@@ -842,6 +868,8 @@ class AsyncAgentsResource(AsyncAPIResource):
           max_tokens: Specifies the maximum number of tokens the model can process in a single input
               or output, set as a number between 1 and 512. This determines the length of each
               response.
+
+          model_provider_key_uuid: Optional Model Provider uuid for use with provider models
 
           model_uuid: Identifier for the foundation model.
 
@@ -886,12 +914,14 @@ class AsyncAgentsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "agent_log_insights_enabled": agent_log_insights_enabled,
+                    "allowed_domains": allowed_domains,
                     "anthropic_key_uuid": anthropic_key_uuid,
                     "conversation_logs_enabled": conversation_logs_enabled,
                     "description": description,
                     "instruction": instruction,
                     "k": k,
                     "max_tokens": max_tokens,
+                    "model_provider_key_uuid": model_provider_key_uuid,
                     "model_uuid": model_uuid,
                     "name": name,
                     "openai_key_uuid": openai_key_uuid,
