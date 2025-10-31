@@ -37,6 +37,8 @@ from ._utils import (
     BatchProcessor as BatchProcessor,
     DataExporter as DataExporter,
     PaginationHelper as PaginationHelper,
+    StreamProcessor as StreamProcessor,
+    StreamCollector as StreamCollector,
 )
 from ._compat import (
     get_args as get_args,

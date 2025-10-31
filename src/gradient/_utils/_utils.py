@@ -838,6 +838,142 @@ class PaginationHelper:
         return all_items
 
 
+# Streaming Support Classes
+class StreamProcessor:
+    """Utility for processing streaming API responses with custom handlers."""
+
+    def __init__(self) -> None:
+        """Initialize stream processor."""
+        self._handlers: dict[str, Callable[[Any], Any]] = {}
+
+    def add_handler(self, event_type: str, handler: Callable[[Any], Any]) -> None:
+        """Add event handler for specific event type.
+
+        Args:
+            event_type: Type of event to handle
+            handler: Function to process the event
+        """
+        self._handlers[event_type] = handler
+
+    def remove_handler(self, event_type: str) -> None:
+        """Remove handler for specific event type."""
+        self._handlers.pop(event_type, None)
+
+    def process_event(self, event: Any) -> Any | None:
+        """Process a single streaming event.
+
+        Args:
+            event: The event data to process
+
+        Returns:
+            Result of handler if one exists, None otherwise
+        """
+        event_type = self._get_event_type(event)
+        handler = self._handlers.get(event_type)
+        if handler:
+            return handler(event)
+        return None
+
+    def process_stream(self, stream: Any) -> list[Any]:
+        """Process entire streaming response.
+
+        Args:
+            stream: The stream to process
+
+        Returns:
+            List of all processed event results
+        """
+        results = []
+        for event in stream:
+            result = self.process_event(event)
+            if result is not None:
+                results.append(result)
+        return results
+
+    async def process_stream_async(self, stream: Any) -> list[Any]:
+        """Async version of process_stream."""
+        results = []
+        async for event in stream:
+            result = self.process_event(event)
+            if result is not None:
+                results.append(result)
+        return results
+
+    def _get_event_type(self, event: Any) -> str:
+        """Extract event type from event data."""
+        # Handle different event formats
+        if hasattr(event, 'event') and event.event:
+            return event.event
+        elif hasattr(event, 'type') and event.type:
+            return event.type
+        elif isinstance(event, dict):
+            return event.get('event') or event.get('type') or 'unknown'
+        else:
+            return 'unknown'
+
+
+class StreamCollector:
+    """Utility for collecting and aggregating streaming events."""
+
+    def __init__(self) -> None:
+        """Initialize stream collector."""
+        self._events: list[Any] = []
+        self._aggregated: dict[str, Any] = {}
+
+    def collect(self, event: Any) -> None:
+        """Collect a streaming event."""
+        self._events.append(event)
+        self._aggregate_event(event)
+
+    def get_events(self, event_type: str | None = None) -> list[Any]:
+        """Get collected events, optionally filtered by type."""
+        if event_type is None:
+            return self._events.copy()
+
+        return [e for e in self._events if self._get_event_type(e) == event_type]
+
+    def get_aggregated(self) -> dict[str, Any]:
+        """Get aggregated event data."""
+        return self._aggregated.copy()
+
+    def clear(self) -> None:
+        """Clear all collected events and aggregated data."""
+        self._events.clear()
+        self._aggregated.clear()
+
+    def count_events(self, event_type: str | None = None) -> int:
+        """Count events, optionally filtered by type."""
+        if event_type is None:
+            return len(self._events)
+        return len(self.get_events(event_type))
+
+    def _aggregate_event(self, event: Any) -> None:
+        """Aggregate event data for summary statistics."""
+        event_type = self._get_event_type(event)
+
+        if event_type not in self._aggregated:
+            self._aggregated[event_type] = {
+                'count': 0,
+                'events': [],
+                'last_event': None
+            }
+
+        self._aggregated[event_type]['count'] += 1
+        self._aggregated[event_type]['events'].append(event)
+        self._aggregated[event_type]['last_event'] = event
+
+    def _get_event_type(self, event: Any) -> str:
+        """Extract event type from event data."""
+        if hasattr(event, 'event') and event.event:
+            return event.event
+        elif hasattr(event, 'type') and event.type:
+            return event.type
+        elif isinstance(event, dict):
+            return event.get('event') or event.get('type') or 'unknown'
+        else:
+            return 'unknown'
+
+
 # API Key Validation Functions
 def validate_api_key(api_key: str | None) -> bool:
     """Validate an API key format.
