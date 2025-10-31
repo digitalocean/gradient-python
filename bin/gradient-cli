@@ -1,0 +1,243 @@
+#!/usr/bin/env python3
+"""Gradient CLI Tool for basic operations."""
+
+import argparse
+import json
+import sys
+import os
+from typing import Any, Optional
+
+# Add src to path for imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+try:
+    from gradient import Gradient
+    from gradient._utils import DataExporter, PaginationHelper
+except ImportError as e:
+    print(f"Error importing gradient: {e}")
+    print("Make sure you're running from the gradient-python directory")
+    sys.exit(1)
+
+
+class GradientCLI:
+    """Command-line interface for Gradient operations."""
+
+    def __init__(self) -> None:
+        """Initialize CLI with client."""
+        self.client: Optional[Gradient] = None
+        self.exporter = DataExporter()
+
+    def setup_client(self, access_token: str, model_key: str = "", agent_key: str = "", agent_endpoint: str = "") -> None:
+        """Setup the Gradient client."""
+        try:
+            self.client = Gradient(
+                access_token=access_token,
+                model_access_key=model_key or None,
+                agent_access_key=agent_key or None,
+                agent_endpoint=agent_endpoint or None,
+            )
+        except Exception as e:
+            print(f"Error setting up client: {e}")
+            sys.exit(1)
+
+    def list_models(self, format: str = "table", export: str = "") -> None:
+        """List available models."""
+        if not self.client:
+            print("Client not initialized. Use --access-token to set it up.")
+            return
+
+        try:
+            response = self.client.models.list()
+            models = response.models if hasattr(response, 'models') else []
+
+            if not models:
+                print("No models found.")
+                return
+
+            if export:
+                self.exporter.export_json(models, export)
+                print(f"Models exported to {export}")
+                return
+
+            if format == "json":
+                print(json.dumps([model.__dict__ if hasattr(model, '__dict__') else str(model) for model in models], indent=2))
+            else:
+                print("Available Models:")
+                print("-" * 50)
+                for model in models:
+                    name = getattr(model, 'name', 'Unknown')
+                    print(f"  {name}")
+
+        except Exception as e:
+            print(f"Error listing models: {e}")
+
+    def chat_completion(self, message: str, model: str = "llama3.3-70b-instruct", stream: bool = False) -> None:
+        """Perform chat completion."""
+        if not self.client:
+            print("Client not initialized. Use --access-token and --model-key to set it up.")
+            return
+
+        try:
+            response = self.client.chat.completions.create(
+                messages=[{"role": "user", "content": message}],
+                model=model,
+                stream=stream,
+            )
+
+            if stream:
+                print("Streaming response:")
+                for chunk in response:
+                    if hasattr(chunk, 'choices') and chunk.choices:
+                        content = chunk.choices[0].delta.content if hasattr(chunk.choices[0], 'delta') else ""
+                        if content:
+                            print(content, end="", flush=True)
+                print()  # New line after streaming
+            else:
+                if hasattr(response, 'choices') and response.choices:
+                    print(response.choices[0].message.content)
+
+        except Exception as e:
+            print(f"Error in chat completion: {e}")
+
+    def list_agents(self, format: str = "table", export: str = "") -> None:
+        """List agents."""
+        if not self.client:
+            print("Client not initialized. Use --access-token to set it up.")
+            return
+
+        try:
+            response = self.client.agents.list()
+            agents = response.agents if hasattr(response, 'agents') else []
+
+            if not agents:
+                print("No agents found.")
+                return
+
+            if export:
+                self.exporter.export_json(agents, export)
+                print(f"Agents exported to {export}")
+                return
+
+            if format == "json":
+                print(json.dumps([agent.__dict__ if hasattr(agent, '__dict__') else str(agent) for agent in agents], indent=2))
+            else:
+                print("Available Agents:")
+                print("-" * 50)
+                for agent in agents:
+                    name = getattr(agent, 'name', 'Unknown')
+                    uuid = getattr(agent, 'uuid', 'Unknown')
+                    print(f"  {name} (UUID: {uuid})")
+
+        except Exception as e:
+            print(f"Error listing agents: {e}")
+
+    def generate_image(self, prompt: str, export: str = "") -> None:
+        """Generate an image."""
+        if not self.client:
+            print("Client not initialized. Use --access-token and --model-key to set it up.")
+            return
+
+        try:
+            response = self.client.images.generate(prompt=prompt)
+
+            if export:
+                # Export response data
+                self.exporter.export_json(response, export)
+                print(f"Image generation response exported to {export}")
+            else:
+                print("Image generated successfully!")
+                if hasattr(response, 'data') and response.data:
+                    print(f"Generated {len(response.data)} image(s)")
+
+        except Exception as e:
+            print(f"Error generating image: {e}")
+
+    def paginate_models(self, max_pages: int = 5) -> None:
+        """Demonstrate pagination with models."""
+        if not self.client:
+            print("Client not initialized. Use --access-token to set it up.")
+            return
+
+        try:
+            helper = PaginationHelper(page_size=10, max_pages=max_pages)
+            all_models = helper.paginate(self.client.models.list)
+
+            print(f"Retrieved {len(all_models)} models across pages")
+            print("First 5 models:")
+            for i, model in enumerate(all_models[:5]):
+                name = getattr(model, 'name', 'Unknown')
+                print(f"  {i+1}. {name}")
+
+        except Exception as e:
+            print(f"Error paginating models: {e}")
+
+
+def main() -> None:
+    """Main CLI entry point."""
+    parser = argparse.ArgumentParser(description="Gradient CLI Tool")
+    parser.add_argument("--access-token", help="DigitalOcean access token")
+    parser.add_argument("--model-key", help="Model access key for inference")
+    parser.add_argument("--agent-key", help="Agent access key")
+    parser.add_argument("--agent-endpoint", help="Agent endpoint URL")
+
+    subparsers = parser.add_subparsers(dest="command", help="Available commands")
+
+    # Models command
+    models_parser = subparsers.add_parser("models", help="List available models")
+    models_parser.add_argument("--format", choices=["table", "json"], default="table", help="Output format")
+    models_parser.add_argument("--export", help="Export to JSON file")
+
+    # Chat command
+    chat_parser = subparsers.add_parser("chat", help="Chat completion")
+    chat_parser.add_argument("message", help="Message to send")
+    chat_parser.add_argument("--model", default="llama3.3-70b-instruct", help="Model to use")
+    chat_parser.add_argument("--stream", action="store_true", help="Stream the response")
+
+    # Agents command
+    agents_parser = subparsers.add_parser("agents", help="List agents")
+    agents_parser.add_argument("--format", choices=["table", "json"], default="table", help="Output format")
+    agents_parser.add_argument("--export", help="Export to JSON file")
+
+    # Image generation command
+    image_parser = subparsers.add_parser("image", help="Generate image")
+    image_parser.add_argument("prompt", help="Image prompt")
+    image_parser.add_argument("--export", help="Export response to JSON file")
+
+    # Pagination demo command
+    paginate_parser = subparsers.add_parser("paginate", help="Demonstrate pagination")
+    paginate_parser.add_argument("--max-pages", type=int, default=5, help="Maximum pages to fetch")
+
+    args = parser.parse_args()
+
+    # Setup client
+    cli = GradientCLI()
+
+    # Get tokens from environment if not provided
+    access_token = args.access_token or os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
+    model_key = args.model_key or os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
+    agent_key = args.agent_key or os.environ.get("GRADIENT_AGENT_ACCESS_KEY")
+    agent_endpoint = args.agent_endpoint or os.environ.get("GRADIENT_AGENT_ENDPOINT")
+
+    if not access_token:
+        print("Error: Access token required. Use --access-token or set DIGITALOCEAN_ACCESS_TOKEN environment variable.")
+        sys.exit(1)
+
+    cli.setup_client(access_token, model_key, agent_key, agent_endpoint)
+
+    # Execute command
+    if args.command == "models":
+        cli.list_models(args.format, args.export)
+    elif args.command == "chat":
+        cli.chat_completion(args.message, args.model, args.stream)
+    elif args.command == "agents":
+        cli.list_agents(args.format, args.export)
+    elif args.command == "image":
+        cli.generate_image(args.prompt, args.export)
+    elif args.command == "paginate":
+        cli.paginate_models(args.max_pages)
+    else:
+        parser.print_help()
+
+
+if __name__ == "__main__":
+    main()
