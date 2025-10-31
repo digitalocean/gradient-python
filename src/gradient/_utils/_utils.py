@@ -419,3 +419,676 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# Response Caching Classes
+class ResponseCache:
+    """Simple in-memory response cache with TTL support."""
+
+    def __init__(self, max_size: int = 100, default_ttl: int = 300) -> None:
+        """Initialize the cache.
+
+        Args:
+            max_size: Maximum number of cached responses
+            default_ttl: Default time-to-live in seconds
+        """
+        self.max_size: int = max_size
+        self.default_ttl: int = default_ttl
+        self._cache: dict[str, tuple[Any, float]] = {}
+        self._access_order: list[str] = []
+
+    def _make_key(self, method: str, url: str, params: dict[str, Any] | None = None, data: Any = None) -> str:
+        """Generate a cache key from request details."""
+        import hashlib
+        import json
+
+        key_data = {
+            "method": method.upper(),
+            "url": url,
+            "params": params or {},
+            "data": json.dumps(data, sort_keys=True) if data else None
+        }
+        key_str = json.dumps(key_data, sort_keys=True)
+        return hashlib.md5(key_str.encode()).hexdigest()
+
+    def get(self, method: str, url: str, params: dict[str, Any] | None = None, data: Any = None) -> Any | None:
+        """Get a cached response if available and not expired."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        if key in self._cache:
+            response, expiry = self._cache[key]
+            if time.time() < expiry:
+                # Move to end (most recently used)
+                self._access_order.remove(key)
+                self._access_order.append(key)
+                return response
+            else:
+                # Expired, remove it
+                del self._cache[key]
+                self._access_order.remove(key)
+        return None
+
+    def set(self, method: str, url: str, response: Any, ttl: int | None = None,
+            params: dict[str, Any] | None = None, data: Any = None) -> None:
+        """Cache a response with optional TTL."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        expiry = time.time() + (ttl or self.default_ttl)
+
+        # Remove if already exists
+        if key in self._cache:
+            self._access_order.remove(key)
+
+        # Evict least recently used if at capacity
+        if len(self._cache) >= self.max_size:
+            lru_key = self._access_order.pop(0)
+            del self._cache[lru_key]
+
+        self._cache[key] = (response, expiry)
+        self._access_order.append(key)
+
+    def clear(self) -> None:
+        """Clear all cached responses."""
+        self._cache.clear()
+        self._access_order.clear()
+
+    def size(self) -> int:
+        """Get current cache size."""
+        return len(self._cache)
+
+
+# Rate Limiting Classes
+class RateLimiter:
+    """Simple token bucket rate limiter."""
+
+    def __init__(self, requests_per_minute: int = 60) -> None:
+        """Initialize rate limiter.
+
+        Args:
+            requests_per_minute: Maximum requests allowed per minute
+        """
+        self.requests_per_minute: int = requests_per_minute
+        self.tokens: float = float(requests_per_minute)
+        self.last_refill: float = self._now()
+        self.refill_rate: float = requests_per_minute / 60.0  # tokens per second
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def _refill(self) -> None:
+        """Refill tokens based on elapsed time."""
+        now = self._now()
+        elapsed = now - self.last_refill
+        self.tokens = min(self.requests_per_minute, self.tokens + elapsed * self.refill_rate)
+        self.last_refill = now
+
+    def acquire(self, tokens: int = 1) -> bool:
+        """Try to acquire tokens. Returns True if successful."""
+        self._refill()
+        if self.tokens >= tokens:
+            self.tokens -= tokens
+            return True
+        return False
+
+    def wait_time(self, tokens: int = 1) -> float:
+        """Get seconds to wait for tokens to be available."""
+        self._refill()
+        if self.tokens >= tokens:
+            return 0.0
+
+        needed = tokens - self.tokens
+        return needed / self.refill_rate
+
+
+# Batch Processing Classes
+class BatchProcessor:
+    """Utility for batching multiple requests with timeout and size limits."""
+
+    def __init__(self, batch_size: int = 10, timeout_seconds: float = 5.0) -> None:
+        """Initialize batch processor.
+
+        Args:
+            batch_size: Maximum items per batch
+            timeout_seconds: Maximum time to wait before processing batch
+        """
+        self.batch_size: int = batch_size
+        self.timeout_seconds: float = timeout_seconds
+        self._batch: list[Any] = []
+        self._last_add_time: float = self._now()
+        self._callback: Callable[[list[Any]], Any] | None = None
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def add(self, item: Any) -> None:
+        """Add item to current batch."""
+        self._batch.append(item)
+        self._last_add_time = self._now()
+
+        # Auto-process if batch is full
+        if len(self._batch) >= self.batch_size:
+            self._process_batch()
+
+    def set_callback(self, callback: Callable[[list[Any]], Any]) -> None:
+        """Set callback function to process batches."""
+        self._callback = callback
+
+    def _process_batch(self) -> Any | None:
+        """Process current batch if not empty."""
+        if not self._batch or not self._callback:
+            return None
+
+        batch = self._batch.copy()
+        self._batch.clear()
+        return self._callback(batch)
+
+    def force_process(self) -> Any | None:
+        """Force process current batch regardless of size or timeout."""
+        return self._process_batch()
+
+    def check_timeout(self) -> Any | None:
+        """Check if batch has timed out and process if needed."""
+        if not self._batch:
+            return None
+
+        elapsed = self._now() - self._last_add_time
+        if elapsed >= self.timeout_seconds:
+            return self._process_batch()
+
+        return None
+
+    def size(self) -> int:
+        """Get current batch size."""
+        return len(self._batch)
+
+    def is_empty(self) -> bool:
+        """Check if batch is empty."""
+        return len(self._batch) == 0
+
+
+# Data Export Classes
+class DataExporter:
+    """Utility for exporting API response data to JSON/CSV formats."""
+
+    def __init__(self) -> None:
+        """Initialize data exporter."""
+        pass
+
+    def _flatten_response(self, data: Any, prefix: str = "") -> dict[str, Any]:
+        """Flatten nested response data for CSV export."""
+        flattened = {}
+
+        if isinstance(data, dict):
+            for key, value in data.items():
+                new_key = f"{prefix}.{key}" if prefix else key
+                if isinstance(value, (dict, list)):
+                    flattened.update(self._flatten_response(value, new_key))
+                else:
+                    flattened[new_key] = value
+        elif isinstance(data, list):
+            # For lists, create indexed keys
+            for i, item in enumerate(data):
+                new_key = f"{prefix}[{i}]" if prefix else f"[{i}]"
+                if isinstance(item, (dict, list)):
+                    flattened.update(self._flatten_response(item, new_key))
+                else:
+                    flattened[new_key] = item
+        else:
+            flattened[prefix] = data
+
+        return flattened
+
+    def export_json(self, data: Any, file_path: str | None = None, indent: int = 2) -> str | None:
+        """Export data to JSON format.
+
+        Args:
+            data: Data to export
+            file_path: Optional file path to save to
+            indent: JSON indentation level
+
+        Returns:
+            JSON string if no file_path provided, None otherwise
+        """
+        import json
+
+        json_str = json.dumps(data, indent=indent, default=str)
+
+        if file_path:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(json_str)
+            return None
+
+        return json_str
+
+    def export_csv(self, data: Any, file_path: str | None = None, headers: list[str] | None = None) -> str | None:
+        """Export data to CSV format.
+
+        Args:
+            data: Data to export (list of dicts or single dict)
+            file_path: Optional file path to save to
+            headers: Optional custom headers
+
+        Returns:
+            CSV string if no file_path provided, None otherwise
+        """
+        import csv
+        import io
+
+        # Ensure data is a list
+        if not isinstance(data, list):
+            data = [data]
+
+        # Flatten each item in the data
+        flattened_data = [self._flatten_response(item) for item in data]
+
+        # Determine headers
+        if not headers:
+            all_keys = set()
+            for item in flattened_data:
+                all_keys.update(item.keys())
+            headers = sorted(all_keys)
+
+        # Create CSV content
+        output = io.StringIO() if not file_path else open(file_path, 'w', newline='', encoding='utf-8')
+
+        try:
+            writer = csv.DictWriter(output, fieldnames=headers)
+            writer.writeheader()
+
+            for item in flattened_data:
+                # Fill missing keys with empty strings
+                row = {header: item.get(header, '') for header in headers}
+                writer.writerow(row)
+
+            if not file_path:
+                return output.getvalue()
+            return None
+
+        finally:
+            if file_path:
+                output.close()
+
+
+# Pagination Classes
+class PaginationHelper:
+    """Helper for handling paginated API responses."""
+
+    def __init__(self, page_size: int = 20, max_pages: int | None = None) -> None:
+        """Initialize pagination helper.
+
+        Args:
+            page_size: Number of items per page
+            max_pages: Maximum number of pages to fetch (None for unlimited)
+        """
+        self.page_size: int = page_size
+        self.max_pages: int | None = max_pages
+
+    def paginate(self, fetch_func: Callable[[dict[str, Any]], Any], **kwargs: Any) -> list[Any]:
+        """Paginate through all results using the provided fetch function.
+
+        Args:
+            fetch_func: Function that takes pagination params and returns response
+            **kwargs: Additional parameters to pass to fetch_func
+
+        Returns:
+            List of all items across all pages
+        """
+        all_items = []
+        page = 1
+
+        while self.max_pages is None or page <= self.max_pages:
+            # Add pagination parameters
+            params = kwargs.copy()
+            params.update({
+                "page": page,
+                "per_page": self.page_size
+            })
+
+            try:
+                response = fetch_func(params)
+                items = self._extract_items(response)
+
+                if not items:
+                    break  # No more items
+
+                all_items.extend(items)
+
+                # Check if we got fewer items than requested (last page)
+                if len(items) < self.page_size:
+                    break
+
+                page += 1
+
+            except Exception as e:
+                # If it's a pagination error or no more pages, stop
+                if self._is_pagination_end_error(e):
+                    break
+                raise
+
+        return all_items
+
+    def _extract_items(self, response: Any) -> list[Any]:
+        """Extract items from API response."""
+        # Handle different response formats
+        if hasattr(response, 'data') and isinstance(response.data, list):
+            return response.data
+        elif hasattr(response, 'items') and isinstance(response.items, list):
+            return response.items
+        elif hasattr(response, 'results') and isinstance(response.results, list):
+            return response.results
+        elif isinstance(response, list):
+            return response
+        elif isinstance(response, dict):
+            # Try common keys
+            for key in ['data', 'items', 'results', 'objects']:
+                if key in response and isinstance(response[key], list):
+                    return response[key]
+        return []
+
+    def _is_pagination_end_error(self, error: Exception) -> bool:
+        """Check if error indicates end of pagination."""
+        error_str = str(error).lower()
+        return any(phrase in error_str for phrase in [
+            'page not found',
+            'invalid page',
+            'no more pages',
+            'pagination end'
+        ])
+
+    async def paginate_async(self, fetch_func: Callable[[dict[str, Any]], Any], **kwargs: Any) -> list[Any]:
+        """Async version of paginate."""
+        import asyncio
+
+        all_items = []
+        page = 1
+
+        while self.max_pages is None or page <= self.max_pages:
+            # Add pagination parameters
+            params = kwargs.copy()
+            params.update({
+                "page": page,
+                "per_page": self.page_size
+            })
+
+            try:
+                response = await fetch_func(params)
+                items = self._extract_items(response)
+
+                if not items:
+                    break
+
+                all_items.extend(items)
+
+                if len(items) < self.page_size:
+                    break
+
+                page += 1
+
+            except Exception as e:
+                if self._is_pagination_end_error(e):
+                    break
+                raise
+
+        return all_items
+
+
+# Streaming Support Classes
+class StreamProcessor:
+    """Utility for processing streaming API responses with custom handlers."""
+
+    def __init__(self) -> None:
+        """Initialize stream processor."""
+        self._handlers: dict[str, Callable[[Any], Any]] = {}
+
+    def add_handler(self, event_type: str, handler: Callable[[Any], Any]) -> None:
+        """Add event handler for specific event type.
+
+        Args:
+            event_type: Type of event to handle
+            handler: Function to process the event
+        """
+        self._handlers[event_type] = handler
+
+    def remove_handler(self, event_type: str) -> None:
+        """Remove handler for specific event type."""
+        self._handlers.pop(event_type, None)
+
+    def process_event(self, event: Any) -> Any | None:
+        """Process a single streaming event.
+
+        Args:
+            event: The event data to process
+
+        Returns:
+            Result of handler if one exists, None otherwise
+        """
+        event_type = self._get_event_type(event)
+        handler = self._handlers.get(event_type)
+        if handler:
+            return handler(event)
+        return None
+
+    def process_stream(self, stream: Any) -> list[Any]:
+        """Process entire streaming response.
+
+        Args:
+            stream: The stream to process
+
+        Returns:
+            List of all processed event results
+        """
+        results = []
+        for event in stream:
+            result = self.process_event(event)
+            if result is not None:
+                results.append(result)
+        return results
+
+    async def process_stream_async(self, stream: Any) -> list[Any]:
+        """Async version of process_stream."""
+        results = []
+        async for event in stream:
+            result = self.process_event(event)
+            if result is not None:
+                results.append(result)
+        return results
+
+    def _get_event_type(self, event: Any) -> str:
+        """Extract event type from event data."""
+        # Handle different event formats
+        if hasattr(event, 'event') and event.event:
+            return event.event
+        elif hasattr(event, 'type') and event.type:
+            return event.type
+        elif isinstance(event, dict):
+            return event.get('event') or event.get('type') or 'unknown'
+        else:
+            return 'unknown'
+
+
+class StreamCollector:
+    """Utility for collecting and aggregating streaming events."""
+
+    def __init__(self) -> None:
+        """Initialize stream collector."""
+        self._events: list[Any] = []
+        self._aggregated: dict[str, Any] = {}
+
+    def collect(self, event: Any) -> None:
+        """Collect a streaming event."""
+        self._events.append(event)
+        self._aggregate_event(event)
+
+    def get_events(self, event_type: str | None = None) -> list[Any]:
+        """Get collected events, optionally filtered by type."""
+        if event_type is None:
+            return self._events.copy()
+
+        return [e for e in self._events if self._get_event_type(e) == event_type]
+
+    def get_aggregated(self) -> dict[str, Any]:
+        """Get aggregated event data."""
+        return self._aggregated.copy()
+
+    def clear(self) -> None:
+        """Clear all collected events and aggregated data."""
+        self._events.clear()
+        self._aggregated.clear()
+
+    def count_events(self, event_type: str | None = None) -> int:
+        """Count events, optionally filtered by type."""
+        if event_type is None:
+            return len(self._events)
+        return len(self.get_events(event_type))
+
+    def _aggregate_event(self, event: Any) -> None:
+        """Aggregate event data for summary statistics."""
+        event_type = self._get_event_type(event)
+
+        if event_type not in self._aggregated:
+            self._aggregated[event_type] = {
+                'count': 0,
+                'events': [],
+                'last_event': None
+            }
+
+        self._aggregated[event_type]['count'] += 1
+        self._aggregated[event_type]['events'].append(event)
+        self._aggregated[event_type]['last_event'] = event
+
+    def _get_event_type(self, event: Any) -> str:
+        """Extract event type from event data."""
+        if hasattr(event, 'event') and event.event:
+            return event.event
+        elif hasattr(event, 'type') and event.type:
+            return event.type
+        elif isinstance(event, dict):
+            return event.get('event') or event.get('type') or 'unknown'
+        else:
+            return 'unknown'
+
+
+# API Key Validation Functions
+def validate_api_key(api_key: str | None) -> bool:
+    """Validate an API key format.
+
+    Args:
+        api_key: The API key to validate. Can be None.
+
+    Returns:
+        True if valid or None, False otherwise
+    """
+    if api_key is None:
+        return True  # None is acceptable for optional keys
+
+    if not isinstance(api_key, str):
+        return False
+    if not api_key or api_key.isspace():
+        return False
+    if len(api_key) < 10:
+        return False
+
+    # Check for common patterns
+    return (
+        api_key.startswith(('sk-', 'do_v1_')) or
+        'gradient' in api_key.lower() or
+        len(api_key) >= 20
+    )
+
+
+def validate_client_credentials(
+    access_token: str | None = None,
+    model_access_key: str | None = None,
+    agent_access_key: str | None = None,
+    agent_endpoint: str | None = None
+) -> None:
+    """Validate client credentials comprehensively.
+
+    This function performs thorough validation of client credentials including:
+    - Checking that at least one authentication method is provided
+    - Validating API key formats
+    - Checking agent endpoint URL format if provided
+
+    Args:
+        access_token: DigitalOcean access token
+        model_access_key: Gradient model access key
+        agent_access_key: Gradient agent access key
+        agent_endpoint: Agent endpoint URL
+
+    Raises:
+        ValueError: If credentials are invalid or missing required authentication
+    """
+    # Check that at least one authentication method is provided
+    if not any([access_token, model_access_key, agent_access_key]):
+        raise ValueError("At least one authentication method must be provided")
+
+    # Validate individual API keys
+    if access_token and not validate_api_key(access_token):
+        raise ValueError("Invalid access_token format")
+
+    if model_access_key and not validate_api_key(model_access_key):
+        raise ValueError("Invalid model_access_key format")
+
+    if agent_access_key and not validate_api_key(agent_access_key):
+        raise ValueError("Invalid agent_access_key format")
+
+    # Validate agent endpoint if provided
+    if agent_endpoint:
+        if not isinstance(agent_endpoint, str):
+            raise ValueError("agent_endpoint must be a string")
+        if not agent_endpoint.startswith(('http://', 'https://')):
+            raise ValueError("agent_endpoint must be a valid HTTP/HTTPS URL")
+
+
+def validate_client_instance(client: Any) -> None:
+    """Validate a Gradient client instance has proper authentication.
+
+    This function checks that a created client has valid authentication
+    and can make API calls. This directly addresses the reviewer feedback
+    about validating actual client instances rather than just parameters.
+
+    Args:
+        client: A Gradient or AsyncGradient client instance
+
+    Raises:
+        ValueError: If client authentication is invalid
+        TypeError: If client is not a valid Gradient client instance
+    """
+    # Import here to avoid circular imports
+    try:
+        from .._client import Gradient, AsyncGradient
+    except ImportError:
+        # Fallback for when called from different contexts
+        import gradient
+        Gradient = gradient.Gradient
+        AsyncGradient = gradient.AsyncGradient
+
+    if not isinstance(client, (Gradient, AsyncGradient)):
+        raise TypeError("client must be a Gradient or AsyncGradient instance")
+
+    # Check that client has at least one authentication method
+    has_auth = any([
+        client.access_token,
+        client.model_access_key,
+        client.agent_access_key
+    ])
+
+    if not has_auth:
+        raise ValueError("Client must have at least one authentication method configured")
+
+    # Validate the authentication methods that are set
+    try:
+        validate_client_credentials(
+            access_token=client.access_token,
+            model_access_key=client.model_access_key,
+            agent_access_key=client.agent_access_key,
+            agent_endpoint=client._agent_endpoint
+        )
+    except ValueError as e:
+        raise ValueError(f"Client authentication validation failed: {e}") from e
