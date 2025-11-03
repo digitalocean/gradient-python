@@ -32,8 +32,20 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import chat, agents, images, models, regions, databases, inference, gpu_droplets, knowledge_bases
+    from .resources import (
+        nfs,
+        chat,
+        agents,
+        images,
+        models,
+        regions,
+        databases,
+        inference,
+        gpu_droplets,
+        knowledge_bases,
+    )
     from .resources.images import ImagesResource, AsyncImagesResource
+    from .resources.nfs.nfs import NfsResource, AsyncNfsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
@@ -191,6 +203,12 @@ class Gradient(SyncAPIClient):
         from .resources.databases import DatabasesResource
 
         return DatabasesResource(self)
+
+    @cached_property
+    def nfs(self) -> NfsResource:
+        from .resources.nfs import NfsResource
+
+        return NfsResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientWithRawResponse:
@@ -494,6 +512,12 @@ class AsyncGradient(AsyncAPIClient):
         return AsyncDatabasesResource(self)
 
     @cached_property
+    def nfs(self) -> AsyncNfsResource:
+        from .resources.nfs import AsyncNfsResource
+
+        return AsyncNfsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientWithRawResponse:
         return AsyncGradientWithRawResponse(self)
 
@@ -717,6 +741,12 @@ class GradientWithRawResponse:
 
         return DatabasesResourceWithRawResponse(self._client.databases)
 
+    @cached_property
+    def nfs(self) -> nfs.NfsResourceWithRawResponse:
+        from .resources.nfs import NfsResourceWithRawResponse
+
+        return NfsResourceWithRawResponse(self._client.nfs)
+
 
 class AsyncGradientWithRawResponse:
     _client: AsyncGradient
@@ -777,6 +807,12 @@ class AsyncGradientWithRawResponse:
         from .resources.databases import AsyncDatabasesResourceWithRawResponse
 
         return AsyncDatabasesResourceWithRawResponse(self._client.databases)
+
+    @cached_property
+    def nfs(self) -> nfs.AsyncNfsResourceWithRawResponse:
+        from .resources.nfs import AsyncNfsResourceWithRawResponse
+
+        return AsyncNfsResourceWithRawResponse(self._client.nfs)
 
 
 class GradientWithStreamedResponse:
@@ -839,6 +875,12 @@ class GradientWithStreamedResponse:
 
         return DatabasesResourceWithStreamingResponse(self._client.databases)
 
+    @cached_property
+    def nfs(self) -> nfs.NfsResourceWithStreamingResponse:
+        from .resources.nfs import NfsResourceWithStreamingResponse
+
+        return NfsResourceWithStreamingResponse(self._client.nfs)
+
 
 class AsyncGradientWithStreamedResponse:
     _client: AsyncGradient
@@ -899,6 +941,12 @@ class AsyncGradientWithStreamedResponse:
         from .resources.databases import AsyncDatabasesResourceWithStreamingResponse
 
         return AsyncDatabasesResourceWithStreamingResponse(self._client.databases)
+
+    @cached_property
+    def nfs(self) -> nfs.AsyncNfsResourceWithStreamingResponse:
+        from .resources.nfs import AsyncNfsResourceWithStreamingResponse
+
+        return AsyncNfsResourceWithStreamingResponse(self._client.nfs)
 
 
 Client = Gradient

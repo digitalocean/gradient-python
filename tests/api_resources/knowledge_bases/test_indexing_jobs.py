@@ -14,6 +14,7 @@ from gradient.types.knowledge_bases import (
     IndexingJobCreateResponse,
     IndexingJobRetrieveResponse,
     IndexingJobUpdateCancelResponse,
+    IndexingJobRetrieveSignedURLResponse,
     IndexingJobRetrieveDataSourcesResponse,
 )
 
@@ -178,6 +179,48 @@ class TestIndexingJobs:
     def test_path_params_retrieve_data_sources(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
             client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_data_sources(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_retrieve_signed_url(self, client: Gradient) -> None:
+        indexing_job = client.knowledge_bases.indexing_jobs.retrieve_signed_url(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+        assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_retrieve_signed_url(self, client: Gradient) -> None:
+        response = client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_signed_url(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        indexing_job = response.parse()
+        assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_retrieve_signed_url(self, client: Gradient) -> None:
+        with client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_signed_url(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            indexing_job = response.parse()
+            assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_retrieve_signed_url(self, client: Gradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
+            client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_signed_url(
                 "",
             )
 
@@ -393,6 +436,48 @@ class TestAsyncIndexingJobs:
     async def test_path_params_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
             await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_data_sources(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
+        indexing_job = await async_client.knowledge_bases.indexing_jobs.retrieve_signed_url(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+        assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
+        response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_signed_url(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        indexing_job = await response.parse()
+        assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
+        async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_signed_url(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            indexing_job = await response.parse()
+            assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
+            await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_signed_url(
                 "",
             )
 

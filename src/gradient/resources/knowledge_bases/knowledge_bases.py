@@ -39,6 +39,7 @@ from ...types.knowledge_base_create_response import KnowledgeBaseCreateResponse
 from ...types.knowledge_base_delete_response import KnowledgeBaseDeleteResponse
 from ...types.knowledge_base_update_response import KnowledgeBaseUpdateResponse
 from ...types.knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse
+from ...types.knowledge_base_list_indexing_jobs_response import KnowledgeBaseListIndexingJobsResponse
 
 __all__ = ["KnowledgeBasesResource", "AsyncKnowledgeBasesResource"]
 
@@ -330,6 +331,44 @@ class KnowledgeBasesResource(SyncAPIResource):
             cast_to=KnowledgeBaseDeleteResponse,
         )
 
+    def list_indexing_jobs(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> KnowledgeBaseListIndexingJobsResponse:
+        """
+        To list latest 15 indexing jobs for a knowledge base, send a GET request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return self._get(
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=KnowledgeBaseListIndexingJobsResponse,
+        )
+
 
 class AsyncKnowledgeBasesResource(AsyncAPIResource):
     @cached_property
@@ -618,6 +657,44 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
             cast_to=KnowledgeBaseDeleteResponse,
         )
 
+    async def list_indexing_jobs(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> KnowledgeBaseListIndexingJobsResponse:
+        """
+        To list latest 15 indexing jobs for a knowledge base, send a GET request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return await self._get(
+            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=KnowledgeBaseListIndexingJobsResponse,
+        )
+
 
 class KnowledgeBasesResourceWithRawResponse:
     def __init__(self, knowledge_bases: KnowledgeBasesResource) -> None:
@@ -637,6 +714,9 @@ class KnowledgeBasesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             knowledge_bases.delete,
+        )
+        self.list_indexing_jobs = to_raw_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
         )
 
     @cached_property
@@ -667,6 +747,9 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             knowledge_bases.delete,
         )
+        self.list_indexing_jobs = async_to_raw_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
+        )
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
@@ -696,6 +779,9 @@ class KnowledgeBasesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             knowledge_bases.delete,
         )
+        self.list_indexing_jobs = to_streamed_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
+        )
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
@@ -724,6 +810,9 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             knowledge_bases.delete,
+        )
+        self.list_indexing_jobs = async_to_streamed_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
         )
 
     @cached_property

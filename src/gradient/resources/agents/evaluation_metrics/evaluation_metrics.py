@@ -40,6 +40,14 @@ from .openai.openai import (
 )
 from ...._base_client import make_request_options
 from ....types.agents import evaluation_metric_list_regions_params
+from .scheduled_indexing import (
+    ScheduledIndexingResource,
+    AsyncScheduledIndexingResource,
+    ScheduledIndexingResourceWithRawResponse,
+    AsyncScheduledIndexingResourceWithRawResponse,
+    ScheduledIndexingResourceWithStreamingResponse,
+    AsyncScheduledIndexingResourceWithStreamingResponse,
+)
 from .anthropic.anthropic import (
     AnthropicResource,
     AsyncAnthropicResource,
@@ -82,6 +90,10 @@ class EvaluationMetricsResource(SyncAPIResource):
     @cached_property
     def oauth2(self) -> Oauth2Resource:
         return Oauth2Resource(self._client)
+
+    @cached_property
+    def scheduled_indexing(self) -> ScheduledIndexingResource:
+        return ScheduledIndexingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EvaluationMetricsResourceWithRawResponse:
@@ -195,6 +207,10 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
     @cached_property
     def oauth2(self) -> AsyncOauth2Resource:
         return AsyncOauth2Resource(self._client)
+
+    @cached_property
+    def scheduled_indexing(self) -> AsyncScheduledIndexingResource:
+        return AsyncScheduledIndexingResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
@@ -319,6 +335,10 @@ class EvaluationMetricsResourceWithRawResponse:
     def oauth2(self) -> Oauth2ResourceWithRawResponse:
         return Oauth2ResourceWithRawResponse(self._evaluation_metrics.oauth2)
 
+    @cached_property
+    def scheduled_indexing(self) -> ScheduledIndexingResourceWithRawResponse:
+        return ScheduledIndexingResourceWithRawResponse(self._evaluation_metrics.scheduled_indexing)
+
 
 class AsyncEvaluationMetricsResourceWithRawResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -350,6 +370,10 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
     @cached_property
     def oauth2(self) -> AsyncOauth2ResourceWithRawResponse:
         return AsyncOauth2ResourceWithRawResponse(self._evaluation_metrics.oauth2)
+
+    @cached_property
+    def scheduled_indexing(self) -> AsyncScheduledIndexingResourceWithRawResponse:
+        return AsyncScheduledIndexingResourceWithRawResponse(self._evaluation_metrics.scheduled_indexing)
 
 
 class EvaluationMetricsResourceWithStreamingResponse:
@@ -383,6 +407,10 @@ class EvaluationMetricsResourceWithStreamingResponse:
     def oauth2(self) -> Oauth2ResourceWithStreamingResponse:
         return Oauth2ResourceWithStreamingResponse(self._evaluation_metrics.oauth2)
 
+    @cached_property
+    def scheduled_indexing(self) -> ScheduledIndexingResourceWithStreamingResponse:
+        return ScheduledIndexingResourceWithStreamingResponse(self._evaluation_metrics.scheduled_indexing)
+
 
 class AsyncEvaluationMetricsResourceWithStreamingResponse:
     def __init__(self, evaluation_metrics: AsyncEvaluationMetricsResource) -> None:
@@ -414,3 +442,7 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
     @cached_property
     def oauth2(self) -> AsyncOauth2ResourceWithStreamingResponse:
         return AsyncOauth2ResourceWithStreamingResponse(self._evaluation_metrics.oauth2)
+
+    @cached_property
+    def scheduled_indexing(self) -> AsyncScheduledIndexingResourceWithStreamingResponse:
+        return AsyncScheduledIndexingResourceWithStreamingResponse(self._evaluation_metrics.scheduled_indexing)
