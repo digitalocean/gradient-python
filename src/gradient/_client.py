@@ -33,6 +33,7 @@ from ._base_client import (
 
 if TYPE_CHECKING:
     from .resources import (
+        nfs,
         chat,
         agents,
         images,
@@ -44,6 +45,7 @@ if TYPE_CHECKING:
         knowledge_bases,
     )
     from .resources.images import ImagesResource, AsyncImagesResource
+    from .resources.nfs.nfs import NfsResource, AsyncNfsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
@@ -135,7 +137,10 @@ class Gradient(SyncAPIClient):
         self._agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "https://inference.do-ai.run"
+            inference_endpoint = (
+                os.environ.get("GRADIENT_INFERENCE_ENDPOINT")
+                or "https://inference.do-ai.run"
+            )
         self.inference_endpoint = inference_endpoint
 
         if base_url is None:
@@ -227,6 +232,12 @@ class Gradient(SyncAPIClient):
         return DatabasesResource(self)
 
     @cached_property
+    def nfs(self) -> NfsResource:
+        from .resources.nfs import NfsResource
+
+        return NfsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> GradientWithRawResponse:
         return GradientWithRawResponse(self)
 
@@ -276,7 +287,9 @@ class Gradient(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
+        if (
+            self.access_token or self.agent_access_key or self.model_access_key
+        ) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
@@ -329,10 +342,14 @@ class Gradient(SyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
+            )
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_query` and `set_default_query` arguments are mutually exclusive"
+            )
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -382,10 +399,14 @@ class Gradient(SyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
+            return _exceptions.AuthenticationError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
+            return _exceptions.PermissionDeniedError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -394,13 +415,17 @@ class Gradient(SyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
+            return _exceptions.UnprocessableEntityError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(err_msg, response=response, body=body)
+            return _exceptions.InternalServerError(
+                err_msg, response=response, body=body
+            )
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -468,7 +493,10 @@ class AsyncGradient(AsyncAPIClient):
         self._agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "https://inference.do-ai.run"
+            inference_endpoint = (
+                os.environ.get("GRADIENT_INFERENCE_ENDPOINT")
+                or "https://inference.do-ai.run"
+            )
         self.inference_endpoint = inference_endpoint
 
         if base_url is None:
@@ -560,6 +588,12 @@ class AsyncGradient(AsyncAPIClient):
         return AsyncDatabasesResource(self)
 
     @cached_property
+    def nfs(self) -> AsyncNfsResource:
+        from .resources.nfs import AsyncNfsResource
+
+        return AsyncNfsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientWithRawResponse:
         return AsyncGradientWithRawResponse(self)
 
@@ -609,7 +643,9 @@ class AsyncGradient(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
+        if (
+            self.access_token or self.agent_access_key or self.model_access_key
+        ) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
@@ -662,10 +698,14 @@ class AsyncGradient(AsyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
+            )
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
+            raise ValueError(
+                "The `default_query` and `set_default_query` arguments are mutually exclusive"
+            )
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -715,10 +755,14 @@ class AsyncGradient(AsyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
+            return _exceptions.AuthenticationError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
+            return _exceptions.PermissionDeniedError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -727,13 +771,17 @@ class AsyncGradient(AsyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
+            return _exceptions.UnprocessableEntityError(
+                err_msg, response=response, body=body
+            )
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(err_msg, response=response, body=body)
+            return _exceptions.InternalServerError(
+                err_msg, response=response, body=body
+            )
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -796,6 +844,12 @@ class GradientWithRawResponse:
         from .resources.databases import DatabasesResourceWithRawResponse
 
         return DatabasesResourceWithRawResponse(self._client.databases)
+
+    @cached_property
+    def nfs(self) -> nfs.NfsResourceWithRawResponse:
+        from .resources.nfs import NfsResourceWithRawResponse
+
+        return NfsResourceWithRawResponse(self._client.nfs)
 
 
 class AsyncGradientWithRawResponse:
@@ -862,6 +916,12 @@ class AsyncGradientWithRawResponse:
 
         return AsyncDatabasesResourceWithRawResponse(self._client.databases)
 
+    @cached_property
+    def nfs(self) -> nfs.AsyncNfsResourceWithRawResponse:
+        from .resources.nfs import AsyncNfsResourceWithRawResponse
+
+        return AsyncNfsResourceWithRawResponse(self._client.nfs)
+
 
 class GradientWithStreamedResponse:
     _client: Gradient
@@ -927,6 +987,12 @@ class GradientWithStreamedResponse:
 
         return DatabasesResourceWithStreamingResponse(self._client.databases)
 
+    @cached_property
+    def nfs(self) -> nfs.NfsResourceWithStreamingResponse:
+        from .resources.nfs import NfsResourceWithStreamingResponse
+
+        return NfsResourceWithStreamingResponse(self._client.nfs)
+
 
 class AsyncGradientWithStreamedResponse:
     _client: AsyncGradient
@@ -976,7 +1042,9 @@ class AsyncGradientWithStreamedResponse:
             AsyncKnowledgeBasesResourceWithStreamingResponse,
         )
 
-        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(
+            self._client.knowledge_bases
+        )
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
@@ -995,6 +1063,12 @@ class AsyncGradientWithStreamedResponse:
         from .resources.databases import AsyncDatabasesResourceWithStreamingResponse
 
         return AsyncDatabasesResourceWithStreamingResponse(self._client.databases)
+
+    @cached_property
+    def nfs(self) -> nfs.AsyncNfsResourceWithStreamingResponse:
+        from .resources.nfs import AsyncNfsResourceWithStreamingResponse
+
+        return AsyncNfsResourceWithStreamingResponse(self._client.nfs)
 
 
 Client = Gradient

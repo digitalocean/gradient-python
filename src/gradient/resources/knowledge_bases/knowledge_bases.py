@@ -8,8 +8,21 @@ from typing import Iterable
 
 import httpx
 
-from ...types import knowledge_base_list_params, knowledge_base_create_params, knowledge_base_update_params
-from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ...types import (
+    knowledge_base_list_params,
+    knowledge_base_create_params,
+    knowledge_base_update_params,
+)
+from ..._types import (
+    Body,
+    Omit,
+    Query,
+    Headers,
+    NotGiven,
+    SequenceNotStr,
+    omit,
+    not_given,
+)
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -41,6 +54,9 @@ from ...types.knowledge_base_create_response import KnowledgeBaseCreateResponse
 from ...types.knowledge_base_delete_response import KnowledgeBaseDeleteResponse
 from ...types.knowledge_base_update_response import KnowledgeBaseUpdateResponse
 from ...types.knowledge_base_retrieve_response import KnowledgeBaseRetrieveResponse
+from ...types.knowledge_base_list_indexing_jobs_response import (
+    KnowledgeBaseListIndexingJobsResponse,
+)
 
 __all__ = [
     "KnowledgeBasesResource",
@@ -142,9 +158,11 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            "/v2/gen-ai/knowledge_bases"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
+            (
+                "/v2/gen-ai/knowledge_bases"
+                if self._client._base_url_overridden
+                else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases"
+            ),
             body=maybe_transform(
                 {
                     "database_id": database_id,
@@ -159,7 +177,10 @@ class KnowledgeBasesResource(SyncAPIResource):
                 knowledge_base_create_params.KnowledgeBaseCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseCreateResponse,
         )
@@ -189,13 +210,20 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `uuid` but received {uuid!r}"
+            )
         return self._get(
-            f"/v2/gen-ai/knowledge_bases/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
+            (
+                f"/v2/gen-ai/knowledge_bases/{uuid}"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}"
+            ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseRetrieveResponse,
         )
@@ -243,11 +271,15 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not path_uuid:
-            raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}"
+            )
         return self._put(
-            f"/v2/gen-ai/knowledge_bases/{path_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_uuid}",
+            (
+                f"/v2/gen-ai/knowledge_bases/{path_uuid}"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_uuid}"
+            ),
             body=maybe_transform(
                 {
                     "database_id": database_id,
@@ -260,7 +292,10 @@ class KnowledgeBasesResource(SyncAPIResource):
                 knowledge_base_update_params.KnowledgeBaseUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseUpdateResponse,
         )
@@ -294,9 +329,11 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            "/v2/gen-ai/knowledge_bases"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
+            (
+                "/v2/gen-ai/knowledge_bases"
+                if self._client._base_url_overridden
+                else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases"
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -338,13 +375,20 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `uuid` but received {uuid!r}"
+            )
         return self._delete(
-            f"/v2/gen-ai/knowledge_bases/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
+            (
+                f"/v2/gen-ai/knowledge_bases/{uuid}"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}"
+            ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseDeleteResponse,
         )
@@ -390,7 +434,9 @@ class KnowledgeBasesResource(SyncAPIResource):
           KnowledgeBaseTimeoutError: If the timeout is exceeded before the database becomes ONLINE
         """
         if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `uuid` but received {uuid!r}"
+            )
 
         start_time = time.time()
         failed_states = {"DECOMMISSIONED", "UNHEALTHY"}
@@ -416,13 +462,58 @@ class KnowledgeBasesResource(SyncAPIResource):
                 return response
 
             if status in failed_states:
-                raise KnowledgeBaseDatabaseError(f"Knowledge base database entered failed state: {status}")
+                raise KnowledgeBaseDatabaseError(
+                    f"Knowledge base database entered failed state: {status}"
+                )
 
             # Sleep before next poll, but don't exceed timeout
             remaining_time = timeout - elapsed
             sleep_time = min(poll_interval, remaining_time)
             if sleep_time > 0:
                 time.sleep(sleep_time)
+
+    def list_indexing_jobs(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> KnowledgeBaseListIndexingJobsResponse:
+        """
+        To list latest 15 indexing jobs for a knowledge base, send a GET request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return self._get(
+            (
+                f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs"
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+            ),
+            cast_to=KnowledgeBaseListIndexingJobsResponse,
+        )
 
 
 class AsyncKnowledgeBasesResource(AsyncAPIResource):
@@ -445,7 +536,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
         return AsyncKnowledgeBasesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncKnowledgeBasesResourceWithStreamingResponse:
+    def with_streaming_response(
+        self,
+    ) -> AsyncKnowledgeBasesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
@@ -505,9 +598,11 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            "/v2/gen-ai/knowledge_bases"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
+            (
+                "/v2/gen-ai/knowledge_bases"
+                if self._client._base_url_overridden
+                else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases"
+            ),
             body=await async_maybe_transform(
                 {
                     "database_id": database_id,
@@ -522,7 +617,10 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 knowledge_base_create_params.KnowledgeBaseCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseCreateResponse,
         )
@@ -552,13 +650,20 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `uuid` but received {uuid!r}"
+            )
         return await self._get(
-            f"/v2/gen-ai/knowledge_bases/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
+            (
+                f"/v2/gen-ai/knowledge_bases/{uuid}"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}"
+            ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseRetrieveResponse,
         )
@@ -606,11 +711,15 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not path_uuid:
-            raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}"
+            )
         return await self._put(
-            f"/v2/gen-ai/knowledge_bases/{path_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_uuid}",
+            (
+                f"/v2/gen-ai/knowledge_bases/{path_uuid}"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_uuid}"
+            ),
             body=await async_maybe_transform(
                 {
                     "database_id": database_id,
@@ -623,7 +732,10 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 knowledge_base_update_params.KnowledgeBaseUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseUpdateResponse,
         )
@@ -657,9 +769,11 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            "/v2/gen-ai/knowledge_bases"
-            if self._client._base_url_overridden
-            else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases",
+            (
+                "/v2/gen-ai/knowledge_bases"
+                if self._client._base_url_overridden
+                else "https://api.digitalocean.com/v2/gen-ai/knowledge_bases"
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -701,13 +815,20 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `uuid` but received {uuid!r}"
+            )
         return await self._delete(
-            f"/v2/gen-ai/knowledge_bases/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}",
+            (
+                f"/v2/gen-ai/knowledge_bases/{uuid}"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{uuid}"
+            ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
             ),
             cast_to=KnowledgeBaseDeleteResponse,
         )
@@ -753,7 +874,9 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           KnowledgeBaseTimeoutError: If the timeout is exceeded before the database becomes ONLINE
         """
         if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+            raise ValueError(
+                f"Expected a non-empty value for `uuid` but received {uuid!r}"
+            )
 
         start_time = time.time()
         failed_states = {"DECOMMISSIONED", "UNHEALTHY"}
@@ -779,13 +902,58 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 return response
 
             if status in failed_states:
-                raise KnowledgeBaseDatabaseError(f"Knowledge base database entered failed state: {status}")
+                raise KnowledgeBaseDatabaseError(
+                    f"Knowledge base database entered failed state: {status}"
+                )
 
             # Sleep before next poll, but don't exceed timeout
             remaining_time = timeout - elapsed
             sleep_time = min(poll_interval, remaining_time)
             if sleep_time > 0:
                 await asyncio.sleep(sleep_time)
+
+    async def list_indexing_jobs(
+        self,
+        knowledge_base_uuid: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> KnowledgeBaseListIndexingJobsResponse:
+        """
+        To list latest 15 indexing jobs for a knowledge base, send a GET request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
+            )
+        return await self._get(
+            (
+                f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs"
+                if self._client._base_url_overridden
+                else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs"
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+            ),
+            cast_to=KnowledgeBaseListIndexingJobsResponse,
+        )
 
 
 class KnowledgeBasesResourceWithRawResponse:
@@ -809,6 +977,9 @@ class KnowledgeBasesResourceWithRawResponse:
         )
         self.wait_for_database = to_raw_response_wrapper(
             knowledge_bases.wait_for_database,
+        )
+        self.list_indexing_jobs = to_raw_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
         )
 
     @cached_property
@@ -842,14 +1013,21 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
         self.wait_for_database = async_to_raw_response_wrapper(
             knowledge_bases.wait_for_database,
         )
+        self.list_indexing_jobs = async_to_raw_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
+        )
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
-        return AsyncDataSourcesResourceWithRawResponse(self._knowledge_bases.data_sources)
+        return AsyncDataSourcesResourceWithRawResponse(
+            self._knowledge_bases.data_sources
+        )
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResourceWithRawResponse:
-        return AsyncIndexingJobsResourceWithRawResponse(self._knowledge_bases.indexing_jobs)
+        return AsyncIndexingJobsResourceWithRawResponse(
+            self._knowledge_bases.indexing_jobs
+        )
 
 
 class KnowledgeBasesResourceWithStreamingResponse:
@@ -874,14 +1052,21 @@ class KnowledgeBasesResourceWithStreamingResponse:
         self.wait_for_database = to_streamed_response_wrapper(
             knowledge_bases.wait_for_database,
         )
+        self.list_indexing_jobs = to_streamed_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
+        )
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
-        return DataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
+        return DataSourcesResourceWithStreamingResponse(
+            self._knowledge_bases.data_sources
+        )
 
     @cached_property
     def indexing_jobs(self) -> IndexingJobsResourceWithStreamingResponse:
-        return IndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)
+        return IndexingJobsResourceWithStreamingResponse(
+            self._knowledge_bases.indexing_jobs
+        )
 
 
 class AsyncKnowledgeBasesResourceWithStreamingResponse:
@@ -906,11 +1091,18 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
         self.wait_for_database = async_to_streamed_response_wrapper(
             knowledge_bases.wait_for_database,
         )
+        self.list_indexing_jobs = async_to_streamed_response_wrapper(
+            knowledge_bases.list_indexing_jobs,
+        )
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithStreamingResponse:
-        return AsyncDataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
+        return AsyncDataSourcesResourceWithStreamingResponse(
+            self._knowledge_bases.data_sources
+        )
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResourceWithStreamingResponse:
-        return AsyncIndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)
+        return AsyncIndexingJobsResourceWithStreamingResponse(
+            self._knowledge_bases.indexing_jobs
+        )
