@@ -10,7 +10,7 @@ from .api_indexed_data_source import APIIndexedDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
 from .api_web_crawler_data_source import APIWebCrawlerDataSource
 
-__all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource", "DropboxDataSource"]
+__all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource", "DropboxDataSource", "GoogleDriveDataSource"]
 
 
 class AwsDataSource(BaseModel):
@@ -25,6 +25,13 @@ class AwsDataSource(BaseModel):
 
 class DropboxDataSource(BaseModel):
     folder: Optional[str] = None
+
+
+class GoogleDriveDataSource(BaseModel):
+    folder_id: Optional[str] = None
+
+    folder_name: Optional[str] = None
+    """Name of the selected folder if available"""
 
 
 class APIKnowledgeBaseDataSource(BaseModel):
@@ -42,6 +49,9 @@ class APIKnowledgeBaseDataSource(BaseModel):
 
     file_upload_data_source: Optional[APIFileUploadDataSource] = None
     """File to upload as data source for knowledge base."""
+
+    google_drive_data_source: Optional[GoogleDriveDataSource] = None
+    """Google Drive Data Source for Display"""
 
     item_path: Optional[str] = None
     """Path of folder or object in bucket - Deprecated, moved to data_source_details"""

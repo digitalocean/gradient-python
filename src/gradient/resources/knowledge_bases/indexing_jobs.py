@@ -28,6 +28,7 @@ from ...types.knowledge_bases.indexing_job_list_response import IndexingJobListR
 from ...types.knowledge_bases.indexing_job_create_response import IndexingJobCreateResponse
 from ...types.knowledge_bases.indexing_job_retrieve_response import IndexingJobRetrieveResponse
 from ...types.knowledge_bases.indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse
+from ...types.knowledge_bases.indexing_job_retrieve_signed_url_response import IndexingJobRetrieveSignedURLResponse
 from ...types.knowledge_bases.indexing_job_retrieve_data_sources_response import IndexingJobRetrieveDataSourcesResponse
 
 __all__ = ["IndexingJobsResource", "AsyncIndexingJobsResource"]
@@ -221,6 +222,42 @@ class IndexingJobsResource(SyncAPIResource):
             cast_to=IndexingJobRetrieveDataSourcesResponse,
         )
 
+    def retrieve_signed_url(
+        self,
+        indexing_job_uuid: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IndexingJobRetrieveSignedURLResponse:
+        """
+        To get a signed URL for indexing job details, send a GET request to
+        `/v2/gen-ai/indexing_jobs/{uuid}/details_signed_url`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not indexing_job_uuid:
+            raise ValueError(f"Expected a non-empty value for `indexing_job_uuid` but received {indexing_job_uuid!r}")
+        return self._get(
+            f"/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/details_signed_url"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/details_signed_url",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=IndexingJobRetrieveSignedURLResponse,
+        )
+
     def update_cancel(
         self,
         path_uuid: str,
@@ -357,8 +394,7 @@ class IndexingJobsResource(SyncAPIResource):
                     elapsed = time.time() - start_time
                     if elapsed >= timeout:
                         raise IndexingJobTimeoutError(
-                            f"Indexing job {uuid} did not complete within {timeout} seconds. "
-                            f"Current phase: {phase}",
+                            f"Indexing job {uuid} did not complete within {timeout} seconds. Current phase: {phase}",
                             uuid=uuid,
                             phase=phase,
                             timeout=timeout,
@@ -556,6 +592,42 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
             cast_to=IndexingJobRetrieveDataSourcesResponse,
         )
 
+    async def retrieve_signed_url(
+        self,
+        indexing_job_uuid: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> IndexingJobRetrieveSignedURLResponse:
+        """
+        To get a signed URL for indexing job details, send a GET request to
+        `/v2/gen-ai/indexing_jobs/{uuid}/details_signed_url`.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not indexing_job_uuid:
+            raise ValueError(f"Expected a non-empty value for `indexing_job_uuid` but received {indexing_job_uuid!r}")
+        return await self._get(
+            f"/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/details_signed_url"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/indexing_jobs/{indexing_job_uuid}/details_signed_url",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=IndexingJobRetrieveSignedURLResponse,
+        )
+
     async def update_cancel(
         self,
         path_uuid: str,
@@ -692,8 +764,7 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
                     elapsed = time.time() - start_time
                     if elapsed >= timeout:
                         raise IndexingJobTimeoutError(
-                            f"Indexing job {uuid} did not complete within {timeout} seconds. "
-                            f"Current phase: {phase}",
+                            f"Indexing job {uuid} did not complete within {timeout} seconds. Current phase: {phase}",
                             uuid=uuid,
                             phase=phase,
                             timeout=timeout,
@@ -719,6 +790,9 @@ class IndexingJobsResourceWithRawResponse:
         self.retrieve_data_sources = to_raw_response_wrapper(
             indexing_jobs.retrieve_data_sources,
         )
+        self.retrieve_signed_url = to_raw_response_wrapper(
+            indexing_jobs.retrieve_signed_url,
+        )
         self.update_cancel = to_raw_response_wrapper(
             indexing_jobs.update_cancel,
         )
@@ -742,6 +816,9 @@ class AsyncIndexingJobsResourceWithRawResponse:
         )
         self.retrieve_data_sources = async_to_raw_response_wrapper(
             indexing_jobs.retrieve_data_sources,
+        )
+        self.retrieve_signed_url = async_to_raw_response_wrapper(
+            indexing_jobs.retrieve_signed_url,
         )
         self.update_cancel = async_to_raw_response_wrapper(
             indexing_jobs.update_cancel,
@@ -767,6 +844,9 @@ class IndexingJobsResourceWithStreamingResponse:
         self.retrieve_data_sources = to_streamed_response_wrapper(
             indexing_jobs.retrieve_data_sources,
         )
+        self.retrieve_signed_url = to_streamed_response_wrapper(
+            indexing_jobs.retrieve_signed_url,
+        )
         self.update_cancel = to_streamed_response_wrapper(
             indexing_jobs.update_cancel,
         )
@@ -790,6 +870,9 @@ class AsyncIndexingJobsResourceWithStreamingResponse:
         )
         self.retrieve_data_sources = async_to_streamed_response_wrapper(
             indexing_jobs.retrieve_data_sources,
+        )
+        self.retrieve_signed_url = async_to_streamed_response_wrapper(
+            indexing_jobs.retrieve_signed_url,
         )
         self.update_cancel = async_to_streamed_response_wrapper(
             indexing_jobs.update_cancel,

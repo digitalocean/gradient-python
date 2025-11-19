@@ -27,6 +27,9 @@ from .indexing_job_update_cancel_response import IndexingJobUpdateCancelResponse
 from .data_source_create_presigned_urls_params import (
     DataSourceCreatePresignedURLsParams as DataSourceCreatePresignedURLsParams,
 )
+from .indexing_job_retrieve_signed_url_response import (
+    IndexingJobRetrieveSignedURLResponse as IndexingJobRetrieveSignedURLResponse,
+)
 from .data_source_create_presigned_urls_response import (
     DataSourceCreatePresignedURLsResponse as DataSourceCreatePresignedURLsResponse,
 )

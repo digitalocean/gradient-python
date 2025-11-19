@@ -243,6 +243,24 @@ Methods:
 
 - <code title="post /v2/gen-ai/oauth2/dropbox/tokens">client.agents.evaluation_metrics.oauth2.dropbox.<a href="./src/gradient/resources/agents/evaluation_metrics/oauth2/dropbox.py">create_tokens</a>(\*\*<a href="src/gradient/types/agents/evaluation_metrics/oauth2/dropbox_create_tokens_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/oauth2/dropbox_create_tokens_response.py">DropboxCreateTokensResponse</a></code>
 
+### ScheduledIndexing
+
+Types:
+
+```python
+from gradient.types.agents.evaluation_metrics import (
+    ScheduledIndexingCreateResponse,
+    ScheduledIndexingRetrieveResponse,
+    ScheduledIndexingDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/gen-ai/scheduled-indexing">client.agents.evaluation_metrics.scheduled_indexing.<a href="./src/gradient/resources/agents/evaluation_metrics/scheduled_indexing.py">create</a>(\*\*<a href="src/gradient/types/agents/evaluation_metrics/scheduled_indexing_create_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/scheduled_indexing_create_response.py">ScheduledIndexingCreateResponse</a></code>
+- <code title="get /v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}">client.agents.evaluation_metrics.scheduled_indexing.<a href="./src/gradient/resources/agents/evaluation_metrics/scheduled_indexing.py">retrieve</a>(knowledge_base_uuid) -> <a href="./src/gradient/types/agents/evaluation_metrics/scheduled_indexing_retrieve_response.py">ScheduledIndexingRetrieveResponse</a></code>
+- <code title="delete /v2/gen-ai/scheduled-indexing/{uuid}">client.agents.evaluation_metrics.scheduled_indexing.<a href="./src/gradient/resources/agents/evaluation_metrics/scheduled_indexing.py">delete</a>(uuid) -> <a href="./src/gradient/types/agents/evaluation_metrics/scheduled_indexing_delete_response.py">ScheduledIndexingDeleteResponse</a></code>
+
 ## EvaluationRuns
 
 Types:
@@ -825,6 +843,7 @@ from gradient.types import (
     KnowledgeBaseUpdateResponse,
     KnowledgeBaseListResponse,
     KnowledgeBaseDeleteResponse,
+    KnowledgeBaseListIndexingJobsResponse,
 )
 ```
 
@@ -835,6 +854,7 @@ Methods:
 - <code title="put /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/gradient/resources/knowledge_bases/knowledge_bases.py">update</a>(path_uuid, \*\*<a href="src/gradient/types/knowledge_base_update_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_base_update_response.py">KnowledgeBaseUpdateResponse</a></code>
 - <code title="get /v2/gen-ai/knowledge_bases">client.knowledge_bases.<a href="./src/gradient/resources/knowledge_bases/knowledge_bases.py">list</a>(\*\*<a href="src/gradient/types/knowledge_base_list_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_base_list_response.py">KnowledgeBaseListResponse</a></code>
 - <code title="delete /v2/gen-ai/knowledge_bases/{uuid}">client.knowledge_bases.<a href="./src/gradient/resources/knowledge_bases/knowledge_bases.py">delete</a>(uuid) -> <a href="./src/gradient/types/knowledge_base_delete_response.py">KnowledgeBaseDeleteResponse</a></code>
+- <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/indexing_jobs">client.knowledge_bases.<a href="./src/gradient/resources/knowledge_bases/knowledge_bases.py">list_indexing_jobs</a>(knowledge_base_uuid) -> <a href="./src/gradient/types/knowledge_base_list_indexing_jobs_response.py">KnowledgeBaseListIndexingJobsResponse</a></code>
 
 ## DataSources
 
@@ -873,6 +893,7 @@ from gradient.types.knowledge_bases import (
     IndexingJobRetrieveResponse,
     IndexingJobListResponse,
     IndexingJobRetrieveDataSourcesResponse,
+    IndexingJobRetrieveSignedURLResponse,
     IndexingJobUpdateCancelResponse,
 )
 ```
@@ -883,6 +904,7 @@ Methods:
 - <code title="get /v2/gen-ai/indexing_jobs/{uuid}">client.knowledge_bases.indexing_jobs.<a href="./src/gradient/resources/knowledge_bases/indexing_jobs.py">retrieve</a>(uuid) -> <a href="./src/gradient/types/knowledge_bases/indexing_job_retrieve_response.py">IndexingJobRetrieveResponse</a></code>
 - <code title="get /v2/gen-ai/indexing_jobs">client.knowledge_bases.indexing_jobs.<a href="./src/gradient/resources/knowledge_bases/indexing_jobs.py">list</a>(\*\*<a href="src/gradient/types/knowledge_bases/indexing_job_list_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/indexing_job_list_response.py">IndexingJobListResponse</a></code>
 - <code title="get /v2/gen-ai/indexing_jobs/{indexing_job_uuid}/data_sources">client.knowledge_bases.indexing_jobs.<a href="./src/gradient/resources/knowledge_bases/indexing_jobs.py">retrieve_data_sources</a>(indexing_job_uuid) -> <a href="./src/gradient/types/knowledge_bases/indexing_job_retrieve_data_sources_response.py">IndexingJobRetrieveDataSourcesResponse</a></code>
+- <code title="get /v2/gen-ai/indexing_jobs/{indexing_job_uuid}/details_signed_url">client.knowledge_bases.indexing_jobs.<a href="./src/gradient/resources/knowledge_bases/indexing_jobs.py">retrieve_signed_url</a>(indexing_job_uuid) -> <a href="./src/gradient/types/knowledge_bases/indexing_job_retrieve_signed_url_response.py">IndexingJobRetrieveSignedURLResponse</a></code>
 - <code title="put /v2/gen-ai/indexing_jobs/{uuid}/cancel">client.knowledge_bases.indexing_jobs.<a href="./src/gradient/resources/knowledge_bases/indexing_jobs.py">update_cancel</a>(path_uuid, \*\*<a href="src/gradient/types/knowledge_bases/indexing_job_update_cancel_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/indexing_job_update_cancel_response.py">IndexingJobUpdateCancelResponse</a></code>
 
 # Models
@@ -982,3 +1004,38 @@ Methods:
 - <code title="put /v2/databases/{database_cluster_uuid}/schema-registry/config">client.databases.schema_registry.config.<a href="./src/gradient/resources/databases/schema_registry/config.py">update</a>(database_cluster_uuid, \*\*<a href="src/gradient/types/databases/schema_registry/config_update_params.py">params</a>) -> <a href="./src/gradient/types/databases/schema_registry/config_update_response.py">ConfigUpdateResponse</a></code>
 - <code title="get /v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}">client.databases.schema_registry.config.<a href="./src/gradient/resources/databases/schema_registry/config.py">retrieve_subject</a>(subject_name, \*, database_cluster_uuid) -> <a href="./src/gradient/types/databases/schema_registry/config_retrieve_subject_response.py">ConfigRetrieveSubjectResponse</a></code>
 - <code title="put /v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}">client.databases.schema_registry.config.<a href="./src/gradient/resources/databases/schema_registry/config.py">update_subject</a>(subject_name, \*, database_cluster_uuid, \*\*<a href="src/gradient/types/databases/schema_registry/config_update_subject_params.py">params</a>) -> <a href="./src/gradient/types/databases/schema_registry/config_update_subject_response.py">ConfigUpdateSubjectResponse</a></code>
+
+# Nfs
+
+Types:
+
+```python
+from gradient.types import (
+    NfCreateResponse,
+    NfRetrieveResponse,
+    NfListResponse,
+    NfInitiateActionResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v2/nfs">client.nfs.<a href="./src/gradient/resources/nfs/nfs.py">create</a>(\*\*<a href="src/gradient/types/nf_create_params.py">params</a>) -> <a href="./src/gradient/types/nf_create_response.py">NfCreateResponse</a></code>
+- <code title="get /v2/nfs/{nfs_id}">client.nfs.<a href="./src/gradient/resources/nfs/nfs.py">retrieve</a>(nfs_id, \*\*<a href="src/gradient/types/nf_retrieve_params.py">params</a>) -> <a href="./src/gradient/types/nf_retrieve_response.py">NfRetrieveResponse</a></code>
+- <code title="get /v2/nfs">client.nfs.<a href="./src/gradient/resources/nfs/nfs.py">list</a>(\*\*<a href="src/gradient/types/nf_list_params.py">params</a>) -> <a href="./src/gradient/types/nf_list_response.py">NfListResponse</a></code>
+- <code title="delete /v2/nfs/{nfs_id}">client.nfs.<a href="./src/gradient/resources/nfs/nfs.py">delete</a>(nfs_id, \*\*<a href="src/gradient/types/nf_delete_params.py">params</a>) -> None</code>
+- <code title="post /v2/nfs/{nfs_id}/actions">client.nfs.<a href="./src/gradient/resources/nfs/nfs.py">initiate_action</a>(nfs_id, \*\*<a href="src/gradient/types/nf_initiate_action_params.py">params</a>) -> <a href="./src/gradient/types/nf_initiate_action_response.py">NfInitiateActionResponse</a></code>
+
+## Snapshots
+
+Types:
+
+```python
+from gradient.types.nfs import SnapshotRetrieveResponse, SnapshotListResponse
+```
+
+Methods:
+
+- <code title="get /v2/nfs/snapshots/{nfs_snapshot_id}">client.nfs.snapshots.<a href="./src/gradient/resources/nfs/snapshots.py">retrieve</a>(nfs_snapshot_id, \*\*<a href="src/gradient/types/nfs/snapshot_retrieve_params.py">params</a>) -> <a href="./src/gradient/types/nfs/snapshot_retrieve_response.py">SnapshotRetrieveResponse</a></code>
+- <code title="get /v2/nfs/snapshots">client.nfs.snapshots.<a href="./src/gradient/resources/nfs/snapshots.py">list</a>(\*\*<a href="src/gradient/types/nfs/snapshot_list_params.py">params</a>) -> <a href="./src/gradient/types/nfs/snapshot_list_response.py">SnapshotListResponse</a></code>
+- <code title="delete /v2/nfs/snapshots/{nfs_snapshot_id}">client.nfs.snapshots.<a href="./src/gradient/resources/nfs/snapshots.py">delete</a>(nfs_snapshot_id, \*\*<a href="src/gradient/types/nfs/snapshot_delete_params.py">params</a>) -> None</code>

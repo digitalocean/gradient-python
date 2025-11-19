@@ -6,7 +6,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/gradient.svg?label=pypi%20(stable))](https://pypi.org/project/gradient/)
 [![Docs](https://img.shields.io/badge/Docs-8A2BE2)](https://gradientai.digitalocean.com/getting-started/overview/)
 
-The Gradient Python library provides convenient access to the Gradient REST API from any Python 3.8+
+The Gradient Python library provides convenient access to the Gradient REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -528,7 +528,7 @@ print(gradient.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

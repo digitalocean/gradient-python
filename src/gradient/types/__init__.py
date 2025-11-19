@@ -52,17 +52,24 @@ from .api_agent import APIAgent as APIAgent
 from .api_model import APIModel as APIModel
 from .api_agreement import APIAgreement as APIAgreement
 from .api_workspace import APIWorkspace as APIWorkspace
+from .nf_list_params import NfListParams as NfListParams
 from .api_agent_model import APIAgentModel as APIAgentModel
+from .nf_create_params import NfCreateParams as NfCreateParams
+from .nf_delete_params import NfDeleteParams as NfDeleteParams
+from .nf_list_response import NfListResponse as NfListResponse
 from .agent_list_params import AgentListParams as AgentListParams
 from .api_model_version import APIModelVersion as APIModelVersion
 from .model_list_params import ModelListParams as ModelListParams
 from .api_knowledge_base import APIKnowledgeBase as APIKnowledgeBase
+from .nf_create_response import NfCreateResponse as NfCreateResponse
+from .nf_retrieve_params import NfRetrieveParams as NfRetrieveParams
 from .region_list_params import RegionListParams as RegionListParams
 from .agent_create_params import AgentCreateParams as AgentCreateParams
 from .agent_list_response import AgentListResponse as AgentListResponse
 from .agent_update_params import AgentUpdateParams as AgentUpdateParams
 from .model_list_response import ModelListResponse as ModelListResponse
 from .api_retrieval_method import APIRetrievalMethod as APIRetrievalMethod
+from .nf_retrieve_response import NfRetrieveResponse as NfRetrieveResponse
 from .region_list_response import RegionListResponse as RegionListResponse
 from .agent_create_response import AgentCreateResponse as AgentCreateResponse
 from .agent_delete_response import AgentDeleteResponse as AgentDeleteResponse
@@ -77,6 +84,7 @@ from .image_generate_response import ImageGenerateResponse as ImageGenerateRespo
 from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentVisibility
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
+from .nf_initiate_action_params import NfInitiateActionParams as NfInitiateActionParams
 from .agent_update_status_params import (
     AgentUpdateStatusParams as AgentUpdateStatusParams,
 )
@@ -91,6 +99,7 @@ from .droplet_backup_policy_param import (
 from .gpu_droplet_create_response import (
     GPUDropletCreateResponse as GPUDropletCreateResponse,
 )
+from .nf_initiate_action_response import NfInitiateActionResponse as NfInitiateActionResponse
 from .agent_update_status_response import (
     AgentUpdateStatusResponse as AgentUpdateStatusResponse,
 )
@@ -152,6 +161,9 @@ from .gpu_droplet_list_snapshots_response import (
 from .agents.evaluation_metrics.workspaces import (
     agent_list_response,  # type: ignore  # noqa: F401
     agent_move_response,  # type: ignore  # noqa: F401
+)
+from .knowledge_base_list_indexing_jobs_response import (
+    KnowledgeBaseListIndexingJobsResponse as KnowledgeBaseListIndexingJobsResponse,
 )
 
 # Rebuild cyclical models only after all modules are imported.

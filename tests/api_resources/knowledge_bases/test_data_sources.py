@@ -52,6 +52,7 @@ class TestDataSources:
                 "base_url": "example string",
                 "crawling_option": "UNKNOWN",
                 "embed_media": True,
+                "exclude_tags": ["example string"],
             },
         )
         assert_matches_type(DataSourceCreateResponse, data_source, path=["response"])
@@ -273,6 +274,7 @@ class TestAsyncDataSources:
                 "base_url": "example string",
                 "crawling_option": "UNKNOWN",
                 "embed_media": True,
+                "exclude_tags": ["example string"],
             },
         )
         assert_matches_type(DataSourceCreateResponse, data_source, path=["response"])

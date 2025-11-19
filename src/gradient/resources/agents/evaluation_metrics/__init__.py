@@ -48,6 +48,14 @@ from .evaluation_metrics import (
     EvaluationMetricsResourceWithStreamingResponse,
     AsyncEvaluationMetricsResourceWithStreamingResponse,
 )
+from .scheduled_indexing import (
+    ScheduledIndexingResource,
+    AsyncScheduledIndexingResource,
+    ScheduledIndexingResourceWithRawResponse,
+    AsyncScheduledIndexingResourceWithRawResponse,
+    ScheduledIndexingResourceWithStreamingResponse,
+    AsyncScheduledIndexingResourceWithStreamingResponse,
+)
 
 __all__ = [
     "WorkspacesResource",
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncOauth2ResourceWithRawResponse",
     "Oauth2ResourceWithStreamingResponse",
     "AsyncOauth2ResourceWithStreamingResponse",
+    "ScheduledIndexingResource",
+    "AsyncScheduledIndexingResource",
+    "ScheduledIndexingResourceWithRawResponse",
+    "AsyncScheduledIndexingResourceWithRawResponse",
+    "ScheduledIndexingResourceWithStreamingResponse",
+    "AsyncScheduledIndexingResourceWithStreamingResponse",
     "EvaluationMetricsResource",
     "AsyncEvaluationMetricsResource",
     "EvaluationMetricsResourceWithRawResponse",

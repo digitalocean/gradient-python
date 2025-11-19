@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .nfs import (
+    NfsResource,
+    AsyncNfsResource,
+    NfsResourceWithRawResponse,
+    AsyncNfsResourceWithRawResponse,
+    NfsResourceWithStreamingResponse,
+    AsyncNfsResourceWithStreamingResponse,
+)
 from .chat import (
     ChatResource,
     AsyncChatResource,
@@ -128,4 +136,10 @@ __all__ = [
     "AsyncDatabasesResourceWithRawResponse",
     "DatabasesResourceWithStreamingResponse",
     "AsyncDatabasesResourceWithStreamingResponse",
+    "NfsResource",
+    "AsyncNfsResource",
+    "NfsResourceWithRawResponse",
+    "AsyncNfsResourceWithRawResponse",
+    "NfsResourceWithStreamingResponse",
+    "AsyncNfsResourceWithStreamingResponse",
 ]

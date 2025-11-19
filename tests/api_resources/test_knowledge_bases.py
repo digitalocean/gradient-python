@@ -15,6 +15,7 @@ from gradient.types import (
     KnowledgeBaseDeleteResponse,
     KnowledgeBaseUpdateResponse,
     KnowledgeBaseRetrieveResponse,
+    KnowledgeBaseListIndexingJobsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -54,6 +55,10 @@ class TestKnowledgeBases:
                         "size_in_bytes": "12345",
                         "stored_object_key": "example string",
                     },
+                    "google_drive_data_source": {
+                        "folder_id": "123e4567-e89b-12d3-a456-426614174000",
+                        "refresh_token": "example string",
+                    },
                     "item_path": "example string",
                     "spaces_data_source": {
                         "bucket_name": "example name",
@@ -64,6 +69,7 @@ class TestKnowledgeBases:
                         "base_url": "example string",
                         "crawling_option": "UNKNOWN",
                         "embed_media": True,
+                        "exclude_tags": ["example string"],
                     },
                 }
             ],
@@ -371,6 +377,48 @@ class TestKnowledgeBases:
                 "",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list_indexing_jobs(self, client: Gradient) -> None:
+        knowledge_base = client.knowledge_bases.list_indexing_jobs(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+        assert_matches_type(KnowledgeBaseListIndexingJobsResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_list_indexing_jobs(self, client: Gradient) -> None:
+        response = client.knowledge_bases.with_raw_response.list_indexing_jobs(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = response.parse()
+        assert_matches_type(KnowledgeBaseListIndexingJobsResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_list_indexing_jobs(self, client: Gradient) -> None:
+        with client.knowledge_bases.with_streaming_response.list_indexing_jobs(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = response.parse()
+            assert_matches_type(KnowledgeBaseListIndexingJobsResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_list_indexing_jobs(self, client: Gradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
+            client.knowledge_bases.with_raw_response.list_indexing_jobs(
+                "",
+            )
+
 
 class TestAsyncKnowledgeBases:
     parametrize = pytest.mark.parametrize(
@@ -408,6 +456,10 @@ class TestAsyncKnowledgeBases:
                         "size_in_bytes": "12345",
                         "stored_object_key": "example string",
                     },
+                    "google_drive_data_source": {
+                        "folder_id": "123e4567-e89b-12d3-a456-426614174000",
+                        "refresh_token": "example string",
+                    },
                     "item_path": "example string",
                     "spaces_data_source": {
                         "bucket_name": "example name",
@@ -418,6 +470,7 @@ class TestAsyncKnowledgeBases:
                         "base_url": "example string",
                         "crawling_option": "UNKNOWN",
                         "embed_media": True,
+                        "exclude_tags": ["example string"],
                     },
                 }
             ],
@@ -722,5 +775,47 @@ class TestAsyncKnowledgeBases:
         """Test async wait_for_database validates uuid parameter."""
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
             await async_client.knowledge_bases.wait_for_database(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list_indexing_jobs(self, async_client: AsyncGradient) -> None:
+        knowledge_base = await async_client.knowledge_bases.list_indexing_jobs(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+        assert_matches_type(KnowledgeBaseListIndexingJobsResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_list_indexing_jobs(self, async_client: AsyncGradient) -> None:
+        response = await async_client.knowledge_bases.with_raw_response.list_indexing_jobs(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        knowledge_base = await response.parse()
+        assert_matches_type(KnowledgeBaseListIndexingJobsResponse, knowledge_base, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_list_indexing_jobs(self, async_client: AsyncGradient) -> None:
+        async with async_client.knowledge_bases.with_streaming_response.list_indexing_jobs(
+            '"123e4567-e89b-12d3-a456-426614174000"',
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            knowledge_base = await response.parse()
+            assert_matches_type(KnowledgeBaseListIndexingJobsResponse, knowledge_base, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_list_indexing_jobs(self, async_client: AsyncGradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
+            await async_client.knowledge_bases.with_raw_response.list_indexing_jobs(
                 "",
             )
