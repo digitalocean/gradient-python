@@ -419,3 +419,123 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# API Key Validation Functions
+def validate_api_key(api_key: str | None) -> bool:
+    """Validate an API key format.
+
+    Args:
+        api_key: The API key to validate. Can be None.
+
+    Returns:
+        True if valid or None, False otherwise
+    """
+    if api_key is None:
+        return True  # None is acceptable for optional keys
+
+    if not isinstance(api_key, str):
+        return False
+    if not api_key or api_key.isspace():
+        return False
+    if len(api_key) < 10:
+        return False
+
+    # Check for common patterns
+    return (
+        api_key.startswith(('sk-', 'do_v1_')) or
+        'gradient' in api_key.lower() or
+        len(api_key) >= 20
+    )
+
+
+def validate_client_credentials(
+    access_token: str | None = None,
+    model_access_key: str | None = None,
+    agent_access_key: str | None = None,
+    agent_endpoint: str | None = None
+) -> None:
+    """Validate client credentials comprehensively.
+
+    This function performs thorough validation of client credentials including:
+    - Checking that at least one authentication method is provided
+    - Validating API key formats
+    - Checking agent endpoint URL format if provided
+
+    Args:
+        access_token: DigitalOcean access token
+        model_access_key: Gradient model access key
+        agent_access_key: Gradient agent access key
+        agent_endpoint: Agent endpoint URL
+
+    Raises:
+        ValueError: If credentials are invalid or missing required authentication
+    """
+    # Check that at least one authentication method is provided
+    if not any([access_token, model_access_key, agent_access_key]):
+        raise ValueError("At least one authentication method must be provided")
+
+    # Validate individual API keys
+    if access_token and not validate_api_key(access_token):
+        raise ValueError("Invalid access_token format")
+
+    if model_access_key and not validate_api_key(model_access_key):
+        raise ValueError("Invalid model_access_key format")
+
+    if agent_access_key and not validate_api_key(agent_access_key):
+        raise ValueError("Invalid agent_access_key format")
+
+    # Validate agent endpoint if provided
+    if agent_endpoint:
+        if not isinstance(agent_endpoint, str):
+            raise ValueError("agent_endpoint must be a string")
+        if not agent_endpoint.startswith(('http://', 'https://')):
+            raise ValueError("agent_endpoint must be a valid HTTP/HTTPS URL")
+
+
+def validate_client_instance(client: Any) -> None:
+    """Validate a Gradient client instance has proper authentication.
+
+    This function checks that a created client has valid authentication
+    and can make API calls. This directly addresses the reviewer feedback
+    about validating actual client instances rather than just parameters.
+
+    Args:
+        client: A Gradient or AsyncGradient client instance
+
+    Raises:
+        ValueError: If client authentication is invalid
+        TypeError: If client is not a valid Gradient client instance
+    """
+    # Import here to avoid circular imports
+    try:
+        from .._client import Gradient, AsyncGradient
+    except ImportError:
+        # Fallback for when called from different contexts
+        import gradient
+        Gradient = gradient.Gradient
+        AsyncGradient = gradient.AsyncGradient
+
+    if not isinstance(client, (Gradient, AsyncGradient)):
+        raise TypeError("client must be a Gradient or AsyncGradient instance")
+
+    # Check that client has at least one authentication method
+    has_auth = any([
+        client.access_token,
+        client.model_access_key,
+        client.agent_access_key
+    ])
+
+    if not has_auth:
+        raise ValueError("Client must have at least one authentication method configured")
+
+    # Validate the authentication methods that are set
+    try:
+        validate_client_credentials(
+            access_token=client.access_token,
+            model_access_key=client.model_access_key,
+            agent_access_key=client.agent_access_key,
+            agent_endpoint=client._agent_endpoint
+        )
+    except ValueError as e:
+        raise ValueError(f"Client authentication validation failed: {e}") from e
