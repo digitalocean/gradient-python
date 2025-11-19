@@ -1,6 +1,6 @@
 [project]
 name = "gradient"
-version = "3.6.0"
+version = "3.7.0"
 description = "The official Python library for the Gradient API"
 dynamic = ["readme"]
 license = "Apache-2.0"
