@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.7.0 (2025-11-19)
+
+Full Changelog: [v3.6.0...v3.7.0](https://github.com/digitalocean/gradient-python/compare/v3.6.0...v3.7.0)
+
+### Features
+
+* add wait_for_completion method to IndexingJobs resource with sy… ([#49](https://github.com/digitalocean/gradient-python/issues/49)) ([9edc2a6](https://github.com/digitalocean/gradient-python/commit/9edc2a60f5aa49749e151477615bbecb3a79e92b))
+* Add wait_until_ready() method for agent deployment polling ([#56](https://github.com/digitalocean/gradient-python/issues/56)) ([dcef3d5](https://github.com/digitalocean/gradient-python/commit/dcef3d5ebb4ef903c0c91aa4008853bb978f5544))
+* **api:** add inference errors ([d61d495](https://github.com/digitalocean/gradient-python/commit/d61d4955f596d9ac1bebc9387a6573989e823022))
+* **api:** include indexing jobs ([d249d06](https://github.com/digitalocean/gradient-python/commit/d249d0606e26d585eb2b7859948a796ea7860f53))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([33fe04b](https://github.com/digitalocean/gradient-python/commit/33fe04b2e4ab71094ee13e7b83d4c04867e7d485))
+* compat with Python 3.14 ([add7b21](https://github.com/digitalocean/gradient-python/commit/add7b21b9fbb8987641d5520da638647fe27b159))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([c945870](https://github.com/digitalocean/gradient-python/commit/c945870a31840d553cb1e3a75314f1c884a56060))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([db39cc6](https://github.com/digitalocean/gradient-python/commit/db39cc63fb126ac81edfe2cb991493d10a2d0936))
+* **internal/tests:** avoid race condition with implicit client cleanup ([e0202bb](https://github.com/digitalocean/gradient-python/commit/e0202bb915613872095f7f223a49c4480e50be98))
+* **internal:** grammar fix (it's -&gt; its) ([c6ffb3b](https://github.com/digitalocean/gradient-python/commit/c6ffb3becbcb99e36992934fac20d67a6a3b967c))
+* merge issues in test_client.py ([#87](https://github.com/digitalocean/gradient-python/issues/87)) ([62fc025](https://github.com/digitalocean/gradient-python/commit/62fc02512e941c6af18b11c19df8828cca31159d))
+* **package:** drop Python 3.8 support ([825b1e4](https://github.com/digitalocean/gradient-python/commit/825b1e4f8b257fc103c0d45743133bbc81ca3e10))
+
 ## 3.6.0 (2025-10-16)
 
 Full Changelog: [v3.5.0...v3.6.0](https://github.com/digitalocean/gradient-python/compare/v3.5.0...v3.6.0)
