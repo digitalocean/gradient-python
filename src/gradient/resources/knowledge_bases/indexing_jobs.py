@@ -394,8 +394,7 @@ class IndexingJobsResource(SyncAPIResource):
                     elapsed = time.time() - start_time
                     if elapsed >= timeout:
                         raise IndexingJobTimeoutError(
-                            f"Indexing job {uuid} did not complete within {timeout} seconds. "
-                            f"Current phase: {phase}",
+                            f"Indexing job {uuid} did not complete within {timeout} seconds. Current phase: {phase}",
                             uuid=uuid,
                             phase=phase,
                             timeout=timeout,
@@ -765,8 +764,7 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
                     elapsed = time.time() - start_time
                     if elapsed >= timeout:
                         raise IndexingJobTimeoutError(
-                            f"Indexing job {uuid} did not complete within {timeout} seconds. "
-                            f"Current phase: {phase}",
+                            f"Indexing job {uuid} did not complete within {timeout} seconds. Current phase: {phase}",
                             uuid=uuid,
                             phase=phase,
                             timeout=timeout,
