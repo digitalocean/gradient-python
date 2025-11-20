@@ -7,8 +7,6 @@ from . import (
     anthropic,  # type: ignore  # noqa: F401
     workspaces,  # type: ignore  # noqa: F401
 )
-from .model_list_params import ModelListParams as ModelListParams
-from .model_list_response import ModelListResponse as ModelListResponse
 from .workspace_create_params import WorkspaceCreateParams as WorkspaceCreateParams
 from .workspace_list_response import WorkspaceListResponse as WorkspaceListResponse
 from .workspace_update_params import WorkspaceUpdateParams as WorkspaceUpdateParams
