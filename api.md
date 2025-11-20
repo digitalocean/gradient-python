@@ -155,18 +155,6 @@ Methods:
 - <code title="get /v2/gen-ai/workspaces/{workspace_uuid}/agents">client.agents.evaluation_metrics.workspaces.agents.<a href="./src/gradient/resources/agents/evaluation_metrics/workspaces/agents.py">list</a>(workspace_uuid, \*\*<a href="src/gradient/types/agents/evaluation_metrics/workspaces/agent_list_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/workspaces/agent_list_response.py">AgentListResponse</a></code>
 - <code title="put /v2/gen-ai/workspaces/{workspace_uuid}/agents">client.agents.evaluation_metrics.workspaces.agents.<a href="./src/gradient/resources/agents/evaluation_metrics/workspaces/agents.py">move</a>(path_workspace_uuid, \*\*<a href="src/gradient/types/agents/evaluation_metrics/workspaces/agent_move_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/workspaces/agent_move_response.py">AgentMoveResponse</a></code>
 
-### Models
-
-Types:
-
-```python
-from gradient.types.agents.evaluation_metrics import ModelListResponse
-```
-
-Methods:
-
-- <code title="get /v2/gen-ai/models">client.agents.evaluation_metrics.models.<a href="./src/gradient/resources/agents/evaluation_metrics/models.py">list</a>(\*\*<a href="src/gradient/types/agents/evaluation_metrics/model_list_params.py">params</a>) -> <a href="./src/gradient/types/agents/evaluation_metrics/model_list_response.py">ModelListResponse</a></code>
-
 ### Anthropic
 
 #### Keys

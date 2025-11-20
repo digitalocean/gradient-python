@@ -4,14 +4,6 @@ from __future__ import annotations
 
 import httpx
 
-from .models import (
-    ModelsResource,
-    AsyncModelsResource,
-    ModelsResourceWithRawResponse,
-    AsyncModelsResourceWithRawResponse,
-    ModelsResourceWithStreamingResponse,
-    AsyncModelsResourceWithStreamingResponse,
-)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -74,10 +66,6 @@ class EvaluationMetricsResource(SyncAPIResource):
     @cached_property
     def workspaces(self) -> WorkspacesResource:
         return WorkspacesResource(self._client)
-
-    @cached_property
-    def models(self) -> ModelsResource:
-        return ModelsResource(self._client)
 
     @cached_property
     def anthropic(self) -> AnthropicResource:
@@ -191,10 +179,6 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
     @cached_property
     def workspaces(self) -> AsyncWorkspacesResource:
         return AsyncWorkspacesResource(self._client)
-
-    @cached_property
-    def models(self) -> AsyncModelsResource:
-        return AsyncModelsResource(self._client)
 
     @cached_property
     def anthropic(self) -> AsyncAnthropicResource:
@@ -320,10 +304,6 @@ class EvaluationMetricsResourceWithRawResponse:
         return WorkspacesResourceWithRawResponse(self._evaluation_metrics.workspaces)
 
     @cached_property
-    def models(self) -> ModelsResourceWithRawResponse:
-        return ModelsResourceWithRawResponse(self._evaluation_metrics.models)
-
-    @cached_property
     def anthropic(self) -> AnthropicResourceWithRawResponse:
         return AnthropicResourceWithRawResponse(self._evaluation_metrics.anthropic)
 
@@ -354,10 +334,6 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
     @cached_property
     def workspaces(self) -> AsyncWorkspacesResourceWithRawResponse:
         return AsyncWorkspacesResourceWithRawResponse(self._evaluation_metrics.workspaces)
-
-    @cached_property
-    def models(self) -> AsyncModelsResourceWithRawResponse:
-        return AsyncModelsResourceWithRawResponse(self._evaluation_metrics.models)
 
     @cached_property
     def anthropic(self) -> AsyncAnthropicResourceWithRawResponse:
@@ -392,10 +368,6 @@ class EvaluationMetricsResourceWithStreamingResponse:
         return WorkspacesResourceWithStreamingResponse(self._evaluation_metrics.workspaces)
 
     @cached_property
-    def models(self) -> ModelsResourceWithStreamingResponse:
-        return ModelsResourceWithStreamingResponse(self._evaluation_metrics.models)
-
-    @cached_property
     def anthropic(self) -> AnthropicResourceWithStreamingResponse:
         return AnthropicResourceWithStreamingResponse(self._evaluation_metrics.anthropic)
 
@@ -426,10 +398,6 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
     @cached_property
     def workspaces(self) -> AsyncWorkspacesResourceWithStreamingResponse:
         return AsyncWorkspacesResourceWithStreamingResponse(self._evaluation_metrics.workspaces)
-
-    @cached_property
-    def models(self) -> AsyncModelsResourceWithStreamingResponse:
-        return AsyncModelsResourceWithStreamingResponse(self._evaluation_metrics.models)
 
     @cached_property
     def anthropic(self) -> AsyncAnthropicResourceWithStreamingResponse:
