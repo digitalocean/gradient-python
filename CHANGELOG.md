@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.8.1 (2025-11-22)
+
+Full Changelog: [v3.8.0...v3.8.1](https://github.com/digitalocean/gradient-python/compare/v3.8.0...v3.8.1)
+
+### Chores
+
+* add Python 3.14 classifier and testing ([db08b3f](https://github.com/digitalocean/gradient-python/commit/db08b3fb9a7d07ff02a8d45804647ce7c1e34e5a))
+
 ## 3.8.0 (2025-11-20)
 
 Full Changelog: [v3.7.0...v3.8.0](https://github.com/digitalocean/gradient-python/compare/v3.7.0...v3.8.0)
