@@ -5,6 +5,7 @@ description = "The official Python library for the Gradient API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [{ name = "DigitalOcean, LLC", email = "dev@digitalocean.com" }]
+
 dependencies = [
   "httpx>=0.23.0, <1",
   "pydantic>=1.9.0, <3",
@@ -13,6 +14,7 @@ dependencies = [
   "distro>=1.7.0, <2",
   "sniffio",
 ]
+
 requires-python = ">= 3.9"
 classifiers = [
   "Typing :: Typed",
