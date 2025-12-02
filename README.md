@@ -99,6 +99,7 @@ pip install gradient[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from gradient import DefaultAioHttpClient
 from gradient import AsyncGradient
@@ -106,7 +107,9 @@ from gradient import AsyncGradient
 
 async def main() -> None:
     async with AsyncGradient(
-        model_access_key="My Model Access Key",
+        model_access_key=os.environ.get(
+            "GRADIENT_MODEL_ACCESS_KEY"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         completion = await client.chat.completions.create(
