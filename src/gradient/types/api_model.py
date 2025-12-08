@@ -11,6 +11,8 @@ __all__ = ["APIModel"]
 
 
 class APIModel(BaseModel):
+    """A machine learning model stored on the GenAI platform"""
+
     id: Optional[str] = None
     """Human-readable model identifier"""
 

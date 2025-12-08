@@ -12,6 +12,8 @@ __all__ = ["AnthropicListAgentsResponse"]
 
 
 class AnthropicListAgentsResponse(BaseModel):
+    """List of Agents that linked to a specific Anthropic Key"""
+
     agents: Optional[List["APIAgent"]] = None
 
     links: Optional[APILinks] = None

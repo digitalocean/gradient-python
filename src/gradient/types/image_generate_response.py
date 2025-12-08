@@ -8,6 +8,8 @@ __all__ = ["ImageGenerateResponse", "Data", "Usage", "UsageInputTokensDetails"]
 
 
 class Data(BaseModel):
+    """Represents the content of a generated image from GPT-IMAGE-1"""
+
     b64_json: str
     """The base64-encoded JSON of the generated image.
 
@@ -22,11 +24,15 @@ class Data(BaseModel):
 
 
 class UsageInputTokensDetails(BaseModel):
+    """Detailed breakdown of input tokens"""
+
     text_tokens: Optional[int] = None
     """Number of text tokens in the input"""
 
 
 class Usage(BaseModel):
+    """Usage statistics for the image generation request"""
+
     input_tokens: int
     """Number of tokens in the input prompt"""
 
@@ -41,6 +47,8 @@ class Usage(BaseModel):
 
 
 class ImageGenerateResponse(BaseModel):
+    """The response from the image generation endpoint"""
+
     created: int
     """The Unix timestamp (in seconds) of when the images were created"""
 

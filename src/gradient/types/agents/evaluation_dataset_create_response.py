@@ -8,5 +8,7 @@ __all__ = ["EvaluationDatasetCreateResponse"]
 
 
 class EvaluationDatasetCreateResponse(BaseModel):
+    """Output for creating an agent evaluation dataset"""
+
     evaluation_dataset_uuid: Optional[str] = None
     """Evaluation dataset uuid."""

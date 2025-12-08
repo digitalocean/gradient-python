@@ -9,6 +9,8 @@ __all__ = ["APIAnthropicAPIKeyInfo"]
 
 
 class APIAnthropicAPIKeyInfo(BaseModel):
+    """Anthropic API Key Info"""
+
     created_at: Optional[datetime] = None
     """Key creation date"""
 

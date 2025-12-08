@@ -12,6 +12,8 @@ __all__ = ["KeyListAgentsResponse"]
 
 
 class KeyListAgentsResponse(BaseModel):
+    """List of Agents that are linked to a specific OpenAI Key"""
+
     agents: Optional[List["APIAgent"]] = None
 
     links: Optional[APILinks] = None

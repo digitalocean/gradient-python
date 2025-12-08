@@ -10,6 +10,8 @@ __all__ = ["KnowledgeBaseRetrieveResponse"]
 
 
 class KnowledgeBaseRetrieveResponse(BaseModel):
+    """The knowledge base"""
+
     database_status: Optional[
         Literal[
             "CREATING",

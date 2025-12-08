@@ -12,6 +12,11 @@ Droplet: TypeAlias = Union[droplet.Droplet, Optional[object]]
 
 
 class Region(region.Region):
+    """The region that the floating IP is reserved to.
+
+    When you query a floating IP, the entire region object will be returned.
+    """
+
     pass
 
 

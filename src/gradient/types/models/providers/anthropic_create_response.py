@@ -9,5 +9,9 @@ __all__ = ["AnthropicCreateResponse"]
 
 
 class AnthropicCreateResponse(BaseModel):
+    """
+    CreateAnthropicAPIKeyOutput is used to return the newly created Anthropic API key.
+    """
+
     api_key_info: Optional[APIAnthropicAPIKeyInfo] = None
     """Anthropic API Key Info"""

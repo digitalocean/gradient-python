@@ -8,6 +8,8 @@ __all__ = ["AssociatedResource"]
 
 
 class AssociatedResource(BaseModel):
+    """An objects containing information about a resource associated with a Droplet."""
+
     id: Optional[str] = None
     """The unique identifier for the resource associated with the Droplet."""
 

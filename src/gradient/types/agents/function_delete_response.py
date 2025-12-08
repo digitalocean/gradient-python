@@ -10,6 +10,8 @@ __all__ = ["FunctionDeleteResponse"]
 
 
 class FunctionDeleteResponse(BaseModel):
+    """Information about a newly unlinked agent"""
+
     agent: Optional["APIAgent"] = None
     """An Agent"""
 

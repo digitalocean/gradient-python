@@ -6,6 +6,8 @@ __all__ = ["CompletionUsage"]
 
 
 class CompletionUsage(BaseModel):
+    """Usage statistics for the completion request."""
+
     completion_tokens: int
     """Number of tokens in the generated completion."""
 

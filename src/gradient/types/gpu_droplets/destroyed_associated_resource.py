@@ -9,6 +9,8 @@ __all__ = ["DestroyedAssociatedResource"]
 
 
 class DestroyedAssociatedResource(BaseModel):
+    """An object containing information about a resource scheduled for deletion."""
+
     id: Optional[str] = None
     """The unique identifier for the resource scheduled for deletion."""
 

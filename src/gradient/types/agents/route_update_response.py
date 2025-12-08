@@ -8,6 +8,8 @@ __all__ = ["RouteUpdateResponse"]
 
 
 class RouteUpdateResponse(BaseModel):
+    """Information about an updated linkage"""
+
     child_agent_uuid: Optional[str] = None
     """Routed agent id"""
 

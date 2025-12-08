@@ -10,6 +10,10 @@ __all__ = ["DestroyWithAssociatedResourceCheckStatusResponse", "Resources"]
 
 
 class Resources(BaseModel):
+    """
+    An object containing additional information about resource related to a Droplet requested to be destroyed.
+    """
+
     floating_ips: Optional[List[DestroyedAssociatedResource]] = None
 
     reserved_ips: Optional[List[DestroyedAssociatedResource]] = None
@@ -22,6 +26,8 @@ class Resources(BaseModel):
 
 
 class DestroyWithAssociatedResourceCheckStatusResponse(BaseModel):
+    """An objects containing information about a resources scheduled for deletion."""
+
     completed_at: Optional[datetime] = None
     """
     A time value given in ISO8601 combined date and time format indicating when the

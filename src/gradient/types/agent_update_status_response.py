@@ -10,6 +10,8 @@ __all__ = ["AgentUpdateStatusResponse"]
 
 
 class AgentUpdateStatusResponse(BaseModel):
+    """UpdateAgentDeploymentVisbilityOutput description"""
+
     agent: Optional["APIAgent"] = None
     """An Agent"""
 

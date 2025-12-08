@@ -8,6 +8,8 @@ __all__ = ["HealthCheckParam"]
 
 
 class HealthCheckParam(TypedDict, total=False):
+    """An object specifying health check settings for the load balancer."""
+
     check_interval_seconds: int
     """The number of seconds between between two consecutive health checks."""
 

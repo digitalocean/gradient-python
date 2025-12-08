@@ -10,6 +10,8 @@ __all__ = ["KnowledgeBaseDetachResponse"]
 
 
 class KnowledgeBaseDetachResponse(BaseModel):
+    """Informatinon about a unlinked knowledge base"""
+
     agent: Optional["APIAgent"] = None
     """An Agent"""
 

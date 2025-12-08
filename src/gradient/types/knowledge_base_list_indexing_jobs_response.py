@@ -11,6 +11,8 @@ __all__ = ["KnowledgeBaseListIndexingJobsResponse"]
 
 
 class KnowledgeBaseListIndexingJobsResponse(BaseModel):
+    """Indexing jobs"""
+
     jobs: Optional[List[APIIndexingJob]] = None
     """The indexing jobs"""
 

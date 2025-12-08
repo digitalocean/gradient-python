@@ -11,6 +11,8 @@ __all__ = ["KnowledgeBaseListResponse"]
 
 
 class KnowledgeBaseListResponse(BaseModel):
+    """List of knowledge bases"""
+
     knowledge_bases: Optional[List[APIKnowledgeBase]] = None
     """The knowledge bases"""
 

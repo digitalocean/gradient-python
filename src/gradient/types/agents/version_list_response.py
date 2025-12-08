@@ -38,6 +38,8 @@ class AgentVersionAttachedChildAgent(BaseModel):
 
 
 class AgentVersionAttachedFunction(BaseModel):
+    """Function represents a function configuration for an agent"""
+
     description: Optional[str] = None
     """Description of the function"""
 
@@ -55,6 +57,8 @@ class AgentVersionAttachedFunction(BaseModel):
 
 
 class AgentVersionAttachedGuardrail(BaseModel):
+    """Agent Guardrail version"""
+
     is_deleted: Optional[bool] = None
     """Whether the guardrail is deleted"""
 
@@ -80,6 +84,8 @@ class AgentVersionAttachedKnowledgebase(BaseModel):
 
 
 class AgentVersion(BaseModel):
+    """Represents an AgentVersion entity"""
+
     id: Optional[str] = None
     """Unique identifier"""
 
@@ -157,6 +163,8 @@ class AgentVersion(BaseModel):
 
 
 class VersionListResponse(BaseModel):
+    """List of agent versions"""
+
     agent_versions: Optional[List[AgentVersion]] = None
     """Agents"""
 

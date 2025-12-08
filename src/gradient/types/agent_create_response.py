@@ -10,6 +10,8 @@ __all__ = ["AgentCreateResponse"]
 
 
 class AgentCreateResponse(BaseModel):
+    """Information about a newly created Agent"""
+
     agent: Optional["APIAgent"] = None
     """An Agent"""
 

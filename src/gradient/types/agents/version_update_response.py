@@ -8,6 +8,8 @@ __all__ = ["VersionUpdateResponse", "AuditHeader"]
 
 
 class AuditHeader(BaseModel):
+    """An alternative way to provide auth information. for internal use only."""
+
     actor_id: Optional[str] = None
 
     actor_ip: Optional[str] = None

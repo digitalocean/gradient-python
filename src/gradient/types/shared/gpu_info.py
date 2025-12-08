@@ -16,6 +16,10 @@ class Vram(BaseModel):
 
 
 class GPUInfo(BaseModel):
+    """
+    An object containing information about the GPU capabilities of Droplets created with this size.
+    """
+
     count: Optional[int] = None
     """The number of GPUs allocated to the Droplet."""
 

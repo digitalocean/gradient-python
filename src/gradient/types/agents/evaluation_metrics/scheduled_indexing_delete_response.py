@@ -9,6 +9,8 @@ __all__ = ["ScheduledIndexingDeleteResponse", "IndexingInfo"]
 
 
 class IndexingInfo(BaseModel):
+    """Metadata for scheduled indexing entries"""
+
     created_at: Optional[datetime] = None
     """Created at timestamp"""
 

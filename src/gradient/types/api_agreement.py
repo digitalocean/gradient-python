@@ -8,6 +8,8 @@ __all__ = ["APIAgreement"]
 
 
 class APIAgreement(BaseModel):
+    """Agreement Description"""
+
     description: Optional[str] = None
 
     name: Optional[str] = None

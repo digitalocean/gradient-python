@@ -9,6 +9,8 @@ __all__ = ["APIAgentAPIKeyInfo"]
 
 
 class APIAgentAPIKeyInfo(BaseModel):
+    """Agent API Key Info"""
+
     created_at: Optional[datetime] = None
     """Creation date"""
 

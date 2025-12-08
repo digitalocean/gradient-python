@@ -11,6 +11,10 @@ __all__ = ["AnthropicListResponse"]
 
 
 class AnthropicListResponse(BaseModel):
+    """
+    ListAnthropicAPIKeysOutput is used to return the list of Anthropic API keys for a specific agent.
+    """
+
     api_key_infos: Optional[List[APIAnthropicAPIKeyInfo]] = None
     """Api key infos"""
 

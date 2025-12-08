@@ -10,6 +10,10 @@ __all__ = ["LbFirewallParam"]
 
 
 class LbFirewallParam(TypedDict, total=False):
+    """
+    An object specifying allow and deny rules to control traffic to the load balancer.
+    """
+
     allow: SequenceNotStr[str]
     """
     the rules for allowing traffic to the load balancer (in the form 'ip:1.2.3.4' or
