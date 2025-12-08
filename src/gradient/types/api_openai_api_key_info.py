@@ -10,6 +10,8 @@ __all__ = ["APIOpenAIAPIKeyInfo"]
 
 
 class APIOpenAIAPIKeyInfo(BaseModel):
+    """OpenAI API Key Info"""
+
     created_at: Optional[datetime] = None
     """Key creation date"""
 

@@ -8,5 +8,7 @@ __all__ = ["Oauth2GenerateURLResponse"]
 
 
 class Oauth2GenerateURLResponse(BaseModel):
+    """The url for the oauth2 flow"""
+
     url: Optional[str] = None
     """The oauth2 url"""

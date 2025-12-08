@@ -11,6 +11,8 @@ __all__ = ["APIIndexingJob"]
 
 
 class APIIndexingJob(BaseModel):
+    """IndexingJob description"""
+
     completed_datasources: Optional[int] = None
     """Number of datasources indexed completed"""
 

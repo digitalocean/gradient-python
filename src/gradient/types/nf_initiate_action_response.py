@@ -9,6 +9,8 @@ __all__ = ["NfInitiateActionResponse", "Action"]
 
 
 class Action(BaseModel):
+    """The action that was submitted."""
+
     region_slug: str
     """The DigitalOcean region slug where the resource is located."""
 
@@ -29,5 +31,7 @@ class Action(BaseModel):
 
 
 class NfInitiateActionResponse(BaseModel):
+    """Action response of an NFS share."""
+
     action: Action
     """The action that was submitted."""

@@ -14,6 +14,8 @@ __all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource", "DropboxDataSource", "
 
 
 class AwsDataSource(BaseModel):
+    """AWS S3 Data Source for Display"""
+
     bucket_name: Optional[str] = None
     """Spaces bucket name"""
 
@@ -24,10 +26,14 @@ class AwsDataSource(BaseModel):
 
 
 class DropboxDataSource(BaseModel):
+    """Dropbox Data Source for Display"""
+
     folder: Optional[str] = None
 
 
 class GoogleDriveDataSource(BaseModel):
+    """Google Drive Data Source for Display"""
+
     folder_id: Optional[str] = None
 
     folder_name: Optional[str] = None
@@ -35,6 +41,8 @@ class GoogleDriveDataSource(BaseModel):
 
 
 class APIKnowledgeBaseDataSource(BaseModel):
+    """Data Source configuration for Knowledge Bases"""
+
     aws_data_source: Optional[AwsDataSource] = None
     """AWS S3 Data Source for Display"""
 

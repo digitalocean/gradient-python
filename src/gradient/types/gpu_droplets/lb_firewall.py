@@ -8,6 +8,10 @@ __all__ = ["LbFirewall"]
 
 
 class LbFirewall(BaseModel):
+    """
+    An object specifying allow and deny rules to control traffic to the load balancer.
+    """
+
     allow: Optional[List[str]] = None
     """
     the rules for allowing traffic to the load balancer (in the form 'ip:1.2.3.4' or

@@ -10,6 +10,8 @@ __all__ = ["SnapshotListResponse", "Snapshot"]
 
 
 class Snapshot(BaseModel):
+    """Represents an NFS snapshot."""
+
     id: str
     """The unique identifier of the snapshot."""
 

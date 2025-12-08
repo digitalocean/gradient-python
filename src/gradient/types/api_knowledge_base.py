@@ -10,6 +10,8 @@ __all__ = ["APIKnowledgeBase"]
 
 
 class APIKnowledgeBase(BaseModel):
+    """Knowledgebase Description"""
+
     added_to_agent_at: Optional[datetime] = None
     """Time when the knowledge base was added to the agent"""
 

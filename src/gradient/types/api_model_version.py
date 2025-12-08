@@ -8,6 +8,8 @@ __all__ = ["APIModelVersion"]
 
 
 class APIModelVersion(BaseModel):
+    """Version Information about a Model"""
+
     major: Optional[int] = None
     """Major version number"""
 

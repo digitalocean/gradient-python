@@ -10,6 +10,8 @@ __all__ = ["APIWebCrawlerDataSourceParam"]
 
 
 class APIWebCrawlerDataSourceParam(TypedDict, total=False):
+    """WebCrawlerDataSource"""
+
     base_url: str
     """The base url to crawl."""
 

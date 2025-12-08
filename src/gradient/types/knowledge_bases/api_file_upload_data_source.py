@@ -8,6 +8,8 @@ __all__ = ["APIFileUploadDataSource"]
 
 
 class APIFileUploadDataSource(BaseModel):
+    """File to upload as data source for knowledge base."""
+
     original_file_name: Optional[str] = None
     """The original file name"""
 

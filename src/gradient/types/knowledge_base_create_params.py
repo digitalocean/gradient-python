@@ -53,6 +53,8 @@ class KnowledgeBaseCreateParams(TypedDict, total=False):
 
 
 class DatasourceDropboxDataSource(TypedDict, total=False):
+    """Dropbox Data Source"""
+
     folder: str
 
     refresh_token: str
@@ -64,6 +66,8 @@ class DatasourceDropboxDataSource(TypedDict, total=False):
 
 
 class DatasourceGoogleDriveDataSource(TypedDict, total=False):
+    """Google Drive Data Source"""
+
     folder_id: str
 
     refresh_token: str

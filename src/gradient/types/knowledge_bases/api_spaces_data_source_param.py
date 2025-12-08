@@ -8,6 +8,8 @@ __all__ = ["APISpacesDataSourceParam"]
 
 
 class APISpacesDataSourceParam(TypedDict, total=False):
+    """Spaces Bucket Data Source"""
+
     bucket_name: str
     """Spaces bucket name"""
 

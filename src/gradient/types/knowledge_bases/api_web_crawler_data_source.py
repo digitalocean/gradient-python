@@ -9,6 +9,8 @@ __all__ = ["APIWebCrawlerDataSource"]
 
 
 class APIWebCrawlerDataSource(BaseModel):
+    """WebCrawlerDataSource"""
+
     base_url: Optional[str] = None
     """The base url to crawl."""
 

@@ -9,11 +9,15 @@ __all__ = ["GlbSettingsParam", "Cdn"]
 
 
 class Cdn(TypedDict, total=False):
+    """An object specifying CDN configurations for a Global load balancer."""
+
     is_enabled: bool
     """A boolean flag to enable CDN caching."""
 
 
 class GlbSettingsParam(TypedDict, total=False):
+    """An object specifying forwarding configurations for a Global load balancer."""
+
     cdn: Cdn
     """An object specifying CDN configurations for a Global load balancer."""
 

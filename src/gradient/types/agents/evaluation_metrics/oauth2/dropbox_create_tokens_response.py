@@ -8,6 +8,8 @@ __all__ = ["DropboxCreateTokensResponse"]
 
 
 class DropboxCreateTokensResponse(BaseModel):
+    """The dropbox oauth2 token and refresh token"""
+
     token: Optional[str] = None
     """The access token"""
 

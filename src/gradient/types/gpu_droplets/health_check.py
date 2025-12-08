@@ -9,6 +9,8 @@ __all__ = ["HealthCheck"]
 
 
 class HealthCheck(BaseModel):
+    """An object specifying health check settings for the load balancer."""
+
     check_interval_seconds: Optional[int] = None
     """The number of seconds between between two consecutive health checks."""
 

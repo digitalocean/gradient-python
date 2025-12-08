@@ -9,6 +9,8 @@ __all__ = ["StickySessions"]
 
 
 class StickySessions(BaseModel):
+    """An object specifying sticky sessions settings for the load balancer."""
+
     cookie_name: Optional[str] = None
     """The name of the cookie sent to the client.
 

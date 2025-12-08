@@ -8,6 +8,8 @@ __all__ = ["APIMeta"]
 
 
 class APIMeta(BaseModel):
+    """Meta information about the data set"""
+
     page: Optional[int] = None
     """The current page"""
 

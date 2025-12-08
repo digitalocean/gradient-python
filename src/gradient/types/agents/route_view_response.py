@@ -10,6 +10,8 @@ __all__ = ["RouteViewResponse"]
 
 
 class RouteViewResponse(BaseModel):
+    """Child list for an agent"""
+
     children: Optional[List["APIAgent"]] = None
     """Child agents"""
 

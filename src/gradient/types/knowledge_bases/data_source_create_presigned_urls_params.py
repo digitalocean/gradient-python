@@ -14,6 +14,8 @@ class DataSourceCreatePresignedURLsParams(TypedDict, total=False):
 
 
 class File(TypedDict, total=False):
+    """A single file’s metadata in the request."""
+
     file_name: str
     """Local filename"""
 

@@ -11,6 +11,8 @@ __all__ = ["DataSourceListResponse"]
 
 
 class DataSourceListResponse(BaseModel):
+    """A list of knowledge base data sources"""
+
     knowledge_base_data_sources: Optional[List[APIKnowledgeBaseDataSource]] = None
     """The data sources"""
 

@@ -12,6 +12,8 @@ __all__ = ["EvaluationRunListResultsResponse"]
 
 
 class EvaluationRunListResultsResponse(BaseModel):
+    """Gets the full results of an evaluation run with all prompts."""
+
     evaluation_run: Optional[APIEvaluationRun] = None
 
     links: Optional[APILinks] = None

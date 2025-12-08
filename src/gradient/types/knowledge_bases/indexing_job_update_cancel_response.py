@@ -9,5 +9,7 @@ __all__ = ["IndexingJobUpdateCancelResponse"]
 
 
 class IndexingJobUpdateCancelResponse(BaseModel):
+    """CancelKnowledgeBaseIndexingJobOutput description"""
+
     job: Optional[APIIndexingJob] = None
     """IndexingJob description"""

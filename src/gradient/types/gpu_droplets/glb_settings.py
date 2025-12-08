@@ -9,11 +9,15 @@ __all__ = ["GlbSettings", "Cdn"]
 
 
 class Cdn(BaseModel):
+    """An object specifying CDN configurations for a Global load balancer."""
+
     is_enabled: Optional[bool] = None
     """A boolean flag to enable CDN caching."""
 
 
 class GlbSettings(BaseModel):
+    """An object specifying forwarding configurations for a Global load balancer."""
+
     cdn: Optional[Cdn] = None
     """An object specifying CDN configurations for a Global load balancer."""
 

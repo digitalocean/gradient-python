@@ -8,6 +8,8 @@ __all__ = ["EvaluationMetricListRegionsResponse", "Region"]
 
 
 class Region(BaseModel):
+    """Description for a specific Region"""
+
     inference_url: Optional[str] = None
     """Url for inference server"""
 
@@ -25,5 +27,7 @@ class Region(BaseModel):
 
 
 class EvaluationMetricListRegionsResponse(BaseModel):
+    """Region Codes"""
+
     regions: Optional[List[Region]] = None
     """Region code"""
