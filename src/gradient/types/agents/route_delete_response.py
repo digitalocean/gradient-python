@@ -8,6 +8,8 @@ __all__ = ["RouteDeleteResponse"]
 
 
 class RouteDeleteResponse(BaseModel):
+    """Information about a removed linkage"""
+
     child_agent_uuid: Optional[str] = None
     """Routed agent id"""
 

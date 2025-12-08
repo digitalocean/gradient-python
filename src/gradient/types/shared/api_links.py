@@ -8,6 +8,8 @@ __all__ = ["APILinks", "Pages"]
 
 
 class Pages(BaseModel):
+    """Information about how to reach other pages"""
+
     first: Optional[str] = None
     """First page"""
 
@@ -22,5 +24,7 @@ class Pages(BaseModel):
 
 
 class APILinks(BaseModel):
+    """Links to other pages"""
+
     pages: Optional[Pages] = None
     """Information about how to reach other pages"""

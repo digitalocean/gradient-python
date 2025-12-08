@@ -19,6 +19,11 @@ __all__ = ["Droplet", "Networks"]
 
 
 class Networks(BaseModel):
+    """The details of the network that are configured for the Droplet instance.
+
+    This is an object that contains keys for IPv4 and IPv6.  The value of each of these is an array that contains objects describing an individual IP resource allocated to the Droplet.  These will define attributes like the IP address, netmask, and gateway of the specific network depending on the type of network it is.
+    """
+
     v4: Optional[List[NetworkV4]] = None
 
     v6: Optional[List[NetworkV6]] = None

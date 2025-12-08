@@ -8,6 +8,8 @@ __all__ = ["APIFileUploadDataSourceParam"]
 
 
 class APIFileUploadDataSourceParam(TypedDict, total=False):
+    """File to upload as data source for knowledge base."""
+
     original_file_name: str
     """The original file name"""
 

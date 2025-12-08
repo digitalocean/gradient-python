@@ -9,5 +9,7 @@ __all__ = ["IndexingJobCreateResponse"]
 
 
 class IndexingJobCreateResponse(BaseModel):
+    """StartKnowledgeBaseIndexingJobOutput description"""
+
     job: Optional[APIIndexingJob] = None
     """IndexingJob description"""

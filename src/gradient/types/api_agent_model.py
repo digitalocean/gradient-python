@@ -12,6 +12,8 @@ __all__ = ["APIAgentModel"]
 
 
 class APIAgentModel(BaseModel):
+    """Description of a Model"""
+
     agreement: Optional[APIAgreement] = None
     """Agreement Description"""
 

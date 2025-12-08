@@ -11,6 +11,10 @@ __all__ = ["OpenAIListResponse"]
 
 
 class OpenAIListResponse(BaseModel):
+    """
+    ListOpenAIAPIKeysOutput is used to return the list of OpenAI API keys for a specific agent.
+    """
+
     api_key_infos: Optional[List[APIOpenAIAPIKeyInfo]] = None
     """Api key infos"""
 

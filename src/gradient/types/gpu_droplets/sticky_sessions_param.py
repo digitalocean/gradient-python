@@ -8,6 +8,8 @@ __all__ = ["StickySessionsParam"]
 
 
 class StickySessionsParam(TypedDict, total=False):
+    """An object specifying sticky sessions settings for the load balancer."""
+
     cookie_name: str
     """The name of the cookie sent to the client.
 

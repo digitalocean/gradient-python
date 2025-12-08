@@ -8,6 +8,15 @@ __all__ = ["Kernel"]
 
 
 class Kernel(BaseModel):
+    """
+    **Note**: All Droplets created after March 2017 use internal kernels by default.
+    These Droplets will have this attribute set to `null`.
+
+    The current [kernel](https://docs.digitalocean.com/products/droplets/how-to/kernel/)
+    for Droplets with externally managed kernels. This will initially be set to
+    the kernel of the base image when the Droplet is created.
+    """
+
     id: Optional[int] = None
     """A unique number used to identify and reference a specific kernel."""
 

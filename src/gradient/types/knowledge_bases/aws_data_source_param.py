@@ -8,6 +8,8 @@ __all__ = ["AwsDataSourceParam"]
 
 
 class AwsDataSourceParam(TypedDict, total=False):
+    """AWS S3 Data Source"""
+
     bucket_name: str
     """Spaces bucket name"""
 

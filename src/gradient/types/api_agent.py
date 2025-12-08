@@ -33,11 +33,15 @@ __all__ = [
 
 
 class APIKey(BaseModel):
+    """Agent API Key"""
+
     api_key: Optional[str] = None
     """Api key"""
 
 
 class Chatbot(BaseModel):
+    """A Chatbot"""
+
     allowed_domains: Optional[List[str]] = None
 
     button_background_color: Optional[str] = None
@@ -55,11 +59,15 @@ class Chatbot(BaseModel):
 
 
 class ChatbotIdentifier(BaseModel):
+    """Agent Chatbot Identifier"""
+
     agent_chatbot_identifier: Optional[str] = None
     """Agent chatbot identifier"""
 
 
 class Deployment(BaseModel):
+    """Description of deployment"""
+
     created_at: Optional[datetime] = None
     """Creation date / time"""
 
@@ -104,6 +112,8 @@ class Deployment(BaseModel):
 
 
 class Function(BaseModel):
+    """Description missing"""
+
     api_key: Optional[str] = None
     """Api key"""
 
@@ -138,6 +148,8 @@ class Function(BaseModel):
 
 
 class Guardrail(BaseModel):
+    """A Agent Guardrail"""
+
     agent_uuid: Optional[str] = None
 
     created_at: Optional[datetime] = None
@@ -228,6 +240,8 @@ class TemplateGuardrail(BaseModel):
 
 
 class Template(BaseModel):
+    """Represents an AgentTemplate entity"""
+
     created_at: Optional[datetime] = None
     """The agent template's creation date"""
 
@@ -287,6 +301,8 @@ class Template(BaseModel):
 
 
 class APIAgent(BaseModel):
+    """An Agent"""
+
     anthropic_api_key: Optional[APIAnthropicAPIKeyInfo] = None
     """Anthropic API Key Info"""
 

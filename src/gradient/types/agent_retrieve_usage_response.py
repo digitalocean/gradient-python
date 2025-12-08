@@ -9,12 +9,16 @@ __all__ = ["AgentRetrieveUsageResponse", "LogInsightsUsage", "LogInsightsUsageMe
 
 
 class LogInsightsUsageMeasurement(BaseModel):
+    """Usage Measurement Description"""
+
     tokens: Optional[int] = None
 
     usage_type: Optional[str] = None
 
 
 class LogInsightsUsage(BaseModel):
+    """Resource Usage Description"""
+
     measurements: Optional[List[LogInsightsUsageMeasurement]] = None
 
     resource_uuid: Optional[str] = None
@@ -25,12 +29,16 @@ class LogInsightsUsage(BaseModel):
 
 
 class UsageMeasurement(BaseModel):
+    """Usage Measurement Description"""
+
     tokens: Optional[int] = None
 
     usage_type: Optional[str] = None
 
 
 class Usage(BaseModel):
+    """Resource Usage Description"""
+
     measurements: Optional[List[UsageMeasurement]] = None
 
     resource_uuid: Optional[str] = None
@@ -41,6 +49,8 @@ class Usage(BaseModel):
 
 
 class AgentRetrieveUsageResponse(BaseModel):
+    """Agent usage"""
+
     log_insights_usage: Optional[LogInsightsUsage] = None
     """Resource Usage Description"""
 

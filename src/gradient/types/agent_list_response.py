@@ -24,6 +24,8 @@ __all__ = [
 
 
 class AgentChatbot(BaseModel):
+    """A Chatbot"""
+
     allowed_domains: Optional[List[str]] = None
 
     button_background_color: Optional[str] = None
@@ -41,11 +43,15 @@ class AgentChatbot(BaseModel):
 
 
 class AgentChatbotIdentifier(BaseModel):
+    """Agent Chatbot Identifier"""
+
     agent_chatbot_identifier: Optional[str] = None
     """Agent chatbot identifier"""
 
 
 class AgentDeployment(BaseModel):
+    """Description of deployment"""
+
     created_at: Optional[datetime] = None
     """Creation date / time"""
 
@@ -98,6 +104,8 @@ class AgentTemplateGuardrail(BaseModel):
 
 
 class AgentTemplate(BaseModel):
+    """Represents an AgentTemplate entity"""
+
     created_at: Optional[datetime] = None
     """The agent template's creation date"""
 
@@ -157,6 +165,8 @@ class AgentTemplate(BaseModel):
 
 
 class Agent(BaseModel):
+    """A GenAI Agent's configuration"""
+
     chatbot: Optional[AgentChatbot] = None
     """A Chatbot"""
 
@@ -266,6 +276,8 @@ class Agent(BaseModel):
 
 
 class AgentListResponse(BaseModel):
+    """List of Agents"""
+
     agents: Optional[List[Agent]] = None
     """Agents"""
 

@@ -9,6 +9,8 @@ __all__ = ["EvaluationDatasetCreateFileUploadPresignedURLsResponse", "Upload"]
 
 
 class Upload(BaseModel):
+    """Detailed info about each presigned URL returned to the client."""
+
     expires_at: Optional[datetime] = None
     """The time the url expires at."""
 
@@ -23,6 +25,8 @@ class Upload(BaseModel):
 
 
 class EvaluationDatasetCreateFileUploadPresignedURLsResponse(BaseModel):
+    """Response with pre-signed urls to upload files."""
+
     request_id: Optional[str] = None
     """The ID generated for the request for Presigned URLs."""
 

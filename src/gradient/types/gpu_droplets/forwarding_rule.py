@@ -9,6 +9,8 @@ __all__ = ["ForwardingRule"]
 
 
 class ForwardingRule(BaseModel):
+    """An object specifying a forwarding rule for a load balancer."""
+
     entry_port: int
     """
     An integer representing the port on which the load balancer instance will

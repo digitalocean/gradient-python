@@ -9,5 +9,7 @@ __all__ = ["KeyDeleteResponse"]
 
 
 class KeyDeleteResponse(BaseModel):
+    """DeleteAnthropicAPIKeyOutput is used to return the deleted Anthropic API key."""
+
     api_key_info: Optional[APIAnthropicAPIKeyInfo] = None
     """Anthropic API Key Info"""

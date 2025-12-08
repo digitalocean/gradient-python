@@ -10,6 +10,8 @@ __all__ = ["AgentDeleteResponse"]
 
 
 class AgentDeleteResponse(BaseModel):
+    """Info about a deleted agent"""
+
     agent: Optional["APIAgent"] = None
     """An Agent"""
 

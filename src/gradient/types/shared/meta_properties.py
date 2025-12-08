@@ -8,5 +8,7 @@ __all__ = ["MetaProperties"]
 
 
 class MetaProperties(BaseModel):
+    """Information about the response itself."""
+
     total: Optional[int] = None
     """Number of objects returned by the request."""

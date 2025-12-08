@@ -8,6 +8,8 @@ __all__ = ["DomainsParam"]
 
 
 class DomainsParam(TypedDict, total=False):
+    """An object specifying domain configurations for a Global load balancer."""
+
     certificate_id: str
     """The ID of the TLS certificate used for SSL termination."""
 

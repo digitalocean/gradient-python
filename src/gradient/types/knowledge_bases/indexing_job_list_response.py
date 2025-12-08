@@ -11,6 +11,8 @@ __all__ = ["IndexingJobListResponse"]
 
 
 class IndexingJobListResponse(BaseModel):
+    """Indexing jobs"""
+
     jobs: Optional[List[APIIndexingJob]] = None
     """The indexing jobs"""
 

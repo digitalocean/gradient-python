@@ -10,6 +10,8 @@ __all__ = ["APILinkKnowledgeBaseOutput"]
 
 
 class APILinkKnowledgeBaseOutput(BaseModel):
+    """Information about a linked knowledge base"""
+
     agent: Optional["APIAgent"] = None
     """An Agent"""
 

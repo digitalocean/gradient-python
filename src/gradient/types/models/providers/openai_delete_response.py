@@ -9,5 +9,7 @@ __all__ = ["OpenAIDeleteResponse"]
 
 
 class OpenAIDeleteResponse(BaseModel):
+    """DeleteOpenAIAPIKeyOutput is used to return the deleted OpenAI API key."""
+
     api_key_info: Optional[APIOpenAIAPIKeyInfo] = None
     """OpenAI API Key Info"""

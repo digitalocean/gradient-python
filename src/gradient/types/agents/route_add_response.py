@@ -8,6 +8,8 @@ __all__ = ["RouteAddResponse"]
 
 
 class RouteAddResponse(BaseModel):
+    """Information about a newly linked agent"""
+
     child_agent_uuid: Optional[str] = None
     """Routed agent id"""
 

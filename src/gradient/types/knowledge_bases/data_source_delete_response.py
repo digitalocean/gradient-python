@@ -8,6 +8,8 @@ __all__ = ["DataSourceDeleteResponse"]
 
 
 class DataSourceDeleteResponse(BaseModel):
+    """Information about a newly deleted knowledge base data source"""
+
     data_source_uuid: Optional[str] = None
     """Data source id"""
 

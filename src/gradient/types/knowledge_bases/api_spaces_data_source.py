@@ -8,6 +8,8 @@ __all__ = ["APISpacesDataSource"]
 
 
 class APISpacesDataSource(BaseModel):
+    """Spaces Bucket Data Source"""
+
     bucket_name: Optional[str] = None
     """Spaces bucket name"""
 

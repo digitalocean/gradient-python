@@ -11,6 +11,8 @@ __all__ = ["ModelListResponse"]
 
 
 class ModelListResponse(BaseModel):
+    """A list of models"""
+
     links: Optional[APILinks] = None
     """Links to other pages"""
 

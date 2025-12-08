@@ -8,6 +8,8 @@ __all__ = ["ForwardingRuleParam"]
 
 
 class ForwardingRuleParam(TypedDict, total=False):
+    """An object specifying a forwarding rule for a load balancer."""
+
     entry_port: Required[int]
     """
     An integer representing the port on which the load balancer instance will

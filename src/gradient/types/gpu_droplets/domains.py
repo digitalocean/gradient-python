@@ -8,6 +8,8 @@ __all__ = ["Domains"]
 
 
 class Domains(BaseModel):
+    """An object specifying domain configurations for a Global load balancer."""
+
     certificate_id: Optional[str] = None
     """The ID of the TLS certificate used for SSL termination."""
 

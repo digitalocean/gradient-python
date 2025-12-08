@@ -9,5 +9,7 @@ __all__ = ["AnthropicUpdateResponse"]
 
 
 class AnthropicUpdateResponse(BaseModel):
+    """UpdateAnthropicAPIKeyOutput is used to return the updated Anthropic API key."""
+
     api_key_info: Optional[APIAnthropicAPIKeyInfo] = None
     """Anthropic API Key Info"""
