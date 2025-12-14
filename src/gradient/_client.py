@@ -82,6 +82,7 @@ class Gradient(SyncAPIClient):
     agent_access_key: str | None
     _agent_endpoint: str | None
     inference_endpoint: str | None
+    kbass_endpoint: str | None
 
     def __init__(
         self,
@@ -91,6 +92,7 @@ class Gradient(SyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -121,6 +123,7 @@ class Gradient(SyncAPIClient):
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
+        - `kbass_endpoint` from `GRADIENT_KBASS_ENDPOINT`
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -144,6 +147,10 @@ class Gradient(SyncAPIClient):
                 or "https://inference.do-ai.run"
             )
         self.inference_endpoint = inference_endpoint
+
+        if kbass_endpoint is None:
+            kbass_endpoint = os.environ.get("GRADIENT_KBASS_ENDPOINT") or "kbaas.do-ai.run"
+        self.kbass_endpoint = kbass_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -334,6 +341,7 @@ class Gradient(SyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -378,6 +386,7 @@ class Gradient(SyncAPIClient):
             agent_access_key=agent_access_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
             inference_endpoint=inference_endpoint or self.inference_endpoint,
+            kbass_endpoint=kbass_endpoint or self.kbass_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -444,6 +453,7 @@ class AsyncGradient(AsyncAPIClient):
     agent_access_key: str | None
     _agent_endpoint: str | None
     inference_endpoint: str | None
+    kbass_endpoint: str | None
 
     def __init__(
         self,
@@ -453,6 +463,7 @@ class AsyncGradient(AsyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -483,6 +494,7 @@ class AsyncGradient(AsyncAPIClient):
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
+        - `kbass_endpoint` from `GRADIENT_KBASS_ENDPOINT`
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -506,6 +518,10 @@ class AsyncGradient(AsyncAPIClient):
                 or "https://inference.do-ai.run"
             )
         self.inference_endpoint = inference_endpoint
+
+        if kbass_endpoint is None:
+            kbass_endpoint = os.environ.get("GRADIENT_KBASS_ENDPOINT") or "kbaas.do-ai.run"
+        self.kbass_endpoint = kbass_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -696,6 +712,7 @@ class AsyncGradient(AsyncAPIClient):
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -740,6 +757,7 @@ class AsyncGradient(AsyncAPIClient):
             agent_access_key=agent_access_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self._agent_endpoint,
             inference_endpoint=inference_endpoint or self.inference_endpoint,
+            kbass_endpoint=kbass_endpoint or self.kbass_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
