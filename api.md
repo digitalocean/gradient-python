@@ -1027,3 +1027,15 @@ Methods:
 - <code title="get /v2/nfs/snapshots/{nfs_snapshot_id}">client.nfs.snapshots.<a href="./src/gradient/resources/nfs/snapshots.py">retrieve</a>(nfs_snapshot_id, \*\*<a href="src/gradient/types/nfs/snapshot_retrieve_params.py">params</a>) -> <a href="./src/gradient/types/nfs/snapshot_retrieve_response.py">SnapshotRetrieveResponse</a></code>
 - <code title="get /v2/nfs/snapshots">client.nfs.snapshots.<a href="./src/gradient/resources/nfs/snapshots.py">list</a>(\*\*<a href="src/gradient/types/nfs/snapshot_list_params.py">params</a>) -> <a href="./src/gradient/types/nfs/snapshot_list_response.py">SnapshotListResponse</a></code>
 - <code title="delete /v2/nfs/snapshots/{nfs_snapshot_id}">client.nfs.snapshots.<a href="./src/gradient/resources/nfs/snapshots.py">delete</a>(nfs_snapshot_id, \*\*<a href="src/gradient/types/nfs/snapshot_delete_params.py">params</a>) -> None</code>
+
+# Retrieve
+
+Types:
+
+```python
+from gradient.types import RetrieveDocumentsResponse
+```
+
+Methods:
+
+- <code title="post /{knowledgeBaseId}/retrieve">client.retrieve.<a href="./src/gradient/resources/retrieve.py">documents</a>(knowledge_base_id, \*\*<a href="src/gradient/types/retrieve_documents_params.py">params</a>) -> <a href="./src/gradient/types/retrieve_documents_response.py">RetrieveDocumentsResponse</a></code>

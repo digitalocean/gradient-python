@@ -48,6 +48,14 @@ from .regions import (
     RegionsResourceWithStreamingResponse,
     AsyncRegionsResourceWithStreamingResponse,
 )
+from .retrieve import (
+    RetrieveResource,
+    AsyncRetrieveResource,
+    RetrieveResourceWithRawResponse,
+    AsyncRetrieveResourceWithRawResponse,
+    RetrieveResourceWithStreamingResponse,
+    AsyncRetrieveResourceWithStreamingResponse,
+)
 from .databases import (
     DatabasesResource,
     AsyncDatabasesResource,
@@ -142,4 +150,10 @@ __all__ = [
     "AsyncNfsResourceWithRawResponse",
     "NfsResourceWithStreamingResponse",
     "AsyncNfsResourceWithStreamingResponse",
+    "RetrieveResource",
+    "AsyncRetrieveResource",
+    "RetrieveResourceWithRawResponse",
+    "AsyncRetrieveResourceWithRawResponse",
+    "RetrieveResourceWithStreamingResponse",
+    "AsyncRetrieveResourceWithStreamingResponse",
 ]
