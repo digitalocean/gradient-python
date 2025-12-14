@@ -85,6 +85,7 @@ from .api_deployment_visibility import APIDeploymentVisibility as APIDeploymentV
 from .gpu_droplet_create_params import GPUDropletCreateParams as GPUDropletCreateParams
 from .gpu_droplet_list_response import GPUDropletListResponse as GPUDropletListResponse
 from .nf_initiate_action_params import NfInitiateActionParams as NfInitiateActionParams
+from .retrieve_documents_params import RetrieveDocumentsParams as RetrieveDocumentsParams
 from .agent_update_status_params import (
     AgentUpdateStatusParams as AgentUpdateStatusParams,
 )
@@ -100,6 +101,7 @@ from .gpu_droplet_create_response import (
     GPUDropletCreateResponse as GPUDropletCreateResponse,
 )
 from .nf_initiate_action_response import NfInitiateActionResponse as NfInitiateActionResponse
+from .retrieve_documents_response import RetrieveDocumentsResponse as RetrieveDocumentsResponse
 from .agent_update_status_response import (
     AgentUpdateStatusResponse as AgentUpdateStatusResponse,
 )

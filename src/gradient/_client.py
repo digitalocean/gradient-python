@@ -39,6 +39,7 @@ if TYPE_CHECKING:
         images,
         models,
         regions,
+        retrieve,
         databases,
         inference,
         gpu_droplets,
@@ -47,6 +48,7 @@ if TYPE_CHECKING:
     from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.nfs.nfs import NfsResource, AsyncNfsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
+    from .resources.retrieve import RetrieveResource, AsyncRetrieveResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.gpu_droplets import (
         GPUDropletsResource,
@@ -236,6 +238,12 @@ class Gradient(SyncAPIClient):
         from .resources.nfs import NfsResource
 
         return NfsResource(self)
+
+    @cached_property
+    def retrieve(self) -> RetrieveResource:
+        from .resources.retrieve import RetrieveResource
+
+        return RetrieveResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientWithRawResponse:
@@ -594,6 +602,12 @@ class AsyncGradient(AsyncAPIClient):
         return AsyncNfsResource(self)
 
     @cached_property
+    def retrieve(self) -> AsyncRetrieveResource:
+        from .resources.retrieve import AsyncRetrieveResource
+
+        return AsyncRetrieveResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientWithRawResponse:
         return AsyncGradientWithRawResponse(self)
 
@@ -851,6 +865,12 @@ class GradientWithRawResponse:
 
         return NfsResourceWithRawResponse(self._client.nfs)
 
+    @cached_property
+    def retrieve(self) -> retrieve.RetrieveResourceWithRawResponse:
+        from .resources.retrieve import RetrieveResourceWithRawResponse
+
+        return RetrieveResourceWithRawResponse(self._client.retrieve)
+
 
 class AsyncGradientWithRawResponse:
     _client: AsyncGradient
@@ -922,6 +942,12 @@ class AsyncGradientWithRawResponse:
 
         return AsyncNfsResourceWithRawResponse(self._client.nfs)
 
+    @cached_property
+    def retrieve(self) -> retrieve.AsyncRetrieveResourceWithRawResponse:
+        from .resources.retrieve import AsyncRetrieveResourceWithRawResponse
+
+        return AsyncRetrieveResourceWithRawResponse(self._client.retrieve)
+
 
 class GradientWithStreamedResponse:
     _client: Gradient
@@ -992,6 +1018,12 @@ class GradientWithStreamedResponse:
         from .resources.nfs import NfsResourceWithStreamingResponse
 
         return NfsResourceWithStreamingResponse(self._client.nfs)
+
+    @cached_property
+    def retrieve(self) -> retrieve.RetrieveResourceWithStreamingResponse:
+        from .resources.retrieve import RetrieveResourceWithStreamingResponse
+
+        return RetrieveResourceWithStreamingResponse(self._client.retrieve)
 
 
 class AsyncGradientWithStreamedResponse:
@@ -1069,6 +1101,12 @@ class AsyncGradientWithStreamedResponse:
         from .resources.nfs import AsyncNfsResourceWithStreamingResponse
 
         return AsyncNfsResourceWithStreamingResponse(self._client.nfs)
+
+    @cached_property
+    def retrieve(self) -> retrieve.AsyncRetrieveResourceWithStreamingResponse:
+        from .resources.retrieve import AsyncRetrieveResourceWithStreamingResponse
+
+        return AsyncRetrieveResourceWithStreamingResponse(self._client.retrieve)
 
 
 Client = Gradient
