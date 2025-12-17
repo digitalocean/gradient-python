@@ -4,7 +4,6 @@ from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .api_indexing_job import APIIndexingJob
 from .api_spaces_data_source import APISpacesDataSource
 from .api_indexed_data_source import APIIndexedDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
@@ -57,9 +56,6 @@ class APIKnowledgeBaseDataSource(BaseModel):
     """Path of folder or object in bucket - Deprecated, moved to data_source_details"""
 
     last_datasource_indexing_job: Optional[APIIndexedDataSource] = None
-
-    last_indexing_job: Optional[APIIndexingJob] = None
-    """IndexingJob description"""
 
     region: Optional[str] = None
     """Region code - Deprecated, moved to data_source_details"""
