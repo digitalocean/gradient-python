@@ -11,6 +11,10 @@ __all__ = [
     "NfsActionResizeParams",
     "NfsActionSnapshot",
     "NfsActionSnapshotParams",
+    "NfsActionAttach",
+    "NfsActionAttachParams",
+    "NfsActionDetach",
+    "NfsActionDetachParams",
 ]
 
 
@@ -44,4 +48,34 @@ class NfsActionSnapshotParams(TypedDict, total=False):
     """Snapshot name of the NFS share"""
 
 
-NfInitiateActionParams: TypeAlias = Union[NfsActionResize, NfsActionSnapshot]
+class NfsActionAttach(TypedDict, total=False):
+    region: Required[str]
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
+
+    type: Required[Literal["resize", "snapshot"]]
+    """The type of action to initiate for the NFS share (such as resize or snapshot)."""
+
+    params: NfsActionAttachParams
+
+
+class NfsActionAttachParams(TypedDict, total=False):
+    vpc_id: Required[str]
+    """The ID of the VPC to which the NFS share will be attached"""
+
+
+class NfsActionDetach(TypedDict, total=False):
+    region: Required[str]
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
+
+    type: Required[Literal["resize", "snapshot"]]
+    """The type of action to initiate for the NFS share (such as resize or snapshot)."""
+
+    params: NfsActionDetachParams
+
+
+class NfsActionDetachParams(TypedDict, total=False):
+    vpc_id: Required[str]
+    """The ID of the VPC from which the NFS share will be detached"""
+
+
+NfInitiateActionParams: TypeAlias = Union[NfsActionResize, NfsActionSnapshot, NfsActionAttach, NfsActionDetach]

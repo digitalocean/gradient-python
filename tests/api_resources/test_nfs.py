@@ -313,6 +313,128 @@ class TestNfs:
                 type="resize",
             )
 
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_initiate_action_overload_3(self, client: Gradient) -> None:
+        nf = client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_initiate_action_with_all_params_overload_3(self, client: Gradient) -> None:
+        nf = client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+            params={"vpc_id": "vpc-id-123"},
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_initiate_action_overload_3(self, client: Gradient) -> None:
+        response = client.nfs.with_raw_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        nf = response.parse()
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_initiate_action_overload_3(self, client: Gradient) -> None:
+        with client.nfs.with_streaming_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            nf = response.parse()
+            assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_initiate_action_overload_3(self, client: Gradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
+            client.nfs.with_raw_response.initiate_action(
+                nfs_id="",
+                region="atl1",
+                type="resize",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_initiate_action_overload_4(self, client: Gradient) -> None:
+        nf = client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_initiate_action_with_all_params_overload_4(self, client: Gradient) -> None:
+        nf = client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+            params={"vpc_id": "vpc-id-123"},
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_initiate_action_overload_4(self, client: Gradient) -> None:
+        response = client.nfs.with_raw_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        nf = response.parse()
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_initiate_action_overload_4(self, client: Gradient) -> None:
+        with client.nfs.with_streaming_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            nf = response.parse()
+            assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_initiate_action_overload_4(self, client: Gradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
+            client.nfs.with_raw_response.initiate_action(
+                nfs_id="",
+                region="atl1",
+                type="resize",
+            )
+
 
 class TestAsyncNfs:
     parametrize = pytest.mark.parametrize(
@@ -603,6 +725,128 @@ class TestAsyncNfs:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_initiate_action_overload_2(self, async_client: AsyncGradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
+            await async_client.nfs.with_raw_response.initiate_action(
+                nfs_id="",
+                region="atl1",
+                type="resize",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
+        nf = await async_client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_initiate_action_with_all_params_overload_3(self, async_client: AsyncGradient) -> None:
+        nf = await async_client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+            params={"vpc_id": "vpc-id-123"},
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
+        response = await async_client.nfs.with_raw_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        nf = await response.parse()
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
+        async with async_client.nfs.with_streaming_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            nf = await response.parse()
+            assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
+            await async_client.nfs.with_raw_response.initiate_action(
+                nfs_id="",
+                region="atl1",
+                type="resize",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
+        nf = await async_client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_initiate_action_with_all_params_overload_4(self, async_client: AsyncGradient) -> None:
+        nf = await async_client.nfs.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+            params={"vpc_id": "vpc-id-123"},
+        )
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
+        response = await async_client.nfs.with_raw_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        nf = await response.parse()
+        assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
+        async with async_client.nfs.with_streaming_response.initiate_action(
+            nfs_id="0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+            region="atl1",
+            type="resize",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            nf = await response.parse()
+            assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
             await async_client.nfs.with_raw_response.initiate_action(
                 nfs_id="",

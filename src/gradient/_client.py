@@ -39,6 +39,7 @@ if TYPE_CHECKING:
         images,
         models,
         regions,
+        retrieve,
         databases,
         inference,
         gpu_droplets,
@@ -47,6 +48,7 @@ if TYPE_CHECKING:
     from .resources.images import ImagesResource, AsyncImagesResource
     from .resources.nfs.nfs import NfsResource, AsyncNfsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
+    from .resources.retrieve import RetrieveResource, AsyncRetrieveResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
@@ -74,6 +76,7 @@ class Gradient(SyncAPIClient):
     agent_access_key: str | None
     agent_endpoint: str | None
     inference_endpoint: str | None
+    kbass_endpoint: str | None
 
     def __init__(
         self,
@@ -83,6 +86,7 @@ class Gradient(SyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -110,6 +114,7 @@ class Gradient(SyncAPIClient):
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
+        - `kbass_endpoint` from `GRADIENT_KBASS_ENDPOINT`
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -130,6 +135,10 @@ class Gradient(SyncAPIClient):
         if inference_endpoint is None:
             inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
+
+        if kbass_endpoint is None:
+            kbass_endpoint = os.environ.get("GRADIENT_KBASS_ENDPOINT") or "kbaas.do-ai.run"
+        self.kbass_endpoint = kbass_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -211,6 +220,12 @@ class Gradient(SyncAPIClient):
         return NfsResource(self)
 
     @cached_property
+    def retrieve(self) -> RetrieveResource:
+        from .resources.retrieve import RetrieveResource
+
+        return RetrieveResource(self)
+
+    @cached_property
     def with_raw_response(self) -> GradientWithRawResponse:
         return GradientWithRawResponse(self)
 
@@ -287,6 +302,7 @@ class Gradient(SyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -325,6 +341,7 @@ class Gradient(SyncAPIClient):
             agent_access_key=agent_access_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self.agent_endpoint,
             inference_endpoint=inference_endpoint or self.inference_endpoint,
+            kbass_endpoint=kbass_endpoint or self.kbass_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -381,6 +398,7 @@ class AsyncGradient(AsyncAPIClient):
     agent_access_key: str | None
     agent_endpoint: str | None
     inference_endpoint: str | None
+    kbass_endpoint: str | None
 
     def __init__(
         self,
@@ -390,6 +408,7 @@ class AsyncGradient(AsyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -417,6 +436,7 @@ class AsyncGradient(AsyncAPIClient):
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
         - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
+        - `kbass_endpoint` from `GRADIENT_KBASS_ENDPOINT`
         """
         if access_token is None:
             access_token = os.environ.get("DIGITALOCEAN_ACCESS_TOKEN")
@@ -437,6 +457,10 @@ class AsyncGradient(AsyncAPIClient):
         if inference_endpoint is None:
             inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
+
+        if kbass_endpoint is None:
+            kbass_endpoint = os.environ.get("GRADIENT_KBASS_ENDPOINT") or "kbaas.do-ai.run"
+        self.kbass_endpoint = kbass_endpoint
 
         if base_url is None:
             base_url = os.environ.get("GRADIENT_BASE_URL")
@@ -518,6 +542,12 @@ class AsyncGradient(AsyncAPIClient):
         return AsyncNfsResource(self)
 
     @cached_property
+    def retrieve(self) -> AsyncRetrieveResource:
+        from .resources.retrieve import AsyncRetrieveResource
+
+        return AsyncRetrieveResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGradientWithRawResponse:
         return AsyncGradientWithRawResponse(self)
 
@@ -594,6 +624,7 @@ class AsyncGradient(AsyncAPIClient):
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
         inference_endpoint: str | None = None,
+        kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -632,6 +663,7 @@ class AsyncGradient(AsyncAPIClient):
             agent_access_key=agent_access_key or self.agent_access_key,
             agent_endpoint=agent_endpoint or self.agent_endpoint,
             inference_endpoint=inference_endpoint or self.inference_endpoint,
+            kbass_endpoint=kbass_endpoint or self.kbass_endpoint,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -747,6 +779,12 @@ class GradientWithRawResponse:
 
         return NfsResourceWithRawResponse(self._client.nfs)
 
+    @cached_property
+    def retrieve(self) -> retrieve.RetrieveResourceWithRawResponse:
+        from .resources.retrieve import RetrieveResourceWithRawResponse
+
+        return RetrieveResourceWithRawResponse(self._client.retrieve)
+
 
 class AsyncGradientWithRawResponse:
     _client: AsyncGradient
@@ -813,6 +851,12 @@ class AsyncGradientWithRawResponse:
         from .resources.nfs import AsyncNfsResourceWithRawResponse
 
         return AsyncNfsResourceWithRawResponse(self._client.nfs)
+
+    @cached_property
+    def retrieve(self) -> retrieve.AsyncRetrieveResourceWithRawResponse:
+        from .resources.retrieve import AsyncRetrieveResourceWithRawResponse
+
+        return AsyncRetrieveResourceWithRawResponse(self._client.retrieve)
 
 
 class GradientWithStreamedResponse:
@@ -881,6 +925,12 @@ class GradientWithStreamedResponse:
 
         return NfsResourceWithStreamingResponse(self._client.nfs)
 
+    @cached_property
+    def retrieve(self) -> retrieve.RetrieveResourceWithStreamingResponse:
+        from .resources.retrieve import RetrieveResourceWithStreamingResponse
+
+        return RetrieveResourceWithStreamingResponse(self._client.retrieve)
+
 
 class AsyncGradientWithStreamedResponse:
     _client: AsyncGradient
@@ -947,6 +997,12 @@ class AsyncGradientWithStreamedResponse:
         from .resources.nfs import AsyncNfsResourceWithStreamingResponse
 
         return AsyncNfsResourceWithStreamingResponse(self._client.nfs)
+
+    @cached_property
+    def retrieve(self) -> retrieve.AsyncRetrieveResourceWithStreamingResponse:
+        from .resources.retrieve import AsyncRetrieveResourceWithStreamingResponse
+
+        return AsyncRetrieveResourceWithStreamingResponse(self._client.retrieve)
 
 
 Client = Gradient

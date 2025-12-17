@@ -15,7 +15,7 @@ class APIWebCrawlerDataSourceParam(TypedDict, total=False):
     base_url: str
     """The base url to crawl."""
 
-    crawling_option: Literal["UNKNOWN", "SCOPED", "PATH", "DOMAIN", "SUBDOMAINS"]
+    crawling_option: Literal["UNKNOWN", "SCOPED", "PATH", "DOMAIN", "SUBDOMAINS", "SITEMAP"]
     """Options for specifying how URLs found on pages should be handled.
 
     - UNKNOWN: Default unknown value
@@ -23,6 +23,7 @@ class APIWebCrawlerDataSourceParam(TypedDict, total=False):
     - PATH: Crawl the base URL and linked pages within the URL path.
     - DOMAIN: Crawl the base URL and linked pages within the same domain.
     - SUBDOMAINS: Crawl the base URL and linked pages for any subdomain.
+    - SITEMAP: Crawl URLs discovered in the sitemap.
     """
 
     embed_media: bool

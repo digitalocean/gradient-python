@@ -55,6 +55,7 @@ class APIIndexingJob(BaseModel):
             "INDEX_JOB_STATUS_FAILED",
             "INDEX_JOB_STATUS_NO_CHANGES",
             "INDEX_JOB_STATUS_PENDING",
+            "INDEX_JOB_STATUS_CANCELLED",
         ]
     ] = None
 
@@ -63,18 +64,6 @@ class APIIndexingJob(BaseModel):
 
     total_datasources: Optional[int] = None
     """Number of datasources being indexed"""
-
-    total_items_failed: Optional[str] = None
-    """Total Items Failed"""
-
-    total_items_indexed: Optional[str] = None
-    """Total Items Indexed"""
-
-    total_items_removed: Optional[str] = None
-    """Total Items Removed"""
-
-    total_items_skipped: Optional[str] = None
-    """Total Items Skipped"""
 
     total_tokens: Optional[str] = None
     """Total Tokens Consumed By the Indexing Job"""
