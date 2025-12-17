@@ -43,8 +43,6 @@ def main() -> None:
         print("\n✅ Indexing job completed successfully!")
         if completed_job.job:
             print(f"Phase: {completed_job.job.phase}")
-            print(f"Total items indexed: {completed_job.job.total_items_indexed}")
-            print(f"Total items failed: {completed_job.job.total_items_failed}")
             print(f"Total datasources: {completed_job.job.total_datasources}")
             print(f"Completed datasources: {completed_job.job.completed_datasources}")
 
