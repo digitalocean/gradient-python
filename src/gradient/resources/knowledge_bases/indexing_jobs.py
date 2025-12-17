@@ -367,9 +367,7 @@ class IndexingJobsResource(SyncAPIResource):
                 # Failure states
                 if phase == "BATCH_JOB_PHASE_FAILED":
                     raise IndexingJobError(
-                        f"Indexing job {uuid} failed. "
-                        f"Total items indexed: {response.job.total_items_indexed}, "
-                        f"Total items failed: {response.job.total_items_failed}",
+                        f"Indexing job {uuid} failed. ",
                         uuid=uuid,
                         phase=phase,
                     )
@@ -737,9 +735,7 @@ class AsyncIndexingJobsResource(AsyncAPIResource):
                 # Failure states
                 if phase == "BATCH_JOB_PHASE_FAILED":
                     raise IndexingJobError(
-                        f"Indexing job {uuid} failed. "
-                        f"Total items indexed: {response.job.total_items_indexed}, "
-                        f"Total items failed: {response.job.total_items_failed}",
+                        f"Indexing job {uuid} failed. ",
                         uuid=uuid,
                         phase=phase,
                     )
