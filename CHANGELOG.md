@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.9.0 (2025-12-17)
+
+Full Changelog: [v3.8.0...v3.9.0](https://github.com/digitalocean/gradient-python/compare/v3.8.0...v3.9.0)
+
+### Features
+
+* **api:** update via SDK Studio ([4173864](https://github.com/digitalocean/gradient-python/commit/4173864db71088fb5a2e3fc8033462580bb66603))
+* **api:** update via SDK Studio ([f6b12b8](https://github.com/digitalocean/gradient-python/commit/f6b12b8a67014dd608d8260c056d1c75342edda6))
+* **api:** update via SDK Studio ([a9cd7d3](https://github.com/digitalocean/gradient-python/commit/a9cd7d3bc6e2e988901e31064a4e607059c7ac09))
+
+
+### Bug Fixes
+
+* ensure streams are always closed ([80881b5](https://github.com/digitalocean/gradient-python/commit/80881b5248ac8baa2b34043df1d20086f319d2d1))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([b400d38](https://github.com/digitalocean/gradient-python/commit/b400d3808dc93924d7d44b25714bb53ef220bfe8))
+* use async_to_httpx_files in patch method ([33d2306](https://github.com/digitalocean/gradient-python/commit/33d2306ee7211b7180ab156697159b9aa02d564e))
+
+
+### Chores
+
+* add missing docstrings ([9ac1364](https://github.com/digitalocean/gradient-python/commit/9ac136400dbd411b3d2177d20b255b0572861c48))
+* add Python 3.14 classifier and testing ([db08b3f](https://github.com/digitalocean/gradient-python/commit/db08b3fb9a7d07ff02a8d45804647ce7c1e34e5a))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([4710dcd](https://github.com/digitalocean/gradient-python/commit/4710dcdcc4600546a048e2769abeee056d9383f6))
+* **docs:** use environment variables for authentication in code snippets ([47b051a](https://github.com/digitalocean/gradient-python/commit/47b051af6578df97f84464ae40f04f957a00160a))
+* **internal:** add missing files argument to base client ([8ffa56c](https://github.com/digitalocean/gradient-python/commit/8ffa56c38b3816d5598d83976030e1a8706ec45e))
+* update lockfile ([516734f](https://github.com/digitalocean/gradient-python/commit/516734f2d19eb314061fb27c049a878b8c766313))
+
 ## 3.8.0 (2025-11-20)
 
 Full Changelog: [v3.7.0...v3.8.0](https://github.com/digitalocean/gradient-python/compare/v3.7.0...v3.8.0)
