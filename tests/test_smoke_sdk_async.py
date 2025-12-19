@@ -25,31 +25,24 @@ async def test_async_smoke_environment_and_client_state() -> None:
     missing = [k for k in REQUIRED_ENV_VARS if not os.getenv(k)]
     if missing:
         pytest.fail(
-            "Missing required environment variables for async smoke tests: "
-            + ", ".join(missing),
+            "Missing required environment variables for async smoke tests: " + ", ".join(missing),
             pytrace=False,
         )
 
     async with AsyncGradient() as client:
         # Property assertions (auto-loaded from environment)
-        assert (
-            client.access_token == os.environ["DIGITALOCEAN_ACCESS_TOKEN"]
-        ), "access_token not loaded from env"
-        assert (
-            client.model_access_key == os.environ["GRADIENT_MODEL_ACCESS_KEY"]
-        ), "model_access_key not loaded from env"
-        assert (
-            client.agent_access_key == os.environ["GRADIENT_AGENT_ACCESS_KEY"]
-        ), "agent_access_key not loaded from env"
+        assert client.access_token == os.environ["DIGITALOCEAN_ACCESS_TOKEN"], "access_token not loaded from env"
+        assert client.model_access_key == os.environ["GRADIENT_MODEL_ACCESS_KEY"], (
+            "model_access_key not loaded from env"
+        )
+        assert client.agent_access_key == os.environ["GRADIENT_AGENT_ACCESS_KEY"], (
+            "agent_access_key not loaded from env"
+        )
         expected_endpoint = os.environ["GRADIENT_AGENT_ENDPOINT"]
         normalized_expected = (
-            expected_endpoint
-            if expected_endpoint.startswith("https://")
-            else f"https://{expected_endpoint}"
+            expected_endpoint if expected_endpoint.startswith("https://") else f"https://{expected_endpoint}"
         )
-        assert (
-            client.agent_endpoint == normalized_expected
-        ), "agent_endpoint not derived correctly from env"
+        assert client.agent_endpoint == normalized_expected, "agent_endpoint not derived correctly from env"
 
 
 @pytest.mark.smoke

@@ -142,10 +142,7 @@ class Gradient(SyncAPIClient):
         self._agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = (
-                os.environ.get("GRADIENT_INFERENCE_ENDPOINT")
-                or "https://inference.do-ai.run"
-            )
+            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "https://inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if kbass_endpoint is None:
@@ -302,9 +299,7 @@ class Gradient(SyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (
-            self.access_token or self.agent_access_key or self.model_access_key
-        ) and headers.get("Authorization"):
+        if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return
@@ -513,10 +508,7 @@ class AsyncGradient(AsyncAPIClient):
         self._agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = (
-                os.environ.get("GRADIENT_INFERENCE_ENDPOINT")
-                or "https://inference.do-ai.run"
-            )
+            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "https://inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if kbass_endpoint is None:
@@ -673,9 +665,7 @@ class AsyncGradient(AsyncAPIClient):
 
     @override
     def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
-        if (
-            self.access_token or self.agent_access_key or self.model_access_key
-        ) and headers.get("Authorization"):
+        if (self.access_token or self.agent_access_key or self.model_access_key) and headers.get("Authorization"):
             return
         if isinstance(custom_headers.get("Authorization"), Omit):
             return

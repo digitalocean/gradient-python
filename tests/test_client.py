@@ -945,9 +945,7 @@ class TestGradient:
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
-    def test_parse_retry_after_header(
-        self, remaining_retries: int, retry_after: str, timeout: float
-    ) -> None:
+    def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         client = Gradient(
             base_url=base_url,
             access_token=access_token,
@@ -958,9 +956,7 @@ class TestGradient:
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
-        calculated = client._calculate_retry_timeout(
-            remaining_retries, options, headers
-        )
+        calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, rel=0.5 * 0.875)  # type: ignore[misc]
 
     @mock.patch(
@@ -2085,9 +2081,7 @@ class TestAsyncGradient:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
-    async def test_parse_retry_after_header(
-        self, remaining_retries: int, retry_after: str, timeout: float
-    ) -> None:
+    async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
         async_client = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
@@ -2098,9 +2092,7 @@ class TestAsyncGradient:
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
-        calculated = async_client._calculate_retry_timeout(
-            remaining_retries, options, headers
-        )
+        calculated = async_client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, rel=0.5 * 0.875)  # type: ignore[misc]
 
     @mock.patch(
