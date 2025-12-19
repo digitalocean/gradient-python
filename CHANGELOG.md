@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.10.1 (2025-12-19)
+
+Full Changelog: [v3.10.0...v3.10.1](https://github.com/digitalocean/gradient-python/compare/v3.10.0...v3.10.1)
+
+### Bug Fixes
+
+* restore inference base urls ([#122](https://github.com/digitalocean/gradient-python/issues/122)) ([2a1c687](https://github.com/digitalocean/gradient-python/commit/2a1c687b46192afa210c3d159f3e087d3fe1a3b9))
+
 ## 3.10.0 (2025-12-19)
 
 Full Changelog: [v3.9.0...v3.10.0](https://github.com/digitalocean/gradient-python/compare/v3.9.0...v3.10.0)
