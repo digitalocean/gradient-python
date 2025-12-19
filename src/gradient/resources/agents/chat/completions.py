@@ -472,7 +472,9 @@ class CompletionsResource(SyncAPIResource):
         headers = {"Authorization": f"Bearer {self._client.agent_access_key}", **headers}
 
         return self._post(
-            "/chat/completions?agent=true",
+            "/chat/completions?agent=true"
+            if self._client._base_url_overridden
+            else f"{self._client.agent_endpoint}/api/v1/chat/completions?agent=true",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -956,7 +958,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         headers = {"Authorization": f"Bearer {self._client.agent_access_key}", **headers}
 
         return await self._post(
-            "/chat/completions?agent=true",
+            "/chat/completions?agent=true"
+            if self._client._base_url_overridden
+            else f"{self._client.agent_endpoint}/api/v1/chat/completions?agent=true",
             body=await async_maybe_transform(
                 {
                     "messages": messages,
