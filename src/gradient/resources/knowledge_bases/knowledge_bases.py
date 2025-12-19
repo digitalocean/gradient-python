@@ -434,9 +434,7 @@ class KnowledgeBasesResource(SyncAPIResource):
           KnowledgeBaseTimeoutError: If the timeout is exceeded before the database becomes ONLINE
         """
         if not uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `uuid` but received {uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
 
         start_time = time.time()
         failed_states = {"DECOMMISSIONED", "UNHEALTHY"}
@@ -462,9 +460,7 @@ class KnowledgeBasesResource(SyncAPIResource):
                 return response
 
             if status in failed_states:
-                raise KnowledgeBaseDatabaseError(
-                    f"Knowledge base database entered failed state: {status}"
-                )
+                raise KnowledgeBaseDatabaseError(f"Knowledge base database entered failed state: {status}")
 
             # Sleep before next poll, but don't exceed timeout
             remaining_time = timeout - elapsed
@@ -874,9 +870,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           KnowledgeBaseTimeoutError: If the timeout is exceeded before the database becomes ONLINE
         """
         if not uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `uuid` but received {uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
 
         start_time = time.time()
         failed_states = {"DECOMMISSIONED", "UNHEALTHY"}
@@ -902,9 +896,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
                 return response
 
             if status in failed_states:
-                raise KnowledgeBaseDatabaseError(
-                    f"Knowledge base database entered failed state: {status}"
-                )
+                raise KnowledgeBaseDatabaseError(f"Knowledge base database entered failed state: {status}")
 
             # Sleep before next poll, but don't exceed timeout
             remaining_time = timeout - elapsed
