@@ -473,7 +473,9 @@ class CompletionsResource(SyncAPIResource):
         }
 
         return self._post(
-            "/chat/completions",
+            "/chat/completions"
+            if self._client._base_url_overridden
+            else f"{self._client.inference_endpoint}/v1/chat/completions",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -961,7 +963,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
         }
 
         return await self._post(
-            "/chat/completions",
+            "/chat/completions"
+            if self._client._base_url_overridden
+            else f"{self._client.inference_endpoint}/v1/chat/completions",
             body=await async_maybe_transform(
                 {
                     "messages": messages,
