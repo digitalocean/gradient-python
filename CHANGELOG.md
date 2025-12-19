@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.10.0 (2025-12-19)
+
+Full Changelog: [v3.9.0...v3.10.0](https://github.com/digitalocean/gradient-python/compare/v3.9.0...v3.10.0)
+
+### Features
+
+* **api:** manual updates ([f1c2eb2](https://github.com/digitalocean/gradient-python/commit/f1c2eb25ae1787b661ab1323528077074aa0cab6))
+* **api:** manual updates ([355e13f](https://github.com/digitalocean/gradient-python/commit/355e13f1a4b012e09bc2056179419ede57044b97))
+
+
+### Bug Fixes
+
+* restore inference endpoints ([#120](https://github.com/digitalocean/gradient-python/issues/120)) ([ee792a1](https://github.com/digitalocean/gradient-python/commit/ee792a181e819d8fa26712fe8bc96ffd4c02d2ed))
+
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([2825cb7](https://github.com/digitalocean/gradient-python/commit/2825cb750edd261a324c2da28afc3cb6ee90f5e9))
+* run smoke tests on prs ([#121](https://github.com/digitalocean/gradient-python/issues/121)) ([719a5fb](https://github.com/digitalocean/gradient-python/commit/719a5fb4fcf418db9ede5659710377a47d41b6a8))
+
 ## 3.9.0 (2025-12-17)
 
 Full Changelog: [v3.8.0...v3.9.0](https://github.com/digitalocean/gradient-python/compare/v3.8.0...v3.9.0)
