@@ -100,7 +100,7 @@ jobs:
   smoke:
     name: smoke
     # Only run smoke tests on pushes to main repo (not forks) so that secrets can be accessed
-    if: github.repository == 'stainless-sdks/gradient-python' && github.event_name == 'push'
+    if: github.repository == 'stainless-sdks/gradient-python' && (github.event_name == 'push' || github.event_name == 'pull_request')
     runs-on: ${{ github.repository == 'stainless-sdks/gradient-python' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     timeout-minutes: 10
     steps:
