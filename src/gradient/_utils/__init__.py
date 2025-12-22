@@ -29,6 +29,7 @@ from ._utils import (
     get_required_header as get_required_header,
     maybe_coerce_boolean as maybe_coerce_boolean,
     maybe_coerce_integer as maybe_coerce_integer,
+    ResponseCache as ResponseCache,
 )
 from ._compat import (
     get_args as get_args,
