@@ -945,7 +945,9 @@ class TestGradient:
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
-    def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
+    def test_parse_retry_after_header(
+        self, remaining_retries: int, retry_after: str, timeout: float
+    ) -> None:
         client = Gradient(
             base_url=base_url,
             access_token=access_token,
@@ -956,7 +958,9 @@ class TestGradient:
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
-        calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
+        calculated = client._calculate_retry_timeout(
+            remaining_retries, options, headers
+        )
         assert calculated == pytest.approx(timeout, rel=0.5 * 0.875)  # type: ignore[misc]
 
     @mock.patch(
@@ -1179,6 +1183,40 @@ class TestGradient:
 
         assert exc_info.value.response.status_code == 302
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
+
+    def test_user_agent_includes_adk_agent_when_env_var_set(self) -> None:
+        # Test that user agent includes GRADIENT_ADK_AGENT when AGENT_WORKSPACE_DEPLOYMENT_UUID is set
+        test_uuid = "test-deployment-uuid-12345"
+
+        with update_env(AGENT_WORKSPACE_DEPLOYMENT_UUID=test_uuid):
+            client = Gradient(
+                base_url=base_url,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
+                _strict_response_validation=True,
+            )
+            user_agent = client.user_agent
+            assert "GRADIENT_ADK_AGENT" in user_agent
+            assert test_uuid in user_agent
+            assert user_agent.endswith(f"/GRADIENT_ADK_AGENT/{test_uuid}")
+            client.close()
+
+    def test_user_agent_excludes_adk_agent_when_env_var_not_set(self) -> None:
+        # Test that user agent does not include GRADIENT_ADK_AGENT when env var is not set
+        from gradient._types import Omit
+
+        with update_env(AGENT_WORKSPACE_DEPLOYMENT_UUID=Omit()):
+            client = Gradient(
+                base_url=base_url,
+                access_token=access_token,
+                model_access_key=model_access_key,
+                agent_access_key=agent_access_key,
+                _strict_response_validation=True,
+            )
+            user_agent = client.user_agent
+            assert "GRADIENT_ADK_AGENT" not in user_agent
+            client.close()
 
 
 class TestAsyncGradient:
@@ -2081,7 +2119,9 @@ class TestAsyncGradient:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
-    async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
+    async def test_parse_retry_after_header(
+        self, remaining_retries: int, retry_after: str, timeout: float
+    ) -> None:
         async_client = AsyncGradient(
             base_url=base_url,
             access_token=access_token,
@@ -2092,7 +2132,9 @@ class TestAsyncGradient:
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
-        calculated = async_client._calculate_retry_timeout(remaining_retries, options, headers)
+        calculated = async_client._calculate_retry_timeout(
+            remaining_retries, options, headers
+        )
         assert calculated == pytest.approx(timeout, rel=0.5 * 0.875)  # type: ignore[misc]
 
     @mock.patch(
