@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import sys
 import json
 import time
@@ -678,7 +679,12 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         # Format: "Gradient/package/version"
         package = self._user_agent_package or "Python"
         version = self._user_agent_version if self._user_agent_package and self._user_agent_version else self._version
-        return f"{self.__class__.__name__}/{package}/{version}"
+        base_agent = f"{self.__class__.__name__}/{package}/{version}"
+
+        deployment_uuid = os.environ.get("AGENT_WORKSPACE_DEPLOYMENT_UUID")
+        if deployment_uuid:
+            return f"{base_agent}/GRADIENT_ADK_AGENT/{deployment_uuid}"
+        return base_agent
 
     @property
     def base_url(self) -> URL:
