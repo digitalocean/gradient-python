@@ -12,7 +12,7 @@ from respx import MockRouter
 
 from gradient import Gradient, AsyncGradient
 from tests.utils import assert_matches_type
-from gradient.types.responses import ResponseCreateResponse
+from gradient.types.responses import ResponseCreateResponse, ResponseInputUserMessage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,8 +24,8 @@ MINIMAL_RESPONSE_BODY: dict[str, Any] = {
     "model": "openai-gpt-5.2-pro",
 }
 
-# Minimal input for create()
-MINIMAL_INPUT = [
+# Minimal input for create() (typed so pyright accepts as Iterable[ResponseInputItem])
+MINIMAL_INPUT: list[ResponseInputUserMessage] = [
     {"type": "message", "role": "user", "content": "Hello"},
 ]
 
