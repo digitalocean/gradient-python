@@ -72,6 +72,14 @@ from .inference import (
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
 )
+from .responses import (
+    ResponsesResource,
+    AsyncResponsesResource,
+    ResponsesResourceWithRawResponse,
+    AsyncResponsesResourceWithRawResponse,
+    ResponsesResourceWithStreamingResponse,
+    AsyncResponsesResourceWithStreamingResponse,
+)
 from .gpu_droplets import (
     GPUDropletsResource,
     AsyncGPUDropletsResource,
@@ -150,6 +158,12 @@ __all__ = [
     "AsyncNfsResourceWithRawResponse",
     "NfsResourceWithStreamingResponse",
     "AsyncNfsResourceWithStreamingResponse",
+    "ResponsesResource",
+    "AsyncResponsesResource",
+    "ResponsesResourceWithRawResponse",
+    "AsyncResponsesResourceWithRawResponse",
+    "ResponsesResourceWithStreamingResponse",
+    "AsyncResponsesResourceWithStreamingResponse",
     "RetrieveResource",
     "AsyncRetrieveResource",
     "RetrieveResourceWithRawResponse",
