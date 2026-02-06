@@ -42,6 +42,7 @@ if TYPE_CHECKING:
         retrieve,
         databases,
         inference,
+        responses,
         gpu_droplets,
         knowledge_bases,
     )
@@ -58,6 +59,10 @@ if TYPE_CHECKING:
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
     from .resources.inference.inference import InferenceResource, AsyncInferenceResource
+    from .resources.responses.responses import (
+        ResponsesResource,
+        AsyncResponsesResource,
+    )
     from .resources.knowledge_bases.knowledge_bases import (
         KnowledgeBasesResource,
         AsyncKnowledgeBasesResource,
@@ -194,6 +199,12 @@ class Gradient(SyncAPIClient):
         from .resources.chat import ChatResource
 
         return ChatResource(self)
+
+    @cached_property
+    def responses(self) -> ResponsesResource:
+        from .resources.responses import ResponsesResource
+
+        return ResponsesResource(self)
 
     @cached_property
     def images(self) -> ImagesResource:
@@ -353,14 +364,10 @@ class Gradient(SyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError(
-                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
-            )
+            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError(
-                "The `default_query` and `set_default_query` arguments are mutually exclusive"
-            )
+            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -411,14 +418,10 @@ class Gradient(SyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -427,17 +430,13 @@ class Gradient(SyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.InternalServerError(err_msg, response=response, body=body)
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -560,6 +559,12 @@ class AsyncGradient(AsyncAPIClient):
         from .resources.chat import AsyncChatResource
 
         return AsyncChatResource(self)
+
+    @cached_property
+    def responses(self) -> AsyncResponsesResource:
+        from .resources.responses import AsyncResponsesResource
+
+        return AsyncResponsesResource(self)
 
     @cached_property
     def images(self) -> AsyncImagesResource:
@@ -719,14 +724,10 @@ class AsyncGradient(AsyncAPIClient):
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-            raise ValueError(
-                "The `default_headers` and `set_default_headers` arguments are mutually exclusive"
-            )
+            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
 
         if default_query is not None and set_default_query is not None:
-            raise ValueError(
-                "The `default_query` and `set_default_query` arguments are mutually exclusive"
-            )
+            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -777,14 +778,10 @@ class AsyncGradient(AsyncAPIClient):
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
         if response.status_code == 401:
-            return _exceptions.AuthenticationError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.AuthenticationError(err_msg, response=response, body=body)
 
         if response.status_code == 403:
-            return _exceptions.PermissionDeniedError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.PermissionDeniedError(err_msg, response=response, body=body)
 
         if response.status_code == 404:
             return _exceptions.NotFoundError(err_msg, response=response, body=body)
@@ -793,17 +790,13 @@ class AsyncGradient(AsyncAPIClient):
             return _exceptions.ConflictError(err_msg, response=response, body=body)
 
         if response.status_code == 422:
-            return _exceptions.UnprocessableEntityError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.UnprocessableEntityError(err_msg, response=response, body=body)
 
         if response.status_code == 429:
             return _exceptions.RateLimitError(err_msg, response=response, body=body)
 
         if response.status_code >= 500:
-            return _exceptions.InternalServerError(
-                err_msg, response=response, body=body
-            )
+            return _exceptions.InternalServerError(err_msg, response=response, body=body)
         return APIStatusError(err_msg, response=response, body=body)
 
 
@@ -824,6 +817,12 @@ class GradientWithRawResponse:
         from .resources.chat import ChatResourceWithRawResponse
 
         return ChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def responses(self) -> responses.ResponsesResourceWithRawResponse:
+        from .resources.responses import ResponsesResourceWithRawResponse
+
+        return ResponsesResourceWithRawResponse(self._client.responses)
 
     @cached_property
     def images(self) -> images.ImagesResourceWithRawResponse:
@@ -897,6 +896,12 @@ class AsyncGradientWithRawResponse:
         from .resources.chat import AsyncChatResourceWithRawResponse
 
         return AsyncChatResourceWithRawResponse(self._client.chat)
+
+    @cached_property
+    def responses(self) -> responses.AsyncResponsesResourceWithRawResponse:
+        from .resources.responses import AsyncResponsesResourceWithRawResponse
+
+        return AsyncResponsesResourceWithRawResponse(self._client.responses)
 
     @cached_property
     def images(self) -> images.AsyncImagesResourceWithRawResponse:
@@ -976,6 +981,12 @@ class GradientWithStreamedResponse:
         return ChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
+    def responses(self) -> responses.ResponsesResourceWithStreamingResponse:
+        from .resources.responses import ResponsesResourceWithStreamingResponse
+
+        return ResponsesResourceWithStreamingResponse(self._client.responses)
+
+    @cached_property
     def images(self) -> images.ImagesResourceWithStreamingResponse:
         from .resources.images import ImagesResourceWithStreamingResponse
 
@@ -1053,6 +1064,12 @@ class AsyncGradientWithStreamedResponse:
         return AsyncChatResourceWithStreamingResponse(self._client.chat)
 
     @cached_property
+    def responses(self) -> responses.AsyncResponsesResourceWithStreamingResponse:
+        from .resources.responses import AsyncResponsesResourceWithStreamingResponse
+
+        return AsyncResponsesResourceWithStreamingResponse(self._client.responses)
+
+    @cached_property
     def images(self) -> images.AsyncImagesResourceWithStreamingResponse:
         from .resources.images import AsyncImagesResourceWithStreamingResponse
 
@@ -1082,9 +1099,7 @@ class AsyncGradientWithStreamedResponse:
             AsyncKnowledgeBasesResourceWithStreamingResponse,
         )
 
-        return AsyncKnowledgeBasesResourceWithStreamingResponse(
-            self._client.knowledge_bases
-        )
+        return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
