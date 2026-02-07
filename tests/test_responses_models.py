@@ -1,7 +1,5 @@
 """Tests for Responses API model constants."""
 
-import pytest
-
 from gradient import ResponsesModels
 
 
