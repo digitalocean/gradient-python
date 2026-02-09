@@ -9,16 +9,16 @@ Requires GRADIENT_MODEL_ACCESS_KEY in the environment (e.g. from a .env file).
 """
 
 import os
-from typing import List, cast
+from typing import cast, List
 
 from gradient import Gradient, ResponsesModels
 from gradient.types.responses import (
     ResponseInputFunctionCall,
     ResponseInputFunctionCallOutput,
     ResponseInputItem,
+    ResponseOutputFunctionCall,
     ResponseTool,
 )
-from gradient.types.responses.response_create_response import ResponseOutputFunctionCall
 
 
 def _load_dotenv() -> None:
