@@ -31,6 +31,7 @@ The Gradient SDK provides clients for:
 * DigitalOcean API
 * Gradient Serverless Inference
 * Gradient Agent Inference
+* **Responses API** — `client.responses` for structured request/response with tools (e.g. GPT 5.2 Pro, 5.1 Codex Max). See `examples/responses_tool_calling.py`.
 
 The full API of this library can be found in [api.md](api.md).
 
