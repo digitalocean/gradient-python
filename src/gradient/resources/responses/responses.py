@@ -58,7 +58,8 @@ class ResponsesResource(SyncAPIResource):
         Create a response from the Responses API (POST /v1/responses).
 
         Args:
-            model: Model ID (e.g. openai-gpt-5.2-pro).
+            model: Model ID. Use ``ResponsesModels`` (e.g. ``ResponsesModels.GPT_5_2_PRO``)
+                for recommended model IDs.
             input: List of input items: user messages, function_call, function_call_output.
             tools: Optional list of tools the model may call.
             max_output_tokens: Maximum tokens to generate.
@@ -135,7 +136,8 @@ class AsyncResponsesResource(AsyncAPIResource):
         Create a response from the Responses API (POST /v1/responses).
 
         Args:
-            model: Model ID (e.g. openai-gpt-5.2-pro).
+            model: Model ID. Use ``ResponsesModels`` (e.g. ``ResponsesModels.GPT_5_2_PRO``)
+                for recommended model IDs.
             input: List of input items: user messages, function_call, function_call_output.
             tools: Optional list of tools the model may call.
             max_output_tokens: Maximum tokens to generate.
