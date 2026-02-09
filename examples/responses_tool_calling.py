@@ -9,15 +9,22 @@ Requires GRADIENT_MODEL_ACCESS_KEY in the environment (e.g. from a .env file).
 """
 
 import os
+from typing import Any, Dict, List
+
 from gradient import Gradient, ResponsesModels
 from gradient.types.responses.response_create_response import ResponseOutputFunctionCall
 
-# Load .env if available (e.g. python-dotenv)
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except ImportError:
-    pass
+
+def _load_dotenv() -> None:
+    try:
+        from dotenv import load_dotenv
+
+        load_dotenv()
+    except ImportError:
+        pass
+
+
+_load_dotenv()
 
 MODEL_ACCESS_KEY = os.environ.get("GRADIENT_MODEL_ACCESS_KEY")
 if not MODEL_ACCESS_KEY:
@@ -43,7 +50,7 @@ get_weather_tool = {
 }
 
 # Initial conversation: single user message
-input_messages: list[dict] = [
+input_messages: List[Dict[str, Any]] = [
     {"type": "message", "role": "user", "content": "What's the weather in New York?"},
 ]
 
