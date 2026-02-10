@@ -47,6 +47,7 @@ class EvaluationRunsResource(SyncAPIResource):
     def create(
         self,
         *,
+        agent_deployment_names: SequenceNotStr[str] | Omit = omit,
         agent_uuids: SequenceNotStr[str] | Omit = omit,
         run_name: str | Omit = omit,
         test_case_uuid: str | Omit = omit,
@@ -62,7 +63,9 @@ class EvaluationRunsResource(SyncAPIResource):
         `/v2/gen-ai/evaluation_runs`.
 
         Args:
-          agent_uuids: Agent UUIDs to run the test case against.
+          agent_deployment_names: Agent deployment names to run the test case against (ADK agent workspaces).
+
+          agent_uuids: Agent UUIDs to run the test case against (legacy agents).
 
           run_name: The name of the run.
 
@@ -82,6 +85,7 @@ class EvaluationRunsResource(SyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_runs",
             body=maybe_transform(
                 {
+                    "agent_deployment_names": agent_deployment_names,
                     "agent_uuids": agent_uuids,
                     "run_name": run_name,
                     "test_case_uuid": test_case_uuid,
@@ -249,6 +253,7 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        agent_deployment_names: SequenceNotStr[str] | Omit = omit,
         agent_uuids: SequenceNotStr[str] | Omit = omit,
         run_name: str | Omit = omit,
         test_case_uuid: str | Omit = omit,
@@ -264,7 +269,9 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
         `/v2/gen-ai/evaluation_runs`.
 
         Args:
-          agent_uuids: Agent UUIDs to run the test case against.
+          agent_deployment_names: Agent deployment names to run the test case against (ADK agent workspaces).
+
+          agent_uuids: Agent UUIDs to run the test case against (legacy agents).
 
           run_name: The name of the run.
 
@@ -284,6 +291,7 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_runs",
             body=await async_maybe_transform(
                 {
+                    "agent_deployment_names": agent_deployment_names,
                     "agent_uuids": agent_uuids,
                     "run_name": run_name,
                     "test_case_uuid": test_case_uuid,

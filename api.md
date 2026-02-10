@@ -856,6 +856,7 @@ from gradient.types.knowledge_bases import (
     APIWebCrawlerDataSource,
     AwsDataSource,
     DataSourceCreateResponse,
+    DataSourceUpdateResponse,
     DataSourceListResponse,
     DataSourceDeleteResponse,
     DataSourceCreatePresignedURLsResponse,
@@ -865,6 +866,7 @@ from gradient.types.knowledge_bases import (
 Methods:
 
 - <code title="post /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">create</a>(path_knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_create_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_create_response.py">DataSourceCreateResponse</a></code>
+- <code title="put /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">update</a>(path_data_source_uuid, \*, path_knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_update_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_update_response.py">DataSourceUpdateResponse</a></code>
 - <code title="get /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">list</a>(knowledge_base_uuid, \*\*<a href="src/gradient/types/knowledge_bases/data_source_list_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_list_response.py">DataSourceListResponse</a></code>
 - <code title="delete /v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">delete</a>(data_source_uuid, \*, knowledge_base_uuid) -> <a href="./src/gradient/types/knowledge_bases/data_source_delete_response.py">DataSourceDeleteResponse</a></code>
 - <code title="post /v2/gen-ai/knowledge_bases/data_sources/file_upload_presigned_urls">client.knowledge_bases.data_sources.<a href="./src/gradient/resources/knowledge_bases/data_sources.py">create_presigned_urls</a>(\*\*<a href="src/gradient/types/knowledge_bases/data_source_create_presigned_urls_params.py">params</a>) -> <a href="./src/gradient/types/knowledge_bases/data_source_create_presigned_urls_response.py">DataSourceCreatePresignedURLsResponse</a></code>
@@ -1039,3 +1041,41 @@ from gradient.types import RetrieveDocumentsResponse
 Methods:
 
 - <code title="post /{knowledgeBaseId}/retrieve">client.retrieve.<a href="./src/gradient/resources/retrieve.py">documents</a>(knowledge_base_id, \*\*<a href="src/gradient/types/retrieve_documents_params.py">params</a>) -> <a href="./src/gradient/types/retrieve_documents_response.py">RetrieveDocumentsResponse</a></code>
+
+# Apps
+
+## JobInvocations
+
+Types:
+
+```python
+from gradient.types.apps import JobInvocationCancelResponse
+```
+
+Methods:
+
+- <code title="post /v2/apps/{app_id}/job-invocations/{job_invocation_id}/cancel">client.apps.job_invocations.<a href="./src/gradient/resources/apps/job_invocations.py">cancel</a>(job_invocation_id, \*, app_id, \*\*<a href="src/gradient/types/apps/job_invocation_cancel_params.py">params</a>) -> <a href="./src/gradient/types/apps/job_invocation_cancel_response.py">JobInvocationCancelResponse</a></code>
+
+# Billing
+
+Types:
+
+```python
+from gradient.types import BillingListInsightsResponse
+```
+
+Methods:
+
+- <code title="get /v2/billing/{account_urn}/insights/{start_date}/{end_date}">client.billing.<a href="./src/gradient/resources/billing.py">list_insights</a>(end_date, \*, account_urn, start_date, \*\*<a href="src/gradient/types/billing_list_insights_params.py">params</a>) -> <a href="./src/gradient/types/billing_list_insights_response.py">BillingListInsightsResponse</a></code>
+
+# Responses
+
+Types:
+
+```python
+from gradient.types import ResponseCreateResponse
+```
+
+Methods:
+
+- <code title="post /responses">client.responses.<a href="./src/gradient/resources/responses.py">create</a>(\*\*<a href="src/gradient/types/response_create_params.py">params</a>) -> <a href="./src/gradient/types/response_create_response.py">ResponseCreateResponse</a></code>

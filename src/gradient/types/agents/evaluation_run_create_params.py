@@ -10,8 +10,11 @@ __all__ = ["EvaluationRunCreateParams"]
 
 
 class EvaluationRunCreateParams(TypedDict, total=False):
+    agent_deployment_names: SequenceNotStr[str]
+    """Agent deployment names to run the test case against (ADK agent workspaces)."""
+
     agent_uuids: SequenceNotStr[str]
-    """Agent UUIDs to run the test case against."""
+    """Agent UUIDs to run the test case against (legacy agents)."""
 
     run_name: str
     """The name of the run."""

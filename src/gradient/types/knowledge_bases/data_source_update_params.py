@@ -2,19 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .aws_data_source_param import AwsDataSourceParam
-from .api_spaces_data_source_param import APISpacesDataSourceParam
-from .api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 
-__all__ = ["DataSourceCreateParams", "ChunkingOptions"]
+__all__ = ["DataSourceUpdateParams", "ChunkingOptions"]
 
 
-class DataSourceCreateParams(TypedDict, total=False):
-    aws_data_source: AwsDataSourceParam
-    """AWS S3 Data Source"""
+class DataSourceUpdateParams(TypedDict, total=False):
+    path_knowledge_base_uuid: Required[Annotated[str, PropertyInfo(alias="knowledge_base_uuid")]]
 
     chunking_algorithm: Literal[
         "CHUNKING_ALGORITHM_UNKNOWN",
@@ -36,14 +32,11 @@ class DataSourceCreateParams(TypedDict, total=False):
     preview flag.**
     """
 
+    body_data_source_uuid: Annotated[str, PropertyInfo(alias="data_source_uuid")]
+    """Data Source ID (Path Parameter)"""
+
     body_knowledge_base_uuid: Annotated[str, PropertyInfo(alias="knowledge_base_uuid")]
-    """Knowledge base id"""
-
-    spaces_data_source: APISpacesDataSourceParam
-    """Spaces Bucket Data Source"""
-
-    web_crawler_data_source: APIWebCrawlerDataSourceParam
-    """WebCrawlerDataSource"""
+    """Knowledge Base ID (Path Parameter)"""
 
 
 class ChunkingOptions(TypedDict, total=False):
