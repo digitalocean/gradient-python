@@ -29,6 +29,15 @@ class APIAgentModel(BaseModel):
     is_foundational: Optional[bool] = None
     """True if it is a foundational model provided by do"""
 
+    kb_default_chunk_size: Optional[int] = None
+    """Default chunking size limit to show in UI"""
+
+    kb_max_chunk_size: Optional[int] = None
+    """Maximum chunk size limit of model"""
+
+    kb_min_chunk_size: Optional[int] = None
+    """Minimum chunking size token limits if model supports KNOWLEDGEBASE usecase"""
+
     metadata: Optional[object] = None
     """Additional meta data"""
 

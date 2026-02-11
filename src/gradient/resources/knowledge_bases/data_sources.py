@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -20,12 +21,14 @@ from ..._base_client import make_request_options
 from ...types.knowledge_bases import (
     data_source_list_params,
     data_source_create_params,
+    data_source_update_params,
     data_source_create_presigned_urls_params,
 )
 from ...types.knowledge_bases.aws_data_source_param import AwsDataSourceParam
 from ...types.knowledge_bases.data_source_list_response import DataSourceListResponse
 from ...types.knowledge_bases.data_source_create_response import DataSourceCreateResponse
 from ...types.knowledge_bases.data_source_delete_response import DataSourceDeleteResponse
+from ...types.knowledge_bases.data_source_update_response import DataSourceUpdateResponse
 from ...types.knowledge_bases.api_spaces_data_source_param import APISpacesDataSourceParam
 from ...types.knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 from ...types.knowledge_bases.data_source_create_presigned_urls_response import DataSourceCreatePresignedURLsResponse
@@ -58,6 +61,15 @@ class DataSourcesResource(SyncAPIResource):
         path_knowledge_base_uuid: str,
         *,
         aws_data_source: AwsDataSourceParam | Omit = omit,
+        chunking_algorithm: Literal[
+            "CHUNKING_ALGORITHM_UNKNOWN",
+            "CHUNKING_ALGORITHM_SECTION_BASED",
+            "CHUNKING_ALGORITHM_HIERARCHICAL",
+            "CHUNKING_ALGORITHM_SEMANTIC",
+            "CHUNKING_ALGORITHM_FIXED_LENGTH",
+        ]
+        | Omit = omit,
+        chunking_options: data_source_create_params.ChunkingOptions | Omit = omit,
         body_knowledge_base_uuid: str | Omit = omit,
         spaces_data_source: APISpacesDataSourceParam | Omit = omit,
         web_crawler_data_source: APIWebCrawlerDataSourceParam | Omit = omit,
@@ -74,6 +86,16 @@ class DataSourcesResource(SyncAPIResource):
 
         Args:
           aws_data_source: AWS S3 Data Source
+
+          chunking_algorithm: The chunking algorithm to use for processing data sources.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
+
+          chunking_options: Configuration options for the chunking algorithm.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
 
           body_knowledge_base_uuid: Knowledge base id
 
@@ -100,6 +122,8 @@ class DataSourcesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "aws_data_source": aws_data_source,
+                    "chunking_algorithm": chunking_algorithm,
+                    "chunking_options": chunking_options,
                     "body_knowledge_base_uuid": body_knowledge_base_uuid,
                     "spaces_data_source": spaces_data_source,
                     "web_crawler_data_source": web_crawler_data_source,
@@ -110,6 +134,84 @@ class DataSourcesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DataSourceCreateResponse,
+        )
+
+    def update(
+        self,
+        path_data_source_uuid: str,
+        *,
+        path_knowledge_base_uuid: str,
+        chunking_algorithm: Literal[
+            "CHUNKING_ALGORITHM_UNKNOWN",
+            "CHUNKING_ALGORITHM_SECTION_BASED",
+            "CHUNKING_ALGORITHM_HIERARCHICAL",
+            "CHUNKING_ALGORITHM_SEMANTIC",
+            "CHUNKING_ALGORITHM_FIXED_LENGTH",
+        ]
+        | Omit = omit,
+        chunking_options: data_source_update_params.ChunkingOptions | Omit = omit,
+        body_data_source_uuid: str | Omit = omit,
+        body_knowledge_base_uuid: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DataSourceUpdateResponse:
+        """To update a data source (e.g.
+
+        chunking options), send a PUT request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}`.
+
+        Args:
+          chunking_algorithm: The chunking algorithm to use for processing data sources.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
+
+          chunking_options: Configuration options for the chunking algorithm.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
+
+          body_data_source_uuid: Data Source ID (Path Parameter)
+
+          body_knowledge_base_uuid: Knowledge Base ID (Path Parameter)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not path_knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `path_knowledge_base_uuid` but received {path_knowledge_base_uuid!r}"
+            )
+        if not path_data_source_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `path_data_source_uuid` but received {path_data_source_uuid!r}"
+            )
+        return self._put(
+            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}",
+            body=maybe_transform(
+                {
+                    "chunking_algorithm": chunking_algorithm,
+                    "chunking_options": chunking_options,
+                    "body_data_source_uuid": body_data_source_uuid,
+                    "body_knowledge_base_uuid": body_knowledge_base_uuid,
+                },
+                data_source_update_params.DataSourceUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataSourceUpdateResponse,
         )
 
     def list(
@@ -272,6 +374,15 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         path_knowledge_base_uuid: str,
         *,
         aws_data_source: AwsDataSourceParam | Omit = omit,
+        chunking_algorithm: Literal[
+            "CHUNKING_ALGORITHM_UNKNOWN",
+            "CHUNKING_ALGORITHM_SECTION_BASED",
+            "CHUNKING_ALGORITHM_HIERARCHICAL",
+            "CHUNKING_ALGORITHM_SEMANTIC",
+            "CHUNKING_ALGORITHM_FIXED_LENGTH",
+        ]
+        | Omit = omit,
+        chunking_options: data_source_create_params.ChunkingOptions | Omit = omit,
         body_knowledge_base_uuid: str | Omit = omit,
         spaces_data_source: APISpacesDataSourceParam | Omit = omit,
         web_crawler_data_source: APIWebCrawlerDataSourceParam | Omit = omit,
@@ -288,6 +399,16 @@ class AsyncDataSourcesResource(AsyncAPIResource):
 
         Args:
           aws_data_source: AWS S3 Data Source
+
+          chunking_algorithm: The chunking algorithm to use for processing data sources.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
+
+          chunking_options: Configuration options for the chunking algorithm.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
 
           body_knowledge_base_uuid: Knowledge base id
 
@@ -314,6 +435,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "aws_data_source": aws_data_source,
+                    "chunking_algorithm": chunking_algorithm,
+                    "chunking_options": chunking_options,
                     "body_knowledge_base_uuid": body_knowledge_base_uuid,
                     "spaces_data_source": spaces_data_source,
                     "web_crawler_data_source": web_crawler_data_source,
@@ -324,6 +447,84 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=DataSourceCreateResponse,
+        )
+
+    async def update(
+        self,
+        path_data_source_uuid: str,
+        *,
+        path_knowledge_base_uuid: str,
+        chunking_algorithm: Literal[
+            "CHUNKING_ALGORITHM_UNKNOWN",
+            "CHUNKING_ALGORITHM_SECTION_BASED",
+            "CHUNKING_ALGORITHM_HIERARCHICAL",
+            "CHUNKING_ALGORITHM_SEMANTIC",
+            "CHUNKING_ALGORITHM_FIXED_LENGTH",
+        ]
+        | Omit = omit,
+        chunking_options: data_source_update_params.ChunkingOptions | Omit = omit,
+        body_data_source_uuid: str | Omit = omit,
+        body_knowledge_base_uuid: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> DataSourceUpdateResponse:
+        """To update a data source (e.g.
+
+        chunking options), send a PUT request to
+        `/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}`.
+
+        Args:
+          chunking_algorithm: The chunking algorithm to use for processing data sources.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
+
+          chunking_options: Configuration options for the chunking algorithm.
+
+              **Note: This feature requires enabling the knowledgebase enhancements feature
+              preview flag.**
+
+          body_data_source_uuid: Data Source ID (Path Parameter)
+
+          body_knowledge_base_uuid: Knowledge Base ID (Path Parameter)
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not path_knowledge_base_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `path_knowledge_base_uuid` but received {path_knowledge_base_uuid!r}"
+            )
+        if not path_data_source_uuid:
+            raise ValueError(
+                f"Expected a non-empty value for `path_data_source_uuid` but received {path_data_source_uuid!r}"
+            )
+        return await self._put(
+            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}"
+            if self._client._base_url_overridden
+            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}",
+            body=await async_maybe_transform(
+                {
+                    "chunking_algorithm": chunking_algorithm,
+                    "chunking_options": chunking_options,
+                    "body_data_source_uuid": body_data_source_uuid,
+                    "body_knowledge_base_uuid": body_knowledge_base_uuid,
+                },
+                data_source_update_params.DataSourceUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=DataSourceUpdateResponse,
         )
 
     async def list(
@@ -468,6 +669,9 @@ class DataSourcesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             data_sources.create,
         )
+        self.update = to_raw_response_wrapper(
+            data_sources.update,
+        )
         self.list = to_raw_response_wrapper(
             data_sources.list,
         )
@@ -485,6 +689,9 @@ class AsyncDataSourcesResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             data_sources.create,
+        )
+        self.update = async_to_raw_response_wrapper(
+            data_sources.update,
         )
         self.list = async_to_raw_response_wrapper(
             data_sources.list,
@@ -504,6 +711,9 @@ class DataSourcesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             data_sources.create,
         )
+        self.update = to_streamed_response_wrapper(
+            data_sources.update,
+        )
         self.list = to_streamed_response_wrapper(
             data_sources.list,
         )
@@ -521,6 +731,9 @@ class AsyncDataSourcesResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             data_sources.create,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            data_sources.update,
         )
         self.list = async_to_streamed_response_wrapper(
             data_sources.list,

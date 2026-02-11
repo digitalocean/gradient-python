@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 from .._types import SequenceNotStr
 from .knowledge_bases.aws_data_source_param import AwsDataSourceParam
@@ -11,7 +11,13 @@ from .knowledge_bases.api_spaces_data_source_param import APISpacesDataSourcePar
 from .knowledge_bases.api_file_upload_data_source_param import APIFileUploadDataSourceParam
 from .knowledge_bases.api_web_crawler_data_source_param import APIWebCrawlerDataSourceParam
 
-__all__ = ["KnowledgeBaseCreateParams", "Datasource", "DatasourceDropboxDataSource", "DatasourceGoogleDriveDataSource"]
+__all__ = [
+    "KnowledgeBaseCreateParams",
+    "Datasource",
+    "DatasourceChunkingOptions",
+    "DatasourceDropboxDataSource",
+    "DatasourceGoogleDriveDataSource",
+]
 
 
 class KnowledgeBaseCreateParams(TypedDict, total=False):
@@ -52,6 +58,25 @@ class KnowledgeBaseCreateParams(TypedDict, total=False):
     """The VPC to deploy the knowledge base database in"""
 
 
+class DatasourceChunkingOptions(TypedDict, total=False):
+    """Configuration options for the chunking algorithm.
+
+    **Note: This feature requires enabling the knowledgebase enhancements feature preview flag.**
+    """
+
+    child_chunk_size: int
+    """Hierarchical options"""
+
+    max_chunk_size: int
+    """Section_Based and Fixed_Length options"""
+
+    parent_chunk_size: int
+    """Hierarchical options"""
+
+    semantic_threshold: float
+    """Semantic options"""
+
+
 class DatasourceDropboxDataSource(TypedDict, total=False):
     """Dropbox Data Source"""
 
@@ -87,6 +112,26 @@ class Datasource(TypedDict, total=False):
 
     bucket_region: str
     """Deprecated, moved to data_source_details"""
+
+    chunking_algorithm: Literal[
+        "CHUNKING_ALGORITHM_UNKNOWN",
+        "CHUNKING_ALGORITHM_SECTION_BASED",
+        "CHUNKING_ALGORITHM_HIERARCHICAL",
+        "CHUNKING_ALGORITHM_SEMANTIC",
+        "CHUNKING_ALGORITHM_FIXED_LENGTH",
+    ]
+    """The chunking algorithm to use for processing data sources.
+
+    **Note: This feature requires enabling the knowledgebase enhancements feature
+    preview flag.**
+    """
+
+    chunking_options: DatasourceChunkingOptions
+    """Configuration options for the chunking algorithm.
+
+    **Note: This feature requires enabling the knowledgebase enhancements feature
+    preview flag.**
+    """
 
     dropbox_data_source: DatasourceDropboxDataSource
     """Dropbox Data Source"""

@@ -56,6 +56,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
     def create(
         self,
         *,
+        agent_workspace_name: str | Omit = omit,
         dataset_uuid: str | Omit = omit,
         description: str | Omit = omit,
         metrics: SequenceNotStr[str] | Omit = omit,
@@ -98,6 +99,7 @@ class EvaluationTestCasesResource(SyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases",
             body=maybe_transform(
                 {
+                    "agent_workspace_name": agent_workspace_name,
                     "dataset_uuid": dataset_uuid,
                     "description": description,
                     "metrics": metrics,
@@ -318,6 +320,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        agent_workspace_name: str | Omit = omit,
         dataset_uuid: str | Omit = omit,
         description: str | Omit = omit,
         metrics: SequenceNotStr[str] | Omit = omit,
@@ -360,6 +363,7 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases",
             body=await async_maybe_transform(
                 {
+                    "agent_workspace_name": agent_workspace_name,
                     "dataset_uuid": dataset_uuid,
                     "description": description,
                     "metrics": metrics,

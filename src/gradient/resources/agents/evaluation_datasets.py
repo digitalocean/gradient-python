@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
+from typing_extensions import Literal
 
 import httpx
 
@@ -53,6 +54,10 @@ class EvaluationDatasetsResource(SyncAPIResource):
     def create(
         self,
         *,
+        dataset_type: Literal[
+            "EVALUATION_DATASET_TYPE_UNKNOWN", "EVALUATION_DATASET_TYPE_ADK", "EVALUATION_DATASET_TYPE_NON_ADK"
+        ]
+        | Omit = omit,
         file_upload_dataset: APIFileUploadDataSourceParam | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -85,6 +90,7 @@ class EvaluationDatasetsResource(SyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_datasets",
             body=maybe_transform(
                 {
+                    "dataset_type": dataset_type,
                     "file_upload_dataset": file_upload_dataset,
                     "name": name,
                 },
@@ -160,6 +166,10 @@ class AsyncEvaluationDatasetsResource(AsyncAPIResource):
     async def create(
         self,
         *,
+        dataset_type: Literal[
+            "EVALUATION_DATASET_TYPE_UNKNOWN", "EVALUATION_DATASET_TYPE_ADK", "EVALUATION_DATASET_TYPE_NON_ADK"
+        ]
+        | Omit = omit,
         file_upload_dataset: APIFileUploadDataSourceParam | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -192,6 +202,7 @@ class AsyncEvaluationDatasetsResource(AsyncAPIResource):
             else "https://api.digitalocean.com/v2/gen-ai/evaluation_datasets",
             body=await async_maybe_transform(
                 {
+                    "dataset_type": dataset_type,
                     "file_upload_dataset": file_upload_dataset,
                     "name": name,
                 },
