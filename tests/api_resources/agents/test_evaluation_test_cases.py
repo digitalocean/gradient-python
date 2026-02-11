@@ -33,6 +33,7 @@ class TestEvaluationTestCases:
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         evaluation_test_case = client.agents.evaluation_test_cases.create(
+            agent_workspace_name="example name",
             dataset_uuid="123e4567-e89b-12d3-a456-426614174000",
             description="example string",
             metrics=["example string"],
@@ -278,6 +279,7 @@ class TestAsyncEvaluationTestCases:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_test_case = await async_client.agents.evaluation_test_cases.create(
+            agent_workspace_name="example name",
             dataset_uuid="123e4567-e89b-12d3-a456-426614174000",
             description="example string",
             metrics=["example string"],

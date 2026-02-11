@@ -13,6 +13,7 @@ from gradient.types.knowledge_bases import (
     DataSourceListResponse,
     DataSourceCreateResponse,
     DataSourceDeleteResponse,
+    DataSourceUpdateResponse,
     DataSourceCreatePresignedURLsResponse,
 )
 
@@ -41,6 +42,13 @@ class TestDataSources:
                 "key_id": "123e4567-e89b-12d3-a456-426614174000",
                 "region": "example string",
                 "secret_key": "example string",
+            },
+            chunking_algorithm="CHUNKING_ALGORITHM_SECTION_BASED",
+            chunking_options={
+                "child_chunk_size": 350,
+                "max_chunk_size": 750,
+                "parent_chunk_size": 1000,
+                "semantic_threshold": 0.5,
             },
             body_knowledge_base_uuid='"12345678-1234-1234-1234-123456789012"',
             spaces_data_source={
@@ -91,6 +99,78 @@ class TestDataSources:
         ):
             client.knowledge_bases.data_sources.with_raw_response.create(
                 path_knowledge_base_uuid="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update(self, client: Gradient) -> None:
+        data_source = client.knowledge_bases.data_sources.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+        )
+        assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Gradient) -> None:
+        data_source = client.knowledge_bases.data_sources.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+            chunking_algorithm="CHUNKING_ALGORITHM_SECTION_BASED",
+            chunking_options={
+                "child_chunk_size": 350,
+                "max_chunk_size": 750,
+                "parent_chunk_size": 1000,
+                "semantic_threshold": 0.5,
+            },
+            body_data_source_uuid="98765432-1234-1234-1234-123456789012",
+            body_knowledge_base_uuid="12345678-1234-1234-1234-123456789012",
+        )
+        assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_update(self, client: Gradient) -> None:
+        response = client.knowledge_bases.data_sources.with_raw_response.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        data_source = response.parse()
+        assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_update(self, client: Gradient) -> None:
+        with client.knowledge_bases.data_sources.with_streaming_response.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            data_source = response.parse()
+            assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_update(self, client: Gradient) -> None:
+        with pytest.raises(
+            ValueError, match=r"Expected a non-empty value for `path_knowledge_base_uuid` but received ''"
+        ):
+            client.knowledge_bases.data_sources.with_raw_response.update(
+                path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+                path_knowledge_base_uuid="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_data_source_uuid` but received ''"):
+            client.knowledge_bases.data_sources.with_raw_response.update(
+                path_data_source_uuid="",
+                path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -264,6 +344,13 @@ class TestAsyncDataSources:
                 "region": "example string",
                 "secret_key": "example string",
             },
+            chunking_algorithm="CHUNKING_ALGORITHM_SECTION_BASED",
+            chunking_options={
+                "child_chunk_size": 350,
+                "max_chunk_size": 750,
+                "parent_chunk_size": 1000,
+                "semantic_threshold": 0.5,
+            },
             body_knowledge_base_uuid='"12345678-1234-1234-1234-123456789012"',
             spaces_data_source={
                 "bucket_name": "example name",
@@ -313,6 +400,78 @@ class TestAsyncDataSources:
         ):
             await async_client.knowledge_bases.data_sources.with_raw_response.create(
                 path_knowledge_base_uuid="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update(self, async_client: AsyncGradient) -> None:
+        data_source = await async_client.knowledge_bases.data_sources.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+        )
+        assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncGradient) -> None:
+        data_source = await async_client.knowledge_bases.data_sources.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+            chunking_algorithm="CHUNKING_ALGORITHM_SECTION_BASED",
+            chunking_options={
+                "child_chunk_size": 350,
+                "max_chunk_size": 750,
+                "parent_chunk_size": 1000,
+                "semantic_threshold": 0.5,
+            },
+            body_data_source_uuid="98765432-1234-1234-1234-123456789012",
+            body_knowledge_base_uuid="12345678-1234-1234-1234-123456789012",
+        )
+        assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncGradient) -> None:
+        response = await async_client.knowledge_bases.data_sources.with_raw_response.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        data_source = await response.parse()
+        assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncGradient) -> None:
+        async with async_client.knowledge_bases.data_sources.with_streaming_response.update(
+            path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+            path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            data_source = await response.parse()
+            assert_matches_type(DataSourceUpdateResponse, data_source, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncGradient) -> None:
+        with pytest.raises(
+            ValueError, match=r"Expected a non-empty value for `path_knowledge_base_uuid` but received ''"
+        ):
+            await async_client.knowledge_bases.data_sources.with_raw_response.update(
+                path_data_source_uuid="123e4567-e89b-12d3-a456-426614174000",
+                path_knowledge_base_uuid="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_data_source_uuid` but received ''"):
+            await async_client.knowledge_bases.data_sources.with_raw_response.update(
+                path_data_source_uuid="",
+                path_knowledge_base_uuid="123e4567-e89b-12d3-a456-426614174000",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")

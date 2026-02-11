@@ -32,9 +32,9 @@ class TestImages:
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         image = client.gpu_droplets.images.create(
-            description=" ",
+            description="Cloud-optimized image w/ small footprint",
             distribution="Ubuntu",
-            name="Nifty New Snapshot",
+            name="ubuntu-18.04-minimal",
             region="nyc3",
             tags=["base-image", "prod"],
             url="http://cloud-images.ubuntu.com/minimal/releases/bionic/release/ubuntu-18.04-minimal-cloudimg-amd64.img",
@@ -232,9 +232,9 @@ class TestAsyncImages:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         image = await async_client.gpu_droplets.images.create(
-            description=" ",
+            description="Cloud-optimized image w/ small footprint",
             distribution="Ubuntu",
-            name="Nifty New Snapshot",
+            name="ubuntu-18.04-minimal",
             region="nyc3",
             tags=["base-image", "prod"],
             url="http://cloud-images.ubuntu.com/minimal/releases/bionic/release/ubuntu-18.04-minimal-cloudimg-amd64.img",
