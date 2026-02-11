@@ -210,9 +210,7 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `uuid` but received {uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
             (
                 f"/v2/gen-ai/knowledge_bases/{uuid}"
@@ -271,9 +269,7 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not path_uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return self._put(
             (
                 f"/v2/gen-ai/knowledge_bases/{path_uuid}"
@@ -375,9 +371,7 @@ class KnowledgeBasesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `uuid` but received {uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
             (
                 f"/v2/gen-ai/knowledge_bases/{uuid}"
@@ -646,9 +640,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `uuid` but received {uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
             (
                 f"/v2/gen-ai/knowledge_bases/{uuid}"
@@ -707,9 +699,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not path_uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return await self._put(
             (
                 f"/v2/gen-ai/knowledge_bases/{path_uuid}"
@@ -811,9 +801,7 @@ class AsyncKnowledgeBasesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not uuid:
-            raise ValueError(
-                f"Expected a non-empty value for `uuid` but received {uuid!r}"
-            )
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
             (
                 f"/v2/gen-ai/knowledge_bases/{uuid}"
@@ -1011,15 +999,11 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
-        return AsyncDataSourcesResourceWithRawResponse(
-            self._knowledge_bases.data_sources
-        )
+        return AsyncDataSourcesResourceWithRawResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResourceWithRawResponse:
-        return AsyncIndexingJobsResourceWithRawResponse(
-            self._knowledge_bases.indexing_jobs
-        )
+        return AsyncIndexingJobsResourceWithRawResponse(self._knowledge_bases.indexing_jobs)
 
 
 class KnowledgeBasesResourceWithStreamingResponse:
@@ -1050,15 +1034,11 @@ class KnowledgeBasesResourceWithStreamingResponse:
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
-        return DataSourcesResourceWithStreamingResponse(
-            self._knowledge_bases.data_sources
-        )
+        return DataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> IndexingJobsResourceWithStreamingResponse:
-        return IndexingJobsResourceWithStreamingResponse(
-            self._knowledge_bases.indexing_jobs
-        )
+        return IndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)
 
 
 class AsyncKnowledgeBasesResourceWithStreamingResponse:
@@ -1089,12 +1069,8 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithStreamingResponse:
-        return AsyncDataSourcesResourceWithStreamingResponse(
-            self._knowledge_bases.data_sources
-        )
+        return AsyncDataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResourceWithStreamingResponse:
-        return AsyncIndexingJobsResourceWithStreamingResponse(
-            self._knowledge_bases.indexing_jobs
-        )
+        return AsyncIndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)
