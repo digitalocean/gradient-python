@@ -73,4 +73,3 @@ class Filters(TypedDict, total=False):
 
     should: Iterable[FiltersShould]
     """At least one condition must match (OR)"""
-
