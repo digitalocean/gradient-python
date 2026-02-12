@@ -56,6 +56,7 @@ if TYPE_CHECKING:
     from .resources.apps.apps import AppsResource, AsyncAppsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
     from .resources.responses import ResponsesResource, AsyncResponsesResource
+    from .resources.gpu_droplets import GPUDropletsResource, AsyncGPUDropletsResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
@@ -64,7 +65,6 @@ if TYPE_CHECKING:
         KnowledgeBasesResource,
         AsyncKnowledgeBasesResource,
     )
-    from .resources.gpu_droplets import GPUDropletsResource, AsyncGPUDropletsResource
 
 __all__ = [
     "Timeout",
