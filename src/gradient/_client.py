@@ -64,6 +64,7 @@ if TYPE_CHECKING:
         KnowledgeBasesResource,
         AsyncKnowledgeBasesResource,
     )
+    from .resources.gpu_droplets import GPUDropletsResource, AsyncGPUDropletsResource
 
 __all__ = [
     "Timeout",
