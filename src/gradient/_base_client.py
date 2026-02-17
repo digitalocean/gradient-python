@@ -62,7 +62,7 @@ from ._types import (
     not_given,
 )
 from ._utils import is_dict, is_list, asyncify, is_given, lru_cache, is_mapping
-from ._compat import PYDANTIC_V1, model_copy, model_dump
+from ._compat import PYDANTIC_V1, model_copy
 from ._models import GenericModel, FinalRequestOptions, validate_type, construct_type
 from ._response import (
     APIResponse,
@@ -486,17 +486,17 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     ) -> httpx.Request:
         if log.isEnabledFor(logging.DEBUG):
             log.debug(
-                "Request options: %s",
-                model_dump(
-                    options,
-                    exclude_unset=True,
-                    # Pydantic v1 can't dump every type we support in content, so we exclude it for now.
-                    exclude={
-                        "content",
-                    }
-                    if PYDANTIC_V1
-                    else {},
-                ),
+                "Request options",
+                # model_dump(
+                #     options,
+                #     exclude_unset=True,
+                #     # Pydantic v1 can't dump every type we support in content, so we exclude it for now.
+                #     exclude={
+                #         "content",
+                #     }
+                #     if PYDANTIC_V1
+                #     else {},
+                # ),
             )
         kwargs: dict[str, Any] = {}
 
