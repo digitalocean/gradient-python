@@ -14,6 +14,9 @@ class APIEvaluationRun(BaseModel):
     agent_deleted: Optional[bool] = None
     """Whether agent is deleted"""
 
+    agent_deployment_name: Optional[str] = None
+    """The agent deployment name"""
+
     agent_name: Optional[str] = None
     """Agent name"""
 

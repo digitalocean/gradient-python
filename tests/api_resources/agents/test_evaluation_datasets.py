@@ -30,6 +30,7 @@ class TestEvaluationDatasets:
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         evaluation_dataset = client.agents.evaluation_datasets.create(
+            dataset_type="EVALUATION_DATASET_TYPE_UNKNOWN",
             file_upload_dataset={
                 "original_file_name": "example name",
                 "size_in_bytes": "12345",
@@ -126,6 +127,7 @@ class TestAsyncEvaluationDatasets:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create(
+            dataset_type="EVALUATION_DATASET_TYPE_UNKNOWN",
             file_upload_dataset={
                 "original_file_name": "example name",
                 "size_in_bytes": "12345",

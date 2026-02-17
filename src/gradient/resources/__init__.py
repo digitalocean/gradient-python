@@ -8,6 +8,14 @@ from .nfs import (
     NfsResourceWithStreamingResponse,
     AsyncNfsResourceWithStreamingResponse,
 )
+from .apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
 from .chat import (
     ChatResource,
     AsyncChatResource,
@@ -40,6 +48,14 @@ from .models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
+from .billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -71,6 +87,14 @@ from .inference import (
     AsyncInferenceResourceWithRawResponse,
     InferenceResourceWithStreamingResponse,
     AsyncInferenceResourceWithStreamingResponse,
+)
+from .responses import (
+    ResponsesResource,
+    AsyncResponsesResource,
+    ResponsesResourceWithRawResponse,
+    AsyncResponsesResourceWithRawResponse,
+    ResponsesResourceWithStreamingResponse,
+    AsyncResponsesResourceWithStreamingResponse,
 )
 from .gpu_droplets import (
     GPUDropletsResource,
@@ -108,6 +132,12 @@ __all__ = [
     "AsyncImagesResourceWithRawResponse",
     "ImagesResourceWithStreamingResponse",
     "AsyncImagesResourceWithStreamingResponse",
+    "ResponsesResource",
+    "AsyncResponsesResource",
+    "ResponsesResourceWithRawResponse",
+    "AsyncResponsesResourceWithRawResponse",
+    "ResponsesResourceWithStreamingResponse",
+    "AsyncResponsesResourceWithStreamingResponse",
     "GPUDropletsResource",
     "AsyncGPUDropletsResource",
     "GPUDropletsResourceWithRawResponse",
@@ -156,4 +186,16 @@ __all__ = [
     "AsyncRetrieveResourceWithRawResponse",
     "RetrieveResourceWithStreamingResponse",
     "AsyncRetrieveResourceWithStreamingResponse",
+    "AppsResource",
+    "AsyncAppsResource",
+    "AppsResourceWithRawResponse",
+    "AsyncAppsResourceWithRawResponse",
+    "AppsResourceWithStreamingResponse",
+    "AsyncAppsResourceWithStreamingResponse",
+    "BillingResource",
+    "AsyncBillingResource",
+    "BillingResourceWithRawResponse",
+    "AsyncBillingResourceWithRawResponse",
+    "BillingResourceWithStreamingResponse",
+    "AsyncBillingResourceWithStreamingResponse",
 ]

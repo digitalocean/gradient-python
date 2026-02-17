@@ -34,26 +34,29 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         nfs,
+        apps,
         chat,
         agents,
         images,
         models,
+        billing,
         regions,
         retrieve,
         databases,
         inference,
+        responses,
         gpu_droplets,
         knowledge_bases,
     )
     from .resources.images import ImagesResource, AsyncImagesResource
+    from .resources.billing import BillingResource, AsyncBillingResource
     from .resources.nfs.nfs import NfsResource, AsyncNfsResource
     from .resources.regions import RegionsResource, AsyncRegionsResource
     from .resources.retrieve import RetrieveResource, AsyncRetrieveResource
+    from .resources.apps.apps import AppsResource, AsyncAppsResource
     from .resources.chat.chat import ChatResource, AsyncChatResource
-    from .resources.gpu_droplets import (
-        GPUDropletsResource,
-        AsyncGPUDropletsResource,
-    )
+    from .resources.responses import ResponsesResource, AsyncResponsesResource
+    from .resources.gpu_droplets import GPUDropletsResource, AsyncGPUDropletsResource
     from .resources.agents.agents import AgentsResource, AsyncAgentsResource
     from .resources.models.models import ModelsResource, AsyncModelsResource
     from .resources.databases.databases import DatabasesResource, AsyncDatabasesResource
@@ -202,6 +205,12 @@ class Gradient(SyncAPIClient):
         return ImagesResource(self)
 
     @cached_property
+    def responses(self) -> ResponsesResource:
+        from .resources.responses import ResponsesResource
+
+        return ResponsesResource(self)
+
+    @cached_property
     def gpu_droplets(self) -> GPUDropletsResource:
         from .resources.gpu_droplets import GPUDropletsResource
 
@@ -248,6 +257,18 @@ class Gradient(SyncAPIClient):
         from .resources.retrieve import RetrieveResource
 
         return RetrieveResource(self)
+
+    @cached_property
+    def apps(self) -> AppsResource:
+        from .resources.apps import AppsResource
+
+        return AppsResource(self)
+
+    @cached_property
+    def billing(self) -> BillingResource:
+        from .resources.billing import BillingResource
+
+        return BillingResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientWithRawResponse:
@@ -556,6 +577,12 @@ class AsyncGradient(AsyncAPIClient):
         return AsyncImagesResource(self)
 
     @cached_property
+    def responses(self) -> AsyncResponsesResource:
+        from .resources.responses import AsyncResponsesResource
+
+        return AsyncResponsesResource(self)
+
+    @cached_property
     def gpu_droplets(self) -> AsyncGPUDropletsResource:
         from .resources.gpu_droplets import AsyncGPUDropletsResource
 
@@ -602,6 +629,18 @@ class AsyncGradient(AsyncAPIClient):
         from .resources.retrieve import AsyncRetrieveResource
 
         return AsyncRetrieveResource(self)
+
+    @cached_property
+    def apps(self) -> AsyncAppsResource:
+        from .resources.apps import AsyncAppsResource
+
+        return AsyncAppsResource(self)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResource:
+        from .resources.billing import AsyncBillingResource
+
+        return AsyncBillingResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncGradientWithRawResponse:
@@ -808,6 +847,12 @@ class GradientWithRawResponse:
         return ImagesResourceWithRawResponse(self._client.images)
 
     @cached_property
+    def responses(self) -> responses.ResponsesResourceWithRawResponse:
+        from .resources.responses import ResponsesResourceWithRawResponse
+
+        return ResponsesResourceWithRawResponse(self._client.responses)
+
+    @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
         from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
 
@@ -855,6 +900,18 @@ class GradientWithRawResponse:
 
         return RetrieveResourceWithRawResponse(self._client.retrieve)
 
+    @cached_property
+    def apps(self) -> apps.AppsResourceWithRawResponse:
+        from .resources.apps import AppsResourceWithRawResponse
+
+        return AppsResourceWithRawResponse(self._client.apps)
+
+    @cached_property
+    def billing(self) -> billing.BillingResourceWithRawResponse:
+        from .resources.billing import BillingResourceWithRawResponse
+
+        return BillingResourceWithRawResponse(self._client.billing)
+
 
 class AsyncGradientWithRawResponse:
     _client: AsyncGradient
@@ -879,6 +936,12 @@ class AsyncGradientWithRawResponse:
         from .resources.images import AsyncImagesResourceWithRawResponse
 
         return AsyncImagesResourceWithRawResponse(self._client.images)
+
+    @cached_property
+    def responses(self) -> responses.AsyncResponsesResourceWithRawResponse:
+        from .resources.responses import AsyncResponsesResourceWithRawResponse
+
+        return AsyncResponsesResourceWithRawResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
@@ -932,6 +995,18 @@ class AsyncGradientWithRawResponse:
 
         return AsyncRetrieveResourceWithRawResponse(self._client.retrieve)
 
+    @cached_property
+    def apps(self) -> apps.AsyncAppsResourceWithRawResponse:
+        from .resources.apps import AsyncAppsResourceWithRawResponse
+
+        return AsyncAppsResourceWithRawResponse(self._client.apps)
+
+    @cached_property
+    def billing(self) -> billing.AsyncBillingResourceWithRawResponse:
+        from .resources.billing import AsyncBillingResourceWithRawResponse
+
+        return AsyncBillingResourceWithRawResponse(self._client.billing)
+
 
 class GradientWithStreamedResponse:
     _client: Gradient
@@ -956,6 +1031,12 @@ class GradientWithStreamedResponse:
         from .resources.images import ImagesResourceWithStreamingResponse
 
         return ImagesResourceWithStreamingResponse(self._client.images)
+
+    @cached_property
+    def responses(self) -> responses.ResponsesResourceWithStreamingResponse:
+        from .resources.responses import ResponsesResourceWithStreamingResponse
+
+        return ResponsesResourceWithStreamingResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
@@ -1009,6 +1090,18 @@ class GradientWithStreamedResponse:
 
         return RetrieveResourceWithStreamingResponse(self._client.retrieve)
 
+    @cached_property
+    def apps(self) -> apps.AppsResourceWithStreamingResponse:
+        from .resources.apps import AppsResourceWithStreamingResponse
+
+        return AppsResourceWithStreamingResponse(self._client.apps)
+
+    @cached_property
+    def billing(self) -> billing.BillingResourceWithStreamingResponse:
+        from .resources.billing import BillingResourceWithStreamingResponse
+
+        return BillingResourceWithStreamingResponse(self._client.billing)
+
 
 class AsyncGradientWithStreamedResponse:
     _client: AsyncGradient
@@ -1033,6 +1126,12 @@ class AsyncGradientWithStreamedResponse:
         from .resources.images import AsyncImagesResourceWithStreamingResponse
 
         return AsyncImagesResourceWithStreamingResponse(self._client.images)
+
+    @cached_property
+    def responses(self) -> responses.AsyncResponsesResourceWithStreamingResponse:
+        from .resources.responses import AsyncResponsesResourceWithStreamingResponse
+
+        return AsyncResponsesResourceWithStreamingResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(
@@ -1089,6 +1188,18 @@ class AsyncGradientWithStreamedResponse:
         from .resources.retrieve import AsyncRetrieveResourceWithStreamingResponse
 
         return AsyncRetrieveResourceWithStreamingResponse(self._client.retrieve)
+
+    @cached_property
+    def apps(self) -> apps.AsyncAppsResourceWithStreamingResponse:
+        from .resources.apps import AsyncAppsResourceWithStreamingResponse
+
+        return AsyncAppsResourceWithStreamingResponse(self._client.apps)
+
+    @cached_property
+    def billing(self) -> billing.AsyncBillingResourceWithStreamingResponse:
+        from .resources.billing import AsyncBillingResourceWithStreamingResponse
+
+        return AsyncBillingResourceWithStreamingResponse(self._client.billing)
 
 
 Client = Gradient

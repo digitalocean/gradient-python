@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .api_spaces_data_source import APISpacesDataSource
@@ -9,7 +10,13 @@ from .api_indexed_data_source import APIIndexedDataSource
 from .api_file_upload_data_source import APIFileUploadDataSource
 from .api_web_crawler_data_source import APIWebCrawlerDataSource
 
-__all__ = ["APIKnowledgeBaseDataSource", "AwsDataSource", "DropboxDataSource", "GoogleDriveDataSource"]
+__all__ = [
+    "APIKnowledgeBaseDataSource",
+    "AwsDataSource",
+    "ChunkingOptions",
+    "DropboxDataSource",
+    "GoogleDriveDataSource",
+]
 
 
 class AwsDataSource(BaseModel):
@@ -22,6 +29,25 @@ class AwsDataSource(BaseModel):
 
     region: Optional[str] = None
     """Region of bucket"""
+
+
+class ChunkingOptions(BaseModel):
+    """Configuration options for the chunking algorithm.
+
+    **Note: This feature requires enabling the knowledgebase enhancements feature preview flag.**
+    """
+
+    child_chunk_size: Optional[int] = None
+    """Hierarchical options"""
+
+    max_chunk_size: Optional[int] = None
+    """Section_Based and Fixed_Length options"""
+
+    parent_chunk_size: Optional[int] = None
+    """Hierarchical options"""
+
+    semantic_threshold: Optional[float] = None
+    """Semantic options"""
 
 
 class DropboxDataSource(BaseModel):
@@ -47,6 +73,28 @@ class APIKnowledgeBaseDataSource(BaseModel):
 
     bucket_name: Optional[str] = None
     """Name of storage bucket - Deprecated, moved to data_source_details"""
+
+    chunking_algorithm: Optional[
+        Literal[
+            "CHUNKING_ALGORITHM_UNKNOWN",
+            "CHUNKING_ALGORITHM_SECTION_BASED",
+            "CHUNKING_ALGORITHM_HIERARCHICAL",
+            "CHUNKING_ALGORITHM_SEMANTIC",
+            "CHUNKING_ALGORITHM_FIXED_LENGTH",
+        ]
+    ] = None
+    """The chunking algorithm to use for processing data sources.
+
+    **Note: This feature requires enabling the knowledgebase enhancements feature
+    preview flag.**
+    """
+
+    chunking_options: Optional[ChunkingOptions] = None
+    """Configuration options for the chunking algorithm.
+
+    **Note: This feature requires enabling the knowledgebase enhancements feature
+    preview flag.**
+    """
 
     created_at: Optional[datetime] = None
     """Creation date / time"""

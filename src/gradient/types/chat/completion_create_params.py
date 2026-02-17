@@ -11,20 +11,42 @@ __all__ = [
     "CompletionCreateParamsBase",
     "Message",
     "MessageChatCompletionRequestSystemMessage",
+    "MessageChatCompletionRequestSystemMessageContent",
+    "MessageChatCompletionRequestSystemMessageContentChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestSystemMessageContentChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestSystemMessageContentArrayOfContentPart",
-    "MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMember1",
+    "MessageChatCompletionRequestSystemMessageContentArrayOfContentPartChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestSystemMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestDeveloperMessage",
+    "MessageChatCompletionRequestDeveloperMessageContent",
+    "MessageChatCompletionRequestDeveloperMessageContentChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestDeveloperMessageContentChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart",
-    "MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnionMember1",
+    "MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestUserMessage",
+    "MessageChatCompletionRequestUserMessageContent",
+    "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestUserMessageContentArrayOfContentPart",
-    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMember1",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestAssistantMessage",
+    "MessageChatCompletionRequestAssistantMessageContent",
+    "MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart",
-    "MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnionMember1",
+    "MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl",
     "MessageChatCompletionRequestAssistantMessageToolCall",
     "MessageChatCompletionRequestAssistantMessageToolCallFunction",
     "MessageChatCompletionRequestToolMessage",
+    "MessageChatCompletionRequestToolMessageContent",
+    "MessageChatCompletionRequestToolMessageContentChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestToolMessageContentChatCompletionRequestContentPartTextCacheControl",
+    "MessageChatCompletionRequestToolMessageContentArrayOfContentPart",
+    "MessageChatCompletionRequestToolMessageContentArrayOfContentPartChatCompletionRequestContentPartText",
+    "MessageChatCompletionRequestToolMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl",
     "StreamOptions",
     "ToolChoice",
     "ToolChoiceChatCompletionNamedToolChoice",
@@ -165,7 +187,19 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     """
 
 
-class MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+class MessageChatCompletionRequestSystemMessageContentChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestSystemMessageContentChatCompletionRequestContentPartText(TypedDict, total=False):
     """Content part with type and text"""
 
     text: Required[str]
@@ -174,9 +208,45 @@ class MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMem
     type: Required[Literal["text"]]
     """The type of content part"""
 
+    cache_control: MessageChatCompletionRequestSystemMessageContentChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
+
+class MessageChatCompletionRequestSystemMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestSystemMessageContentArrayOfContentPartChatCompletionRequestContentPartText(
+    TypedDict, total=False
+):
+    """Content part with type and text"""
+
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+    cache_control: MessageChatCompletionRequestSystemMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
 
 MessageChatCompletionRequestSystemMessageContentArrayOfContentPart: TypeAlias = Union[
-    str, MessageChatCompletionRequestSystemMessageContentArrayOfContentPartUnionMember1
+    str, MessageChatCompletionRequestSystemMessageContentArrayOfContentPartChatCompletionRequestContentPartText
+]
+
+MessageChatCompletionRequestSystemMessageContent: TypeAlias = Union[
+    str,
+    MessageChatCompletionRequestSystemMessageContentChatCompletionRequestContentPartText,
+    SequenceNotStr[MessageChatCompletionRequestSystemMessageContentArrayOfContentPart],
 ]
 
 
@@ -186,14 +256,26 @@ class MessageChatCompletionRequestSystemMessage(TypedDict, total=False):
     messages sent by the user.
     """
 
-    content: Required[Union[str, SequenceNotStr[MessageChatCompletionRequestSystemMessageContentArrayOfContentPart]]]
+    content: Required[MessageChatCompletionRequestSystemMessageContent]
     """The contents of the system message."""
 
     role: Required[Literal["system"]]
     """The role of the messages author, in this case `system`."""
 
 
-class MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+class MessageChatCompletionRequestDeveloperMessageContentChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestDeveloperMessageContentChatCompletionRequestContentPartText(TypedDict, total=False):
     """Content part with type and text"""
 
     text: Required[str]
@@ -202,9 +284,45 @@ class MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnion
     type: Required[Literal["text"]]
     """The type of content part"""
 
+    cache_control: MessageChatCompletionRequestDeveloperMessageContentChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
+
+class MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartChatCompletionRequestContentPartText(
+    TypedDict, total=False
+):
+    """Content part with type and text"""
+
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+    cache_control: MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
 
 MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart: TypeAlias = Union[
-    str, MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartUnionMember1
+    str, MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPartChatCompletionRequestContentPartText
+]
+
+MessageChatCompletionRequestDeveloperMessageContent: TypeAlias = Union[
+    str,
+    MessageChatCompletionRequestDeveloperMessageContentChatCompletionRequestContentPartText,
+    SequenceNotStr[MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart],
 ]
 
 
@@ -214,14 +332,26 @@ class MessageChatCompletionRequestDeveloperMessage(TypedDict, total=False):
     messages sent by the user.
     """
 
-    content: Required[Union[str, SequenceNotStr[MessageChatCompletionRequestDeveloperMessageContentArrayOfContentPart]]]
+    content: Required[MessageChatCompletionRequestDeveloperMessageContent]
     """The contents of the developer message."""
 
     role: Required[Literal["developer"]]
     """The role of the messages author, in this case `developer`."""
 
 
-class MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartText(TypedDict, total=False):
     """Content part with type and text"""
 
     text: Required[str]
@@ -230,9 +360,47 @@ class MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMembe
     type: Required[Literal["text"]]
     """The type of content part"""
 
+    cache_control: MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
+
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartText(
+    TypedDict, total=False
+):
+    """Content part with type and text"""
+
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+    cache_control: (
+        MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl
+    )
+    """Cache control settings for the content part."""
+
 
 MessageChatCompletionRequestUserMessageContentArrayOfContentPart: TypeAlias = Union[
-    str, MessageChatCompletionRequestUserMessageContentArrayOfContentPartUnionMember1
+    str, MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartText
+]
+
+MessageChatCompletionRequestUserMessageContent: TypeAlias = Union[
+    str,
+    MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartText,
+    SequenceNotStr[MessageChatCompletionRequestUserMessageContentArrayOfContentPart],
 ]
 
 
@@ -242,14 +410,26 @@ class MessageChatCompletionRequestUserMessage(TypedDict, total=False):
     information.
     """
 
-    content: Required[Union[str, SequenceNotStr[MessageChatCompletionRequestUserMessageContentArrayOfContentPart]]]
+    content: Required[MessageChatCompletionRequestUserMessageContent]
     """The contents of the user message."""
 
     role: Required[Literal["user"]]
     """The role of the messages author, in this case `user`."""
 
 
-class MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnionMember1(TypedDict, total=False):
+class MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartText(TypedDict, total=False):
     """Content part with type and text"""
 
     text: Required[str]
@@ -258,9 +438,45 @@ class MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnion
     type: Required[Literal["text"]]
     """The type of content part"""
 
+    cache_control: MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
+
+class MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartChatCompletionRequestContentPartText(
+    TypedDict, total=False
+):
+    """Content part with type and text"""
+
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+    cache_control: MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
 
 MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart: TypeAlias = Union[
-    str, MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartUnionMember1
+    str, MessageChatCompletionRequestAssistantMessageContentArrayOfContentPartChatCompletionRequestContentPartText
+]
+
+MessageChatCompletionRequestAssistantMessageContent: TypeAlias = Union[
+    str,
+    MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartText,
+    SequenceNotStr[MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart],
 ]
 
 
@@ -296,15 +512,80 @@ class MessageChatCompletionRequestAssistantMessage(TypedDict, total=False):
     role: Required[Literal["assistant"]]
     """The role of the messages author, in this case `assistant`."""
 
-    content: Union[str, SequenceNotStr[MessageChatCompletionRequestAssistantMessageContentArrayOfContentPart], None]
+    content: Optional[MessageChatCompletionRequestAssistantMessageContent]
     """The contents of the assistant message."""
 
     tool_calls: Iterable[MessageChatCompletionRequestAssistantMessageToolCall]
     """The tool calls generated by the model, such as function calls."""
 
 
+class MessageChatCompletionRequestToolMessageContentChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestToolMessageContentChatCompletionRequestContentPartText(TypedDict, total=False):
+    """Content part with type and text"""
+
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+    cache_control: MessageChatCompletionRequestToolMessageContentChatCompletionRequestContentPartTextCacheControl
+    """Cache control settings for the content part."""
+
+
+class MessageChatCompletionRequestToolMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl(
+    TypedDict, total=False
+):
+    """Cache control settings for the content part."""
+
+    type: Required[Literal["ephemeral"]]
+    """The cache control type."""
+
+    ttl: Literal["5m", "1h"]
+    """The cache TTL."""
+
+
+class MessageChatCompletionRequestToolMessageContentArrayOfContentPartChatCompletionRequestContentPartText(
+    TypedDict, total=False
+):
+    """Content part with type and text"""
+
+    text: Required[str]
+    """The text content"""
+
+    type: Required[Literal["text"]]
+    """The type of content part"""
+
+    cache_control: (
+        MessageChatCompletionRequestToolMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl
+    )
+    """Cache control settings for the content part."""
+
+
+MessageChatCompletionRequestToolMessageContentArrayOfContentPart: TypeAlias = Union[
+    str, MessageChatCompletionRequestToolMessageContentArrayOfContentPartChatCompletionRequestContentPartText
+]
+
+MessageChatCompletionRequestToolMessageContent: TypeAlias = Union[
+    str,
+    MessageChatCompletionRequestToolMessageContentChatCompletionRequestContentPartText,
+    SequenceNotStr[MessageChatCompletionRequestToolMessageContentArrayOfContentPart],
+]
+
+
 class MessageChatCompletionRequestToolMessage(TypedDict, total=False):
-    content: Required[str]
+    content: Required[MessageChatCompletionRequestToolMessageContent]
     """The contents of the tool message."""
 
     role: Required[Literal["tool"]]

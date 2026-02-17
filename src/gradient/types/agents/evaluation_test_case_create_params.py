@@ -11,6 +11,8 @@ __all__ = ["EvaluationTestCaseCreateParams"]
 
 
 class EvaluationTestCaseCreateParams(TypedDict, total=False):
+    agent_workspace_name: str
+
     dataset_uuid: str
     """Dataset against which the test‑case is executed."""
 
