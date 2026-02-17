@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.11.0 (2026-02-17)
+
+Full Changelog: [v3.10.1...v3.11.0](https://github.com/digitalocean/gradient-python/compare/v3.10.1...v3.11.0)
+
+### Features
+
+* **api:** api update ([f67228f](https://github.com/digitalocean/gradient-python/commit/f67228f0bd8de96342d15b1b7c3096e4b03c7aaa))
+
+
+### Bug Fixes
+
+* **client:** loosen auth header validation ([bf5fa9f](https://github.com/digitalocean/gradient-python/commit/bf5fa9f93b6443ac0b41d5fa134aab8ee12cfbc3))
+
+
+### Chores
+
+* **internal:** codegen related update ([07eeda8](https://github.com/digitalocean/gradient-python/commit/07eeda8ae3e1c7bdfe3fcc51a8786f35682f4c3f))
+
 ## 3.10.1 (2025-12-19)
 
 Full Changelog: [v3.10.0...v3.10.1](https://github.com/digitalocean/gradient-python/compare/v3.10.0...v3.10.1)
