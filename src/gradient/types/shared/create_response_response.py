@@ -4,11 +4,11 @@ import builtins
 from typing import Dict, List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
-from .._models import BaseModel
-from .shared.chat_completion_token_logprob import ChatCompletionTokenLogprob
+from ..._models import BaseModel
+from .chat_completion_token_logprob import ChatCompletionTokenLogprob
 
 __all__ = [
-    "ResponseCreateResponse",
+    "CreateResponseResponse",
     "Usage",
     "UsageInputTokensDetails",
     "UsageOutputTokensDetails",
@@ -237,7 +237,7 @@ class Tool(BaseModel):
     """
 
 
-class ResponseCreateResponse(BaseModel):
+class CreateResponseResponse(BaseModel):
     """
     Represents a text-to-text response returned by the model, based on the provided input. VLLM models only.
     """

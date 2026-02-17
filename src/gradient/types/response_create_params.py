@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .._types import SequenceNotStr
 
 __all__ = [
-    "ResponseCreateParams",
+    "ResponseCreateParamsBase",
     "InputUnionMember1",
     "InputUnionMember1UnionMember0",
     "InputUnionMember1UnionMember0Content",
@@ -22,10 +22,12 @@ __all__ = [
     "ToolChoiceChatCompletionNamedToolChoice",
     "ToolChoiceChatCompletionNamedToolChoiceFunction",
     "Tool",
+    "ResponseCreateParamsNonStreaming",
+    "ResponseCreateParamsStreaming",
 ]
 
 
-class ResponseCreateParams(TypedDict, total=False):
+class ResponseCreateParamsBase(TypedDict, total=False):
     input: Required[Union[str, Iterable[InputUnionMember1]]]
     """The input text prompt or conversation history.
 
@@ -79,12 +81,6 @@ class ResponseCreateParams(TypedDict, total=False):
     """Up to 4 sequences where the API will stop generating further tokens.
 
     The returned text will not contain the stop sequence.
-    """
-
-    stream: Optional[bool]
-    """
-    If set to true, the model response data will be streamed to the client as it is
-    generated using server-sent events.
     """
 
     stream_options: Optional[StreamOptions]
@@ -314,3 +310,22 @@ class Tool(TypedDict, total=False):
 
     Omitting `parameters` defines a function with an empty parameter list.
     """
+
+
+class ResponseCreateParamsNonStreaming(ResponseCreateParamsBase, total=False):
+    stream: Optional[Literal[False]]
+    """
+    If set to true, the model response data will be streamed to the client as it is
+    generated using server-sent events.
+    """
+
+
+class ResponseCreateParamsStreaming(ResponseCreateParamsBase):
+    stream: Required[Literal[True]]
+    """
+    If set to true, the model response data will be streamed to the client as it is
+    generated using server-sent events.
+    """
+
+
+ResponseCreateParams = Union[ResponseCreateParamsNonStreaming, ResponseCreateParamsStreaming]

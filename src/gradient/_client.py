@@ -184,6 +184,12 @@ class Gradient(SyncAPIClient):
         return ImagesResource(self)
 
     @cached_property
+    def responses(self) -> ResponsesResource:
+        from .resources.responses import ResponsesResource
+
+        return ResponsesResource(self)
+
+    @cached_property
     def gpu_droplets(self) -> GPUDropletsResource:
         from .resources.gpu_droplets import GPUDropletsResource
 
@@ -242,12 +248,6 @@ class Gradient(SyncAPIClient):
         from .resources.billing import BillingResource
 
         return BillingResource(self)
-
-    @cached_property
-    def responses(self) -> ResponsesResource:
-        from .resources.responses import ResponsesResource
-
-        return ResponsesResource(self)
 
     @cached_property
     def with_raw_response(self) -> GradientWithRawResponse:
@@ -512,6 +512,12 @@ class AsyncGradient(AsyncAPIClient):
         return AsyncImagesResource(self)
 
     @cached_property
+    def responses(self) -> AsyncResponsesResource:
+        from .resources.responses import AsyncResponsesResource
+
+        return AsyncResponsesResource(self)
+
+    @cached_property
     def gpu_droplets(self) -> AsyncGPUDropletsResource:
         from .resources.gpu_droplets import AsyncGPUDropletsResource
 
@@ -570,12 +576,6 @@ class AsyncGradient(AsyncAPIClient):
         from .resources.billing import AsyncBillingResource
 
         return AsyncBillingResource(self)
-
-    @cached_property
-    def responses(self) -> AsyncResponsesResource:
-        from .resources.responses import AsyncResponsesResource
-
-        return AsyncResponsesResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncGradientWithRawResponse:
@@ -756,6 +756,12 @@ class GradientWithRawResponse:
         return ImagesResourceWithRawResponse(self._client.images)
 
     @cached_property
+    def responses(self) -> responses.ResponsesResourceWithRawResponse:
+        from .resources.responses import ResponsesResourceWithRawResponse
+
+        return ResponsesResourceWithRawResponse(self._client.responses)
+
+    @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
         from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
 
@@ -815,12 +821,6 @@ class GradientWithRawResponse:
 
         return BillingResourceWithRawResponse(self._client.billing)
 
-    @cached_property
-    def responses(self) -> responses.ResponsesResourceWithRawResponse:
-        from .resources.responses import ResponsesResourceWithRawResponse
-
-        return ResponsesResourceWithRawResponse(self._client.responses)
-
 
 class AsyncGradientWithRawResponse:
     _client: AsyncGradient
@@ -845,6 +845,12 @@ class AsyncGradientWithRawResponse:
         from .resources.images import AsyncImagesResourceWithRawResponse
 
         return AsyncImagesResourceWithRawResponse(self._client.images)
+
+    @cached_property
+    def responses(self) -> responses.AsyncResponsesResourceWithRawResponse:
+        from .resources.responses import AsyncResponsesResourceWithRawResponse
+
+        return AsyncResponsesResourceWithRawResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
@@ -906,12 +912,6 @@ class AsyncGradientWithRawResponse:
 
         return AsyncBillingResourceWithRawResponse(self._client.billing)
 
-    @cached_property
-    def responses(self) -> responses.AsyncResponsesResourceWithRawResponse:
-        from .resources.responses import AsyncResponsesResourceWithRawResponse
-
-        return AsyncResponsesResourceWithRawResponse(self._client.responses)
-
 
 class GradientWithStreamedResponse:
     _client: Gradient
@@ -936,6 +936,12 @@ class GradientWithStreamedResponse:
         from .resources.images import ImagesResourceWithStreamingResponse
 
         return ImagesResourceWithStreamingResponse(self._client.images)
+
+    @cached_property
+    def responses(self) -> responses.ResponsesResourceWithStreamingResponse:
+        from .resources.responses import ResponsesResourceWithStreamingResponse
+
+        return ResponsesResourceWithStreamingResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
@@ -997,12 +1003,6 @@ class GradientWithStreamedResponse:
 
         return BillingResourceWithStreamingResponse(self._client.billing)
 
-    @cached_property
-    def responses(self) -> responses.ResponsesResourceWithStreamingResponse:
-        from .resources.responses import ResponsesResourceWithStreamingResponse
-
-        return ResponsesResourceWithStreamingResponse(self._client.responses)
-
 
 class AsyncGradientWithStreamedResponse:
     _client: AsyncGradient
@@ -1027,6 +1027,12 @@ class AsyncGradientWithStreamedResponse:
         from .resources.images import AsyncImagesResourceWithStreamingResponse
 
         return AsyncImagesResourceWithStreamingResponse(self._client.images)
+
+    @cached_property
+    def responses(self) -> responses.AsyncResponsesResourceWithStreamingResponse:
+        from .resources.responses import AsyncResponsesResourceWithStreamingResponse
+
+        return AsyncResponsesResourceWithStreamingResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
@@ -1087,12 +1093,6 @@ class AsyncGradientWithStreamedResponse:
         from .resources.billing import AsyncBillingResourceWithStreamingResponse
 
         return AsyncBillingResourceWithStreamingResponse(self._client.billing)
-
-    @cached_property
-    def responses(self) -> responses.AsyncResponsesResourceWithStreamingResponse:
-        from .resources.responses import AsyncResponsesResourceWithStreamingResponse
-
-        return AsyncResponsesResourceWithStreamingResponse(self._client.responses)
 
 
 Client = Gradient
