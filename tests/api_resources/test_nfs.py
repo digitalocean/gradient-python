@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestNfs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         nf = client.nfs.create(
@@ -33,7 +33,7 @@ class TestNfs:
         )
         assert_matches_type(NfCreateResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.create(
@@ -48,7 +48,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfCreateResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.create(
@@ -65,7 +65,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         nf = client.nfs.retrieve(
@@ -74,7 +74,7 @@ class TestNfs:
         )
         assert_matches_type(NfRetrieveResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.retrieve(
@@ -87,7 +87,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfRetrieveResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.retrieve(
@@ -102,7 +102,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -111,7 +111,7 @@ class TestNfs:
                 region="region",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         nf = client.nfs.list(
@@ -119,7 +119,7 @@ class TestNfs:
         )
         assert_matches_type(NfListResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.list(
@@ -131,7 +131,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfListResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.list(
@@ -145,7 +145,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         nf = client.nfs.delete(
@@ -154,7 +154,7 @@ class TestNfs:
         )
         assert nf is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.delete(
@@ -167,7 +167,7 @@ class TestNfs:
         nf = response.parse()
         assert nf is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.delete(
@@ -182,7 +182,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -191,7 +191,7 @@ class TestNfs:
                 region="region",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_overload_1(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -201,7 +201,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_with_all_params_overload_1(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -212,7 +212,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_initiate_action_overload_1(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.initiate_action(
@@ -226,7 +226,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_initiate_action_overload_1(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.initiate_action(
@@ -242,7 +242,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_initiate_action_overload_1(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -252,7 +252,7 @@ class TestNfs:
                 type="resize",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_overload_2(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -262,7 +262,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_with_all_params_overload_2(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -273,7 +273,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_initiate_action_overload_2(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.initiate_action(
@@ -287,7 +287,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_initiate_action_overload_2(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.initiate_action(
@@ -303,7 +303,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_initiate_action_overload_2(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -313,7 +313,7 @@ class TestNfs:
                 type="resize",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_overload_3(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -323,7 +323,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_with_all_params_overload_3(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -334,7 +334,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_initiate_action_overload_3(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.initiate_action(
@@ -348,7 +348,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_initiate_action_overload_3(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.initiate_action(
@@ -364,7 +364,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_initiate_action_overload_3(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -374,7 +374,7 @@ class TestNfs:
                 type="resize",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_overload_4(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -384,7 +384,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_initiate_action_with_all_params_overload_4(self, client: Gradient) -> None:
         nf = client.nfs.initiate_action(
@@ -395,7 +395,7 @@ class TestNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_initiate_action_overload_4(self, client: Gradient) -> None:
         response = client.nfs.with_raw_response.initiate_action(
@@ -409,7 +409,7 @@ class TestNfs:
         nf = response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_initiate_action_overload_4(self, client: Gradient) -> None:
         with client.nfs.with_streaming_response.initiate_action(
@@ -425,7 +425,7 @@ class TestNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_initiate_action_overload_4(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -441,7 +441,7 @@ class TestAsyncNfs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.create(
@@ -452,7 +452,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfCreateResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.create(
@@ -467,7 +467,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfCreateResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.create(
@@ -484,7 +484,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.retrieve(
@@ -493,7 +493,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfRetrieveResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.retrieve(
@@ -506,7 +506,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfRetrieveResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.retrieve(
@@ -521,7 +521,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -530,7 +530,7 @@ class TestAsyncNfs:
                 region="region",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.list(
@@ -538,7 +538,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfListResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.list(
@@ -550,7 +550,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfListResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.list(
@@ -564,7 +564,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.delete(
@@ -573,7 +573,7 @@ class TestAsyncNfs:
         )
         assert nf is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.delete(
@@ -586,7 +586,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert nf is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.delete(
@@ -601,7 +601,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -610,7 +610,7 @@ class TestAsyncNfs:
                 region="region",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_overload_1(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -620,7 +620,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -631,7 +631,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_initiate_action_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.initiate_action(
@@ -645,7 +645,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_action_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.initiate_action(
@@ -661,7 +661,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_initiate_action_overload_1(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -671,7 +671,7 @@ class TestAsyncNfs:
                 type="resize",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_overload_2(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -681,7 +681,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -692,7 +692,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_initiate_action_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.initiate_action(
@@ -706,7 +706,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_action_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.initiate_action(
@@ -722,7 +722,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_initiate_action_overload_2(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -732,7 +732,7 @@ class TestAsyncNfs:
                 type="resize",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -742,7 +742,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_with_all_params_overload_3(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -753,7 +753,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.initiate_action(
@@ -767,7 +767,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.initiate_action(
@@ -783,7 +783,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_initiate_action_overload_3(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):
@@ -793,7 +793,7 @@ class TestAsyncNfs:
                 type="resize",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -803,7 +803,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_initiate_action_with_all_params_overload_4(self, async_client: AsyncGradient) -> None:
         nf = await async_client.nfs.initiate_action(
@@ -814,7 +814,7 @@ class TestAsyncNfs:
         )
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
         response = await async_client.nfs.with_raw_response.initiate_action(
@@ -828,7 +828,7 @@ class TestAsyncNfs:
         nf = await response.parse()
         assert_matches_type(NfInitiateActionResponse, nf, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
         async with async_client.nfs.with_streaming_response.initiate_action(
@@ -844,7 +844,7 @@ class TestAsyncNfs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_initiate_action_overload_4(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `nfs_id` but received ''"):

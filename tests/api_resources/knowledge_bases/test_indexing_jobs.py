@@ -25,13 +25,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIndexingJobs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.create()
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.create(
@@ -40,7 +40,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.create()
@@ -50,7 +50,7 @@ class TestIndexingJobs:
         indexing_job = response.parse()
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.create() as response:
@@ -62,7 +62,7 @@ class TestIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.retrieve(
@@ -70,7 +70,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobRetrieveResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.retrieve(
@@ -82,7 +82,7 @@ class TestIndexingJobs:
         indexing_job = response.parse()
         assert_matches_type(IndexingJobRetrieveResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve(
@@ -96,7 +96,7 @@ class TestIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -104,13 +104,13 @@ class TestIndexingJobs:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.list()
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.list(
@@ -119,7 +119,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.list()
@@ -129,7 +129,7 @@ class TestIndexingJobs:
         indexing_job = response.parse()
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.list() as response:
@@ -141,7 +141,7 @@ class TestIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_data_sources(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.retrieve_data_sources(
@@ -149,7 +149,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobRetrieveDataSourcesResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_data_sources(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_data_sources(
@@ -161,7 +161,7 @@ class TestIndexingJobs:
         indexing_job = response.parse()
         assert_matches_type(IndexingJobRetrieveDataSourcesResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_data_sources(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_data_sources(
@@ -175,7 +175,7 @@ class TestIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve_data_sources(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
@@ -183,7 +183,7 @@ class TestIndexingJobs:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_signed_url(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.retrieve_signed_url(
@@ -191,7 +191,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_signed_url(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_signed_url(
@@ -203,7 +203,7 @@ class TestIndexingJobs:
         indexing_job = response.parse()
         assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_signed_url(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_signed_url(
@@ -217,7 +217,7 @@ class TestIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve_signed_url(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
@@ -225,7 +225,7 @@ class TestIndexingJobs:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_cancel(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.update_cancel(
@@ -233,7 +233,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_cancel_with_all_params(self, client: Gradient) -> None:
         indexing_job = client.knowledge_bases.indexing_jobs.update_cancel(
@@ -242,7 +242,7 @@ class TestIndexingJobs:
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update_cancel(self, client: Gradient) -> None:
         response = client.knowledge_bases.indexing_jobs.with_raw_response.update_cancel(
@@ -254,7 +254,7 @@ class TestIndexingJobs:
         indexing_job = response.parse()
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update_cancel(self, client: Gradient) -> None:
         with client.knowledge_bases.indexing_jobs.with_streaming_response.update_cancel(
@@ -268,7 +268,7 @@ class TestIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update_cancel(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):
@@ -401,13 +401,13 @@ class TestAsyncIndexingJobs:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.create()
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.create(
@@ -416,7 +416,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.create()
@@ -426,7 +426,7 @@ class TestAsyncIndexingJobs:
         indexing_job = await response.parse()
         assert_matches_type(IndexingJobCreateResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.create() as response:
@@ -438,7 +438,7 @@ class TestAsyncIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.retrieve(
@@ -446,7 +446,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobRetrieveResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve(
@@ -458,7 +458,7 @@ class TestAsyncIndexingJobs:
         indexing_job = await response.parse()
         assert_matches_type(IndexingJobRetrieveResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve(
@@ -472,7 +472,7 @@ class TestAsyncIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -480,13 +480,13 @@ class TestAsyncIndexingJobs:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.list()
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.list(
@@ -495,7 +495,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.list()
@@ -505,7 +505,7 @@ class TestAsyncIndexingJobs:
         indexing_job = await response.parse()
         assert_matches_type(IndexingJobListResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.list() as response:
@@ -517,7 +517,7 @@ class TestAsyncIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.retrieve_data_sources(
@@ -525,7 +525,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobRetrieveDataSourcesResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_data_sources(
@@ -537,7 +537,7 @@ class TestAsyncIndexingJobs:
         indexing_job = await response.parse()
         assert_matches_type(IndexingJobRetrieveDataSourcesResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_data_sources(
@@ -551,7 +551,7 @@ class TestAsyncIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve_data_sources(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
@@ -559,7 +559,7 @@ class TestAsyncIndexingJobs:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.retrieve_signed_url(
@@ -567,7 +567,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.retrieve_signed_url(
@@ -579,7 +579,7 @@ class TestAsyncIndexingJobs:
         indexing_job = await response.parse()
         assert_matches_type(IndexingJobRetrieveSignedURLResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.retrieve_signed_url(
@@ -593,7 +593,7 @@ class TestAsyncIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve_signed_url(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `indexing_job_uuid` but received ''"):
@@ -601,7 +601,7 @@ class TestAsyncIndexingJobs:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_cancel(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.update_cancel(
@@ -609,7 +609,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_cancel_with_all_params(self, async_client: AsyncGradient) -> None:
         indexing_job = await async_client.knowledge_bases.indexing_jobs.update_cancel(
@@ -618,7 +618,7 @@ class TestAsyncIndexingJobs:
         )
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update_cancel(self, async_client: AsyncGradient) -> None:
         response = await async_client.knowledge_bases.indexing_jobs.with_raw_response.update_cancel(
@@ -630,7 +630,7 @@ class TestAsyncIndexingJobs:
         indexing_job = await response.parse()
         assert_matches_type(IndexingJobUpdateCancelResponse, indexing_job, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update_cancel(self, async_client: AsyncGradient) -> None:
         async with async_client.knowledge_bases.indexing_jobs.with_streaming_response.update_cancel(
@@ -644,7 +644,7 @@ class TestAsyncIndexingJobs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update_cancel(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_uuid` but received ''"):

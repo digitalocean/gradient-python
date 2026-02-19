@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestResponses:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_overload_1(self, client: Gradient) -> None:
         response = client.responses.create(
@@ -26,7 +26,7 @@ class TestResponses:
         )
         assert_matches_type(CreateResponseResponse, response, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Gradient) -> None:
         response = client.responses.create(
@@ -56,7 +56,7 @@ class TestResponses:
         )
         assert_matches_type(CreateResponseResponse, response, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Gradient) -> None:
         http_response = client.responses.with_raw_response.create(
@@ -69,7 +69,7 @@ class TestResponses:
         response = http_response.parse()
         assert_matches_type(CreateResponseResponse, response, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Gradient) -> None:
         with client.responses.with_streaming_response.create(
@@ -84,7 +84,7 @@ class TestResponses:
 
         assert cast(Any, http_response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_overload_2(self, client: Gradient) -> None:
         response_stream = client.responses.create(
@@ -94,7 +94,7 @@ class TestResponses:
         )
         response_stream.response.close()
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Gradient) -> None:
         response_stream = client.responses.create(
@@ -124,7 +124,7 @@ class TestResponses:
         )
         response_stream.response.close()
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Gradient) -> None:
         response = client.responses.with_raw_response.create(
@@ -137,7 +137,7 @@ class TestResponses:
         stream = response.parse()
         stream.close()
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Gradient) -> None:
         with client.responses.with_streaming_response.create(
@@ -159,7 +159,7 @@ class TestAsyncResponses:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.responses.create(
@@ -168,7 +168,7 @@ class TestAsyncResponses:
         )
         assert_matches_type(CreateResponseResponse, response, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncGradient) -> None:
         response = await async_client.responses.create(
@@ -198,7 +198,7 @@ class TestAsyncResponses:
         )
         assert_matches_type(CreateResponseResponse, response, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         http_response = await async_client.responses.with_raw_response.create(
@@ -211,7 +211,7 @@ class TestAsyncResponses:
         response = await http_response.parse()
         assert_matches_type(CreateResponseResponse, response, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncGradient) -> None:
         async with async_client.responses.with_streaming_response.create(
@@ -226,7 +226,7 @@ class TestAsyncResponses:
 
         assert cast(Any, http_response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncGradient) -> None:
         response_stream = await async_client.responses.create(
@@ -236,7 +236,7 @@ class TestAsyncResponses:
         )
         await response_stream.response.aclose()
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncGradient) -> None:
         response_stream = await async_client.responses.create(
@@ -266,7 +266,7 @@ class TestAsyncResponses:
         )
         await response_stream.response.aclose()
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         response = await async_client.responses.with_raw_response.create(
@@ -279,7 +279,7 @@ class TestAsyncResponses:
         stream = await response.parse()
         await stream.close()
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncGradient) -> None:
         async with async_client.responses.with_streaming_response.create(
