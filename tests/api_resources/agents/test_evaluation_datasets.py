@@ -20,13 +20,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEvaluationDatasets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         evaluation_dataset = client.agents.evaluation_datasets.create()
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         evaluation_dataset = client.agents.evaluation_datasets.create(
@@ -40,7 +40,7 @@ class TestEvaluationDatasets:
         )
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.agents.evaluation_datasets.with_raw_response.create()
@@ -50,7 +50,7 @@ class TestEvaluationDatasets:
         evaluation_dataset = response.parse()
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.agents.evaluation_datasets.with_streaming_response.create() as response:
@@ -62,7 +62,7 @@ class TestEvaluationDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_file_upload_presigned_urls(self, client: Gradient) -> None:
         evaluation_dataset = client.agents.evaluation_datasets.create_file_upload_presigned_urls()
@@ -70,7 +70,7 @@ class TestEvaluationDatasets:
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_file_upload_presigned_urls_with_all_params(self, client: Gradient) -> None:
         evaluation_dataset = client.agents.evaluation_datasets.create_file_upload_presigned_urls(
@@ -85,7 +85,7 @@ class TestEvaluationDatasets:
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_file_upload_presigned_urls(self, client: Gradient) -> None:
         response = client.agents.evaluation_datasets.with_raw_response.create_file_upload_presigned_urls()
@@ -97,7 +97,7 @@ class TestEvaluationDatasets:
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_file_upload_presigned_urls(self, client: Gradient) -> None:
         with client.agents.evaluation_datasets.with_streaming_response.create_file_upload_presigned_urls() as response:
@@ -117,13 +117,13 @@ class TestAsyncEvaluationDatasets:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create()
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create(
@@ -137,7 +137,7 @@ class TestAsyncEvaluationDatasets:
         )
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_datasets.with_raw_response.create()
@@ -147,7 +147,7 @@ class TestAsyncEvaluationDatasets:
         evaluation_dataset = await response.parse()
         assert_matches_type(EvaluationDatasetCreateResponse, evaluation_dataset, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_datasets.with_streaming_response.create() as response:
@@ -159,7 +159,7 @@ class TestAsyncEvaluationDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_file_upload_presigned_urls(self, async_client: AsyncGradient) -> None:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create_file_upload_presigned_urls()
@@ -167,7 +167,7 @@ class TestAsyncEvaluationDatasets:
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_file_upload_presigned_urls_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_dataset = await async_client.agents.evaluation_datasets.create_file_upload_presigned_urls(
@@ -182,7 +182,7 @@ class TestAsyncEvaluationDatasets:
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_file_upload_presigned_urls(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_datasets.with_raw_response.create_file_upload_presigned_urls()
@@ -194,7 +194,7 @@ class TestAsyncEvaluationDatasets:
             EvaluationDatasetCreateFileUploadPresignedURLsResponse, evaluation_dataset, path=["response"]
         )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_file_upload_presigned_urls(self, async_client: AsyncGradient) -> None:
         async with (

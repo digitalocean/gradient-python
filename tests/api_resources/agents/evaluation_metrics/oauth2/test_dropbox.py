@@ -17,13 +17,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDropbox:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_tokens(self, client: Gradient) -> None:
         dropbox = client.agents.evaluation_metrics.oauth2.dropbox.create_tokens()
         assert_matches_type(DropboxCreateTokensResponse, dropbox, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_tokens_with_all_params(self, client: Gradient) -> None:
         dropbox = client.agents.evaluation_metrics.oauth2.dropbox.create_tokens(
@@ -32,7 +32,7 @@ class TestDropbox:
         )
         assert_matches_type(DropboxCreateTokensResponse, dropbox, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create_tokens(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.oauth2.dropbox.with_raw_response.create_tokens()
@@ -42,7 +42,7 @@ class TestDropbox:
         dropbox = response.parse()
         assert_matches_type(DropboxCreateTokensResponse, dropbox, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create_tokens(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.oauth2.dropbox.with_streaming_response.create_tokens() as response:
@@ -60,13 +60,13 @@ class TestAsyncDropbox:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_tokens(self, async_client: AsyncGradient) -> None:
         dropbox = await async_client.agents.evaluation_metrics.oauth2.dropbox.create_tokens()
         assert_matches_type(DropboxCreateTokensResponse, dropbox, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_tokens_with_all_params(self, async_client: AsyncGradient) -> None:
         dropbox = await async_client.agents.evaluation_metrics.oauth2.dropbox.create_tokens(
@@ -75,7 +75,7 @@ class TestAsyncDropbox:
         )
         assert_matches_type(DropboxCreateTokensResponse, dropbox, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create_tokens(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.oauth2.dropbox.with_raw_response.create_tokens()
@@ -85,7 +85,7 @@ class TestAsyncDropbox:
         dropbox = await response.parse()
         assert_matches_type(DropboxCreateTokensResponse, dropbox, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create_tokens(self, async_client: AsyncGradient) -> None:
         async with (

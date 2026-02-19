@@ -21,13 +21,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestScheduledIndexing:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         scheduled_indexing = client.agents.evaluation_metrics.scheduled_indexing.create()
         assert_matches_type(ScheduledIndexingCreateResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         scheduled_indexing = client.agents.evaluation_metrics.scheduled_indexing.create(
@@ -37,7 +37,7 @@ class TestScheduledIndexing:
         )
         assert_matches_type(ScheduledIndexingCreateResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.scheduled_indexing.with_raw_response.create()
@@ -47,7 +47,7 @@ class TestScheduledIndexing:
         scheduled_indexing = response.parse()
         assert_matches_type(ScheduledIndexingCreateResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.scheduled_indexing.with_streaming_response.create() as response:
@@ -59,7 +59,7 @@ class TestScheduledIndexing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         scheduled_indexing = client.agents.evaluation_metrics.scheduled_indexing.retrieve(
@@ -67,7 +67,7 @@ class TestScheduledIndexing:
         )
         assert_matches_type(ScheduledIndexingRetrieveResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.scheduled_indexing.with_raw_response.retrieve(
@@ -79,7 +79,7 @@ class TestScheduledIndexing:
         scheduled_indexing = response.parse()
         assert_matches_type(ScheduledIndexingRetrieveResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.scheduled_indexing.with_streaming_response.retrieve(
@@ -93,7 +93,7 @@ class TestScheduledIndexing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
@@ -101,7 +101,7 @@ class TestScheduledIndexing:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_delete(self, client: Gradient) -> None:
         scheduled_indexing = client.agents.evaluation_metrics.scheduled_indexing.delete(
@@ -109,7 +109,7 @@ class TestScheduledIndexing:
         )
         assert_matches_type(ScheduledIndexingDeleteResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_delete(self, client: Gradient) -> None:
         response = client.agents.evaluation_metrics.scheduled_indexing.with_raw_response.delete(
@@ -121,7 +121,7 @@ class TestScheduledIndexing:
         scheduled_indexing = response.parse()
         assert_matches_type(ScheduledIndexingDeleteResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_delete(self, client: Gradient) -> None:
         with client.agents.evaluation_metrics.scheduled_indexing.with_streaming_response.delete(
@@ -135,7 +135,7 @@ class TestScheduledIndexing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_delete(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
@@ -149,13 +149,13 @@ class TestAsyncScheduledIndexing:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         scheduled_indexing = await async_client.agents.evaluation_metrics.scheduled_indexing.create()
         assert_matches_type(ScheduledIndexingCreateResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         scheduled_indexing = await async_client.agents.evaluation_metrics.scheduled_indexing.create(
@@ -165,7 +165,7 @@ class TestAsyncScheduledIndexing:
         )
         assert_matches_type(ScheduledIndexingCreateResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.scheduled_indexing.with_raw_response.create()
@@ -175,7 +175,7 @@ class TestAsyncScheduledIndexing:
         scheduled_indexing = await response.parse()
         assert_matches_type(ScheduledIndexingCreateResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with (
@@ -189,7 +189,7 @@ class TestAsyncScheduledIndexing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         scheduled_indexing = await async_client.agents.evaluation_metrics.scheduled_indexing.retrieve(
@@ -197,7 +197,7 @@ class TestAsyncScheduledIndexing:
         )
         assert_matches_type(ScheduledIndexingRetrieveResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.scheduled_indexing.with_raw_response.retrieve(
@@ -209,7 +209,7 @@ class TestAsyncScheduledIndexing:
         scheduled_indexing = await response.parse()
         assert_matches_type(ScheduledIndexingRetrieveResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.scheduled_indexing.with_streaming_response.retrieve(
@@ -223,7 +223,7 @@ class TestAsyncScheduledIndexing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_uuid` but received ''"):
@@ -231,7 +231,7 @@ class TestAsyncScheduledIndexing:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_delete(self, async_client: AsyncGradient) -> None:
         scheduled_indexing = await async_client.agents.evaluation_metrics.scheduled_indexing.delete(
@@ -239,7 +239,7 @@ class TestAsyncScheduledIndexing:
         )
         assert_matches_type(ScheduledIndexingDeleteResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_metrics.scheduled_indexing.with_raw_response.delete(
@@ -251,7 +251,7 @@ class TestAsyncScheduledIndexing:
         scheduled_indexing = await response.parse()
         assert_matches_type(ScheduledIndexingDeleteResponse, scheduled_indexing, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_metrics.scheduled_indexing.with_streaming_response.delete(
@@ -265,7 +265,7 @@ class TestAsyncScheduledIndexing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):

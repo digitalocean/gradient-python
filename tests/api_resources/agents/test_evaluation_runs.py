@@ -22,13 +22,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEvaluationRuns:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.create()
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.create(
@@ -39,7 +39,7 @@ class TestEvaluationRuns:
         )
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.create()
@@ -49,7 +49,7 @@ class TestEvaluationRuns:
         evaluation_run = response.parse()
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.create() as response:
@@ -61,7 +61,7 @@ class TestEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.retrieve(
@@ -69,7 +69,7 @@ class TestEvaluationRuns:
         )
         assert_matches_type(EvaluationRunRetrieveResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.retrieve(
@@ -81,7 +81,7 @@ class TestEvaluationRuns:
         evaluation_run = response.parse()
         assert_matches_type(EvaluationRunRetrieveResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.retrieve(
@@ -95,7 +95,7 @@ class TestEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
@@ -103,7 +103,7 @@ class TestEvaluationRuns:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_results(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.list_results(
@@ -111,7 +111,7 @@ class TestEvaluationRuns:
         )
         assert_matches_type(EvaluationRunListResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_results_with_all_params(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.list_results(
@@ -121,7 +121,7 @@ class TestEvaluationRuns:
         )
         assert_matches_type(EvaluationRunListResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list_results(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.list_results(
@@ -133,7 +133,7 @@ class TestEvaluationRuns:
         evaluation_run = response.parse()
         assert_matches_type(EvaluationRunListResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list_results(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.list_results(
@@ -147,7 +147,7 @@ class TestEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list_results(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
@@ -155,7 +155,7 @@ class TestEvaluationRuns:
                 evaluation_run_uuid="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_results(self, client: Gradient) -> None:
         evaluation_run = client.agents.evaluation_runs.retrieve_results(
@@ -164,7 +164,7 @@ class TestEvaluationRuns:
         )
         assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve_results(self, client: Gradient) -> None:
         response = client.agents.evaluation_runs.with_raw_response.retrieve_results(
@@ -177,7 +177,7 @@ class TestEvaluationRuns:
         evaluation_run = response.parse()
         assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_results(self, client: Gradient) -> None:
         with client.agents.evaluation_runs.with_streaming_response.retrieve_results(
@@ -192,7 +192,7 @@ class TestEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve_results(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
@@ -207,13 +207,13 @@ class TestAsyncEvaluationRuns:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.create()
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.create(
@@ -224,7 +224,7 @@ class TestAsyncEvaluationRuns:
         )
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.create()
@@ -234,7 +234,7 @@ class TestAsyncEvaluationRuns:
         evaluation_run = await response.parse()
         assert_matches_type(EvaluationRunCreateResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.create() as response:
@@ -246,7 +246,7 @@ class TestAsyncEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.retrieve(
@@ -254,7 +254,7 @@ class TestAsyncEvaluationRuns:
         )
         assert_matches_type(EvaluationRunRetrieveResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.retrieve(
@@ -266,7 +266,7 @@ class TestAsyncEvaluationRuns:
         evaluation_run = await response.parse()
         assert_matches_type(EvaluationRunRetrieveResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.retrieve(
@@ -280,7 +280,7 @@ class TestAsyncEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
@@ -288,7 +288,7 @@ class TestAsyncEvaluationRuns:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_results(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.list_results(
@@ -296,7 +296,7 @@ class TestAsyncEvaluationRuns:
         )
         assert_matches_type(EvaluationRunListResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_results_with_all_params(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.list_results(
@@ -306,7 +306,7 @@ class TestAsyncEvaluationRuns:
         )
         assert_matches_type(EvaluationRunListResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list_results(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.list_results(
@@ -318,7 +318,7 @@ class TestAsyncEvaluationRuns:
         evaluation_run = await response.parse()
         assert_matches_type(EvaluationRunListResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list_results(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.list_results(
@@ -332,7 +332,7 @@ class TestAsyncEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list_results(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
@@ -340,7 +340,7 @@ class TestAsyncEvaluationRuns:
                 evaluation_run_uuid="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_results(self, async_client: AsyncGradient) -> None:
         evaluation_run = await async_client.agents.evaluation_runs.retrieve_results(
@@ -349,7 +349,7 @@ class TestAsyncEvaluationRuns:
         )
         assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_results(self, async_client: AsyncGradient) -> None:
         response = await async_client.agents.evaluation_runs.with_raw_response.retrieve_results(
@@ -362,7 +362,7 @@ class TestAsyncEvaluationRuns:
         evaluation_run = await response.parse()
         assert_matches_type(EvaluationRunRetrieveResultsResponse, evaluation_run, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_results(self, async_client: AsyncGradient) -> None:
         async with async_client.agents.evaluation_runs.with_streaming_response.retrieve_results(
@@ -377,7 +377,7 @@ class TestAsyncEvaluationRuns:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve_results(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `evaluation_run_uuid` but received ''"):
