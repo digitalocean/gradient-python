@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRetrieve:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_documents(self, client: Gradient) -> None:
         retrieve = client.retrieve.documents(
@@ -27,7 +27,7 @@ class TestRetrieve:
         )
         assert_matches_type(RetrieveDocumentsResponse, retrieve, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_documents_with_all_params(self, client: Gradient) -> None:
         retrieve = client.retrieve.documents(
@@ -61,7 +61,7 @@ class TestRetrieve:
         )
         assert_matches_type(RetrieveDocumentsResponse, retrieve, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_documents(self, client: Gradient) -> None:
         response = client.retrieve.with_raw_response.documents(
@@ -75,7 +75,7 @@ class TestRetrieve:
         retrieve = response.parse()
         assert_matches_type(RetrieveDocumentsResponse, retrieve, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_documents(self, client: Gradient) -> None:
         with client.retrieve.with_streaming_response.documents(
@@ -91,7 +91,7 @@ class TestRetrieve:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_documents(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_id` but received ''"):
@@ -107,7 +107,7 @@ class TestAsyncRetrieve:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_documents(self, async_client: AsyncGradient) -> None:
         retrieve = await async_client.retrieve.documents(
@@ -117,7 +117,7 @@ class TestAsyncRetrieve:
         )
         assert_matches_type(RetrieveDocumentsResponse, retrieve, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_documents_with_all_params(self, async_client: AsyncGradient) -> None:
         retrieve = await async_client.retrieve.documents(
@@ -151,7 +151,7 @@ class TestAsyncRetrieve:
         )
         assert_matches_type(RetrieveDocumentsResponse, retrieve, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_documents(self, async_client: AsyncGradient) -> None:
         response = await async_client.retrieve.with_raw_response.documents(
@@ -165,7 +165,7 @@ class TestAsyncRetrieve:
         retrieve = await response.parse()
         assert_matches_type(RetrieveDocumentsResponse, retrieve, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_documents(self, async_client: AsyncGradient) -> None:
         async with async_client.retrieve.with_streaming_response.documents(
@@ -181,7 +181,7 @@ class TestAsyncRetrieve:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_documents(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `knowledge_base_id` but received ''"):

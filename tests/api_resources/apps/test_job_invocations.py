@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestJobInvocations:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_cancel(self, client: Gradient) -> None:
         job_invocation = client.apps.job_invocations.cancel(
@@ -26,7 +26,7 @@ class TestJobInvocations:
         )
         assert_matches_type(JobInvocationCancelResponse, job_invocation, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_cancel_with_all_params(self, client: Gradient) -> None:
         job_invocation = client.apps.job_invocations.cancel(
@@ -36,7 +36,7 @@ class TestJobInvocations:
         )
         assert_matches_type(JobInvocationCancelResponse, job_invocation, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_cancel(self, client: Gradient) -> None:
         response = client.apps.job_invocations.with_raw_response.cancel(
@@ -49,7 +49,7 @@ class TestJobInvocations:
         job_invocation = response.parse()
         assert_matches_type(JobInvocationCancelResponse, job_invocation, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_cancel(self, client: Gradient) -> None:
         with client.apps.job_invocations.with_streaming_response.cancel(
@@ -64,7 +64,7 @@ class TestJobInvocations:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_cancel(self, client: Gradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
@@ -85,7 +85,7 @@ class TestAsyncJobInvocations:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_cancel(self, async_client: AsyncGradient) -> None:
         job_invocation = await async_client.apps.job_invocations.cancel(
@@ -94,7 +94,7 @@ class TestAsyncJobInvocations:
         )
         assert_matches_type(JobInvocationCancelResponse, job_invocation, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_cancel_with_all_params(self, async_client: AsyncGradient) -> None:
         job_invocation = await async_client.apps.job_invocations.cancel(
@@ -104,7 +104,7 @@ class TestAsyncJobInvocations:
         )
         assert_matches_type(JobInvocationCancelResponse, job_invocation, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_cancel(self, async_client: AsyncGradient) -> None:
         response = await async_client.apps.job_invocations.with_raw_response.cancel(
@@ -117,7 +117,7 @@ class TestAsyncJobInvocations:
         job_invocation = await response.parse()
         assert_matches_type(JobInvocationCancelResponse, job_invocation, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_cancel(self, async_client: AsyncGradient) -> None:
         async with async_client.apps.job_invocations.with_streaming_response.cancel(
@@ -132,7 +132,7 @@ class TestAsyncJobInvocations:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_cancel(self, async_client: AsyncGradient) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
