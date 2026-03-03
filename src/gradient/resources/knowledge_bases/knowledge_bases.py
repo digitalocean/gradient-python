@@ -79,12 +79,22 @@ class KnowledgeBaseTimeoutError(Exception):
 
 
 class KnowledgeBasesResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def data_sources(self) -> DataSourcesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return DataSourcesResource(self._client)
 
     @cached_property
     def indexing_jobs(self) -> IndexingJobsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return IndexingJobsResource(self._client)
 
     @cached_property
@@ -507,12 +517,22 @@ class KnowledgeBasesResource(SyncAPIResource):
 
 
 class AsyncKnowledgeBasesResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncDataSourcesResource(self._client)
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncIndexingJobsResource(self._client)
 
     @cached_property
@@ -964,10 +984,16 @@ class KnowledgeBasesResourceWithRawResponse:
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return DataSourcesResourceWithRawResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> IndexingJobsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return IndexingJobsResourceWithRawResponse(self._knowledge_bases.indexing_jobs)
 
 
@@ -999,10 +1025,16 @@ class AsyncKnowledgeBasesResourceWithRawResponse:
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncDataSourcesResourceWithRawResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncIndexingJobsResourceWithRawResponse(self._knowledge_bases.indexing_jobs)
 
 
@@ -1034,10 +1066,16 @@ class KnowledgeBasesResourceWithStreamingResponse:
 
     @cached_property
     def data_sources(self) -> DataSourcesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return DataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> IndexingJobsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return IndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)
 
 
@@ -1069,8 +1107,14 @@ class AsyncKnowledgeBasesResourceWithStreamingResponse:
 
     @cached_property
     def data_sources(self) -> AsyncDataSourcesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncDataSourcesResourceWithStreamingResponse(self._knowledge_bases.data_sources)
 
     @cached_property
     def indexing_jobs(self) -> AsyncIndexingJobsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncIndexingJobsResourceWithStreamingResponse(self._knowledge_bases.indexing_jobs)

@@ -19,6 +19,9 @@ __all__ = ["OpenAIResource", "AsyncOpenAIResource"]
 class OpenAIResource(SyncAPIResource):
     @cached_property
     def keys(self) -> KeysResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return KeysResource(self._client)
 
     @cached_property
@@ -44,6 +47,9 @@ class OpenAIResource(SyncAPIResource):
 class AsyncOpenAIResource(AsyncAPIResource):
     @cached_property
     def keys(self) -> AsyncKeysResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncKeysResource(self._client)
 
     @cached_property
@@ -72,6 +78,9 @@ class OpenAIResourceWithRawResponse:
 
     @cached_property
     def keys(self) -> KeysResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return KeysResourceWithRawResponse(self._openai.keys)
 
 
@@ -81,6 +90,9 @@ class AsyncOpenAIResourceWithRawResponse:
 
     @cached_property
     def keys(self) -> AsyncKeysResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncKeysResourceWithRawResponse(self._openai.keys)
 
 
@@ -90,6 +102,9 @@ class OpenAIResourceWithStreamingResponse:
 
     @cached_property
     def keys(self) -> KeysResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return KeysResourceWithStreamingResponse(self._openai.keys)
 
 
@@ -99,4 +114,7 @@ class AsyncOpenAIResourceWithStreamingResponse:
 
     @cached_property
     def keys(self) -> AsyncKeysResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncKeysResourceWithStreamingResponse(self._openai.keys)

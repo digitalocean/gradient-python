@@ -25,6 +25,35 @@ __all__ = ["BillingResource", "AsyncBillingResource"]
 
 
 class BillingResource(SyncAPIResource):
+    """
+    The billing endpoints allow you to retrieve your account balance, invoices,
+    billing history, and insights.
+
+    **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+    retrieve the balance information for the requested customer account.
+
+    **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+    are generated on the first of each month for every DigitalOcean
+    customer. An invoice preview is generated daily, which can be accessed
+    with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+    invoices, you will generally send requests to the invoices endpoint at
+    `/v2/customers/my/invoices`.
+
+    **Billing History:** Billing history is a record of billing events for your account.
+    For example, entries may include events like payments made, invoices
+    issued, or credits granted. To interact with invoices, you
+    will generally send requests to the invoices endpoint at
+    `/v2/customers/my/billing_history`.
+
+    **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+    including total amount, region, SKU, and description for a specified date range.
+    It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+    a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+      `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+    account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+    start_date and end_date must be in YYYY-MM-DD format.
+    """
+
     @cached_property
     def with_raw_response(self) -> BillingResourceWithRawResponse:
         """
@@ -108,6 +137,35 @@ class BillingResource(SyncAPIResource):
 
 
 class AsyncBillingResource(AsyncAPIResource):
+    """
+    The billing endpoints allow you to retrieve your account balance, invoices,
+    billing history, and insights.
+
+    **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+    retrieve the balance information for the requested customer account.
+
+    **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+    are generated on the first of each month for every DigitalOcean
+    customer. An invoice preview is generated daily, which can be accessed
+    with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+    invoices, you will generally send requests to the invoices endpoint at
+    `/v2/customers/my/invoices`.
+
+    **Billing History:** Billing history is a record of billing events for your account.
+    For example, entries may include events like payments made, invoices
+    issued, or credits granted. To interact with invoices, you
+    will generally send requests to the invoices endpoint at
+    `/v2/customers/my/billing_history`.
+
+    **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+    including total amount, region, SKU, and description for a specified date range.
+    It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+    a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+      `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+    account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+    start_date and end_date must be in YYYY-MM-DD format.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncBillingResourceWithRawResponse:
         """

@@ -119,8 +119,15 @@ __all__ = ["AgentsResource", "AsyncAgentsResource"]
 
 
 class AgentsResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def api_keys(self) -> APIKeysResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return APIKeysResource(self._client)
 
     @cached_property
@@ -129,34 +136,58 @@ class AgentsResource(SyncAPIResource):
 
     @cached_property
     def evaluation_metrics(self) -> EvaluationMetricsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationMetricsResource(self._client)
 
     @cached_property
     def evaluation_runs(self) -> EvaluationRunsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationRunsResource(self._client)
 
     @cached_property
     def evaluation_test_cases(self) -> EvaluationTestCasesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationTestCasesResource(self._client)
 
     @cached_property
     def evaluation_datasets(self) -> EvaluationDatasetsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationDatasetsResource(self._client)
 
     @cached_property
     def functions(self) -> FunctionsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return FunctionsResource(self._client)
 
     @cached_property
     def versions(self) -> VersionsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return VersionsResource(self._client)
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return KnowledgeBasesResource(self._client)
 
     @cached_property
     def routes(self) -> RoutesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return RoutesResource(self._client)
 
     @cached_property
@@ -716,8 +747,15 @@ class AgentsResource(SyncAPIResource):
 
 
 class AsyncAgentsResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAPIKeysResource(self._client)
 
     @cached_property
@@ -726,34 +764,58 @@ class AsyncAgentsResource(AsyncAPIResource):
 
     @cached_property
     def evaluation_metrics(self) -> AsyncEvaluationMetricsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationMetricsResource(self._client)
 
     @cached_property
     def evaluation_runs(self) -> AsyncEvaluationRunsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationRunsResource(self._client)
 
     @cached_property
     def evaluation_test_cases(self) -> AsyncEvaluationTestCasesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationTestCasesResource(self._client)
 
     @cached_property
     def evaluation_datasets(self) -> AsyncEvaluationDatasetsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationDatasetsResource(self._client)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncFunctionsResource(self._client)
 
     @cached_property
     def versions(self) -> AsyncVersionsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncVersionsResource(self._client)
 
     @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncKnowledgeBasesResource(self._client)
 
     @cached_property
     def routes(self) -> AsyncRoutesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncRoutesResource(self._client)
 
     @cached_property
@@ -1345,6 +1407,9 @@ class AgentsResourceWithRawResponse:
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return APIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
@@ -1353,34 +1418,58 @@ class AgentsResourceWithRawResponse:
 
     @cached_property
     def evaluation_metrics(self) -> EvaluationMetricsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationMetricsResourceWithRawResponse(self._agents.evaluation_metrics)
 
     @cached_property
     def evaluation_runs(self) -> EvaluationRunsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationRunsResourceWithRawResponse(self._agents.evaluation_runs)
 
     @cached_property
     def evaluation_test_cases(self) -> EvaluationTestCasesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationTestCasesResourceWithRawResponse(self._agents.evaluation_test_cases)
 
     @cached_property
     def evaluation_datasets(self) -> EvaluationDatasetsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationDatasetsResourceWithRawResponse(self._agents.evaluation_datasets)
 
     @cached_property
     def functions(self) -> FunctionsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return FunctionsResourceWithRawResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> VersionsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return VersionsResourceWithRawResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return KnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
     @cached_property
     def routes(self) -> RoutesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return RoutesResourceWithRawResponse(self._agents.routes)
 
 
@@ -1415,6 +1504,9 @@ class AsyncAgentsResourceWithRawResponse:
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAPIKeysResourceWithRawResponse(self._agents.api_keys)
 
     @cached_property
@@ -1423,34 +1515,58 @@ class AsyncAgentsResourceWithRawResponse:
 
     @cached_property
     def evaluation_metrics(self) -> AsyncEvaluationMetricsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationMetricsResourceWithRawResponse(self._agents.evaluation_metrics)
 
     @cached_property
     def evaluation_runs(self) -> AsyncEvaluationRunsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationRunsResourceWithRawResponse(self._agents.evaluation_runs)
 
     @cached_property
     def evaluation_test_cases(self) -> AsyncEvaluationTestCasesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationTestCasesResourceWithRawResponse(self._agents.evaluation_test_cases)
 
     @cached_property
     def evaluation_datasets(self) -> AsyncEvaluationDatasetsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationDatasetsResourceWithRawResponse(self._agents.evaluation_datasets)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncFunctionsResourceWithRawResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncVersionsResourceWithRawResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncKnowledgeBasesResourceWithRawResponse(self._agents.knowledge_bases)
 
     @cached_property
     def routes(self) -> AsyncRoutesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncRoutesResourceWithRawResponse(self._agents.routes)
 
 
@@ -1485,6 +1601,9 @@ class AgentsResourceWithStreamingResponse:
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return APIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
@@ -1493,34 +1612,58 @@ class AgentsResourceWithStreamingResponse:
 
     @cached_property
     def evaluation_metrics(self) -> EvaluationMetricsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationMetricsResourceWithStreamingResponse(self._agents.evaluation_metrics)
 
     @cached_property
     def evaluation_runs(self) -> EvaluationRunsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationRunsResourceWithStreamingResponse(self._agents.evaluation_runs)
 
     @cached_property
     def evaluation_test_cases(self) -> EvaluationTestCasesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationTestCasesResourceWithStreamingResponse(self._agents.evaluation_test_cases)
 
     @cached_property
     def evaluation_datasets(self) -> EvaluationDatasetsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return EvaluationDatasetsResourceWithStreamingResponse(self._agents.evaluation_datasets)
 
     @cached_property
     def functions(self) -> FunctionsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return FunctionsResourceWithStreamingResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> VersionsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return VersionsResourceWithStreamingResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return KnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
 
     @cached_property
     def routes(self) -> RoutesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return RoutesResourceWithStreamingResponse(self._agents.routes)
 
 
@@ -1555,6 +1698,9 @@ class AsyncAgentsResourceWithStreamingResponse:
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAPIKeysResourceWithStreamingResponse(self._agents.api_keys)
 
     @cached_property
@@ -1563,32 +1709,56 @@ class AsyncAgentsResourceWithStreamingResponse:
 
     @cached_property
     def evaluation_metrics(self) -> AsyncEvaluationMetricsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationMetricsResourceWithStreamingResponse(self._agents.evaluation_metrics)
 
     @cached_property
     def evaluation_runs(self) -> AsyncEvaluationRunsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationRunsResourceWithStreamingResponse(self._agents.evaluation_runs)
 
     @cached_property
     def evaluation_test_cases(self) -> AsyncEvaluationTestCasesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationTestCasesResourceWithStreamingResponse(self._agents.evaluation_test_cases)
 
     @cached_property
     def evaluation_datasets(self) -> AsyncEvaluationDatasetsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncEvaluationDatasetsResourceWithStreamingResponse(self._agents.evaluation_datasets)
 
     @cached_property
     def functions(self) -> AsyncFunctionsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncFunctionsResourceWithStreamingResponse(self._agents.functions)
 
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncVersionsResourceWithStreamingResponse(self._agents.versions)
 
     @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._agents.knowledge_bases)
 
     @cached_property
     def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncRoutesResourceWithStreamingResponse(self._agents.routes)

@@ -34,8 +34,51 @@ __all__ = ["FloatingIPsResource", "AsyncFloatingIPsResource"]
 
 
 class FloatingIPsResource(SyncAPIResource):
+    """
+    As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+    The Reserved IP product's endpoints function the exact same way as Floating IPs.
+    The only difference is the name change throughout the URLs and fields.
+    For example, the `floating_ips` field is now the `reserved_ips` field.
+    The Floating IP endpoints will remain active until fall 2023 before being
+    permanently deprecated.
+
+    With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+    we will reflect this change as an additional field in the responses across the API
+    where the `floating_ip` field is used. For example, the Droplet metadata response
+    will contain the field `reserved_ips` in addition to the `floating_ips` field.
+    Floating IPs retrieved using the Projects API will retain the original name.
+
+    [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+    are publicly-accessible static IP addresses that can be mapped to one of
+    your Droplets. They can be used to create highly available setups or other
+    configurations requiring movable addresses.
+
+    Floating IPs are bound to a specific region.
+    """
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        Floating IP actions are commands that can be given to a DigitalOcean
+        floating IP. These requests are made on the actions endpoint of a specific
+        floating IP.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return ActionsResource(self._client)
 
     @cached_property
@@ -285,8 +328,51 @@ class FloatingIPsResource(SyncAPIResource):
 
 
 class AsyncFloatingIPsResource(AsyncAPIResource):
+    """
+    As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+    The Reserved IP product's endpoints function the exact same way as Floating IPs.
+    The only difference is the name change throughout the URLs and fields.
+    For example, the `floating_ips` field is now the `reserved_ips` field.
+    The Floating IP endpoints will remain active until fall 2023 before being
+    permanently deprecated.
+
+    With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+    we will reflect this change as an additional field in the responses across the API
+    where the `floating_ip` field is used. For example, the Droplet metadata response
+    will contain the field `reserved_ips` in addition to the `floating_ips` field.
+    Floating IPs retrieved using the Projects API will retain the original name.
+
+    [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+    are publicly-accessible static IP addresses that can be mapped to one of
+    your Droplets. They can be used to create highly available setups or other
+    configurations requiring movable addresses.
+
+    Floating IPs are bound to a specific region.
+    """
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        Floating IP actions are commands that can be given to a DigitalOcean
+        floating IP. These requests are made on the actions endpoint of a specific
+        floating IP.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -554,6 +640,27 @@ class FloatingIPsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        Floating IP actions are commands that can be given to a DigitalOcean
+        floating IP. These requests are made on the actions endpoint of a specific
+        floating IP.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return ActionsResourceWithRawResponse(self._floating_ips.actions)
 
 
@@ -576,6 +683,27 @@ class AsyncFloatingIPsResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        Floating IP actions are commands that can be given to a DigitalOcean
+        floating IP. These requests are made on the actions endpoint of a specific
+        floating IP.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return AsyncActionsResourceWithRawResponse(self._floating_ips.actions)
 
 
@@ -598,6 +726,27 @@ class FloatingIPsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        Floating IP actions are commands that can be given to a DigitalOcean
+        floating IP. These requests are made on the actions endpoint of a specific
+        floating IP.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return ActionsResourceWithStreamingResponse(self._floating_ips.actions)
 
 
@@ -620,4 +769,25 @@ class AsyncFloatingIPsResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        Floating IP actions are commands that can be given to a DigitalOcean
+        floating IP. These requests are made on the actions endpoint of a specific
+        floating IP.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return AsyncActionsResourceWithStreamingResponse(self._floating_ips.actions)

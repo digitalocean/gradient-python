@@ -43,12 +43,48 @@ __all__ = ["VolumesResource", "AsyncVolumesResource"]
 
 
 class VolumesResource(SyncAPIResource):
+    """
+    [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+    provide expanded storage capacity for your Droplets and can be moved
+    between Droplets within a specific region.
+
+    Volumes function as raw block devices, meaning they appear to the
+    operating system as locally attached storage which can be formatted using
+    any file system supported by the OS. They may be created in sizes from
+    1GiB to 16TiB.
+
+    By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+    delete volumes as well as attach and detach them from Droplets
+    """
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """
+        Block storage actions are commands that can be given to a DigitalOcean
+        Block Storage Volume. An example would be detaching or attaching a volume
+        from a Droplet. These requests are made on the
+        `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return ActionsResource(self._client)
 
     @cached_property
     def snapshots(self) -> SnapshotsResource:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return SnapshotsResource(self._client)
 
     @cached_property
@@ -536,12 +572,48 @@ class VolumesResource(SyncAPIResource):
 
 
 class AsyncVolumesResource(AsyncAPIResource):
+    """
+    [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+    provide expanded storage capacity for your Droplets and can be moved
+    between Droplets within a specific region.
+
+    Volumes function as raw block devices, meaning they appear to the
+    operating system as locally attached storage which can be formatted using
+    any file system supported by the OS. They may be created in sizes from
+    1GiB to 16TiB.
+
+    By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+    delete volumes as well as attach and detach them from Droplets
+    """
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """
+        Block storage actions are commands that can be given to a DigitalOcean
+        Block Storage Volume. An example would be detaching or attaching a volume
+        from a Droplet. These requests are made on the
+        `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return AsyncActionsResource(self._client)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResource:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return AsyncSnapshotsResource(self._client)
 
     @cached_property
@@ -1050,10 +1122,32 @@ class VolumesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """
+        Block storage actions are commands that can be given to a DigitalOcean
+        Block Storage Volume. An example would be detaching or attaching a volume
+        from a Droplet. These requests are made on the
+        `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return ActionsResourceWithRawResponse(self._volumes.actions)
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithRawResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return SnapshotsResourceWithRawResponse(self._volumes.snapshots)
 
 
@@ -1079,10 +1173,32 @@ class AsyncVolumesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """
+        Block storage actions are commands that can be given to a DigitalOcean
+        Block Storage Volume. An example would be detaching or attaching a volume
+        from a Droplet. These requests are made on the
+        `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return AsyncActionsResourceWithRawResponse(self._volumes.actions)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithRawResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return AsyncSnapshotsResourceWithRawResponse(self._volumes.snapshots)
 
 
@@ -1108,10 +1224,32 @@ class VolumesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """
+        Block storage actions are commands that can be given to a DigitalOcean
+        Block Storage Volume. An example would be detaching or attaching a volume
+        from a Droplet. These requests are made on the
+        `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return ActionsResourceWithStreamingResponse(self._volumes.actions)
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return SnapshotsResourceWithStreamingResponse(self._volumes.snapshots)
 
 
@@ -1137,8 +1275,30 @@ class AsyncVolumesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """
+        Block storage actions are commands that can be given to a DigitalOcean
+        Block Storage Volume. An example would be detaching or attaching a volume
+        from a Droplet. These requests are made on the
+        `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+        An action object is returned. These objects hold the current status of the
+        requested action.
+        """
         return AsyncActionsResourceWithStreamingResponse(self._volumes.actions)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return AsyncSnapshotsResourceWithStreamingResponse(self._volumes.snapshots)

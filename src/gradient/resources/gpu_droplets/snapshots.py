@@ -26,6 +26,18 @@ __all__ = ["SnapshotsResource", "AsyncSnapshotsResource"]
 
 
 class SnapshotsResource(SyncAPIResource):
+    """
+    [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+    instances of a Droplet or a block storage volume, which is reflected in
+    the `resource_type` attribute. In order to avoid problems with compressing
+    filesystems, each defines a `min_disk_size` attribute which is the minimum
+    size of the Droplet or volume disk when creating a new resource from the
+    saved snapshot.
+
+    To interact with snapshots, you will generally send requests to the
+    snapshots endpoint at `/v2/snapshots`.
+    """
+
     @cached_property
     def with_raw_response(self) -> SnapshotsResourceWithRawResponse:
         """
@@ -196,6 +208,18 @@ class SnapshotsResource(SyncAPIResource):
 
 
 class AsyncSnapshotsResource(AsyncAPIResource):
+    """
+    [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+    instances of a Droplet or a block storage volume, which is reflected in
+    the `resource_type` attribute. In order to avoid problems with compressing
+    filesystems, each defines a `min_disk_size` attribute which is the minimum
+    size of the Droplet or volume disk when creating a new resource from the
+    saved snapshot.
+
+    To interact with snapshots, you will generally send requests to the
+    snapshots endpoint at `/v2/snapshots`.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSnapshotsResourceWithRawResponse:
         """

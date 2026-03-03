@@ -50,16 +50,45 @@ __all__ = ["FirewallsResource", "AsyncFirewallsResource"]
 
 
 class FirewallsResource(SyncAPIResource):
+    """
+    [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+    provide the ability to restrict network access to and from a Droplet
+    allowing you to define which ports will accept inbound or outbound
+    connections. By sending requests to the `/v2/firewalls` endpoint, you can
+    list, create, or delete firewalls as well as modify access rules.
+    """
+
     @cached_property
     def droplets(self) -> DropletsResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return DropletsResource(self._client)
 
     @cached_property
     def tags(self) -> TagsResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return TagsResource(self._client)
 
     @cached_property
     def rules(self) -> RulesResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return RulesResource(self._client)
 
     @cached_property
@@ -283,16 +312,45 @@ class FirewallsResource(SyncAPIResource):
 
 
 class AsyncFirewallsResource(AsyncAPIResource):
+    """
+    [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+    provide the ability to restrict network access to and from a Droplet
+    allowing you to define which ports will accept inbound or outbound
+    connections. By sending requests to the `/v2/firewalls` endpoint, you can
+    list, create, or delete firewalls as well as modify access rules.
+    """
+
     @cached_property
     def droplets(self) -> AsyncDropletsResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncDropletsResource(self._client)
 
     @cached_property
     def tags(self) -> AsyncTagsResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncTagsResource(self._client)
 
     @cached_property
     def rules(self) -> AsyncRulesResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncRulesResource(self._client)
 
     @cached_property
@@ -537,14 +595,35 @@ class FirewallsResourceWithRawResponse:
 
     @cached_property
     def droplets(self) -> DropletsResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return DropletsResourceWithRawResponse(self._firewalls.droplets)
 
     @cached_property
     def tags(self) -> TagsResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return TagsResourceWithRawResponse(self._firewalls.tags)
 
     @cached_property
     def rules(self) -> RulesResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return RulesResourceWithRawResponse(self._firewalls.rules)
 
 
@@ -570,14 +649,35 @@ class AsyncFirewallsResourceWithRawResponse:
 
     @cached_property
     def droplets(self) -> AsyncDropletsResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncDropletsResourceWithRawResponse(self._firewalls.droplets)
 
     @cached_property
     def tags(self) -> AsyncTagsResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncTagsResourceWithRawResponse(self._firewalls.tags)
 
     @cached_property
     def rules(self) -> AsyncRulesResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncRulesResourceWithRawResponse(self._firewalls.rules)
 
 
@@ -603,14 +703,35 @@ class FirewallsResourceWithStreamingResponse:
 
     @cached_property
     def droplets(self) -> DropletsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return DropletsResourceWithStreamingResponse(self._firewalls.droplets)
 
     @cached_property
     def tags(self) -> TagsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return TagsResourceWithStreamingResponse(self._firewalls.tags)
 
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return RulesResourceWithStreamingResponse(self._firewalls.rules)
 
 
@@ -636,12 +757,33 @@ class AsyncFirewallsResourceWithStreamingResponse:
 
     @cached_property
     def droplets(self) -> AsyncDropletsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncDropletsResourceWithStreamingResponse(self._firewalls.droplets)
 
     @cached_property
     def tags(self) -> AsyncTagsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncTagsResourceWithStreamingResponse(self._firewalls.tags)
 
     @cached_property
     def rules(self) -> AsyncRulesResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncRulesResourceWithStreamingResponse(self._firewalls.rules)

@@ -19,6 +19,9 @@ __all__ = ["ChatResource", "AsyncChatResource"]
 class ChatResource(SyncAPIResource):
     @cached_property
     def completions(self) -> CompletionsResource:
+        """
+        Given a list of messages comprising a conversation, the model will return a response.
+        """
         return CompletionsResource(self._client)
 
     @cached_property
@@ -44,6 +47,9 @@ class ChatResource(SyncAPIResource):
 class AsyncChatResource(AsyncAPIResource):
     @cached_property
     def completions(self) -> AsyncCompletionsResource:
+        """
+        Given a list of messages comprising a conversation, the model will return a response.
+        """
         return AsyncCompletionsResource(self._client)
 
     @cached_property
@@ -72,6 +78,9 @@ class ChatResourceWithRawResponse:
 
     @cached_property
     def completions(self) -> CompletionsResourceWithRawResponse:
+        """
+        Given a list of messages comprising a conversation, the model will return a response.
+        """
         return CompletionsResourceWithRawResponse(self._chat.completions)
 
 
@@ -81,6 +90,9 @@ class AsyncChatResourceWithRawResponse:
 
     @cached_property
     def completions(self) -> AsyncCompletionsResourceWithRawResponse:
+        """
+        Given a list of messages comprising a conversation, the model will return a response.
+        """
         return AsyncCompletionsResourceWithRawResponse(self._chat.completions)
 
 
@@ -90,6 +102,9 @@ class ChatResourceWithStreamingResponse:
 
     @cached_property
     def completions(self) -> CompletionsResourceWithStreamingResponse:
+        """
+        Given a list of messages comprising a conversation, the model will return a response.
+        """
         return CompletionsResourceWithStreamingResponse(self._chat.completions)
 
 
@@ -99,4 +114,7 @@ class AsyncChatResourceWithStreamingResponse:
 
     @cached_property
     def completions(self) -> AsyncCompletionsResourceWithStreamingResponse:
+        """
+        Given a list of messages comprising a conversation, the model will return a response.
+        """
         return AsyncCompletionsResourceWithStreamingResponse(self._chat.completions)

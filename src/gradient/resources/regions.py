@@ -22,6 +22,8 @@ __all__ = ["RegionsResource", "AsyncRegionsResource"]
 
 
 class RegionsResource(SyncAPIResource):
+    """Provides information about DigitalOcean data center regions."""
+
     @cached_property
     def with_raw_response(self) -> RegionsResourceWithRawResponse:
         """
@@ -92,6 +94,8 @@ class RegionsResource(SyncAPIResource):
 
 
 class AsyncRegionsResource(AsyncAPIResource):
+    """Provides information about DigitalOcean data center regions."""
+
     @cached_property
     def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
         """

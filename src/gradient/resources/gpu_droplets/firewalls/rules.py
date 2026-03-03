@@ -23,6 +23,14 @@ __all__ = ["RulesResource", "AsyncRulesResource"]
 
 
 class RulesResource(SyncAPIResource):
+    """
+    [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+    provide the ability to restrict network access to and from a Droplet
+    allowing you to define which ports will accept inbound or outbound
+    connections. By sending requests to the `/v2/firewalls` endpoint, you can
+    list, create, or delete firewalls as well as modify access rules.
+    """
+
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
         """
@@ -148,6 +156,14 @@ class RulesResource(SyncAPIResource):
 
 
 class AsyncRulesResource(AsyncAPIResource):
+    """
+    [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+    provide the ability to restrict network access to and from a Droplet
+    allowing you to define which ports will accept inbound or outbound
+    connections. By sending requests to the `/v2/firewalls` endpoint, you can
+    list, create, or delete firewalls as well as modify access rules.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
         """

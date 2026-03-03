@@ -19,6 +19,9 @@ __all__ = ["InferenceResource", "AsyncInferenceResource"]
 class InferenceResource(SyncAPIResource):
     @cached_property
     def api_keys(self) -> APIKeysResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return APIKeysResource(self._client)
 
     @cached_property
@@ -44,6 +47,9 @@ class InferenceResource(SyncAPIResource):
 class AsyncInferenceResource(AsyncAPIResource):
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAPIKeysResource(self._client)
 
     @cached_property
@@ -72,6 +78,9 @@ class InferenceResourceWithRawResponse:
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return APIKeysResourceWithRawResponse(self._inference.api_keys)
 
 
@@ -81,6 +90,9 @@ class AsyncInferenceResourceWithRawResponse:
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAPIKeysResourceWithRawResponse(self._inference.api_keys)
 
 
@@ -90,6 +102,9 @@ class InferenceResourceWithStreamingResponse:
 
     @cached_property
     def api_keys(self) -> APIKeysResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return APIKeysResourceWithStreamingResponse(self._inference.api_keys)
 
 
@@ -99,4 +114,7 @@ class AsyncInferenceResourceWithStreamingResponse:
 
     @cached_property
     def api_keys(self) -> AsyncAPIKeysResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAPIKeysResourceWithStreamingResponse(self._inference.api_keys)
