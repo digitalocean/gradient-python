@@ -54,12 +54,34 @@ __all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
 
 
 class LoadBalancersResource(SyncAPIResource):
+    """
+    [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+    provide a way to distribute traffic across multiple Droplets. By sending
+    requests to the `/v2/load_balancers` endpoint, you can list, create, or
+    delete load balancers as well as add or remove Droplets, forwarding rules,
+    and other configuration details.
+    """
+
     @cached_property
     def droplets(self) -> DropletsResource:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return DropletsResource(self._client)
 
     @cached_property
     def forwarding_rules(self) -> ForwardingRulesResource:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return ForwardingRulesResource(self._client)
 
     @cached_property
@@ -1066,12 +1088,34 @@ class LoadBalancersResource(SyncAPIResource):
 
 
 class AsyncLoadBalancersResource(AsyncAPIResource):
+    """
+    [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+    provide a way to distribute traffic across multiple Droplets. By sending
+    requests to the `/v2/load_balancers` endpoint, you can list, create, or
+    delete load balancers as well as add or remove Droplets, forwarding rules,
+    and other configuration details.
+    """
+
     @cached_property
     def droplets(self) -> AsyncDropletsResource:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncDropletsResource(self._client)
 
     @cached_property
     def forwarding_rules(self) -> AsyncForwardingRulesResource:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncForwardingRulesResource(self._client)
 
     @cached_property
@@ -2102,10 +2146,24 @@ class LoadBalancersResourceWithRawResponse:
 
     @cached_property
     def droplets(self) -> DropletsResourceWithRawResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return DropletsResourceWithRawResponse(self._load_balancers.droplets)
 
     @cached_property
     def forwarding_rules(self) -> ForwardingRulesResourceWithRawResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return ForwardingRulesResourceWithRawResponse(self._load_balancers.forwarding_rules)
 
 
@@ -2134,10 +2192,24 @@ class AsyncLoadBalancersResourceWithRawResponse:
 
     @cached_property
     def droplets(self) -> AsyncDropletsResourceWithRawResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncDropletsResourceWithRawResponse(self._load_balancers.droplets)
 
     @cached_property
     def forwarding_rules(self) -> AsyncForwardingRulesResourceWithRawResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncForwardingRulesResourceWithRawResponse(self._load_balancers.forwarding_rules)
 
 
@@ -2166,10 +2238,24 @@ class LoadBalancersResourceWithStreamingResponse:
 
     @cached_property
     def droplets(self) -> DropletsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return DropletsResourceWithStreamingResponse(self._load_balancers.droplets)
 
     @cached_property
     def forwarding_rules(self) -> ForwardingRulesResourceWithStreamingResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return ForwardingRulesResourceWithStreamingResponse(self._load_balancers.forwarding_rules)
 
 
@@ -2198,8 +2284,22 @@ class AsyncLoadBalancersResourceWithStreamingResponse:
 
     @cached_property
     def droplets(self) -> AsyncDropletsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncDropletsResourceWithStreamingResponse(self._load_balancers.droplets)
 
     @cached_property
     def forwarding_rules(self) -> AsyncForwardingRulesResourceWithStreamingResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncForwardingRulesResourceWithStreamingResponse(self._load_balancers.forwarding_rules)

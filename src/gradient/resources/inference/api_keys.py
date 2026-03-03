@@ -26,6 +26,10 @@ __all__ = ["APIKeysResource", "AsyncAPIKeysResource"]
 
 
 class APIKeysResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def with_raw_response(self) -> APIKeysResourceWithRawResponse:
         """
@@ -252,6 +256,10 @@ class APIKeysResource(SyncAPIResource):
 
 
 class AsyncAPIKeysResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAPIKeysResourceWithRawResponse:
         """

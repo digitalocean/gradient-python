@@ -27,6 +27,10 @@ __all__ = ["CompletionsResource", "AsyncCompletionsResource"]
 
 
 class CompletionsResource(SyncAPIResource):
+    """
+    Given a list of messages comprising a conversation, the model will return a response.
+    """
+
     @cached_property
     def with_raw_response(self) -> CompletionsResourceWithRawResponse:
         """
@@ -516,6 +520,10 @@ class CompletionsResource(SyncAPIResource):
 
 
 class AsyncCompletionsResource(AsyncAPIResource):
+    """
+    Given a list of messages comprising a conversation, the model will return a response.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncCompletionsResourceWithRawResponse:
         """

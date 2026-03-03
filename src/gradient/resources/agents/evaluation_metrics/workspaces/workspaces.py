@@ -37,8 +37,15 @@ __all__ = ["WorkspacesResource", "AsyncWorkspacesResource"]
 
 
 class WorkspacesResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def agents(self) -> AgentsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AgentsResource(self._client)
 
     @cached_property
@@ -299,8 +306,15 @@ class WorkspacesResource(SyncAPIResource):
 
 
 class AsyncWorkspacesResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def agents(self) -> AsyncAgentsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAgentsResource(self._client)
 
     @cached_property
@@ -585,6 +599,9 @@ class WorkspacesResourceWithRawResponse:
 
     @cached_property
     def agents(self) -> AgentsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AgentsResourceWithRawResponse(self._workspaces.agents)
 
 
@@ -613,6 +630,9 @@ class AsyncWorkspacesResourceWithRawResponse:
 
     @cached_property
     def agents(self) -> AsyncAgentsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAgentsResourceWithRawResponse(self._workspaces.agents)
 
 
@@ -641,6 +661,9 @@ class WorkspacesResourceWithStreamingResponse:
 
     @cached_property
     def agents(self) -> AgentsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AgentsResourceWithStreamingResponse(self._workspaces.agents)
 
 
@@ -669,4 +692,7 @@ class AsyncWorkspacesResourceWithStreamingResponse:
 
     @cached_property
     def agents(self) -> AsyncAgentsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAgentsResourceWithStreamingResponse(self._workspaces.agents)

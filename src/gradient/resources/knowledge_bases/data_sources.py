@@ -37,6 +37,10 @@ __all__ = ["DataSourcesResource", "AsyncDataSourcesResource"]
 
 
 class DataSourcesResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def with_raw_response(self) -> DataSourcesResourceWithRawResponse:
         """
@@ -350,6 +354,10 @@ class DataSourcesResource(SyncAPIResource):
 
 
 class AsyncDataSourcesResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncDataSourcesResourceWithRawResponse:
         """

@@ -63,8 +63,15 @@ __all__ = ["EvaluationMetricsResource", "AsyncEvaluationMetricsResource"]
 
 
 class EvaluationMetricsResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def workspaces(self) -> WorkspacesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return WorkspacesResource(self._client)
 
     @cached_property
@@ -77,10 +84,16 @@ class EvaluationMetricsResource(SyncAPIResource):
 
     @cached_property
     def oauth2(self) -> Oauth2Resource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return Oauth2Resource(self._client)
 
     @cached_property
     def scheduled_indexing(self) -> ScheduledIndexingResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return ScheduledIndexingResource(self._client)
 
     @cached_property
@@ -176,8 +189,15 @@ class EvaluationMetricsResource(SyncAPIResource):
 
 
 class AsyncEvaluationMetricsResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def workspaces(self) -> AsyncWorkspacesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncWorkspacesResource(self._client)
 
     @cached_property
@@ -190,10 +210,16 @@ class AsyncEvaluationMetricsResource(AsyncAPIResource):
 
     @cached_property
     def oauth2(self) -> AsyncOauth2Resource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncOauth2Resource(self._client)
 
     @cached_property
     def scheduled_indexing(self) -> AsyncScheduledIndexingResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncScheduledIndexingResource(self._client)
 
     @cached_property
@@ -301,6 +327,9 @@ class EvaluationMetricsResourceWithRawResponse:
 
     @cached_property
     def workspaces(self) -> WorkspacesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return WorkspacesResourceWithRawResponse(self._evaluation_metrics.workspaces)
 
     @cached_property
@@ -313,10 +342,16 @@ class EvaluationMetricsResourceWithRawResponse:
 
     @cached_property
     def oauth2(self) -> Oauth2ResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return Oauth2ResourceWithRawResponse(self._evaluation_metrics.oauth2)
 
     @cached_property
     def scheduled_indexing(self) -> ScheduledIndexingResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return ScheduledIndexingResourceWithRawResponse(self._evaluation_metrics.scheduled_indexing)
 
 
@@ -333,6 +368,9 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
 
     @cached_property
     def workspaces(self) -> AsyncWorkspacesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncWorkspacesResourceWithRawResponse(self._evaluation_metrics.workspaces)
 
     @cached_property
@@ -345,10 +383,16 @@ class AsyncEvaluationMetricsResourceWithRawResponse:
 
     @cached_property
     def oauth2(self) -> AsyncOauth2ResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncOauth2ResourceWithRawResponse(self._evaluation_metrics.oauth2)
 
     @cached_property
     def scheduled_indexing(self) -> AsyncScheduledIndexingResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncScheduledIndexingResourceWithRawResponse(self._evaluation_metrics.scheduled_indexing)
 
 
@@ -365,6 +409,9 @@ class EvaluationMetricsResourceWithStreamingResponse:
 
     @cached_property
     def workspaces(self) -> WorkspacesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return WorkspacesResourceWithStreamingResponse(self._evaluation_metrics.workspaces)
 
     @cached_property
@@ -377,10 +424,16 @@ class EvaluationMetricsResourceWithStreamingResponse:
 
     @cached_property
     def oauth2(self) -> Oauth2ResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return Oauth2ResourceWithStreamingResponse(self._evaluation_metrics.oauth2)
 
     @cached_property
     def scheduled_indexing(self) -> ScheduledIndexingResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return ScheduledIndexingResourceWithStreamingResponse(self._evaluation_metrics.scheduled_indexing)
 
 
@@ -397,6 +450,9 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
 
     @cached_property
     def workspaces(self) -> AsyncWorkspacesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncWorkspacesResourceWithStreamingResponse(self._evaluation_metrics.workspaces)
 
     @cached_property
@@ -409,8 +465,14 @@ class AsyncEvaluationMetricsResourceWithStreamingResponse:
 
     @cached_property
     def oauth2(self) -> AsyncOauth2ResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncOauth2ResourceWithStreamingResponse(self._evaluation_metrics.oauth2)
 
     @cached_property
     def scheduled_indexing(self) -> AsyncScheduledIndexingResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncScheduledIndexingResourceWithStreamingResponse(self._evaluation_metrics.scheduled_indexing)

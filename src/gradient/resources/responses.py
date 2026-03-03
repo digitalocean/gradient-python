@@ -27,6 +27,8 @@ __all__ = ["ResponsesResource", "AsyncResponsesResource"]
 
 
 class ResponsesResource(SyncAPIResource):
+    """Generate text-to-text responses from text prompts."""
+
     @cached_property
     def with_raw_response(self) -> ResponsesResourceWithRawResponse:
         """
@@ -426,6 +428,8 @@ class ResponsesResource(SyncAPIResource):
 
 
 class AsyncResponsesResource(AsyncAPIResource):
+    """Generate text-to-text responses from text prompts."""
+
     @cached_property
     def with_raw_response(self) -> AsyncResponsesResourceWithRawResponse:
         """

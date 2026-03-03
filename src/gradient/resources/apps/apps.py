@@ -19,6 +19,18 @@ __all__ = ["AppsResource", "AsyncAppsResource"]
 class AppsResource(SyncAPIResource):
     @cached_property
     def job_invocations(self) -> JobInvocationsResource:
+        """
+        App Platform is a Platform-as-a-Service (PaaS) offering from DigitalOcean that allows
+        developers to publish code directly to DigitalOcean servers without worrying about the
+        underlying infrastructure.
+
+        Most API operations are centered around a few core object types. Following are the
+        definitions of these types. These definitions will be omitted from the operation-specific
+        documentation.
+
+        For documentation on app specifications (`AppSpec` objects), please refer to the
+        [product documentation](https://docs.digitalocean.com/products/app-platform/reference/app-spec/)).
+        """
         return JobInvocationsResource(self._client)
 
     @cached_property
@@ -44,6 +56,18 @@ class AppsResource(SyncAPIResource):
 class AsyncAppsResource(AsyncAPIResource):
     @cached_property
     def job_invocations(self) -> AsyncJobInvocationsResource:
+        """
+        App Platform is a Platform-as-a-Service (PaaS) offering from DigitalOcean that allows
+        developers to publish code directly to DigitalOcean servers without worrying about the
+        underlying infrastructure.
+
+        Most API operations are centered around a few core object types. Following are the
+        definitions of these types. These definitions will be omitted from the operation-specific
+        documentation.
+
+        For documentation on app specifications (`AppSpec` objects), please refer to the
+        [product documentation](https://docs.digitalocean.com/products/app-platform/reference/app-spec/)).
+        """
         return AsyncJobInvocationsResource(self._client)
 
     @cached_property
@@ -72,6 +96,18 @@ class AppsResourceWithRawResponse:
 
     @cached_property
     def job_invocations(self) -> JobInvocationsResourceWithRawResponse:
+        """
+        App Platform is a Platform-as-a-Service (PaaS) offering from DigitalOcean that allows
+        developers to publish code directly to DigitalOcean servers without worrying about the
+        underlying infrastructure.
+
+        Most API operations are centered around a few core object types. Following are the
+        definitions of these types. These definitions will be omitted from the operation-specific
+        documentation.
+
+        For documentation on app specifications (`AppSpec` objects), please refer to the
+        [product documentation](https://docs.digitalocean.com/products/app-platform/reference/app-spec/)).
+        """
         return JobInvocationsResourceWithRawResponse(self._apps.job_invocations)
 
 
@@ -81,6 +117,18 @@ class AsyncAppsResourceWithRawResponse:
 
     @cached_property
     def job_invocations(self) -> AsyncJobInvocationsResourceWithRawResponse:
+        """
+        App Platform is a Platform-as-a-Service (PaaS) offering from DigitalOcean that allows
+        developers to publish code directly to DigitalOcean servers without worrying about the
+        underlying infrastructure.
+
+        Most API operations are centered around a few core object types. Following are the
+        definitions of these types. These definitions will be omitted from the operation-specific
+        documentation.
+
+        For documentation on app specifications (`AppSpec` objects), please refer to the
+        [product documentation](https://docs.digitalocean.com/products/app-platform/reference/app-spec/)).
+        """
         return AsyncJobInvocationsResourceWithRawResponse(self._apps.job_invocations)
 
 
@@ -90,6 +138,18 @@ class AppsResourceWithStreamingResponse:
 
     @cached_property
     def job_invocations(self) -> JobInvocationsResourceWithStreamingResponse:
+        """
+        App Platform is a Platform-as-a-Service (PaaS) offering from DigitalOcean that allows
+        developers to publish code directly to DigitalOcean servers without worrying about the
+        underlying infrastructure.
+
+        Most API operations are centered around a few core object types. Following are the
+        definitions of these types. These definitions will be omitted from the operation-specific
+        documentation.
+
+        For documentation on app specifications (`AppSpec` objects), please refer to the
+        [product documentation](https://docs.digitalocean.com/products/app-platform/reference/app-spec/)).
+        """
         return JobInvocationsResourceWithStreamingResponse(self._apps.job_invocations)
 
 
@@ -99,4 +159,16 @@ class AsyncAppsResourceWithStreamingResponse:
 
     @cached_property
     def job_invocations(self) -> AsyncJobInvocationsResourceWithStreamingResponse:
+        """
+        App Platform is a Platform-as-a-Service (PaaS) offering from DigitalOcean that allows
+        developers to publish code directly to DigitalOcean servers without worrying about the
+        underlying infrastructure.
+
+        Most API operations are centered around a few core object types. Following are the
+        definitions of these types. These definitions will be omitted from the operation-specific
+        documentation.
+
+        For documentation on app specifications (`AppSpec` objects), please refer to the
+        [product documentation](https://docs.digitalocean.com/products/app-platform/reference/app-spec/)).
+        """
         return AsyncJobInvocationsResourceWithStreamingResponse(self._apps.job_invocations)

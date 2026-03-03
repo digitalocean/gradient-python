@@ -27,6 +27,8 @@ __all__ = ["KeysResource", "AsyncKeysResource"]
 
 
 class KeysResource(SyncAPIResource):
+    """Manage SSH keys available on your account."""
+
     @cached_property
     def with_raw_response(self) -> KeysResourceWithRawResponse:
         """
@@ -266,6 +268,8 @@ class KeysResource(SyncAPIResource):
 
 
 class AsyncKeysResource(AsyncAPIResource):
+    """Manage SSH keys available on your account."""
+
     @cached_property
     def with_raw_response(self) -> AsyncKeysResourceWithRawResponse:
         """

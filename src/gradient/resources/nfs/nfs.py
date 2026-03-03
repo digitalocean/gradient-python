@@ -37,6 +37,10 @@ __all__ = ["NfsResource", "AsyncNfsResource"]
 class NfsResource(SyncAPIResource):
     @cached_property
     def snapshots(self) -> SnapshotsResource:
+        """
+        NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+        high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+        """
         return SnapshotsResource(self._client)
 
     @cached_property
@@ -450,6 +454,10 @@ class NfsResource(SyncAPIResource):
 class AsyncNfsResource(AsyncAPIResource):
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResource:
+        """
+        NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+        high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+        """
         return AsyncSnapshotsResource(self._client)
 
     @cached_property
@@ -882,6 +890,10 @@ class NfsResourceWithRawResponse:
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithRawResponse:
+        """
+        NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+        high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+        """
         return SnapshotsResourceWithRawResponse(self._nfs.snapshots)
 
 
@@ -907,6 +919,10 @@ class AsyncNfsResourceWithRawResponse:
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithRawResponse:
+        """
+        NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+        high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+        """
         return AsyncSnapshotsResourceWithRawResponse(self._nfs.snapshots)
 
 
@@ -932,6 +948,10 @@ class NfsResourceWithStreamingResponse:
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithStreamingResponse:
+        """
+        NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+        high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+        """
         return SnapshotsResourceWithStreamingResponse(self._nfs.snapshots)
 
 
@@ -957,4 +977,8 @@ class AsyncNfsResourceWithStreamingResponse:
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithStreamingResponse:
+        """
+        NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+        high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+        """
         return AsyncSnapshotsResourceWithStreamingResponse(self._nfs.snapshots)

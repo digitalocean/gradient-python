@@ -27,6 +27,17 @@ __all__ = ["DestroyWithAssociatedResourcesResource", "AsyncDestroyWithAssociated
 
 
 class DestroyWithAssociatedResourcesResource(SyncAPIResource):
+    """
+    A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+    virtual machine. By sending requests to the Droplet endpoint, you can
+    list, create, or delete Droplets.
+
+    Some of the attributes will have an object value. The `region` and `image`
+    objects will all contain the standard attributes of their associated
+    types. Find more information about each of these objects in their
+    respective sections.
+    """
+
     @cached_property
     def with_raw_response(self) -> DestroyWithAssociatedResourcesResourceWithRawResponse:
         """
@@ -283,6 +294,17 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
 
 
 class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
+    """
+    A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+    virtual machine. By sending requests to the Droplet endpoint, you can
+    list, create, or delete Droplets.
+
+    Some of the attributes will have an object value. The `region` and `image`
+    objects will all contain the standard attributes of their associated
+    types. Find more information about each of these objects in their
+    respective sections.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncDestroyWithAssociatedResourcesResourceWithRawResponse:
         """

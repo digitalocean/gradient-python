@@ -135,48 +135,197 @@ __all__ = ["GPUDropletsResource", "AsyncGPUDropletsResource"]
 
 
 class GPUDropletsResource(SyncAPIResource):
+    """
+    A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+    virtual machine. By sending requests to the Droplet endpoint, you can
+    list, create, or delete Droplets.
+
+    Some of the attributes will have an object value. The `region` and `image`
+    objects will all contain the standard attributes of their associated
+    types. Find more information about each of these objects in their
+    respective sections.
+    """
+
     @cached_property
     def backups(self) -> BackupsResource:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return BackupsResource(self._client)
 
     @cached_property
     def actions(self) -> ActionsResource:
+        """Droplet actions are tasks that can be executed on a Droplet.
+
+        These can be
+        things like rebooting, resizing, snapshotting, etc.
+
+        Droplet action requests are generally targeted at one of the "actions"
+        endpoints for a specific Droplet. The specific actions are usually
+        initiated by sending a POST request with the action and arguments as
+        parameters.
+
+        Droplet action requests create a Droplet actions object, which can be used
+        to get information about the status of an action. Creating a Droplet
+        action is asynchronous: the HTTP call will return the action object before
+        the action has finished processing on the Droplet. The current status of
+        an action can be retrieved from either the Droplet actions endpoint or the
+        global actions endpoint. If a Droplet action is uncompleted it may block
+        the creation of a subsequent action for that Droplet, the locked attribute
+        of the Droplet will be true and attempts to create a Droplet action will
+        fail with a status of 422.
+        """
         return ActionsResource(self._client)
 
     @cached_property
     def destroy_with_associated_resources(self) -> DestroyWithAssociatedResourcesResource:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return DestroyWithAssociatedResourcesResource(self._client)
 
     @cached_property
     def autoscale(self) -> AutoscaleResource:
+        """
+        Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+        """
         return AutoscaleResource(self._client)
 
     @cached_property
     def firewalls(self) -> FirewallsResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return FirewallsResource(self._client)
 
     @cached_property
     def floating_ips(self) -> FloatingIPsResource:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+        are publicly-accessible static IP addresses that can be mapped to one of
+        your Droplets. They can be used to create highly available setups or other
+        configurations requiring movable addresses.
+
+        Floating IPs are bound to a specific region.
+        """
         return FloatingIPsResource(self._client)
 
     @cached_property
     def images(self) -> ImagesResource:
+        """
+        A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+        used to create a Droplet and may come in a number of flavors. Currently,
+        there are five types of images: snapshots, backups, applications,
+        distributions, and custom images.
+
+        * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+        a full copy of an existing Droplet instance taken on demand.
+
+        * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+        to snapshots but are created automatically at regular intervals when
+        enabled for a Droplet.
+
+        * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+        are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+        formats are supported) that you may upload for use on DigitalOcean.
+
+        * Distributions are the public Linux distributions that are available to
+        be used as a base to create Droplets.
+
+        * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+        are distributions pre-configured with additional software.
+
+        To interact with images, you will generally send requests to the images
+        endpoint at /v2/images.
+        """
         return ImagesResource(self._client)
 
     @cached_property
     def load_balancers(self) -> LoadBalancersResource:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return LoadBalancersResource(self._client)
 
     @cached_property
     def sizes(self) -> SizesResource:
+        """
+        The sizes objects represent different packages of hardware resources that
+        can be used for Droplets. When a Droplet is created, a size must be
+        selected so that the correct resources can be allocated.
+
+        Each size represents a plan that bundles together specific sets of
+        resources. This includes the amount of RAM, the number of virtual CPUs,
+        disk space, and transfer. The size object also includes the pricing
+        details and the regions that the size is available in.
+        """
         return SizesResource(self._client)
 
     @cached_property
     def snapshots(self) -> SnapshotsResource:
+        """
+        [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+        instances of a Droplet or a block storage volume, which is reflected in
+        the `resource_type` attribute. In order to avoid problems with compressing
+        filesystems, each defines a `min_disk_size` attribute which is the minimum
+        size of the Droplet or volume disk when creating a new resource from the
+        saved snapshot.
+
+        To interact with snapshots, you will generally send requests to the
+        snapshots endpoint at `/v2/snapshots`.
+        """
         return SnapshotsResource(self._client)
 
     @cached_property
     def volumes(self) -> VolumesResource:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return VolumesResource(self._client)
 
     @cached_property
@@ -906,48 +1055,197 @@ class GPUDropletsResource(SyncAPIResource):
 
 
 class AsyncGPUDropletsResource(AsyncAPIResource):
+    """
+    A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+    virtual machine. By sending requests to the Droplet endpoint, you can
+    list, create, or delete Droplets.
+
+    Some of the attributes will have an object value. The `region` and `image`
+    objects will all contain the standard attributes of their associated
+    types. Find more information about each of these objects in their
+    respective sections.
+    """
+
     @cached_property
     def backups(self) -> AsyncBackupsResource:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return AsyncBackupsResource(self._client)
 
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Droplet actions are tasks that can be executed on a Droplet.
+
+        These can be
+        things like rebooting, resizing, snapshotting, etc.
+
+        Droplet action requests are generally targeted at one of the "actions"
+        endpoints for a specific Droplet. The specific actions are usually
+        initiated by sending a POST request with the action and arguments as
+        parameters.
+
+        Droplet action requests create a Droplet actions object, which can be used
+        to get information about the status of an action. Creating a Droplet
+        action is asynchronous: the HTTP call will return the action object before
+        the action has finished processing on the Droplet. The current status of
+        an action can be retrieved from either the Droplet actions endpoint or the
+        global actions endpoint. If a Droplet action is uncompleted it may block
+        the creation of a subsequent action for that Droplet, the locked attribute
+        of the Droplet will be true and attempts to create a Droplet action will
+        fail with a status of 422.
+        """
         return AsyncActionsResource(self._client)
 
     @cached_property
     def destroy_with_associated_resources(self) -> AsyncDestroyWithAssociatedResourcesResource:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return AsyncDestroyWithAssociatedResourcesResource(self._client)
 
     @cached_property
     def autoscale(self) -> AsyncAutoscaleResource:
+        """
+        Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+        """
         return AsyncAutoscaleResource(self._client)
 
     @cached_property
     def firewalls(self) -> AsyncFirewallsResource:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncFirewallsResource(self._client)
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResource:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+        are publicly-accessible static IP addresses that can be mapped to one of
+        your Droplets. They can be used to create highly available setups or other
+        configurations requiring movable addresses.
+
+        Floating IPs are bound to a specific region.
+        """
         return AsyncFloatingIPsResource(self._client)
 
     @cached_property
     def images(self) -> AsyncImagesResource:
+        """
+        A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+        used to create a Droplet and may come in a number of flavors. Currently,
+        there are five types of images: snapshots, backups, applications,
+        distributions, and custom images.
+
+        * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+        a full copy of an existing Droplet instance taken on demand.
+
+        * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+        to snapshots but are created automatically at regular intervals when
+        enabled for a Droplet.
+
+        * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+        are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+        formats are supported) that you may upload for use on DigitalOcean.
+
+        * Distributions are the public Linux distributions that are available to
+        be used as a base to create Droplets.
+
+        * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+        are distributions pre-configured with additional software.
+
+        To interact with images, you will generally send requests to the images
+        endpoint at /v2/images.
+        """
         return AsyncImagesResource(self._client)
 
     @cached_property
     def load_balancers(self) -> AsyncLoadBalancersResource:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncLoadBalancersResource(self._client)
 
     @cached_property
     def sizes(self) -> AsyncSizesResource:
+        """
+        The sizes objects represent different packages of hardware resources that
+        can be used for Droplets. When a Droplet is created, a size must be
+        selected so that the correct resources can be allocated.
+
+        Each size represents a plan that bundles together specific sets of
+        resources. This includes the amount of RAM, the number of virtual CPUs,
+        disk space, and transfer. The size object also includes the pricing
+        details and the regions that the size is available in.
+        """
         return AsyncSizesResource(self._client)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResource:
+        """
+        [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+        instances of a Droplet or a block storage volume, which is reflected in
+        the `resource_type` attribute. In order to avoid problems with compressing
+        filesystems, each defines a `min_disk_size` attribute which is the minimum
+        size of the Droplet or volume disk when creating a new resource from the
+        saved snapshot.
+
+        To interact with snapshots, you will generally send requests to the
+        snapshots endpoint at `/v2/snapshots`.
+        """
         return AsyncSnapshotsResource(self._client)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResource:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return AsyncVolumesResource(self._client)
 
     @cached_property
@@ -1710,48 +2008,186 @@ class GPUDropletsResourceWithRawResponse:
 
     @cached_property
     def backups(self) -> BackupsResourceWithRawResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return BackupsResourceWithRawResponse(self._gpu_droplets.backups)
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Droplet actions are tasks that can be executed on a Droplet.
+
+        These can be
+        things like rebooting, resizing, snapshotting, etc.
+
+        Droplet action requests are generally targeted at one of the "actions"
+        endpoints for a specific Droplet. The specific actions are usually
+        initiated by sending a POST request with the action and arguments as
+        parameters.
+
+        Droplet action requests create a Droplet actions object, which can be used
+        to get information about the status of an action. Creating a Droplet
+        action is asynchronous: the HTTP call will return the action object before
+        the action has finished processing on the Droplet. The current status of
+        an action can be retrieved from either the Droplet actions endpoint or the
+        global actions endpoint. If a Droplet action is uncompleted it may block
+        the creation of a subsequent action for that Droplet, the locked attribute
+        of the Droplet will be true and attempts to create a Droplet action will
+        fail with a status of 422.
+        """
         return ActionsResourceWithRawResponse(self._gpu_droplets.actions)
 
     @cached_property
     def destroy_with_associated_resources(self) -> DestroyWithAssociatedResourcesResourceWithRawResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return DestroyWithAssociatedResourcesResourceWithRawResponse(
             self._gpu_droplets.destroy_with_associated_resources
         )
 
     @cached_property
     def autoscale(self) -> AutoscaleResourceWithRawResponse:
+        """
+        Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+        """
         return AutoscaleResourceWithRawResponse(self._gpu_droplets.autoscale)
 
     @cached_property
     def firewalls(self) -> FirewallsResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return FirewallsResourceWithRawResponse(self._gpu_droplets.firewalls)
 
     @cached_property
     def floating_ips(self) -> FloatingIPsResourceWithRawResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+        are publicly-accessible static IP addresses that can be mapped to one of
+        your Droplets. They can be used to create highly available setups or other
+        configurations requiring movable addresses.
+
+        Floating IPs are bound to a specific region.
+        """
         return FloatingIPsResourceWithRawResponse(self._gpu_droplets.floating_ips)
 
     @cached_property
     def images(self) -> ImagesResourceWithRawResponse:
+        """
+        A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+        used to create a Droplet and may come in a number of flavors. Currently,
+        there are five types of images: snapshots, backups, applications,
+        distributions, and custom images.
+
+        * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+        a full copy of an existing Droplet instance taken on demand.
+
+        * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+        to snapshots but are created automatically at regular intervals when
+        enabled for a Droplet.
+
+        * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+        are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+        formats are supported) that you may upload for use on DigitalOcean.
+
+        * Distributions are the public Linux distributions that are available to
+        be used as a base to create Droplets.
+
+        * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+        are distributions pre-configured with additional software.
+
+        To interact with images, you will generally send requests to the images
+        endpoint at /v2/images.
+        """
         return ImagesResourceWithRawResponse(self._gpu_droplets.images)
 
     @cached_property
     def load_balancers(self) -> LoadBalancersResourceWithRawResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return LoadBalancersResourceWithRawResponse(self._gpu_droplets.load_balancers)
 
     @cached_property
     def sizes(self) -> SizesResourceWithRawResponse:
+        """
+        The sizes objects represent different packages of hardware resources that
+        can be used for Droplets. When a Droplet is created, a size must be
+        selected so that the correct resources can be allocated.
+
+        Each size represents a plan that bundles together specific sets of
+        resources. This includes the amount of RAM, the number of virtual CPUs,
+        disk space, and transfer. The size object also includes the pricing
+        details and the regions that the size is available in.
+        """
         return SizesResourceWithRawResponse(self._gpu_droplets.sizes)
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithRawResponse:
+        """
+        [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+        instances of a Droplet or a block storage volume, which is reflected in
+        the `resource_type` attribute. In order to avoid problems with compressing
+        filesystems, each defines a `min_disk_size` attribute which is the minimum
+        size of the Droplet or volume disk when creating a new resource from the
+        saved snapshot.
+
+        To interact with snapshots, you will generally send requests to the
+        snapshots endpoint at `/v2/snapshots`.
+        """
         return SnapshotsResourceWithRawResponse(self._gpu_droplets.snapshots)
 
     @cached_property
     def volumes(self) -> VolumesResourceWithRawResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return VolumesResourceWithRawResponse(self._gpu_droplets.volumes)
 
     @cached_property
@@ -1793,48 +2229,186 @@ class AsyncGPUDropletsResourceWithRawResponse:
 
     @cached_property
     def backups(self) -> AsyncBackupsResourceWithRawResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return AsyncBackupsResourceWithRawResponse(self._gpu_droplets.backups)
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Droplet actions are tasks that can be executed on a Droplet.
+
+        These can be
+        things like rebooting, resizing, snapshotting, etc.
+
+        Droplet action requests are generally targeted at one of the "actions"
+        endpoints for a specific Droplet. The specific actions are usually
+        initiated by sending a POST request with the action and arguments as
+        parameters.
+
+        Droplet action requests create a Droplet actions object, which can be used
+        to get information about the status of an action. Creating a Droplet
+        action is asynchronous: the HTTP call will return the action object before
+        the action has finished processing on the Droplet. The current status of
+        an action can be retrieved from either the Droplet actions endpoint or the
+        global actions endpoint. If a Droplet action is uncompleted it may block
+        the creation of a subsequent action for that Droplet, the locked attribute
+        of the Droplet will be true and attempts to create a Droplet action will
+        fail with a status of 422.
+        """
         return AsyncActionsResourceWithRawResponse(self._gpu_droplets.actions)
 
     @cached_property
     def destroy_with_associated_resources(self) -> AsyncDestroyWithAssociatedResourcesResourceWithRawResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return AsyncDestroyWithAssociatedResourcesResourceWithRawResponse(
             self._gpu_droplets.destroy_with_associated_resources
         )
 
     @cached_property
     def autoscale(self) -> AsyncAutoscaleResourceWithRawResponse:
+        """
+        Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+        """
         return AsyncAutoscaleResourceWithRawResponse(self._gpu_droplets.autoscale)
 
     @cached_property
     def firewalls(self) -> AsyncFirewallsResourceWithRawResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncFirewallsResourceWithRawResponse(self._gpu_droplets.firewalls)
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithRawResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+        are publicly-accessible static IP addresses that can be mapped to one of
+        your Droplets. They can be used to create highly available setups or other
+        configurations requiring movable addresses.
+
+        Floating IPs are bound to a specific region.
+        """
         return AsyncFloatingIPsResourceWithRawResponse(self._gpu_droplets.floating_ips)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithRawResponse:
+        """
+        A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+        used to create a Droplet and may come in a number of flavors. Currently,
+        there are five types of images: snapshots, backups, applications,
+        distributions, and custom images.
+
+        * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+        a full copy of an existing Droplet instance taken on demand.
+
+        * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+        to snapshots but are created automatically at regular intervals when
+        enabled for a Droplet.
+
+        * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+        are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+        formats are supported) that you may upload for use on DigitalOcean.
+
+        * Distributions are the public Linux distributions that are available to
+        be used as a base to create Droplets.
+
+        * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+        are distributions pre-configured with additional software.
+
+        To interact with images, you will generally send requests to the images
+        endpoint at /v2/images.
+        """
         return AsyncImagesResourceWithRawResponse(self._gpu_droplets.images)
 
     @cached_property
     def load_balancers(self) -> AsyncLoadBalancersResourceWithRawResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncLoadBalancersResourceWithRawResponse(self._gpu_droplets.load_balancers)
 
     @cached_property
     def sizes(self) -> AsyncSizesResourceWithRawResponse:
+        """
+        The sizes objects represent different packages of hardware resources that
+        can be used for Droplets. When a Droplet is created, a size must be
+        selected so that the correct resources can be allocated.
+
+        Each size represents a plan that bundles together specific sets of
+        resources. This includes the amount of RAM, the number of virtual CPUs,
+        disk space, and transfer. The size object also includes the pricing
+        details and the regions that the size is available in.
+        """
         return AsyncSizesResourceWithRawResponse(self._gpu_droplets.sizes)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithRawResponse:
+        """
+        [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+        instances of a Droplet or a block storage volume, which is reflected in
+        the `resource_type` attribute. In order to avoid problems with compressing
+        filesystems, each defines a `min_disk_size` attribute which is the minimum
+        size of the Droplet or volume disk when creating a new resource from the
+        saved snapshot.
+
+        To interact with snapshots, you will generally send requests to the
+        snapshots endpoint at `/v2/snapshots`.
+        """
         return AsyncSnapshotsResourceWithRawResponse(self._gpu_droplets.snapshots)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResourceWithRawResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return AsyncVolumesResourceWithRawResponse(self._gpu_droplets.volumes)
 
     @cached_property
@@ -1876,48 +2450,186 @@ class GPUDropletsResourceWithStreamingResponse:
 
     @cached_property
     def backups(self) -> BackupsResourceWithStreamingResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return BackupsResourceWithStreamingResponse(self._gpu_droplets.backups)
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Droplet actions are tasks that can be executed on a Droplet.
+
+        These can be
+        things like rebooting, resizing, snapshotting, etc.
+
+        Droplet action requests are generally targeted at one of the "actions"
+        endpoints for a specific Droplet. The specific actions are usually
+        initiated by sending a POST request with the action and arguments as
+        parameters.
+
+        Droplet action requests create a Droplet actions object, which can be used
+        to get information about the status of an action. Creating a Droplet
+        action is asynchronous: the HTTP call will return the action object before
+        the action has finished processing on the Droplet. The current status of
+        an action can be retrieved from either the Droplet actions endpoint or the
+        global actions endpoint. If a Droplet action is uncompleted it may block
+        the creation of a subsequent action for that Droplet, the locked attribute
+        of the Droplet will be true and attempts to create a Droplet action will
+        fail with a status of 422.
+        """
         return ActionsResourceWithStreamingResponse(self._gpu_droplets.actions)
 
     @cached_property
     def destroy_with_associated_resources(self) -> DestroyWithAssociatedResourcesResourceWithStreamingResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return DestroyWithAssociatedResourcesResourceWithStreamingResponse(
             self._gpu_droplets.destroy_with_associated_resources
         )
 
     @cached_property
     def autoscale(self) -> AutoscaleResourceWithStreamingResponse:
+        """
+        Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+        """
         return AutoscaleResourceWithStreamingResponse(self._gpu_droplets.autoscale)
 
     @cached_property
     def firewalls(self) -> FirewallsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return FirewallsResourceWithStreamingResponse(self._gpu_droplets.firewalls)
 
     @cached_property
     def floating_ips(self) -> FloatingIPsResourceWithStreamingResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+        are publicly-accessible static IP addresses that can be mapped to one of
+        your Droplets. They can be used to create highly available setups or other
+        configurations requiring movable addresses.
+
+        Floating IPs are bound to a specific region.
+        """
         return FloatingIPsResourceWithStreamingResponse(self._gpu_droplets.floating_ips)
 
     @cached_property
     def images(self) -> ImagesResourceWithStreamingResponse:
+        """
+        A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+        used to create a Droplet and may come in a number of flavors. Currently,
+        there are five types of images: snapshots, backups, applications,
+        distributions, and custom images.
+
+        * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+        a full copy of an existing Droplet instance taken on demand.
+
+        * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+        to snapshots but are created automatically at regular intervals when
+        enabled for a Droplet.
+
+        * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+        are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+        formats are supported) that you may upload for use on DigitalOcean.
+
+        * Distributions are the public Linux distributions that are available to
+        be used as a base to create Droplets.
+
+        * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+        are distributions pre-configured with additional software.
+
+        To interact with images, you will generally send requests to the images
+        endpoint at /v2/images.
+        """
         return ImagesResourceWithStreamingResponse(self._gpu_droplets.images)
 
     @cached_property
     def load_balancers(self) -> LoadBalancersResourceWithStreamingResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return LoadBalancersResourceWithStreamingResponse(self._gpu_droplets.load_balancers)
 
     @cached_property
     def sizes(self) -> SizesResourceWithStreamingResponse:
+        """
+        The sizes objects represent different packages of hardware resources that
+        can be used for Droplets. When a Droplet is created, a size must be
+        selected so that the correct resources can be allocated.
+
+        Each size represents a plan that bundles together specific sets of
+        resources. This includes the amount of RAM, the number of virtual CPUs,
+        disk space, and transfer. The size object also includes the pricing
+        details and the regions that the size is available in.
+        """
         return SizesResourceWithStreamingResponse(self._gpu_droplets.sizes)
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithStreamingResponse:
+        """
+        [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+        instances of a Droplet or a block storage volume, which is reflected in
+        the `resource_type` attribute. In order to avoid problems with compressing
+        filesystems, each defines a `min_disk_size` attribute which is the minimum
+        size of the Droplet or volume disk when creating a new resource from the
+        saved snapshot.
+
+        To interact with snapshots, you will generally send requests to the
+        snapshots endpoint at `/v2/snapshots`.
+        """
         return SnapshotsResourceWithStreamingResponse(self._gpu_droplets.snapshots)
 
     @cached_property
     def volumes(self) -> VolumesResourceWithStreamingResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return VolumesResourceWithStreamingResponse(self._gpu_droplets.volumes)
 
     @cached_property
@@ -1959,48 +2671,186 @@ class AsyncGPUDropletsResourceWithStreamingResponse:
 
     @cached_property
     def backups(self) -> AsyncBackupsResourceWithStreamingResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return AsyncBackupsResourceWithStreamingResponse(self._gpu_droplets.backups)
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Droplet actions are tasks that can be executed on a Droplet.
+
+        These can be
+        things like rebooting, resizing, snapshotting, etc.
+
+        Droplet action requests are generally targeted at one of the "actions"
+        endpoints for a specific Droplet. The specific actions are usually
+        initiated by sending a POST request with the action and arguments as
+        parameters.
+
+        Droplet action requests create a Droplet actions object, which can be used
+        to get information about the status of an action. Creating a Droplet
+        action is asynchronous: the HTTP call will return the action object before
+        the action has finished processing on the Droplet. The current status of
+        an action can be retrieved from either the Droplet actions endpoint or the
+        global actions endpoint. If a Droplet action is uncompleted it may block
+        the creation of a subsequent action for that Droplet, the locked attribute
+        of the Droplet will be true and attempts to create a Droplet action will
+        fail with a status of 422.
+        """
         return AsyncActionsResourceWithStreamingResponse(self._gpu_droplets.actions)
 
     @cached_property
     def destroy_with_associated_resources(self) -> AsyncDestroyWithAssociatedResourcesResourceWithStreamingResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         return AsyncDestroyWithAssociatedResourcesResourceWithStreamingResponse(
             self._gpu_droplets.destroy_with_associated_resources
         )
 
     @cached_property
     def autoscale(self) -> AsyncAutoscaleResourceWithStreamingResponse:
+        """
+        Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+        """
         return AsyncAutoscaleResourceWithStreamingResponse(self._gpu_droplets.autoscale)
 
     @cached_property
     def firewalls(self) -> AsyncFirewallsResourceWithStreamingResponse:
+        """
+        [DigitalOcean Cloud Firewalls](https://docs.digitalocean.com/products/networking/firewalls/)
+        provide the ability to restrict network access to and from a Droplet
+        allowing you to define which ports will accept inbound or outbound
+        connections. By sending requests to the `/v2/firewalls` endpoint, you can
+        list, create, or delete firewalls as well as modify access rules.
+        """
         return AsyncFirewallsResourceWithStreamingResponse(self._gpu_droplets.firewalls)
 
     @cached_property
     def floating_ips(self) -> AsyncFloatingIPsResourceWithStreamingResponse:
+        """
+        As of 16 June 2022, we have renamed the Floating IP product to [Reserved IPs](https://docs.digitalocean.com/reference/api/api-reference/#tag/Reserved-IPs).
+        The Reserved IP product's endpoints function the exact same way as Floating IPs.
+        The only difference is the name change throughout the URLs and fields.
+        For example, the `floating_ips` field is now the `reserved_ips` field.
+        The Floating IP endpoints will remain active until fall 2023 before being
+        permanently deprecated.
+
+        With the exception of the [Projects API](https://docs.digitalocean.com/reference/api/api-reference/#tag/Projects),
+        we will reflect this change as an additional field in the responses across the API
+        where the `floating_ip` field is used. For example, the Droplet metadata response
+        will contain the field `reserved_ips` in addition to the `floating_ips` field.
+        Floating IPs retrieved using the Projects API will retain the original name.
+
+        [DigitalOcean Floating IPs](https://docs.digitalocean.com/products/networking/reserved-ips/)
+        are publicly-accessible static IP addresses that can be mapped to one of
+        your Droplets. They can be used to create highly available setups or other
+        configurations requiring movable addresses.
+
+        Floating IPs are bound to a specific region.
+        """
         return AsyncFloatingIPsResourceWithStreamingResponse(self._gpu_droplets.floating_ips)
 
     @cached_property
     def images(self) -> AsyncImagesResourceWithStreamingResponse:
+        """
+        A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+        used to create a Droplet and may come in a number of flavors. Currently,
+        there are five types of images: snapshots, backups, applications,
+        distributions, and custom images.
+
+        * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+        a full copy of an existing Droplet instance taken on demand.
+
+        * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+        to snapshots but are created automatically at regular intervals when
+        enabled for a Droplet.
+
+        * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+        are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+        formats are supported) that you may upload for use on DigitalOcean.
+
+        * Distributions are the public Linux distributions that are available to
+        be used as a base to create Droplets.
+
+        * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+        are distributions pre-configured with additional software.
+
+        To interact with images, you will generally send requests to the images
+        endpoint at /v2/images.
+        """
         return AsyncImagesResourceWithStreamingResponse(self._gpu_droplets.images)
 
     @cached_property
     def load_balancers(self) -> AsyncLoadBalancersResourceWithStreamingResponse:
+        """
+        [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+        provide a way to distribute traffic across multiple Droplets. By sending
+        requests to the `/v2/load_balancers` endpoint, you can list, create, or
+        delete load balancers as well as add or remove Droplets, forwarding rules,
+        and other configuration details.
+        """
         return AsyncLoadBalancersResourceWithStreamingResponse(self._gpu_droplets.load_balancers)
 
     @cached_property
     def sizes(self) -> AsyncSizesResourceWithStreamingResponse:
+        """
+        The sizes objects represent different packages of hardware resources that
+        can be used for Droplets. When a Droplet is created, a size must be
+        selected so that the correct resources can be allocated.
+
+        Each size represents a plan that bundles together specific sets of
+        resources. This includes the amount of RAM, the number of virtual CPUs,
+        disk space, and transfer. The size object also includes the pricing
+        details and the regions that the size is available in.
+        """
         return AsyncSizesResourceWithStreamingResponse(self._gpu_droplets.sizes)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithStreamingResponse:
+        """
+        [Snapshots](https://docs.digitalocean.com/products/snapshots/) are saved
+        instances of a Droplet or a block storage volume, which is reflected in
+        the `resource_type` attribute. In order to avoid problems with compressing
+        filesystems, each defines a `min_disk_size` attribute which is the minimum
+        size of the Droplet or volume disk when creating a new resource from the
+        saved snapshot.
+
+        To interact with snapshots, you will generally send requests to the
+        snapshots endpoint at `/v2/snapshots`.
+        """
         return AsyncSnapshotsResourceWithStreamingResponse(self._gpu_droplets.snapshots)
 
     @cached_property
     def volumes(self) -> AsyncVolumesResourceWithStreamingResponse:
+        """
+        [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+        provide expanded storage capacity for your Droplets and can be moved
+        between Droplets within a specific region.
+
+        Volumes function as raw block devices, meaning they appear to the
+        operating system as locally attached storage which can be formatted using
+        any file system supported by the OS. They may be created in sizes from
+        1GiB to 16TiB.
+
+        By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+        delete volumes as well as attach and detach them from Droplets
+        """
         return AsyncVolumesResourceWithStreamingResponse(self._gpu_droplets.volumes)
 
     @cached_property

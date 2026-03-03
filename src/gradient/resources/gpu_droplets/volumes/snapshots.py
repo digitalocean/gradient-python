@@ -26,6 +26,20 @@ __all__ = ["SnapshotsResource", "AsyncSnapshotsResource"]
 
 
 class SnapshotsResource(SyncAPIResource):
+    """
+    [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+    provide expanded storage capacity for your Droplets and can be moved
+    between Droplets within a specific region.
+
+    Volumes function as raw block devices, meaning they appear to the
+    operating system as locally attached storage which can be formatted using
+    any file system supported by the OS. They may be created in sizes from
+    1GiB to 16TiB.
+
+    By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+    delete volumes as well as attach and detach them from Droplets
+    """
+
     @cached_property
     def with_raw_response(self) -> SnapshotsResourceWithRawResponse:
         """
@@ -227,6 +241,20 @@ class SnapshotsResource(SyncAPIResource):
 
 
 class AsyncSnapshotsResource(AsyncAPIResource):
+    """
+    [DigitalOcean Block Storage Volumes](https://docs.digitalocean.com/products/volumes/)
+    provide expanded storage capacity for your Droplets and can be moved
+    between Droplets within a specific region.
+
+    Volumes function as raw block devices, meaning they appear to the
+    operating system as locally attached storage which can be formatted using
+    any file system supported by the OS. They may be created in sizes from
+    1GiB to 16TiB.
+
+    By sending requests to the `/v2/volumes` endpoint, you can list, create, or
+    delete volumes as well as attach and detach them from Droplets
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSnapshotsResourceWithRawResponse:
         """
