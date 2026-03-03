@@ -23,6 +23,11 @@ __all__ = ["SnapshotsResource", "AsyncSnapshotsResource"]
 
 
 class SnapshotsResource(SyncAPIResource):
+    """
+    NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+    high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+    """
+
     @cached_property
     def with_raw_response(self) -> SnapshotsResourceWithRawResponse:
         """
@@ -191,6 +196,11 @@ class SnapshotsResource(SyncAPIResource):
 
 
 class AsyncSnapshotsResource(AsyncAPIResource):
+    """
+    NFS lets you create fully managed, POSIX-compliant network file storage that delivers secure,
+    high-performance shared storage right inside your VPC. This enables seamless data sharing across Droplets in a VPC.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncSnapshotsResourceWithRawResponse:
         """

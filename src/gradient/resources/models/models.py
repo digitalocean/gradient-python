@@ -33,6 +33,10 @@ __all__ = ["ModelsResource", "AsyncModelsResource"]
 
 
 class ModelsResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def providers(self) -> ProvidersResource:
         return ProvidersResource(self._client)
@@ -134,6 +138,10 @@ class ModelsResource(SyncAPIResource):
 
 
 class AsyncModelsResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def providers(self) -> AsyncProvidersResource:
         return AsyncProvidersResource(self._client)

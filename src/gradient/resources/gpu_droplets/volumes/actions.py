@@ -33,6 +33,16 @@ __all__ = ["ActionsResource", "AsyncActionsResource"]
 
 
 class ActionsResource(SyncAPIResource):
+    """
+    Block storage actions are commands that can be given to a DigitalOcean
+    Block Storage Volume. An example would be detaching or attaching a volume
+    from a Droplet. These requests are made on the
+    `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+    An action object is returned. These objects hold the current status of the
+    requested action.
+    """
+
     @cached_property
     def with_raw_response(self) -> ActionsResourceWithRawResponse:
         """
@@ -758,6 +768,16 @@ class ActionsResource(SyncAPIResource):
 
 
 class AsyncActionsResource(AsyncAPIResource):
+    """
+    Block storage actions are commands that can be given to a DigitalOcean
+    Block Storage Volume. An example would be detaching or attaching a volume
+    from a Droplet. These requests are made on the
+    `/v2/volumes/$VOLUME_ID/actions` endpoint.
+
+    An action object is returned. These objects hold the current status of the
+    requested action.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncActionsResourceWithRawResponse:
         """

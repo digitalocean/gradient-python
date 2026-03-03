@@ -30,8 +30,15 @@ __all__ = ["Oauth2Resource", "AsyncOauth2Resource"]
 
 
 class Oauth2Resource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def dropbox(self) -> DropboxResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return DropboxResource(self._client)
 
     @cached_property
@@ -104,8 +111,15 @@ class Oauth2Resource(SyncAPIResource):
 
 
 class AsyncOauth2Resource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def dropbox(self) -> AsyncDropboxResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncDropboxResource(self._client)
 
     @cached_property
@@ -187,6 +201,9 @@ class Oauth2ResourceWithRawResponse:
 
     @cached_property
     def dropbox(self) -> DropboxResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return DropboxResourceWithRawResponse(self._oauth2.dropbox)
 
 
@@ -200,6 +217,9 @@ class AsyncOauth2ResourceWithRawResponse:
 
     @cached_property
     def dropbox(self) -> AsyncDropboxResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncDropboxResourceWithRawResponse(self._oauth2.dropbox)
 
 
@@ -213,6 +233,9 @@ class Oauth2ResourceWithStreamingResponse:
 
     @cached_property
     def dropbox(self) -> DropboxResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return DropboxResourceWithStreamingResponse(self._oauth2.dropbox)
 
 
@@ -226,4 +249,7 @@ class AsyncOauth2ResourceWithStreamingResponse:
 
     @cached_property
     def dropbox(self) -> AsyncDropboxResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncDropboxResourceWithStreamingResponse(self._oauth2.dropbox)

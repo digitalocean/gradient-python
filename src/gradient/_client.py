@@ -167,6 +167,9 @@ class Gradient(SyncAPIClient):
 
     @cached_property
     def agents(self) -> AgentsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.agents import AgentsResource
 
         return AgentsResource(self)
@@ -179,18 +182,30 @@ class Gradient(SyncAPIClient):
 
     @cached_property
     def images(self) -> ImagesResource:
+        """Generate images from text prompts using various AI models."""
         from .resources.images import ImagesResource
 
         return ImagesResource(self)
 
     @cached_property
     def responses(self) -> ResponsesResource:
+        """Generate text-to-text responses from text prompts."""
         from .resources.responses import ResponsesResource
 
         return ResponsesResource(self)
 
     @cached_property
     def gpu_droplets(self) -> GPUDropletsResource:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         from .resources.gpu_droplets import GPUDropletsResource
 
         return GPUDropletsResource(self)
@@ -203,18 +218,25 @@ class Gradient(SyncAPIClient):
 
     @cached_property
     def knowledge_bases(self) -> KnowledgeBasesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.knowledge_bases import KnowledgeBasesResource
 
         return KnowledgeBasesResource(self)
 
     @cached_property
     def models(self) -> ModelsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.models import ModelsResource
 
         return ModelsResource(self)
 
     @cached_property
     def regions(self) -> RegionsResource:
+        """Provides information about DigitalOcean data center regions."""
         from .resources.regions import RegionsResource
 
         return RegionsResource(self)
@@ -245,6 +267,34 @@ class Gradient(SyncAPIClient):
 
     @cached_property
     def billing(self) -> BillingResource:
+        """
+        The billing endpoints allow you to retrieve your account balance, invoices,
+        billing history, and insights.
+
+        **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+        retrieve the balance information for the requested customer account.
+
+        **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+        are generated on the first of each month for every DigitalOcean
+        customer. An invoice preview is generated daily, which can be accessed
+        with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+        invoices, you will generally send requests to the invoices endpoint at
+        `/v2/customers/my/invoices`.
+
+        **Billing History:** Billing history is a record of billing events for your account.
+        For example, entries may include events like payments made, invoices
+        issued, or credits granted. To interact with invoices, you
+        will generally send requests to the invoices endpoint at
+        `/v2/customers/my/billing_history`.
+
+        **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+        including total amount, region, SKU, and description for a specified date range.
+        It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+        a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+          `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+        account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+        start_date and end_date must be in YYYY-MM-DD format.
+        """
         from .resources.billing import BillingResource
 
         return BillingResource(self)
@@ -495,6 +545,9 @@ class AsyncGradient(AsyncAPIClient):
 
     @cached_property
     def agents(self) -> AsyncAgentsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.agents import AsyncAgentsResource
 
         return AsyncAgentsResource(self)
@@ -507,18 +560,30 @@ class AsyncGradient(AsyncAPIClient):
 
     @cached_property
     def images(self) -> AsyncImagesResource:
+        """Generate images from text prompts using various AI models."""
         from .resources.images import AsyncImagesResource
 
         return AsyncImagesResource(self)
 
     @cached_property
     def responses(self) -> AsyncResponsesResource:
+        """Generate text-to-text responses from text prompts."""
         from .resources.responses import AsyncResponsesResource
 
         return AsyncResponsesResource(self)
 
     @cached_property
     def gpu_droplets(self) -> AsyncGPUDropletsResource:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         from .resources.gpu_droplets import AsyncGPUDropletsResource
 
         return AsyncGPUDropletsResource(self)
@@ -531,18 +596,25 @@ class AsyncGradient(AsyncAPIClient):
 
     @cached_property
     def knowledge_bases(self) -> AsyncKnowledgeBasesResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.knowledge_bases import AsyncKnowledgeBasesResource
 
         return AsyncKnowledgeBasesResource(self)
 
     @cached_property
     def models(self) -> AsyncModelsResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.models import AsyncModelsResource
 
         return AsyncModelsResource(self)
 
     @cached_property
     def regions(self) -> AsyncRegionsResource:
+        """Provides information about DigitalOcean data center regions."""
         from .resources.regions import AsyncRegionsResource
 
         return AsyncRegionsResource(self)
@@ -573,6 +645,34 @@ class AsyncGradient(AsyncAPIClient):
 
     @cached_property
     def billing(self) -> AsyncBillingResource:
+        """
+        The billing endpoints allow you to retrieve your account balance, invoices,
+        billing history, and insights.
+
+        **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+        retrieve the balance information for the requested customer account.
+
+        **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+        are generated on the first of each month for every DigitalOcean
+        customer. An invoice preview is generated daily, which can be accessed
+        with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+        invoices, you will generally send requests to the invoices endpoint at
+        `/v2/customers/my/invoices`.
+
+        **Billing History:** Billing history is a record of billing events for your account.
+        For example, entries may include events like payments made, invoices
+        issued, or credits granted. To interact with invoices, you
+        will generally send requests to the invoices endpoint at
+        `/v2/customers/my/billing_history`.
+
+        **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+        including total amount, region, SKU, and description for a specified date range.
+        It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+        a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+          `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+        account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+        start_date and end_date must be in YYYY-MM-DD format.
+        """
         from .resources.billing import AsyncBillingResource
 
         return AsyncBillingResource(self)
@@ -739,6 +839,9 @@ class GradientWithRawResponse:
 
     @cached_property
     def agents(self) -> agents.AgentsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.agents import AgentsResourceWithRawResponse
 
         return AgentsResourceWithRawResponse(self._client.agents)
@@ -751,18 +854,30 @@ class GradientWithRawResponse:
 
     @cached_property
     def images(self) -> images.ImagesResourceWithRawResponse:
+        """Generate images from text prompts using various AI models."""
         from .resources.images import ImagesResourceWithRawResponse
 
         return ImagesResourceWithRawResponse(self._client.images)
 
     @cached_property
     def responses(self) -> responses.ResponsesResourceWithRawResponse:
+        """Generate text-to-text responses from text prompts."""
         from .resources.responses import ResponsesResourceWithRawResponse
 
         return ResponsesResourceWithRawResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithRawResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         from .resources.gpu_droplets import GPUDropletsResourceWithRawResponse
 
         return GPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
@@ -775,18 +890,25 @@ class GradientWithRawResponse:
 
     @cached_property
     def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.knowledge_bases import KnowledgeBasesResourceWithRawResponse
 
         return KnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.models import ModelsResourceWithRawResponse
 
         return ModelsResourceWithRawResponse(self._client.models)
 
     @cached_property
     def regions(self) -> regions.RegionsResourceWithRawResponse:
+        """Provides information about DigitalOcean data center regions."""
         from .resources.regions import RegionsResourceWithRawResponse
 
         return RegionsResourceWithRawResponse(self._client.regions)
@@ -817,6 +939,34 @@ class GradientWithRawResponse:
 
     @cached_property
     def billing(self) -> billing.BillingResourceWithRawResponse:
+        """
+        The billing endpoints allow you to retrieve your account balance, invoices,
+        billing history, and insights.
+
+        **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+        retrieve the balance information for the requested customer account.
+
+        **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+        are generated on the first of each month for every DigitalOcean
+        customer. An invoice preview is generated daily, which can be accessed
+        with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+        invoices, you will generally send requests to the invoices endpoint at
+        `/v2/customers/my/invoices`.
+
+        **Billing History:** Billing history is a record of billing events for your account.
+        For example, entries may include events like payments made, invoices
+        issued, or credits granted. To interact with invoices, you
+        will generally send requests to the invoices endpoint at
+        `/v2/customers/my/billing_history`.
+
+        **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+        including total amount, region, SKU, and description for a specified date range.
+        It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+        a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+          `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+        account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+        start_date and end_date must be in YYYY-MM-DD format.
+        """
         from .resources.billing import BillingResourceWithRawResponse
 
         return BillingResourceWithRawResponse(self._client.billing)
@@ -830,6 +980,9 @@ class AsyncGradientWithRawResponse:
 
     @cached_property
     def agents(self) -> agents.AsyncAgentsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.agents import AsyncAgentsResourceWithRawResponse
 
         return AsyncAgentsResourceWithRawResponse(self._client.agents)
@@ -842,18 +995,30 @@ class AsyncGradientWithRawResponse:
 
     @cached_property
     def images(self) -> images.AsyncImagesResourceWithRawResponse:
+        """Generate images from text prompts using various AI models."""
         from .resources.images import AsyncImagesResourceWithRawResponse
 
         return AsyncImagesResourceWithRawResponse(self._client.images)
 
     @cached_property
     def responses(self) -> responses.AsyncResponsesResourceWithRawResponse:
+        """Generate text-to-text responses from text prompts."""
         from .resources.responses import AsyncResponsesResourceWithRawResponse
 
         return AsyncResponsesResourceWithRawResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithRawResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         from .resources.gpu_droplets import AsyncGPUDropletsResourceWithRawResponse
 
         return AsyncGPUDropletsResourceWithRawResponse(self._client.gpu_droplets)
@@ -866,18 +1031,25 @@ class AsyncGradientWithRawResponse:
 
     @cached_property
     def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithRawResponse
 
         return AsyncKnowledgeBasesResourceWithRawResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.models import AsyncModelsResourceWithRawResponse
 
         return AsyncModelsResourceWithRawResponse(self._client.models)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithRawResponse:
+        """Provides information about DigitalOcean data center regions."""
         from .resources.regions import AsyncRegionsResourceWithRawResponse
 
         return AsyncRegionsResourceWithRawResponse(self._client.regions)
@@ -908,6 +1080,34 @@ class AsyncGradientWithRawResponse:
 
     @cached_property
     def billing(self) -> billing.AsyncBillingResourceWithRawResponse:
+        """
+        The billing endpoints allow you to retrieve your account balance, invoices,
+        billing history, and insights.
+
+        **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+        retrieve the balance information for the requested customer account.
+
+        **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+        are generated on the first of each month for every DigitalOcean
+        customer. An invoice preview is generated daily, which can be accessed
+        with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+        invoices, you will generally send requests to the invoices endpoint at
+        `/v2/customers/my/invoices`.
+
+        **Billing History:** Billing history is a record of billing events for your account.
+        For example, entries may include events like payments made, invoices
+        issued, or credits granted. To interact with invoices, you
+        will generally send requests to the invoices endpoint at
+        `/v2/customers/my/billing_history`.
+
+        **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+        including total amount, region, SKU, and description for a specified date range.
+        It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+        a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+          `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+        account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+        start_date and end_date must be in YYYY-MM-DD format.
+        """
         from .resources.billing import AsyncBillingResourceWithRawResponse
 
         return AsyncBillingResourceWithRawResponse(self._client.billing)
@@ -921,6 +1121,9 @@ class GradientWithStreamedResponse:
 
     @cached_property
     def agents(self) -> agents.AgentsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.agents import AgentsResourceWithStreamingResponse
 
         return AgentsResourceWithStreamingResponse(self._client.agents)
@@ -933,18 +1136,30 @@ class GradientWithStreamedResponse:
 
     @cached_property
     def images(self) -> images.ImagesResourceWithStreamingResponse:
+        """Generate images from text prompts using various AI models."""
         from .resources.images import ImagesResourceWithStreamingResponse
 
         return ImagesResourceWithStreamingResponse(self._client.images)
 
     @cached_property
     def responses(self) -> responses.ResponsesResourceWithStreamingResponse:
+        """Generate text-to-text responses from text prompts."""
         from .resources.responses import ResponsesResourceWithStreamingResponse
 
         return ResponsesResourceWithStreamingResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.GPUDropletsResourceWithStreamingResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         from .resources.gpu_droplets import GPUDropletsResourceWithStreamingResponse
 
         return GPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
@@ -957,18 +1172,25 @@ class GradientWithStreamedResponse:
 
     @cached_property
     def knowledge_bases(self) -> knowledge_bases.KnowledgeBasesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.knowledge_bases import KnowledgeBasesResourceWithStreamingResponse
 
         return KnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.ModelsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.models import ModelsResourceWithStreamingResponse
 
         return ModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
     def regions(self) -> regions.RegionsResourceWithStreamingResponse:
+        """Provides information about DigitalOcean data center regions."""
         from .resources.regions import RegionsResourceWithStreamingResponse
 
         return RegionsResourceWithStreamingResponse(self._client.regions)
@@ -999,6 +1221,34 @@ class GradientWithStreamedResponse:
 
     @cached_property
     def billing(self) -> billing.BillingResourceWithStreamingResponse:
+        """
+        The billing endpoints allow you to retrieve your account balance, invoices,
+        billing history, and insights.
+
+        **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+        retrieve the balance information for the requested customer account.
+
+        **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+        are generated on the first of each month for every DigitalOcean
+        customer. An invoice preview is generated daily, which can be accessed
+        with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+        invoices, you will generally send requests to the invoices endpoint at
+        `/v2/customers/my/invoices`.
+
+        **Billing History:** Billing history is a record of billing events for your account.
+        For example, entries may include events like payments made, invoices
+        issued, or credits granted. To interact with invoices, you
+        will generally send requests to the invoices endpoint at
+        `/v2/customers/my/billing_history`.
+
+        **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+        including total amount, region, SKU, and description for a specified date range.
+        It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+        a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+          `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+        account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+        start_date and end_date must be in YYYY-MM-DD format.
+        """
         from .resources.billing import BillingResourceWithStreamingResponse
 
         return BillingResourceWithStreamingResponse(self._client.billing)
@@ -1012,6 +1262,9 @@ class AsyncGradientWithStreamedResponse:
 
     @cached_property
     def agents(self) -> agents.AsyncAgentsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.agents import AsyncAgentsResourceWithStreamingResponse
 
         return AsyncAgentsResourceWithStreamingResponse(self._client.agents)
@@ -1024,18 +1277,30 @@ class AsyncGradientWithStreamedResponse:
 
     @cached_property
     def images(self) -> images.AsyncImagesResourceWithStreamingResponse:
+        """Generate images from text prompts using various AI models."""
         from .resources.images import AsyncImagesResourceWithStreamingResponse
 
         return AsyncImagesResourceWithStreamingResponse(self._client.images)
 
     @cached_property
     def responses(self) -> responses.AsyncResponsesResourceWithStreamingResponse:
+        """Generate text-to-text responses from text prompts."""
         from .resources.responses import AsyncResponsesResourceWithStreamingResponse
 
         return AsyncResponsesResourceWithStreamingResponse(self._client.responses)
 
     @cached_property
     def gpu_droplets(self) -> gpu_droplets.AsyncGPUDropletsResourceWithStreamingResponse:
+        """
+        A [Droplet](https://docs.digitalocean.com/products/droplets/) is a DigitalOcean
+        virtual machine. By sending requests to the Droplet endpoint, you can
+        list, create, or delete Droplets.
+
+        Some of the attributes will have an object value. The `region` and `image`
+        objects will all contain the standard attributes of their associated
+        types. Find more information about each of these objects in their
+        respective sections.
+        """
         from .resources.gpu_droplets import AsyncGPUDropletsResourceWithStreamingResponse
 
         return AsyncGPUDropletsResourceWithStreamingResponse(self._client.gpu_droplets)
@@ -1048,18 +1313,25 @@ class AsyncGradientWithStreamedResponse:
 
     @cached_property
     def knowledge_bases(self) -> knowledge_bases.AsyncKnowledgeBasesResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.knowledge_bases import AsyncKnowledgeBasesResourceWithStreamingResponse
 
         return AsyncKnowledgeBasesResourceWithStreamingResponse(self._client.knowledge_bases)
 
     @cached_property
     def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         from .resources.models import AsyncModelsResourceWithStreamingResponse
 
         return AsyncModelsResourceWithStreamingResponse(self._client.models)
 
     @cached_property
     def regions(self) -> regions.AsyncRegionsResourceWithStreamingResponse:
+        """Provides information about DigitalOcean data center regions."""
         from .resources.regions import AsyncRegionsResourceWithStreamingResponse
 
         return AsyncRegionsResourceWithStreamingResponse(self._client.regions)
@@ -1090,6 +1362,34 @@ class AsyncGradientWithStreamedResponse:
 
     @cached_property
     def billing(self) -> billing.AsyncBillingResourceWithStreamingResponse:
+        """
+        The billing endpoints allow you to retrieve your account balance, invoices,
+        billing history, and insights.
+
+        **Balance:** By sending requests to the `/v2/customers/my/balance` endpoint, you can
+        retrieve the balance information for the requested customer account.
+
+        **Invoices:** [Invoices](https://docs.digitalocean.com/platform/billing/invoices/)
+        are generated on the first of each month for every DigitalOcean
+        customer. An invoice preview is generated daily, which can be accessed
+        with the `preview` keyword in place of `$INVOICE_UUID`. To interact with
+        invoices, you will generally send requests to the invoices endpoint at
+        `/v2/customers/my/invoices`.
+
+        **Billing History:** Billing history is a record of billing events for your account.
+        For example, entries may include events like payments made, invoices
+        issued, or credits granted. To interact with invoices, you
+        will generally send requests to the invoices endpoint at
+        `/v2/customers/my/billing_history`.
+
+        **Billing Insights:** Day-over-day changes in billing resource usage based on nightly invoice items,
+        including total amount, region, SKU, and description for a specified date range.
+        It is important to note that the daily resource usage may not reflect month-end billing totals when totaled for
+        a given month as nightly invoice items do not necessarily encompass all invoicing factors for the entire month.
+          `v2/billing/{account_urn}/insights/{start_date}/{end_date}` where account_urn is the URN of the customer
+        account, can be a team (do:team:uuid) or an organization (do:teamgroup:uuid). The date range specified by
+        start_date and end_date must be in YYYY-MM-DD format.
+        """
         from .resources.billing import AsyncBillingResourceWithStreamingResponse
 
         return AsyncBillingResourceWithStreamingResponse(self._client.billing)

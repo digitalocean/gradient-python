@@ -25,6 +25,10 @@ __all__ = ["EvaluationRunsResource", "AsyncEvaluationRunsResource"]
 
 
 class EvaluationRunsResource(SyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def with_raw_response(self) -> EvaluationRunsResourceWithRawResponse:
         """
@@ -231,6 +235,10 @@ class EvaluationRunsResource(SyncAPIResource):
 
 
 class AsyncEvaluationRunsResource(AsyncAPIResource):
+    """
+    The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncEvaluationRunsResourceWithRawResponse:
         """

@@ -19,6 +19,7 @@ __all__ = ["AccountResource", "AsyncAccountResource"]
 class AccountResource(SyncAPIResource):
     @cached_property
     def keys(self) -> KeysResource:
+        """Manage SSH keys available on your account."""
         return KeysResource(self._client)
 
     @cached_property
@@ -44,6 +45,7 @@ class AccountResource(SyncAPIResource):
 class AsyncAccountResource(AsyncAPIResource):
     @cached_property
     def keys(self) -> AsyncKeysResource:
+        """Manage SSH keys available on your account."""
         return AsyncKeysResource(self._client)
 
     @cached_property
@@ -72,6 +74,7 @@ class AccountResourceWithRawResponse:
 
     @cached_property
     def keys(self) -> KeysResourceWithRawResponse:
+        """Manage SSH keys available on your account."""
         return KeysResourceWithRawResponse(self._account.keys)
 
 
@@ -81,6 +84,7 @@ class AsyncAccountResourceWithRawResponse:
 
     @cached_property
     def keys(self) -> AsyncKeysResourceWithRawResponse:
+        """Manage SSH keys available on your account."""
         return AsyncKeysResourceWithRawResponse(self._account.keys)
 
 
@@ -90,6 +94,7 @@ class AccountResourceWithStreamingResponse:
 
     @cached_property
     def keys(self) -> KeysResourceWithStreamingResponse:
+        """Manage SSH keys available on your account."""
         return KeysResourceWithStreamingResponse(self._account.keys)
 
 
@@ -99,4 +104,5 @@ class AsyncAccountResourceWithStreamingResponse:
 
     @cached_property
     def keys(self) -> AsyncKeysResourceWithStreamingResponse:
+        """Manage SSH keys available on your account."""
         return AsyncKeysResourceWithStreamingResponse(self._account.keys)

@@ -24,6 +24,14 @@ __all__ = ["ForwardingRulesResource", "AsyncForwardingRulesResource"]
 
 
 class ForwardingRulesResource(SyncAPIResource):
+    """
+    [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+    provide a way to distribute traffic across multiple Droplets. By sending
+    requests to the `/v2/load_balancers` endpoint, you can list, create, or
+    delete load balancers as well as add or remove Droplets, forwarding rules,
+    and other configuration details.
+    """
+
     @cached_property
     def with_raw_response(self) -> ForwardingRulesResourceWithRawResponse:
         """
@@ -139,6 +147,14 @@ class ForwardingRulesResource(SyncAPIResource):
 
 
 class AsyncForwardingRulesResource(AsyncAPIResource):
+    """
+    [DigitalOcean Load Balancers](https://docs.digitalocean.com/products/networking/load-balancers/)
+    provide a way to distribute traffic across multiple Droplets. By sending
+    requests to the `/v2/load_balancers` endpoint, you can list, create, or
+    delete load balancers as well as add or remove Droplets, forwarding rules,
+    and other configuration details.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncForwardingRulesResourceWithRawResponse:
         """

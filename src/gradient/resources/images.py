@@ -27,6 +27,8 @@ __all__ = ["ImagesResource", "AsyncImagesResource"]
 
 
 class ImagesResource(SyncAPIResource):
+    """Generate images from text prompts using various AI models."""
+
     @cached_property
     def with_raw_response(self) -> ImagesResourceWithRawResponse:
         """
@@ -337,6 +339,8 @@ class ImagesResource(SyncAPIResource):
 
 
 class AsyncImagesResource(AsyncAPIResource):
+    """Generate images from text prompts using various AI models."""
+
     @cached_property
     def with_raw_response(self) -> AsyncImagesResourceWithRawResponse:
         """

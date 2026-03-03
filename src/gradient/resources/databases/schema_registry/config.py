@@ -27,6 +27,32 @@ __all__ = ["ConfigResource", "AsyncConfigResource"]
 
 
 class ConfigResource(SyncAPIResource):
+    """
+    DigitalOcean's [managed database service](https://docs.digitalocean.com/products/databases)
+    simplifies the creation and management of highly available database clusters. Currently, it
+    offers support for [PostgreSQL](http://docs.digitalocean.com/products/databases/postgresql/),
+    [Caching](https://docs.digitalocean.com/products/databases/redis/),
+    [Valkey](https://docs.digitalocean.com/products/databases/valkey/),
+    [MySQL](https://docs.digitalocean.com/products/databases/mysql/),
+    [MongoDB](https://docs.digitalocean.com/products/databases/mongodb/), and
+    [OpenSearch](https://docs.digitalocean.com/products/databases/opensearch/).
+
+    By sending requests to the `/v2/databases` endpoint, you can list, create, or delete
+    database clusters as well as scale the size of a cluster, add or remove read-only replicas,
+    and manage other configuration details.
+
+    Database clusters may be deployed in a multi-node, high-availability configuration.
+    If your machine type is above the basic nodes, your node plan is above the smallest option,
+    or you are running MongoDB, you may additionally include up to two standby nodes in your cluster.
+
+    The size of individual nodes in a database cluster is represented by a human-readable slug,
+    which is used in some of the following requests. Each slug denotes the node's identifier,
+    CPU count, and amount of RAM, in that order.
+
+    For a list of currently available database slugs and options, use the `/v2/databases/options` endpoint or use the
+    `doctl databases options` [command](https://docs.digitalocean.com/reference/doctl/reference/databases/options).
+    """
+
     @cached_property
     def with_raw_response(self) -> ConfigResourceWithRawResponse:
         """
@@ -230,6 +256,32 @@ class ConfigResource(SyncAPIResource):
 
 
 class AsyncConfigResource(AsyncAPIResource):
+    """
+    DigitalOcean's [managed database service](https://docs.digitalocean.com/products/databases)
+    simplifies the creation and management of highly available database clusters. Currently, it
+    offers support for [PostgreSQL](http://docs.digitalocean.com/products/databases/postgresql/),
+    [Caching](https://docs.digitalocean.com/products/databases/redis/),
+    [Valkey](https://docs.digitalocean.com/products/databases/valkey/),
+    [MySQL](https://docs.digitalocean.com/products/databases/mysql/),
+    [MongoDB](https://docs.digitalocean.com/products/databases/mongodb/), and
+    [OpenSearch](https://docs.digitalocean.com/products/databases/opensearch/).
+
+    By sending requests to the `/v2/databases` endpoint, you can list, create, or delete
+    database clusters as well as scale the size of a cluster, add or remove read-only replicas,
+    and manage other configuration details.
+
+    Database clusters may be deployed in a multi-node, high-availability configuration.
+    If your machine type is above the basic nodes, your node plan is above the smallest option,
+    or you are running MongoDB, you may additionally include up to two standby nodes in your cluster.
+
+    The size of individual nodes in a database cluster is represented by a human-readable slug,
+    which is used in some of the following requests. Each slug denotes the node's identifier,
+    CPU count, and amount of RAM, in that order.
+
+    For a list of currently available database slugs and options, use the `/v2/databases/options` endpoint or use the
+    `doctl databases options` [command](https://docs.digitalocean.com/reference/doctl/reference/databases/options).
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncConfigResourceWithRawResponse:
         """

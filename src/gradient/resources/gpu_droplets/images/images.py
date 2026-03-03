@@ -36,8 +36,44 @@ __all__ = ["ImagesResource", "AsyncImagesResource"]
 
 
 class ImagesResource(SyncAPIResource):
+    """
+    A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+    used to create a Droplet and may come in a number of flavors. Currently,
+    there are five types of images: snapshots, backups, applications,
+    distributions, and custom images.
+
+    * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+    a full copy of an existing Droplet instance taken on demand.
+
+    * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+    to snapshots but are created automatically at regular intervals when
+    enabled for a Droplet.
+
+    * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+    are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+    formats are supported) that you may upload for use on DigitalOcean.
+
+    * Distributions are the public Linux distributions that are available to
+    be used as a base to create Droplets.
+
+    * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+    are distributions pre-configured with additional software.
+
+    To interact with images, you will generally send requests to the images
+    endpoint at /v2/images.
+    """
+
     @cached_property
     def actions(self) -> ActionsResource:
+        """Image actions are commands that can be given to a DigitalOcean image.
+
+        In
+        general, these requests are made on the actions endpoint of a specific
+        image.
+
+        An image action object is returned. These objects hold the current status
+        of the requested action.
+        """
         return ActionsResource(self._client)
 
     @cached_property
@@ -402,8 +438,44 @@ class ImagesResource(SyncAPIResource):
 
 
 class AsyncImagesResource(AsyncAPIResource):
+    """
+    A DigitalOcean [image](https://docs.digitalocean.com/products/images/) can be
+    used to create a Droplet and may come in a number of flavors. Currently,
+    there are five types of images: snapshots, backups, applications,
+    distributions, and custom images.
+
+    * [Snapshots](https://docs.digitalocean.com/products/snapshots/) provide
+    a full copy of an existing Droplet instance taken on demand.
+
+    * [Backups](https://docs.digitalocean.com/products/backups/) are similar
+    to snapshots but are created automatically at regular intervals when
+    enabled for a Droplet.
+
+    * [Custom images](https://docs.digitalocean.com/products/custom-images/)
+    are Linux-based virtual machine images (raw, qcow2, vhdx, vdi, and vmdk
+    formats are supported) that you may upload for use on DigitalOcean.
+
+    * Distributions are the public Linux distributions that are available to
+    be used as a base to create Droplets.
+
+    * Applications, or [1-Click Apps](https://docs.digitalocean.com/products/marketplace/),
+    are distributions pre-configured with additional software.
+
+    To interact with images, you will generally send requests to the images
+    endpoint at /v2/images.
+    """
+
     @cached_property
     def actions(self) -> AsyncActionsResource:
+        """Image actions are commands that can be given to a DigitalOcean image.
+
+        In
+        general, these requests are made on the actions endpoint of a specific
+        image.
+
+        An image action object is returned. These objects hold the current status
+        of the requested action.
+        """
         return AsyncActionsResource(self._client)
 
     @cached_property
@@ -789,6 +861,15 @@ class ImagesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithRawResponse:
+        """Image actions are commands that can be given to a DigitalOcean image.
+
+        In
+        general, these requests are made on the actions endpoint of a specific
+        image.
+
+        An image action object is returned. These objects hold the current status
+        of the requested action.
+        """
         return ActionsResourceWithRawResponse(self._images.actions)
 
 
@@ -814,6 +895,15 @@ class AsyncImagesResourceWithRawResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithRawResponse:
+        """Image actions are commands that can be given to a DigitalOcean image.
+
+        In
+        general, these requests are made on the actions endpoint of a specific
+        image.
+
+        An image action object is returned. These objects hold the current status
+        of the requested action.
+        """
         return AsyncActionsResourceWithRawResponse(self._images.actions)
 
 
@@ -839,6 +929,15 @@ class ImagesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> ActionsResourceWithStreamingResponse:
+        """Image actions are commands that can be given to a DigitalOcean image.
+
+        In
+        general, these requests are made on the actions endpoint of a specific
+        image.
+
+        An image action object is returned. These objects hold the current status
+        of the requested action.
+        """
         return ActionsResourceWithStreamingResponse(self._images.actions)
 
 
@@ -864,4 +963,13 @@ class AsyncImagesResourceWithStreamingResponse:
 
     @cached_property
     def actions(self) -> AsyncActionsResourceWithStreamingResponse:
+        """Image actions are commands that can be given to a DigitalOcean image.
+
+        In
+        general, these requests are made on the actions endpoint of a specific
+        image.
+
+        An image action object is returned. These objects hold the current status
+        of the requested action.
+        """
         return AsyncActionsResourceWithStreamingResponse(self._images.actions)

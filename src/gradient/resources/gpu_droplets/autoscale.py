@@ -34,6 +34,10 @@ __all__ = ["AutoscaleResource", "AsyncAutoscaleResource"]
 
 
 class AutoscaleResource(SyncAPIResource):
+    """
+    Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+    """
+
     @cached_property
     def with_raw_response(self) -> AutoscaleResourceWithRawResponse:
         """
@@ -441,6 +445,10 @@ class AutoscaleResource(SyncAPIResource):
 
 
 class AsyncAutoscaleResource(AsyncAPIResource):
+    """
+    Droplet autoscale pools manage automatic horizontal scaling for your applications based on resource usage (CPU, memory, or both) or a static configuration.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncAutoscaleResourceWithRawResponse:
         """

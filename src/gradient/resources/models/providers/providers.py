@@ -27,10 +27,16 @@ __all__ = ["ProvidersResource", "AsyncProvidersResource"]
 class ProvidersResource(SyncAPIResource):
     @cached_property
     def anthropic(self) -> AnthropicResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AnthropicResource(self._client)
 
     @cached_property
     def openai(self) -> OpenAIResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return OpenAIResource(self._client)
 
     @cached_property
@@ -56,10 +62,16 @@ class ProvidersResource(SyncAPIResource):
 class AsyncProvidersResource(AsyncAPIResource):
     @cached_property
     def anthropic(self) -> AsyncAnthropicResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAnthropicResource(self._client)
 
     @cached_property
     def openai(self) -> AsyncOpenAIResource:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncOpenAIResource(self._client)
 
     @cached_property
@@ -88,10 +100,16 @@ class ProvidersResourceWithRawResponse:
 
     @cached_property
     def anthropic(self) -> AnthropicResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AnthropicResourceWithRawResponse(self._providers.anthropic)
 
     @cached_property
     def openai(self) -> OpenAIResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return OpenAIResourceWithRawResponse(self._providers.openai)
 
 
@@ -101,10 +119,16 @@ class AsyncProvidersResourceWithRawResponse:
 
     @cached_property
     def anthropic(self) -> AsyncAnthropicResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAnthropicResourceWithRawResponse(self._providers.anthropic)
 
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithRawResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncOpenAIResourceWithRawResponse(self._providers.openai)
 
 
@@ -114,10 +138,16 @@ class ProvidersResourceWithStreamingResponse:
 
     @cached_property
     def anthropic(self) -> AnthropicResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AnthropicResourceWithStreamingResponse(self._providers.anthropic)
 
     @cached_property
     def openai(self) -> OpenAIResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return OpenAIResourceWithStreamingResponse(self._providers.openai)
 
 
@@ -127,8 +157,14 @@ class AsyncProvidersResourceWithStreamingResponse:
 
     @cached_property
     def anthropic(self) -> AsyncAnthropicResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncAnthropicResourceWithStreamingResponse(self._providers.anthropic)
 
     @cached_property
     def openai(self) -> AsyncOpenAIResourceWithStreamingResponse:
+        """
+        The API lets you build GPU-powered AI agents with pre-built or custom foundation models, function and agent routes, and RAG pipelines with knowledge bases.
+        """
         return AsyncOpenAIResourceWithStreamingResponse(self._providers.openai)
