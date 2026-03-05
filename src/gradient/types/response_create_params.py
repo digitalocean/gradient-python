@@ -130,7 +130,7 @@ class ResponseCreateParamsBase(TypedDict, total=False):
     """
 
 
-class InputUnionMember1UnionMember0ContentTyped(TypedDict, total=False):
+class InputUnionMember1UnionMember0Content(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     text: str
     """The reasoning text content"""
 
@@ -138,10 +138,7 @@ class InputUnionMember1UnionMember0ContentTyped(TypedDict, total=False):
     """The type of content"""
 
 
-InputUnionMember1UnionMember0Content: TypeAlias = Union[InputUnionMember1UnionMember0ContentTyped, Dict[str, object]]
-
-
-class InputUnionMember1UnionMember0Typed(TypedDict, total=False):
+class InputUnionMember1UnionMember0(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     type: Required[Literal["function_call", "function_call_output", "reasoning"]]
     """
     The type of input item (must be function_call, function_call_output, or
@@ -174,9 +171,6 @@ class InputUnionMember1UnionMember0Typed(TypedDict, total=False):
 
     summary: Iterable[object]
     """Summary of the reasoning (optional for reasoning)"""
-
-
-InputUnionMember1UnionMember0: TypeAlias = Union[InputUnionMember1UnionMember0Typed, Dict[str, object]]
 
 
 class InputUnionMember1UnionMember1ContentUnionMember1UnionMember0(TypedDict, total=False):
@@ -218,7 +212,7 @@ class InputUnionMember1UnionMember1ToolCall(TypedDict, total=False):
     """The type of the tool. Currently, only `function` is supported."""
 
 
-class InputUnionMember1UnionMember1Typed(TypedDict, total=False):
+class InputUnionMember1UnionMember1(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     content: Required[Union[str, Iterable[InputUnionMember1UnionMember1ContentUnionMember1]]]
     """The content of the message (string or content parts array)"""
 
@@ -234,8 +228,6 @@ class InputUnionMember1UnionMember1Typed(TypedDict, total=False):
     type: Literal["message"]
     """Optional type identifier for message items (used by some clients like Codex)"""
 
-
-InputUnionMember1UnionMember1: TypeAlias = Union[InputUnionMember1UnionMember1Typed, Dict[str, object]]
 
 InputUnionMember1: TypeAlias = Union[InputUnionMember1UnionMember0, InputUnionMember1UnionMember1]
 
