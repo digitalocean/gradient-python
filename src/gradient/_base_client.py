@@ -486,17 +486,17 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     ) -> httpx.Request:
         if log.isEnabledFor(logging.DEBUG):
             log.debug(
-                "Request options",
-                # model_dump(
-                #     options,
-                #     exclude_unset=True,
-                #     # Pydantic v1 can't dump every type we support in content, so we exclude it for now.
-                #     exclude={
-                #         "content",
-                #     }
-                #     if PYDANTIC_V1
-                #     else {},
-                # ),
+                "Request options: %s",
+                model_dump(
+                    options,
+                    exclude_unset=True,
+                    # Pydantic v1 can't dump every type we support in content, so we exclude it for now.
+                    exclude={
+                        "content",
+                    }
+                    if PYDANTIC_V1
+                    else {},
+                ),
             )
         kwargs: dict[str, Any] = {}
 
