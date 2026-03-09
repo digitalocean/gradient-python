@@ -1075,3 +1075,15 @@ from gradient.types import BillingListInsightsResponse
 Methods:
 
 - <code title="get /v2/billing/{account_urn}/insights/{start_date}/{end_date}">client.billing.<a href="./src/gradient/resources/billing.py">list_insights</a>(end_date, \*, account_urn, start_date, \*\*<a href="src/gradient/types/billing_list_insights_params.py">params</a>) -> <a href="./src/gradient/types/billing_list_insights_response.py">BillingListInsightsResponse</a></code>
+
+# Responses
+
+Types:
+
+```python
+from gradient.types import ResponseCreateResponse
+```
+
+Methods:
+
+- <code title="post /responses">client.responses.<a href="./src/gradient/resources/responses.py">create</a>(\*\*<a href="src/gradient/types/response_create_params.py">params</a>) -> <a href="./src/gradient/types/response_create_response.py">ResponseCreateResponse</a></code>
