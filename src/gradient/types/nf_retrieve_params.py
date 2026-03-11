@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["NfRetrieveParams"]
 
 
 class NfRetrieveParams(TypedDict, total=False):
-    region: Required[str]
+    region: str
     """The DigitalOcean region slug (e.g., nyc2, atl1) where the NFS share resides."""

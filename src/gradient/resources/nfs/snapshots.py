@@ -51,7 +51,7 @@ class SnapshotsResource(SyncAPIResource):
         self,
         nfs_snapshot_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -95,7 +95,7 @@ class SnapshotsResource(SyncAPIResource):
     def list(
         self,
         *,
-        region: str,
+        region: str | Omit = omit,
         share_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -152,7 +152,7 @@ class SnapshotsResource(SyncAPIResource):
         self,
         nfs_snapshot_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -224,7 +224,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         self,
         nfs_snapshot_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,7 +268,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        region: str,
+        region: str | Omit = omit,
         share_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -325,7 +325,7 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         self,
         nfs_snapshot_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
