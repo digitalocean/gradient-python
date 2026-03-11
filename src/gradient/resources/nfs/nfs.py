@@ -69,6 +69,7 @@ class NfsResource(SyncAPIResource):
         region: str,
         size_gib: int,
         vpc_ids: SequenceNotStr[str],
+        performance_tier: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,6 +89,8 @@ class NfsResource(SyncAPIResource):
 
           vpc_ids: List of VPC IDs that should be able to access the share.
 
+          performance_tier: The performance tier of the share.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,6 +107,7 @@ class NfsResource(SyncAPIResource):
                     "region": region,
                     "size_gib": size_gib,
                     "vpc_ids": vpc_ids,
+                    "performance_tier": performance_tier,
                 },
                 nf_create_params.NfCreateParams,
             ),
@@ -117,7 +121,7 @@ class NfsResource(SyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,7 +164,7 @@ class NfsResource(SyncAPIResource):
     def list(
         self,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,7 +205,7 @@ class NfsResource(SyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,9 +252,9 @@ class NfsResource(SyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionResizeParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -263,17 +267,18 @@ class NfsResource(SyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -290,9 +295,9 @@ class NfsResource(SyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionSnapshotParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -305,17 +310,18 @@ class NfsResource(SyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -332,9 +338,9 @@ class NfsResource(SyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionAttachParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,17 +353,18 @@ class NfsResource(SyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -374,9 +381,9 @@ class NfsResource(SyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionDetachParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -389,17 +396,18 @@ class NfsResource(SyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -411,18 +419,62 @@ class NfsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["region", "type"])
+    @overload
     def initiate_action(
         self,
         nfs_id: str,
         *,
-        region: str,
+        type: Literal["resize", "snapshot"],
+        params: nf_initiate_action_params.NfsActionSwitchPerformanceTierParams | Omit = omit,
+        region: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NfInitiateActionResponse:
+        """
+        To execute an action (such as resize) on a specified NFS share, send a POST
+        request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
+        `type` attribute to on of the supported action types:
+
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
+
+        Args:
+          type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["type"])
+    def initiate_action(
+        self,
+        nfs_id: str,
+        *,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionResizeParams
         | nf_initiate_action_params.NfsActionSnapshotParams
         | nf_initiate_action_params.NfsActionAttachParams
         | nf_initiate_action_params.NfsActionDetachParams
+        | nf_initiate_action_params.NfsActionSwitchPerformanceTierParams
         | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,9 +490,9 @@ class NfsResource(SyncAPIResource):
             else f"https://api.digitalocean.com/v2/nfs/{nfs_id}/actions",
             body=maybe_transform(
                 {
-                    "region": region,
                     "type": type,
                     "params": params,
+                    "region": region,
                 },
                 nf_initiate_action_params.NfInitiateActionParams,
             ),
@@ -486,6 +538,7 @@ class AsyncNfsResource(AsyncAPIResource):
         region: str,
         size_gib: int,
         vpc_ids: SequenceNotStr[str],
+        performance_tier: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -505,6 +558,8 @@ class AsyncNfsResource(AsyncAPIResource):
 
           vpc_ids: List of VPC IDs that should be able to access the share.
 
+          performance_tier: The performance tier of the share.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -521,6 +576,7 @@ class AsyncNfsResource(AsyncAPIResource):
                     "region": region,
                     "size_gib": size_gib,
                     "vpc_ids": vpc_ids,
+                    "performance_tier": performance_tier,
                 },
                 nf_create_params.NfCreateParams,
             ),
@@ -534,7 +590,7 @@ class AsyncNfsResource(AsyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -577,7 +633,7 @@ class AsyncNfsResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -618,7 +674,7 @@ class AsyncNfsResource(AsyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -665,9 +721,9 @@ class AsyncNfsResource(AsyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionResizeParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -680,17 +736,18 @@ class AsyncNfsResource(AsyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -707,9 +764,9 @@ class AsyncNfsResource(AsyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionSnapshotParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -722,17 +779,18 @@ class AsyncNfsResource(AsyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -749,9 +807,9 @@ class AsyncNfsResource(AsyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionAttachParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -764,17 +822,18 @@ class AsyncNfsResource(AsyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -791,9 +850,9 @@ class AsyncNfsResource(AsyncAPIResource):
         self,
         nfs_id: str,
         *,
-        region: str,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionDetachParams | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -806,17 +865,18 @@ class AsyncNfsResource(AsyncAPIResource):
         request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
         `type` attribute to on of the supported action types:
 
-        | Action                  | Details                                                                          |
-        | ----------------------- | -------------------------------------------------------------------------------- |
-        | <nobr>`resize`</nobr>   | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB       |
-        | <nobr>`snapshot`</nobr> | Takes a snapshot of an NFS share                                                 |
-        | <nobr>`attach`</nobr>   | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID   |
-        | <nobr>`detach`</nobr>   | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID |
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
 
         Args:
-          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
-
           type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
 
           extra_headers: Send extra headers
 
@@ -828,18 +888,62 @@ class AsyncNfsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["region", "type"])
+    @overload
     async def initiate_action(
         self,
         nfs_id: str,
         *,
-        region: str,
+        type: Literal["resize", "snapshot"],
+        params: nf_initiate_action_params.NfsActionSwitchPerformanceTierParams | Omit = omit,
+        region: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> NfInitiateActionResponse:
+        """
+        To execute an action (such as resize) on a specified NFS share, send a POST
+        request to `/v2/nfs/{nfs_id}/actions`. In the JSON body to the request, set the
+        `type` attribute to on of the supported action types:
+
+        | Action                                 | Details                                                                                                                      |
+        | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+        | <nobr>`resize`</nobr>                  | Resizes an NFS share. Set the size_gib attribute to a desired value in GiB                                                   |
+        | <nobr>`snapshot`</nobr>                | Takes a snapshot of an NFS share                                                                                             |
+        | <nobr>`attach`</nobr>                  | Attaches an NFS share to a VPC. Set the vpc_id attribute to the desired VPC ID                                               |
+        | <nobr>`detach`</nobr>                  | Detaches an NFS share from a VPC. Set the vpc_id attribute to the desired VPC ID                                             |
+        | <nobr>`switch_performance_tier`</nobr> | Switches the performance tier of an NFS share. Set the performance_tier attribute to the desired tier (e.g., standard, high) |
+
+        Args:
+          type: The type of action to initiate for the NFS share (such as resize or snapshot).
+
+          region: The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["type"])
+    async def initiate_action(
+        self,
+        nfs_id: str,
+        *,
         type: Literal["resize", "snapshot"],
         params: nf_initiate_action_params.NfsActionResizeParams
         | nf_initiate_action_params.NfsActionSnapshotParams
         | nf_initiate_action_params.NfsActionAttachParams
         | nf_initiate_action_params.NfsActionDetachParams
+        | nf_initiate_action_params.NfsActionSwitchPerformanceTierParams
         | Omit = omit,
+        region: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -855,9 +959,9 @@ class AsyncNfsResource(AsyncAPIResource):
             else f"https://api.digitalocean.com/v2/nfs/{nfs_id}/actions",
             body=await async_maybe_transform(
                 {
-                    "region": region,
                     "type": type,
                     "params": params,
+                    "region": region,
                 },
                 nf_initiate_action_params.NfInitiateActionParams,
             ),

@@ -15,17 +15,19 @@ __all__ = [
     "NfsActionAttachParams",
     "NfsActionDetach",
     "NfsActionDetachParams",
+    "NfsActionSwitchPerformanceTier",
+    "NfsActionSwitchPerformanceTierParams",
 ]
 
 
 class NfsActionResize(TypedDict, total=False):
-    region: Required[str]
-    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
-
     type: Required[Literal["resize", "snapshot"]]
     """The type of action to initiate for the NFS share (such as resize or snapshot)."""
 
     params: NfsActionResizeParams
+
+    region: str
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
 
 
 class NfsActionResizeParams(TypedDict, total=False):
@@ -34,13 +36,13 @@ class NfsActionResizeParams(TypedDict, total=False):
 
 
 class NfsActionSnapshot(TypedDict, total=False):
-    region: Required[str]
-    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
-
     type: Required[Literal["resize", "snapshot"]]
     """The type of action to initiate for the NFS share (such as resize or snapshot)."""
 
     params: NfsActionSnapshotParams
+
+    region: str
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
 
 
 class NfsActionSnapshotParams(TypedDict, total=False):
@@ -49,13 +51,13 @@ class NfsActionSnapshotParams(TypedDict, total=False):
 
 
 class NfsActionAttach(TypedDict, total=False):
-    region: Required[str]
-    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
-
     type: Required[Literal["resize", "snapshot"]]
     """The type of action to initiate for the NFS share (such as resize or snapshot)."""
 
     params: NfsActionAttachParams
+
+    region: str
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
 
 
 class NfsActionAttachParams(TypedDict, total=False):
@@ -64,13 +66,13 @@ class NfsActionAttachParams(TypedDict, total=False):
 
 
 class NfsActionDetach(TypedDict, total=False):
-    region: Required[str]
-    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
-
     type: Required[Literal["resize", "snapshot"]]
     """The type of action to initiate for the NFS share (such as resize or snapshot)."""
 
     params: NfsActionDetachParams
+
+    region: str
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
 
 
 class NfsActionDetachParams(TypedDict, total=False):
@@ -78,4 +80,24 @@ class NfsActionDetachParams(TypedDict, total=False):
     """The ID of the VPC from which the NFS share will be detached"""
 
 
-NfInitiateActionParams: TypeAlias = Union[NfsActionResize, NfsActionSnapshot, NfsActionAttach, NfsActionDetach]
+class NfsActionSwitchPerformanceTier(TypedDict, total=False):
+    type: Required[Literal["resize", "snapshot"]]
+    """The type of action to initiate for the NFS share (such as resize or snapshot)."""
+
+    params: NfsActionSwitchPerformanceTierParams
+
+    region: str
+    """The DigitalOcean region slug (e.g. atl1, nyc2) where the NFS snapshot resides."""
+
+
+class NfsActionSwitchPerformanceTierParams(TypedDict, total=False):
+    performance_tier: Required[str]
+    """
+    The performance tier to which the NFS share will be switched (e.g., standard,
+    high).
+    """
+
+
+NfInitiateActionParams: TypeAlias = Union[
+    NfsActionResize, NfsActionSnapshot, NfsActionAttach, NfsActionDetach, NfsActionSwitchPerformanceTier
+]

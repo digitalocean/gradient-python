@@ -64,6 +64,7 @@ class CompletionsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream: Optional[Literal[False]] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
@@ -129,6 +130,9 @@ class CompletionsResource(SyncAPIResource):
               whether they appear in the text so far, increasing the model's likelihood to
               talk about new topics.
 
+          reasoning_effort: Constrains effort on reasoning for reasoning models. Reducing reasoning effort
+              can result in faster responses and fewer tokens used on reasoning in a response.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -193,6 +197,7 @@ class CompletionsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
         temperature: Optional[float] | Omit = omit,
@@ -260,6 +265,9 @@ class CompletionsResource(SyncAPIResource):
               whether they appear in the text so far, increasing the model's likelihood to
               talk about new topics.
 
+          reasoning_effort: Constrains effort on reasoning for reasoning models. Reducing reasoning effort
+              can result in faster responses and fewer tokens used on reasoning in a response.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -321,6 +329,7 @@ class CompletionsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
         temperature: Optional[float] | Omit = omit,
@@ -388,6 +397,9 @@ class CompletionsResource(SyncAPIResource):
               whether they appear in the text so far, increasing the model's likelihood to
               talk about new topics.
 
+          reasoning_effort: Constrains effort on reasoning for reasoning models. Reducing reasoning effort
+              can result in faster responses and fewer tokens used on reasoning in a response.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -451,6 +463,7 @@ class CompletionsResource(SyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream: Optional[Literal[False]] | Literal[True] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
@@ -491,6 +504,7 @@ class CompletionsResource(SyncAPIResource):
                     "metadata": metadata,
                     "n": n,
                     "presence_penalty": presence_penalty,
+                    "reasoning_effort": reasoning_effort,
                     "stop": stop,
                     "stream": stream,
                     "stream_options": stream_options,
@@ -557,6 +571,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream: Optional[Literal[False]] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
@@ -622,6 +637,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
               whether they appear in the text so far, increasing the model's likelihood to
               talk about new topics.
 
+          reasoning_effort: Constrains effort on reasoning for reasoning models. Reducing reasoning effort
+              can result in faster responses and fewer tokens used on reasoning in a response.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -686,6 +704,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
         temperature: Optional[float] | Omit = omit,
@@ -753,6 +772,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
               whether they appear in the text so far, increasing the model's likelihood to
               talk about new topics.
 
+          reasoning_effort: Constrains effort on reasoning for reasoning models. Reducing reasoning effort
+              can result in faster responses and fewer tokens used on reasoning in a response.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -814,6 +836,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
         temperature: Optional[float] | Omit = omit,
@@ -881,6 +904,9 @@ class AsyncCompletionsResource(AsyncAPIResource):
               whether they appear in the text so far, increasing the model's likelihood to
               talk about new topics.
 
+          reasoning_effort: Constrains effort on reasoning for reasoning models. Reducing reasoning effort
+              can result in faster responses and fewer tokens used on reasoning in a response.
+
           stop: Up to 4 sequences where the API will stop generating further tokens. The
               returned text will not contain the stop sequence.
 
@@ -941,6 +967,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         metadata: Optional[Dict[str, str]] | Omit = omit,
         n: Optional[int] | Omit = omit,
         presence_penalty: Optional[float] | Omit = omit,
+        reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]] | Omit = omit,
         stop: Union[Optional[str], SequenceNotStr[str], None] | Omit = omit,
         stream: Optional[Literal[False]] | Literal[True] | Omit = omit,
         stream_options: Optional[completion_create_params.StreamOptions] | Omit = omit,
@@ -981,6 +1008,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
                     "metadata": metadata,
                     "n": n,
                     "presence_penalty": presence_penalty,
+                    "reasoning_effort": reasoning_effort,
                     "stop": stop,
                     "stream": stream,
                     "stream_options": stream_options,

@@ -28,9 +28,17 @@ __all__ = [
     "MessageChatCompletionRequestUserMessageContent",
     "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartText",
     "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartTextCacheControl",
+    "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartImageURL",
+    "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartImageURLImageURL",
+    "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartVideoURL",
+    "MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartVideoURLVideoURL",
     "MessageChatCompletionRequestUserMessageContentArrayOfContentPart",
     "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartText",
     "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartImageURL",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartImageURLImageURL",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartVideoURL",
+    "MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartVideoURLVideoURL",
     "MessageChatCompletionRequestAssistantMessage",
     "MessageChatCompletionRequestAssistantMessageContent",
     "MessageChatCompletionRequestAssistantMessageContentChatCompletionRequestContentPartText",
@@ -126,6 +134,13 @@ class CompletionCreateParamsBase(TypedDict, total=False):
 
     Positive values penalize new tokens based on whether they appear in the text so
     far, increasing the model's likelihood to talk about new topics.
+    """
+
+    reasoning_effort: Optional[Literal["none", "minimal", "low", "medium", "high", "xhigh"]]
+    """Constrains effort on reasoning for reasoning models.
+
+    Reducing reasoning effort can result in faster responses and fewer tokens used
+    on reasoning in a response.
     """
 
     stop: Union[Optional[str], SequenceNotStr[str], None]
@@ -364,6 +379,47 @@ class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContent
     """Cache control settings for the content part."""
 
 
+class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartImageURLImageURL(
+    TypedDict, total=False
+):
+    """Image URL settings."""
+
+    url: Required[str]
+    """A URL or data URL containing image content."""
+
+    detail: Literal["auto", "low", "high"]
+    """Optional detail level for image understanding."""
+
+
+class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartImageURL(TypedDict, total=False):
+    """Content part with type and image URL."""
+
+    image_url: Required[MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartImageURLImageURL]
+    """Image URL settings."""
+
+    type: Required[Literal["image_url"]]
+    """The type of content part"""
+
+
+class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartVideoURLVideoURL(
+    TypedDict, total=False
+):
+    """Video URL settings."""
+
+    url: Required[str]
+    """A URL or data URL containing video content."""
+
+
+class MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartVideoURL(TypedDict, total=False):
+    """Content part with type and video URL."""
+
+    type: Required[Literal["video_url"]]
+    """The type of content part"""
+
+    video_url: Required[MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartVideoURLVideoURL]
+    """Video URL settings."""
+
+
 class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartTextCacheControl(
     TypedDict, total=False
 ):
@@ -393,13 +449,67 @@ class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatComple
     """Cache control settings for the content part."""
 
 
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartImageURLImageURL(
+    TypedDict, total=False
+):
+    """Image URL settings."""
+
+    url: Required[str]
+    """A URL or data URL containing image content."""
+
+    detail: Literal["auto", "low", "high"]
+    """Optional detail level for image understanding."""
+
+
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartImageURL(
+    TypedDict, total=False
+):
+    """Content part with type and image URL."""
+
+    image_url: Required[
+        MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartImageURLImageURL
+    ]
+    """Image URL settings."""
+
+    type: Required[Literal["image_url"]]
+    """The type of content part"""
+
+
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartVideoURLVideoURL(
+    TypedDict, total=False
+):
+    """Video URL settings."""
+
+    url: Required[str]
+    """A URL or data URL containing video content."""
+
+
+class MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartVideoURL(
+    TypedDict, total=False
+):
+    """Content part with type and video URL."""
+
+    type: Required[Literal["video_url"]]
+    """The type of content part"""
+
+    video_url: Required[
+        MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartVideoURLVideoURL
+    ]
+    """Video URL settings."""
+
+
 MessageChatCompletionRequestUserMessageContentArrayOfContentPart: TypeAlias = Union[
-    str, MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartText
+    str,
+    MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartText,
+    MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartImageURL,
+    MessageChatCompletionRequestUserMessageContentArrayOfContentPartChatCompletionRequestContentPartVideoURL,
 ]
 
 MessageChatCompletionRequestUserMessageContent: TypeAlias = Union[
     str,
     MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartText,
+    MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartImageURL,
+    MessageChatCompletionRequestUserMessageContentChatCompletionRequestContentPartVideoURL,
     SequenceNotStr[MessageChatCompletionRequestUserMessageContentArrayOfContentPart],
 ]
 
