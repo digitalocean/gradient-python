@@ -62,7 +62,7 @@ from ._types import (
     not_given,
 )
 from ._utils import is_dict, is_list, asyncify, is_given, lru_cache, is_mapping
-from ._compat import PYDANTIC_V1, model_copy
+from ._compat import PYDANTIC_V1, model_copy, model_dump
 from ._models import GenericModel, FinalRequestOptions, validate_type, construct_type
 from ._response import (
     APIResponse,
