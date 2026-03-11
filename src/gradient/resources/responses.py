@@ -394,7 +394,7 @@ class ResponsesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateResponseResponse | Stream[CreateResponseStreamResponse]:
         return self._post(
-            "/responses",
+            "/responses" if self._client._base_url_overridden else f"{self._client.inference_endpoint}/v1/responses",
             body=maybe_transform(
                 {
                     "input": input,
@@ -795,7 +795,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreateResponseResponse | AsyncStream[CreateResponseStreamResponse]:
         return await self._post(
-            "/responses",
+            "/responses" if self._client._base_url_overridden else f"{self._client.inference_endpoint}/v1/responses",
             body=await async_maybe_transform(
                 {
                     "input": input,

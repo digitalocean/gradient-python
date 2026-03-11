@@ -309,7 +309,9 @@ class ImagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageGenerateResponse | Stream[ImageGenStreamEvent]:
         return self._post(
-            "/images/generations",
+            "/images/generations"
+            if self._client._base_url_overridden
+            else f"{self._client.inference_endpoint}/v1/images/generations",
             body=maybe_transform(
                 {
                     "prompt": prompt,
@@ -621,7 +623,9 @@ class AsyncImagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImageGenerateResponse | AsyncStream[ImageGenStreamEvent]:
         return await self._post(
-            "/images/generations",
+            "/images/generations"
+            if self._client._base_url_overridden
+            else f"{self._client.inference_endpoint}/v1/images/generations",
             body=await async_maybe_transform(
                 {
                     "prompt": prompt,

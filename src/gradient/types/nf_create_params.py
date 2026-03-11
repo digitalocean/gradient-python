@@ -21,3 +21,6 @@ class NfCreateParams(TypedDict, total=False):
 
     vpc_ids: Required[SequenceNotStr[str]]
     """List of VPC IDs that should be able to access the share."""
+
+    performance_tier: str
+    """The performance tier of the share."""
