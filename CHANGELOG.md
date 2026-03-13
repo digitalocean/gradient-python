@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.12.0 (2026-03-13)
+
+Full Changelog: [v3.11.0...v3.12.0](https://github.com/digitalocean/gradient-python/compare/v3.11.0...v3.12.0)
+
+### Features
+
+* **api:** manual updates ([e139299](https://github.com/digitalocean/gradient-python/commit/e13929984bbfa991d51a56946a40380a909f1d75))
+* **api:** responses ([3277876](https://github.com/digitalocean/gradient-python/commit/32778769c86140d283a9f456568f68803208ae62))
+* **api:** update urls for endpoints ([2d4da01](https://github.com/digitalocean/gradient-python/commit/2d4da01e55e7f7a96aea98232ef05b28ebbcbada))
+* **client:** add support for binary request streaming ([f9706f4](https://github.com/digitalocean/gradient-python/commit/f9706f4b88e6278a5be1057c30a8939fed415767))
+
+
+### Chores
+
+* format all `api.md` files ([e103720](https://github.com/digitalocean/gradient-python/commit/e103720daa6eaae0454cbb857d97b1b2e43b405f))
+* **internal:** add request options to SSE classes ([17b88d9](https://github.com/digitalocean/gradient-python/commit/17b88d90dafe6a1d9db3f4ea15f17c7cdf838f81))
+* **internal:** codegen related update ([6f506cb](https://github.com/digitalocean/gradient-python/commit/6f506cb1dae5679b5ed992822658f333e382340e))
+* **internal:** codegen related update ([56acb2e](https://github.com/digitalocean/gradient-python/commit/56acb2e47da30e09ab6cbf42c285bf6480a376fe))
+* **internal:** codegen related update ([865fb4c](https://github.com/digitalocean/gradient-python/commit/865fb4cadfe0ce791ecc4ad38f50ce25b00477ee))
+* **internal:** make `test_proxy_environment_variables` more resilient ([09cfd99](https://github.com/digitalocean/gradient-python/commit/09cfd991d0442077c4f66b47f4d9da34f608692d))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([f3aa13b](https://github.com/digitalocean/gradient-python/commit/f3aa13b09ca2c1f565cc3277530bfa1775d02dd0))
+* **internal:** remove mock server code ([f774a64](https://github.com/digitalocean/gradient-python/commit/f774a64d51891a10e3d30ddaafe556afdf4502e0))
+* update mock server docs ([fa4da88](https://github.com/digitalocean/gradient-python/commit/fa4da887118bdf9462d74328a81a61dc4c4c30e9))
+
 ## 3.11.0 (2026-02-17)
 
 Full Changelog: [v3.10.1...v3.11.0](https://github.com/digitalocean/gradient-python/compare/v3.10.1...v3.11.0)
