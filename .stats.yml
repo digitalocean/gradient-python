@@ -1,4 +1,4 @@
 configured_endpoints: 193
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/digitalocean%2Fgradient-93df5cb3d61c1bbcab2a4bbf3f0775454bd185a400bc140c61dbf36e108dbf89.yml
-openapi_spec_hash: 0126adf782c5feac3d8e682e466c3cf7
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/digitalocean%2Fgradient-24bdeb83fbe576e4dd92498321be977e820fd755babee77eb8ff419a6229b22f.yml
+openapi_spec_hash: f1faf4e4e0fc37e518fe55ff7c01086d
 config_hash: 3f968a57adb20643373c134efc9af01a
