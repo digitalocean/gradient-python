@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.12.1 (2026-03-16)
+
+Full Changelog: [v3.12.0...v3.12.1](https://github.com/digitalocean/gradient-python/compare/v3.12.0...v3.12.1)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([580bdb0](https://github.com/digitalocean/gradient-python/commit/580bdb0bee638c423cfb547b711202080ab3a40f))
+* **pydantic:** do not pass `by_alias` unless set ([715426f](https://github.com/digitalocean/gradient-python/commit/715426f39a35777ffe9cfeb67501b19beae401f7))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([c63f621](https://github.com/digitalocean/gradient-python/commit/c63f621dff49de34e7aa2a5ce37eb65972572d41))
+
 ## 3.12.0 (2026-03-13)
 
 Full Changelog: [v3.11.0...v3.12.0](https://github.com/digitalocean/gradient-python/compare/v3.11.0...v3.12.0)
