@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -90,9 +90,8 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/destroy_with_associated_resources", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -125,9 +124,10 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/status"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/status",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/destroy_with_associated_resources/status", droplet_id=droplet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -170,9 +170,10 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers.update({"X-Dangerous": ("true" if x_dangerous else "false")})
         return self._delete(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous", droplet_id=droplet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -233,9 +234,10 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/selective"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/selective",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/destroy_with_associated_resources/selective", droplet_id=droplet_id
+            ),
             body=maybe_transform(
                 {
                     "floating_ips": floating_ips,
@@ -283,9 +285,8 @@ class DestroyWithAssociatedResourcesResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/retry"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/retry",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/destroy_with_associated_resources/retry", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -357,9 +358,8 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/destroy_with_associated_resources", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -392,9 +392,10 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/status"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/status",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/destroy_with_associated_resources/status", droplet_id=droplet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,9 +438,10 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers.update({"X-Dangerous": ("true" if x_dangerous else "false")})
         return await self._delete(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/destroy_with_associated_resources/dangerous", droplet_id=droplet_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -500,9 +502,10 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/selective"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/selective",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/destroy_with_associated_resources/selective", droplet_id=droplet_id
+            ),
             body=await async_maybe_transform(
                 {
                     "floating_ips": floating_ips,
@@ -550,9 +553,8 @@ class AsyncDestroyWithAssociatedResourcesResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v2/droplets/{droplet_id}/destroy_with_associated_resources/retry"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/destroy_with_associated_resources/retry",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/destroy_with_associated_resources/retry", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

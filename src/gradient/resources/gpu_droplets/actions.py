@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -98,9 +98,10 @@ class ActionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/actions/{action_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/actions/{action_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/actions/{action_id}", droplet_id=droplet_id, action_id=action_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -142,9 +143,8 @@ class ActionsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/actions", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1000,9 +1000,8 @@ class ActionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         return self._post(
-            f"/v2/droplets/{droplet_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/actions", droplet_id=droplet_id),
             body=maybe_transform(
                 {
                     "type": type,
@@ -1092,9 +1091,10 @@ class AsyncActionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/actions/{action_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/actions/{action_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/{droplet_id}/actions/{action_id}", droplet_id=droplet_id, action_id=action_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1136,9 +1136,8 @@ class AsyncActionsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/actions", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1996,9 +1995,8 @@ class AsyncActionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ActionInitiateResponse:
         return await self._post(
-            f"/v2/droplets/{droplet_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/actions", droplet_id=droplet_id),
             body=await async_maybe_transform(
                 {
                     "type": type,

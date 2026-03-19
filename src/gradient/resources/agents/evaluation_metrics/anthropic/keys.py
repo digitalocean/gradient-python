@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ....._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -128,9 +128,8 @@ class KeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{api_key_uuid}", api_key_uuid=api_key_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -173,9 +172,8 @@ class KeysResource(SyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/anthropic/keys/{path_api_key_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{path_api_key_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{path_api_key_uuid}", path_api_key_uuid=path_api_key_uuid),
             body=maybe_transform(
                 {
                     "api_key": api_key,
@@ -266,9 +264,8 @@ class KeysResource(SyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{api_key_uuid}", api_key_uuid=api_key_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -307,9 +304,8 @@ class KeysResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/anthropic/keys/{uuid}/agents"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{uuid}/agents",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{uuid}/agents", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,9 +420,8 @@ class AsyncKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{api_key_uuid}", api_key_uuid=api_key_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -469,9 +464,8 @@ class AsyncKeysResource(AsyncAPIResource):
         if not path_api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `path_api_key_uuid` but received {path_api_key_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/anthropic/keys/{path_api_key_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{path_api_key_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{path_api_key_uuid}", path_api_key_uuid=path_api_key_uuid),
             body=await async_maybe_transform(
                 {
                     "api_key": api_key,
@@ -562,9 +556,8 @@ class AsyncKeysResource(AsyncAPIResource):
         if not api_key_uuid:
             raise ValueError(f"Expected a non-empty value for `api_key_uuid` but received {api_key_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/anthropic/keys/{api_key_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{api_key_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{api_key_uuid}", api_key_uuid=api_key_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -603,9 +596,8 @@ class AsyncKeysResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/anthropic/keys/{uuid}/agents"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/anthropic/keys/{uuid}/agents",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/anthropic/keys/{uuid}/agents", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

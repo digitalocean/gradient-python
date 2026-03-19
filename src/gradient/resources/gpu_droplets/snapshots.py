@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -87,9 +87,8 @@ class SnapshotsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/snapshots/{snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/snapshots/{snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/snapshots/{snapshot_id}", snapshot_id=snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -197,9 +196,8 @@ class SnapshotsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/snapshots/{snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/snapshots/{snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/snapshots/{snapshot_id}", snapshot_id=snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -269,9 +267,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/snapshots/{snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/snapshots/{snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/snapshots/{snapshot_id}", snapshot_id=snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -379,9 +376,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/snapshots/{snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/snapshots/{snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/snapshots/{snapshot_id}", snapshot_id=snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

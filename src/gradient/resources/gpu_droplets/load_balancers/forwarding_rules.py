@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -86,9 +86,8 @@ class ForwardingRulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v2/load_balancers/{lb_id}/forwarding_rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/forwarding_rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/forwarding_rules", lb_id=lb_id),
             body=maybe_transform(
                 {"forwarding_rules": forwarding_rules}, forwarding_rule_add_params.ForwardingRuleAddParams
             ),
@@ -133,9 +132,8 @@ class ForwardingRulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/load_balancers/{lb_id}/forwarding_rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/forwarding_rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/forwarding_rules", lb_id=lb_id),
             body=maybe_transform(
                 {"forwarding_rules": forwarding_rules}, forwarding_rule_remove_params.ForwardingRuleRemoveParams
             ),
@@ -209,9 +207,8 @@ class AsyncForwardingRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v2/load_balancers/{lb_id}/forwarding_rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/forwarding_rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/forwarding_rules", lb_id=lb_id),
             body=await async_maybe_transform(
                 {"forwarding_rules": forwarding_rules}, forwarding_rule_add_params.ForwardingRuleAddParams
             ),
@@ -256,9 +253,8 @@ class AsyncForwardingRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/load_balancers/{lb_id}/forwarding_rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/forwarding_rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/forwarding_rules", lb_id=lb_id),
             body=await async_maybe_transform(
                 {"forwarding_rules": forwarding_rules}, forwarding_rule_remove_params.ForwardingRuleRemoveParams
             ),

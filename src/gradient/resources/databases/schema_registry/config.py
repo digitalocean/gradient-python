@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import Body, Query, Headers, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -103,9 +103,11 @@ class ConfigResource(SyncAPIResource):
                 f"Expected a non-empty value for `database_cluster_uuid` but received {database_cluster_uuid!r}"
             )
         return self._get(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config",
+                database_cluster_uuid=database_cluster_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -148,9 +150,11 @@ class ConfigResource(SyncAPIResource):
                 f"Expected a non-empty value for `database_cluster_uuid` but received {database_cluster_uuid!r}"
             )
         return self._put(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config",
+                database_cluster_uuid=database_cluster_uuid,
+            ),
             body=maybe_transform({"compatibility_level": compatibility_level}, config_update_params.ConfigUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -193,9 +197,12 @@ class ConfigResource(SyncAPIResource):
         if not subject_name:
             raise ValueError(f"Expected a non-empty value for `subject_name` but received {subject_name!r}")
         return self._get(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+                database_cluster_uuid=database_cluster_uuid,
+                subject_name=subject_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -242,9 +249,12 @@ class ConfigResource(SyncAPIResource):
         if not subject_name:
             raise ValueError(f"Expected a non-empty value for `subject_name` but received {subject_name!r}")
         return self._put(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+                database_cluster_uuid=database_cluster_uuid,
+                subject_name=subject_name,
+            ),
             body=maybe_transform(
                 {"compatibility_level": compatibility_level}, config_update_subject_params.ConfigUpdateSubjectParams
             ),
@@ -332,9 +342,11 @@ class AsyncConfigResource(AsyncAPIResource):
                 f"Expected a non-empty value for `database_cluster_uuid` but received {database_cluster_uuid!r}"
             )
         return await self._get(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config",
+                database_cluster_uuid=database_cluster_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -377,9 +389,11 @@ class AsyncConfigResource(AsyncAPIResource):
                 f"Expected a non-empty value for `database_cluster_uuid` but received {database_cluster_uuid!r}"
             )
         return await self._put(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config",
+                database_cluster_uuid=database_cluster_uuid,
+            ),
             body=await async_maybe_transform(
                 {"compatibility_level": compatibility_level}, config_update_params.ConfigUpdateParams
             ),
@@ -424,9 +438,12 @@ class AsyncConfigResource(AsyncAPIResource):
         if not subject_name:
             raise ValueError(f"Expected a non-empty value for `subject_name` but received {subject_name!r}")
         return await self._get(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+                database_cluster_uuid=database_cluster_uuid,
+                subject_name=subject_name,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -473,9 +490,12 @@ class AsyncConfigResource(AsyncAPIResource):
         if not subject_name:
             raise ValueError(f"Expected a non-empty value for `subject_name` but received {subject_name!r}")
         return await self._put(
-            f"/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/databases/{database_cluster_uuid}/schema-registry/config/{subject_name}",
+                database_cluster_uuid=database_cluster_uuid,
+                subject_name=subject_name,
+            ),
             body=await async_maybe_transform(
                 {"compatibility_level": compatibility_level}, config_update_subject_params.ConfigUpdateSubjectParams
             ),

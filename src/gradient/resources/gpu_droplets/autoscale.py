@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -136,9 +136,8 @@ class AutoscaleResource(SyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return self._get(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -181,9 +180,8 @@ class AutoscaleResource(SyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return self._put(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}", autoscale_pool_id=autoscale_pool_id),
             body=maybe_transform(
                 {
                     "config": config,
@@ -283,9 +281,8 @@ class AutoscaleResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -323,9 +320,10 @@ class AutoscaleResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers.update({"X-Dangerous": ("true" if x_dangerous else "false")})
         return self._delete(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}/dangerous"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}/dangerous",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/autoscale/{autoscale_pool_id}/dangerous", autoscale_pool_id=autoscale_pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -368,9 +366,8 @@ class AutoscaleResource(SyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return self._get(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}/history"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}/history",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}/history", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -424,9 +421,8 @@ class AutoscaleResource(SyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return self._get(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}/members"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}/members",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}/members", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -547,9 +543,8 @@ class AsyncAutoscaleResource(AsyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return await self._get(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -592,9 +587,8 @@ class AsyncAutoscaleResource(AsyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return await self._put(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}", autoscale_pool_id=autoscale_pool_id),
             body=await async_maybe_transform(
                 {
                     "config": config,
@@ -694,9 +688,8 @@ class AsyncAutoscaleResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -734,9 +727,10 @@ class AsyncAutoscaleResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         extra_headers.update({"X-Dangerous": ("true" if x_dangerous else "false")})
         return await self._delete(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}/dangerous"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}/dangerous",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/droplets/autoscale/{autoscale_pool_id}/dangerous", autoscale_pool_id=autoscale_pool_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -779,9 +773,8 @@ class AsyncAutoscaleResource(AsyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return await self._get(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}/history"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}/history",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}/history", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -835,9 +828,8 @@ class AsyncAutoscaleResource(AsyncAPIResource):
         if not autoscale_pool_id:
             raise ValueError(f"Expected a non-empty value for `autoscale_pool_id` but received {autoscale_pool_id!r}")
         return await self._get(
-            f"/v2/droplets/autoscale/{autoscale_pool_id}/members"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/autoscale/{autoscale_pool_id}/members",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/autoscale/{autoscale_pool_id}/members", autoscale_pool_id=autoscale_pool_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
