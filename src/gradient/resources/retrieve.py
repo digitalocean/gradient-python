@@ -6,7 +6,7 @@ import httpx
 
 from ..types import retrieve_documents_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -98,9 +98,8 @@ class RetrieveResource(SyncAPIResource):
         if not knowledge_base_id:
             raise ValueError(f"Expected a non-empty value for `knowledge_base_id` but received {knowledge_base_id!r}")
         return self._post(
-            f"/{knowledge_base_id}/retrieve"
-            if self._client._base_url_overridden
-            else f"https://kbaas.do-ai.run/v1/{knowledge_base_id}/retrieve",
+            ("https://kbaas.do-ai.run/v1" if not self._client._base_url_overridden else "")
+            + path_template("/{knowledge_base_id}/retrieve", knowledge_base_id=knowledge_base_id),
             body=maybe_transform(
                 {
                     "num_results": num_results,
@@ -194,9 +193,8 @@ class AsyncRetrieveResource(AsyncAPIResource):
         if not knowledge_base_id:
             raise ValueError(f"Expected a non-empty value for `knowledge_base_id` but received {knowledge_base_id!r}")
         return await self._post(
-            f"/{knowledge_base_id}/retrieve"
-            if self._client._base_url_overridden
-            else f"https://kbaas.do-ai.run/v1/{knowledge_base_id}/retrieve",
+            ("https://kbaas.do-ai.run/v1" if not self._client._base_url_overridden else "")
+            + path_template("/{knowledge_base_id}/retrieve", knowledge_base_id=knowledge_base_id),
             body=await async_maybe_transform(
                 {
                     "num_results": num_results,

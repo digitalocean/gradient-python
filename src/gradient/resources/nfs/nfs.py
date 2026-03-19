@@ -8,7 +8,7 @@ import httpx
 
 from ...types import nf_list_params, nf_create_params, nf_delete_params, nf_retrieve_params, nf_initiate_action_params
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .snapshots import (
     SnapshotsResource,
@@ -148,9 +148,8 @@ class NfsResource(SyncAPIResource):
         if not nfs_id:
             raise ValueError(f"Expected a non-empty value for `nfs_id` but received {nfs_id!r}")
         return self._get(
-            f"/v2/nfs/{nfs_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/{nfs_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/{nfs_id}", nfs_id=nfs_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -234,9 +233,8 @@ class NfsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `nfs_id` but received {nfs_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/nfs/{nfs_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/{nfs_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/{nfs_id}", nfs_id=nfs_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -485,9 +483,8 @@ class NfsResource(SyncAPIResource):
         if not nfs_id:
             raise ValueError(f"Expected a non-empty value for `nfs_id` but received {nfs_id!r}")
         return self._post(
-            f"/v2/nfs/{nfs_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/{nfs_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/{nfs_id}/actions", nfs_id=nfs_id),
             body=maybe_transform(
                 {
                     "type": type,
@@ -617,9 +614,8 @@ class AsyncNfsResource(AsyncAPIResource):
         if not nfs_id:
             raise ValueError(f"Expected a non-empty value for `nfs_id` but received {nfs_id!r}")
         return await self._get(
-            f"/v2/nfs/{nfs_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/{nfs_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/{nfs_id}", nfs_id=nfs_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -703,9 +699,8 @@ class AsyncNfsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `nfs_id` but received {nfs_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/nfs/{nfs_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/{nfs_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/{nfs_id}", nfs_id=nfs_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -954,9 +949,8 @@ class AsyncNfsResource(AsyncAPIResource):
         if not nfs_id:
             raise ValueError(f"Expected a non-empty value for `nfs_id` but received {nfs_id!r}")
         return await self._post(
-            f"/v2/nfs/{nfs_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/{nfs_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/{nfs_id}/actions", nfs_id=nfs_id),
             body=await async_maybe_transform(
                 {
                     "type": type,

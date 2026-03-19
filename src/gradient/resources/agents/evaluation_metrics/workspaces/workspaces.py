@@ -13,7 +13,7 @@ from .agents import (
     AsyncAgentsResourceWithStreamingResponse,
 )
 from ....._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ....._utils import maybe_transform, async_maybe_transform
+from ....._utils import path_template, maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -146,9 +146,8 @@ class WorkspacesResource(SyncAPIResource):
         if not workspace_uuid:
             raise ValueError(f"Expected a non-empty value for `workspace_uuid` but received {workspace_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/workspaces/{workspace_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{workspace_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/workspaces/{workspace_uuid}", workspace_uuid=workspace_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -194,9 +193,8 @@ class WorkspacesResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_workspace_uuid` but received {path_workspace_uuid!r}"
             )
         return self._put(
-            f"/v2/gen-ai/workspaces/{path_workspace_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{path_workspace_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/workspaces/{path_workspace_uuid}", path_workspace_uuid=path_workspace_uuid),
             body=maybe_transform(
                 {
                     "description": description,
@@ -259,9 +257,8 @@ class WorkspacesResource(SyncAPIResource):
         if not workspace_uuid:
             raise ValueError(f"Expected a non-empty value for `workspace_uuid` but received {workspace_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/workspaces/{workspace_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{workspace_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/workspaces/{workspace_uuid}", workspace_uuid=workspace_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -295,9 +292,10 @@ class WorkspacesResource(SyncAPIResource):
         if not workspace_uuid:
             raise ValueError(f"Expected a non-empty value for `workspace_uuid` but received {workspace_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/workspaces/{workspace_uuid}/evaluation_test_cases"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{workspace_uuid}/evaluation_test_cases",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/workspaces/{workspace_uuid}/evaluation_test_cases", workspace_uuid=workspace_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -415,9 +413,8 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         if not workspace_uuid:
             raise ValueError(f"Expected a non-empty value for `workspace_uuid` but received {workspace_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/workspaces/{workspace_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{workspace_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/workspaces/{workspace_uuid}", workspace_uuid=workspace_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -463,9 +460,8 @@ class AsyncWorkspacesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_workspace_uuid` but received {path_workspace_uuid!r}"
             )
         return await self._put(
-            f"/v2/gen-ai/workspaces/{path_workspace_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{path_workspace_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/workspaces/{path_workspace_uuid}", path_workspace_uuid=path_workspace_uuid),
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -528,9 +524,8 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         if not workspace_uuid:
             raise ValueError(f"Expected a non-empty value for `workspace_uuid` but received {workspace_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/workspaces/{workspace_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{workspace_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/workspaces/{workspace_uuid}", workspace_uuid=workspace_uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -564,9 +559,10 @@ class AsyncWorkspacesResource(AsyncAPIResource):
         if not workspace_uuid:
             raise ValueError(f"Expected a non-empty value for `workspace_uuid` but received {workspace_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/workspaces/{workspace_uuid}/evaluation_test_cases"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/workspaces/{workspace_uuid}/evaluation_test_cases",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/workspaces/{workspace_uuid}/evaluation_test_cases", workspace_uuid=workspace_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

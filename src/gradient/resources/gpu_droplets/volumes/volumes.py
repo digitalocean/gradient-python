@@ -16,7 +16,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .snapshots import (
     SnapshotsResource,
     AsyncSnapshotsResource,
@@ -359,9 +359,8 @@ class VolumesResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._get(
-            f"/v2/volumes/{volume_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}", volume_id=volume_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -492,9 +491,8 @@ class VolumesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/volumes/{volume_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}", volume_id=volume_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -888,9 +886,8 @@ class AsyncVolumesResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._get(
-            f"/v2/volumes/{volume_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}", volume_id=volume_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1021,9 +1018,8 @@ class AsyncVolumesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/volumes/{volume_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}", volume_id=volume_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

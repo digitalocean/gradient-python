@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -79,9 +79,8 @@ class SnapshotsResource(SyncAPIResource):
         if not nfs_snapshot_id:
             raise ValueError(f"Expected a non-empty value for `nfs_snapshot_id` but received {nfs_snapshot_id!r}")
         return self._get(
-            f"/v2/nfs/snapshots/{nfs_snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/snapshots/{nfs_snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/snapshots/{nfs_snapshot_id}", nfs_snapshot_id=nfs_snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -181,9 +180,8 @@ class SnapshotsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `nfs_snapshot_id` but received {nfs_snapshot_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/nfs/snapshots/{nfs_snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/snapshots/{nfs_snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/snapshots/{nfs_snapshot_id}", nfs_snapshot_id=nfs_snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -252,9 +250,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
         if not nfs_snapshot_id:
             raise ValueError(f"Expected a non-empty value for `nfs_snapshot_id` but received {nfs_snapshot_id!r}")
         return await self._get(
-            f"/v2/nfs/snapshots/{nfs_snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/snapshots/{nfs_snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/snapshots/{nfs_snapshot_id}", nfs_snapshot_id=nfs_snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -354,9 +351,8 @@ class AsyncSnapshotsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `nfs_snapshot_id` but received {nfs_snapshot_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/nfs/snapshots/{nfs_snapshot_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/nfs/snapshots/{nfs_snapshot_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/nfs/snapshots/{nfs_snapshot_id}", nfs_snapshot_id=nfs_snapshot_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

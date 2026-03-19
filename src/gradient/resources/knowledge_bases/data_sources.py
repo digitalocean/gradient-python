@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -120,9 +120,11 @@ class DataSourcesResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_knowledge_base_uuid` but received {path_knowledge_base_uuid!r}"
             )
         return self._post(
-            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
+                path_knowledge_base_uuid=path_knowledge_base_uuid,
+            ),
             body=maybe_transform(
                 {
                     "aws_data_source": aws_data_source,
@@ -200,9 +202,12 @@ class DataSourcesResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_data_source_uuid` but received {path_data_source_uuid!r}"
             )
         return self._put(
-            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}",
+                path_knowledge_base_uuid=path_knowledge_base_uuid,
+                path_data_source_uuid=path_data_source_uuid,
+            ),
             body=maybe_transform(
                 {
                     "chunking_algorithm": chunking_algorithm,
@@ -253,9 +258,10 @@ class DataSourcesResource(SyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources", knowledge_base_uuid=knowledge_base_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -304,9 +310,12 @@ class DataSourcesResource(SyncAPIResource):
         if not data_source_uuid:
             raise ValueError(f"Expected a non-empty value for `data_source_uuid` but received {data_source_uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+                knowledge_base_uuid=knowledge_base_uuid,
+                data_source_uuid=data_source_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -437,9 +446,11 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_knowledge_base_uuid` but received {path_knowledge_base_uuid!r}"
             )
         return await self._post(
-            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources",
+                path_knowledge_base_uuid=path_knowledge_base_uuid,
+            ),
             body=await async_maybe_transform(
                 {
                     "aws_data_source": aws_data_source,
@@ -517,9 +528,12 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_data_source_uuid` but received {path_data_source_uuid!r}"
             )
         return await self._put(
-            f"/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{path_knowledge_base_uuid}/data_sources/{path_data_source_uuid}",
+                path_knowledge_base_uuid=path_knowledge_base_uuid,
+                path_data_source_uuid=path_data_source_uuid,
+            ),
             body=await async_maybe_transform(
                 {
                     "chunking_algorithm": chunking_algorithm,
@@ -570,9 +584,10 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources", knowledge_base_uuid=knowledge_base_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -621,9 +636,12 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         if not data_source_uuid:
             raise ValueError(f"Expected a non-empty value for `data_source_uuid` but received {data_source_uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/knowledge_bases/{knowledge_base_uuid}/data_sources/{data_source_uuid}",
+                knowledge_base_uuid=knowledge_base_uuid,
+                data_source_uuid=data_source_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

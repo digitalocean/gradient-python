@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -149,9 +149,8 @@ class EvaluationTestCasesResource(SyncAPIResource):
         if not test_case_uuid:
             raise ValueError(f"Expected a non-empty value for `test_case_uuid` but received {test_case_uuid!r}")
         return self._get(
-            f"/v2/gen-ai/evaluation_test_cases/{test_case_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{test_case_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/evaluation_test_cases/{test_case_uuid}", test_case_uuid=test_case_uuid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,9 +207,10 @@ class EvaluationTestCasesResource(SyncAPIResource):
                 f"Expected a non-empty value for `path_test_case_uuid` but received {path_test_case_uuid!r}"
             )
         return self._put(
-            f"/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}", path_test_case_uuid=path_test_case_uuid
+            ),
             body=maybe_transform(
                 {
                     "dataset_uuid": dataset_uuid,
@@ -284,9 +284,11 @@ class EvaluationTestCasesResource(SyncAPIResource):
                 f"Expected a non-empty value for `evaluation_test_case_uuid` but received {evaluation_test_case_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs",
+                evaluation_test_case_uuid=evaluation_test_case_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -417,9 +419,8 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
         if not test_case_uuid:
             raise ValueError(f"Expected a non-empty value for `test_case_uuid` but received {test_case_uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/evaluation_test_cases/{test_case_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{test_case_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/evaluation_test_cases/{test_case_uuid}", test_case_uuid=test_case_uuid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -476,9 +477,10 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `path_test_case_uuid` but received {path_test_case_uuid!r}"
             )
         return await self._put(
-            f"/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_test_cases/{path_test_case_uuid}", path_test_case_uuid=path_test_case_uuid
+            ),
             body=await async_maybe_transform(
                 {
                     "dataset_uuid": dataset_uuid,
@@ -552,9 +554,11 @@ class AsyncEvaluationTestCasesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `evaluation_test_case_uuid` but received {evaluation_test_case_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_test_cases/{evaluation_test_case_uuid}/evaluation_runs",
+                evaluation_test_case_uuid=evaluation_test_case_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
