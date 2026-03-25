@@ -91,7 +91,7 @@ class Gradient(SyncAPIClient):
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
-        inference_endpoint: str | None = None,
+        inference_endpoint: str | None = "inference.do-ai.run",
         kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -119,7 +119,6 @@ class Gradient(SyncAPIClient):
         - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
-        - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
         - `kbass_endpoint` from `GRADIENT_KBASS_ENDPOINT`
         """
         if access_token is None:
@@ -139,7 +138,7 @@ class Gradient(SyncAPIClient):
         self.agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "inference.do-ai.run"
+            inference_endpoint = "inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if kbass_endpoint is None:
@@ -469,7 +468,7 @@ class AsyncGradient(AsyncAPIClient):
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
-        inference_endpoint: str | None = None,
+        inference_endpoint: str | None = "inference.do-ai.run",
         kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -497,7 +496,6 @@ class AsyncGradient(AsyncAPIClient):
         - `model_access_key` from `GRADIENT_MODEL_ACCESS_KEY`
         - `agent_access_key` from `GRADIENT_AGENT_ACCESS_KEY`
         - `agent_endpoint` from `GRADIENT_AGENT_ENDPOINT`
-        - `inference_endpoint` from `GRADIENT_INFERENCE_ENDPOINT`
         - `kbass_endpoint` from `GRADIENT_KBASS_ENDPOINT`
         """
         if access_token is None:
@@ -517,7 +515,7 @@ class AsyncGradient(AsyncAPIClient):
         self.agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = os.environ.get("GRADIENT_INFERENCE_ENDPOINT") or "inference.do-ai.run"
+            inference_endpoint = "inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if kbass_endpoint is None:
