@@ -91,7 +91,7 @@ class Gradient(SyncAPIClient):
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
-        inference_endpoint: str | None = "inference.do-ai.run",
+        inference_endpoint: str | None = "https://inference.do-ai.run",
         kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -138,7 +138,7 @@ class Gradient(SyncAPIClient):
         self.agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = "inference.do-ai.run"
+            inference_endpoint = "https://inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if kbass_endpoint is None:
@@ -468,7 +468,7 @@ class AsyncGradient(AsyncAPIClient):
         model_access_key: str | None = None,
         agent_access_key: str | None = None,
         agent_endpoint: str | None = None,
-        inference_endpoint: str | None = "inference.do-ai.run",
+        inference_endpoint: str | None = "https://inference.do-ai.run",
         kbass_endpoint: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -515,7 +515,7 @@ class AsyncGradient(AsyncAPIClient):
         self.agent_endpoint = agent_endpoint
 
         if inference_endpoint is None:
-            inference_endpoint = "inference.do-ai.run"
+            inference_endpoint = "https://inference.do-ai.run"
         self.inference_endpoint = inference_endpoint
 
         if kbass_endpoint is None:
