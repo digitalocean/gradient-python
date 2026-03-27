@@ -311,7 +311,7 @@ class ImagesResource(SyncAPIResource):
         return self._post(
             "/images/generations"
             if self._client._base_url_overridden
-            else f"{self._client.inference_endpoint}/v1/images/generations",
+            else "https://inference.do-ai.run/v1/images/generations",
             body=maybe_transform(
                 {
                     "prompt": prompt,
@@ -625,7 +625,7 @@ class AsyncImagesResource(AsyncAPIResource):
         return await self._post(
             "/images/generations"
             if self._client._base_url_overridden
-            else f"{self._client.inference_endpoint}/v1/images/generations",
+            else "https://inference.do-ai.run/v1/images/generations",
             body=await async_maybe_transform(
                 {
                     "prompt": prompt,

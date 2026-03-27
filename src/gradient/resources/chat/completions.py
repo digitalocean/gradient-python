@@ -480,7 +480,7 @@ class CompletionsResource(SyncAPIResource):
         return self._post(
             "/chat/completions"
             if self._client._base_url_overridden
-            else f"{self._client.inference_endpoint}/v1/chat/completions",
+            else "https://inference.do-ai.run/v1/chat/completions",
             body=maybe_transform(
                 {
                     "messages": messages,
@@ -971,7 +971,7 @@ class AsyncCompletionsResource(AsyncAPIResource):
         return await self._post(
             "/chat/completions"
             if self._client._base_url_overridden
-            else f"{self._client.inference_endpoint}/v1/chat/completions",
+            else "https://inference.do-ai.run/v1/chat/completions",
             body=await async_maybe_transform(
                 {
                     "messages": messages,
