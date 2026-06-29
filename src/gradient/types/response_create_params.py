@@ -130,7 +130,11 @@ class ResponseCreateParamsBase(TypedDict, total=False):
     """
 
 
-class InputUnionMember1UnionMember0Content(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class InputUnionMember1UnionMember0Content(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     text: str
     """The reasoning text content"""
 
@@ -138,7 +142,11 @@ class InputUnionMember1UnionMember0Content(TypedDict, total=False, extra_items=o
     """The type of content"""
 
 
-class InputUnionMember1UnionMember0(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class InputUnionMember1UnionMember0(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     type: Required[Literal["function_call", "function_call_output", "reasoning"]]
     """
     The type of input item (must be function_call, function_call_output, or
@@ -212,7 +220,11 @@ class InputUnionMember1UnionMember1ToolCall(TypedDict, total=False):
     """The type of the tool. Currently, only `function` is supported."""
 
 
-class InputUnionMember1UnionMember1(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class InputUnionMember1UnionMember1(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     content: Required[Union[str, Iterable[InputUnionMember1UnionMember1ContentUnionMember1]]]
     """The content of the message (string or content parts array)"""
 
