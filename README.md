@@ -1,3 +1,5 @@
+# **WARNING: This SDK is deprecated and will be retired on Aug-15. Please migrate to the unified DigitalOcean SDK: https://docs.digitalocean.com/reference/libraries/**
+
 ![Header image for the DigitalOcean Gradient AI Agentic Cloud](https://doimages.nyc3.cdn.digitaloceanspaces.com/do_gradient_ai_agentic_cloud.svg)
 
 # Gradient Python API library
