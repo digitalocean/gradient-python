@@ -1,5 +1,15 @@
 # **WARNING: This SDK is deprecated and will be retired on Aug-15. Please migrate to the unified DigitalOcean SDK: https://docs.digitalocean.com/reference/libraries/**
 
+## Migrate to pydo (required)
+
+**This package (`gradient`) is deprecated and retires on August 15, 2026.**
+
+- **Replace with:** [`pydo`](https://github.com/digitalocean/pydo) (`pip install pydo`)
+- **Step-by-step migration guide (public):** [MIGRATION.md](./MIGRATION.md)
+- **Official SDK overview:** https://docs.digitalocean.com/reference/libraries/
+
+Already-installed copies of this SDK can continue calling existing APIs. New installs, documentation, and ongoing maintenance for this package end on the retirement date. Please complete migration before **August 15, 2026**.
+
 ![Header image for the DigitalOcean Gradient AI Agentic Cloud](https://doimages.nyc3.cdn.digitaloceanspaces.com/do_gradient_ai_agentic_cloud.svg)
 
 # Gradient Python API library
