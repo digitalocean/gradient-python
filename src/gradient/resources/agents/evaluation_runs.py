@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -131,9 +131,10 @@ class EvaluationRunsResource(SyncAPIResource):
                 f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}", evaluation_run_uuid=evaluation_run_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -175,9 +176,10 @@ class EvaluationRunsResource(SyncAPIResource):
                 f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results", evaluation_run_uuid=evaluation_run_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -224,9 +226,12 @@ class EvaluationRunsResource(SyncAPIResource):
                 f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}",
+                evaluation_run_uuid=evaluation_run_uuid,
+                prompt_id=prompt_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -341,9 +346,10 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}", evaluation_run_uuid=evaluation_run_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -385,9 +391,10 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results", evaluation_run_uuid=evaluation_run_uuid
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -434,9 +441,12 @@ class AsyncEvaluationRunsResource(AsyncAPIResource):
                 f"Expected a non-empty value for `evaluation_run_uuid` but received {evaluation_run_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/evaluation_runs/{evaluation_run_uuid}/results/{prompt_id}",
+                evaluation_run_uuid=evaluation_run_uuid,
+                prompt_id=prompt_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

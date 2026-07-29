@@ -7,7 +7,7 @@ from typing import Iterable, Optional
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -86,9 +86,8 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v2/firewalls/{firewall_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/rules", firewall_id=firewall_id),
             body=maybe_transform(
                 {
                     "inbound_rules": inbound_rules,
@@ -138,9 +137,8 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/firewalls/{firewall_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/rules", firewall_id=firewall_id),
             body=maybe_transform(
                 {
                     "inbound_rules": inbound_rules,
@@ -219,9 +217,8 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v2/firewalls/{firewall_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/rules", firewall_id=firewall_id),
             body=await async_maybe_transform(
                 {
                     "inbound_rules": inbound_rules,
@@ -271,9 +268,8 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/firewalls/{firewall_id}/rules"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/rules",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/rules", firewall_id=firewall_id),
             body=await async_maybe_transform(
                 {
                     "inbound_rules": inbound_rules,

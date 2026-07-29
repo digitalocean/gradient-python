@@ -7,7 +7,7 @@ from typing import Optional
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, SequenceNotStr, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -89,9 +89,8 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v2/firewalls/{firewall_id}/tags"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/tags",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/tags", firewall_id=firewall_id),
             body=maybe_transform({"tags": tags}, tag_add_params.TagAddParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -138,9 +137,8 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/firewalls/{firewall_id}/tags"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/tags",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/tags", firewall_id=firewall_id),
             body=maybe_transform({"tags": tags}, tag_remove_params.TagRemoveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -216,9 +214,8 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v2/firewalls/{firewall_id}/tags"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/tags",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/tags", firewall_id=firewall_id),
             body=await async_maybe_transform({"tags": tags}, tag_add_params.TagAddParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -265,9 +262,8 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `firewall_id` but received {firewall_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/firewalls/{firewall_id}/tags"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/firewalls/{firewall_id}/tags",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/firewalls/{firewall_id}/tags", firewall_id=firewall_id),
             body=await async_maybe_transform({"tags": tags}, tag_remove_params.TagRemoveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

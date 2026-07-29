@@ -9,7 +9,7 @@ import httpx
 
 from ..types import billing_list_insights_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -116,9 +116,13 @@ class BillingResource(SyncAPIResource):
         if not end_date:
             raise ValueError(f"Expected a non-empty value for `end_date` but received {end_date!r}")
         return self._get(
-            f"/v2/billing/{account_urn}/insights/{start_date}/{end_date}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/billing/{account_urn}/insights/{start_date}/{end_date}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/billing/{account_urn}/insights/{start_date}/{end_date}",
+                account_urn=account_urn,
+                start_date=start_date,
+                end_date=end_date,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -228,9 +232,13 @@ class AsyncBillingResource(AsyncAPIResource):
         if not end_date:
             raise ValueError(f"Expected a non-empty value for `end_date` but received {end_date!r}")
         return await self._get(
-            f"/v2/billing/{account_urn}/insights/{start_date}/{end_date}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/billing/{account_urn}/insights/{start_date}/{end_date}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/billing/{account_urn}/insights/{start_date}/{end_date}",
+                account_urn=account_urn,
+                start_date=start_date,
+                end_date=end_date,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

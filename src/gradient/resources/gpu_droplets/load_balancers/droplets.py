@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -89,9 +89,8 @@ class DropletsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
-            f"/v2/load_balancers/{lb_id}/droplets"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/droplets",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/droplets", lb_id=lb_id),
             body=maybe_transform({"droplet_ids": droplet_ids}, droplet_add_params.DropletAddParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -135,9 +134,8 @@ class DropletsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/load_balancers/{lb_id}/droplets"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/droplets",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/droplets", lb_id=lb_id),
             body=maybe_transform({"droplet_ids": droplet_ids}, droplet_remove_params.DropletRemoveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -213,9 +211,8 @@ class AsyncDropletsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
-            f"/v2/load_balancers/{lb_id}/droplets"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/droplets",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/droplets", lb_id=lb_id),
             body=await async_maybe_transform({"droplet_ids": droplet_ids}, droplet_add_params.DropletAddParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -259,9 +256,8 @@ class AsyncDropletsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lb_id` but received {lb_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/load_balancers/{lb_id}/droplets"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/load_balancers/{lb_id}/droplets",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/load_balancers/{lb_id}/droplets", lb_id=lb_id),
             body=await async_maybe_transform({"droplet_ids": droplet_ids}, droplet_remove_params.DropletRemoveParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

@@ -40,7 +40,7 @@ from .backups import (
     AsyncBackupsResourceWithStreamingResponse,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import required_args, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .autoscale import (
     AutoscaleResource,
@@ -680,9 +680,8 @@ class GPUDropletsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -794,9 +793,8 @@ class GPUDropletsResource(SyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/droplets/{droplet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -885,9 +883,8 @@ class GPUDropletsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/firewalls"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/firewalls",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/firewalls", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -939,9 +936,8 @@ class GPUDropletsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/kernels"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/kernels",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/kernels", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -990,9 +986,8 @@ class GPUDropletsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/neighbors"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/neighbors",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/neighbors", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1034,9 +1029,8 @@ class GPUDropletsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/v2/droplets/{droplet_id}/snapshots"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/snapshots",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/snapshots", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1600,9 +1594,8 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1714,9 +1707,8 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
         """
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/droplets/{droplet_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1805,9 +1797,8 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/firewalls"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/firewalls",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/firewalls", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1859,9 +1850,8 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/kernels"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/kernels",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/kernels", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1910,9 +1900,8 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/neighbors"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/neighbors",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/neighbors", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1954,9 +1943,8 @@ class AsyncGPUDropletsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/v2/droplets/{droplet_id}/snapshots"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/droplets/{droplet_id}/snapshots",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/droplets/{droplet_id}/snapshots", droplet_id=droplet_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

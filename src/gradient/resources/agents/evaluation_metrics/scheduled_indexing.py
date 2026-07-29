@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
+from ...._utils import path_template, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -129,9 +129,11 @@ class ScheduledIndexingResource(SyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return self._get(
-            f"/v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}",
+                knowledge_base_uuid=knowledge_base_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -165,9 +167,8 @@ class ScheduledIndexingResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/scheduled-indexing/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/scheduled-indexing/{uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/scheduled-indexing/{uuid}", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -279,9 +280,11 @@ class AsyncScheduledIndexingResource(AsyncAPIResource):
                 f"Expected a non-empty value for `knowledge_base_uuid` but received {knowledge_base_uuid!r}"
             )
         return await self._get(
-            f"/v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template(
+                "/v2/gen-ai/scheduled-indexing/knowledge-base/{knowledge_base_uuid}",
+                knowledge_base_uuid=knowledge_base_uuid,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -315,9 +318,8 @@ class AsyncScheduledIndexingResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/scheduled-indexing/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/scheduled-indexing/{uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/scheduled-indexing/{uuid}", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -8,7 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -96,9 +96,8 @@ class ActionsResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._get(
-            f"/v2/volumes/{volume_id}/actions/{action_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}/actions/{action_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}/actions/{action_id}", volume_id=volume_id, action_id=action_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -148,9 +147,8 @@ class ActionsResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._get(
-            f"/v2/volumes/{volume_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}/actions", volume_id=volume_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -496,9 +494,8 @@ class ActionsResource(SyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return self._post(
-            f"/v2/volumes/{volume_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}/actions", volume_id=volume_id),
             body=maybe_transform(
                 {
                     "droplet_id": droplet_id,
@@ -831,9 +828,8 @@ class AsyncActionsResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._get(
-            f"/v2/volumes/{volume_id}/actions/{action_id}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}/actions/{action_id}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}/actions/{action_id}", volume_id=volume_id, action_id=action_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -883,9 +879,8 @@ class AsyncActionsResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._get(
-            f"/v2/volumes/{volume_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}/actions", volume_id=volume_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1231,9 +1226,8 @@ class AsyncActionsResource(AsyncAPIResource):
         if not volume_id:
             raise ValueError(f"Expected a non-empty value for `volume_id` but received {volume_id!r}")
         return await self._post(
-            f"/v2/volumes/{volume_id}/actions"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/volumes/{volume_id}/actions",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/volumes/{volume_id}/actions", volume_id=volume_id),
             body=await async_maybe_transform(
                 {
                     "droplet_id": droplet_id,

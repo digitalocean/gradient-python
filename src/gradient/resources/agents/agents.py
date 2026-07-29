@@ -23,7 +23,7 @@ from ...types import (
     agent_retrieve_usage_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -325,9 +325,8 @@ class AgentsResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/agents/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{uuid}", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -429,9 +428,8 @@ class AgentsResource(SyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/agents/{path_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{path_uuid}", path_uuid=path_uuid),
             body=maybe_transform(
                 {
                     "agent_log_insights_enabled": agent_log_insights_enabled,
@@ -540,9 +538,8 @@ class AgentsResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._delete(
-            f"/v2/gen-ai/agents/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{uuid}", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -583,9 +580,8 @@ class AgentsResource(SyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return self._get(
-            f"/v2/gen-ai/agents/{uuid}/usage"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/usage",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{uuid}/usage", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -643,9 +639,8 @@ class AgentsResource(SyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return self._put(
-            f"/v2/gen-ai/agents/{path_uuid}/deployment_visibility"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}/deployment_visibility",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{path_uuid}/deployment_visibility", path_uuid=path_uuid),
             body=maybe_transform(
                 {
                     "body_uuid": body_uuid,
@@ -953,9 +948,8 @@ class AsyncAgentsResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/agents/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{uuid}", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1057,9 +1051,8 @@ class AsyncAgentsResource(AsyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/agents/{path_uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{path_uuid}", path_uuid=path_uuid),
             body=await async_maybe_transform(
                 {
                     "agent_log_insights_enabled": agent_log_insights_enabled,
@@ -1168,9 +1161,8 @@ class AsyncAgentsResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._delete(
-            f"/v2/gen-ai/agents/{uuid}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{uuid}", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1211,9 +1203,8 @@ class AsyncAgentsResource(AsyncAPIResource):
         if not uuid:
             raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
         return await self._get(
-            f"/v2/gen-ai/agents/{uuid}/usage"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{uuid}/usage",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{uuid}/usage", uuid=uuid),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1271,9 +1262,8 @@ class AsyncAgentsResource(AsyncAPIResource):
         if not path_uuid:
             raise ValueError(f"Expected a non-empty value for `path_uuid` but received {path_uuid!r}")
         return await self._put(
-            f"/v2/gen-ai/agents/{path_uuid}/deployment_visibility"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/gen-ai/agents/{path_uuid}/deployment_visibility",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/gen-ai/agents/{path_uuid}/deployment_visibility", path_uuid=path_uuid),
             body=await async_maybe_transform(
                 {
                     "body_uuid": body_uuid,

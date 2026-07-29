@@ -15,7 +15,7 @@ from .actions import (
     AsyncActionsResourceWithStreamingResponse,
 )
 from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ...._utils import required_args, maybe_transform, async_maybe_transform
+from ...._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -230,9 +230,8 @@ class FloatingIPsResource(SyncAPIResource):
         if not floating_ip:
             raise ValueError(f"Expected a non-empty value for `floating_ip` but received {floating_ip!r}")
         return self._get(
-            f"/v2/floating_ips/{floating_ip}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/floating_ips/{floating_ip}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/floating_ips/{floating_ip}", floating_ip=floating_ip),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -317,9 +316,8 @@ class FloatingIPsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `floating_ip` but received {floating_ip!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/v2/floating_ips/{floating_ip}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/floating_ips/{floating_ip}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/floating_ips/{floating_ip}", floating_ip=floating_ip),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -524,9 +522,8 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
         if not floating_ip:
             raise ValueError(f"Expected a non-empty value for `floating_ip` but received {floating_ip!r}")
         return await self._get(
-            f"/v2/floating_ips/{floating_ip}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/floating_ips/{floating_ip}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/floating_ips/{floating_ip}", floating_ip=floating_ip),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -611,9 +608,8 @@ class AsyncFloatingIPsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `floating_ip` but received {floating_ip!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/v2/floating_ips/{floating_ip}"
-            if self._client._base_url_overridden
-            else f"https://api.digitalocean.com/v2/floating_ips/{floating_ip}",
+            ("https://api.digitalocean.com" if not self._client._base_url_overridden else "")
+            + path_template("/v2/floating_ips/{floating_ip}", floating_ip=floating_ip),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

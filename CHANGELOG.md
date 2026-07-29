@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.12.2 (2026-07-29)
+
+Full Changelog: [v3.12.1...v3.12.2](https://github.com/digitalocean/gradient-python/compare/v3.12.1...v3.12.2)
+
+### Bug Fixes
+
+* sanitize endpoint path params ([fb36077](https://github.com/digitalocean/gradient-python/commit/fb3607741be194b1daa0985437a5118f1b30093d))
+
 ## 3.12.1 (2026-03-16)
 
 Full Changelog: [v3.12.0...v3.12.1](https://github.com/digitalocean/gradient-python/compare/v3.12.0...v3.12.1)
