@@ -1,7 +1,7 @@
 [project]
 name = "gradient"
-version = "3.12.1"
-description = "The official Python library for the Gradient API"
+version = "3.12.2"
+description = "DEPRECATED: Retires Aug 15, 2026. Migrate to pydo — https://docs.digitalocean.com/reference/libraries/"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [{ name = "DigitalOcean, LLC", email = "dev@digitalocean.com" }]
