@@ -419,3 +419,48 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# Rate Limiting Classes
+class RateLimiter:
+    """Simple token bucket rate limiter."""
+
+    def __init__(self, requests_per_minute: int = 60) -> None:
+        """Initialize rate limiter.
+
+        Args:
+            requests_per_minute: Maximum requests allowed per minute
+        """
+        self.requests_per_minute: int = requests_per_minute
+        self.tokens: float = float(requests_per_minute)
+        self.last_refill: float = self._now()
+        self.refill_rate: float = requests_per_minute / 60.0  # tokens per second
+
+    def _now(self) -> float:
+        """Get current time in seconds."""
+        import time
+        return time.time()
+
+    def _refill(self) -> None:
+        """Refill tokens based on elapsed time."""
+        now = self._now()
+        elapsed = now - self.last_refill
+        self.tokens = min(self.requests_per_minute, self.tokens + elapsed * self.refill_rate)
+        self.last_refill = now
+
+    def acquire(self, tokens: int = 1) -> bool:
+        """Try to acquire tokens. Returns True if successful."""
+        self._refill()
+        if self.tokens >= tokens:
+            self.tokens -= tokens
+            return True
+        return False
+
+    def wait_time(self, tokens: int = 1) -> float:
+        """Get seconds to wait for tokens to be available."""
+        self._refill()
+        if self.tokens >= tokens:
+            return 0.0
+
+        needed = tokens - self.tokens
+        return needed / self.refill_rate
