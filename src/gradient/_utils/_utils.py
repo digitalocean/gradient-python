@@ -419,3 +419,126 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# Pagination Classes
+class PaginationHelper:
+    """Helper for handling paginated API responses."""
+
+    def __init__(self, page_size: int = 20, max_pages: int | None = None) -> None:
+        """Initialize pagination helper.
+
+        Args:
+            page_size: Number of items per page
+            max_pages: Maximum number of pages to fetch (None for unlimited)
+        """
+        self.page_size: int = page_size
+        self.max_pages: int | None = max_pages
+
+    def paginate(self, fetch_func: Callable[[dict[str, Any]], Any], **kwargs: Any) -> list[Any]:
+        """Paginate through all results using the provided fetch function.
+
+        Args:
+            fetch_func: Function that takes pagination params and returns response
+            **kwargs: Additional parameters to pass to fetch_func
+
+        Returns:
+            List of all items across all pages
+        """
+        all_items = []
+        page = 1
+
+        while self.max_pages is None or page <= self.max_pages:
+            # Add pagination parameters
+            params = kwargs.copy()
+            params.update({
+                "page": page,
+                "per_page": self.page_size
+            })
+
+            try:
+                response = fetch_func(params)
+                items = self._extract_items(response)
+
+                if not items:
+                    break  # No more items
+
+                all_items.extend(items)
+
+                # Check if we got fewer items than requested (last page)
+                if len(items) < self.page_size:
+                    break
+
+                page += 1
+
+            except Exception as e:
+                # If it's a pagination error or no more pages, stop
+                if self._is_pagination_end_error(e):
+                    break
+                raise
+
+        return all_items
+
+    def _extract_items(self, response: Any) -> list[Any]:
+        """Extract items from API response."""
+        # Handle different response formats
+        if hasattr(response, 'data') and isinstance(response.data, list):
+            return response.data
+        elif hasattr(response, 'items') and isinstance(response.items, list):
+            return response.items
+        elif hasattr(response, 'results') and isinstance(response.results, list):
+            return response.results
+        elif isinstance(response, list):
+            return response
+        elif isinstance(response, dict):
+            # Try common keys
+            for key in ['data', 'items', 'results', 'objects']:
+                if key in response and isinstance(response[key], list):
+                    return response[key]
+        return []
+
+    def _is_pagination_end_error(self, error: Exception) -> bool:
+        """Check if error indicates end of pagination."""
+        error_str = str(error).lower()
+        return any(phrase in error_str for phrase in [
+            'page not found',
+            'invalid page',
+            'no more pages',
+            'pagination end'
+        ])
+
+    async def paginate_async(self, fetch_func: Callable[[dict[str, Any]], Any], **kwargs: Any) -> list[Any]:
+        """Async version of paginate."""
+        import asyncio
+
+        all_items = []
+        page = 1
+
+        while self.max_pages is None or page <= self.max_pages:
+            # Add pagination parameters
+            params = kwargs.copy()
+            params.update({
+                "page": page,
+                "per_page": self.page_size
+            })
+
+            try:
+                response = await fetch_func(params)
+                items = self._extract_items(response)
+
+                if not items:
+                    break
+
+                all_items.extend(items)
+
+                if len(items) < self.page_size:
+                    break
+
+                page += 1
+
+            except Exception as e:
+                if self._is_pagination_end_error(e):
+                    break
+                raise
+
+        return all_items
