@@ -419,3 +419,81 @@ def json_safe(data: object) -> object:
         return data.isoformat()
 
     return data
+
+
+# Response Caching Classes
+class ResponseCache:
+    """Simple in-memory response cache with TTL support."""
+
+    def __init__(self, max_size: int = 100, default_ttl: int = 300) -> None:
+        """Initialize the cache.
+
+        Args:
+            max_size: Maximum number of cached responses
+            default_ttl: Default time-to-live in seconds
+        """
+        self.max_size: int = max_size
+        self.default_ttl: int = default_ttl
+        self._cache: dict[str, tuple[Any, float]] = {}
+        self._access_order: list[str] = []
+
+    def _make_key(self, method: str, url: str, params: dict[str, Any] | None = None, data: Any = None) -> str:
+        """Generate a cache key from request details."""
+        import hashlib
+        import json
+
+        key_data = {
+            "method": method.upper(),
+            "url": url,
+            "params": params or {},
+            "data": json.dumps(data, sort_keys=True) if data else None
+        }
+        key_str = json.dumps(key_data, sort_keys=True)
+        return hashlib.md5(key_str.encode()).hexdigest()
+
+    def get(self, method: str, url: str, params: dict[str, Any] | None = None, data: Any = None) -> Any | None:
+        """Get a cached response if available and not expired."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        if key in self._cache:
+            response, expiry = self._cache[key]
+            if time.time() < expiry:
+                # Move to end (most recently used)
+                self._access_order.remove(key)
+                self._access_order.append(key)
+                return response
+            else:
+                # Expired, remove it
+                del self._cache[key]
+                self._access_order.remove(key)
+        return None
+
+    def set(self, method: str, url: str, response: Any, ttl: int | None = None,
+            params: dict[str, Any] | None = None, data: Any = None) -> None:
+        """Cache a response with optional TTL."""
+        import time
+
+        key = self._make_key(method, url, params, data)
+        expiry = time.time() + (ttl or self.default_ttl)
+
+        # Remove if already exists
+        if key in self._cache:
+            self._access_order.remove(key)
+
+        # Evict least recently used if at capacity
+        if len(self._cache) >= self.max_size:
+            lru_key = self._access_order.pop(0)
+            del self._cache[lru_key]
+
+        self._cache[key] = (response, expiry)
+        self._access_order.append(key)
+
+    def clear(self) -> None:
+        """Clear all cached responses."""
+        self._cache.clear()
+        self._access_order.clear()
+
+    def size(self) -> int:
+        """Get current cache size."""
+        return len(self._cache)
